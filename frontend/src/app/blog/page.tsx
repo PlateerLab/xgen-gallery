@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { BlogList } from "@/components/blog-list";
 import { getAllPosts } from "@/lib/blog";
@@ -27,7 +26,7 @@ export default function BlogPage() {
 
     return (
         <>
-            <SiteNav overlay />
+            <SiteNav />
             <JsonLd
                 data={[
                     {
@@ -53,26 +52,24 @@ export default function BlogPage() {
                 ]}
             />
 
-            <section className="relative flex min-h-[380px] items-center overflow-hidden border-b border-white/10 py-24 text-white">
-                <SceneBackground concept="insights" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#fcd34d]">
+            <section className="border-b border-[var(--color-line)] bg-white">
+                <div className="mx-auto w-full max-w-6xl px-6 py-14 md:py-20">
+                    <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
                         Plateer Labs · Insight
                     </p>
-                    <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl md:leading-[1.1]">
-                        Proven by research,
+                    <h1 className="mt-3 text-[34px] font-bold leading-[1.12] tracking-tight text-[var(--color-ink)] md:text-[56px]">
+                        연구로 증명하고
                         <br />
-                        delivered as value in the field
+                        현장에서 가치로
                     </h1>
-                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/70">
-                        Case Study, Tech Note, 제품 소식 —
-                        <br className="hidden sm:block" />
-                        연구와 현장에서 얻은 인사이트를 공유합니다
+                    <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
+                        Case Study · Tech Note · 제품 소식 — 연구와 현장에서 얻은
+                        인사이트를 공유합니다
                     </p>
                 </div>
             </section>
 
-            <main id="articles" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
+            <main id="articles" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14">
                 <Suspense fallback={null}>
                     <BlogList posts={posts} />
                 </Suspense>

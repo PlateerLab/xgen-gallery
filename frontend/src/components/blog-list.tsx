@@ -1,9 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, ArrowUpRight, PenLine, X } from "lucide-react";
+import {
+    ArrowRight,
+    ChevronLeft,
+    ChevronRight,
+    Flame,
+    Layers,
+    PenLine,
+    X,
+} from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
 import { cn } from "@/lib/cn";
 import { ViewCount } from "@/components/view-count";
@@ -11,6 +19,9 @@ import { ViewCount } from "@/components/view-count";
 const ALL = "전체";
 const TABS = [ALL, "제품 소식", "Tech Note", "Case Study"] as const;
 type Tab = (typeof TABS)[number];
+const PAGE_SIZE = 5;
+
+const API = process.env.NEXT_PUBLIC_GALLERY_API_URL || "http://localhost:8800";
 
 /** GNB 서브메뉴 딥링크용: /blog?cat=<key> → 카테고리 라벨. */
 const CATEGORY_BY_KEY: Record<string, Tab> = {
@@ -24,7 +35,25 @@ const KEY_BY_CATEGORY: Partial<Record<Tab, string>> = {
     "Case Study": "case",
 };
 
-/** 카테고리별 브랜드 테마 — 커버 없는 글의 썸네일·라벨에 쓰인다. */
+/** 시리즈 정의 — slug 패턴으로 묶는다(프론트매터 불필요, 후속편 머지 시 자동 그룹). */
+const SERIES: { key: string; title: string; match: RegExp; order: RegExp }[] = [
+    {
+        key: "harness",
+        title: "하네스 개발기",
+        match: /^harness-journey-/,
+        order: /^harness-journey-(\d+)-/,
+    },
+];
+
+function seriesOf(slug: string) {
+    return SERIES.find((s) => s.match.test(slug)) ?? null;
+}
+function seriesOrder(s: (typeof SERIES)[number], slug: string) {
+    const m = slug.match(s.order);
+    return m ? Number(m[1]) : 999;
+}
+
+/** 카테고리별 브랜드 테마 — 커버 없는 글의 썸네일에 쓰인다. */
 const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
     "제품 소식": {
         grad: "linear-gradient(135deg,#eaf1ff 0%,#d3e4ff 100%)",
@@ -75,24 +104,16 @@ function Thumb({ post, className }: { post: PostMeta; className?: string }) {
                 }}
             />
             <div
-                className="absolute -right-6 -top-6 h-28 w-28 rounded-full opacity-30"
+                className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-30"
                 style={{ background: th.ink }}
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
+            <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
                 <span
-                    className="font-mono text-[13px] font-bold uppercase tracking-[0.28em]"
+                    className="font-mono text-[12px] font-bold uppercase tracking-[0.26em]"
                     style={{ color: th.ink }}
                 >
                     {th.word}
                 </span>
-                {post.tags[0] && (
-                    <span
-                        className="rounded-full bg-white/70 px-3 py-1 text-[12.5px] font-semibold"
-                        style={{ color: th.ink }}
-                    >
-                        #{post.tags[0]}
-                    </span>
-                )}
             </div>
         </div>
     );
@@ -101,17 +122,17 @@ function Thumb({ post, className }: { post: PostMeta; className?: string }) {
 /** 작성자 아바타 + 이름 + 조회수 한 줄. */
 function AuthorRow({ post }: { post: PostMeta }) {
     return (
-        <span className="flex min-w-0 items-center gap-2 text-[13.5px] text-[var(--color-ink-muted)]">
+        <span className="flex min-w-0 items-center gap-2 text-[13px] text-[var(--color-ink-muted)]">
             {post.authorGithub ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                     src={`https://github.com/${post.authorGithub}.png`}
                     alt=""
                     loading="lazy"
-                    className="h-6 w-6 flex-none rounded-full ring-1 ring-[var(--color-line)]"
+                    className="h-5 w-5 flex-none rounded-full ring-1 ring-[var(--color-line)]"
                 />
             ) : (
-                <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[var(--color-surface-alt)] text-[11px] font-bold text-[var(--color-ink-subtle)]">
+                <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[var(--color-surface-alt)] text-[10px] font-bold text-[var(--color-ink-subtle)]">
                     {post.author.slice(0, 1)}
                 </span>
             )}
@@ -124,26 +145,90 @@ function AuthorRow({ post }: { post: PostMeta }) {
     );
 }
 
+/** 인기 있는 글 — 조회수로 랭킹(백엔드), 실패 시 최신순 폴백. */
+function PopularList({ posts }: { posts: PostMeta[] }) {
+    const base = useMemo(() => posts.slice(0, 5), [posts]);
+    const [ranked, setRanked] = useState<PostMeta[]>(base);
+
+    useEffect(() => {
+        let alive = true;
+        Promise.all(
+            posts.map((p) =>
+                fetch(`${API}/api/views/${encodeURIComponent(p.slug)}`)
+                    .then((r) => (r.ok ? r.json() : null))
+                    .then((d) => ({
+                        p,
+                        c: d && typeof d.count === "number" ? d.count : -1,
+                    }))
+                    .catch(() => ({ p, c: -1 })),
+            ),
+        ).then((arr) => {
+            if (!alive) return;
+            if (arr.every((x) => x.c < 0)) return; // 데이터 없음 → 최신순 유지
+            setRanked(
+                arr
+                    .sort((a, b) => b.c - a.c)
+                    .map((x) => x.p)
+                    .slice(0, 5),
+            );
+        });
+        return () => {
+            alive = false;
+        };
+    }, [posts]);
+
+    if (ranked.length === 0) return null;
+    return (
+        <div className="rounded-2xl border border-[var(--color-line)] bg-white p-5">
+            <div className="flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                <Flame className="h-3.5 w-3.5 text-[#ff7a3d]" />
+                인기 있는 글
+            </div>
+            <ol className="mt-4 space-y-4">
+                {ranked.map((p, i) => (
+                    <li key={p.slug}>
+                        <Link href={`/blog/${p.slug}`} className="group flex gap-3">
+                            <span className="w-5 flex-none text-[19px] font-black leading-none text-[#c7d3ee] group-hover:text-[#2f7bff]">
+                                {i + 1}
+                            </span>
+                            <div className="min-w-0">
+                                <h4 className="line-clamp-2 text-[14.5px] font-bold leading-snug text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                    {p.title}
+                                </h4>
+                                <div className="mt-1 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
+                                    <time dateTime={p.date}>{fmtDate(p.date)}</time>
+                                    <span aria-hidden>·</span>
+                                    <ViewCount slug={p.slug} readOnly compact />
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    );
+}
+
 export function BlogList({ posts }: { posts: PostMeta[] }) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    // 활성 카테고리는 URL(?cat=)에서 반응형으로 읽는다. /blog에 머문 상태에서 다른
-    // 카테고리 서브메뉴를 눌러 URL만 바뀌어도(리마운트 없이) 필터가 갱신된다.
     const key = searchParams.get("cat");
     const active: Tab = (key && CATEGORY_BY_KEY[key]) || ALL;
-    // 주제(태그) 필터 — 카테고리와 AND로 조합. URL ?tag= 에서 읽는다.
     const activeTag = searchParams.get("tag");
-    // 작성자 필터 — 멤버 카드의 "더보기"에서 진입. URL ?author= 에서 읽는다.
     const activeAuthor = searchParams.get("author");
 
-    // author 필터는 최상위 스코프 — 카테고리/태그/카운트 모두 이 집합에서 파생된다.
+    const [page, setPage] = useState(1);
+    // 필터가 바뀌면 1페이지로 리셋.
+    useEffect(() => {
+        setPage(1);
+    }, [active, activeTag, activeAuthor]);
+
     const scoped = useMemo(
         () => (activeAuthor ? posts.filter((p) => p.author === activeAuthor) : posts),
         [posts, activeAuthor],
     );
 
-    // cat/tag/author 세 파라미터를 함께 관리하는 단일 URL 빌더(author는 기본 유지).
     const pushParams = (
         catKey: string | undefined,
         tag: string | null,
@@ -157,35 +242,61 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
         router.replace(qs ? `/blog?${qs}` : "/blog", { scroll: false });
     };
 
-    // 탭 클릭 → 카테고리 변경 시 주제 필터는 초기화(다른 카테고리엔 없을 수 있음).
     const selectTab = (t: Tab) => pushParams(KEY_BY_CATEGORY[t], null);
-    // 주제 칩 클릭 → 현재 카테고리는 유지, 같은 칩 재클릭 시 해제(토글).
-    const selectTag = (tag: string) =>
-        pushParams(KEY_BY_CATEGORY[active], tag === activeTag ? null : tag);
 
-    // 현재 카테고리에 속한 글에서 주제(태그)를 빈도순으로 뽑아 칩으로 노출.
     const catPosts = useMemo(
         () => (active === ALL ? scoped : scoped.filter((p) => p.category === active)),
         [scoped, active],
     );
-    const topicTags = useMemo(() => {
-        const count = new Map<string, number>();
-        catPosts.forEach((p) => p.tags.forEach((t) => count.set(t, (count.get(t) ?? 0) + 1)));
-        return [...count.entries()]
-            .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-            .map(([t]) => t);
-    }, [catPosts]);
-
     const filtered = activeTag
         ? catPosts.filter((p) => p.tags.includes(activeTag))
         : catPosts;
 
-    // 필터가 없을 때만 최신 글을 대형 피처드로. 나머지는 그리드로.
     const isUnfiltered = active === ALL && !activeTag && !activeAuthor;
-    const featured = isUnfiltered && filtered.length > 0 ? filtered[0] : null;
-    const gridPosts = featured ? filtered.slice(1) : filtered;
 
-    // Tech Note 탭 전용 — 기고자(작성자) 인덱스. 작성자 필터와 무관하게 전체 Tech Note에서 뽑는다.
+    // 시리즈 그룹핑 — 현재 필터 집합에서 slug 패턴으로 묶는다.
+    const seriesGroups = useMemo(() => {
+        const map = new Map<string, PostMeta[]>();
+        filtered.forEach((p) => {
+            const s = seriesOf(p.slug);
+            if (!s) return;
+            const arr = map.get(s.key) ?? [];
+            arr.push(p);
+            map.set(s.key, arr);
+        });
+        return [...map.entries()].map(([k, arr]) => {
+            const s = SERIES.find((x) => x.key === k)!;
+            return {
+                ...s,
+                posts: arr.sort(
+                    (a, b) => seriesOrder(s, a.slug) - seriesOrder(s, b.slug),
+                ),
+            };
+        });
+    }, [filtered]);
+    const seriesSlugs = useMemo(
+        () => new Set(seriesGroups.flatMap((g) => g.posts.map((p) => p.slug))),
+        [seriesGroups],
+    );
+
+    // 시리즈에 속하지 않은 글 = 단독 글.
+    const standalone = useMemo(
+        () => filtered.filter((p) => !seriesSlugs.has(p.slug)),
+        [filtered, seriesSlugs],
+    );
+
+    // 피처드(필터 없을 때만) = 최신 단독 글. 리스트에서는 제외.
+    const featured = isUnfiltered && standalone.length > 0 ? standalone[0] : null;
+    const listPosts = featured ? standalone.slice(1) : standalone;
+
+    const totalPages = Math.max(1, Math.ceil(listPosts.length / PAGE_SIZE));
+    const safePage = Math.min(page, totalPages);
+    const pagePosts = listPosts.slice(
+        (safePage - 1) * PAGE_SIZE,
+        safePage * PAGE_SIZE,
+    );
+
+    // Tech Note 탭 전용 — 기고자 인덱스.
     const techNoteAuthors = useMemo<
         { name: string; count: number; github?: string }[]
     >(() => {
@@ -211,7 +322,6 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
         );
     }, [posts, active]);
 
-    // 기고자 칩 클릭 → 카테고리(Tech Note)·주제 유지, 같은 칩 재클릭 시 해제(토글).
     const selectAuthor = (name: string) =>
         pushParams(
             KEY_BY_CATEGORY[active],
@@ -221,7 +331,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
 
     return (
         <div>
-            {/* 작성자 필터 배너 — 멤버 글 모아보기 진입 시 */}
+            {/* 작성자 필터 배너 */}
             {activeAuthor && (
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#cfe0ff] bg-[#f1f6ff] px-5 py-4">
                     <p className="text-[15px] text-[var(--color-ink-muted)]">
@@ -240,7 +350,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 </div>
             )}
 
-            {/* 카테고리 탭 — 가로 스크롤 세그먼트 */}
+            {/* 카테고리 탭 */}
             <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
                 {TABS.map((t) => {
                     const count =
@@ -275,7 +385,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 })}
             </div>
 
-            {/* 기고자 인덱스 — Tech Note 카테고리에서만 노출. 아바타 + 이름 + 글 수. */}
+            {/* 기고자 인덱스 — Tech Note 전용 */}
             {active === "Tech Note" && techNoteAuthors.length > 0 && (
                 <div className="mt-5 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)]/60 p-4">
                     <div className="mb-3 flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
@@ -345,47 +455,17 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 </div>
             )}
 
-            {/* 주제(태그) 필터 — 해시태그 키워드 칩 */}
-            {topicTags.length > 0 && (
-                <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2">
-                    <span className="mr-1 text-[12.5px] font-semibold uppercase tracking-wider text-[var(--color-ink-subtle)]">
-                        주제
-                    </span>
-                    {activeTag && (
-                        <button
-                            type="button"
-                            onClick={() => selectTag(activeTag)}
-                            className="inline-flex items-center gap-0.5 rounded-md px-2 py-1 text-[13px] font-medium text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
-                        >
-                            <X className="h-3.5 w-3.5" />
-                            전체
-                        </button>
-                    )}
-                    {topicTags.map((t) => (
-                        <button
-                            key={t}
-                            type="button"
-                            onClick={() => selectTag(t)}
-                            className={cn(
-                                "inline-flex items-center gap-0.5 rounded-md px-2.5 py-1 text-[13.5px] font-medium transition",
-                                activeTag === t
-                                    ? "bg-[#2f7bff] text-white shadow-[0_2px_8px_-2px_rgba(47,123,255,0.5)]"
-                                    : "bg-[var(--color-surface-alt)] text-[var(--color-ink-muted)] hover:bg-[#eaf1ff] hover:text-[#2461d8]",
-                            )}
-                        >
-                            <span
-                                className={cn(
-                                    "font-semibold",
-                                    activeTag === t
-                                        ? "text-white/60"
-                                        : "text-[var(--color-ink-subtle)]",
-                                )}
-                            >
-                                #
-                            </span>
-                            {t}
-                        </button>
-                    ))}
+            {/* 활성 주제(딥링크)일 때만 해제 칩 */}
+            {activeTag && (
+                <div className="mt-4">
+                    <button
+                        type="button"
+                        onClick={() => pushParams(KEY_BY_CATEGORY[active], null)}
+                        className="inline-flex items-center gap-1 rounded-full bg-[#2f7bff] px-3 py-1 text-[13px] font-semibold text-white transition hover:brightness-110"
+                    >
+                        #{activeTag}
+                        <X className="h-3.5 w-3.5" />
+                    </button>
                 </div>
             )}
 
@@ -396,19 +476,19 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                     </p>
                 </div>
             ) : (
-                <div className="mt-8">
-                    {/* 대형 피처드 아티클 */}
+                <>
+                    {/* 대형 피처드 */}
                     {featured && (
                         <Link
                             href={`/blog/${featured.slug}`}
-                            className="group mb-12 grid overflow-hidden rounded-3xl border border-[var(--color-line)] bg-white transition hover:shadow-[0_28px_64px_-28px_rgba(20,40,80,0.32)] md:grid-cols-2"
+                            className="group mt-8 grid overflow-hidden rounded-3xl border border-[var(--color-line)] bg-white transition hover:shadow-[0_28px_64px_-28px_rgba(20,40,80,0.32)] md:grid-cols-2"
                         >
-                            <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[320px]">
+                            <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[300px]">
                                 <Thumb
                                     post={featured}
                                     className="transition duration-500 group-hover:scale-[1.03]"
                                 />
-                                <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-[var(--color-ink)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                                <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-[var(--color-ink)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
                                     Featured
                                 </span>
                             </div>
@@ -423,7 +503,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                     <span aria-hidden>·</span>
                                     <ViewCount slug={featured.slug} readOnly compact />
                                 </div>
-                                <h2 className="text-[24px] font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[32px] md:leading-[1.15]">
+                                <h2 className="text-[24px] font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[30px] md:leading-[1.18]">
                                     {featured.title}
                                 </h2>
                                 <p className="line-clamp-3 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -440,46 +520,144 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                         </Link>
                     )}
 
-                    {/* 커버 중심 3열 그리드 */}
-                    {gridPosts.length > 0 && (
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {gridPosts.map((p) => (
-                                <Link
-                                    key={p.slug}
-                                    href={`/blog/${p.slug}`}
-                                    className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:-translate-y-0.5 hover:border-[#bcd0f5] hover:shadow-[0_18px_44px_-22px_rgba(20,40,80,0.28)]"
+                    {/* 좌: 전체 아티클 / 우: 인기 글 */}
+                    <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+                        <div>
+                            <h2 className="mb-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
+                                전체 아티클
+                            </h2>
+
+                            {/* 시리즈 카드 */}
+                            {seriesGroups.map((s) => (
+                                <div
+                                    key={s.key}
+                                    className="mb-6 rounded-2xl border border-[#d8e4fb] bg-gradient-to-br from-[#f2f7ff] to-white p-5"
                                 >
-                                    <div className="relative aspect-[16/10] overflow-hidden">
-                                        <Thumb
-                                            post={p}
-                                            className="transition duration-500 group-hover:scale-[1.04]"
-                                        />
+                                    <div className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-wider text-[#2461d8]">
+                                        <Layers className="h-3.5 w-3.5" />
+                                        시리즈
                                     </div>
-                                    <div className="flex flex-1 flex-col p-5">
-                                        <div className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
-                                            <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
-                                                {p.category}
-                                            </span>
-                                            <time dateTime={p.date}>{fmtDate(p.date)}</time>
-                                            <span aria-hidden>·</span>
-                                            <ViewCount slug={p.slug} readOnly compact />
-                                        </div>
-                                        <h3 className="mt-3 line-clamp-2 text-[18px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                            {p.title}
+                                    <div className="mt-1 flex items-baseline gap-2">
+                                        <h3 className="text-[19px] font-bold text-[var(--color-ink)]">
+                                            {s.title}
                                         </h3>
-                                        <p className="mt-2 line-clamp-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {p.description}
-                                        </p>
-                                        <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-                                            <AuthorRow post={p} />
-                                            <ArrowUpRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:text-[#2461d8]" />
-                                        </div>
+                                        <span className="text-[13px] font-medium text-[var(--color-ink-subtle)]">
+                                            {s.posts.length}편
+                                        </span>
                                     </div>
-                                </Link>
+                                    <ol className="mt-3 space-y-1">
+                                        {s.posts.map((p, i) => (
+                                            <li key={p.slug}>
+                                                <Link
+                                                    href={`/blog/${p.slug}`}
+                                                    className="group flex items-center gap-2.5 rounded-lg px-2 py-2 transition hover:bg-white"
+                                                >
+                                                    <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[#2f7bff]/10 text-[12px] font-bold text-[#2461d8]">
+                                                        {i + 1}
+                                                    </span>
+                                                    <span className="line-clamp-1 text-[14.5px] font-semibold text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                                        {p.title}
+                                                    </span>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </div>
                             ))}
+
+                            {/* 단독 글 목록(페이징) */}
+                            {pagePosts.length > 0 ? (
+                                <div className="space-y-4">
+                                    {pagePosts.map((p) => (
+                                        <Link
+                                            key={p.slug}
+                                            href={`/blog/${p.slug}`}
+                                            className="group flex gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-3 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-20px_rgba(20,40,80,0.28)]"
+                                        >
+                                            <div className="relative aspect-[4/3] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[176px]">
+                                                <Thumb
+                                                    post={p}
+                                                    className="transition duration-500 group-hover:scale-[1.04]"
+                                                />
+                                            </div>
+                                            <div className="flex min-w-0 flex-1 flex-col py-1">
+                                                <div className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                                    <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
+                                                        {p.category}
+                                                    </span>
+                                                    <time dateTime={p.date}>
+                                                        {fmtDate(p.date)}
+                                                    </time>
+                                                </div>
+                                                <h3 className="mt-1.5 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                                    {p.title}
+                                                </h3>
+                                                <p className="mt-1 hidden line-clamp-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] sm:block">
+                                                    {p.description}
+                                                </p>
+                                                <div className="mt-auto pt-2">
+                                                    <AuthorRow post={p} />
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : (
+                                !seriesGroups.length && (
+                                    <p className="text-[15px] text-[var(--color-ink-muted)]">
+                                        표시할 글이 없습니다
+                                    </p>
+                                )
+                            )}
+
+                            {/* 페이지네이션 */}
+                            {totalPages > 1 && (
+                                <div className="mt-8 flex items-center justify-center gap-1.5">
+                                    <button
+                                        type="button"
+                                        aria-label="이전"
+                                        disabled={safePage === 1}
+                                        onClick={() => setPage(safePage - 1)}
+                                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+                                    >
+                                        <ChevronLeft className="h-4 w-4" />
+                                    </button>
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                                        (n) => (
+                                            <button
+                                                key={n}
+                                                type="button"
+                                                onClick={() => setPage(n)}
+                                                className={cn(
+                                                    "h-9 min-w-9 rounded-lg px-3 text-[14px] font-bold transition",
+                                                    n === safePage
+                                                        ? "bg-[var(--color-ink)] text-white"
+                                                        : "border border-[var(--color-line)] text-[var(--color-ink-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]",
+                                                )}
+                                            >
+                                                {n}
+                                            </button>
+                                        ),
+                                    )}
+                                    <button
+                                        type="button"
+                                        aria-label="다음"
+                                        disabled={safePage === totalPages}
+                                        onClick={() => setPage(safePage + 1)}
+                                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+                                    >
+                                        <ChevronRight className="h-4 w-4" />
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
+
+                        {/* 우: 인기 있는 글 */}
+                        <aside className="lg:sticky lg:top-24 lg:self-start">
+                            <PopularList posts={posts} />
+                        </aside>
+                    </div>
+                </>
             )}
         </div>
     );
