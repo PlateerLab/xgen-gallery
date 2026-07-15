@@ -3,6 +3,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { BlogList } from "@/components/blog-list";
+import { FeaturedHero } from "@/components/featured-hero";
 import { getAllPosts } from "@/lib/blog";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import { absoluteUrl } from "@/lib/site";
@@ -23,6 +24,9 @@ export const metadata = {
 
 export default function BlogPage() {
     const posts = getAllPosts();
+    // 키비주얼 캐러셀 — 편집자가 고른 featured 글(최신순), 없으면 최신 글로 폴백.
+    const chosen = posts.filter((p) => p.featured);
+    const heroPosts = (chosen.length ? chosen : posts).slice(0, 5);
 
     return (
         <>
@@ -53,19 +57,16 @@ export default function BlogPage() {
             />
 
             <section className="border-b border-[var(--color-line)] bg-white">
-                <div className="mx-auto w-full max-w-6xl px-6 py-14 md:py-20">
-                    <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
-                        Plateer Labs · Insight
-                    </p>
-                    <h1 className="mt-3 text-[34px] font-bold leading-[1.12] tracking-tight text-[var(--color-ink)] md:text-[56px]">
-                        연구로 증명하고
-                        <br />
-                        현장에서 가치로
-                    </h1>
-                    <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
-                        Case Study · Tech Note · 제품 소식 — 연구와 현장에서 얻은
-                        인사이트를 공유합니다
-                    </p>
+                <div className="mx-auto w-full max-w-6xl px-6 pb-12 pt-10 md:pb-16 md:pt-14">
+                    <div className="mb-8 flex items-baseline gap-2.5">
+                        <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
+                            Insight
+                        </span>
+                        <span className="text-[14px] text-[var(--color-ink-subtle)]">
+                            연구와 현장에서 얻은 인사이트
+                        </span>
+                    </div>
+                    <FeaturedHero posts={heroPosts} />
                 </div>
             </section>
 

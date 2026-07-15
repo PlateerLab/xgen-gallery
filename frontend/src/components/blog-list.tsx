@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
-    ArrowRight,
     ChevronLeft,
     ChevronRight,
     Flame,
@@ -72,12 +71,12 @@ const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
     },
 };
 
-function fmtDate(d: string) {
+export function fmtDate(d: string) {
     return d.replaceAll("-", ".");
 }
 
 /** 커버 이미지가 있으면 그대로, 없으면 카테고리 브랜드 썸네일을 렌더. */
-function Thumb({ post, className }: { post: PostMeta; className?: string }) {
+export function Thumb({ post, className }: { post: PostMeta; className?: string }) {
     if (post.cover) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
@@ -252,8 +251,6 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
         ? catPosts.filter((p) => p.tags.includes(activeTag))
         : catPosts;
 
-    const isUnfiltered = active === ALL && !activeTag && !activeAuthor;
-
     // 시리즈 그룹핑 — 현재 필터 집합에서 slug 패턴으로 묶는다.
     const seriesGroups = useMemo(() => {
         const map = new Map<string, PostMeta[]>();
@@ -279,15 +276,11 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
         [seriesGroups],
     );
 
-    // 시리즈에 속하지 않은 글 = 단독 글.
-    const standalone = useMemo(
+    // 시리즈에 속하지 않은 글 = 단독 글. (상단 키비주얼 캐러셀은 page에서 별도 렌더)
+    const listPosts = useMemo(
         () => filtered.filter((p) => !seriesSlugs.has(p.slug)),
         [filtered, seriesSlugs],
     );
-
-    // 피처드(필터 없을 때만) = 최신 단독 글. 리스트에서는 제외.
-    const featured = isUnfiltered && standalone.length > 0 ? standalone[0] : null;
-    const listPosts = featured ? standalone.slice(1) : standalone;
 
     const totalPages = Math.max(1, Math.ceil(listPosts.length / PAGE_SIZE));
     const safePage = Math.min(page, totalPages);
@@ -477,51 +470,8 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 </div>
             ) : (
                 <>
-                    {/* 대형 피처드 */}
-                    {featured && (
-                        <Link
-                            href={`/blog/${featured.slug}`}
-                            className="group mt-8 grid overflow-hidden rounded-3xl border border-[var(--color-line)] bg-white transition hover:shadow-[0_28px_64px_-28px_rgba(20,40,80,0.32)] md:grid-cols-2"
-                        >
-                            <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[300px]">
-                                <Thumb
-                                    post={featured}
-                                    className="transition duration-500 group-hover:scale-[1.03]"
-                                />
-                                <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-[var(--color-ink)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
-                                    Featured
-                                </span>
-                            </div>
-                            <div className="flex flex-col justify-center gap-4 p-7 md:p-10">
-                                <div className="flex items-center gap-2 text-[13.5px] text-[var(--color-ink-subtle)]">
-                                    <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold text-[#2461d8]">
-                                        {featured.category}
-                                    </span>
-                                    <time dateTime={featured.date}>
-                                        {fmtDate(featured.date)}
-                                    </time>
-                                    <span aria-hidden>·</span>
-                                    <ViewCount slug={featured.slug} readOnly compact />
-                                </div>
-                                <h2 className="text-[24px] font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[30px] md:leading-[1.18]">
-                                    {featured.title}
-                                </h2>
-                                <p className="line-clamp-3 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {featured.description}
-                                </p>
-                                <div className="mt-1 flex items-center justify-between gap-3">
-                                    <AuthorRow post={featured} />
-                                    <span className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]">
-                                        읽어보기
-                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                    </span>
-                                </div>
-                            </div>
-                        </Link>
-                    )}
-
                     {/* 좌: 전체 아티클 / 우: 인기 글 */}
-                    <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+                    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
                         <div>
                             <h2 className="mb-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
                                 전체 아티클

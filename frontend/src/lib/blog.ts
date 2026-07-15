@@ -26,6 +26,7 @@ export interface PostMeta {
     tags: string[];
     cover?: string;
     draft?: boolean;
+    featured?: boolean; // 키비주얼(히어로) 캐러셀 노출 — Decap에서 편집자가 선정
 }
 
 export interface Post extends PostMeta {
@@ -87,6 +88,7 @@ function parse(slug: string): Post | null {
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         cover: data.cover ? String(data.cover) : undefined,
         draft: Boolean(data.draft),
+        featured: Boolean(data.featured),
     };
     const words = content.trim().split(/\s+/).length;
     return {
