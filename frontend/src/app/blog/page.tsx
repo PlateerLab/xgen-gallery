@@ -53,7 +53,7 @@ export default function BlogPage() {
                 ]}
             />
 
-            <section className="relative flex min-h-[480px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="relative flex min-h-[380px] items-center overflow-hidden border-b border-white/10 py-24 text-white">
                 <SceneBackground concept="insights" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#fcd34d]">
@@ -72,7 +72,7 @@ export default function BlogPage() {
                 </div>
             </section>
 
-            <main id="articles" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
+            <main id="articles" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
                 <Suspense fallback={null}>
                     <BlogList posts={posts} />
                 </Suspense>
