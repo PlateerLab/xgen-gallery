@@ -117,9 +117,6 @@ function AuthorRow({ post }: { post: PostMeta }) {
                 </span>
             )}
             <span className="truncate font-medium">{post.author}</span>
-            <span aria-hidden className="text-[var(--color-ink-subtle)]">
-                ·
-            </span>
             <ViewCount slug={post.slug} readOnly compact />
         </span>
     );
@@ -177,7 +174,6 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
                                 </h4>
                                 <div className="mt-1 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
                                     <time dateTime={p.date}>{fmtDate(p.date)}</time>
-                                    <span aria-hidden>·</span>
                                     <ViewCount slug={p.slug} readOnly compact />
                                 </div>
                             </div>
