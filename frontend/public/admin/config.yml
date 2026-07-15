@@ -44,8 +44,10 @@ collections:
       extension: "md"
       format: "frontmatter"
       preview_path: "blog/{{slug}}"
-      description: "글 작성 전 좌측의 '블로그 작성 가이드'를 먼저 읽어주세요. 목록은 상단 정렬에서 '발행일'을 눌러 최근순으로 볼 수 있습니다(선택은 기억됩니다)."
-      # 목록 정렬 옵션 — Decap 3.x는 배열 형태만 지원. '발행일'로 정렬 가능.
+      description: "글 작성 전 좌측 '블로그 작성 가이드'를 먼저 읽어주세요. 목록 우측 상단 정렬에서 '발행일'을 누르면 최근순으로 정렬되고, 그 선택은 기억됩니다. 목록/카드 보기 토글로 썸네일을 끌 수 있습니다."
+      # 목록 각 항목 표시 — 제목 · 발행일(YYYY.MM.DD). 썸네일 대신 텍스트 요약.
+      summary: "{{title}}  ·  {{date | date('YYYY.MM.DD')}}"
+      # 정렬 옵션(Decap 3.x는 배열만 지원). '발행일' 선택 시 최근순 정렬 후 기억됨.
       sortable_fields: [date, title, author]
       fields:
           - { name: title, label: "제목", widget: string, hint: "핵심 키워드를 앞에. 마침표 없이(≤60자 권장) — SEO 제목·OG 제목으로 쓰임" }
