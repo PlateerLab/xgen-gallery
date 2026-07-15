@@ -1,5 +1,5 @@
 ---
-title: "개발자가 자신의 GitHub 계정으로 블로그를 기고하도록 만든 이유"
+title: "개발자를 위한 블로그 기고 환경 구축하기"
 description: "메인 저장소 권한을 열지 않고도 개발자가 자신의 GitHub 계정으로 기고하도록 — Open Authoring으로 참여 비용만 낮춘 운영 구조 이야기입니다."
 date: "2026-07-14"
 author: "sooanc"
