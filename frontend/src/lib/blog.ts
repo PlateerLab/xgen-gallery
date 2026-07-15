@@ -39,6 +39,22 @@ function isProd() {
     return process.env.NODE_ENV === "production";
 }
 
+/**
+ * 프론트매터 date를 항상 YYYY-MM-DD로 정규화한다.
+ * YAML은 따옴표 없는 `date: 2026-07-15`를 Date 객체로 파싱하는데, 그대로
+ * String()하면 "Wed Jul 15 2026 …"가 되어 목록 날짜가 깨진다(Decap 기고 시 흔함).
+ * date-only YAML은 UTC 자정이므로 UTC 기준으로 잘라 날짜가 밀리지 않게 한다.
+ */
+function toISODate(v: unknown): string {
+    if (v instanceof Date && !Number.isNaN(v.getTime())) {
+        return v.toISOString().slice(0, 10);
+    }
+    const s = String(v ?? "").trim();
+    if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
+    const d = new Date(s);
+    return Number.isNaN(d.getTime()) ? s.slice(0, 10) : d.toISOString().slice(0, 10);
+}
+
 function readSlugs(): string[] {
     if (!fs.existsSync(BLOG_DIR)) return [];
     return fs
@@ -59,8 +75,8 @@ function parse(slug: string): Post | null {
         slug,
         title: String(data.title ?? slug),
         description: String(data.description ?? ""),
-        date: String(data.date ?? "").slice(0, 10),
-        updated: data.updated ? String(data.updated).slice(0, 10) : undefined,
+        date: toISODate(data.date),
+        updated: data.updated ? toISODate(data.updated) : undefined,
         author: String(data.author ?? "Plateer Labs"),
         authorGithub: data.authorGithub
             ? String(data.authorGithub).replace(/^@/, "")
