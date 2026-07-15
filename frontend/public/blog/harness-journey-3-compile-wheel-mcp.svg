@@ -1,0 +1,33 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="고정된 실행 계약을 MCP 도구로 내보내기">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f7ff"/><stop offset="1" stop-color="#ecefff"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#4338ca"/></linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#312e81" flood-opacity="0.14"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
+  <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
+  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 3편</text>
+  <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
+  <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">H3</text>
+  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">실행 계약을</text>
+  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">MCP 도구로</text>
+  <rect x="92" y="440" width="320" height="52" rx="26" fill="#e0e7ff"/>
+  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#4338ca">컴파일 · MCP 내보내기</text>
+
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
+  <text x="761" y="222" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="17" font-weight="700" fill="#4338ca">실행 계약</text>
+  <rect x="676" y="238" width="170" height="46" rx="12" fill="#eef2ff" stroke="#c7d2fe"/>
+  <rect x="676" y="298" width="170" height="46" rx="12" fill="#eef2ff" stroke="#c7d2fe"/>
+  <rect x="676" y="358" width="170" height="46" rx="12" fill="#eef2ff" stroke="#c7d2fe"/>
+  <rect x="694" y="256" width="90" height="10" rx="5" fill="#a5b4fc"/>
+  <rect x="694" y="316" width="120" height="10" rx="5" fill="#a5b4fc"/>
+  <rect x="694" y="376" width="70" height="10" rx="5" fill="#a5b4fc"/>
+  <path d="M854 321 L 906 321" stroke="#94a3d8" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M892 309 L 908 321 L 892 333" stroke="#94a3d8" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="912" y="256" width="150" height="130" rx="24" fill="url(#badge)"/>
+  <text x="987" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="30" font-weight="800" fill="#ffffff">MCP</text>
+  <text x="987" y="352" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="16" fill="#c7d2fe">도구</text>
+  <rect x="900" y="286" width="14" height="16" rx="3" fill="#4338ca"/>
+  <rect x="900" y="340" width="14" height="16" rx="3" fill="#4338ca"/>
+</svg>

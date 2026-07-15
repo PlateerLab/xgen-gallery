@@ -57,8 +57,6 @@ function template({ title, emoji, body, currentOut }) {
   .top .brand{font-weight:800;color:var(--ink);margin-right:8px;font-size:14px;}
   .top a{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:9999px;background:#fff;border:1px solid var(--line);color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;}
   .top a.on{background:var(--accent-bg);border-color:#c7d9ff;color:var(--accent);}
-  .top a.admin{margin-left:auto;background:var(--ink);border-color:var(--ink);color:#fff;}
-  .top a.admin:hover{background:#0e1836;}
   main{max-width:820px;margin:0 auto;padding:40px 24px 96px;}
   .doc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:44px 48px;box-shadow:0 20px 50px -30px rgba(20,40,80,.25);}
   h1{font-size:30px;line-height:1.25;margin:.2em 0 .6em;letter-spacing:-.01em;}
@@ -82,7 +80,7 @@ function template({ title, emoji, body, currentOut }) {
 </style>
 </head>
 <body>
-<div class="top"><div class="inner"><span class="brand">${emoji} 작성 가이드</span>${nav(currentOut)}<a href="/admin" class="admin">⚙️ 어드민</a></div></div>
+<div class="top"><div class="inner"><span class="brand">${emoji} 작성 가이드</span>${nav(currentOut)}</div></div>
 <main><article class="doc">${body}</article></main>
 </body>
 </html>`;

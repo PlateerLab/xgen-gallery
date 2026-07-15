@@ -2,6 +2,7 @@
 title: "재시도와 종료 조건을 분리하는 이유(5편)"
 description: "전송 복구, 도구를 사용한 진행, 품질 재작성의 의미를 나누고 종착 도구가 현재 회차를 정확히 끝내게 만든 과정을 다룹니다."
 date: "2026-05-26"
+cover: /blog/harness-journey-5-retry-termination.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

@@ -2,6 +2,7 @@
 title: "모델을 비교하기 전에 실행 조건부터 통제하기(7편)"
 description: "Qwen3.6-27B와 Claude Sonnet 4.6을 비교하며 반복 횟수, 출력 길이, 판정기와 도구 조건을 분리한 과정을 다룹니다."
 date: "2026-06-13"
+cover: /blog/harness-journey-7-qwen-vs-sonnet.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
