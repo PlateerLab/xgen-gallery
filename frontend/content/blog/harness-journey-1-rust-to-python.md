@@ -2,6 +2,7 @@
 title: 검증 루프를 실행 상태로 나눈 이유(1편)
 description: 생성, 검증, 도구 실행, 재시도를 하나의 반복문에 숨기지 않고 명시적인 상태와 전이로 설계한 과정을 다룹니다.
 date: 2026-07-15
+cover: /blog/harness-journey-1-rust-to-python.svg
 author: 김진수
 authorGithub: jinsoo96
 category: Tech Note

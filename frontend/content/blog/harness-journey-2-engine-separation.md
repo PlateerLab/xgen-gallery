@@ -2,6 +2,7 @@
 title: "엔진 코어와 제품 통합 계층을 분리한 이유"
 description: "범용 실행 순서와 XGEN의 데이터·권한·캔버스 변환을 ServiceProvider, registry, 제품 연결 계층으로 나눈 과정을 설명합니다."
 date: "2026-07-15"
+cover: /blog/harness-journey-2-engine-separation.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

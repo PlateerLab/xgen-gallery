@@ -1,0 +1,32 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="하네스 검증 루프를 실행 상태로 나눈 상태 머신">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f7ff"/><stop offset="1" stop-color="#ecefff"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#4338ca"/></linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#312e81" flood-opacity="0.14"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
+  <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
+
+  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 1편</text>
+  <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
+  <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="40" font-weight="800" fill="#ffffff">H1</text>
+  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">검증 루프를</text>
+  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">실행 상태로 나누다</text>
+  <rect x="92" y="440" width="330" height="52" rx="26" fill="#e0e7ff"/>
+  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#4338ca">상태 머신 · 에이전트 실행</text>
+
+  <!-- motif: decision node -> continue/retry/complete -->
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
+  <rect x="668" y="316" width="128" height="60" rx="14" fill="#4338ca"/>
+  <text x="732" y="353" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="20" font-weight="700" fill="#ffffff">다음 행동</text>
+  <path d="M796 346 C 856 346 856 232 916 232" fill="none" stroke="#c7cbef" stroke-width="4"/>
+  <path d="M796 346 L 916 346" fill="none" stroke="#c7cbef" stroke-width="4"/>
+  <path d="M796 346 C 856 346 856 460 916 460" fill="none" stroke="#c7cbef" stroke-width="4"/>
+  <rect x="916" y="206" width="164" height="52" rx="14" fill="#eef2ff" stroke="#c7d2fe"/>
+  <text x="936" y="239" font-family="ui-monospace,monospace" font-size="20" font-weight="700" fill="#4f46e5">continue</text>
+  <rect x="916" y="320" width="164" height="52" rx="14" fill="#fff4ec" stroke="#fed7aa"/>
+  <text x="936" y="353" font-family="ui-monospace,monospace" font-size="20" font-weight="700" fill="#c2711c">retry</text>
+  <rect x="916" y="434" width="164" height="52" rx="14" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="936" y="467" font-family="ui-monospace,monospace" font-size="20" font-weight="700" fill="#1f8f52">complete</text>
+</svg>
