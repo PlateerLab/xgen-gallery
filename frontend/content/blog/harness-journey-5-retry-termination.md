@@ -71,5 +71,5 @@ draft: false
 
 
 ---
-**이전 편 →** [생성과 판정을 별도 실행 단계로 나눈 이유](/blog/harness-journey-4-canvas-node-judge)
-**다음 편 →** [판정 점수로 설정 후보를 탐색하는 방법](/blog/harness-journey-6-self-forging)
+**이전 편 →** [생성과 판정을 별도 실행 단계로 나눈 이유(4편)](/blog/harness-journey-4-canvas-node-judge)
+**다음 편 →** [판정 점수로 설정 후보를 탐색하는 방법(6편)](/blog/harness-journey-6-self-forging)

@@ -79,5 +79,5 @@ draft: false
 
 
 ---
-**이전 편 →** [실행 간 메모리의 범위와 우선순위 설계](/blog/harness-journey-8-memory-loop)
-**다음 편 →** [교훈을 다음 실행에 반영할 때 최신 상태를 유지하는 방법](/blog/harness-journey-10-feedback-freshness)
+**이전 편 →** [실행 간 메모리의 범위와 우선순위 설계(8편)](/blog/harness-journey-8-memory-loop)
+**다음 편 →** [교훈을 다음 실행에 반영할 때 최신 상태를 유지하는 방법(10편)](/blog/harness-journey-10-feedback-freshness)

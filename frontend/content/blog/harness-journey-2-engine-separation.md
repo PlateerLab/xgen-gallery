@@ -91,5 +91,5 @@ harness_bridge         → 캔버스·권한·스트리밍의 XGEN 전용 변환
 
 
 ---
-**이전 편 →** [검증 루프를 실행 상태로 나눈 이유](/blog/harness-journey-1-rust-to-python)
-**다음 편 →** [고정된 실행 계약을 하나의 MCP 도구로 내보내기](/blog/harness-journey-3-compile-wheel-mcp)
+**이전 편 →** [검증 루프를 실행 상태로 나눈 이유(1편)](/blog/harness-journey-1-rust-to-python)
+**다음 편 →** [고정된 실행 계약을 하나의 MCP 도구로 내보내기(3편)](/blog/harness-journey-3-compile-wheel-mcp)

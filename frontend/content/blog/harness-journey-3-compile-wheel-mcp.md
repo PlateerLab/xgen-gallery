@@ -136,5 +136,5 @@ Python 산출물과 Node 산출물은 같은 코드를 쓰지 않습니다. 대�
 
 
 ---
-**이전 편 →** [엔진 코어와 제품 통합 계층을 분리한 이유](/blog/harness-journey-2-engine-separation)
-**다음 편 →** [생성과 판정을 별도 실행 단계로 나눈 이유](/blog/harness-journey-4-canvas-node-judge)
+**이전 편 →** [엔진 코어와 제품 통합 계층을 분리한 이유(2편)](/blog/harness-journey-2-engine-separation)
+**다음 편 →** [생성과 판정을 별도 실행 단계로 나눈 이유(4편)](/blog/harness-journey-4-canvas-node-judge)

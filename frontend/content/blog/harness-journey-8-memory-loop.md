@@ -87,5 +87,5 @@ draft: false
 
 
 ---
-**이전 편 →** [모델을 비교하기 전에 실행 조건부터 통제하기](/blog/harness-journey-7-qwen-vs-sonnet)
-**다음 편 →** [도구 공개와 출력 전달을 실행 컨텍스트로 설계하기](/blog/harness-journey-9-context-design)
+**이전 편 →** [모델을 비교하기 전에 실행 조건부터 통제하기(7편)](/blog/harness-journey-7-qwen-vs-sonnet)
+**다음 편 →** [도구 공개와 출력 전달을 실행 컨텍스트로 설계하기(9편)](/blog/harness-journey-9-context-design)

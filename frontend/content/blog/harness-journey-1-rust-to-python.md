@@ -76,4 +76,4 @@ LLM의 마지막 문장은 실행할 때마다 달라질 수 있습니다. 문�
 
 - - -
 
-**다음 편 →** [엔진 코어와 제품 통합 계층을 분리한 이유](/blog/harness-journey-2-engine-separation)
+**다음 편 →** [엔진 코어와 제품 통합 계층을 분리한 이유(2편)](/blog/harness-journey-2-engine-separation)

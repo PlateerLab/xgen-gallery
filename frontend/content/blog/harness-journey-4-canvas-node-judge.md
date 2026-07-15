@@ -81,5 +81,5 @@ draft: false
 
 
 ---
-**이전 편 →** [고정된 실행 계약을 하나의 MCP 도구로 내보내기](/blog/harness-journey-3-compile-wheel-mcp)
-**다음 편 →** [재시도와 종료 조건을 분리하는 이유](/blog/harness-journey-5-retry-termination)
+**이전 편 →** [고정된 실행 계약을 하나의 MCP 도구로 내보내기(3편)](/blog/harness-journey-3-compile-wheel-mcp)
+**다음 편 →** [재시도와 종료 조건을 분리하는 이유(5편)](/blog/harness-journey-5-retry-termination)

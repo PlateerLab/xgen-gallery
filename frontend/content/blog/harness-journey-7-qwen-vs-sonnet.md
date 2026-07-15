@@ -65,5 +65,5 @@ draft: false
 
 
 ---
-**이전 편 →** [판정 점수로 설정 후보를 탐색하는 방법](/blog/harness-journey-6-self-forging)
-**다음 편 →** [실행 간 메모리의 범위와 우선순위 설계](/blog/harness-journey-8-memory-loop)
+**이전 편 →** [판정 점수로 설정 후보를 탐색하는 방법(6편)](/blog/harness-journey-6-self-forging)
+**다음 편 →** [실행 간 메모리의 범위와 우선순위 설계(8편)](/blog/harness-journey-8-memory-loop)

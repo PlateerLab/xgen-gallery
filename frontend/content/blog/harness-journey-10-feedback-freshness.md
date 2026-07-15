@@ -77,5 +77,5 @@ Memory → State → ToolSearch → Judge → Loop
 
 
 ---
-**이전 편 →** [도구 공개와 출력 전달을 실행 컨텍스트로 설계하기](/blog/harness-journey-9-context-design)
-**시리즈 처음 →** [검증 루프를 실행 상태로 나눈 이유](/blog/harness-journey-1-rust-to-python)
+**이전 편 →** [도구 공개와 출력 전달을 실행 컨텍스트로 설계하기(9편)](/blog/harness-journey-9-context-design)
+**시리즈 처음 →** [검증 루프를 실행 상태로 나눈 이유(1편)](/blog/harness-journey-1-rust-to-python)

@@ -84,5 +84,5 @@ Move
 
 
 ---
-**이전 편 →** [재시도와 종료 조건을 분리하는 이유](/blog/harness-journey-5-retry-termination)
-**다음 편 →** [모델을 비교하기 전에 실행 조건부터 통제하기](/blog/harness-journey-7-qwen-vs-sonnet)
+**이전 편 →** [재시도와 종료 조건을 분리하는 이유(5편)](/blog/harness-journey-5-retry-termination)
+**다음 편 →** [모델을 비교하기 전에 실행 조건부터 통제하기(7편)](/blog/harness-journey-7-qwen-vs-sonnet)
