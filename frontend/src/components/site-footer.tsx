@@ -126,9 +126,6 @@ export function SiteFooter() {
                                             />
                                             {/* 어두운 썸네일을 밝은 배너에 자연스럽게 녹이는 라이트 그라데이션 */}
                                             <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/20 via-white/5 to-white/15" />
-                                            <span className="absolute left-3 top-3 rounded-full bg-black/50 px-2.5 py-1 text-[12px] font-semibold text-white backdrop-blur-sm">
-                                                실증 데모 · 5분
-                                            </span>
                                             <span className="absolute inset-0 flex items-center justify-center">
                                                 <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#070b1c] transition group-hover:scale-105">
                                                     <PlayCircle className="h-7 w-7" />

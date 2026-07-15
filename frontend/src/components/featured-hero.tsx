@@ -44,7 +44,7 @@ export function FeaturedHero({ posts }: { posts: PostMeta[] }) {
                         <time dateTime={post.date}>{fmtDate(post.date)}</time>
                         <ViewCount slug={post.slug} readOnly compact />
                     </div>
-                    <h2 className="mt-4 text-[28px] font-bold leading-[1.14] tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2f7bff] md:text-[42px]">
+                    <h2 className="mt-4 text-[28px] font-bold leading-[1.14] tracking-tight text-[var(--color-ink)] transition group-hover:text-[#38bdf8] md:text-[42px]">
                         {post.title}
                     </h2>
                     <p className="mt-4 line-clamp-2 max-w-lg text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
