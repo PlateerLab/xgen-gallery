@@ -1,7 +1,7 @@
 ---
-title: "실행 간 메모리의 범위와 우선순위 설계"
+title: "실행 간 메모리의 범위와 우선순위 설계(8편)"
 description: "한 실행의 작업 메모와 다음 실행에 남길 교훈을 나누고, session·workflow·user·platform 범위의 충돌과 수명주기를 다룹니다."
-date: "2026-07-15"
+date: "2026-06-22"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

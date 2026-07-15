@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
 import { cn } from "@/lib/cn";
+import { groupSeries } from "@/lib/series";
 import { ViewCount } from "@/components/view-count";
 
 const ALL = "전체";
@@ -31,24 +32,6 @@ const KEY_BY_CATEGORY: Partial<Record<Tab, string>> = {
     "Tech Note": "labs",
     "Case Study": "case",
 };
-
-/** 시리즈 정의 — slug 패턴으로 묶는다(프론트매터 불필요, 후속편 머지 시 자동 그룹). */
-const SERIES: { key: string; title: string; match: RegExp; order: RegExp }[] = [
-    {
-        key: "harness",
-        title: "하네스 개발기",
-        match: /^harness-journey-/,
-        order: /^harness-journey-(\d+)-/,
-    },
-];
-
-function seriesOf(slug: string) {
-    return SERIES.find((s) => s.match.test(slug)) ?? null;
-}
-function seriesOrder(s: (typeof SERIES)[number], slug: string) {
-    const m = slug.match(s.order);
-    return m ? Number(m[1]) : 999;
-}
 
 /** 카테고리별 브랜드 테마 — 커버 없는 글의 썸네일에 쓰인다. */
 const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
@@ -249,36 +232,13 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
         ? catPosts.filter((p) => p.tags.includes(activeTag))
         : catPosts;
 
-    // 시리즈 그룹핑 — 현재 필터 집합에서 slug 패턴으로 묶는다.
-    const seriesGroups = useMemo(() => {
-        const map = new Map<string, PostMeta[]>();
-        filtered.forEach((p) => {
-            const s = seriesOf(p.slug);
-            if (!s) return;
-            const arr = map.get(s.key) ?? [];
-            arr.push(p);
-            map.set(s.key, arr);
-        });
-        return [...map.entries()].map(([k, arr]) => {
-            const s = SERIES.find((x) => x.key === k)!;
-            return {
-                ...s,
-                posts: arr.sort(
-                    (a, b) => seriesOrder(s, a.slug) - seriesOrder(s, b.slug),
-                ),
-            };
-        });
-    }, [filtered]);
-    const seriesSlugs = useMemo(
-        () => new Set(seriesGroups.flatMap((g) => g.posts.map((p) => p.slug))),
-        [seriesGroups],
-    );
+    // "아티클 시리즈" 섹션 — 전체 글에서 시리즈 그룹(필터 무관). 전체 탭에서만 노출.
+    const seriesList = useMemo(() => groupSeries(posts), [posts]);
+    const showSeries =
+        active === ALL && !activeTag && !activeAuthor && seriesList.length > 0;
 
-    // 시리즈에 속하지 않은 글 = 단독 글. (상단 키비주얼 캐러셀은 page에서 별도 렌더)
-    const listPosts = useMemo(
-        () => filtered.filter((p) => !seriesSlugs.has(p.slug)),
-        [filtered, seriesSlugs],
-    );
+    // 전체 아티클 목록 = 현재 필터 결과(시리즈 글도 피드에 함께 노출).
+    const listPosts = filtered;
 
     const totalPages = Math.max(1, Math.ceil(listPosts.length / PAGE_SIZE));
     const safePage = Math.min(page, totalPages);
@@ -468,50 +428,50 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 </div>
             ) : (
                 <>
+                    {/* 아티클 시리즈 섹션 (전체 탭에서만, 풀폭) */}
+                    {showSeries && (
+                        <section className="mb-14">
+                            <h2 className="mb-5 flex items-center gap-2 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                                <Layers className="h-5 w-5 text-[#4f46e5]" />
+                                아티클 시리즈
+                            </h2>
+                            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                                {seriesList.map((g) => (
+                                    <Link
+                                        key={g.def.key}
+                                        href={`/blog/series/${g.def.key}`}
+                                        className="group flex flex-col rounded-2xl bg-[var(--color-surface-alt)] p-3 transition hover:bg-[#eef2f9] hover:shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)]"
+                                    >
+                                        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={g.def.cover}
+                                                alt=""
+                                                loading="lazy"
+                                                className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                                            />
+                                        </div>
+                                        <h3 className="mt-4 line-clamp-2 px-1 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                            {g.def.title}
+                                        </h3>
+                                        <p className="mt-1.5 line-clamp-2 px-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {g.def.subtitle}
+                                        </p>
+                                        <span className="mt-4 mb-1 ml-1 inline-flex w-fit items-center rounded-full bg-white px-3 py-1 text-[12.5px] font-semibold text-[var(--color-ink-muted)] ring-1 ring-[var(--color-line)]">
+                                            아티클 {g.posts.length}개
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
                     {/* 좌: 전체 아티클 / 우: 인기 글 */}
                     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
                         <div>
                             <h2 className="mb-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
                                 전체 아티클
                             </h2>
-
-                            {/* 시리즈 카드 */}
-                            {seriesGroups.map((s) => (
-                                <div
-                                    key={s.key}
-                                    className="mb-6 rounded-2xl border border-[#d8e4fb] bg-gradient-to-br from-[#f2f7ff] to-white p-5"
-                                >
-                                    <div className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-wider text-[#2461d8]">
-                                        <Layers className="h-3.5 w-3.5" />
-                                        시리즈
-                                    </div>
-                                    <div className="mt-1 flex items-baseline gap-2">
-                                        <h3 className="text-[19px] font-bold text-[var(--color-ink)]">
-                                            {s.title}
-                                        </h3>
-                                        <span className="text-[13px] font-medium text-[var(--color-ink-subtle)]">
-                                            {s.posts.length}편
-                                        </span>
-                                    </div>
-                                    <ol className="mt-3 space-y-1">
-                                        {s.posts.map((p, i) => (
-                                            <li key={p.slug}>
-                                                <Link
-                                                    href={`/blog/${p.slug}`}
-                                                    className="group flex items-center gap-2.5 rounded-lg px-2 py-2 transition hover:bg-white"
-                                                >
-                                                    <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[#2f7bff]/10 text-[12px] font-bold text-[#2461d8]">
-                                                        {i + 1}
-                                                    </span>
-                                                    <span className="line-clamp-1 text-[14.5px] font-semibold text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                                        {p.title}
-                                                    </span>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
-                            ))}
 
                             {/* 단독 글 목록(페이징) */}
                             {pagePosts.length > 0 ? (
@@ -551,11 +511,9 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                     ))}
                                 </div>
                             ) : (
-                                !seriesGroups.length && (
-                                    <p className="text-[15px] text-[var(--color-ink-muted)]">
-                                        표시할 글이 없습니다
-                                    </p>
-                                )
+                                <p className="text-[15px] text-[var(--color-ink-muted)]">
+                                    표시할 글이 없습니다
+                                </p>
                             )}
 
                             {/* 페이지네이션 */}

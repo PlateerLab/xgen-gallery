@@ -1,7 +1,7 @@
 ---
-title: "생성과 판정을 별도 실행 단계로 나눈 이유"
+title: "생성과 판정을 별도 실행 단계로 나눈 이유(4편)"
 description: "L사 QA를 하네스로 재구성하며 생성 로직과 업무 판정을 분리하고, 기준별 피드백을 다음 실행으로 돌려보낸 과정을 다룹니다."
-date: "2026-07-15"
+date: "2026-05-17"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

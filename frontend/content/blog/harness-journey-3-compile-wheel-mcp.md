@@ -1,7 +1,7 @@
 ---
-title: "고정된 실행 계약을 하나의 MCP 도구로 내보내기"
+title: "고정된 실행 계약을 하나의 MCP 도구로 내보내기(3편)"
 description: "워크플로우마다 다른 캔버스 그래프와 달리 하네스의 고정된 제어 골격을 컴파일하고, 외부에서 호출할 단일 도구 계약으로 만든 과정을 다룹니다."
-date: "2026-07-15"
+date: "2026-05-08"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
