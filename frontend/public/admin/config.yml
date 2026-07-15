@@ -44,6 +44,13 @@ collections:
       extension: "md"
       format: "frontmatter"
       preview_path: "blog/{{slug}}"
+      description: "글 작성 전 좌측의 '블로그 작성 가이드'를 먼저 읽어주세요. 목록은 최근 발행일 순으로 정렬됩니다."
+      # 목록 정렬 — 기본을 발행일(date) 내림차순(최근 글 먼저)으로.
+      sortable_fields:
+          fields: [date, title, author]
+          default:
+              field: date
+              direction: descending
       fields:
           - { name: title, label: "제목", widget: string, hint: "핵심 키워드를 앞에. 마침표 없이(≤60자 권장) — SEO 제목·OG 제목으로 쓰임" }
           - { name: description, label: "설명(요약)", widget: text, pattern: ['^.{1,160}$', '160자 이내로 작성하세요'], hint: "검색 결과·AI 답변에 그대로 노출되는 한 줄 요약. 질문에 대한 자족적 답변처럼 40~155자(GEO)" }

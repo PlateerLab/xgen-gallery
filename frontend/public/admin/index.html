@@ -12,5 +12,17 @@
         <!-- Decap CMS — DB 없이 git(content/blog/*.md)에 글을 커밋하는 어드민.
              설정은 ./config.yml 참고. 로컬 편집: `npx decap-server` 실행 후 /admin 접속. -->
         <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
+        <script>
+            // 좌측 사이드바에 '블로그 작성 가이드' 링크 하나만 추가(새 탭).
+            (function () {
+                if (!window.CMS || !CMS.registerAdditionalLink) return;
+                CMS.registerAdditionalLink({
+                    id: "guide-writing",
+                    title: "블로그 작성 가이드",
+                    data: "/guides/blog-writing.html",
+                    options: { iconName: "page" },
+                });
+            })();
+        </script>
     </body>
 </html>
