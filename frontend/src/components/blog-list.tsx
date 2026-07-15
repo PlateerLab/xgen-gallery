@@ -20,8 +20,6 @@ const TABS = [ALL, "제품 소식", "Tech Note", "Case Study"] as const;
 type Tab = (typeof TABS)[number];
 const PAGE_SIZE = 5;
 
-const API = process.env.NEXT_PUBLIC_GALLERY_API_URL || "http://localhost:8800";
-
 /** GNB 서브메뉴 딥링크용: /blog?cat=<key> → 카테고리 라벨. */
 const CATEGORY_BY_KEY: Record<string, Tab> = {
     product: "제품 소식",
@@ -153,7 +151,7 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
         let alive = true;
         Promise.all(
             posts.map((p) =>
-                fetch(`${API}/api/views/${encodeURIComponent(p.slug)}`)
+                fetch(`/api/views/${encodeURIComponent(p.slug)}`)
                     .then((r) => (r.ok ? r.json() : null))
                     .then((d) => ({
                         p,
