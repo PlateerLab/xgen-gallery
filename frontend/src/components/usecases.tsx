@@ -13,33 +13,44 @@ export function UseCases({ embedded = false }: { embedded?: boolean }) {
     const { t } = useI18n();
 
     const grid = (
-        <div className="grid gap-4 md:grid-cols-3">
-            {t.usecases.items.map((uc) => (
+        <div className="grid gap-5 md:grid-cols-3">
+            {t.usecases.items.map((uc, i) => (
                 <div
                     key={uc.title}
-                    className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
+                    className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-line-strong)] hover:shadow-[0_18px_44px_-24px_rgba(20,40,80,0.28)]"
                 >
-                    <h3 className="text-lg font-semibold tracking-tight">
-                        {uc.title}
-                    </h3>
-                    <p className="mt-2 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <div className="flex items-center gap-2.5">
+                        <span className="inline-flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 font-mono text-[13px] font-bold text-[#2461d8]">
+                            {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {uc.title}
+                        </h3>
+                    </div>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                         {uc.description}
                     </p>
 
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                        {uc.stack.map((s) => (
+                    {/* 레시피 = 라이브러리 파이프라인 */}
+                    <div className="mt-5 flex flex-wrap items-center gap-x-1.5 gap-y-2">
+                        {uc.stack.map((s, si) => (
                             <span
                                 key={s}
-                                className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2 py-1 font-mono text-[12px] text-[var(--color-ink-muted)]"
+                                className="inline-flex items-center gap-1.5"
                             >
-                                {s}
+                                {si > 0 && (
+                                    <ArrowRight className="h-3 w-3 flex-none text-[var(--color-ink-subtle)]" />
+                                )}
+                                <span className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 font-mono text-[12.5px] text-[var(--color-ink)]">
+                                    {s}
+                                </span>
                             </span>
                         ))}
                     </div>
 
-                    <button className="mt-6 inline-flex items-center gap-1 text-[14px] font-medium text-[var(--color-ink)] transition group-hover:gap-2">
+                    <button className="mt-6 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                         {t.usecases.seeRecipe}
-                        <ArrowRight className="h-3 w-3" />
+                        <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                 </div>
             ))}
