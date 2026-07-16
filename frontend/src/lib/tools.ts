@@ -73,6 +73,78 @@ export const TOOLS: Tool[] = [
         hasDemo: true,
         language: "Python",
     },
+    {
+        id: "document-adapter",
+        repo: "document-adapter",
+        name: "Document Adapter",
+        tagline: "Let LLMs edit DOCX, PPTX & HWPX directly",
+        description:
+            "A unified editing adapter (with MCP server) that lets an LLM open, modify, and write Office and HWPX documents in place.",
+        category: "ingestion",
+        install: "pip install document-adapter",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "knowtology",
+        repo: "Knowtology",
+        name: "Knowtology",
+        tagline: "Tree-structured knowledge maps for agents",
+        description:
+            "Build navigable knowledge maps for LLM agents — four-tool exploration, snippet retrieval, and structured recall.",
+        category: "knowledge",
+        install: "pip install knowtology",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "omnifuse",
+        repo: "xgen-omnifuse",
+        name: "OmniFuse",
+        tagline: "One-shot GraphRAG — fuse vector + graph",
+        description:
+            "Backend-agnostic GraphRAG that fuses vector and graph retrieval in a single pass. Zero core deps, pluggable stores.",
+        category: "knowledge",
+        install: "pip install xgen-omnifuse",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "toolint",
+        repo: "Toolint",
+        name: "Toolint",
+        tagline: "Structural linter for MCP agent tools",
+        description:
+            "Lint MCP-compatible, zero-dependency Python agent tools — as a library, a CLI, or an MCP server.",
+        category: "agent",
+        install: "pip install toolint",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "xgen-harness",
+        repo: "xgen-harness-executor",
+        name: "XGEN Harness",
+        tagline: "10-stage execution harness for agents",
+        description:
+            "The XGEN harness engine — a config-driven, 10-stage pipeline that owns validation, retry, and termination around any model.",
+        category: "agent",
+        install: "pip install xgen-harness",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "playleft",
+        repo: "playwLeft",
+        name: "playwLeft",
+        tagline: "High-performance browser automation",
+        description:
+            "A browser automation library built for agents — fast, scriptable control of real browser sessions.",
+        category: "agent",
+        install: "pip install playleft",
+        hasDemo: false,
+        language: "Python",
+    },
 ];
 
 export const CATEGORIES: { id: ToolCategory | "all"; label: string }[] = [
