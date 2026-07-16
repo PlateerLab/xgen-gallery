@@ -1,5 +1,6 @@
 ---
-title: "몇 시간 걸리는 온톨로지 빌드를 작업으로 다루기"
+title: "몇 시간 걸리는 온톨로지 빌드를 작업으로 다루기(3편)"
+cover: "/blog/ontology-journey-3-build-service.svg"
 description: "진행 상태를 그래프에서 분리하고, 입력 판별과 정형·비정형 처리 경로를 명시해 긴 빌드를 제어 가능한 작업으로 바꿉니다."
 date: "2026-05-12"
 author: "김진수"

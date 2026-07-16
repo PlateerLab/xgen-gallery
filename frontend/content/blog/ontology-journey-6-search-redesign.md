@@ -1,5 +1,6 @@
 ---
-title: "빈 그래프를 측정한 A/B에서 시작한 검색 재설계"
+title: "빈 그래프를 측정한 A/B에서 시작한 검색 재설계(6편)"
+cover: "/blog/ontology-journey-6-search-redesign.svg"
 description: "그래프가 실제로 호출됐는지부터 검증하고, 질문 유형별 기여도를 바탕으로 ReAct 루프를 병렬 검색과 단일 합성으로 교체합니다."
 date: "2026-06-08"
 author: "김진수"

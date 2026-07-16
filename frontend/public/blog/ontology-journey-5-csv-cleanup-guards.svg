@@ -1,0 +1,32 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온톨로지 CSV 정제와 클래스 보호">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1fdfb"/><stop offset="1" stop-color="#e2f7f2"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#0f766e"/></linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#134e4a" flood-opacity="0.14"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="220" fill="#14b8a6" opacity="0.06"/>
+  <circle cx="140" cy="620" r="180" fill="#0f766e" opacity="0.05"/>
+
+  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 5편</text>
+  <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
+  <text x="140" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">O5</text>
+  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">행은 줄이고</text>
+  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f766e">클래스는 지킨다</text>
+  <rect x="92" y="440" width="250" height="52" rx="26" fill="#ccfbf1"/>
+  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0f766e">CSV 정제 · 가드</text>
+
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
+  <rect x="684" y="206" width="250" height="300" rx="16" fill="#f0fdfa" stroke="#99f6e4" stroke-width="2"/>
+  <rect x="708" y="230" width="202" height="30" rx="6" fill="#0d9488"/>
+  <rect x="708" y="272" width="202" height="26" rx="6" fill="#cbeee7"/>
+  <rect x="708" y="308" width="202" height="26" rx="6" fill="#e2e8f0" opacity="0.55"/>
+  <line x1="708" y1="321" x2="910" y2="321" stroke="#ef4444" stroke-width="3"/>
+  <rect x="708" y="344" width="202" height="26" rx="6" fill="#cbeee7"/>
+  <rect x="708" y="380" width="202" height="26" rx="6" fill="#e2e8f0" opacity="0.55"/>
+  <line x1="708" y1="393" x2="910" y2="393" stroke="#ef4444" stroke-width="3"/>
+  <rect x="708" y="416" width="202" height="26" rx="6" fill="#cbeee7"/>
+  <path d="M 1004 246 l 58 22 v 58 c 0 44 -28 66 -58 82 c -30 -16 -58 -38 -58 -82 v -58 z" fill="#0f766e"/>
+  <path d="M 978 316 l 18 18 l 34 -42" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1004" y="470" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="18" font-weight="800" fill="#0f766e">클래스 보호</text>
+</svg>

@@ -1,5 +1,6 @@
 ---
-title: "모델 한도에 맞춰 추출 배치를 조절하는 방법"
+title: "모델 한도에 맞춰 추출 배치를 조절하는 방법(9편)"
+cover: "/blog/ontology-journey-9-adaptive-extraction.svg"
 description: "컨텍스트와 출력 예산을 함께 계산하고, 시간 초과와 JSON 절단이 발생한 배치만 더 작게 나눠 다시 처리합니다."
 date: "2026-06-30"
 author: "김진수"
