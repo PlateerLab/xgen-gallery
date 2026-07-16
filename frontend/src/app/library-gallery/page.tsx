@@ -18,24 +18,27 @@ export default function LibraryGalleryPage() {
     return (
         <>
             <SiteNav overlay />
-            <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
+            {/* 히어로 — 좌: 페이지 아이덴티티 / 우: 카테고리별 최신 라이브러리 쇼케이스 캐러셀 */}
+            <section className="relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="tools" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#fcd34d]">
-                        Open Source · Library Gallery
-                    </p>
-                    <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
-                        Library Gallery
-                    </h1>
-                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/65">
-                        XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나, 모든
-                        도구를 지금 여기 브라우저에서 체험하세요.
-                    </p>
+                <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-28 md:grid-cols-2 md:gap-12 md:pb-20 md:pt-36">
+                    <div>
+                        <p className="text-[15px] font-semibold tracking-tight text-[#fcd34d]">
+                            Open Source · Library Gallery
+                        </p>
+                        <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+                            Library Gallery
+                        </h1>
+                        <p className="mt-5 max-w-md text-[17px] leading-relaxed text-white/65">
+                            XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나,
+                            모든 도구를 지금 여기 브라우저에서 체험하세요.
+                        </p>
+                    </div>
+                    <LivePreview />
                 </div>
             </section>
             {/* 메인 페이지(키비주얼 제외)와 동일한 콘텐츠 구성 */}
             <main>
-                <LivePreview />
                 <ToolGrid />
                 <section id="recipes" className="scroll-mt-24">
                     <UseCases />

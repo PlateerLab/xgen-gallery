@@ -7,7 +7,6 @@ import { ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { TOOLS, type Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
-import { TOOL_I18N } from "@/lib/i18n";
 
 const SLIDE_DURATION = 7000;
 
@@ -27,8 +26,13 @@ function featuredTools(): Tool[] {
     );
 }
 
+/**
+ * 라이브러리 키비주얼 — 상단(다크) 히어로 우측에 놓이는 쇼케이스 캐러셀.
+ * 카테고리별 '가장 최근 추가된' 라이브러리를 밝은 일러스트 카드 + 캡션으로 순회한다.
+ * 히어로 좌측의 페이지 아이덴티티(제목/설명)와 짝을 이룬다(library-gallery/page.tsx).
+ */
 export function LivePreview() {
-    const { locale, t } = useI18n();
+    const { t } = useI18n();
     const featured = useMemo(featuredTools, []);
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
@@ -46,107 +50,86 @@ export function LivePreview() {
     const cur = Math.min(index, featured.length - 1);
     const tool = featured[cur];
     const go = (n: number) => setIndex((n + featured.length) % featured.length);
-    const desc = TOOL_I18N[tool.id]?.[locale]?.description ?? tool.description;
 
     const arrowCls =
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]";
+        "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/50 hover:text-white";
 
     return (
-        <section className="mx-auto max-w-6xl px-6 pt-12 pb-20">
-            {/* 블로그 인사이트 히어로와 동일한 키비주얼 포맷 */}
-            <div className="mb-8 flex items-baseline gap-2.5">
-                <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
-                    Library Gallery
-                </span>
-                <span className="text-[14px] text-[var(--color-ink-subtle)]">
-                    카테고리별 가장 최근 추가된 라이브러리
-                </span>
-            </div>
-
+        <div
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+        >
+            {/* 일러스트(밝은 서피스 카드) */}
             <div
-                className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
-                onMouseEnter={() => setPaused(true)}
-                onMouseLeave={() => setPaused(false)}
+                key={`viz-${cur}`}
+                className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[var(--color-surface-alt)] p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] md:p-8"
             >
-                {/* 좌: 텍스트 */}
-                <motion.div
-                    key={`text-${cur}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="order-2 md:order-1"
-                >
-                    <div className="flex items-center gap-2 text-[13.5px] text-[var(--color-ink-subtle)]">
-                        <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold uppercase tracking-wider text-[#2461d8]">
-                            {tool.category}
-                        </span>
-                    </div>
-                    <h2 className="mt-4 text-[28px] font-bold leading-[1.14] tracking-tight text-[var(--color-ink)] md:text-[42px]">
-                        {tool.name}
-                    </h2>
-                    <p className="mt-4 line-clamp-2 max-w-lg text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                        {desc}
-                    </p>
-                    <Link
-                        href={`/tool/${tool.id}`}
-                        className="group mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]"
-                    >
-                        {t.live.try}
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                    </Link>
-
-                    {/* 캐러셀 컨트롤 — 블로그 히어로와 동일(prev/next + dots) */}
-                    {featured.length > 1 && (
-                        <div className="mt-8 flex items-center gap-3">
-                            <button
-                                type="button"
-                                aria-label="이전"
-                                onClick={() => go(cur - 1)}
-                                className={arrowCls}
-                            >
-                                <ChevronLeft className="h-5 w-5" />
-                            </button>
-                            <button
-                                type="button"
-                                aria-label="다음"
-                                onClick={() => go(cur + 1)}
-                                className={arrowCls}
-                            >
-                                <ChevronRight className="h-5 w-5" />
-                            </button>
-                            <div className="ml-1 flex items-center gap-1.5">
-                                {featured.map((tl, i) => (
-                                    <button
-                                        key={tl.id}
-                                        type="button"
-                                        aria-label={`Show ${tl.name}`}
-                                        onClick={() => go(i)}
-                                        className={cn(
-                                            "h-1.5 rounded-full transition-all",
-                                            i === cur
-                                                ? "w-6 bg-[var(--color-ink)]"
-                                                : "w-1.5 bg-[var(--color-line-strong)] hover:bg-[var(--color-ink-subtle)]",
-                                        )}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </motion.div>
-
-                {/* 우: 일러스트(블로그 커버 자리와 동일한 rounded-3xl 서피스) */}
-                <div className="order-1 md:order-2">
-                    <div
-                        key={`viz-${cur}`}
-                        className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-8 md:p-10"
-                    >
-                        <div className="w-full max-w-md">
-                            <Visual tool={tool} />
-                        </div>
-                    </div>
+                <div className="w-full max-w-md">
+                    <Visual tool={tool} />
                 </div>
             </div>
-        </section>
+
+            {/* 캡션 */}
+            <motion.div
+                key={`cap-${cur}`}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35 }}
+                className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2"
+            >
+                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-wider text-[#7dd3fc]">
+                    {tool.category}
+                </span>
+                <span className="text-[19px] font-bold tracking-tight text-white">
+                    {tool.name}
+                </span>
+                <Link
+                    href={`/tool/${tool.id}`}
+                    className="group ml-auto inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#7dd3fc]"
+                >
+                    {t.live.try}
+                    <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                </Link>
+            </motion.div>
+
+            {/* 컨트롤(prev/next + dots) */}
+            {featured.length > 1 && (
+                <div className="mt-4 flex items-center gap-3">
+                    <button
+                        type="button"
+                        aria-label="이전"
+                        onClick={() => go(cur - 1)}
+                        className={arrowCls}
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                        type="button"
+                        aria-label="다음"
+                        onClick={() => go(cur + 1)}
+                        className={arrowCls}
+                    >
+                        <ChevronRight className="h-4 w-4" />
+                    </button>
+                    <div className="ml-1 flex items-center gap-1.5">
+                        {featured.map((tl, i) => (
+                            <button
+                                key={tl.id}
+                                type="button"
+                                aria-label={`Show ${tl.name}`}
+                                onClick={() => go(i)}
+                                className={cn(
+                                    "h-1.5 rounded-full transition-all",
+                                    i === cur
+                                        ? "w-6 bg-white"
+                                        : "w-1.5 bg-white/30 hover:bg-white/60",
+                                )}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
 
