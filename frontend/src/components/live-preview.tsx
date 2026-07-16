@@ -27,9 +27,9 @@ function featuredTools(): Tool[] {
 }
 
 /**
- * 라이브러리 키비주얼 — 상단(다크) 히어로 우측에 놓이는 쇼케이스 캐러셀.
- * 카테고리별 '가장 최근 추가된' 라이브러리를 밝은 일러스트 카드 + 캡션으로 순회한다.
- * 히어로 좌측의 페이지 아이덴티티(제목/설명)와 짝을 이룬다(library-gallery/page.tsx).
+ * 라이브러리 키비주얼 — 상단(다크) 히어로 전체를 렌더한다.
+ * 좌: 페이지 키 메시지(Library Gallery) + 그 아래 현재 슬라이드 캡션·컨트롤,
+ * 우: 카테고리별 '가장 최근 추가된' 라이브러리의 밝은 일러스트 카드.
  */
 export function LivePreview() {
     const { t } = useI18n();
@@ -56,79 +56,96 @@ export function LivePreview() {
 
     return (
         <div
+            className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
         >
-            {/* 일러스트(밝은 서피스 카드) */}
-            <div
-                key={`viz-${cur}`}
-                className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[var(--color-surface-alt)] p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] md:p-8"
-            >
-                <div className="w-full max-w-md">
-                    <Visual tool={tool} />
-                </div>
+            {/* 좌: 키 메시지 → 그 아래 캡션 + 컨트롤 */}
+            <div className="order-2 md:order-1">
+                <p className="text-[15px] font-semibold tracking-tight text-[#fcd34d]">
+                    Open Source · Library Gallery
+                </p>
+                <h1 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-5xl">
+                    Library Gallery
+                </h1>
+                <p className="mt-5 max-w-md text-[17px] leading-relaxed text-white/65">
+                    XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나, 모든
+                    도구를 지금 여기 브라우저에서 체험하세요.
+                </p>
+
+                {/* 키 메시지 아래: 현재 슬라이드 캡션 */}
+                <motion.div
+                    key={`cap-${cur}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/10 pt-6"
+                >
+                    <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-wider text-[#7dd3fc]">
+                        {tool.category}
+                    </span>
+                    <span className="text-[19px] font-bold tracking-tight text-white">
+                        {tool.name}
+                    </span>
+                    <Link
+                        href={`/tool/${tool.id}`}
+                        className="group ml-auto inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#7dd3fc]"
+                    >
+                        {t.live.try}
+                        <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                    </Link>
+                </motion.div>
+
+                {/* 컨트롤(prev/next + dots) */}
+                {featured.length > 1 && (
+                    <div className="mt-4 flex items-center gap-3">
+                        <button
+                            type="button"
+                            aria-label="이전"
+                            onClick={() => go(cur - 1)}
+                            className={arrowCls}
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="다음"
+                            onClick={() => go(cur + 1)}
+                            className={arrowCls}
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </button>
+                        <div className="ml-1 flex items-center gap-1.5">
+                            {featured.map((tl, i) => (
+                                <button
+                                    key={tl.id}
+                                    type="button"
+                                    aria-label={`Show ${tl.name}`}
+                                    onClick={() => go(i)}
+                                    className={cn(
+                                        "h-1.5 rounded-full transition-all",
+                                        i === cur
+                                            ? "w-6 bg-white"
+                                            : "w-1.5 bg-white/30 hover:bg-white/60",
+                                    )}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
-            {/* 캡션 */}
-            <motion.div
-                key={`cap-${cur}`}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35 }}
-                className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2"
-            >
-                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-wider text-[#7dd3fc]">
-                    {tool.category}
-                </span>
-                <span className="text-[19px] font-bold tracking-tight text-white">
-                    {tool.name}
-                </span>
-                <Link
-                    href={`/tool/${tool.id}`}
-                    className="group ml-auto inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#7dd3fc]"
+            {/* 우: 일러스트(밝은 서피스 카드) */}
+            <div className="order-1 md:order-2">
+                <div
+                    key={`viz-${cur}`}
+                    className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-white via-[#f5f7fd] to-[#e7ecf7] p-6 ring-1 ring-white/60 shadow-[0_40px_90px_-40px_rgba(251,191,36,0.35),0_24px_50px_-30px_rgba(0,0,0,0.65)] md:p-8"
                 >
-                    {t.live.try}
-                    <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                </Link>
-            </motion.div>
-
-            {/* 컨트롤(prev/next + dots) */}
-            {featured.length > 1 && (
-                <div className="mt-4 flex items-center gap-3">
-                    <button
-                        type="button"
-                        aria-label="이전"
-                        onClick={() => go(cur - 1)}
-                        className={arrowCls}
-                    >
-                        <ChevronLeft className="h-4 w-4" />
-                    </button>
-                    <button
-                        type="button"
-                        aria-label="다음"
-                        onClick={() => go(cur + 1)}
-                        className={arrowCls}
-                    >
-                        <ChevronRight className="h-4 w-4" />
-                    </button>
-                    <div className="ml-1 flex items-center gap-1.5">
-                        {featured.map((tl, i) => (
-                            <button
-                                key={tl.id}
-                                type="button"
-                                aria-label={`Show ${tl.name}`}
-                                onClick={() => go(i)}
-                                className={cn(
-                                    "h-1.5 rounded-full transition-all",
-                                    i === cur
-                                        ? "w-6 bg-white"
-                                        : "w-1.5 bg-white/30 hover:bg-white/60",
-                                )}
-                            />
-                        ))}
+                    <div className="w-full max-w-md">
+                        <Visual tool={tool} />
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 }
