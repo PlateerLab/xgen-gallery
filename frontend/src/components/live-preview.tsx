@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Pause, Play, Search } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { TOOLS, type Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
@@ -40,91 +40,109 @@ export function LivePreview() {
             SLIDE_DURATION,
         );
         return () => clearInterval(id);
-    }, [paused, featured.length]);
+    }, [paused, index, featured.length]);
 
-    const tool = featured[index] ?? featured[0];
+    if (featured.length === 0) return null;
+    const cur = Math.min(index, featured.length - 1);
+    const tool = featured[cur];
+    const go = (n: number) => setIndex((n + featured.length) % featured.length);
+    const desc = TOOL_I18N[tool.id]?.[locale]?.description ?? tool.description;
+
+    const arrowCls =
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]";
 
     return (
         <section className="mx-auto max-w-6xl px-6 pt-12 pb-20">
+            {/* 블로그 인사이트 히어로와 동일한 키비주얼 포맷 */}
+            <div className="mb-8 flex items-baseline gap-2.5">
+                <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
+                    Library Gallery
+                </span>
+                <span className="text-[14px] text-[var(--color-ink-subtle)]">
+                    카테고리별 가장 최근 추가된 라이브러리
+                </span>
+            </div>
+
             <div
-                className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white"
+                className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
                 onMouseEnter={() => setPaused(true)}
                 onMouseLeave={() => setPaused(false)}
             >
-                <div className="grid min-h-[360px] grid-cols-1 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)]">
-                    {/* Left: text */}
-                    <motion.div
-                        key={`text-${index}`}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35 }}
-                        className="flex flex-col justify-between border-b border-[var(--color-line)] p-8 md:border-b-0 md:border-r md:p-10"
+                {/* 좌: 텍스트 */}
+                <motion.div
+                    key={`text-${cur}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="order-2 md:order-1"
+                >
+                    <div className="flex items-center gap-2 text-[13.5px] text-[var(--color-ink-subtle)]">
+                        <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold uppercase tracking-wider text-[#2461d8]">
+                            {tool.category}
+                        </span>
+                    </div>
+                    <h2 className="mt-4 text-[28px] font-bold leading-[1.14] tracking-tight text-[var(--color-ink)] md:text-[42px]">
+                        {tool.name}
+                    </h2>
+                    <p className="mt-4 line-clamp-2 max-w-lg text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        {desc}
+                    </p>
+                    <Link
+                        href={`/tool/${tool.id}`}
+                        className="group mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]"
                     >
-                        <div>
-                            <div className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                / {tool.category}
-                            </div>
-                            <h3 className="mt-3 text-3xl font-semibold tracking-tight md:text-[34px]">
-                                {tool.name}
-                            </h3>
-                            <p className="mt-3 text-[16.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {TOOL_I18N[tool.id]?.[locale]?.description ??
-                                    tool.description}
-                            </p>
-                        </div>
-                        <Link
-                            href={`/tool/${tool.id}`}
-                            className="group mt-8 inline-flex w-fit items-center gap-1.5 rounded-md bg-[var(--color-ink)] px-4 py-2 text-[16px] font-medium text-white transition hover:bg-[var(--color-ink)]/90"
-                        >
-                            {t.live.try}
-                            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                        </Link>
-                    </motion.div>
+                        {t.live.try}
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </Link>
 
-                    {/* Right: animation */}
+                    {/* 캐러셀 컨트롤 — 블로그 히어로와 동일(prev/next + dots) */}
+                    {featured.length > 1 && (
+                        <div className="mt-8 flex items-center gap-3">
+                            <button
+                                type="button"
+                                aria-label="이전"
+                                onClick={() => go(cur - 1)}
+                                className={arrowCls}
+                            >
+                                <ChevronLeft className="h-5 w-5" />
+                            </button>
+                            <button
+                                type="button"
+                                aria-label="다음"
+                                onClick={() => go(cur + 1)}
+                                className={arrowCls}
+                            >
+                                <ChevronRight className="h-5 w-5" />
+                            </button>
+                            <div className="ml-1 flex items-center gap-1.5">
+                                {featured.map((tl, i) => (
+                                    <button
+                                        key={tl.id}
+                                        type="button"
+                                        aria-label={`Show ${tl.name}`}
+                                        onClick={() => go(i)}
+                                        className={cn(
+                                            "h-1.5 rounded-full transition-all",
+                                            i === cur
+                                                ? "w-6 bg-[var(--color-ink)]"
+                                                : "w-1.5 bg-[var(--color-line-strong)] hover:bg-[var(--color-ink-subtle)]",
+                                        )}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </motion.div>
+
+                {/* 우: 일러스트(블로그 커버 자리와 동일한 rounded-3xl 서피스) */}
+                <div className="order-1 md:order-2">
                     <div
-                        key={`viz-${index}`}
-                        className="flex items-center justify-center bg-[var(--color-surface-alt)] p-8 md:p-12"
+                        key={`viz-${cur}`}
+                        className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-8 md:p-10"
                     >
                         <div className="w-full max-w-md">
                             <Visual tool={tool} />
                         </div>
-                    </div>
-                </div>
-
-                {/* Controls */}
-                <div className="flex items-center justify-between border-t border-[var(--color-line)] px-6 py-3">
-                    <div className="flex items-center gap-1.5">
-                        {featured.map((t, i) => (
-                            <button
-                                key={t.id}
-                                onClick={() => setIndex(i)}
-                                aria-label={`Show ${t.name}`}
-                                className={cn(
-                                    "h-1 rounded-full transition-all",
-                                    i === index
-                                        ? "w-8 bg-[var(--color-ink)]"
-                                        : "w-4 bg-[var(--color-line)] hover:bg-[var(--color-ink-subtle)]",
-                                )}
-                            />
-                        ))}
-                    </div>
-                    <div className="flex items-center gap-3 font-mono text-[12px] text-[var(--color-ink-subtle)]">
-                        <span>
-                            {String(index + 1).padStart(2, "0")} /{" "}
-                            {String(featured.length).padStart(2, "0")}
-                        </span>
-                        <button
-                            onClick={() => setPaused((p) => !p)}
-                            className="flex h-5 w-5 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
-                            aria-label={paused ? "Play" : "Pause"}
-                        >
-                            {paused ? (
-                                <Play className="h-2.5 w-2.5 fill-current" />
-                            ) : (
-                                <Pause className="h-2.5 w-2.5 fill-current" />
-                            )}
-                        </button>
                     </div>
                 </div>
             </div>
