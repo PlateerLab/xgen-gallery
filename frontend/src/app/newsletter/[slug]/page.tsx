@@ -137,9 +137,9 @@ export default async function NewsletterIssuePage({
                     <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                         이 글은{" "}
                         <strong className="font-semibold text-[var(--color-ink)]">
-                            플래티어랩스(Plateer Labs) AI솔루션연구소
+                            플래티어랩스
                         </strong>
-                        가 격주로 발간하는 XGEN·AI 뉴스레터 콘텐츠입니다. 메일로
+                        에서 격주로 발간하는 XGEN·AI 뉴스레터 콘텐츠입니다. 메일로
                         발행된 뉴스레터를 웹에서도 그대로 보실 수 있습니다.
                     </p>
                 </div>
