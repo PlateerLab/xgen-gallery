@@ -7,6 +7,7 @@ import type { PostMeta } from "@/lib/blog";
 export interface SeriesDef {
     key: string;
     title: string;
+    label: string; // 짧은 말머리(예: "하네스") — 목록/인기글 태그에 쓰임
     subtitle: string; // 카드 한 줄 설명
     description: string; // 상세페이지 소개
     cover: string;
@@ -18,6 +19,7 @@ export const SERIES: SeriesDef[] = [
     {
         key: "harness",
         title: "하네스 개발기",
+        label: "하네스",
         subtitle: "AI 에이전트가 일하는 실행 환경을 밑바닥부터 설계한 기록",
         description:
             "생성 모델 바깥에서 검증·재시도·종료를 소유하는 실행 계층 ‘하네스’를 어떻게 설계했는지 편별로 다룹니다. 검증 루프를 상태로 나눈 이야기부터, 엔진 코어와 제품 통합 계층을 분리한 과정까지.",
@@ -28,6 +30,7 @@ export const SERIES: SeriesDef[] = [
     {
         key: "ontology",
         title: "온톨로지 개발기",
+        label: "온톨로지",
         subtitle: "질문에서 출발해 지식그래프를 만들고 품질과 검색까지 다듬은 기록",
         description:
             "역량 질문(CQ)에서 시작해 지식그래프를 만들고, 품질을 측정하고, 검색과 근거 UX까지 다듬은 과정을 편별로 다룹니다. 트리플 수로는 알 수 없던 품질 문제부터, CSV 정제와 모델 한도에 맞춘 적응형 추출까지.",

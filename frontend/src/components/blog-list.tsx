@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
 import { cn } from "@/lib/cn";
-import { groupSeries } from "@/lib/series";
+import { groupSeries, seriesOf } from "@/lib/series";
 import { ViewCount } from "@/components/view-count";
 
 const ALL = "전체";
@@ -123,8 +123,10 @@ function AuthorRow({ post }: { post: PostMeta }) {
 }
 
 /** 인기 있는 글 — 조회수로 랭킹(백엔드), 실패 시 최신순 폴백. */
+const POPULAR_COUNT = 10;
+
 function PopularList({ posts }: { posts: PostMeta[] }) {
-    const base = useMemo(() => posts.slice(0, 5), [posts]);
+    const base = useMemo(() => posts.slice(0, POPULAR_COUNT), [posts]);
     const [ranked, setRanked] = useState<PostMeta[]>(base);
 
     useEffect(() => {
@@ -146,7 +148,7 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
                 arr
                     .sort((a, b) => b.c - a.c)
                     .map((x) => x.p)
-                    .slice(0, 5),
+                    .slice(0, POPULAR_COUNT),
             );
         });
         return () => {
@@ -170,6 +172,11 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
                             </span>
                             <div className="min-w-0">
                                 <h4 className="line-clamp-2 text-[14.5px] font-bold leading-snug text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                    {seriesOf(p.slug) && (
+                                        <span className="mr-1 align-[1px] text-[11.5px] font-extrabold text-[#0f766e]">
+                                            [{seriesOf(p.slug)!.label}]
+                                        </span>
+                                    )}
                                     {p.title}
                                 </h4>
                                 <div className="mt-1 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
@@ -485,10 +492,15 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                                 />
                                             </div>
                                             <div className="flex min-w-0 flex-1 flex-col py-1">
-                                                <div className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                                <div className="flex flex-wrap items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                                                     <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
                                                         {p.category}
                                                     </span>
+                                                    {seriesOf(p.slug) && (
+                                                        <span className="rounded-full bg-[#0d9488]/10 px-2 py-0.5 font-semibold text-[#0f766e]">
+                                                            {seriesOf(p.slug)!.title}
+                                                        </span>
+                                                    )}
                                                     <time dateTime={p.date}>
                                                         {fmtDate(p.date)}
                                                     </time>
