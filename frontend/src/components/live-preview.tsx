@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Pause, Play, Search } from "lucide-react";
@@ -11,21 +11,38 @@ import { TOOL_I18N } from "@/lib/i18n";
 
 const SLIDE_DURATION = 7000;
 
+// 키비주얼에는 카테고리별 '가장 최근에 추가된' 라이브러리 1개씩만 노출한다.
+// TOOLS 배열은 추가 순서이므로 각 카테고리에서 마지막 항목이 최신이다.
+const CATEGORY_ORDER: Tool["category"][] = [
+    "ingestion",
+    "knowledge",
+    "agent",
+    "utility",
+];
+function featuredTools(): Tool[] {
+    const latest = new Map<Tool["category"], Tool>();
+    for (const tool of TOOLS) latest.set(tool.category, tool); // 뒤 항목이 덮어씀 = 최신
+    return CATEGORY_ORDER.map((c) => latest.get(c)).filter(
+        (tool): tool is Tool => Boolean(tool),
+    );
+}
+
 export function LivePreview() {
     const { locale, t } = useI18n();
+    const featured = useMemo(featuredTools, []);
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
 
     useEffect(() => {
-        if (paused) return;
+        if (paused || featured.length <= 1) return;
         const id = setInterval(
-            () => setIndex((i) => (i + 1) % TOOLS.length),
+            () => setIndex((i) => (i + 1) % featured.length),
             SLIDE_DURATION,
         );
         return () => clearInterval(id);
-    }, [paused]);
+    }, [paused, featured.length]);
 
-    const tool = TOOLS[index];
+    const tool = featured[index] ?? featured[0];
 
     return (
         <section className="mx-auto max-w-6xl px-6 pt-12 pb-20">
@@ -78,7 +95,7 @@ export function LivePreview() {
                 {/* Controls */}
                 <div className="flex items-center justify-between border-t border-[var(--color-line)] px-6 py-3">
                     <div className="flex items-center gap-1.5">
-                        {TOOLS.map((t, i) => (
+                        {featured.map((t, i) => (
                             <button
                                 key={t.id}
                                 onClick={() => setIndex(i)}
@@ -95,7 +112,7 @@ export function LivePreview() {
                     <div className="flex items-center gap-3 font-mono text-[12px] text-[var(--color-ink-subtle)]">
                         <span>
                             {String(index + 1).padStart(2, "0")} /{" "}
-                            {String(TOOLS.length).padStart(2, "0")}
+                            {String(featured.length).padStart(2, "0")}
                         </span>
                         <button
                             onClick={() => setPaused((p) => !p)}
@@ -132,8 +149,14 @@ function Visual({ tool }: { tool: Tool }) {
             return <SynapticViz />;
         case "googer":
             return <GoogerViz />;
+        case "document-adapter":
+            return <DocumentAdapterViz />;
+        case "omnifuse":
+            return <OmniFuseViz />;
+        case "playleft":
+            return <PlaywLeftViz />;
         default:
-            return null;
+            return <DefaultViz tool={tool} />;
     }
 }
 
@@ -485,6 +508,259 @@ function GoogerViz() {
                     </div>
                 </motion.div>
             ))}
+        </div>
+    );
+}
+
+/* ── Document Adapter: natural-language edit → DOCX/PPTX/HWPX ──────────── */
+function DocumentAdapterViz() {
+    const formats = [
+        { label: "DOCX", delay: 0.5 },
+        { label: "PPTX", delay: 0.7 },
+        { label: "HWPX", delay: 0.9 },
+    ];
+    return (
+        <div className="space-y-3">
+            <motion.div
+                {...fadeIn(0)}
+                className="rounded-md border border-[var(--color-line)] bg-white px-3 py-2.5"
+            >
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                    instruction
+                </span>
+                <p className="mt-1 text-[13px] text-[var(--color-ink)]">
+                    &quot;제목을 &lsquo;2026 사업계획&rsquo;으로 바꾸고 첫 문단을
+                    굵게&quot;
+                </p>
+            </motion.div>
+            <motion.div
+                {...fadeIn(0.3)}
+                className="flex items-center gap-2 text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+                <span className="font-mono">edit in place</span>
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+            </motion.div>
+            <div className="grid grid-cols-3 gap-2">
+                {formats.map((f) => (
+                    <motion.div
+                        key={f.label}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: f.delay, duration: 0.35 }}
+                        className="flex flex-col items-center gap-1.5 rounded-md border border-[var(--color-line)] bg-white p-3"
+                    >
+                        <span className="text-lg">📄</span>
+                        <span className="font-mono text-[11px] text-[var(--color-ink)]">
+                            {f.label}
+                        </span>
+                        <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{
+                                delay: f.delay + 0.25,
+                                type: "spring",
+                                stiffness: 300,
+                            }}
+                            className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-white"
+                        >
+                            <svg viewBox="0 0 12 12" className="h-2.5 w-2.5">
+                                <path
+                                    d="M2 6l3 3 5-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </motion.span>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/* ── OmniFuse: vector + graph → fused ranking ─────────────────────────── */
+function OmniFuseViz() {
+    const nodes: [number, number][] = [
+        [20, 30],
+        [60, 12],
+        [60, 48],
+        [100, 30],
+    ];
+    const results: [string, string][] = [
+        ["환불 정책 — 배송 지연 시 전액 환불", "0.88"],
+        ["배송 지연 보상 규정", "0.71"],
+        ["문의 유형 — 지연/환불", "0.64"],
+    ];
+    return (
+        <div className="space-y-3.5">
+            <div className="grid grid-cols-2 gap-3">
+                <motion.div
+                    {...fadeIn(0.1)}
+                    className="rounded-md border border-[var(--color-line)] bg-white p-3"
+                >
+                    <div className="font-mono text-[11px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                        vector
+                    </div>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                        {[0.79, 0.82, 0.61, 0.55, 0.7, 0.4].map((v, i) => (
+                            <motion.span
+                                key={i}
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{
+                                    delay: 0.2 + i * 0.06,
+                                    type: "spring",
+                                    stiffness: 300,
+                                }}
+                                className="h-3 w-3 rounded-full bg-[var(--color-ink)]"
+                                style={{ opacity: v }}
+                            />
+                        ))}
+                    </div>
+                </motion.div>
+                <motion.div
+                    {...fadeIn(0.25)}
+                    className="rounded-md border border-[var(--color-line)] bg-white p-3"
+                >
+                    <div className="font-mono text-[11px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                        graph
+                    </div>
+                    <svg
+                        viewBox="0 0 120 60"
+                        className="mt-1 h-14 w-full text-[var(--color-ink)]"
+                    >
+                        <line x1="20" y1="30" x2="60" y2="12" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+                        <line x1="20" y1="30" x2="60" y2="48" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+                        <line x1="60" y1="12" x2="100" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+                        <line x1="60" y1="48" x2="100" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+                        {nodes.map(([x, y], i) => (
+                            <motion.circle
+                                key={i}
+                                cx={x}
+                                cy={y}
+                                r="5"
+                                fill="currentColor"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.3 + i * 0.1, type: "spring", stiffness: 300 }}
+                            />
+                        ))}
+                    </svg>
+                </motion.div>
+            </div>
+            <motion.div
+                {...fadeIn(0.7)}
+                className="flex items-center gap-2 text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+                <span className="font-mono">fused</span>
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+            </motion.div>
+            <div className="space-y-1.5">
+                {results.map(([title, score], i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.9 + i * 0.15 }}
+                        className="flex items-center justify-between rounded-md border border-[var(--color-line)] bg-white px-3 py-2"
+                    >
+                        <span className="truncate text-[13px] text-[var(--color-ink)]">
+                            {title}
+                        </span>
+                        <span className="ml-2 shrink-0 font-mono text-[12px] text-[var(--color-ink-muted)]">
+                            {score}
+                        </span>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/* ── playwLeft: browser automation steps ──────────────────────────────── */
+function PlaywLeftViz() {
+    const steps = [
+        { a: "goto", d: "example.com" },
+        { a: "fill", d: "input[q] ← 'XGEN'" },
+        { a: "press", d: "Enter" },
+        { a: "extract", d: ".result h3" },
+    ];
+    return (
+        <div className="overflow-hidden rounded-md border border-[var(--color-line)] bg-white">
+            <div className="flex items-center gap-1.5 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-3 py-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-line)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-line)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-line)]" />
+                <span className="ml-2 truncate rounded-sm bg-white px-2 py-0.5 font-mono text-[11px] text-[var(--color-ink-subtle)]">
+                    https://example.com
+                </span>
+            </div>
+            <div className="space-y-2 p-3">
+                {steps.map((s, i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 + i * 0.3 }}
+                        className="flex items-center gap-2 font-mono text-[12.5px]"
+                    >
+                        <span className="w-16 shrink-0 rounded-sm bg-[var(--color-ink)] px-1.5 py-0.5 text-center text-[11px] text-white">
+                            {s.a}
+                        </span>
+                        <span className="truncate text-[var(--color-ink-muted)]">
+                            {s.d}
+                        </span>
+                    </motion.div>
+                ))}
+                <motion.div
+                    {...fadeIn(1.4)}
+                    className="mt-1 rounded-md bg-[var(--color-surface-alt)] px-3 py-2 text-[12.5px] text-[var(--color-ink)]"
+                >
+                    → &quot;XGEN Agentic AI Platform&quot;
+                </motion.div>
+            </div>
+        </div>
+    );
+}
+
+/* ── Default: category-themed pulse (fallback for any featured tool) ───── */
+function DefaultViz({ tool }: { tool: Tool }) {
+    return (
+        <div className="flex flex-col items-center justify-center gap-4 py-6">
+            <div className="relative flex h-24 w-24 items-center justify-center">
+                {[0, 1, 2].map((i) => (
+                    <motion.span
+                        key={i}
+                        className="absolute rounded-full border border-[var(--color-line)]"
+                        initial={{ width: 32, height: 32, opacity: 0 }}
+                        animate={{
+                            width: [32, 96],
+                            height: [32, 96],
+                            opacity: [0.6, 0],
+                        }}
+                        transition={{
+                            delay: i * 0.6,
+                            duration: 1.8,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                        }}
+                    />
+                ))}
+                <span className="relative h-3 w-3 rounded-full bg-[var(--color-ink)]" />
+            </div>
+            <div className="text-center">
+                <div className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                    {tool.category}
+                </div>
+                <div className="mt-1 text-[15px] font-semibold text-[var(--color-ink)]">
+                    {tool.name}
+                </div>
+            </div>
         </div>
     );
 }
