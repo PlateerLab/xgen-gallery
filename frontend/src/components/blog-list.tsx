@@ -123,7 +123,7 @@ function AuthorRow({ post }: { post: PostMeta }) {
 }
 
 /** 인기 있는 글 — 조회수로 랭킹(백엔드), 실패 시 최신순 폴백. */
-const POPULAR_COUNT = 10;
+const POPULAR_COUNT = 9;
 
 function PopularList({ posts }: { posts: PostMeta[] }) {
     const base = useMemo(() => posts.slice(0, POPULAR_COUNT), [posts]);
