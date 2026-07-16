@@ -25,6 +25,16 @@ export const SERIES: SeriesDef[] = [
         match: /^harness-journey-/,
         order: /^harness-journey-(\d+)-/,
     },
+    {
+        key: "ontology",
+        title: "온톨로지 개발기",
+        subtitle: "질문에서 출발해 지식그래프를 만들고 품질과 검색까지 다듬은 기록",
+        description:
+            "역량 질문(CQ)에서 시작해 지식그래프를 만들고, 품질을 측정하고, 검색과 근거 UX까지 다듬은 과정을 편별로 다룹니다. 트리플 수로는 알 수 없던 품질 문제부터, CSV 정제와 모델 한도에 맞춘 적응형 추출까지.",
+        cover: "/blog/series-ontology.svg",
+        match: /^ontology-journey-/,
+        order: /^ontology-journey-(\d+)-/,
+    },
 ];
 
 export function seriesOf(slug: string): SeriesDef | null {

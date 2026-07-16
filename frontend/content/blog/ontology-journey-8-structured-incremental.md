@@ -1,7 +1,7 @@
 ---
 title: "열 개 CSV 클래스가 네 개가 된 이유"
 description: "후처리가 정형 스키마를 바꾸지 않게 생성 출처를 영속화하고, 최근 완료 빌드의 청크 집합으로 문서 재처리 범위를 계산합니다."
-date: "2026-07-15"
+date: "2026-06-24"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

@@ -1,7 +1,7 @@
 ---
 title: "SELECT 결과를 안전하게 그래프로 교체하는 방법"
 description: "DB의 타입과 기본키를 그래프 정체성으로 사용하고, RDF staging 교체와 복합 커서로 전체·증분 색인의 무결성을 지킵니다."
-date: "2026-07-15"
+date: "2026-07-06"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

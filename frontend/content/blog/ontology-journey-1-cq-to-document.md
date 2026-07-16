@@ -1,7 +1,7 @@
 ---
 title: "질문을 온톨로지 빌드에서 뺀 이유"
 description: "질문은 평가에 남기고, 지식의 발견 범위는 원문이 결정하도록 빌드 파이프라인의 책임을 다시 나눕니다."
-date: "2026-07-15"
+date: "2026-04-24"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
