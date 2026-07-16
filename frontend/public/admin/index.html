@@ -13,15 +13,51 @@
              설정은 ./config.yml 참고. 로컬 편집: `npx decap-server` 실행 후 /admin 접속. -->
         <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
         <script>
-            // 좌측 사이드바에 '블로그 작성 가이드' 링크 하나만 추가(새 탭).
+            // 좌측 Collections 목록 아래에 '블로그 작성 가이드' 링크(새 탭) 하나를 추가한다.
+            //
+            // ⚠ 과거엔 CMS.registerAdditionalLink()를 썼지만, 현재 배포되는 decap-cms 번들의
+            //   window.CMS 에는 그 API가 없어(존재하지 않음) 링크가 조용히 사라졌다.
+            //   그래서 Decap 내부 API에 의존하지 않고, 라우트(#/collections/...) 기반으로
+            //   실제 사이드바 항목 옆에 DOM 링크를 주입한다. emotion 클래스명 변화에도 안전.
             (function () {
-                if (!window.CMS || !CMS.registerAdditionalLink) return;
-                CMS.registerAdditionalLink({
-                    id: "guide-writing",
-                    title: "블로그 작성 가이드",
-                    data: "/guides/blog-writing.html",
-                    options: { iconName: "page" },
+                var GUIDE_URL = "/guides/blog-writing.html";
+                var LINK_ID = "guide-writing-link";
+
+                function inject() {
+                    if (document.getElementById(LINK_ID)) return; // 멱등
+                    // 컬렉션 내비 링크는 항상 해시 라우트를 쓴다 → 버전 무관하게 안정적인 앵커.
+                    var navLink = document.querySelector('a[href^="#/collections/"]');
+                    if (!navLink) return;
+                    var item = navLink.closest("li") || navLink;
+                    var list = item.parentElement;
+                    if (!list) return;
+
+                    var a = document.createElement("a");
+                    a.id = LINK_ID;
+                    a.href = GUIDE_URL;
+                    a.target = "_blank";
+                    a.rel = "noopener";
+                    a.textContent = "📖 블로그 작성 가이드";
+                    a.className = navLink.className; // 기존 항목과 동일한 룩앤필
+                    a.style.display = "block";
+                    a.style.opacity = "0.85"; // 컬렉션이 아니라 외부 가이드임을 살짝 구분
+
+                    if (item.tagName === "LI") {
+                        var li = document.createElement("li");
+                        li.className = item.className;
+                        li.appendChild(a);
+                        list.appendChild(li);
+                    } else {
+                        list.appendChild(a);
+                    }
+                }
+
+                // 로그인 후 사이드바가 비동기로 렌더되므로 관찰하며 주입(제거되면 재주입).
+                new MutationObserver(inject).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
                 });
+                document.addEventListener("DOMContentLoaded", inject);
             })();
         </script>
     </body>
