@@ -187,8 +187,6 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Applied AI",
         concept: "solutions",
         blurb: "산업별 솔루션, 레퍼런스 아키텍처, 라이브러리 레시피.",
-        wide: true,
-        cols: 2,
         items: [
             {
                 label: "Agentic AI",
@@ -197,15 +195,9 @@ export const NAV_GROUPS: NavGroup[] = [
                     { label: "Industries", id: "industries" },
                     { label: "Use Cases", labelKo: "적용 사례", id: "poc-projects", route: "/poc-projects" },
                     { label: "Proof in Action", labelKo: "실증 데모 영상", id: "proof-in-action", route: "/proof-in-action" },
+                    // 실증 데모 영상 바로 아래에 배치(기존 별도 항목에서 이동).
+                    { label: "Technical Consulting", labelKo: "기술 컨설팅", id: "technical-consulting", route: "/technical-consulting" },
                 ],
-            },
-            {
-                label: "Technical Consulting",
-                id: "technical-consulting",
-                route: "/technical-consulting",
-                blurb: "AI 도입 전략부터 PoC, 아키텍처 설계, 운영 체계까지 — 연구 기반 기술 컨설팅을 별도 페이지에서 확인하세요.",
-                // GNB 메뉴엔 유지하되 /solutions 원페이지 섹션에서는 제외.
-                menuOnly: true,
             },
             {
                 // 섹션은 /solutions#certification 으로 렌더하되, GNB 드롭다운에는
