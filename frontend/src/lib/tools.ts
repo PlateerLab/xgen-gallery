@@ -82,7 +82,7 @@ export const TOOLS: Tool[] = [
             "A unified editing adapter (with MCP server) that lets an LLM open, modify, and write Office and HWPX documents in place.",
         category: "ingestion",
         install: "pip install document-adapter",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
     {
@@ -94,7 +94,7 @@ export const TOOLS: Tool[] = [
             "Build navigable knowledge maps for LLM agents — four-tool exploration, snippet retrieval, and structured recall.",
         category: "knowledge",
         install: "pip install knowtology",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
     {
@@ -106,7 +106,7 @@ export const TOOLS: Tool[] = [
             "Backend-agnostic GraphRAG that fuses vector and graph retrieval in a single pass. Zero core deps, pluggable stores.",
         category: "knowledge",
         install: "pip install xgen-omnifuse",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
     {
@@ -118,7 +118,7 @@ export const TOOLS: Tool[] = [
             "Lint MCP-compatible, zero-dependency Python agent tools — as a library, a CLI, or an MCP server.",
         category: "agent",
         install: "pip install toolint",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
     {
@@ -130,7 +130,7 @@ export const TOOLS: Tool[] = [
             "The XGEN harness engine — a config-driven, 10-stage pipeline that owns validation, retry, and termination around any model.",
         category: "agent",
         install: "pip install xgen-harness",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
     {
@@ -142,7 +142,7 @@ export const TOOLS: Tool[] = [
             "A browser automation library built for agents — fast, scriptable control of real browser sessions.",
         category: "agent",
         install: "pip install playleft",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
 ];

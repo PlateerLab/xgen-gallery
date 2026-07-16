@@ -11,6 +11,7 @@ import {
     type OutputField,
 } from "@plateerlab/xgen-gallery";
 import type { Tool } from "@/lib/tools";
+import { LOCAL_DEMO_MANIFESTS } from "@/lib/demo-manifests";
 import { cn } from "@/lib/cn";
 import { formatBytes } from "@/lib/format";
 import { CopyCommand } from "./copy-command";
@@ -27,7 +28,11 @@ const CATEGORY_LABEL: Record<Tool["category"], string> = {
 };
 
 export function ToolDemoClient({ tool }: { tool: Tool }) {
-    const manifest = useMemo(() => getDemoManifest(tool.repo), [tool.repo]);
+    // 로컬 매니페스트(신규 라이브러리)를 먼저 확인하고, 없으면 패키지 레지스트리로 폴백.
+    const manifest = useMemo(
+        () => LOCAL_DEMO_MANIFESTS[tool.repo] ?? getDemoManifest(tool.repo),
+        [tool.repo],
+    );
 
     if (!manifest) {
         return <NoManifest tool={tool} />;
