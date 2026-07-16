@@ -16,7 +16,9 @@ import {
     Activity,
     BookOpen,
     FolderGit2,
+    PenLine,
 } from "lucide-react";
+import type { PostMeta } from "@/lib/blog";
 import { cn } from "@/lib/cn";
 import {
     formatRelative,
@@ -37,7 +39,13 @@ import { MemberContributionGraph } from "./member-contribution-graph";
 type RepoSort = "stars" | "updated";
 type Tab = "repos" | "activity" | "readme";
 
-export function MemberDetailView({ member }: { member: MemberDetail }) {
+export function MemberDetailView({
+    member,
+    posts = [],
+}: {
+    member: MemberDetail;
+    posts?: PostMeta[];
+}) {
     const [repoSort, setRepoSort] = useState<RepoSort>("stars");
     const [includeForks, setIncludeForks] = useState(false);
     const [tab, setTab] = useState<Tab>("repos");
@@ -279,6 +287,47 @@ export function MemberDetailView({ member }: { member: MemberDetail }) {
                             </div>
                             );
                         })}
+                    </div>
+                </section>
+            )}
+
+            {posts.length > 0 && (
+                <section className="mt-10">
+                    <h2 className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <PenLine className="h-4 w-4" />
+                        Posts
+                        <span className="rounded-full bg-[var(--color-surface-alt)] px-1.5 py-0.5 font-mono text-[11px] normal-case tracking-normal text-[var(--color-ink-muted)]">
+                            {posts.length}
+                        </span>
+                    </h2>
+                    <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">
+                        {displayName}님이 작성한 인사이트 블로그 글
+                    </p>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                        {posts.map((p) => (
+                            <Link
+                                key={p.slug}
+                                href={`/blog/${p.slug}`}
+                                className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-white p-4 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-20px_rgba(20,40,80,0.28)]"
+                            >
+                                <div className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                    <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
+                                        {p.category}
+                                    </span>
+                                    <time dateTime={p.date}>
+                                        {p.date.replaceAll("-", ".")}
+                                    </time>
+                                </div>
+                                <h3 className="mt-2 line-clamp-2 text-[16px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                    {p.title}
+                                </h3>
+                                {p.description && (
+                                    <p className="mt-1.5 line-clamp-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {p.description}
+                                    </p>
+                                )}
+                            </Link>
+                        ))}
                     </div>
                 </section>
             )}

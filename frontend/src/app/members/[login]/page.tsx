@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { MemberDetailView } from "@/components/member-detail";
 import { JsonLd } from "@/components/json-ld";
 import { getMemberDetail } from "@/lib/members/cache";
+import { getAllPosts } from "@/lib/blog";
 import { personLd, breadcrumbLd } from "@/lib/structured-data";
 
 // Render at request time — see /members/page.tsx for rationale.
@@ -46,6 +47,11 @@ export default async function MemberPage({
         notFound();
     }
 
+    // 이 멤버가 작성한 블로그 글 — 프론트매터 authorGithub로 매칭(대소문자 무시).
+    const authored = getAllPosts().filter(
+        (p) => p.authorGithub?.toLowerCase() === detail.login.toLowerCase(),
+    );
+
     return (
         <>
             <JsonLd
@@ -63,7 +69,7 @@ export default async function MemberPage({
             />
             <SiteNav />
             <main className="mx-auto max-w-5xl px-6 pb-24 pt-14 md:pt-20">
-                <MemberDetailView member={detail} />
+                <MemberDetailView member={detail} posts={authored} />
             </main>
             <SiteFooter />
         </>
