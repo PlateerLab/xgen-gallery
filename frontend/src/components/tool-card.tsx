@@ -98,7 +98,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
                 {tool.hasDemo && (
                     <Link
                         href={`/tool/${tool.id}`}
-                        className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-[var(--color-ink)] px-3 py-2 text-[14px] font-semibold text-white transition hover:bg-[var(--color-ink)]/90"
+                        className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-[linear-gradient(45deg,#00acee_10%,#185aea_90%)] px-3 py-2 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(24,90,234,0.55)] transition hover:brightness-110"
                     >
                         <Play className="h-3 w-3 fill-current" />
                         {t.toolCard.openDemo}
