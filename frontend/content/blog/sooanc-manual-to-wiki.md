@@ -1,15 +1,19 @@
 ---
-title: "사용자 매뉴얼을 솔루션 가이드 위키로 바꾼 이유"
-description: "하나의 Markdown 원본으로 웹 위키·Word·한글·영문 문서를 동시에 생성해 매뉴얼을 제품처럼 운영한 경험 — 왜 Word 체계를 버리고 위키 기반으로 전환했는지 정리했습니다."
-date: "2026-07-16"
-cover: /blog/sooanc-manual-to-wiki.svg
-author: "sooanc"
-authorGithub: "sooanc"
-category: "Tech Note"
-tags: ["문서화", "위키", "Markdown", "다국어", "운영"]
+title: 사용자 매뉴얼을 솔루션 가이드 위키로 바꾼 이유
+description: 하나의 Markdown 원본으로 웹 위키·Word·한글·영문 문서를 동시에 생성해 매뉴얼을 제품처럼 운영한 경험 — 왜
+  문서 체계를 버리고 위키 기반으로 전환했는지 정리했습니다.
+date: 2026-07-16
+author: sooanc
+authorGithub: sooanc
+category: Tech Note
+tags:
+  - 문서화
+  - 위키
+  - Markdown
+  - 다국어
+  - 운영
 draft: false
 ---
-
 **하나의 마크다운 원본으로 웹 위키와 Word 문서, 그리고 한글·영문까지 함께 관리하기**
 
 제품이 성장할수록 사용자 매뉴얼도 함께 커집니다.
@@ -39,9 +43,9 @@ draft: false
 
 "매뉴얼에는 있는데 실제 화면에는 없습니다."
 
-이 한마디가 문서 전체의 신뢰도를 무너뜨리는 경험을 여러 번 했습니다.
+이 한마디가 문서 전체의 신뢰도를 무너뜨립니다.
 
-## Word보다 먼저 바뀐 것은 '원본'이었습니다
+## 문서보다 먼저 바뀐 것은 '원본'이었습니다
 
 많은 팀이 Word를 버리고 웹 문서를 도입했다고 이야기합니다.
 
