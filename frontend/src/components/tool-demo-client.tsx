@@ -278,10 +278,10 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                         onClick={runDemo}
                         disabled={state.isRunning}
                         className={cn(
-                            "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[16px] font-medium transition",
+                            "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-[16px] font-semibold transition",
                             state.isRunning
                                 ? "cursor-not-allowed bg-[var(--color-line)] text-[var(--color-ink-muted)]"
-                                : "bg-[var(--color-ink)] text-white hover:bg-[var(--color-ink)]/90",
+                                : "bg-[linear-gradient(45deg,#00acee_10%,#185aea_90%)] text-white shadow-[0_10px_24px_-8px_rgba(24,90,234,0.55)] hover:brightness-110",
                         )}
                     >
                         {state.isRunning ? (
