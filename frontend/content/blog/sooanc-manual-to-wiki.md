@@ -2,6 +2,7 @@
 title: "사용자 매뉴얼을 솔루션 가이드 위키로 바꾼 이유"
 description: "하나의 Markdown 원본으로 웹 위키·Word·한글·영문 문서를 동시에 생성해 매뉴얼을 제품처럼 운영한 경험 — 왜 Word 체계를 버리고 위키 기반으로 전환했는지 정리했습니다."
 date: "2026-07-16"
+cover: /blog/sooanc-manual-to-wiki.svg
 author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"
