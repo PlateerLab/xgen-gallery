@@ -128,6 +128,22 @@ export default async function NewsletterIssuePage({
             </section>
 
             <main className="mx-auto max-w-3xl px-6 py-16 md:py-20">
+                {/* 뉴스레터 소개 — 발행 콘텐츠를 그대로 싣되, 이 글이 무엇인지 먼저 안내 */}
+                <div className="mb-12 rounded-2xl border border-[#cfe0ff] bg-[#f1f6ff] p-6">
+                    <p className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.16em] text-[#2461d8]">
+                        <Mail className="h-4 w-4" />
+                        뉴스레터 안내
+                    </p>
+                    <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                        이 글은{" "}
+                        <strong className="font-semibold text-[var(--color-ink)]">
+                            플래티어랩스(Plateer Labs) AI솔루션연구소
+                        </strong>
+                        가 격주로 발간하는 XGEN·AI 뉴스레터 콘텐츠입니다. 메일로
+                        발행된 뉴스레터를 웹에서도 그대로 보실 수 있습니다.
+                    </p>
+                </div>
+
                 {/* 인사말 */}
                 <div className="space-y-4 border-b border-[var(--color-line)] pb-12">
                     {issue.intro.map((p, i) => (
