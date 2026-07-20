@@ -181,7 +181,7 @@ export default function EnablementPage() {
                                     현장 FDE가 직접 교육합니다
                                 </h3>
                                 <p className="mt-2 max-w-3xl text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    구축을 함께한{" "}
+                                    설계·구현을 함께한{" "}
                                     <span className="font-semibold text-[var(--color-ink)]">
                                         FDE(Forward Deployed Engineer)
                                     </span>
