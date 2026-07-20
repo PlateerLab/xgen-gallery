@@ -82,6 +82,16 @@ const PROCESS: { icon: LucideIcon; step: string; desc: string }[] = [
     { icon: Headset, step: "사후 지원", desc: "운영 이슈·질문 지원" },
 ];
 
+/** 단계별 노드 그라데이션 — 시안→퍼플로 흐르는 팔레트(흐름선과 톤 일치). */
+const STEP_GRADIENTS = [
+    "linear-gradient(135deg,#22d3ee,#0891b2)",
+    "linear-gradient(135deg,#38bdf8,#0284c7)",
+    "linear-gradient(135deg,#60a5fa,#2563eb)",
+    "linear-gradient(135deg,#818cf8,#4f46e5)",
+    "linear-gradient(135deg,#a78bfa,#7c3aed)",
+    "linear-gradient(135deg,#c084fc,#9333ea)",
+];
+
 /** 교육 형태. */
 const FORMATS: [LucideIcon, string, string][] = [
     [MapPin, "고객사 방문 (온사이트)", "담당 엔지니어가 고객사 현장을 직접 방문해 실제 업무 환경에서 교육합니다"],
@@ -247,16 +257,19 @@ export default function EnablementPage() {
                         </h2>
                         <div className="relative mt-12">
                             {/* 단계를 잇는 그라데이션 흐름선 (lg 이상) */}
-                            <div className="pointer-events-none absolute inset-x-10 top-8 hidden h-0.5 bg-gradient-to-r from-[#00acee] via-[#7c5cff] to-[#185aea] opacity-30 lg:block" />
+                            <div className="pointer-events-none absolute inset-x-10 top-9 hidden h-0.5 bg-gradient-to-r from-[#22d3ee] via-[#6366f1] to-[#9333ea] opacity-40 lg:block" />
                             <ol className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
                                 {PROCESS.map((p, i) => (
                                     <li
                                         key={p.step}
                                         className="relative flex flex-col items-center px-1 text-center"
                                     >
-                                        <span className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00acee_10%,#185aea_90%)] text-white shadow-[0_14px_30px_-12px_rgba(24,90,234,0.7)]">
+                                        <span
+                                            className="relative z-10 flex h-[72px] w-[72px] items-center justify-center rounded-full text-white shadow-[0_12px_28px_-10px_rgba(50,50,110,0.55)]"
+                                            style={{ backgroundImage: STEP_GRADIENTS[i] }}
+                                        >
                                             <p.icon className="h-7 w-7" />
-                                            <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full border-2 border-[var(--color-surface-alt)] bg-[#070b1c] font-mono text-[11px] font-bold text-white">
+                                            <span className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-[var(--color-surface-alt)] bg-[#070b1c] text-[15px] font-bold text-white shadow-sm">
                                                 {i + 1}
                                             </span>
                                         </span>
