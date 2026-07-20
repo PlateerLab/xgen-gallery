@@ -19,9 +19,17 @@ const nextConfig: NextConfig = {
         ];
     },
     async rewrites() {
+        // 갤러리 데모 API를 same-origin(/gallery-api)으로 프록시한다. 브라우저는
+        // 항상 자기 오리진을 호출하고, Next 서버가 GALLERY_API_ORIGIN(도커:
+        // http://backend:8000, 로컬 dev: http://localhost:8800)으로 서버사이드
+        // 프록시한다. 예전엔 클라이언트가 http://localhost:8800을 직접 쳐서
+        // 원격 방문자 브라우저에선 방문자 본인 PC를 가리켜 데모가 전부 실패했다.
+        const apiOrigin =
+            process.env.GALLERY_API_ORIGIN || 'http://localhost:8800';
         return [
             // Decap CMS 어드민 — public/admin/index.html 을 /admin 클린 URL로 서빙.
             { source: '/admin', destination: '/admin/index.html' },
+            { source: '/gallery-api/:path*', destination: `${apiOrigin}/:path*` },
         ];
     },
 };

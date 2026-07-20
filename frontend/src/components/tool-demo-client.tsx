@@ -18,7 +18,11 @@ import { CopyCommand } from "./copy-command";
 
 type ChunkViewMode = "raw" | "markdown" | "html";
 
-const API_URL = process.env.NEXT_PUBLIC_GALLERY_API_URL || "http://localhost:8800";
+// 브라우저는 same-origin 프록시(/gallery-api)로 백엔드를 친다. next.config.ts의
+// rewrite가 이를 GALLERY_API_ORIGIN(도커: http://backend:8000)으로 서버사이드 프록시한다.
+// 예전처럼 http://localhost:8800을 그대로 굽지 않는다 — 원격 방문자의 브라우저에서는
+// localhost가 방문자 본인 PC를 가리켜 모든 데모가 실패했다.
+const API_URL = process.env.NEXT_PUBLIC_GALLERY_API_URL || "/gallery-api";
 
 const CATEGORY_LABEL: Record<Tool["category"], string> = {
     ingestion: "Ingestion",
@@ -79,6 +83,9 @@ interface DemoState {
     isRunning: boolean;
     error: string | null;
     elapsedMs: number | null;
+    // 결과가 라이브 백엔드 응답이 아니라 큐레이션된 샘플(mockOutput)인지 여부.
+    // 백엔드 미배포·미도달 시에도 데모가 의미 있는 결과를 보여주도록 폴백할 때 true.
+    isSample: boolean;
 }
 
 function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) {
@@ -99,6 +106,7 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
             isRunning: false,
             error: null,
             elapsedMs: null,
+            isSample: false,
         };
     }, [manifest]);
 
@@ -122,6 +130,7 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                 outputValues: sample.mockOutput ?? null,
                 error: null,
                 elapsedMs: null,
+                isSample: sample.mockOutput != null,
             }));
         },
         [manifest.samples],
@@ -130,17 +139,33 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
     const reset = useCallback(() => setState(initialState), [initialState]);
 
     const runDemo = useCallback(async () => {
+        // 백엔드가 도달 불가하거나(프로덕션·미배포) 응답이 실패하면 보여줄 큐레이션 샘플.
+        const fallbackSample = manifest.samples[0]?.mockOutput ?? null;
+
+        // apiEndpoint가 없는 라이브러리 → 애초에 백엔드가 없으므로 샘플을 바로 보여준다.
         if (!manifest.apiEndpoint) {
-            const sample = manifest.samples[0];
-            if (sample?.mockOutput) {
-                setState((s) => ({ ...s, outputValues: sample.mockOutput!, error: null }));
+            if (fallbackSample) {
+                setState((s) => ({
+                    ...s,
+                    outputValues: fallbackSample,
+                    error: null,
+                    isSample: true,
+                    elapsedMs: null,
+                }));
             } else {
-                setState((s) => ({ ...s, error: "No API endpoint configured." }));
+                setState((s) => ({ ...s, error: "이 데모에는 아직 예시 결과가 준비되지 않았습니다." }));
             }
             return;
         }
 
-        setState((s) => ({ ...s, isRunning: true, error: null, outputValues: null, elapsedMs: null }));
+        setState((s) => ({
+            ...s,
+            isRunning: true,
+            error: null,
+            outputValues: null,
+            elapsedMs: null,
+            isSample: false,
+        }));
         const started = performance.now();
         try {
             const hasFile = Object.values(state.files).some((f) => f !== null);
@@ -173,14 +198,29 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                 ...s,
                 outputValues: data,
                 isRunning: false,
+                isSample: false,
                 elapsedMs: performance.now() - started,
             }));
         } catch (err) {
-            setState((s) => ({
-                ...s,
-                isRunning: false,
-                error: err instanceof Error ? err.message : "Unknown error",
-            }));
+            // 라이브 호출 실패(백엔드 미도달·404·5xx·네트워크 오류). 붉은 에러 대신
+            // 큐레이션 샘플로 폴백해 데모가 항상 의미 있는 결과를 보여주도록 한다.
+            // 폴백할 샘플이 전혀 없을 때만 실제 에러를 노출한다.
+            if (fallbackSample) {
+                setState((s) => ({
+                    ...s,
+                    isRunning: false,
+                    outputValues: fallbackSample,
+                    error: null,
+                    isSample: true,
+                    elapsedMs: null,
+                }));
+            } else {
+                setState((s) => ({
+                    ...s,
+                    isRunning: false,
+                    error: err instanceof Error ? err.message : "Unknown error",
+                }));
+            }
         }
     }, [manifest.apiEndpoint, manifest.samples, state.files, state.inputValues]);
 
@@ -302,11 +342,19 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                 <section className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-[16px] font-semibold tracking-tight">Output</h2>
-                        {state.elapsedMs !== null && !state.error && (
+                        {state.isSample && state.outputValues && !state.error ? (
+                            <span
+                                className="inline-flex items-center gap-1 rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2 py-0.5 font-mono text-[12px] text-[var(--color-ink-muted)]"
+                                title="라이브 백엔드 대신 큐레이션된 예시 결과를 표시합니다."
+                            >
+                                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                                sample
+                            </span>
+                        ) : state.elapsedMs !== null && !state.error ? (
                             <span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">
                                 {(state.elapsedMs / 1000).toFixed(2)}s
                             </span>
-                        )}
+                        ) : null}
                     </div>
 
                     <div className="mt-5">

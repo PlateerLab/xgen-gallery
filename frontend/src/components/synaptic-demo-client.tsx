@@ -26,8 +26,10 @@ import {
     type ExploreContext,
 } from "./node-detail-panel";
 
+// same-origin 프록시(/gallery-api) 기본값 — next.config.ts rewrite가 백엔드로 프록시.
+// (예전 http://localhost:8800 하드코딩은 원격 방문자 브라우저에서 실패했다.)
 const API_URL =
-    process.env.NEXT_PUBLIC_GALLERY_API_URL || "http://localhost:8800";
+    process.env.NEXT_PUBLIC_GALLERY_API_URL || "/gallery-api";
 const MCP_BASE = `${API_URL}/api/mcp/synaptic-memory`;
 
 /* ----------------------------- types -------------------------------- */
