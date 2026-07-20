@@ -16,6 +16,7 @@ export const SITE = {
         "Plateer Labs researches and shares the core technology for building AI platforms enterprises can trust. We open-source proven AI building blocks behind XGEN — document ingestion, knowledge graphs, and agent frameworks — so anyone can install, experiment, and put them into production.",
     github: "https://github.com/PlateerLab",
     githubOrg: "PlateerLab",
+    youtube: "https://www.youtube.com/@PlateerLabs",
     locale: "ko_KR",
     /** OG/Twitter share image (served from app/icon.png). */
     ogImage: "/icon.png",

@@ -20,7 +20,7 @@ export function organizationLd() {
         url: SITE.url,
         logo: absoluteUrl("/icon.png"),
         description: SITE.description,
-        sameAs: [SITE.github],
+        sameAs: [SITE.github, SITE.youtube],
     };
 }
 
