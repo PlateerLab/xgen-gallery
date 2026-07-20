@@ -77,6 +77,12 @@ export const DEMOS: Demo[] = [
         ],
     },
     {
+        // 제목은 유튜브 원본과 동일하게 유지한다.
+        id: "BuGB7F89cTc",
+        title: "XGEN Agent 작업실 전체 기능 시연 | 에이전트 제작부터 RAG·도구연동·품질평가·협업까지",
+        desc: "XGEN Agent 작업실에서 에이전트 제작부터 RAG·도구 연동·품질 평가·협업까지 전체 기능을 실제 화면으로 시연합니다.",
+    },
+    {
         id: "4T7tT2nTXfw",
         title: "XGEN PathFinder BUILD",
         desc: "PathFinder는 기존 웹 시스템을 AI가 이해하고 사용할 수 있는 Agent Tool로 연결하는 브라우저 자동화 기술입니다.",
