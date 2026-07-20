@@ -276,7 +276,7 @@ export function PocDemos() {
                             / More demos
                         </p>
                         <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-                            더 많은 실증 영상
+                            데모 영상 더보기
                         </h2>
                     </div>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
