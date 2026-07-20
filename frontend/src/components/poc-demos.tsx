@@ -16,7 +16,8 @@ import { PlayCircle, Clapperboard, CalendarDays } from "lucide-react";
 type Chapter = {
     time: string; // 표시용 타임스탬프 "MM:SS"
     sec: number; // 시작 초 — 클릭 시 해당 지점부터 재생
-    label: string; // "주제 – 부제" 형식(부제는 " – "로 구분)
+    label: string; // 챕터 제목
+    desc?: string; // 챕터 설명(있으면 제목 아래 본문으로 노출)
 };
 
 type Demo = {
@@ -24,7 +25,7 @@ type Demo = {
     title: string;
     desc: string;
     uploadDate?: string; // YYYY-MM-DD
-    featured?: boolean; // 대표 영상 — 그리드에서 더 크게(2열 span) 노출
+    featured?: boolean; // 대표 영상 — 한 행을 꽉 채워 크게 노출
     chapters?: Chapter[]; // 챕터(타임스탬프) — 클릭하면 해당 지점부터 재생
 };
 
@@ -40,32 +41,38 @@ const DEMOS: Demo[] = [
             {
                 time: "00:00",
                 sec: 0,
-                label: "인트로 · AI 지식 저장소 – 문서 업로드부터 지식그래프까지",
+                label: "지식그래프 구축",
+                desc: "AI 지식 저장소에 로그인한 뒤 x2bee_서비스정책 컬렉션을 생성하고 정책 문서 11종을 업로드합니다. 온톨로지를 자동 생성하여 지식그래프를 구축하고, 총 19,471개의 트리플과 209개의 클래스가 생성되는 과정을 확인합니다.",
             },
             {
                 time: "01:01",
                 sec: 61,
-                label: "시맨틱 검색 – 의미 기반 지식 탐색",
+                label: "시맨틱 검색",
+                desc: "자연어 질문을 입력하면 지식그래프를 기반으로 의미를 이해하여 검색을 수행합니다. 약 200개의 근거 트리플을 바탕으로 출처가 포함된 구조화된 답변을 생성합니다.",
             },
             {
                 time: "01:17",
                 sec: 77,
-                label: "전표 심사 AI Agent – 증빙 등록부터 자동 검증까지",
+                label: "전표 심사 AI Agent",
+                desc: "증빙 문서 컬렉션을 생성하고 색인한 뒤, 캔버스에서 전표 심사 AI Agent를 조립합니다. 이미지 형태의 증빙 문서를 OCR로 분석하여 필요한 정보를 자동 추출하고, 결재 공문번호 등 핵심 항목을 검증하는 과정을 시연합니다.",
             },
             {
                 time: "02:47",
                 sec: 167,
-                label: "대화형 AI 챗봇 – 노코드 조립부터 응답까지",
+                label: "대화형 AI 챗봇",
+                desc: "캔버스에서 노드를 조립해 지식그래프와 연결된 AI 챗봇을 생성합니다. 코딩 없이 약 90초 만에 챗봇을 구성하고, 정책 문서를 근거로 답변하는 과정을 확인할 수 있습니다.",
             },
             {
                 time: "03:34",
                 sec: 214,
-                label: "AI 품질 평가 – 배치 테스트와 LLM Judge 자동 채점",
+                label: "AI 품질 평가 (LLM Judge)",
+                desc: "테스트셋을 업로드한 후 여러 Agent를 일괄 실행하고, LLM Judge가 문항별로 자동 채점합니다. 92~100점의 평가 결과와 함께 AI 품질을 정량적으로 검증하는 과정을 소개합니다.",
             },
             {
                 time: "04:07",
                 sec: 247,
-                label: "XGEN Pathfinder – 레거시 시스템에 AI 연결 (API 자동 수집·호출)",
+                label: "XGEN Pathfinder",
+                desc: "레거시 시스템에 로그인한 후 브라우저 플러그인을 통해 API를 자동 수집합니다. 자연어 한 줄만 입력하면 적절한 도구를 자동 선택하고 실제 API를 호출하여 업무를 수행하는 과정을 시연합니다.",
             },
         ],
     },
@@ -152,25 +159,103 @@ function YouTubeFacade({
     );
 }
 
+/** 챕터(타임스탬프) 목록 — 클릭하면 해당 지점부터 재생. 대표/일반 카드 공용.
+ *  columns=true면 넓은 대표 카드에서 2단 그리드로 배치한다. */
+function ChapterList({
+    chapters,
+    onSeek,
+    columns,
+}: {
+    chapters: Chapter[];
+    onSeek: (sec: number) => void;
+    columns?: boolean;
+}) {
+    return (
+        <ul
+            className={`mt-5 border-t border-[var(--color-line)] pt-4${
+                columns ? " grid gap-x-6 gap-y-1 md:grid-cols-2" : ""
+            }`}
+        >
+            {chapters.map((c) => (
+                <li key={c.time}>
+                    <button
+                        type="button"
+                        onClick={() => onSeek(c.sec)}
+                        className="group flex w-full flex-col gap-1.5 rounded-lg px-2.5 py-2.5 text-left transition hover:bg-[var(--color-surface-alt)]"
+                    >
+                        <span className="flex items-baseline gap-2.5">
+                            <span className="shrink-0 font-mono text-[13px] font-semibold tabular-nums text-[var(--color-accent)] group-hover:underline">
+                                {c.time}
+                            </span>
+                            <span className="text-[14.5px] font-semibold leading-snug text-[var(--color-ink)]">
+                                {c.label}
+                            </span>
+                        </span>
+                        {c.desc && (
+                            <span className="text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {c.desc}
+                            </span>
+                        )}
+                    </button>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+/** 대표 영상 — 한 행을 꽉 채운다. 영상은 상단 full-width, 설명·챕터는 그 아래 2단 배치. */
+function FeaturedDemoCard({ demo }: { demo: Demo }) {
+    const [player, setPlayer] = useState({ loaded: false, start: 0 });
+    const play = (sec: number) => setPlayer({ loaded: true, start: sec });
+
+    return (
+        <figure className="mb-6 overflow-hidden rounded-2xl border-2 border-[var(--color-line-strong)] bg-white shadow-sm">
+            {/* 영상 — 한 행을 꽉 채운다 */}
+            <div className="flex bg-black">
+                <YouTubeFacade
+                    demo={demo}
+                    loaded={player.loaded}
+                    start={player.start}
+                    onPlay={play}
+                />
+            </div>
+            {/* 설명 + 챕터 */}
+            <figcaption className="p-6 md:p-8">
+                <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                    {demo.title}
+                </h2>
+                {demo.uploadDate && (
+                    <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
+                        <CalendarDays className="h-3.5 w-3.5" />
+                        <time dateTime={demo.uploadDate}>
+                            {demo.uploadDate.replaceAll("-", ".")} 업로드
+                        </time>
+                    </p>
+                )}
+                <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                    {demo.desc}
+                </p>
+                {demo.chapters && demo.chapters.length > 0 && (
+                    <ChapterList chapters={demo.chapters} onSeek={play} columns />
+                )}
+            </figcaption>
+        </figure>
+    );
+}
+
 function DemoCard({ demo }: { demo: Demo }) {
     // 재생 상태를 카드 단위로 올려, 챕터 클릭 시 해당 지점부터 재생되게 한다.
     const [player, setPlayer] = useState({ loaded: false, start: 0 });
     const play = (sec: number) => setPlayer({ loaded: true, start: sec });
 
     return (
-        <figure
-            className={`overflow-hidden rounded-2xl bg-white${
-                demo.featured
-                    ? " border-2 border-[var(--color-line-strong)] shadow-sm md:col-span-2 lg:col-span-2 lg:row-span-2"
-                    : " flex h-full flex-col border border-[var(--color-line)]"
-            }`}
-        >
+        <figure className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
             <YouTubeFacade
                 demo={demo}
                 loaded={player.loaded}
                 start={player.start}
                 onPlay={play}
-                fill={!demo.featured}
+                fill
             />
             <figcaption className="p-5">
                 <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
@@ -188,36 +273,7 @@ function DemoCard({ demo }: { demo: Demo }) {
                     {demo.desc}
                 </p>
                 {demo.chapters && demo.chapters.length > 0 && (
-                    <ul className="mt-4 border-t border-[var(--color-line)] pt-3">
-                        {demo.chapters.map((c) => {
-                            const [head, ...rest] = c.label.split(" – ");
-                            const sub = rest.join(" – ");
-                            return (
-                                <li key={c.time}>
-                                    <button
-                                        type="button"
-                                        onClick={() => play(c.sec)}
-                                        className="group flex w-full items-baseline gap-3 rounded-lg px-2 py-2 text-left transition hover:bg-[var(--color-surface-alt)]"
-                                    >
-                                        <span className="shrink-0 font-mono text-[13px] font-semibold tabular-nums text-[var(--color-accent)] group-hover:underline">
-                                            {c.time}
-                                        </span>
-                                        <span className="text-[14px] leading-snug">
-                                            <span className="font-semibold text-[var(--color-ink)]">
-                                                {head}
-                                            </span>
-                                            {sub && (
-                                                <span className="text-[var(--color-ink-subtle)]">
-                                                    {" "}
-                                                    – {sub}
-                                                </span>
-                                            )}
-                                        </span>
-                                    </button>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <ChapterList chapters={demo.chapters} onSeek={play} />
                 )}
             </figcaption>
         </figure>
@@ -238,10 +294,16 @@ export function PocDemos() {
         publisher: { "@type": "Organization", name: "Plateer Labs" },
     }));
 
+    const featured = DEMOS.find((d) => d.featured);
+    const rest = DEMOS.filter((d) => !d.featured);
+
     return (
         <div>
+            {/* 대표 영상 — 한 행을 꽉 채운다 */}
+            {featured && <FeaturedDemoCard demo={featured} />}
+            {/* 나머지 영상 — 그 아래 3단 그리드 */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {DEMOS.map((d) => (
+                {rest.map((d) => (
                     <DemoCard key={d.title} demo={d} />
                 ))}
             </div>
