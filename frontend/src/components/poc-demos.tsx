@@ -13,23 +13,23 @@ import { PlayCircle, Clapperboard, CalendarDays } from "lucide-react";
  * ▶ 임베드는 youtube-nocookie + 썸네일 파사드(클릭 시 로드)로, 페이지 진입만으로
  *   유튜브 스크립트가 로드되지 않게 한다.
  */
-type Chapter = {
+export type Chapter = {
     time: string; // 표시용 타임스탬프 "MM:SS"
     sec: number; // 시작 초 — 클릭 시 해당 지점부터 재생
     label: string; // 챕터 제목
     desc?: string; // 챕터 설명(있으면 제목 아래 본문으로 노출)
 };
 
-type Demo = {
+export type Demo = {
     id: string; // 유튜브 videoId
     title: string;
     desc: string;
     uploadDate?: string; // YYYY-MM-DD
-    featured?: boolean; // 대표 영상 — 한 행을 꽉 채워 크게 노출
+    featured?: boolean; // 대표 영상 — 키 비주얼(ProofHero)로 노출
     chapters?: Chapter[]; // 챕터(타임스탬프) — 클릭하면 해당 지점부터 재생
 };
 
-const DEMOS: Demo[] = [
+export const DEMOS: Demo[] = [
     {
         id: "4RiH3ThyIg0",
         // 제목·설명은 유튜브 원본과 동일하게 유지한다.
@@ -90,7 +90,11 @@ const DEMOS: Demo[] = [
     },
 ];
 
-function YouTubeFacade({
+/** 키 비주얼(ProofHero)에 쓰는 대표 영상. featured 플래그가 붙은 첫 항목. */
+export const FEATURED_DEMO: Demo | null =
+    DEMOS.find((d) => d.featured) ?? null;
+
+export function YouTubeFacade({
     demo,
     loaded,
     start,
@@ -203,46 +207,6 @@ function ChapterList({
     );
 }
 
-/** 대표 영상 — 한 행을 꽉 채운다. 영상은 상단 full-width, 설명·챕터는 그 아래 2단 배치. */
-function FeaturedDemoCard({ demo }: { demo: Demo }) {
-    const [player, setPlayer] = useState({ loaded: false, start: 0 });
-    const play = (sec: number) => setPlayer({ loaded: true, start: sec });
-
-    return (
-        <figure className="mb-6 overflow-hidden rounded-2xl border-2 border-[var(--color-line-strong)] bg-white shadow-sm">
-            {/* 영상 — 한 행을 꽉 채운다 */}
-            <div className="flex bg-black">
-                <YouTubeFacade
-                    demo={demo}
-                    loaded={player.loaded}
-                    start={player.start}
-                    onPlay={play}
-                />
-            </div>
-            {/* 설명 + 챕터 */}
-            <figcaption className="p-6 md:p-8">
-                <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                    {demo.title}
-                </h2>
-                {demo.uploadDate && (
-                    <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
-                        <CalendarDays className="h-3.5 w-3.5" />
-                        <time dateTime={demo.uploadDate}>
-                            {demo.uploadDate.replaceAll("-", ".")} 업로드
-                        </time>
-                    </p>
-                )}
-                <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {demo.desc}
-                </p>
-                {demo.chapters && demo.chapters.length > 0 && (
-                    <ChapterList chapters={demo.chapters} onSeek={play} columns />
-                )}
-            </figcaption>
-        </figure>
-    );
-}
-
 function DemoCard({ demo }: { demo: Demo }) {
     // 재생 상태를 카드 단위로 올려, 챕터 클릭 시 해당 지점부터 재생되게 한다.
     const [player, setPlayer] = useState({ loaded: false, start: 0 });
@@ -294,19 +258,28 @@ export function PocDemos() {
         publisher: { "@type": "Organization", name: "Plateer Labs" },
     }));
 
-    const featured = DEMOS.find((d) => d.featured);
+    // 대표 영상은 페이지 상단 키 비주얼(ProofHero)로 노출하므로, 여기선 나머지만.
     const rest = DEMOS.filter((d) => !d.featured);
 
     return (
         <div>
-            {/* 대표 영상 — 한 행을 꽉 채운다 */}
-            {featured && <FeaturedDemoCard demo={featured} />}
-            {/* 나머지 영상 — 그 아래 3단 그리드 */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {rest.map((d) => (
-                    <DemoCard key={d.title} demo={d} />
-                ))}
-            </div>
+            {rest.length > 0 && (
+                <>
+                    <div className="mb-8">
+                        <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            / More demos
+                        </p>
+                        <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
+                            더 많은 실증 영상
+                        </h2>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {rest.map((d) => (
+                            <DemoCard key={d.title} demo={d} />
+                        ))}
+                    </div>
+                </>
+            )}
 
             {jsonLd.length > 0 && (
                 <script
