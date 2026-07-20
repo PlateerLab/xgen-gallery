@@ -12,6 +12,11 @@ import {
     Check,
     ChevronRight,
     ArrowRight,
+    Search,
+    PencilRuler,
+    MousePointerClick,
+    BadgeCheck,
+    Headset,
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
@@ -68,13 +73,13 @@ const PROGRAMS: {
 ];
 
 /** 진행 단계 — 사전 진단부터 사후 지원까지. */
-const PROCESS = [
-    "사전 진단",
-    "커리큘럼 설계",
-    "온사이트 교육",
-    "핸즈온 실습",
-    "내재화 점검",
-    "사후 지원",
+const PROCESS: { icon: LucideIcon; step: string; desc: string }[] = [
+    { icon: Search, step: "사전 진단", desc: "업무·데이터·조직 역량 파악" },
+    { icon: PencilRuler, step: "커리큘럼 설계", desc: "역할별 맞춤 교육 설계" },
+    { icon: Presentation, step: "온사이트 교육", desc: "고객사 현장 방문 교육" },
+    { icon: MousePointerClick, step: "핸즈온 실습", desc: "직접 만들어 보는 실습" },
+    { icon: BadgeCheck, step: "내재화 점검", desc: "정착 수준 확인·보완" },
+    { icon: Headset, step: "사후 지원", desc: "운영 이슈·질문 지원" },
 ];
 
 /** 교육 형태. */
@@ -240,25 +245,30 @@ export default function EnablementPage() {
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             진행 방식
                         </h2>
-                        <div className="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-[repeat(6,1fr)] sm:items-stretch">
-                            {PROCESS.map((step, i) => (
-                                <div
-                                    key={step}
-                                    className="flex items-center gap-2 sm:flex-col sm:items-stretch sm:gap-0"
-                                >
-                                    <div className="flex flex-1 flex-col rounded-xl border border-[var(--color-line)] bg-white p-4">
-                                        <span className="font-mono text-[13px] font-bold text-[#2461d8]">
-                                            {String(i + 1).padStart(2, "0")}
+                        <div className="relative mt-12">
+                            {/* 단계를 잇는 그라데이션 흐름선 (lg 이상) */}
+                            <div className="pointer-events-none absolute inset-x-10 top-8 hidden h-0.5 bg-gradient-to-r from-[#00acee] via-[#7c5cff] to-[#185aea] opacity-30 lg:block" />
+                            <ol className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+                                {PROCESS.map((p, i) => (
+                                    <li
+                                        key={p.step}
+                                        className="relative flex flex-col items-center px-1 text-center"
+                                    >
+                                        <span className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00acee_10%,#185aea_90%)] text-white shadow-[0_14px_30px_-12px_rgba(24,90,234,0.7)]">
+                                            <p.icon className="h-7 w-7" />
+                                            <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full border-2 border-[var(--color-surface-alt)] bg-[#070b1c] font-mono text-[11px] font-bold text-white">
+                                                {i + 1}
+                                            </span>
                                         </span>
-                                        <span className="mt-1.5 text-[14px] font-semibold leading-snug text-[var(--color-ink)]">
-                                            {step}
+                                        <span className="mt-4 text-[15px] font-bold text-[var(--color-ink)]">
+                                            {p.step}
                                         </span>
-                                    </div>
-                                    {i < PROCESS.length - 1 && (
-                                        <ChevronRight className="h-4 w-4 shrink-0 rotate-90 self-center text-[var(--color-ink-subtle)] sm:hidden" />
-                                    )}
-                                </div>
-                            ))}
+                                        <span className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)]">
+                                            {p.desc}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ol>
                         </div>
                     </div>
                 </section>
