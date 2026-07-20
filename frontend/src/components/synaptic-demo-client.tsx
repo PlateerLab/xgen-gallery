@@ -997,11 +997,11 @@ export function SynapticDemoClient({ tool }: { tool: Tool }) {
     return (
         <main className="mx-auto max-w-6xl px-6 pt-8 pb-24">
             <Link
-                href="/"
+                href="/library-gallery"
                 className="inline-flex items-center gap-1.5 text-[16px] text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
             >
                 <ArrowLeft className="h-3.5 w-3.5" />
-                Back to home
+                Back to Library Gallery
             </Link>
 
             {/* Header */}
