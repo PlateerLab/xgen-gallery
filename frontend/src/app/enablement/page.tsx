@@ -338,7 +338,7 @@ export default function EnablementPage() {
                             href="/contact"
                             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
-                            활용지원·교육 문의
+                            활용 지원·교육 문의
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
                     </div>
