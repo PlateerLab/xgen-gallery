@@ -138,7 +138,7 @@ export function YouTubeFacade({
                 }`}
                 title={demo.title}
                 loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
                 allowFullScreen
             />
         );

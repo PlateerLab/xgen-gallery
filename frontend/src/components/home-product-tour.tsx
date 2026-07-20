@@ -131,7 +131,7 @@ export function HomeProductTour() {
                                         src={withAutoplay(active.video)}
                                         title={`${active.name} 소개영상`}
                                         className="h-full w-full"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     />
                                 ) : active.previewEndSeconds ? (
