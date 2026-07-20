@@ -149,9 +149,9 @@ export default function EnablementPage() {
                         구축에서 끝나지 않고, 고객사에 정착시킵니다
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        Plateer Labs의 Enablement는 솔루션 납품 이후 고객사 현장을 직접
-                        방문해, 관리자·실무자·운영자가 XGEN 기반 AI를 스스로 운영하고
-                        확장할 수 있도록 교육하고 내재화하는 서비스입니다
+                        Plateer Labs의 Enablement는 구축 이후 고객사 현장을 직접 찾아
+                        XGEN 기반 AI가 실제 업무에 정착할 수 있도록 교육, 운영 노하우,
+                        활용 방법을 함께 제공합니다.
                     </p>
                     <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
