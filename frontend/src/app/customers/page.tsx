@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/json-ld";
 import { CustomersLibrary } from "@/components/customers-library";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
-import { getAllCases, PRODUCTS, type ProductKey } from "@/lib/customers";
+import { getAllCases, PRODUCTS, INDUSTRIES, type ProductKey } from "@/lib/customers";
 
 /**
  * 고객사례 라이브러리(/customers) — XGEN·Polar 등 제품을 실제 업무에 적용한
@@ -26,6 +26,7 @@ export default async function CustomersPage({
     searchParams: Promise<{ product?: string }>;
 }) {
     const cases = getAllCases();
+    const recent = cases.slice(0, 3); // 최근 발행 사례(키비주얼에 노출)
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
         product && product in PRODUCTS ? (product as ProductKey) : "all";
@@ -52,18 +53,59 @@ export default async function CustomersPage({
 
             <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 py-24 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                        Applied AI · 고객 사례
-                    </p>
-                    <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        Enterprise AI는 실제 업무에서 검증됩니다
-                    </h1>
-                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        XGEN과 AI Code Assistant를 금융, 커머스, 공공, IT·제조 등
-                        다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과
-                        산업별로 원하는 사례를 찾아보세요.
-                    </p>
+                <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                    <div>
+                        <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
+                            Applied AI · 고객 사례
+                        </p>
+                        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                            Enterprise AI는 실제 업무에서 검증됩니다
+                        </h1>
+                        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                            XGEN과 AI Code Assistant를 금융, 커머스, 공공, IT·제조 등
+                            다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과
+                            산업별로 원하는 사례를 찾아보세요.
+                        </p>
+                    </div>
+
+                    {/* 키비주얼 — 최근 발행 사례 카드(글래스). 실제 사례로 신뢰 전달 */}
+                    {recent.length > 0 && (
+                        <div className="w-full">
+                            <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-white/50">
+                                최근 사례
+                            </p>
+                            <div className="space-y-3">
+                                {recent.map((c) => (
+                                    <Link
+                                        key={c.slug}
+                                        href={`/customers/case/${c.slug}`}
+                                        className="group block rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-sm transition hover:border-white/30 hover:bg-white/[0.1]"
+                                    >
+                                        <div className="flex items-center gap-2 text-[12.5px]">
+                                            <span className="rounded-full bg-[#5eead4]/15 px-2 py-0.5 font-semibold text-[#5eead4]">
+                                                {PRODUCTS[c.products[0]].name}
+                                            </span>
+                                            <span className="text-white/55">
+                                                {INDUSTRIES[c.industry].ko}
+                                            </span>
+                                            <time
+                                                dateTime={c.published}
+                                                className="ml-auto text-white/45"
+                                            >
+                                                {c.published.slice(0, 7).replace("-", ".")}
+                                            </time>
+                                        </div>
+                                        <h3 className="mt-2 line-clamp-2 text-[15px] font-semibold leading-snug text-white transition group-hover:text-[#5eead4]">
+                                            {c.title}
+                                        </h3>
+                                        <p className="mt-1 text-[12.5px] text-white/55">
+                                            {c.customer}
+                                        </p>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
 

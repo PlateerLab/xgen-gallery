@@ -79,12 +79,12 @@ export default function ResourcesPage() {
                         Resources · 자료실
                     </p>
                     <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        XGEN을 더 깊이 이해할 자료
+                        Enterprise AI를 이해하는 기술 자료
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        XGEN Enterprise Agentic AI 플랫폼의 핵심 기능·아키텍처·도입
-                        방식을 담은 소개서를 제공합니다. 간단한 정보를 남기시면 바로
-                        받아보실 수 있습니다.
+                        XGEN Enterprise Agentic AI 플랫폼의 핵심 기능, 아키텍처, 구축
+                        방식, 도입 사례를 담은 자료를 제공합니다. 간단한 정보를 입력하면
+                        바로 다운로드할 수 있습니다.
                     </p>
                 </div>
             </section>
