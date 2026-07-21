@@ -18,7 +18,9 @@ function ResearchHero() {
                 Research
             </p>
             <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                Research that makes Enterprise AI real
+                Research that makes
+                <br />
+                Enterprise AI real
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
                 기업 환경에서 AI의 성공은 모델이 아니라 운영 구조에서 결정됩니다.
