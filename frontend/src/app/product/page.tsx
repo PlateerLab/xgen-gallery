@@ -444,7 +444,7 @@ export default function ProductPage() {
 
                         {/* 실제 제품 화면 쇼케이스 */}
                         <div className="mt-14">
-                            <p className="text-[13px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                            <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
                                 실제 제품 화면
                             </p>
                             <div className="mt-5 grid gap-5 md:grid-cols-3">

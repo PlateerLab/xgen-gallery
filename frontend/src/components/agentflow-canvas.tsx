@@ -136,6 +136,9 @@ export function AgentflowCanvas() {
                 role="img"
                 aria-label="XGEN 에이전트플로우 캔버스 — 입력·프롬프트에서 Agent·LLM·RAG, Tool·Guard를 거쳐 배포로 이어지며 노드가 실행되는 그래픽"
             />
+            <div className="border-t border-white/10 px-4 py-3 text-center font-mono text-[12px] tracking-[0.05em] text-white/55">
+                설계 · 배포 · 거버넌스, 하나의 흐름으로
+            </div>
         </div>
     );
 }
