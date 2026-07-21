@@ -501,7 +501,7 @@ export default function ProductPage() {
                     aria-hidden
                     className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
                 />
-                <div className="relative mx-auto grid min-h-[750px] w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr]">
+                <div className="relative mx-auto grid min-h-[755px] w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr]">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · XGEN
