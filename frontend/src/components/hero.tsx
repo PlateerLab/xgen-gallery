@@ -16,18 +16,20 @@ function XgenMark() {
     );
 }
 
-const SLIDE_COUNT = 3;
+const SLIDE_COUNT = 4;
 const ROTATE_MS = 6000;
 
 // Per-slide background videos (index matches the active slide).
-// hero-security.mp4 = 방금 내려받은 영상을 frontend/public/ 에 저장.
+// 연구소 정체성(Research Vision)을 첫 슬라이드로 두어 "연구소가 만든 것을 제품으로
+// 증명한다"는 서사를 살린다. XGEN 소개영상(hero-xgen.mp4, xgen.im 공식)은 두 번째.
 const SLIDE_BG = [
     "/hero-vision.mp4",
+    "/hero-xgen.mp4",
     "/hero-security-v4.mp4",
     "/hero-slide2.mp4",
 ];
 // Per-slide object-position (all centered — subjects are frame-centered).
-const SLIDE_POS = ["center", "center", "center"];
+const SLIDE_POS = ["center", "center", "center", "center"];
 
 const H1_CLS =
     "max-w-5xl text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]";
@@ -66,6 +68,35 @@ function HeroActions({
                 {s.label}
             </Link>
         </div>
+    );
+}
+
+/** Slide 0 — XGEN Agentic AI Platform (xgen.im 소개영상 배경). */
+function XgenPlatformSlide() {
+    return (
+        <>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                XGEN · Agentic AI Platform
+            </div>
+
+            <h1 className={cn(H1_CLS, "mt-7")}>
+                기업의 AX 혁신을 돕는
+                <br />
+                Agentic AI Platform
+            </h1>
+
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/70">
+                원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼 —
+                <br className="hidden sm:block" />
+                XGEN을 지금 직접 경험해보세요
+            </p>
+
+            <HeroActions
+                primary={{ label: "XGEN 체험하기", href: "/xgen-trial" }}
+                secondary={{ label: "제품 보기", href: "/product" }}
+            />
+        </>
     );
 }
 
@@ -155,7 +186,7 @@ function SecuritySlide() {
                     label: "보안·거버넌스 보기",
                     href: "/security-and-governance",
                 }}
-                secondary={{ label: "인증·품질 보기", href: "/solutions#certification" }}
+                secondary={{ label: "인증·품질 보기", href: "/product#certification" }}
             />
         </>
     );
@@ -238,6 +269,8 @@ export function Hero({
                     {active === 0 ? (
                         <VisionSlide />
                     ) : active === 1 ? (
+                        <XgenPlatformSlide />
+                    ) : active === 2 ? (
                         <SecuritySlide />
                     ) : (
                         <XgenSlide />

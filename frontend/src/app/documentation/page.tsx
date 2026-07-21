@@ -1,5 +1,7 @@
 import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { ArrowUpRight } from "lucide-react";
@@ -19,6 +21,12 @@ export default function DocumentationPage() {
     return (
         <>
             <SiteNav />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "Documentation", path: "/documentation" },
+                ])}
+            />
             <section className="relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="resources" />
                 <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">

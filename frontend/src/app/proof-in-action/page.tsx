@@ -1,4 +1,6 @@
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { ProofHero } from "@/components/proof-hero";
@@ -19,6 +21,12 @@ export default function ProofInActionPage() {
     return (
         <>
             <SiteNav overlay />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "Proof in Action", path: "/proof-in-action" },
+                ])}
+            />
             <section className="relative overflow-hidden border-b border-white/10 py-24 pt-36 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-6xl px-6">

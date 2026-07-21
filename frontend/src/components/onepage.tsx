@@ -4,6 +4,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import type { NavGroup, NavLeaf } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -186,6 +188,13 @@ export function GroupPage({
     return (
         <>
             <SiteNav overlay />
+            {/* 그룹 원페이지 공통 BreadcrumbList — GEO·SEO 기본 적용(모든 그룹 페이지). */}
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: group.label, path: `/${group.key}` },
+                ])}
+            />
             <GroupHero group={group} content={hero} />
             <main>
                 {group.items

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="640" height="270" fill="none" role="img" aria-label="Fine-tuning 기술 — Base LLM에서 FFT·SFT·PEFT·DPO로 Fine-Tuned sLLM 구축">
+  <defs><filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#3730a3" flood-opacity="0.1"/></filter></defs>
+  <g font-family="Pretendard, system-ui, sans-serif" text-anchor="middle">
+    <!-- Base LLM -->
+    <g filter="url(#s)"><rect x="24" y="86" width="150" height="98" rx="18" fill="#ffffff"/></g>
+    <rect x="24" y="86" width="150" height="98" rx="18" fill="none" stroke="#e6e8f4"/>
+    <circle cx="99" cy="122" r="18" fill="#eef1f8" stroke="#8b93b8" stroke-width="2"/><text x="99" y="127" font-size="14" font-weight="700" fill="#33436e">LLM</text>
+    <text x="99" y="166" font-size="19" font-weight="700" fill="#1e2540">Base LLM</text>
+    <!-- 화살표 -->
+    <path d="M182 135 L214 135" stroke="#8b93b8" stroke-width="3" stroke-linecap="round"/><path d="M208 128 L220 135 L208 142 z" fill="#8b93b8"/>
+    <!-- 기법 2x2 -->
+    <g font-size="20" font-weight="700" fill="#4b47b8">
+      <rect x="230" y="90" width="88" height="42" rx="12" fill="#eef2ff" stroke="#c9d6f5"/><text x="274" y="118">FFT</text>
+      <rect x="330" y="90" width="88" height="42" rx="12" fill="#eef2ff" stroke="#c9d6f5"/><text x="374" y="118">SFT</text>
+      <rect x="230" y="140" width="88" height="42" rx="12" fill="#eef2ff" stroke="#c9d6f5"/><text x="274" y="168">PEFT</text>
+      <rect x="330" y="140" width="88" height="42" rx="12" fill="#eef2ff" stroke="#c9d6f5"/><text x="374" y="168">DPO</text>
+    </g>
+    <!-- 화살표 -->
+    <path d="M430 135 L462 135" stroke="#8b93b8" stroke-width="3" stroke-linecap="round"/><path d="M456 128 L468 135 L456 142 z" fill="#8b93b8"/>
+    <!-- Fine-Tuned sLLM -->
+    <g filter="url(#s)"><rect x="478" y="86" width="150" height="98" rx="18" fill="#2563eb"/></g>
+    <path d="M553 112 l7 -16 l7 16 l16 7 l-16 7 l-7 16 l-7 -16 l-16 -7 z" fill="#ffffff"/>
+    <text x="553" y="160" font-size="18" font-weight="700" fill="#ffffff">Fine-Tuned</text>
+    <text x="553" y="180" font-size="18" font-weight="700" fill="#ffffff">sLLM</text>
+  </g>
+</svg>

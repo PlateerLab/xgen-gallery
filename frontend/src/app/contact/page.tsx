@@ -1,5 +1,9 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { DemoForm } from "@/components/demo-form";
 
@@ -21,6 +25,12 @@ export default function ContactPage() {
         <>
             {/* overlay nav so the background fills behind the GNB, like the main page */}
             <SiteNav overlay />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "Contact", path: "/contact" },
+                ])}
+            />
             <section className="relative flex min-h-[calc(100dvh+2px)] items-center overflow-hidden border-b border-white/10 text-white">
                 {/* 배경 이미지 — 메인과 동일한 풀블리드 구성 */}
                 <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -77,6 +87,20 @@ export default function ContactPage() {
                                     xgen@plateer.com
                                 </a>
                             </p>
+
+                            {/* 체험하기 연계 — 상담 전에 먼저 무료로 써보기 */}
+                            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
+                                <p className="text-[15px] leading-relaxed text-white/75">
+                                    도입 전에 먼저 써보고 싶으신가요?
+                                </p>
+                                <Link
+                                    href="/xgen-trial"
+                                    className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
+                                >
+                                    XGEN 15일 무료 체험하기
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
                         </div>
 
                         {/* form */}

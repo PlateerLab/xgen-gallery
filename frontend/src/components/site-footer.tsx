@@ -7,7 +7,6 @@ import { ArrowUpRight, ArrowRight, PlayCircle } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { GeoPattern, variantForPath } from "@/components/geo-pattern";
 import { NAV_GROUPS, ABOUT_GROUP, sectionHref } from "@/lib/nav";
-import { SITE } from "@/lib/site";
 
 export function SiteFooter() {
     const pathname = usePathname();
@@ -190,7 +189,7 @@ export function SiteFooter() {
                                         ) : (
                                             <Link
                                                 key={g.key}
-                                                href={`/${g.key}`}
+                                                href={g.route ?? `/${g.key}`}
                                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                             >
                                                 {g.label}
@@ -230,15 +229,6 @@ export function SiteFooter() {
                                     </Link>
                                 ),
                             )}
-                            <a
-                                href={SITE.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-                            >
-                                GitHub
-                                <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-subtle)]" />
-                            </a>
                             <Link
                                 href="/contact"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" fill="none" role="img" aria-label="XGEN Agentic AI 노드 네트워크 일러스트">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070b1c"/>
+      <stop offset="0.55" stop-color="#0b1330"/>
+      <stop offset="1" stop-color="#0a1024"/>
+    </linearGradient>
+    <radialGradient id="glowCyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPurple" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7c3aed" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#93a4e0" fill-opacity="0.16"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- ambient glows -->
+  <ellipse cx="1230" cy="250" rx="440" ry="360" fill="url(#glowCyan)"/>
+  <ellipse cx="1300" cy="700" rx="420" ry="340" fill="url(#glowPurple)"/>
+
+  <!-- faint canvas dots (right area) -->
+  <rect x="720" y="70" width="880" height="800" fill="url(#dots)"/>
+
+  <!-- node network — 중심(1150,430) 기준 0.8배 축소 -->
+  <g transform="translate(230,86) scale(0.8)">
+  <!-- connections (mesh) -->
+  <g stroke="url(#line)" stroke-width="1.6" stroke-opacity="0.42" fill="none" stroke-linecap="round">
+    <path d="M900 300 L1092 424"/>
+    <path d="M1150 268 L1120 406"/>
+    <path d="M1168 430 L1420 322"/>
+    <path d="M1170 418 L1288 268"/>
+    <path d="M1092 440 L978 438"/>
+    <path d="M1120 456 L1012 574"/>
+    <path d="M1150 456 L1222 582"/>
+    <path d="M918 446 L826 470"/>
+    <path d="M958 574 L836 486"/>
+    <path d="M980 596 L1064 676"/>
+    <path d="M1246 600 L1378 566"/>
+    <path d="M1420 566 L1492 462"/>
+    <path d="M1300 268 L1432 314"/>
+    <path d="M1240 604 L1112 686"/>
+  </g>
+  <g fill="#a78bfa" fill-opacity="0.9">
+    <circle cx="900" cy="300" r="3.5"/>
+    <circle cx="1150" cy="268" r="3.5"/>
+    <circle cx="1420" cy="322" r="3.5"/>
+    <circle cx="978" cy="438" r="3.5"/>
+    <circle cx="1012" cy="574" r="3.5"/>
+    <circle cx="1222" cy="582" r="3.5"/>
+    <circle cx="826" cy="470" r="3.5"/>
+    <circle cx="1378" cy="566" r="3.5"/>
+    <circle cx="1492" cy="462" r="3.5"/>
+    <circle cx="1064" cy="676" r="3.5"/>
+  </g>
+
+  <!-- primary node: 에이전트 -->
+  <g>
+    <ellipse cx="1130" cy="430" rx="120" ry="70" fill="url(#glowPurple)"/>
+    <rect x="1058" y="404" width="144" height="52" rx="14" fill="#141c3a" stroke="#5b8cf0" stroke-opacity="0.7"/>
+    <circle cx="1082" cy="430" r="6" fill="#8b5cf6"/>
+    <text x="1098" y="435" font-family="Pretendard, system-ui, sans-serif" font-size="15" font-weight="700" fill="#eaf0ff">에이전트</text>
+  </g>
+
+  <!-- secondary nodes: rounded chips (label,color) -->
+  <!-- 입력 -->
+  <g><rect x="810" y="282" width="100" height="38" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="832" cy="301" r="5" fill="#38bdf8"/><text x="846" y="306" font-family="Pretendard, system-ui, sans-serif" font-size="13.5" fill="#cdd7f5">입력</text></g>
+  <!-- Claude -->
+  <g><rect x="1094" y="250" width="112" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1116" cy="268" r="5" fill="#8b5cf6"/><text x="1130" y="273" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">Claude</text></g>
+  <!-- LLM -->
+  <g><rect x="1256" y="232" width="92" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1278" cy="250" r="5" fill="#60a5fa"/><text x="1292" y="255" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">LLM</text></g>
+  <!-- 출력 -->
+  <g><rect x="1372" y="304" width="100" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1394" cy="322" r="5" fill="#34d399"/><text x="1408" y="327" font-family="Pretendard, system-ui, sans-serif" font-size="13.5" fill="#cdd7f5">출력</text></g>
+  <!-- 도구 -->
+  <g><rect x="890" y="420" width="92" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="912" cy="438" r="5" fill="#22d3ee"/><text x="926" y="443" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">도구</text></g>
+  <!-- Vector DB -->
+  <g><rect x="742" y="452" width="118" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="764" cy="470" r="5" fill="#22d3ee"/><text x="778" y="475" font-family="Pretendard, system-ui, sans-serif" font-size="12.5" fill="#cdd7f5">Vector DB</text></g>
+  <!-- 검색 RAG -->
+  <g><rect x="912" y="556" width="112" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="934" cy="574" r="5" fill="#60a5fa"/><text x="948" y="579" font-family="Pretendard, system-ui, sans-serif" font-size="12.5" fill="#cdd7f5">검색·RAG</text></g>
+  <!-- 메모리 -->
+  <g><rect x="1176" y="582" width="100" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1198" cy="600" r="5" fill="#a78bfa"/><text x="1212" y="605" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">메모리</text></g>
+  <!-- MCP -->
+  <g><rect x="1338" y="548" width="88" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1360" cy="566" r="5" fill="#8b5cf6"/><text x="1374" y="571" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">MCP</text></g>
+  <!-- 평가 -->
+  <g><rect x="1452" y="444" width="88" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1474" cy="462" r="5" fill="#38bdf8"/><text x="1488" y="467" font-family="Pretendard, system-ui, sans-serif" font-size="13" fill="#cdd7f5">평가</text></g>
+  <!-- 온톨로지 -->
+  <g><rect x="1024" y="658" width="112" height="36" rx="12" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1046" cy="676" r="5" fill="#22d3ee"/><text x="1060" y="681" font-family="Pretendard, system-ui, sans-serif" font-size="12.5" fill="#cdd7f5">온톨로지</text></g>
+  </g>
+</svg>

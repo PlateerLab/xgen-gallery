@@ -1,8 +1,11 @@
 import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { PocContent } from "@/components/poc-content";
+import { PocCatalog } from "@/components/poc-catalog";
 
 export const metadata = pageMetadata({
     title: "PoC Projects",
@@ -15,6 +18,12 @@ export default function PocProjectsPage() {
     return (
         <>
             <SiteNav overlay />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "PoC Projects", path: "/poc-projects" },
+                ])}
+            />
             <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
@@ -37,6 +46,9 @@ export default function PocProjectsPage() {
 
             <main className="mx-auto max-w-6xl px-6 py-24">
                 <PocContent />
+                <div className="mt-8">
+                    <PocCatalog />
+                </div>
             </main>
             <SiteFooter />
         </>

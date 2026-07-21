@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360" width="500" height="360" fill="none" role="img" aria-label="CS 에이전트 — 고객 성향을 분석해 응대 가이드를 제공">
+  <defs>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#3730a3" flood-opacity="0.12"/></filter>
+  </defs>
+
+  <!-- 고객 질문 말풍선 -->
+  <g filter="url(#s)"><rect x="16" y="18" width="336" height="62" rx="18" fill="#ffffff"/></g>
+  <path d="M42 80 l0 22 l24 -22 z" fill="#ffffff"/>
+  <rect x="16" y="18" width="336" height="62" rx="18" fill="none" stroke="#e6e8f4"/>
+  <circle cx="48" cy="49" r="9" fill="#eff3ff"/><circle cx="48" cy="49" r="4.5" fill="#2563eb"/>
+  <text x="70" y="58" font-family="Pretendard, system-ui, sans-serif" font-size="22" fill="#1e2540">환불 규정 알려주세요</text>
+
+  <!-- 성향 분석 카드 -->
+  <g filter="url(#s)"><rect x="16" y="112" width="468" height="128" rx="18" fill="#ffffff"/></g>
+  <rect x="16" y="112" width="468" height="128" rx="18" fill="none" stroke="#e6e8f4"/>
+  <text x="40" y="148" font-family="Pretendard, system-ui, sans-serif" font-size="21" font-weight="700" fill="#1e2540">고객 성향 분석</text>
+  <text x="40" y="185" font-family="Pretendard, system-ui, sans-serif" font-size="18" fill="#5b6484">긍정</text>
+  <rect x="96" y="170" width="300" height="18" rx="9" fill="#eef1f8"/>
+  <rect x="96" y="170" width="210" height="18" rx="9" fill="#10b981"/>
+  <text x="462" y="185" text-anchor="end" font-family="Pretendard, system-ui, sans-serif" font-size="18" font-weight="700" fill="#059669">70%</text>
+  <text x="40" y="223" font-family="Pretendard, system-ui, sans-serif" font-size="18" fill="#5b6484">부정</text>
+  <rect x="96" y="208" width="300" height="18" rx="9" fill="#eef1f8"/>
+  <rect x="96" y="208" width="90" height="18" rx="9" fill="#f59e0b"/>
+  <text x="462" y="223" text-anchor="end" font-family="Pretendard, system-ui, sans-serif" font-size="18" font-weight="700" fill="#b45309">30%</text>
+
+  <!-- 응대 가이드 카드 -->
+  <g filter="url(#s)"><rect x="16" y="264" width="468" height="86" rx="18" fill="#f4f7ff"/></g>
+  <rect x="16" y="264" width="468" height="86" rx="18" fill="none" stroke="#cdd9f7"/>
+  <g><rect x="40" y="286" width="42" height="42" rx="12" fill="#2563eb"/><path d="M52 300 h18 M52 307 h18 M52 314 h11" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></g>
+  <text x="98" y="304" font-family="Pretendard, system-ui, sans-serif" font-size="20" font-weight="700" fill="#1e3a8a">고객 응대 가이드</text>
+  <text x="98" y="330" font-family="Pretendard, system-ui, sans-serif" font-size="16.5" fill="#41507a">단계별 안내와 가이드 링크를 함께 제공하세요</text>
+</svg>

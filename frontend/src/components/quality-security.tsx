@@ -63,7 +63,7 @@ export function QualitySecurity() {
                         </div>
 
                         <Link
-                            href="/solutions#certification"
+                            href="/product#certification"
                             className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             인증·품질 자세히 보기

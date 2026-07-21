@@ -1,5 +1,7 @@
 import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { LivePreview } from "@/components/live-preview";
@@ -18,6 +20,12 @@ export default function LibraryGalleryPage() {
     return (
         <>
             <SiteNav overlay />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "Open Source", path: "/library-gallery" },
+                ])}
+            />
             {/* 히어로 — LivePreview가 좌(키 메시지+캡션+컨트롤)/우(일러스트) 전체를 렌더 */}
             <section className="relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="tools" />

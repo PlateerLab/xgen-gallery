@@ -1,6 +1,8 @@
 import { pageMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
 import { SiteNav } from "@/components/site-nav";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { MembersHeader } from "@/components/members-header";
 import { SceneBackground } from "@/components/scene-background";
@@ -26,6 +28,12 @@ export default function MembersPage() {
     return (
         <>
             <SiteNav overlay />
+            <JsonLd
+                data={breadcrumbLd([
+                    { name: "Home", path: "/" },
+                    { name: "Lab Members", path: "/members" },
+                ])}
+            />
             <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="members" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">

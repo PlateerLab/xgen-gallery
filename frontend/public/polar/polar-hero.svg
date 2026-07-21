@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" fill="none" role="img" aria-label="Polar 커머스 특화 sLLM 일러스트 — 검색·추천·CS·상품">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070b1c"/>
+      <stop offset="0.55" stop-color="#0b1330"/>
+      <stop offset="1" stop-color="#0a1024"/>
+    </linearGradient>
+    <radialGradient id="glowCyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.5"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPurple" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7c3aed" stop-opacity="0.5"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="polar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+    <linearGradient id="p1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a5578"/><stop offset="1" stop-color="#6b76a0"/></linearGradient>
+    <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5c5480"/><stop offset="1" stop-color="#7d74a6"/></linearGradient>
+    <linearGradient id="p3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#456b7a"/><stop offset="1" stop-color="#6690a0"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#93a4e0" fill-opacity="0.16"/></pattern>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000000" flood-opacity="0.45"/></filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <ellipse cx="1230" cy="260" rx="440" ry="360" fill="url(#glowCyan)"/>
+  <ellipse cx="1280" cy="700" rx="420" ry="340" fill="url(#glowPurple)"/>
+  <rect x="740" y="90" width="820" height="760" fill="url(#dots)"/>
+
+  <!-- 커머스 sLLM 씬 — 0.8배, 아래로 배치 -->
+  <g transform="translate(233,138) scale(0.8)">
+  <!-- connections from Polar core -->
+  <g stroke="url(#line)" stroke-width="1.6" stroke-opacity="0.4" fill="none" stroke-linecap="round">
+    <path d="M1150 420 C 1150 374, 1120 352, 1100 330"/>
+    <path d="M1066 452 C 1010 460, 990 486, 966 496"/>
+    <path d="M1242 452 C 1320 452, 1350 452, 1372 458"/>
+    <path d="M1150 484 C 1150 540, 1140 566, 1120 598"/>
+  </g>
+
+  <!-- 검색바 -->
+  <g filter="url(#soft)"><rect x="856" y="272" width="438" height="56" rx="28" fill="#0f1730"/></g>
+  <rect x="856" y="272" width="438" height="56" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+  <circle cx="892" cy="300" r="9" fill="none" stroke="#7dd3fc" stroke-width="2.4"/>
+  <line x1="899" y1="307" x2="906" y2="314" stroke="#7dd3fc" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="922" y="306" font-family="Pretendard, system-ui, sans-serif" font-size="16" fill="#dbe3ff">슬림한 데님 팬츠 추천해줘</text>
+  <rect x="1250" y="286" width="28" height="28" rx="9" fill="url(#p1)"/>
+
+  <!-- Polar 중앙 sLLM 코어 -->
+  <ellipse cx="1154" cy="452" rx="128" ry="78" fill="url(#glowPurple)"/>
+  <g filter="url(#soft)"><rect x="1064" y="420" width="182" height="66" rx="18" fill="#141c3a"/></g>
+  <rect x="1064" y="420" width="182" height="66" rx="18" fill="url(#polar)" fill-opacity="0.18" stroke="#8b7bf0" stroke-opacity="0.7"/>
+  <path d="M1092 442 l6 -14 l6 14 l14 6 l-14 6 l-6 14 l-6 -14 l-14 -6 z" fill="#c4b5fd"/>
+  <text x="1120" y="449" font-family="Pretendard, system-ui, sans-serif" font-size="21" font-weight="800" fill="#ffffff">Polar</text>
+  <rect x="1120" y="458" width="52" height="20" rx="10" fill="#ffffff" fill-opacity="0.12"/>
+  <text x="1131" y="472" font-family="Pretendard, system-ui, sans-serif" font-size="12" font-weight="700" fill="#c9d4ff">sLLM</text>
+  <text x="1180" y="472" font-family="Pretendard, system-ui, sans-serif" font-size="12" fill="#8f9ac6">커머스 특화</text>
+
+  <!-- CS 응대 말풍선 -->
+  <g filter="url(#soft)"><rect x="796" y="452" width="176" height="88" rx="18" fill="#0f1730"/></g>
+  <path d="M812 540 l0 22 l24 -22 z" fill="#0f1730"/>
+  <rect x="796" y="452" width="176" height="88" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+  <circle cx="820" cy="478" r="6" fill="#34d399"/>
+  <text x="834" y="483" font-family="Pretendard, system-ui, sans-serif" font-size="13" font-weight="700" fill="#dbe3ff">CS 응대</text>
+  <rect x="816" y="498" width="140" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.14"/>
+  <rect x="816" y="514" width="98" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.10"/>
+
+  <!-- 추천 TOP 카드 -->
+  <g filter="url(#soft)"><rect x="1372" y="396" width="160" height="132" rx="16" fill="#0f1730"/></g>
+  <rect x="1372" y="396" width="160" height="132" rx="16" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+  <path d="M1392 420 l4 -9 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 z" fill="#fbbf24"/>
+  <text x="1410" y="425" font-family="Pretendard, system-ui, sans-serif" font-size="13" font-weight="700" fill="#dbe3ff">추천 TOP</text>
+  <g font-family="Pretendard, system-ui, sans-serif" font-size="11" font-weight="700" fill="#0b1330">
+    <circle cx="1392" cy="452" r="9" fill="#818cf8"/><text x="1389" y="456">1</text><rect x="1408" y="447" width="106" height="10" rx="5" fill="#ffffff" fill-opacity="0.16"/>
+    <circle cx="1392" cy="478" r="9" fill="#60a5fa"/><text x="1389" y="482">2</text><rect x="1408" y="473" width="84" height="10" rx="5" fill="#ffffff" fill-opacity="0.12"/>
+    <circle cx="1392" cy="504" r="9" fill="#22d3ee"/><text x="1389" y="508">3</text><rect x="1408" y="499" width="70" height="10" rx="5" fill="#ffffff" fill-opacity="0.10"/>
+  </g>
+
+  <!-- 상품 카드 3종 -->
+  <g>
+    <g filter="url(#soft)"><rect x="1050" y="600" width="134" height="156" rx="16" fill="#0f1730"/></g>
+    <rect x="1050" y="600" width="134" height="156" rx="16" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+    <rect x="1064" y="614" width="106" height="82" rx="12" fill="url(#p1)"/>
+    <rect x="1064" y="708" width="92" height="10" rx="5" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="1064" y="726" width="52" height="12" rx="6" fill="#8a94bd" fill-opacity="0.6"/>
+  </g>
+  <g>
+    <g filter="url(#soft)"><rect x="1198" y="600" width="134" height="156" rx="16" fill="#0f1730"/></g>
+    <rect x="1198" y="600" width="134" height="156" rx="16" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+    <rect x="1212" y="614" width="106" height="82" rx="12" fill="url(#p2)"/>
+    <rect x="1212" y="708" width="92" height="10" rx="5" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="1212" y="726" width="52" height="12" rx="6" fill="#9088b3" fill-opacity="0.6"/>
+  </g>
+  <g>
+    <g filter="url(#soft)"><rect x="1346" y="600" width="134" height="156" rx="16" fill="#0f1730"/></g>
+    <rect x="1346" y="600" width="134" height="156" rx="16" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+    <rect x="1360" y="614" width="106" height="82" rx="12" fill="url(#p3)"/>
+    <rect x="1360" y="708" width="92" height="10" rx="5" fill="#ffffff" fill-opacity="0.16"/>
+    <rect x="1360" y="726" width="52" height="12" rx="6" fill="#79a0ab" fill-opacity="0.6"/>
+  </g>
+
+  <!-- floating chips -->
+  <g><rect x="792" y="360" width="96" height="34" rx="17" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="814" cy="377" r="5" fill="#38bdf8"/><text x="828" y="381" font-family="Pretendard, system-ui, sans-serif" font-size="13" font-weight="600" fill="#cdd7f5">#커머스</text></g>
+  <g><rect x="1360" y="286" width="108" height="34" rx="17" fill="#111831" stroke="#ffffff" stroke-opacity="0.14"/><circle cx="1382" cy="303" r="5" fill="#34d399"/><text x="1396" y="307" font-family="Pretendard, system-ui, sans-serif" font-size="13" font-weight="600" fill="#cdd7f5">온프레미스</text></g>
+  </g>
+</svg>

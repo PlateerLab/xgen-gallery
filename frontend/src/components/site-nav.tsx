@@ -64,6 +64,8 @@ function DropdownItem({
         "block rounded-lg px-3 py-2 text-[16px] font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface-hover)]";
     const childCls =
         "block rounded-lg px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]";
+    // hidden 자식은 드롭다운에서 제외(데이터는 유지, 나중에 hidden 해제 시 노출).
+    const children = item.children?.filter((c) => !c.hidden) ?? [];
     return (
         <div>
             {item.external ? (
@@ -86,9 +88,9 @@ function DropdownItem({
                     {navLabel(item, locale)}
                 </Link>
             )}
-            {item.children && (
+            {children.length > 0 && (
                 <div className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
-                    {item.children.map((c) =>
+                    {children.map((c) =>
                         c.external ? (
                             <a
                                 key={c.id}
@@ -195,7 +197,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
             <div className="flex h-[84px] w-full items-center justify-between px-6">
                 <Link
                     href="/"
-                    className="flex items-center gap-2 leading-none min-[1152px]:ml-[calc((100vw-72rem)/2)]"
+                    className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-72rem)/2)]"
                 >
                     <BrandMark
                         className={cn(
@@ -215,7 +217,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </Link>
 
                 {/* desktop groups */}
-                <nav className="hidden items-center gap-9 text-[19px] font-extrabold lg:flex">
+                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-extrabold xl:flex 2xl:text-[19px]">
                     {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                         const menuItems = g.items.filter((it) => !it.hidden);
                         const hasMenu = !g.flat && menuItems.length > 0;
@@ -237,7 +239,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                 </a>
                             ) : (
                                 <Link
-                                    href={`/${g.key}`}
+                                    href={g.route ?? `/${g.key}`}
                                     className={groupCls}
                                     onClick={closeNow}
                                 >
@@ -346,7 +348,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                         aria-label="Menu"
                         onClick={() => setMobileOpen((v) => !v)}
                         className={cn(
-                            "inline-flex lg:hidden",
+                            "inline-flex xl:hidden",
                             light
                                 ? "text-white"
                                 : "text-[var(--color-ink)]",
@@ -363,7 +365,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
 
             {/* mobile drawer — full-width accordion rows */}
             {mobileOpen && (
-                <div className="border-t border-[var(--color-line)] bg-white lg:hidden">
+                <div className="border-t border-[var(--color-line)] bg-white xl:hidden">
                     <div className="mx-auto max-h-[80vh] max-w-6xl divide-y divide-[var(--color-line)] overflow-y-auto px-6">
                         {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                             const items = g.items.filter((it) => !it.hidden);
@@ -407,7 +409,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                         </button>
                                     ) : (
                                         <Link
-                                            href={`/${g.key}`}
+                                            href={g.route ?? `/${g.key}`}
                                             onClick={close}
                                             className="flex w-full items-center justify-between py-5 text-lg font-bold text-[var(--color-ink)]"
                                         >
