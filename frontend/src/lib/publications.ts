@@ -8,7 +8,12 @@
  *
  * 서지정보는 사실 메타데이터(제목·저자·게재처·연도)만 담는다.
  */
-export type PubType = "국제 논문지" | "국내 논문지" | "국제 학술대회" | "국내 학술대회";
+export type PubType =
+    | "국제 논문지"
+    | "국내 논문지"
+    | "국제 학술대회"
+    | "국내 학술대회"
+    | "도서";
 export type PubGrade = "SCIE" | "SCOPUS" | "KCI";
 
 export interface Publication {
@@ -22,7 +27,8 @@ export interface Publication {
     grade?: PubGrade;
     award?: string;
     url?: string;
-    category: "core" | "applied";
+    /** core: AI·ML 코어 / applied: 응용 ML / book: 저서·감수·번역 도서 */
+    category: "core" | "applied" | "book";
 }
 
 /** 멤버 로그인 → 표시 이름(프로필 링크: /members/<login>). */
@@ -34,6 +40,17 @@ export const PUB_MEMBERS: Record<string, string> = {
 };
 
 export const PUBLICATIONS: Publication[] = [
+    // ── 도서(저서·감수·번역) ────────────────────────────────────────────────
+    {
+        title: "랭체인으로 구현하는 AI 서비스 & 에이전트 개발 입문",
+        authors: "ML_Bear 저 · 손민규 역 · 장하렴 감수",
+        memberLogins: ["CocoRoF"],
+        venue: "영진닷컴",
+        year: 2026,
+        type: "도서",
+        url: "https://product.kyobobook.co.kr/detail/S000219569740",
+        category: "book",
+    },
     // ── 음성·감정 인식 (Speech Emotion / Voice Conversion) ───────────────────
     {
         title: "Using Speaker-Specific Emotion Representations in Wav2vec 2.0-Based Modules for Speech Emotion Recognition",

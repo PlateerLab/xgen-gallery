@@ -124,6 +124,7 @@ function CategoryBlock({
 export function PublicationsContent() {
     const core = PUBLICATIONS.filter((p) => p.category === "core");
     const applied = PUBLICATIONS.filter((p) => p.category === "applied");
+    const books = PUBLICATIONS.filter((p) => p.category === "book");
 
     const TABS = [
         {
@@ -138,19 +139,43 @@ export function PublicationsContent() {
             sub: "데이터사이언스 기반의 응용 머신러닝 연구(금융·HR·헬스 등)",
             items: applied,
         },
-    ];
-    const [active, setActive] = useState<"core" | "applied">("core");
+        {
+            key: "book" as const,
+            label: "저서 · 감수",
+            sub: "구성원이 저술·감수·번역에 참여한 도서",
+            items: books,
+        },
+    ].filter((t) => t.items.length > 0);
+    const [active, setActive] = useState<"core" | "applied" | "book">("core");
 
-    const scholarLd = PUBLICATIONS.map((p) => ({
-        "@context": "https://schema.org",
-        "@type": "ScholarlyArticle",
-        headline: p.title,
-        author: p.authors.split(", ").map((name) => ({ "@type": "Person", name })),
-        datePublished: String(p.year),
-        publisher: { "@type": "Organization", name: p.venue },
-        ...(p.url ? { url: p.url } : {}),
-        inLanguage: /[가-힣]/.test(p.title) ? "ko" : "en",
-    }));
+    const scholarLd = PUBLICATIONS.map((p) =>
+        p.category === "book"
+            ? {
+                  "@context": "https://schema.org",
+                  "@type": "Book",
+                  name: p.title,
+                  author: p.memberLogins.map((l) => ({
+                      "@type": "Person",
+                      name: PUB_MEMBERS[l] ?? l,
+                  })),
+                  datePublished: String(p.year),
+                  publisher: { "@type": "Organization", name: p.venue },
+                  ...(p.url ? { url: p.url } : {}),
+                  inLanguage: "ko",
+              }
+            : {
+                  "@context": "https://schema.org",
+                  "@type": "ScholarlyArticle",
+                  headline: p.title,
+                  author: p.authors
+                      .split(", ")
+                      .map((name) => ({ "@type": "Person", name })),
+                  datePublished: String(p.year),
+                  publisher: { "@type": "Organization", name: p.venue },
+                  ...(p.url ? { url: p.url } : {}),
+                  inLanguage: /[가-힣]/.test(p.title) ? "ko" : "en",
+              },
+    );
 
     return (
         <div className="space-y-10">
