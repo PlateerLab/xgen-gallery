@@ -448,8 +448,13 @@ export default function ProductPage() {
                             {FEATURES.map((f) => (
                                 <div
                                     key={f.tag}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
+                                    {/* 상단 그라디언트 액센트 바 */}
+                                    <span
+                                        aria-hidden
+                                        className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#00acee,#185aea)] opacity-70 transition group-hover:opacity-100"
+                                    />
                                     <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                                         <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
                                             <f.icon className="h-4 w-4" />
