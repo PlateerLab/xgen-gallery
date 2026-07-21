@@ -294,11 +294,12 @@ export default function ProductPage() {
                             Features
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            만들기부터 배포·통제까지, 끊김 없는 하나의 흐름
+                            설계부터 운영까지, 하나의 흐름으로 연결됩니다
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            각 기능은 독립된 도구가 아니라 하나의 파이프라인으로 이어집니다.
-                            설계한 것이 곧 배포되고, 배포된 것이 곧 감사됩니다.
+                            각 기능은 개별 도구가 아니라 하나의 운영 파이프라인으로
+                            이어집니다. 에이전트를 만들고, 배포하고, 운영하고, 개선하는
+                            전 과정이 하나의 플랫폼 안에서 연결됩니다.
                         </p>
 
                         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
