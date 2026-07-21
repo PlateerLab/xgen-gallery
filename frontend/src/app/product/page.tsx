@@ -328,12 +328,18 @@ export default function ProductPage() {
                             Product · XGEN
                         </p>
                         <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                            원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼
+                            기업의 AI를{" "}
+                            <span className="text-[#7dd3fc]">
+                                설계하고,
+                                <br />
+                                운영하고, 통제
+                            </span>
+                            하는 하나의 플랫폼
                         </h1>
                         <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
-                            XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를
-                            학습·생성·배포·모니터링까지 한 플랫폼에서 다루도록 설계된
-                            온프레미스 Enterprise AI 플랫폼입니다.
+                            XGEN은 맞춤형 AI 서비스의 설계부터 구축·운영·관리까지 통합
+                            지원하는 기업용 생성형 AI 플랫폼입니다. 복잡한 개발 지식
+                            없이도 Agent 기반 업무 자동화를 안전하게 구현합니다.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
