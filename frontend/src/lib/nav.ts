@@ -52,6 +52,12 @@ export interface NavLeaf {
      * Use to control column grouping instead of even auto-distribution.
      */
     colBreak?: boolean;
+    /**
+     * Plain (non-link) descriptor line rendered under this item's label in the
+     * dropdown — e.g. a middot list of facets that aren't linked yet
+     * ("커머스 · 금융 · 공공 · IT"). Shown as muted text, not clickable.
+     */
+    note?: string;
 }
 
 export interface NavGroup {
@@ -233,13 +239,8 @@ export const NAV_GROUPS: NavGroup[] = [
                 menuOnly: true,
                 blurb: "금융·커머스·공공·IT/제조 현장에 XGEN·AI Code Assistant를 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
                 colBreak: true,
-                // 산업별 서브메뉴는 사례 데이터가 쌓일 때까지 숨김(hidden 해제만 하면 노출).
-                children: [
-                    { label: "Commerce", labelKo: "커머스", id: "case-commerce", route: "/customers/commerce", hidden: true },
-                    { label: "Finance", labelKo: "금융", id: "case-finance", route: "/customers/finance", hidden: true },
-                    { label: "Public Sector", labelKo: "공공", id: "case-public", route: "/customers/public", hidden: true },
-                    { label: "IT & Manufacturing", labelKo: "IT·제조", id: "case-it", route: "/customers/it-services", hidden: true },
-                ],
+                // 산업 구분은 사례 데이터가 쌓일 때까지 링크 대신 중간점 텍스트로만 노출.
+                note: "커머스 · 금융 · 공공 · IT",
             },
             {
                 // 체험하기 — Applied AI 드롭다운 3열(고객사례 옆). 헤더는 홈 Live Demo

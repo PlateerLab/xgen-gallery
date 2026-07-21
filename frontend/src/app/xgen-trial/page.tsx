@@ -59,12 +59,28 @@ const PILLARS: { icon: LucideIcon; title: string; en: string; desc: string }[] =
     },
 ];
 
-/** 이런 기업에 추천 — 대상 4. */
-const AUDIENCE: string[] = [
-    "플랫폼 기반으로 에이전트를 어디까지 만들 수 있는지 확인하고 싶은 기업",
-    "직접 사용해보고 실제 활용성을 파악하려는 기업",
-    "소규모 실험으로 도입 ROI를 예측하려는 기업",
-    "내부 보고를 위한 실증 자료가 필요한 기업",
+/** 이런 기업에 추천 — 대상 4(아이콘 + 제목 + 설명). */
+const AUDIENCE: { icon: LucideIcon; title: string; desc: string }[] = [
+    {
+        icon: Boxes,
+        title: "플랫폼 역량을 확인하려는 팀",
+        desc: "플랫폼 기반으로 에이전트를 어디까지 만들 수 있는지 직접 만들어 보며 확인합니다",
+    },
+    {
+        icon: MousePointerClick,
+        title: "직접 써보고 판단하려는 팀",
+        desc: "벤더의 설명이 아니라 실제 환경에서 사용해 보고 활용성을 스스로 평가합니다",
+    },
+    {
+        icon: Activity,
+        title: "도입 ROI를 가늠하려는 팀",
+        desc: "전사 도입 전 소규모 실험으로 효과와 투자 대비 성과를 미리 예측합니다",
+    },
+    {
+        icon: FileText,
+        title: "내부 실증 자료가 필요한 팀",
+        desc: "내부 보고와 의사결정을 뒷받침할 실증 근거를 체험 결과로 확보합니다",
+    },
 ];
 
 /** 체험에서 써보는 핵심 기능 8가지. */
@@ -227,20 +243,42 @@ export default function XgenTrialPage() {
                 {/* 이런 기업에 추천 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Who it&apos;s for
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             이런 기업에 추천합니다
                         </h2>
-                        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                            {AUDIENCE.map((a) => (
-                                <li
-                                    key={a}
-                                    className="flex items-start gap-2.5 rounded-xl border border-[var(--color-line)] bg-white px-5 py-4 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            도입을 검토 중이라면, 설명을 듣기 전에 직접 만들어 보고
+                            판단하세요. 다음과 같은 팀에 특히 잘 맞습니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                            {AUDIENCE.map((a, i) => (
+                                <div
+                                    key={a.title}
+                                    className="group relative flex gap-4 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    <Check className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
-                                    {a}
-                                </li>
+                                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[linear-gradient(135deg,#00acee,#185aea)] text-white shadow-[0_6px_16px_-6px_rgba(24,90,234,0.6)]">
+                                        <a.icon className="h-6 w-6" />
+                                    </span>
+                                    <div className="min-w-0">
+                                        <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {a.title}
+                                        </h3>
+                                        <p className="mt-1.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {a.desc}
+                                        </p>
+                                    </div>
+                                    <span
+                                        aria-hidden
+                                        className="pointer-events-none absolute right-4 top-3 font-mono text-[13px] font-bold text-[#e6ebf3] transition group-hover:text-[#cdd9ef]"
+                                    >
+                                        0{i + 1}
+                                    </span>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 </section>
 

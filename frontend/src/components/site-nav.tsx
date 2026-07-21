@@ -88,6 +88,11 @@ function DropdownItem({
                     {navLabel(item, locale)}
                 </Link>
             )}
+            {item.note && (
+                <p className="px-3 pb-1 pt-0.5 text-[13.5px] leading-snug text-[var(--color-ink-subtle)]">
+                    {item.note}
+                </p>
+            )}
             {children.length > 0 && (
                 <div className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
                     {children.map((c) =>
@@ -447,9 +452,14 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                                             {navLabel(it, locale)}
                                                         </Link>
                                                     )}
-                                                    {it.children && (
+                                                    {it.note && (
+                                                        <p className="py-1.5 text-[15px] text-[var(--color-ink-subtle)]">
+                                                            {it.note}
+                                                        </p>
+                                                    )}
+                                                    {it.children?.some((c) => !c.hidden) && (
                                                         <div className="ml-3 border-l border-[var(--color-line)] pl-3">
-                                                            {it.children.map(
+                                                            {it.children.filter((c) => !c.hidden).map(
                                                                 (c) =>
                                                                     c.external ? (
                                                                         <a
