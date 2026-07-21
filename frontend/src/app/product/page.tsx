@@ -118,6 +118,7 @@ const PRODUCT_SECTIONS = [
     { id: "core-tech", label: "핵심 기술" },
     { id: "roles", label: "역할별 경험" },
     { id: "on-premise", label: "온프레미스" },
+    { id: "deployment", label: "도입·구축" },
     { id: "governance", label: "거버넌스" },
     { id: "certification", label: "인증·품질" },
     { id: "cases", label: "고객사례" },
@@ -285,6 +286,31 @@ const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
         desc: "고객사 데이터가 외부 모델의 학습 데이터로 활용되는 것을 기술적으로 방지합니다.",
     },
 ];
+
+/** 도입·구축 — 반입에서 운영까지의 온프레미스 딜리버리 단계. */
+const DEPLOY_STEPS: { no: string; title: string; desc: string }[] = [
+    {
+        no: "01",
+        title: "반입",
+        desc: "폐쇄망 반입 절차를 거쳐 고객 인프라(온프레미스·Air-gap)에 설치합니다.",
+    },
+    {
+        no: "02",
+        title: "실증 (PoC)",
+        desc: "실제 데이터로 빠르게 검증하고 도메인 요건과 심사 룰을 확정합니다.",
+    },
+    {
+        no: "03",
+        title: "구축",
+        desc: "도메인 도구·지식·에이전트를 조직 업무에 맞춰 구성하고 연계합니다.",
+    },
+    {
+        no: "04",
+        title: "운영",
+        desc: "GitOps 파이프라인으로 통제된 배포·모니터링·개선을 지속합니다.",
+    },
+];
+const DEPLOY_CHIPS = ["온프레미스", "망분리 · Air-gap", "GPU 서빙", "k3s", "ArgoCD · GitOps"];
 
 /** FAQ — GEO용 FAQPage JSON-LD와 화면 공용. */
 const FAQ: { q: string; a: string }[] = [
@@ -873,6 +899,58 @@ export default function ProductPage() {
                             className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             보안·거버넌스 아키텍처 자세히 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
+                    </div>
+                </section>
+
+                {/* 도입·구축 — 반입에서 운영까지(온프레미스 딜리버리) */}
+                <section
+                    id="deployment"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Deployment
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            반입에서 운영까지, 통제된 구축
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            폐쇄망 반입부터 실증·구축·운영까지, 온프레미스 환경에서
+                            단계적으로 도입합니다. 반입 절차만 끝나면 바로 실증으로 넘어가
+                            빠르게 성과를 냅니다.
+                        </p>
+                        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+                            {DEPLOY_STEPS.map((s) => (
+                                <div key={s.no} className="bg-white p-7">
+                                    <span className="font-mono text-[13px] font-bold tracking-widest text-[#2f7bff]">
+                                        {s.no}
+                                    </span>
+                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {s.title}
+                                    </h3>
+                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {s.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-6 flex flex-wrap items-center gap-2">
+                            {DEPLOY_CHIPS.map((c) => (
+                                <span
+                                    key={c}
+                                    className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-3 py-1 font-mono text-[12.5px] font-semibold text-[var(--color-ink-muted)]"
+                                >
+                                    {c}
+                                </span>
+                            ))}
+                        </div>
+                        <Link
+                            href="/architecture#cicd"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            GitOps 배포 파이프라인 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
                     </div>
