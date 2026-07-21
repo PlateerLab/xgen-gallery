@@ -596,6 +596,25 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* 숫자로 보는 XGEN — 실측 사실 밴드 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
+                        {STATS.map((s) => (
+                            <div key={s.label} className="text-center md:text-left">
+                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
+                                    {s.n}
+                                </p>
+                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {s.label}
+                                </p>
+                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                    {s.sub}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
                 {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
                     id="platform"
@@ -1122,25 +1141,6 @@ export default function ProductPage() {
                                 </details>
                             ))}
                         </div>
-                    </div>
-                </section>
-
-                {/* 숫자로 보는 XGEN — 실측 사실 밴드(페이지 마무리) */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
-                        {STATS.map((s) => (
-                            <div key={s.label} className="text-center md:text-left">
-                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
-                                    {s.n}
-                                </p>
-                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
-                                    {s.label}
-                                </p>
-                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
-                                    {s.sub}
-                                </p>
-                            </div>
-                        ))}
                     </div>
                 </section>
 
