@@ -152,6 +152,13 @@ const SCREENS: { img: string; alt: string; caption: string; w: number; h: number
         w: 1600,
         h: 900,
     },
+    {
+        img: "/product/dashboard.png",
+        alt: "XGEN 운영 대시보드 — 자주 찾는 Agent·인기 템플릿·에이전트플로우 현황·최근 장애/오류·평가 지표를 한 화면에서 점검하는 System Operations & Deployment Dashboard",
+        caption: "운영 대시보드",
+        w: 1616,
+        h: 998,
+    },
 ];
 
 /** 온프레미스 보안 3원칙 — 유출 차단·접근 세분화·제로 트레이닝. (구 xgen.im On-premise) */
@@ -479,7 +486,7 @@ export default function ProductPage() {
                             <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
                                 실제 제품 화면
                             </p>
-                            <div className="mt-5 grid gap-5 md:grid-cols-3">
+                            <div className="mt-5 grid gap-5 sm:grid-cols-2">
                                 {SCREENS.map((s) => (
                                     <figure
                                         key={s.img}
@@ -578,9 +585,9 @@ export default function ProductPage() {
                             하나의 플랫폼, 역할에 맞는 경험
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            하나의 플랫폼 안에서 역할과 권한에 따라 메뉴, 화면, 위젯이
-                            자동으로 구성됩니다. 사용자는 자신에게 필요한 업무와 정보에만
-                            집중할 수 있습니다.
+                            하나의 플랫폼에서도 역할과 권한에 따라 최적화된 업무 환경이
+                            구성됩니다. 각 사용자는 자신의 업무에 필요한 기능과 정보만
+                            제공받아 더욱 효율적으로 AI를 활용할 수 있습니다.
                         </p>
                         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                             {ROLES.map((r) => (
