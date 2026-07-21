@@ -492,7 +492,7 @@ export default function ProductPage() {
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            핵심 기술
+                            Core Technology
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             검증된 오픈 기술 위에, 벤더 종속 없이
