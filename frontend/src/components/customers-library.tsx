@@ -219,6 +219,9 @@ export function CustomersLibrary({
 }) {
     const [product, setProduct] = useState<ProductKey | "all">(initialProduct);
     const [industry, setIndustry] = useState<IndustryKey | "all">("all");
+    // 산업 필터는 사례 데이터가 충분히 쌓일 때까지 숨긴다(true로 바꾸면 다시 노출).
+    // industry는 "all"로 고정되어 모든 사례가 그대로 보인다.
+    const SHOW_INDUSTRY_FILTER = false;
 
     const featured = useMemo(() => cases.filter((c) => c.featured).slice(0, 2), [cases]);
 
@@ -284,26 +287,28 @@ export function CustomersLibrary({
                         />
                     ))}
                 </div>
-                <div className="flex flex-wrap items-center gap-2">
-                    <span className="mr-1 text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
-                        산업
-                    </span>
-                    <FilterChip
-                        active={industry === "all"}
-                        onClick={() => setIndustry("all")}
-                        label="전체"
-                        count={cases.length}
-                    />
-                    {industryKeys.map((k) => (
+                {SHOW_INDUSTRY_FILTER && (
+                    <div className="flex flex-wrap items-center gap-2">
+                        <span className="mr-1 text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
+                            산업
+                        </span>
                         <FilterChip
-                            key={k}
-                            active={industry === k}
-                            onClick={() => setIndustry(k)}
-                            label={INDUSTRIES[k].ko}
-                            count={cases.filter((c) => c.industry === k).length}
+                            active={industry === "all"}
+                            onClick={() => setIndustry("all")}
+                            label="전체"
+                            count={cases.length}
                         />
-                    ))}
-                </div>
+                        {industryKeys.map((k) => (
+                            <FilterChip
+                                key={k}
+                                active={industry === k}
+                                onClick={() => setIndustry(k)}
+                                label={INDUSTRIES[k].ko}
+                                count={cases.filter((c) => c.industry === k).length}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* 건수 */}
