@@ -271,7 +271,7 @@ export const NAV_GROUPS: NavGroup[] = [
         items: [
             {
                 // XGEN — 기존 서브메뉴 전체를 이 제품 그룹 아래로 묶는다.
-                label: "XGEN Agentic AI Platform",
+                label: "XGEN (Agentic AI Platform)",
                 id: "xgen",
                 route: "/product",
                 children: [

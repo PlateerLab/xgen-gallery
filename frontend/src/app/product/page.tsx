@@ -9,6 +9,8 @@ import {
     Lock,
     Server,
     ShieldCheck,
+    BadgeCheck,
+    Building2,
     ChevronRight,
     ArrowRight,
     Download,
@@ -30,6 +32,14 @@ export const metadata = pageMetadata({
         "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼입니다. 에이전트플로우 캔버스·지식(RAG)·도구(MCP)·거버넌스로 코딩 없이 에이전트를 만들고 안전하게 운영합니다.",
     path: "/product",
 });
+
+/** 히어로 직후 트러스트 바 — 인증·운영·도입 실적(대외 공개 사실만). */
+const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
+    { icon: BadgeCheck, label: "GS인증 1등급", sub: "국가 공인 품질인증 · TTA" },
+    { icon: ShieldCheck, label: "AI-MASTER", sub: "AI 신뢰성 인증 진행 중" },
+    { icon: Server, label: "온프레미스 · 망분리", sub: "Air-gap 배포 지원" },
+    { icon: Building2, label: "제주은행 등 도입", sub: "금융 · 공공 · 커머스" },
+];
 
 /** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
 const PRODUCT_SECTIONS = [
@@ -354,6 +364,27 @@ export default function ProductPage() {
                 </div>
             </section>
 
+            {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
+            <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
+                <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6 sm:justify-between">
+                    {TRUST.map((t) => (
+                        <div key={t.label} className="flex items-center gap-2.5">
+                            <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                <t.icon className="h-[18px] w-[18px]" />
+                            </span>
+                            <div className="leading-tight">
+                                <p className="text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {t.label}
+                                </p>
+                                <p className="text-[12.5px] text-[var(--color-ink-subtle)]">
+                                    {t.sub}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             <ArchIndex sections={PRODUCT_SECTIONS} />
 
             <main>
@@ -617,7 +648,7 @@ export default function ProductPage() {
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                             <div>
-                                <p className="font-mono text-[12px] uppercase tracking-widest text-[#b45309]">
+                                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                                     Enterprise Trust
                                 </p>
                                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-[34px] md:leading-[1.15]">
@@ -638,7 +669,7 @@ export default function ProductPage() {
                                         className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6"
                                     >
                                         <div className="flex items-center gap-2.5">
-                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#b45309]" />
+                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#2f7bff]" />
                                             <h3 className="text-[15.5px] font-bold tracking-tight text-[var(--color-ink)]">
                                                 {g.title}
                                             </h3>
