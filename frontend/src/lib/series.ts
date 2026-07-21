@@ -17,6 +17,17 @@ export interface SeriesDef {
 
 export const SERIES: SeriesDef[] = [
     {
+        key: "gs-cert",
+        title: "GS인증 개발기",
+        label: "GS인증",
+        subtitle: "결함리포트 80건을 읽고 코드·오류·매뉴얼을 다시 만든 3주의 기록",
+        description:
+            "GS인증 시험에서 받은 결함 80건을 어떻게 읽고 무엇을 고쳤는지 편별로 다룹니다. 결함의 정의를 다시 배운 이야기부터, 비밀번호 해시를 argon2id로 바꾼 과정, 정직한 오류 처리, 설정의 가시화, 그리고 매뉴얼을 제품으로 다룬 위키 전환까지.",
+        cover: "/blog/series-gs-cert.svg",
+        match: /^gs-cert-journey-/,
+        order: /^gs-cert-journey-(\d+)-/,
+    },
+    {
         key: "harness",
         title: "하네스 개발기",
         label: "하네스",

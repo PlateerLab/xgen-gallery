@@ -4,9 +4,38 @@ import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { BlogList } from "@/components/blog-list";
 import { FeaturedHero } from "@/components/featured-hero";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, type PostMeta } from "@/lib/blog";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import { absoluteUrl } from "@/lib/site";
+
+/**
+ * 상단 키비주얼(캐러셀)에 올릴 글 선정 규칙 — docs/BLOG-WRITING-GUIDE.md 참조.
+ * 1) 편집자가 `featured: true`로 고정한 글이 있으면 그 글들을 최신순으로 사용(수동 override).
+ * 2) 없으면 자동 큐레이션: 카테고리마다 최신 1편씩, 단 Tech Note는 작성자가 서로 다른 최신 2편.
+ *    → 제품 소식 1 + Case Study 1 + Tech Note 2(다른 작성자) = 최대 4편, 캐러셀은 최신순.
+ */
+function pickHeroPosts(posts: PostMeta[]): PostMeta[] {
+    const byNew = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+
+    const pinned = byNew.filter((p) => p.featured);
+    if (pinned.length) return pinned.slice(0, 5);
+
+    const picked: PostMeta[] = [];
+    // 제품 소식 · Case Study — 카테고리별 최신 1편.
+    for (const cat of ["제품 소식", "Case Study"]) {
+        const p = byNew.find((x) => x.category === cat);
+        if (p) picked.push(p);
+    }
+    // Tech Note — 작성자가 서로 다른 최신 2편(같은 작성자 중복 방지).
+    const authors = new Set<string>();
+    for (const p of byNew) {
+        if (p.category !== "Tech Note" || authors.has(p.author)) continue;
+        picked.push(p);
+        authors.add(p.author);
+        if (authors.size === 2) break;
+    }
+    return picked.sort((a, b) => b.date.localeCompare(a.date));
+}
 
 export const metadata = {
     title: "Insight",
@@ -24,9 +53,8 @@ export const metadata = {
 
 export default function BlogPage() {
     const posts = getAllPosts();
-    // 키비주얼 캐러셀 — 편집자가 고른 featured 글(최신순), 없으면 최신 글로 폴백.
-    const chosen = posts.filter((p) => p.featured);
-    const heroPosts = (chosen.length ? chosen : posts).slice(0, 5);
+    // 키비주얼 캐러셀 — 카테고리별 최신 1편 + Tech Note는 작성자 다른 2편(규칙: pickHeroPosts).
+    const heroPosts = pickHeroPosts(posts);
 
     return (
         <>
