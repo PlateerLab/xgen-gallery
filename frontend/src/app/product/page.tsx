@@ -17,6 +17,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
+import { ArchIndex } from "@/components/arch-index";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -28,6 +29,16 @@ export const metadata = pageMetadata({
         "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼입니다. 에이전트플로우 캔버스·지식(RAG)·도구(MCP)·거버넌스로 코딩 없이 에이전트를 만들고 안전하게 운영합니다.",
     path: "/product",
 });
+
+/** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
+const PRODUCT_SECTIONS = [
+    { id: "platform", label: "제품 개요" },
+    { id: "features", label: "핵심 기능" },
+    { id: "on-premise", label: "온프레미스" },
+    { id: "governance", label: "거버넌스" },
+    { id: "roles", label: "역할별 경험" },
+    { id: "certification", label: "인증·품질" },
+];
 
 /** 제품 개요 4축 — 파일럿을 넘어 실제 업무에 배포되는 기업용 AI의 근거. */
 const PILLARS: { no: string; title: string; desc: string }[] = [
@@ -165,7 +176,51 @@ const FAQ: { q: string; a: string }[] = [
     },
     {
         q: "코딩 없이 에이전트를 만들 수 있나요?",
-        a: "네. Agent Builder의 드래그 기반 Visual Workflow Canvas로 코딩 없이 워크플로우를 설계하고, 실시간 채팅으로 검증한 뒤 API·워크플로우로 배포할 수 있습니다.",
+        a: "네. Agentflow의 드래그 기반 Visual Canvas로 코딩 없이 워크플로우를 설계하고, 실시간 채팅으로 검증한 뒤 API·워크플로우로 배포할 수 있습니다.",
+    },
+];
+
+/** Enterprise Trust — AI 거버넌스 통제 요건(3-레이어 권한·이중 승인·PII·감사). */
+const GOV: { title: string; desc: string }[] = [
+    {
+        title: "3-레이어 권한",
+        desc: "등급(Standard/SuperUser) · 역할(Role) · 권한(ABAC 키)의 독립 레이어로 화면·버튼 단위까지 접근을 게이팅합니다.",
+    },
+    {
+        title: "이중 승인 배포",
+        desc: "서비스화에는 시스템 관리자의 배포 승인과 거버넌스 담당자의 승인, 두 단계 통과가 필수입니다.",
+    },
+    {
+        title: "PII 마스킹 · 위험 등급",
+        desc: "개인식별정보를 자동 마스킹하고, 요청·응답의 위험도를 등급으로 분류·통제합니다.",
+    },
+    {
+        title: "감사 로그 · 정기 점검",
+        desc: "사용자 활동과 시스템 이벤트를 보존하고, 배포된 Agent를 주기적으로 점검합니다.",
+    },
+];
+
+/** 역할별 경험 — 같은 URL이라도 역할·권한에 따라 다른 화면. */
+const ROLES: { en: string; ko: string; desc: string }[] = [
+    {
+        en: "Standard User",
+        ko: "일반 사용자",
+        desc: "Agent 채팅으로 업무를 처리하고, 공지·FAQ·1:1 문의로 지원받습니다.",
+    },
+    {
+        en: "Agent Developer",
+        ko: "Agent 개발자",
+        desc: "캔버스에서 Agent를 설계하고, 도구·지식을 연동해 배포를 요청합니다.",
+    },
+    {
+        en: "System Admin",
+        ko: "시스템 관리자",
+        desc: "사용자·권한·LLM·시스템을 운영하고 배포를 1차 승인합니다.",
+    },
+    {
+        en: "Governance Officer",
+        ko: "거버넌스 담당자",
+        desc: "통제 정책과 위험을 관리하고, 서비스화의 최종 승인·감사를 담당합니다.",
     },
 ];
 
@@ -248,11 +303,13 @@ export default function ProductPage() {
                 </div>
             </section>
 
+            <ArchIndex sections={PRODUCT_SECTIONS} />
+
             <main>
                 {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
                     id="platform"
-                    className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -287,7 +344,7 @@ export default function ProductPage() {
                 {/* Features */}
                 <section
                     id="features"
-                    className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -367,7 +424,7 @@ export default function ProductPage() {
                 {/* On-Premise */}
                 <section
                     id="on-premise"
-                    className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -401,10 +458,92 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* Governance — Enterprise Trust (통제·승인·감사) */}
+                <section
+                    id="governance"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                            <div>
+                                <p className="font-mono text-[12px] uppercase tracking-widest text-[#b45309]">
+                                    Enterprise Trust
+                                </p>
+                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-[34px] md:leading-[1.15]">
+                                    신뢰할 수 없는 AI는 기업에서 운영될 수 없습니다
+                                </h2>
+                                <p className="mt-4 max-w-md text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을
+                                    추적하고, 위험한 변경은 배포 전에 검증하며, 승인된
+                                    에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제
+                                    산업과 온프레미스 환경에서도 신뢰할 수 있는 거버넌스를
+                                    제공합니다.
+                                </p>
+                            </div>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                {GOV.map((g) => (
+                                    <div
+                                        key={g.title}
+                                        className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6"
+                                    >
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#b45309]" />
+                                            <h3 className="text-[15.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {g.title}
+                                            </h3>
+                                        </div>
+                                        <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {g.desc}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Roles — 역할별 경험 */}
+                <section
+                    id="roles"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Roles
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            하나의 플랫폼, 역할에 맞는 경험
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            하나의 플랫폼 안에서 역할과 권한에 따라 메뉴, 화면, 위젯이
+                            자동으로 구성됩니다. 사용자는 자신에게 필요한 업무와 정보에만
+                            집중할 수 있습니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            {ROLES.map((r) => (
+                                <div
+                                    key={r.en}
+                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#2461d8]">
+                                        {r.en}
+                                    </p>
+                                    <h3 className="mt-3 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {r.ko}
+                                    </h3>
+                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {r.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Certifications & Quality — 국가 공인 품질/신뢰성 인증(구 /solutions#certification 이전) */}
                 <section
                     id="certification"
-                    className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -453,22 +592,21 @@ export default function ProductPage() {
                 <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
                     <div className="mx-auto max-w-4xl px-6 py-24 text-center">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-white/45">
-                            Turn AI potential into results
+                            Get Started
                         </p>
                         <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-[40px]">
-                            AI 잠재력을 성과로 바꾸는 선택
+                            업무에 바로 투입되는 기업용 AI를 확인해 보세요
                         </h2>
                         <p className="mx-auto mt-5 max-w-2xl text-[16px] leading-relaxed text-white/70">
-                            원하는 LLM과 인프라 위에서 조직에 맞는 Agentic AI를 설계하고,
-                            온프레미스로 안전하게 운영하세요. 도입 범위와 방식은 조직 상황에
-                            맞춰 함께 설계합니다.
+                            조직의 보안·권한·감사 요건을 만족하는 Agentic AI 플랫폼.
+                            데모에서 설계·배포·통제의 전체 흐름을 직접 보여드립니다.
                         </p>
                         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                             <Link
                                 href="/contact"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
-                                XGEN 도입 문의
+                                데모 요청하기
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <Link
