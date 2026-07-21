@@ -212,7 +212,7 @@ export default function PolarPage() {
                     aria-hidden
                     className="absolute inset-0 bg-gradient-to-r from-[#070b1c] via-[#070b1c]/75 to-transparent"
                 />
-                <div className="relative mx-auto flex min-h-[720px] w-full max-w-6xl items-center px-6 pt-20">
+                <div className="relative mx-auto flex min-h-[750px] w-full max-w-6xl items-center px-6 pt-20">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · Polar
