@@ -224,6 +224,106 @@ const ROLES: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
+/** 히어로 핵심 기술 칩 — XGEN을 떠받치는 코어 기술. */
+const CORE_TECH = [
+    "Agentic AI",
+    "Knowledge Graph",
+    "RAG",
+    "MCP",
+    "AI Governance",
+];
+
+/** 히어로 키비주얼 — 에이전트플로우 캔버스(입력→Agent·LLM·RAG→Tool·Guard→배포). */
+function AgentflowCanvas() {
+    const NODES: { id: string; x: number; y: number; r: number }[] = [
+        { id: "input", x: 56, y: 108, r: 14 },
+        { id: "prompt", x: 56, y: 262, r: 14 },
+        { id: "agent", x: 192, y: 84, r: 18 },
+        { id: "llm", x: 192, y: 190, r: 18 },
+        { id: "rag", x: 192, y: 296, r: 14 },
+        { id: "tool", x: 324, y: 138, r: 16 },
+        { id: "guard", x: 324, y: 258, r: 14 },
+        { id: "deploy", x: 432, y: 190, r: 18 },
+    ];
+    const at = (id: string) => NODES.find((n) => n.id === id)!;
+    const EDGES: [string, string][] = [
+        ["input", "agent"],
+        ["prompt", "llm"],
+        ["input", "llm"],
+        ["agent", "llm"],
+        ["agent", "tool"],
+        ["llm", "tool"],
+        ["llm", "rag"],
+        ["rag", "guard"],
+        ["tool", "deploy"],
+        ["guard", "deploy"],
+    ];
+    return (
+        <div className="w-full overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)] backdrop-blur-sm">
+            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3 font-mono text-[11.5px] text-white/45">
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="ml-auto tracking-[0.08em]">agentflow · canvas</span>
+            </div>
+            <svg
+                viewBox="0 0 488 380"
+                className="block h-auto w-full"
+                role="img"
+                aria-label="XGEN 에이전트플로우 캔버스 — 입력·프롬프트에서 Agent·LLM·RAG, Tool·Guard를 거쳐 배포로 이어지는 노드 그래프"
+            >
+                <g stroke="#2f5b74" strokeWidth="1.4" opacity="0.7">
+                    {EDGES.map(([a, b]) => {
+                        const na = at(a);
+                        const nb = at(b);
+                        return (
+                            <line
+                                key={a + b}
+                                x1={na.x}
+                                y1={na.y}
+                                x2={nb.x}
+                                y2={nb.y}
+                            />
+                        );
+                    })}
+                </g>
+                {NODES.map((n) => (
+                    <g key={n.id}>
+                        <circle
+                            cx={n.x}
+                            cy={n.y}
+                            r={n.r + 5}
+                            fill="none"
+                            stroke="#7dd3fc"
+                            strokeWidth="1"
+                            opacity="0.16"
+                        />
+                        <circle
+                            cx={n.x}
+                            cy={n.y}
+                            r={n.r}
+                            fill="#0c1a28"
+                            stroke="#7dd3fc"
+                            strokeWidth="1.5"
+                        />
+                        <circle cx={n.x} cy={n.y} r="2.6" fill="#7dd3fc" />
+                        <text
+                            x={n.x}
+                            y={n.y + n.r + 15}
+                            textAnchor="middle"
+                            fontFamily="ui-monospace, monospace"
+                            fontSize="11"
+                            fill="#7c9bb0"
+                        >
+                            {n.id}
+                        </text>
+                    </g>
+                ))}
+            </svg>
+        </div>
+    );
+}
+
 export default function ProductPage() {
     return (
         <>
@@ -282,7 +382,7 @@ export default function ProductPage() {
                     aria-hidden
                     className="absolute inset-0 bg-gradient-to-r from-[#070b1c] via-[#070b1c]/75 to-transparent"
                 />
-                <div className="relative mx-auto flex min-h-[540px] w-full max-w-6xl items-center px-6 pt-20">
+                <div className="relative mx-auto grid min-h-[540px] w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr]">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · XGEN
@@ -295,10 +395,26 @@ export default function ProductPage() {
                             학습·생성·배포·모니터링까지 한 플랫폼에서 다루도록 설계된
                             온프레미스 Enterprise AI 플랫폼입니다.
                         </p>
-                        <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
-                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
-                            온프레미스 · 학습 → 생성 → 배포 → 모니터링
-                        </span>
+                        {/* 핵심 기술 */}
+                        <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                            핵심 기술
+                        </p>
+                        <div className="mt-2.5 flex flex-wrap gap-2">
+                            {CORE_TECH.map((t) => (
+                                <span
+                                    key={t}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[12.5px] text-white/75 backdrop-blur-sm"
+                                >
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#7dd3fc]" />
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* 키비주얼 — 에이전트플로우 캔버스 */}
+                    <div className="w-full">
+                        <AgentflowCanvas />
                     </div>
                 </div>
             </section>
