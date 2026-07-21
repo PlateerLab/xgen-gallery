@@ -1,0 +1,21 @@
+<svg viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="검증·파일럿에서 멈추고 운영까지 배포되지 못하는 AI">
+  <defs>
+    <linearGradient id="c1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#185aea"/></linearGradient>
+  </defs>
+  <rect width="320" height="190" rx="16" fill="#f4f8ff"/>
+  <!-- rising then flattening path (성장 멈춤) -->
+  <path d="M40 140 C 90 120, 120 80, 170 74" fill="none" stroke="url(#c1)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M170 74 L 280 74" fill="none" stroke="#c7d3ea" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+  <!-- stage nodes -->
+  <g font-family="system-ui,'Malgun Gothic',sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+    <circle cx="40" cy="140" r="11" fill="url(#c1)"/>
+    <text x="40" y="168" fill="#2461d8">검증</text>
+    <circle cx="170" cy="74" r="13" fill="url(#c1)"/>
+    <text x="170" y="46" fill="#2461d8">파일럿</text>
+    <circle cx="280" cy="74" r="12" fill="#ffffff" stroke="#c0ccdf" stroke-width="2" stroke-dasharray="3 3"/>
+    <text x="280" y="104" fill="#94a3b8">운영</text>
+    <text x="280" y="79" fill="#b6c0d2" font-size="15">?</text>
+  </g>
+  <!-- barrier between 파일럿 and 운영 -->
+  <line x1="225" y1="56" x2="225" y2="96" stroke="#f0a5a5" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 5"/>
+</svg>

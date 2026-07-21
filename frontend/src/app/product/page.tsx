@@ -43,18 +43,24 @@ const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
 ];
 
 /** 문제 제기 — 도입이 현장에서 멈추는 이유(브로셔 오프너). */
-const CHALLENGES: { q: string; desc: string }[] = [
+const CHALLENGES: { q: string; desc: string; img: string; imgAlt: string }[] = [
     {
         q: "AI를 도입했지만, 파일럿에서 멈췄나요?",
         desc: "기술 검증에서 끝나고 실제 업무에 배포되지 못하는 AI 프로젝트가 많습니다.",
+        img: "/product/challenge-1-pilot.svg",
+        imgAlt: "검증·파일럿에서 멈추고 운영까지 배포되지 못하는 흐름 일러스트",
     },
     {
         q: "데이터와 시스템이 흩어져 있나요?",
         desc: "문서·지식·레거시가 분산돼 있어 AI가 조직의 맥락을 이해하지 못합니다.",
+        img: "/product/challenge-2-silo.svg",
+        imgAlt: "문서·데이터베이스·폴더가 연결되지 않고 흩어진 데이터 사일로 일러스트",
     },
     {
         q: "보안·규제 때문에 클라우드 AI를 못 쓰나요?",
         desc: "데이터 주권·감사·승인 요건 때문에 외부 AI를 도입하기 어렵습니다.",
+        img: "/product/challenge-3-security.svg",
+        imgAlt: "보안 방패가 데이터를 지키고 외부 클라우드 AI로의 전송이 차단된 일러스트",
     },
 ];
 
@@ -537,10 +543,10 @@ export default function ProductPage() {
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                             Enterprise AI, 왜 현장에서 멈출까요
                         </h2>
-                        <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
+                        <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
                             {CHALLENGES.map((c, i) => (
                                 <div key={c.q}>
-                                    <span className="font-mono text-[15px] font-bold text-[#2f7bff]">
+                                    <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
                                         0{i + 1}
                                     </span>
                                     <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
@@ -549,28 +555,18 @@ export default function ProductPage() {
                                     <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {c.desc}
                                     </p>
+                                    {/* 맥락 일러스트 — 텍스트 아래 */}
+                                    <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={c.img}
+                                            alt={c.imgAlt}
+                                            className="block h-auto w-full"
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
-                    </div>
-                </section>
-
-                {/* 숫자로 보는 XGEN — 실측 사실 밴드 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
-                        {STATS.map((s) => (
-                            <div key={s.label} className="text-center md:text-left">
-                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
-                                    {s.n}
-                                </p>
-                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
-                                    {s.label}
-                                </p>
-                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
-                                    {s.sub}
-                                </p>
-                            </div>
-                        ))}
                     </div>
                 </section>
 
@@ -1039,6 +1035,25 @@ export default function ProductPage() {
                                 </details>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* 숫자로 보는 XGEN — 실측 사실 밴드(페이지 마무리) */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
+                        {STATS.map((s) => (
+                            <div key={s.label} className="text-center md:text-left">
+                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
+                                    {s.n}
+                                </p>
+                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {s.label}
+                                </p>
+                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                    {s.sub}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </section>
 

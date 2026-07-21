@@ -1,0 +1,30 @@
+<svg viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="문서·지식·레거시가 흩어져 연결되지 않은 데이터">
+  <rect width="320" height="190" rx="16" fill="#f4f8ff"/>
+  <!-- scattered, disconnected data shapes (silos) -->
+  <!-- document -->
+  <g transform="rotate(-8 70 60)">
+    <rect x="52" y="40" width="40" height="50" rx="5" fill="#ffffff" stroke="#c7d3ea" stroke-width="2"/>
+    <rect x="60" y="50" width="24" height="4" rx="2" fill="#cdd9ef"/>
+    <rect x="60" y="60" width="20" height="4" rx="2" fill="#dbe4f2"/>
+    <rect x="60" y="70" width="24" height="4" rx="2" fill="#dbe4f2"/>
+  </g>
+  <!-- database cylinder -->
+  <g transform="rotate(7 240 65)">
+    <ellipse cx="240" cy="46" rx="26" ry="9" fill="#e2ecff" stroke="#bcd0f5" stroke-width="2"/>
+    <path d="M214 46 V80 a26 9 0 0 0 52 0 V46" fill="#eef4ff" stroke="#bcd0f5" stroke-width="2"/>
+    <ellipse cx="240" cy="46" rx="26" ry="9" fill="#f4f8ff" stroke="#bcd0f5" stroke-width="2"/>
+  </g>
+  <!-- folder -->
+  <g transform="rotate(5 160 140)">
+    <path d="M138 120 h16 l6 8 h26 a4 4 0 0 1 4 4 v28 a4 4 0 0 1 -4 4 h-48 a4 4 0 0 1 -4 -4 v-32 a4 4 0 0 1 4 -4 z" fill="#ffffff" stroke="#c7d3ea" stroke-width="2"/>
+  </g>
+  <!-- small file -->
+  <g transform="rotate(-6 95 145)">
+    <rect x="80" y="128" width="30" height="38" rx="4" fill="#ffffff" stroke="#c7d3ea" stroke-width="2"/>
+    <rect x="86" y="136" width="18" height="3.5" rx="2" fill="#dbe4f2"/>
+    <rect x="86" y="144" width="14" height="3.5" rx="2" fill="#dbe4f2"/>
+  </g>
+  <!-- broken/disconnected links (점선, 끊김) -->
+  <line x1="98" y1="70" x2="150" y2="120" stroke="#d7dfec" stroke-width="2" stroke-dasharray="3 6"/>
+  <line x1="200" y1="140" x2="222" y2="80" stroke="#d7dfec" stroke-width="2" stroke-dasharray="3 6"/>
+</svg>
