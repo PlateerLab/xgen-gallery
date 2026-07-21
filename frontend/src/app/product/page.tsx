@@ -7,7 +7,7 @@ import {
     Rocket,
     LayoutDashboard,
     Lock,
-    UserCheck,
+    Server,
     ShieldCheck,
     ChevronRight,
     ArrowRight,
@@ -36,9 +36,9 @@ const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
     { id: "features", label: "핵심 기능" },
     { id: "core-tech", label: "핵심 기술" },
+    { id: "roles", label: "역할별 경험" },
     { id: "on-premise", label: "온프레미스" },
     { id: "governance", label: "거버넌스" },
-    { id: "roles", label: "역할별 경험" },
     { id: "certification", label: "인증·품질" },
 ];
 
@@ -151,9 +151,9 @@ const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
         desc: "온프레미스 구축으로 데이터가 외부로 유출되지 않고 안전하게 활용됩니다.",
     },
     {
-        icon: UserCheck,
-        title: "내부 접근 세분화 (RBAC)",
-        desc: "부서·팀·개인 단위의 역할 기반 접근 제어(RBAC)로 접근 권한을 차등 부여해 내부 데이터 보안을 강화합니다.",
+        icon: Server,
+        title: "망분리 · 폐쇄망 지원",
+        desc: "인터넷과 분리된 망분리·에어갭(Air-gap) 환경에서도 배포·운영되며, 금융·공공의 폐쇄망 요건을 충족합니다.",
     },
     {
         icon: ShieldCheck,
@@ -166,7 +166,7 @@ const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
 const FAQ: { q: string; a: string }[] = [
     {
         q: "XGEN은 무엇인가요?",
-        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 학습·생성·배포·모니터링하는 Enterprise AI 플랫폼입니다. Plateer Labs가 개발했으며, 온프레미스로 구축됩니다.",
+        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 Enterprise AI 플랫폼입니다. Plateer Labs가 개발했으며, 온프레미스로 구축됩니다.",
     },
     {
         q: "XGEN은 어떤 LLM을 사용할 수 있나요?",
@@ -533,10 +533,48 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* Roles — 역할별 경험 (제품 사용 관점: 신뢰 블록 앞에 배치) */}
+                <section
+                    id="roles"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Roles
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            하나의 플랫폼, 역할에 맞는 경험
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            하나의 플랫폼 안에서 역할과 권한에 따라 메뉴, 화면, 위젯이
+                            자동으로 구성됩니다. 사용자는 자신에게 필요한 업무와 정보에만
+                            집중할 수 있습니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            {ROLES.map((r) => (
+                                <div
+                                    key={r.en}
+                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#2461d8]">
+                                        {r.en}
+                                    </p>
+                                    <h3 className="mt-3 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {r.ko}
+                                    </h3>
+                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {r.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* On-Premise */}
                 <section
                     id="on-premise"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -573,7 +611,7 @@ export default function ProductPage() {
                 {/* Governance — Enterprise Trust (통제·승인·감사) */}
                 <section
                     id="governance"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
@@ -610,44 +648,6 @@ export default function ProductPage() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Roles — 역할별 경험 */}
-                <section
-                    id="roles"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Roles
-                        </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            하나의 플랫폼, 역할에 맞는 경험
-                        </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            하나의 플랫폼 안에서 역할과 권한에 따라 메뉴, 화면, 위젯이
-                            자동으로 구성됩니다. 사용자는 자신에게 필요한 업무와 정보에만
-                            집중할 수 있습니다.
-                        </p>
-                        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                            {ROLES.map((r) => (
-                                <div
-                                    key={r.en}
-                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
-                                >
-                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#2461d8]">
-                                        {r.en}
-                                    </p>
-                                    <h3 className="mt-3 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {r.ko}
-                                    </h3>
-                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {r.desc}
-                                    </p>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </section>
