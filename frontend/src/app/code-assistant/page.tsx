@@ -238,7 +238,7 @@ export default function CodeAssistantPage() {
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[620px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="relative flex min-h-[720px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
