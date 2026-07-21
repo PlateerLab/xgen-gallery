@@ -260,7 +260,7 @@ const ROLES: { en: string; ko: string; desc: string }[] = [
     {
         en: "Standard User",
         ko: "일반 사용자",
-        desc: "Agent 채팅으로 업무를 처리하고, 공지·FAQ·1:1 문의로 지원받습니다.",
+        desc: "Agent로 업무를 처리하고, 공지·FAQ·1:1 문의로 지원받습니다.",
     },
     {
         en: "Agent Developer",
@@ -270,7 +270,7 @@ const ROLES: { en: string; ko: string; desc: string }[] = [
     {
         en: "System Admin",
         ko: "시스템 관리자",
-        desc: "사용자·권한·LLM·시스템을 운영하고 배포를 1차 승인합니다.",
+        desc: "사용자·권한·LLM·시스템을 운영하고 배포를 승인합니다.",
     },
     {
         en: "Governance Officer",
@@ -541,16 +541,18 @@ export default function ProductPage() {
                                 {SCREENS.map((s) => (
                                     <figure
                                         key={s.img}
-                                        className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
+                                        className="flex flex-col overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
                                     >
-                                        <Image
-                                            src={s.img}
-                                            alt={s.alt}
-                                            width={s.w}
-                                            height={s.h}
-                                            sizes="(max-width: 768px) 100vw, 360px"
-                                            className="h-auto w-full"
-                                        />
+                                        {/* 고정 비율(16:9) 컨테이너 — 모든 썸네일 높이·캡션 위치 통일 */}
+                                        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--color-surface-alt)]">
+                                            <Image
+                                                src={s.img}
+                                                alt={s.alt}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, 360px"
+                                                className="object-cover object-top"
+                                            />
+                                        </div>
                                         <figcaption className="border-t border-[var(--color-line)] px-4 py-2.5 text-[13px] font-semibold text-[var(--color-ink-muted)]">
                                             {s.caption}
                                         </figcaption>
@@ -735,7 +737,7 @@ export default function ProductPage() {
                                 {GOV.map((g) => (
                                     <div
                                         key={g.title}
-                                        className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/40 hover:bg-white/[0.07]"
+                                        className="rounded-2xl border border-white/10 bg-[linear-gradient(155deg,rgba(47,123,255,0.16)_0%,rgba(125,211,252,0.05)_45%,rgba(255,255,255,0.02)_100%)] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/50 hover:bg-[linear-gradient(155deg,rgba(47,123,255,0.22)_0%,rgba(125,211,252,0.07)_45%,rgba(255,255,255,0.03)_100%)]"
                                     >
                                         <div className="flex items-center gap-2.5">
                                             <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
