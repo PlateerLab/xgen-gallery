@@ -18,6 +18,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
+import { AgentflowCanvas } from "@/components/agentflow-canvas";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -34,6 +35,7 @@ export const metadata = pageMetadata({
 const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
     { id: "features", label: "핵심 기능" },
+    { id: "core-tech", label: "핵심 기술" },
     { id: "on-premise", label: "온프레미스" },
     { id: "governance", label: "거버넌스" },
     { id: "roles", label: "역할별 경험" },
@@ -224,105 +226,43 @@ const ROLES: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** 히어로 핵심 기술 칩 — XGEN을 떠받치는 코어 기술. */
-const CORE_TECH = [
-    "Agentic AI",
-    "Knowledge Graph",
-    "RAG",
-    "MCP",
-    "AI Governance",
+/** 핵심 기술 4계층 — 검증된 오픈 기술 위, 벤더 종속 없이(모델→검색→오케스트레이션→런타임). */
+const TECH_LAYERS: {
+    no: string;
+    en: string;
+    title: string;
+    desc: string;
+    chips: string[];
+}[] = [
+    {
+        no: "LAYER 01",
+        en: "Model",
+        title: "모델 오케스트레이션",
+        desc: "상용 클라우드 LLM과 사내 GPU 셀프호스팅 모델을 하나의 인터페이스로 다룹니다. 프로바이더를 교체해도 에이전트 설계는 그대로 유지됩니다.",
+        chips: ["OpenAI", "Anthropic", "Google Gemini", "AWS Bedrock", "vLLM", "SGLang"],
+    },
+    {
+        no: "LAYER 02",
+        en: "Retrieval",
+        title: "고도화된 RAG",
+        desc: "밀집·희소 벡터와 전문검색을 결합한 하이브리드 검색에 리랭킹과 온톨로지 그래프를 더해, 출처가 분명한 응답을 만듭니다.",
+        chips: ["Qdrant", "Dense + Sparse", "Full-text", "Reranker", "Ontology Graph", "OCR"],
+    },
+    {
+        no: "LAYER 03",
+        en: "Orchestration",
+        title: "Agent 오케스트레이션",
+        desc: "노드 기반 멀티 에이전트 흐름, MCP 표준 도구 연동, 스트리밍 실행으로 복잡한 업무 절차를 조립하고 실시간으로 처리합니다.",
+        chips: ["Multi-Agent", "MCP", "Tool / Function", "SSE Streaming", "Prompt Engine"],
+    },
+    {
+        no: "LAYER 04",
+        en: "Runtime & Infra",
+        title: "엔터프라이즈 런타임",
+        desc: "게이트웨이 기반 인증 격리와 ABAC 접근 제어, 온프레미스·GPU 서빙, 가드레일로 통제된 실행 환경을 보장합니다.",
+        chips: ["API Gateway", "ABAC", "On-prem", "GPU Serving", "Guardrail"],
+    },
 ];
-
-/** 히어로 키비주얼 — 에이전트플로우 캔버스(입력→Agent·LLM·RAG→Tool·Guard→배포). */
-function AgentflowCanvas() {
-    const NODES: { id: string; x: number; y: number; r: number }[] = [
-        { id: "input", x: 56, y: 108, r: 14 },
-        { id: "prompt", x: 56, y: 262, r: 14 },
-        { id: "agent", x: 192, y: 84, r: 18 },
-        { id: "llm", x: 192, y: 190, r: 18 },
-        { id: "rag", x: 192, y: 296, r: 14 },
-        { id: "tool", x: 324, y: 138, r: 16 },
-        { id: "guard", x: 324, y: 258, r: 14 },
-        { id: "deploy", x: 432, y: 190, r: 18 },
-    ];
-    const at = (id: string) => NODES.find((n) => n.id === id)!;
-    const EDGES: [string, string][] = [
-        ["input", "agent"],
-        ["prompt", "llm"],
-        ["input", "llm"],
-        ["agent", "llm"],
-        ["agent", "tool"],
-        ["llm", "tool"],
-        ["llm", "rag"],
-        ["rag", "guard"],
-        ["tool", "deploy"],
-        ["guard", "deploy"],
-    ];
-    return (
-        <div className="w-full overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)] backdrop-blur-sm">
-            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3 font-mono text-[11.5px] text-white/45">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="ml-auto tracking-[0.08em]">agentflow · canvas</span>
-            </div>
-            <svg
-                viewBox="0 0 488 380"
-                className="block h-auto w-full"
-                role="img"
-                aria-label="XGEN 에이전트플로우 캔버스 — 입력·프롬프트에서 Agent·LLM·RAG, Tool·Guard를 거쳐 배포로 이어지는 노드 그래프"
-            >
-                <g stroke="#2f5b74" strokeWidth="1.4" opacity="0.7">
-                    {EDGES.map(([a, b]) => {
-                        const na = at(a);
-                        const nb = at(b);
-                        return (
-                            <line
-                                key={a + b}
-                                x1={na.x}
-                                y1={na.y}
-                                x2={nb.x}
-                                y2={nb.y}
-                            />
-                        );
-                    })}
-                </g>
-                {NODES.map((n) => (
-                    <g key={n.id}>
-                        <circle
-                            cx={n.x}
-                            cy={n.y}
-                            r={n.r + 5}
-                            fill="none"
-                            stroke="#7dd3fc"
-                            strokeWidth="1"
-                            opacity="0.16"
-                        />
-                        <circle
-                            cx={n.x}
-                            cy={n.y}
-                            r={n.r}
-                            fill="#0c1a28"
-                            stroke="#7dd3fc"
-                            strokeWidth="1.5"
-                        />
-                        <circle cx={n.x} cy={n.y} r="2.6" fill="#7dd3fc" />
-                        <text
-                            x={n.x}
-                            y={n.y + n.r + 15}
-                            textAnchor="middle"
-                            fontFamily="ui-monospace, monospace"
-                            fontSize="11"
-                            fill="#7c9bb0"
-                        >
-                            {n.id}
-                        </text>
-                    </g>
-                ))}
-            </svg>
-        </div>
-    );
-}
 
 export default function ProductPage() {
     return (
@@ -395,24 +335,38 @@ export default function ProductPage() {
                             학습·생성·배포·모니터링까지 한 플랫폼에서 다루도록 설계된
                             온프레미스 Enterprise AI 플랫폼입니다.
                         </p>
-                        {/* 핵심 기술 */}
-                        <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
-                            핵심 기술
-                        </p>
-                        <div className="mt-2.5 flex flex-wrap gap-2">
-                            {CORE_TECH.map((t) => (
-                                <span
-                                    key={t}
-                                    className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[12.5px] text-white/75 backdrop-blur-sm"
-                                >
-                                    <span className="h-1.5 w-1.5 rounded-full bg-[#7dd3fc]" />
-                                    {t}
-                                </span>
-                            ))}
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <Link
+                                href="/contact"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                            >
+                                데모 요청하기
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <a
+                                href="#platform"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                플랫폼 살펴보기
+                            </a>
+                        </div>
+                        <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2 font-mono text-[12.5px] text-white/45">
+                            <span>
+                                <b className="font-semibold text-white/85">온프레미스</b>{" "}
+                                &amp; 클라우드
+                            </span>
+                            <span>
+                                <b className="font-semibold text-white/85">RBAC · ABAC</b>{" "}
+                                접근 제어
+                            </span>
+                            <span>
+                                <b className="font-semibold text-white/85">자연어</b> 기반
+                                자동화
+                            </span>
                         </div>
                     </div>
 
-                    {/* 키비주얼 — 에이전트플로우 캔버스 */}
+                    {/* 키비주얼 — 움직이는 에이전트플로우 캔버스 */}
                     <div className="w-full">
                         <AgentflowCanvas />
                     </div>
@@ -533,6 +487,59 @@ export default function ProductPage() {
                                     </figure>
                                 ))}
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 핵심 기술 — 검증된 오픈 기술 위, 벤더 종속 없이 (4계층) */}
+                <section
+                    id="core-tech"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            핵심 기술
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            검증된 오픈 기술 위에, 벤더 종속 없이
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            XGEN은 특정 모델이나 클라우드에 묶이지 않습니다. 표준
+                            프로토콜과 검증된 엔진을 4개 계층으로 쌓아, 사내 GPU 모델부터
+                            상용 API까지 같은 방식으로 다룹니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 md:grid-cols-2">
+                            {TECH_LAYERS.map((l) => (
+                                <div
+                                    key={l.no}
+                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:p-7"
+                                >
+                                    <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest">
+                                        <span className="font-bold text-[#2461d8]">
+                                            {l.no}
+                                        </span>
+                                        <span className="text-[var(--color-ink-subtle)]">
+                                            · {l.en}
+                                        </span>
+                                    </div>
+                                    <h3 className="mt-4 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {l.title}
+                                    </h3>
+                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {l.desc}
+                                    </p>
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        {l.chips.map((c) => (
+                                            <span
+                                                key={c}
+                                                className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 font-mono text-[12.5px] text-[var(--color-ink-muted)]"
+                                            >
+                                                {c}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
