@@ -521,6 +521,15 @@ export default function ProductPage() {
                                 </div>
                             ))}
                         </div>
+
+                        {/* 4계층 기술 스택의 참조 아키텍처로 연결 */}
+                        <Link
+                            href="/architecture#platform"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            XGEN 플랫폼 아키텍처 자세히 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
                     </div>
                 </section>
 
