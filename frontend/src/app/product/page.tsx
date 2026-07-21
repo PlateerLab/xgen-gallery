@@ -41,6 +41,69 @@ const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
     { icon: Building2, label: "제주은행 등 도입", sub: "금융 · 공공 · 커머스" },
 ];
 
+/** 문제 제기 — 도입이 현장에서 멈추는 이유(브로셔 오프너). */
+const CHALLENGES: { q: string; desc: string }[] = [
+    {
+        q: "AI를 도입했지만, 파일럿에서 멈췄나요?",
+        desc: "기술 검증에서 끝나고 실제 업무에 배포되지 못하는 AI 프로젝트가 많습니다.",
+    },
+    {
+        q: "데이터와 시스템이 흩어져 있나요?",
+        desc: "문서·지식·레거시가 분산돼 있어 AI가 조직의 맥락을 이해하지 못합니다.",
+    },
+    {
+        q: "보안·규제 때문에 클라우드 AI를 못 쓰나요?",
+        desc: "데이터 주권·감사·승인 요건 때문에 외부 AI를 도입하기 어렵습니다.",
+    },
+];
+
+/** 숫자로 보는 XGEN — 실측 사실만(미검증 수치 금지). */
+const STATS: { n: string; label: string; sub: string }[] = [
+    { n: "11", label: "오픈소스 라이브러리", sub: "MIT · pip 설치" },
+    { n: "60+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
+    { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
+    { n: "100%", label: "온프레미스 운영", sub: "망분리·데이터 주권" },
+];
+
+/** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
+const HIGHLIGHTS: {
+    tag: string;
+    title: string;
+    desc: string;
+    img: string;
+    alt: string;
+    w: number;
+    h: number;
+}[] = [
+    {
+        tag: "Build",
+        title: "코딩 없이, 드래그로 에이전트를 설계합니다",
+        desc: "캔버스에서 노드를 연결해 LLM 호출·도구 실행·분기를 조합합니다. 복잡한 개발 지식 없이도 업무 흐름을 시각적으로 만들고, 실시간 채팅으로 바로 검증합니다.",
+        img: "/product/agent-builder-canvas.png",
+        alt: "XGEN 에이전트플로우 캔버스 — 노드를 연결해 워크플로우를 시각적으로 설계하는 화면",
+        w: 1600,
+        h: 900,
+    },
+    {
+        tag: "Knowledge",
+        title: "흩어진 지식을 하나의 그래프로 연결합니다",
+        desc: "문서를 온톨로지로 구조화해 같은 대상의 여러 표현을 연결하고, 하이브리드 검색과 리랭킹으로 출처가 분명한 답변을 만듭니다. 정제되지 않은 데이터도 축적하며 품질이 올라갑니다.",
+        img: "/product/screen-ontology.png",
+        alt: "XGEN 온톨로지 — 기업 지식을 그래프로 구조화한 지식 그래프 화면",
+        w: 1898,
+        h: 905,
+    },
+    {
+        tag: "Govern",
+        title: "승인 없이는 배포되지 않도록 통제합니다",
+        desc: "에이전트 생성 시 위험도 평가와 이중 승인으로 걸러내고, 운영 중 이상은 킬 스위치로 즉시 중단합니다. 누가·무엇을·언제 했는지 모두 감사 로그로 남깁니다.",
+        img: "/product/screen-approval.png",
+        alt: "XGEN 배포 승인 결재 — 이중 승인으로 서비스 배포를 통제하는 화면",
+        w: 1904,
+        h: 892,
+    },
+];
+
 /** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
 const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
@@ -459,6 +522,52 @@ export default function ProductPage() {
             <ArchIndex sections={PRODUCT_SECTIONS} />
 
             <main>
+                {/* 문제 제기 — 브로셔 오프너 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            The Challenge
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                            Enterprise AI, 왜 현장에서 멈출까요
+                        </h2>
+                        <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
+                            {CHALLENGES.map((c, i) => (
+                                <div key={c.q}>
+                                    <span className="font-mono text-[15px] font-bold text-[#2f7bff]">
+                                        0{i + 1}
+                                    </span>
+                                    <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                        {c.q}
+                                    </h3>
+                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {c.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* 숫자로 보는 XGEN — 실측 사실 밴드 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
+                        {STATS.map((s) => (
+                            <div key={s.label} className="text-center md:text-left">
+                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
+                                    {s.n}
+                                </p>
+                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {s.label}
+                                </p>
+                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                    {s.sub}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
                 {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
                     id="platform"
@@ -494,6 +603,44 @@ export default function ProductPage() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* 하이라이트 — 대형 스크린샷 + 카피 좌우 교차(브로셔) */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl space-y-20 px-6 py-24 md:space-y-28">
+                        {HIGHLIGHTS.map((h, i) => (
+                            <div
+                                key={h.tag}
+                                className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+                            >
+                                {/* 텍스트 — 짝수 블록은 오른쪽으로 교차 */}
+                                <div className={i % 2 === 1 ? "lg:order-2" : ""}>
+                                    <p className="font-mono text-[12px] uppercase tracking-widest text-[#2461d8]">
+                                        {h.tag}
+                                    </p>
+                                    <h3 className="mt-3 text-[26px] font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                                        {h.title}
+                                    </h3>
+                                    <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {h.desc}
+                                    </p>
+                                </div>
+                                {/* 대형 스크린샷 */}
+                                <div className={i % 2 === 1 ? "lg:order-1" : ""}>
+                                    <div className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
+                                        <Image
+                                            src={h.img}
+                                            alt={h.alt}
+                                            width={h.w}
+                                            height={h.h}
+                                            sizes="(max-width: 1024px) 100vw, 560px"
+                                            className="h-auto w-full"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </section>
 
