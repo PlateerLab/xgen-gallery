@@ -25,6 +25,7 @@ import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE, absoluteUrl } from "@/lib/site";
+import { getAllCases, PRODUCTS, INDUSTRIES } from "@/lib/customers";
 
 export const metadata = pageMetadata({
     title: "XGEN — Enterprise Agentic AI Platform",
@@ -113,6 +114,7 @@ const PRODUCT_SECTIONS = [
     { id: "on-premise", label: "온프레미스" },
     { id: "governance", label: "거버넌스" },
     { id: "certification", label: "인증·품질" },
+    { id: "cases", label: "고객사례" },
     { id: "faq", label: "FAQ" },
 ];
 
@@ -401,6 +403,8 @@ const TECH_LAYERS: {
 ];
 
 export default function ProductPage() {
+    // 최근 고객사례 3건 — /customers 허브와 연계(신뢰 정책: customer 필드가 익명/실명 관리).
+    const recentCases = getAllCases().slice(0, 3);
     return (
         <>
             <SiteNav overlay />
@@ -945,10 +949,73 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* 고객사례 — 최근 3건 + /customers 연계 */}
+                <section
+                    id="cases"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <div className="flex flex-wrap items-end justify-between gap-4">
+                            <div>
+                                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                    Customer Cases
+                                </p>
+                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                    고객 현장에서 검증됩니다
+                                </h2>
+                                <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고
+                                    운영한 고객사례입니다.
+                                </p>
+                            </div>
+                            <Link
+                                href="/customers"
+                                className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            >
+                                전체 고객사례 보기
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                        </div>
+                        <div className="mt-10 grid gap-5 md:grid-cols-3">
+                            {recentCases.map((c) => (
+                                <Link
+                                    key={c.slug}
+                                    href={`/customers/case/${c.slug}`}
+                                    className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                >
+                                    <div className="flex items-center gap-2 text-[12.5px]">
+                                        <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold text-[#2461d8]">
+                                            {PRODUCTS[c.products[0]].name}
+                                        </span>
+                                        <span className="text-[var(--color-ink-subtle)]">
+                                            {INDUSTRIES[c.industry].ko}
+                                        </span>
+                                        <time
+                                            dateTime={c.published}
+                                            className="ml-auto text-[var(--color-ink-subtle)]"
+                                        >
+                                            {c.published.slice(0, 7).replace("-", ".")}
+                                        </time>
+                                    </div>
+                                    <h3 className="mt-3 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                        {c.title}
+                                    </h3>
+                                    <p className="mt-2 line-clamp-2 flex-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {c.summary}
+                                    </p>
+                                    <p className="mt-4 border-t border-[var(--color-line)] pt-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
+                                        {c.customer}
+                                    </p>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* FAQ */}
                 <section
                     id="faq"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-4xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
