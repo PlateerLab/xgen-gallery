@@ -40,6 +40,7 @@ const PRODUCT_SECTIONS = [
     { id: "on-premise", label: "온프레미스" },
     { id: "governance", label: "거버넌스" },
     { id: "certification", label: "인증·품질" },
+    { id: "faq", label: "FAQ" },
 ];
 
 /** 제품 개요 4축 — 파일럿을 넘어 실제 업무에 배포되는 기업용 AI의 근거. */
@@ -676,7 +677,10 @@ export default function ProductPage() {
                 </section>
 
                 {/* FAQ */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section
+                    id="faq"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
                     <div className="mx-auto max-w-4xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             FAQ
