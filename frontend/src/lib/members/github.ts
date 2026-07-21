@@ -745,6 +745,21 @@ async function tryApiMembers(path: string): Promise<string[]> {
     }
 }
 
+/**
+ * 로스터 제외 목록(denylist) — 연구원이 아닌 노이즈/봇/테스트 org 멤버.
+ * /members·사이트맵 등 모든 노출 지점은 discoverMemberLogins()를 거치므로 여기서
+ * 한 번만 걸러도 전역 적용된다. E-E-A-T를 위해 실제 연구원만 노출한다.
+ * 로그인은 소문자로 비교(대소문자 무관). 편집자가 목록을 관리한다.
+ */
+const MEMBER_EXCLUDE = new Set<string>([
+    "createyouracccount",
+    "mumberrymountain",
+]);
+
+function keepMember(login: string): boolean {
+    return !MEMBER_EXCLUDE.has(login.toLowerCase());
+}
+
 async function discoverMemberLogins(): Promise<{
     logins: string[];
     via: string;
@@ -756,7 +771,7 @@ async function discoverMemberLogins(): Promise<{
             `/orgs/${ORG}/members?per_page=100`,
         );
         if (fromApi.length > 0) {
-            return { logins: fromApi, via: "orgs/members" };
+            return { logins: fromApi.filter(keepMember), via: "orgs/members" };
         }
     }
     // 2) Public members fallback (anonymous-safe). Will be empty if every
@@ -764,7 +779,7 @@ async function discoverMemberLogins(): Promise<{
     const fromPublic = await tryApiMembers(
         `/orgs/${ORG}/public_members?per_page=100`,
     );
-    return { logins: fromPublic, via: "orgs/public_members" };
+    return { logins: fromPublic.filter(keepMember), via: "orgs/public_members" };
 }
 
 /**
