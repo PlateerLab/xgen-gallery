@@ -11,6 +11,7 @@ import {
     ShieldCheck,
     BadgeCheck,
     Building2,
+    FileText,
     ChevronRight,
     ArrowRight,
     Download,
@@ -311,6 +312,13 @@ const DEPLOY_STEPS: { no: string; title: string; desc: string }[] = [
     },
 ];
 const DEPLOY_CHIPS = ["온프레미스", "망분리 · Air-gap", "GPU 서빙", "k3s", "ArgoCD · GitOps"];
+
+/** 개발자·도입 담당자용 리소스 스트립. */
+const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }[] = [
+    { icon: FileText, title: "Documentation", desc: "설치·구성·API 문서와 가이드", href: "/documentation" },
+    { icon: Rocket, title: "Release Notes", desc: "버전별 신규 기능·변경 이력", href: "/releases" },
+    { icon: Download, title: "XGEN 소개서", desc: "제품 개요·아키텍처 자료", href: "/resources" },
+];
 
 /** FAQ — GEO용 FAQPage JSON-LD와 화면 공용. */
 const FAQ: { q: string; a: string }[] = [
@@ -1139,6 +1147,40 @@ export default function ProductPage() {
                                         {f.a}
                                     </p>
                                 </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-16">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Resources
+                        </p>
+                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                            개발자·도입 담당자를 위한 자료
+                        </h2>
+                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                            {RESOURCES.map((r) => (
+                                <Link
+                                    key={r.title}
+                                    href={r.href}
+                                    className="group flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                >
+                                    <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                        <r.icon className="h-5 w-5" />
+                                    </span>
+                                    <span className="min-w-0 flex-1">
+                                        <span className="block text-[16px] font-bold tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                            {r.title}
+                                        </span>
+                                        <span className="mt-0.5 block text-[13.5px] text-[var(--color-ink-muted)]">
+                                            {r.desc}
+                                        </span>
+                                    </span>
+                                    <ArrowRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2461d8]" />
+                                </Link>
                             ))}
                         </div>
                     </div>
