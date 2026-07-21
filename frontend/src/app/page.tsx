@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import { LLMMarquee } from "@/components/llm-marquee";
 import { HomePositioning } from "@/components/home-positioning";
 import { HomeResearch } from "@/components/home-research";
+import { HomeOpenSource } from "@/components/home-open-source";
 import { HomeTechnology } from "@/components/home-technology";
 import { UseCases } from "@/components/usecases";
 import { HomeIndustries } from "@/components/home-industries";
@@ -49,6 +50,7 @@ export default function Home() {
                 <LLMMarquee />
                 <HomePositioning />
                 <HomeResearch />
+                <HomeOpenSource />
                 <HomeTechnology />
                 <UseCases />
                 <HomeIndustries />
