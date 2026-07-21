@@ -2,7 +2,9 @@
 title: "설정을 바꿔도 결과가 같으면 결함입니다"
 description: "GS인증 3차 결함 36건의 다수는 에이전트 노드 옵션이었습니다. 고장난 옵션 수리, 보이지 않는 옵션의 가시화, 숫자 파라미터 전수 점검 과정을 정리합니다."
 date: "2026-07-24"
+cover: /blog/gs-cert-journey-4-observable-options.svg
 author: "유지수"
+authorGithub: master0419
 category: "Tech Note"
 tags: ["GS인증", "에이전트 노드", "관찰 가능성", "파라미터 검증", "XGEN"]
 draft: false

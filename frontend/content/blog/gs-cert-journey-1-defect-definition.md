@@ -2,7 +2,9 @@
 title: "GS인증 결함리포트 80건에서 결함의 정의를 다시 배웠습니다"
 description: "GS인증 시험 3주간 결함 80건을 받았지만 실제 코드 버그는 절반이 되지 않았습니다. 나머지는 사용자가 확인할 수 없거나 설명되지 않은 동작이었습니다."
 date: "2026-07-21"
+cover: /blog/gs-cert-journey-1-defect-definition.svg
 author: "유지수"
+authorGithub: master0419
 category: "Tech Note"
 tags: ["GS인증", "품질", "XGEN", "소프트웨어 시험", "결함리포트"]
 draft: false

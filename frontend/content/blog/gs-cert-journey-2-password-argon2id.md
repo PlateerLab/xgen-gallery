@@ -2,7 +2,9 @@
 title: "운영 중인 시스템의 비밀번호 해시를 argon2id로 바꾼 과정"
 description: "GS인증 보안성 결함 대응으로 솔트 없는 SHA-256 비밀번호 저장을 argon2id로 전면 교체했습니다. 로그인 중단 없이 기존 사용자까지 전환한 설계를 정리합니다."
 date: "2026-07-22"
+cover: /blog/gs-cert-journey-2-password-argon2id.svg
 author: "유지수"
+authorGithub: master0419
 category: "Tech Note"
 tags: ["GS인증", "보안", "argon2id", "비밀번호 해시", "HSTS", "로그인 잠금"]
 draft: false
