@@ -344,20 +344,6 @@ export default function ProductPage() {
                                 플랫폼 살펴보기
                             </a>
                         </div>
-                        <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2 font-mono text-[12.5px] text-white/45">
-                            <span>
-                                <b className="font-semibold text-white/85">온프레미스</b>{" "}
-                                &amp; 클라우드
-                            </span>
-                            <span>
-                                <b className="font-semibold text-white/85">RBAC · ABAC</b>{" "}
-                                접근 제어
-                            </span>
-                            <span>
-                                <b className="font-semibold text-white/85">자연어</b> 기반
-                                자동화
-                            </span>
-                        </div>
                     </div>
 
                     {/* 키비주얼 — 움직이는 에이전트플로우 캔버스(살짝 우측으로) */}
