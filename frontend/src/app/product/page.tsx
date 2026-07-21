@@ -308,20 +308,8 @@ export default function ProductPage() {
                 ]}
             />
 
-            {/* Hero — 다크 배경 + Agentic AI 노드 네트워크 일러스트(풀블리드) */}
+            {/* Hero — 다크 배경 + 움직이는 에이전트플로우 캔버스 */}
             <section className="relative overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/product/hero-bg.svg"
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-                />
-                {/* 좌측 가독성 페이드 */}
-                <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-r from-[#070b1c] via-[#070b1c]/75 to-transparent"
-                />
                 <div className="relative mx-auto grid min-h-[540px] w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr]">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
@@ -372,8 +360,8 @@ export default function ProductPage() {
                         </div>
                     </div>
 
-                    {/* 키비주얼 — 움직이는 에이전트플로우 캔버스 */}
-                    <div className="w-full">
+                    {/* 키비주얼 — 움직이는 에이전트플로우 캔버스(살짝 우측으로) */}
+                    <div className="w-full lg:translate-x-4">
                         <AgentflowCanvas />
                     </div>
                 </div>
