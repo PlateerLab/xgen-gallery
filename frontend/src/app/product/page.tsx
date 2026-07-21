@@ -320,9 +320,9 @@ export default function ProductPage() {
                             <span className="text-[#7dd3fc]">
                                 설계하고,
                                 <br />
-                                운영하고, 통제
+                                운영하며, 신뢰를 완성
                             </span>
-                            하는 하나의 플랫폼
+                            하는 플랫폼
                         </h1>
                         <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
                             XGEN은 맞춤형 AI 서비스의 설계부터 구축·운영·관리까지 통합
