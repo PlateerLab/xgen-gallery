@@ -89,7 +89,7 @@ function DropdownItem({
                 </Link>
             )}
             {item.note && (
-                <p className="px-3 pb-1 pt-0.5 text-[13.5px] leading-snug text-[var(--color-ink-subtle)]">
+                <p className="px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)]">
                     {item.note}
                 </p>
             )}
@@ -453,7 +453,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                                         </Link>
                                                     )}
                                                     {it.note && (
-                                                        <p className="py-1.5 text-[15px] text-[var(--color-ink-subtle)]">
+                                                        <p className="py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)]">
                                                             {it.note}
                                                         </p>
                                                     )}
