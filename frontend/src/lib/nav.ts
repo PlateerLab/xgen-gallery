@@ -394,10 +394,11 @@ export const NAV_GROUPS: NavGroup[] = [
                 blurb: "XGEN 소개서 등 다운로드 자료를 제공합니다.",
             },
             {
-                label: "Lab Members",
+                // 블로그(Insight) 메뉴 안 기여자 링크 — 영문 "Contributors"로 표기.
+                label: "Contributors",
                 id: "lab-members",
                 route: "/members",
-                blurb: "Plateer Labs를 만드는 멤버들을 소개합니다.",
+                blurb: "Plateer Labs를 만드는 기여자들을 소개합니다.",
             },
         ],
     },
