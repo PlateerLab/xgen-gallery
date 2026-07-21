@@ -34,6 +34,27 @@ export const PUB_MEMBERS: Record<string, string> = {
 };
 
 export const PUBLICATIONS: Publication[] = [
+    // ── 음성·감정 인식 (Speech Emotion / Voice Conversion) ───────────────────
+    {
+        title: "Using Speaker-Specific Emotion Representations in Wav2vec 2.0-Based Modules for Speech Emotion Recognition",
+        authors: "Somin Park, Mpabulungi Mark, Bogyung Park, Hyunki Hong",
+        memberLogins: [],
+        venue: "Comput. Mater. Contin., vol. 77, no. 1, pp. 1009–1030",
+        year: 2023,
+        type: "국제 논문지",
+        grade: "SCIE",
+        category: "core",
+    },
+    {
+        title: "RawNet3 화자 표현을 활용한 임의의 화자 간 음성 변환을 위한 StarGAN의 확장",
+        authors: "박보경, 박소민, 홍현기",
+        memberLogins: [],
+        venue: "정보처리학회 논문지 12(7), 303–314",
+        year: 2023,
+        type: "국내 논문지",
+        grade: "KCI",
+        category: "core",
+    },
     // ── 장하렴 · 유지수 (AI · 데이터 인텔리전스) ─────────────────────────────
     {
         title: "FedKDA: The Decentralized Federated Learning Methods Using Knowledge Distillation and Aggregation in Graph",
