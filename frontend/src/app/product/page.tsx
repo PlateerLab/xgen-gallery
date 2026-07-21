@@ -866,6 +866,15 @@ export default function ProductPage() {
                                 </div>
                             ))}
                         </div>
+
+                        {/* 심화 — 보안·거버넌스 전용 페이지로 연결(이중화 해소) */}
+                        <Link
+                            href="/security-and-governance"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            보안·거버넌스 아키텍처 자세히 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
                     </div>
                 </section>
 

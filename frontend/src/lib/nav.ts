@@ -274,23 +274,18 @@ export const NAV_GROUPS: NavGroup[] = [
                 label: "XGEN (Agentic AI Platform)",
                 id: "xgen",
                 route: "/product",
+                // GNB 하위는 /product 페이지 섹션 구조와 정렬한다(B2B 온프레미스 결정요인
+                // 핵심기술·온프레미스를 메뉴에 노출). 심화 보안 페이지는 /product#on-premise의
+                // "자세히 보기"로 연결한다.
                 children: [
                     { label: "Why XGEN", labelKo: "제품 개요", id: "why-xgen", route: "/product" },
-                    {
-                        // 핵심기능 — Agent Builder·ModelOps·관리 센터를 한 메뉴로 묶어 /product#features로
-                        // 연결한다(요청: GNB 드롭다운에는 하위 항목을 노출하지 않음). 세부는 /product 페이지에서.
-                        label: "Features",
-                        labelKo: "핵심기능",
-                        id: "features",
-                        route: "/product#features",
-                    },
-                    { label: "Security & Governance", labelKo: "보안·거버넌스", id: "security", route: "/security-and-governance" },
+                    { label: "Features", labelKo: "핵심 기능", id: "features", route: "/product#features" },
+                    { label: "Core Technology", labelKo: "핵심 기술", id: "core-tech", route: "/product#core-tech" },
+                    { label: "On-Premise & Security", labelKo: "온프레미스·보안", id: "on-premise", route: "/product#on-premise" },
                     { label: "Certifications & Quality", labelKo: "인증·품질", id: "certification", route: "/product#certification" },
+                    { label: "Customer Cases", labelKo: "고객사례", id: "xgen-cases", route: "/product#cases" },
                     { label: "Documentation", id: "documentation", route: "/documentation" },
                     { label: "Release Notes", id: "releases", route: "/releases" },
-                    // 활용 사례 — 고객사례 허브의 XGEN 필터로 연계(/customers?product=xgen).
-                    // CA/Polar와 동일하게 "활용 사례" 라벨로 통일.
-                    { label: "Use Cases", labelKo: "활용 사례", id: "xgen-use-cases", route: "/customers?product=xgen" },
                 ],
             },
             {
