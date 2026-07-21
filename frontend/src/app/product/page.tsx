@@ -152,13 +152,6 @@ const SCREENS: { img: string; alt: string; caption: string; w: number; h: number
         w: 1600,
         h: 900,
     },
-    {
-        img: "/product/dashboard.png",
-        alt: "XGEN 운영 대시보드 — 자주 찾는 Agent·인기 템플릿·에이전트플로우 현황·최근 장애/오류·평가 지표를 한 화면에서 점검하는 System Operations & Deployment Dashboard",
-        caption: "운영 대시보드",
-        w: 1616,
-        h: 998,
-    },
 ];
 
 /** 온프레미스 보안 3원칙 — 유출 차단·접근 세분화·제로 트레이닝. (구 xgen.im On-premise) */
@@ -414,8 +407,11 @@ export default function ProductPage() {
                         </p>
                         <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
                             {PILLARS.map((p) => (
-                                <div key={p.no} className="bg-white p-7">
-                                    <span className="font-mono text-[13px] font-bold tracking-widest text-[#2f7bff]">
+                                <div
+                                    key={p.no}
+                                    className="group relative bg-white p-7 transition hover:bg-[var(--color-surface-alt)]"
+                                >
+                                    <span className="block bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[34px] font-extrabold leading-none text-transparent">
                                         {p.no}
                                     </span>
                                     <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
@@ -486,7 +482,7 @@ export default function ProductPage() {
                             <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
                                 실제 제품 화면
                             </p>
-                            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                            <div className="mt-5 grid gap-5 md:grid-cols-3">
                                 {SCREENS.map((s) => (
                                     <figure
                                         key={s.img}
@@ -647,21 +643,32 @@ export default function ProductPage() {
                     </div>
                 </section>
 
-                {/* Governance — Enterprise Trust (통제·승인·감사) */}
+                {/* Governance — Enterprise Trust (다크 밴드: 신뢰의 포컬 포인트) */}
                 <section
                     id="governance"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="relative scroll-mt-[140px] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    {/* 배경 글로우 — 다크 밴드에 깊이감 */}
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/15 blur-[130px]"
+                    />
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                    />
+                    <div className="relative mx-auto max-w-6xl px-6 py-24">
                         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                             <div>
-                                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
                                     Enterprise Trust
                                 </p>
-                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-[34px] md:leading-[1.15]">
-                                    신뢰할 수 없는 AI는 기업에서 운영될 수 없습니다
+                                <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
+                                    신뢰할 수 없는 AI는
+                                    <br />
+                                    기업에서 운영될 수 없습니다
                                 </h2>
-                                <p className="mt-4 max-w-md text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                <p className="mt-5 max-w-md text-[16px] leading-relaxed text-white/65">
                                     XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을
                                     추적하고, 위험한 변경은 배포 전에 검증하며, 승인된
                                     에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제
@@ -673,15 +680,15 @@ export default function ProductPage() {
                                 {GOV.map((g) => (
                                     <div
                                         key={g.title}
-                                        className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6"
+                                        className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/40 hover:bg-white/[0.07]"
                                     >
                                         <div className="flex items-center gap-2.5">
-                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#2f7bff]" />
-                                            <h3 className="text-[15.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
+                                            <h3 className="text-[15.5px] font-bold tracking-tight text-white">
                                                 {g.title}
                                             </h3>
                                         </div>
-                                        <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        <p className="mt-2.5 text-[14px] leading-relaxed text-white/60">
                                             {g.desc}
                                         </p>
                                     </div>
