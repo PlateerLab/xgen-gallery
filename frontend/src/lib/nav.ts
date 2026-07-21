@@ -103,7 +103,6 @@ export const NAV_GROUPS: NavGroup[] = [
         hidden: true,
         items: [
             { label: "Research Areas", id: "research-areas" },
-            { label: "Papers", id: "papers" },
             { label: "Publications", id: "publications" },
         ],
     },
@@ -115,14 +114,18 @@ export const NAV_GROUPS: NavGroup[] = [
         wide: true,
         items: [
             {
-                // Research 영역 — 첫 열. 세부는 /research 원페이지 섹션으로 연결.
+                // Research 영역 — 첫 열. /research 원페이지의 실제 하위 섹션(스크롤스파이
+                // 앵커: challenges/fields/cases/methodology)을 그대로 끌어올려 다른 열과
+                // 항목 수 밸런스를 맞춘다. 헤더 "Research"는 /research 개요로 링크.
                 label: "Research",
                 id: "research",
                 route: "/research",
                 children: [
-                    { label: "Research Areas", id: "research-areas", route: "/research#research-areas" },
-                    { label: "Papers", id: "papers", route: "/research#papers" },
-                    { label: "Publications", id: "publications", route: "/research#publications" },
+                    { label: "Core Challenges", labelKo: "핵심 연구 과제", id: "challenges", route: "/research#challenges" },
+                    { label: "Research Fields", labelKo: "핵심 연구 분야", id: "fields", route: "/research#fields" },
+                    { label: "Applied Research", labelKo: "실증 연구 사례", id: "cases", route: "/research#cases" },
+                    { label: "Methodology", labelKo: "연구 방법론", id: "methodology", route: "/research#methodology" },
+                    { label: "Publications", labelKo: "논문·발표", id: "publications", route: "/research#publications" },
                 ],
             },
             {

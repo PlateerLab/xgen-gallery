@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/metadata";
 import { GroupPage } from "@/components/onepage";
-import { ResearchContent, PapersContent } from "@/components/research-content";
+import { ResearchContent } from "@/components/research-content";
+import { PublicationsContent } from "@/components/publications-content";
 import { getGroup } from "@/lib/nav";
 
 export const metadata = pageMetadata({
@@ -33,7 +34,7 @@ export default function ResearchPage() {
             hero={<ResearchHero />}
             content={{
                 "research-areas": <ResearchContent />,
-                papers: <PapersContent />,
+                publications: <PublicationsContent />,
             }}
         />
     );
