@@ -147,7 +147,7 @@ export function HomeOpenSource() {
                 <div className="mt-8">
                     <Link
                         href="/library-gallery"
-                        className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-6 py-3 text-[15px] font-semibold text-white transition hover:opacity-90"
+                        className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                     >
                         {TOOLS.length}개 라이브러리 전체 보기 · 갤러리에서 바로 실행
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
