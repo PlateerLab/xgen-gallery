@@ -28,6 +28,9 @@ const NAV = [
     { id: "fields", label: "핵심 연구 분야" },
     { id: "cases", label: "실증 연구 사례" },
     { id: "methodology", label: "검증 가능한 AI를 위한 연구 방법론" },
+    // 구성원들의 연구 성과(Publications) — /research 원페이지의 별도 섹션(id="publications")
+    // 으로 점프. 스크롤스파이 옵저버는 id로 전역 조회하므로 다른 섹션도 관찰된다.
+    { id: "publications", label: "구성원들의 연구 성과" },
 ];
 
 type ArtKind = "trust" | "sovereignty" | "composable";
