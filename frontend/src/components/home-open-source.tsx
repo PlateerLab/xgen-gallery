@@ -24,11 +24,17 @@ const CAT_STYLE: Record<ToolCategory, string> = {
 
 const CAT_ORDER: ToolCategory[] = ["ingestion", "knowledge", "agent", "utility"];
 
+// 홈에는 전체를 나열하지 않고 카테고리별 대표 라이브러리 3종만 앞세운다(전체는 갤러리에서).
+const FEATURED_IDS = ["contextifier", "synaptic-memory", "xgen-harness"];
+
 export function HomeOpenSource() {
     const catCount = CAT_ORDER.map((c) => ({
         c,
         n: TOOLS.filter((t) => t.category === c).length,
     })).filter((x) => x.n > 0);
+    const featured = FEATURED_IDS.flatMap((id) =>
+        TOOLS.filter((t) => t.id === id),
+    );
 
     const stats: { k: string; v: string }[] = [
         { k: "오픈소스 라이브러리", v: `${TOOLS.length}종` },
@@ -88,9 +94,22 @@ export function HomeOpenSource() {
                     ))}
                 </dl>
 
-                {/* 라이브러리 카드 그리드 — 각 카드는 갤러리 상세(/tool/<id>)로 */}
-                <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {TOOLS.map((t) => (
+                {/* 카테고리 분포 — 전체를 나열하지 않고 영역별 개수로 폭을 전달 */}
+                <div className="mt-6 flex flex-wrap items-center gap-2">
+                    {catCount.map((x) => (
+                        <span
+                            key={x.c}
+                            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[13px] font-semibold ${CAT_STYLE[x.c]}`}
+                        >
+                            {CAT_LABEL[x.c]}
+                            <span className="opacity-70">{x.n}</span>
+                        </span>
+                    ))}
+                </div>
+
+                {/* 대표 라이브러리 3종 — 전체는 갤러리에서. 각 카드는 상세(/tool/<id>)로 */}
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {featured.map((t) => (
                         <Link
                             key={t.id}
                             href={`/tool/${t.id}`}
@@ -130,7 +149,7 @@ export function HomeOpenSource() {
                         href="/library-gallery"
                         className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-6 py-3 text-[15px] font-semibold text-white transition hover:opacity-90"
                     >
-                        오픈소스 갤러리에서 바로 실행해보기
+                        {TOOLS.length}개 라이브러리 전체 보기 · 갤러리에서 바로 실행
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </Link>
                 </div>

@@ -54,15 +54,15 @@ export default async function CustomersPage({
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                        Applied AI · 고객사례
+                        Applied AI · 고객 사례
                     </p>
                     <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        업무에 적용해 운영 중인 Enterprise AI
+                        Enterprise AI는 실제 업무에서 검증됩니다
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        XGEN과 AI Code Assistant를 금융·커머스·공공·IT/제조 현장에
-                        실제로 구축하고 운영한 고객사례입니다. 제품과 산업으로 필터해
-                        확인하세요.
+                        XGEN과 AI Code Assistant를 금융, 커머스, 공공, IT·제조 등
+                        다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과
+                        산업별로 원하는 사례를 찾아보세요.
                     </p>
                 </div>
             </section>

@@ -88,11 +88,20 @@ function DropdownItem({
                     {navLabel(item, locale)}
                 </Link>
             )}
-            {item.note && (
-                <p className="px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)]">
-                    {item.note}
-                </p>
-            )}
+            {item.note &&
+                (item.route ? (
+                    <Link
+                        href={item.route}
+                        onClick={onClose}
+                        className="block px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]"
+                    >
+                        {item.note}
+                    </Link>
+                ) : (
+                    <p className="px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)]">
+                        {item.note}
+                    </p>
+                ))}
             {children.length > 0 && (
                 <div className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
                     {children.map((c) =>
@@ -452,11 +461,20 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                                             {navLabel(it, locale)}
                                                         </Link>
                                                     )}
-                                                    {it.note && (
-                                                        <p className="py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)]">
-                                                            {it.note}
-                                                        </p>
-                                                    )}
+                                                    {it.note &&
+                                                        (it.route ? (
+                                                            <Link
+                                                                href={it.route}
+                                                                onClick={close}
+                                                                className="block py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+                                                            >
+                                                                {it.note}
+                                                            </Link>
+                                                        ) : (
+                                                            <p className="py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)]">
+                                                                {it.note}
+                                                            </p>
+                                                        ))}
                                                     {it.children?.some((c) => !c.hidden) && (
                                                         <div className="ml-3 border-l border-[var(--color-line)] pl-3">
                                                             {it.children.filter((c) => !c.hidden).map(
