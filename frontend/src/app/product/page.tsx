@@ -403,8 +403,10 @@ const TECH_LAYERS: {
 ];
 
 export default function ProductPage() {
-    // 최근 고객사례 3건 — /customers 허브와 연계(신뢰 정책: customer 필드가 익명/실명 관리).
-    const recentCases = getAllCases().slice(0, 3);
+    // 최근 XGEN 고객사례 3건 — /customers 허브와 연계(신뢰 정책: customer 필드가 익명/실명 관리).
+    const recentCases = getAllCases()
+        .filter((c) => c.products.includes("xgen"))
+        .slice(0, 3);
     return (
         <>
             <SiteNav overlay />
@@ -969,10 +971,10 @@ export default function ProductPage() {
                                 </p>
                             </div>
                             <Link
-                                href="/customers"
+                                href="/customers?product=xgen"
                                 className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                             >
-                                전체 고객사례 보기
+                                XGEN 고객사례 전체 보기
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                         </div>
