@@ -20,8 +20,10 @@ function ResearchHero() {
             <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
                 Research that makes Enterprise AI real
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/70">
-                기업 환경의 AI 도입은 더 이상 모델 성능만으로 결정되지 않습니다
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
+                기업 환경에서 AI의 성공은 모델이 아니라 운영 구조에서 결정됩니다.
+                플래티어랩은 Agentic AI, Knowledge Graph, MCP, AgenticOps를 연구하고,
+                제품과 고객 현장까지 연결합니다.
             </p>
         </div>
     );
