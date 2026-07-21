@@ -1,19 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-    FileText,
     Workflow,
-    Gauge,
+    Database,
     Cable,
-    Network,
-    RefreshCw,
-    Blocks,
-    Cog,
+    Rocket,
     LayoutDashboard,
     Lock,
     UserCheck,
     ShieldCheck,
-    Check,
     ChevronRight,
     ArrowRight,
     Download,
@@ -30,115 +25,108 @@ import { SITE, absoluteUrl } from "@/lib/site";
 export const metadata = pageMetadata({
     title: "XGEN — Enterprise Agentic AI Platform",
     description:
-        "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 학습·생성·배포·모니터링하는 온프레미스 Enterprise AI 플랫폼입니다. Agent Builder·ModelOps·통합 관리 센터로 코딩 없이 에이전트를 만들고 안전하게 운영합니다.",
+        "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼입니다. 에이전트플로우 캔버스·지식(RAG)·도구(MCP)·거버넌스로 코딩 없이 에이전트를 만들고 안전하게 운영합니다.",
     path: "/product",
 });
 
-/** 통합 플랫폼 3축 — 학습 → 생성 → 평가. (구 xgen.im All-in-one) */
-const PLATFORM: { icon: LucideIcon; en: string; ko: string; desc: string }[] = [
+/** 제품 개요 4축 — 파일럿을 넘어 실제 업무에 배포되는 기업용 AI의 근거. */
+const PILLARS: { no: string; title: string; desc: string }[] = [
     {
-        icon: FileText,
-        en: "Intelligent Learning",
-        ko: "똑똑한 학습",
-        desc: "PDF, Word, 이미지 등 여러 문서 형식을 자동으로 구분하고 OCR·Table Parsing·사용자 정의 함수를 적용해 빠르게 처리하고 학습합니다.",
+        no: "01",
+        title: "Agent 기반 서비스 구성",
+        desc: "목적에 맞는 Agent를 생성·조합하고, Prompt·Workflow로 업무를 연결합니다. 다중 Agent 협업까지 지원합니다.",
     },
     {
-        icon: Workflow,
-        en: "Understanding-Based Action",
-        ko: "이해기반 액션",
-        desc: "어떤 질문이든 AI가 의미를 이해해 회사 안의 데이터·문서·시스템을 자동으로 연결하고 실행합니다.",
+        no: "02",
+        title: "기업 환경 최적화 운영",
+        desc: "역할 기반 접근 제어, 배포 승인, 감사 로그, 조직 기반 권한 체계로 안전한 운영 구조를 갖춥니다.",
     },
     {
-        icon: Gauge,
-        en: "Continuous Evaluation",
-        ko: "지속적인 평가",
-        desc: "지속적인 자동 평가로 정확도를 높이고, 새로운 모델과 최신 방법론을 반영해 언제나 최적의 성능을 유지합니다.",
-    },
-];
-
-/** 능동형 에이전트 — 자율 도구 호출·지식 통합·자가 복구. (구 xgen.im Autonomous) */
-const AUTONOMOUS: { icon: LucideIcon; en: string; ko: string; desc: string }[] = [
-    {
-        icon: Cable,
-        en: "Autonomous Tool Call",
-        ko: "자율 도구 호출",
-        desc: "필요에 따라 ERP·CRM 등 기업 소프트웨어에 직접 연결해 능동적으로 문제를 해결하고 개선을 제안·조치합니다.",
+        no: "03",
+        title: "자연어 업무 자동화",
+        desc: "문서 요약·데이터 질의·절차 자동화·지식 검색을 자연어로 실행합니다. 반복 업무를 위임합니다.",
     },
     {
-        icon: Network,
-        en: "Contextual Knowledge Integration",
-        ko: "맥락 지식 통합",
-        desc: "단순 검색(RAG)을 넘어 온톨로지 기반으로 산재된 기업 데이터를 조직의 자산으로 전환합니다.",
-    },
-    {
-        icon: RefreshCw,
-        en: "Self-Healing Workflows",
-        ko: "자가 복구 워크플로우",
-        desc: "예외 상황을 논리적 추론으로 분석·해결해 끊김 없는 운영 환경을 유지합니다.",
+        no: "04",
+        title: "모델·시스템 유연 연동",
+        desc: "다양한 LLM, API 기반 시스템, 사내 데이터, RAG, Tool·Function을 유연하게 연결합니다.",
     },
 ];
 
-/** 핵심 기능 3종 — 각 앵커(id)는 GNB 드롭다운 하위 메뉴 타깃. Phase 2에서 전용 페이지로 확장 예정. */
+/** 핵심 기능 6종 — 만들기 → 배포 → 통제로 이어지는 하나의 파이프라인. */
 const FEATURES: {
-    id: string;
     icon: LucideIcon;
-    en: string;
+    tag: string;
     ko: string;
-    headline: string;
+    desc: string;
     items: string[];
-    img: string;
-    imgAlt: string;
-    imgW: number;
-    imgH: number;
 }[] = [
     {
-        id: "agent-builder",
-        icon: Blocks,
-        en: "Agent Builder",
-        ko: "에이전트 빌더",
-        headline: "AX에 필요한 모든 것을 한 플랫폼에서",
-        items: [
-            "RAG·지식 관리 — 임베딩 유사도 검색과 그래프 기반 의미 검색을 결합해 문서 맥락을 유지한 응답을 제공",
-            "Visual Workflow Canvas — 드래그앤드롭·Tool Call·실시간 실행/디버깅으로 빠른 반복 작업",
-            "Real-time AI Chat — 대화로 워크플로우를 검증하고 템플릿으로 즉시 시작",
-        ],
-        img: "/product/agent-builder-canvas.png",
-        imgAlt: "XGEN Agent Builder의 Visual Workflow Canvas — '이커머스 법률챗'(GPT-5.2) 워크플로우: 사용자 질문 입력 → Agent(OpenAI GPT-5.2) → AI 답변 출력, 이커머스 지식 컬렉션 기반 정보 검색 노드 연결",
-        imgW: 1600,
-        imgH: 900,
+        icon: Workflow,
+        tag: "Agentflow · Canvas",
+        ko: "에이전트플로우 설계",
+        desc: "캔버스에서 노드를 드래그&드롭으로 연결해 AI 업무 흐름을 시각적으로 설계합니다. 코딩 없이 LLM 호출·도구 실행·분기를 조합합니다.",
+        items: ["노드 기반 시각 편집", "다중 Agent 협업 구성", "버전 관리 · 실행 로그"],
     },
     {
-        id: "modelops",
-        icon: Cog,
-        en: "ModelOps",
-        ko: "모델 운영",
-        headline: "지속 가능한 운영을 실현하는 ModelOps",
-        items: [
-            "표준화 프레임워크 — 커스텀 ML 모델까지 설계 → 학습 → 관리를 표준 절차로 제공",
-            "검증·배포 — 반영 전 단계별 승인·검증 절차, API 배포와 워크플로우 연계 배포 모두 지원",
-            "파이프라인 자동화와 품질 보증으로 안전한 AI 운영을 보장",
-        ],
-        img: "/product/modelops-catalog.png",
-        imgAlt: "XGEN ModelOps의 LLM 모델 카탈로그 — OpenAI·Anthropic·Google 등 멀티 프로바이더 모델을 활성화하고 워크플로우 사용 현황을 관리하는 화면",
-        imgW: 1600,
-        imgH: 900,
+        icon: Database,
+        tag: "Knowledge · RAG",
+        ko: "지식 관리와 검색",
+        desc: "문서를 컬렉션에 올리면 청크·임베딩을 거쳐 벡터 검색이 가능해집니다. 리랭커와 온톨로지로 정확도를 높이고, 응답에 출처(인용)를 함께 제시합니다.",
+        items: ["컬렉션 · 파일 저장소 · DB 연동", "벡터 DB · 리랭커 · 온톨로지", "인용 기반 응답 생성"],
     },
     {
-        id: "manage",
+        icon: Cable,
+        tag: "Tools · MCP",
+        ko: "도구 연동과 확장",
+        desc: "외부 API·함수를 Agent가 호출하는 도구로 등록하고, MCP 표준으로 모델과 외부 도구를 연결합니다. 인증 프로필로 키·토큰을 안전하게 관리합니다.",
+        items: ["API 도구 등록 · 호출", "MCP 표준 연동", "인증 프로필 중앙 관리"],
+    },
+    {
+        icon: Rocket,
+        tag: "Deploy · Operate",
+        ko: "배포와 운영",
+        desc: "설계한 에이전트플로우를 사용자·외부 시스템이 호출할 수 있도록 배포합니다. 임베드 코드로 외부 웹에 삽입하고, 스케줄로 자동 실행합니다.",
+        items: ["배포 · 임베드 · 공유", "스케줄 자동 실행 (Cron)", "버전 · 배포 상태 관리"],
+    },
+    {
+        icon: ShieldCheck,
+        tag: "AI Governance",
+        ko: "AI 거버넌스",
+        desc: "PII 마스킹, 위험 등급, 통제 정책으로 AI 사용을 관리합니다. 배포·거버넌스 이중 승인과 정기 점검, 감사 로그로 통제 요건을 충족합니다.",
+        items: ["PII 마스킹 · 위험 등급", "이중 승인 · 정기 점검", "변경 이력 · 감사 로그"],
+    },
+    {
         icon: LayoutDashboard,
-        en: "Smart Management Center",
-        ko: "통합 관리 센터",
-        headline: "개발과 운영을 아우르는 통합 관리",
-        items: [
-            "권한 관리 — 조직 단위 접근 권한을 역할·속성 기반(RBAC·ABAC)으로 제어",
-            "모델 환경 설정 — LLM·데이터베이스·벡터 DB 등 시스템 구성 요소를 상세 설정",
-            "시스템 모니터링 — CPU·GPU·메모리·네트워크 사용률 추이를 대시보드로 한눈에",
-            "데이터 관리·보안 — DB 상태 점검·최적화, PII 탐지·암호화·키 관리",
-        ],
+        tag: "Dashboard",
+        ko: "대시보드 · 모니터링",
+        desc: "역할별로 구성된 위젯으로 현황과 통계를 한눈에 봅니다. 실행 이력, 토큰 사용량, 시스템 상태를 관리자 관점에서 모니터링합니다.",
+        items: ["역할별 위젯 대시보드", "실행 이력 · 토큰 사용량", "시스템 상태 모니터링"],
+    },
+];
+
+/** 실제 제품 화면 — 핵심 기능 하단 쇼케이스(구 xgen.im 제품 UI). */
+const SCREENS: { img: string; alt: string; caption: string; w: number; h: number }[] = [
+    {
+        img: "/product/agent-builder-canvas.png",
+        alt: "XGEN 에이전트플로우 캔버스 — 사용자 질문 입력 → Agent(LLM) → AI 답변 출력, 지식 컬렉션 기반 검색 노드를 연결한 시각 워크플로우",
+        caption: "에이전트플로우 캔버스",
+        w: 1600,
+        h: 900,
+    },
+    {
+        img: "/product/modelops-catalog.png",
+        alt: "XGEN LLM 모델 카탈로그 — OpenAI·Anthropic·Google 등 멀티 프로바이더 모델을 활성화하고 사용 현황을 관리하는 화면",
+        caption: "LLM 모델 카탈로그",
+        w: 1600,
+        h: 900,
+    },
+    {
         img: "/product/manage-intro.png",
-        imgAlt: "XGEN 통합 관리 센터(Admin Control Center) — 사용자 권한·Agent 운영·AI 거버넌스·시스템 환경·데이터를 통합 관리하는 관리 설정 화면",
-        imgW: 1600,
-        imgH: 900,
+        alt: "XGEN 통합 관리 센터 — 사용자 권한·Agent 운영·AI 거버넌스·시스템·데이터를 통합 관리하는 관리 설정 화면",
+        caption: "통합 관리 센터",
+        w: 1600,
+        h: 900,
     },
 ];
 
@@ -181,37 +169,6 @@ const FAQ: { q: string; a: string }[] = [
     },
 ];
 
-/** 카드 3열 그리드 — 플랫폼/능동형 섹션 공용. */
-function TripletGrid({
-    rows,
-}: {
-    rows: { icon: LucideIcon; en: string; ko: string; desc: string }[];
-}) {
-    return (
-        <div className="grid gap-4 md:grid-cols-3">
-            {rows.map((r) => (
-                <div
-                    key={r.en}
-                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                >
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                        <r.icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                        {r.ko}
-                    </h3>
-                    <p className="text-[13px] font-semibold text-[#2461d8]">
-                        {r.en}
-                    </p>
-                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                        {r.desc}
-                    </p>
-                </div>
-            ))}
-        </div>
-    );
-}
-
 export default function ProductPage() {
     return (
         <>
@@ -227,15 +184,17 @@ export default function ProductPage() {
                         applicationSubCategory: "Enterprise Agentic AI Platform",
                         operatingSystem: "On-premise",
                         description:
-                            "기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 학습·생성·배포·모니터링하는 온프레미스 Enterprise AI 플랫폼. Agent Builder·ModelOps·통합 관리 센터로 구성된다.",
+                            "기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼. 에이전트플로우 캔버스·지식(RAG)·도구(MCP)·배포·거버넌스·대시보드로 구성된다.",
                         url: absoluteUrl("/product"),
                         author: { "@type": "Organization", name: SITE.name, url: SITE.url },
                         publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
                         featureList: [
-                            "Agent Builder — 드래그 기반 Visual Workflow Canvas",
-                            "ModelOps — 파이프라인 자동화·검증·배포",
-                            "Smart Management Center — RBAC·ABAC 거버넌스·모니터링",
-                            "On-premise · Zero-training 데이터 보안",
+                            "Agentflow · Canvas — 노드 기반 에이전트플로우 시각 설계",
+                            "Knowledge · RAG — 벡터 검색·리랭커·온톨로지·인용 응답",
+                            "Tools · MCP — API 도구 등록·MCP 표준 연동",
+                            "Deploy · Operate — 배포·임베드·스케줄 자동 실행",
+                            "AI Governance — PII 마스킹·이중 승인·감사 로그",
+                            "Dashboard — 역할별 위젯·실행 이력·시스템 모니터링",
                         ],
                     },
                     {
@@ -290,46 +249,37 @@ export default function ProductPage() {
             </section>
 
             <main>
-                {/* All-in-one Platform */}
+                {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
                     id="platform"
                     className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            All-in-one Platform
+                            Why XGEN
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            학습·생성·배포·모니터링을 한 플랫폼에서
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            파일럿에서 끝나지 않는, 실제 업무에 배포되는 기업용 AI
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            XGEN은 문서 학습부터 에이전트 생성, 배포, 지속 평가까지
-                            Agentic AI 서비스의 전 주기를 하나의 통합 플랫폼에서 처리합니다.
+                            기술 검증에서 멈추는 대부분의 AI 도입과 달리, XGEN은 조직의
+                            보안 정책·권한 체계·감사 요건을 처음부터 전제로 설계되었습니다.
+                            만드는 것과 통제하는 것을 하나의 플랫폼에서 다룹니다.
                         </p>
-                        <div className="mt-8">
-                            <TripletGrid rows={PLATFORM} />
-                        </div>
-                    </div>
-                </section>
-
-                {/* Autonomous */}
-                <section
-                    id="autonomous"
-                    className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Autonomous
-                        </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            능동적으로 문제를 해결하는 에이전트
-                        </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            XGEN 에이전트는 단순 응답을 넘어, 기업 시스템에 직접 연결해
-                            스스로 문제를 진단하고 조치합니다.
-                        </p>
-                        <div className="mt-8">
-                            <TripletGrid rows={AUTONOMOUS} />
+                        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+                            {PILLARS.map((p) => (
+                                <div key={p.no} className="bg-white p-7">
+                                    <span className="font-mono text-[13px] font-bold tracking-widest text-[#2f7bff]">
+                                        {p.no}
+                                    </span>
+                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {p.title}
+                                    </h3>
+                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {p.desc}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -343,68 +293,72 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Features
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            핵심 기능
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            만들기부터 배포·통제까지, 끊김 없는 하나의 흐름
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            XGEN은 에이전트를 만드는 <strong className="font-semibold text-[var(--color-ink)]">Agent Builder</strong>,
-                            모델을 운영하는 <strong className="font-semibold text-[var(--color-ink)]">ModelOps</strong>,
-                            전체를 안전하게 관리하는 <strong className="font-semibold text-[var(--color-ink)]">통합 관리 센터</strong> 세 축으로 구성됩니다.
+                            각 기능은 독립된 도구가 아니라 하나의 파이프라인으로 이어집니다.
+                            설계한 것이 곧 배포되고, 배포된 것이 곧 감사됩니다.
                         </p>
 
-                        <div className="mt-8 space-y-4">
-                            {FEATURES.map((f, i) => (
+                        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            {FEATURES.map((f) => (
                                 <div
-                                    key={f.id}
-                                    id={f.id}
-                                    className="grid scroll-mt-24 gap-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 md:p-8 lg:grid-cols-2 lg:items-center lg:gap-10"
+                                    key={f.tag}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    {/* 텍스트 — 짝수 카드는 오른쪽(lg)으로 교차 배치 */}
-                                    <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                                        <div className="flex items-center gap-3">
-                                            <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                                <f.icon className="h-6 w-6" />
-                                            </span>
-                                            <div>
-                                                <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                    {f.en}
-                                                </h3>
-                                                <p className="text-[13.5px] font-semibold text-[#2461d8]">
-                                                    {f.ko}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p className="mt-4 text-[16px] font-semibold leading-relaxed text-[var(--color-ink)]">
-                                            {f.headline}
-                                        </p>
-                                        <ul className="mt-4 grid gap-2.5">
-                                            {f.items.map((it) => (
-                                                <li
-                                                    key={it}
-                                                    className="flex items-start gap-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
-                                                >
-                                                    <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                                                    {it}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                        <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <f.icon className="h-4 w-4" />
+                                        </span>
+                                        {f.tag}
                                     </div>
-
-                                    {/* 실제 제품 스크린샷 (구 xgen.im 제품 화면) */}
-                                    <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                                        <div className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]">
-                                            <Image
-                                                src={f.img}
-                                                alt={f.imgAlt}
-                                                width={f.imgW}
-                                                height={f.imgH}
-                                                sizes="(max-width: 1024px) 100vw, 560px"
-                                                className="h-auto w-full"
-                                            />
-                                        </div>
-                                    </div>
+                                    <h3 className="mt-4 text-[18.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {f.ko}
+                                    </h3>
+                                    <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {f.desc}
+                                    </p>
+                                    <ul className="mt-4 flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                        {f.items.map((it) => (
+                                            <li
+                                                key={it}
+                                                className="flex items-start gap-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]"
+                                            >
+                                                <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
+                                                {it}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             ))}
+                        </div>
+
+                        {/* 실제 제품 화면 쇼케이스 */}
+                        <div className="mt-14">
+                            <p className="text-[13px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                                실제 제품 화면
+                            </p>
+                            <div className="mt-5 grid gap-5 md:grid-cols-3">
+                                {SCREENS.map((s) => (
+                                    <figure
+                                        key={s.img}
+                                        className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
+                                    >
+                                        <Image
+                                            src={s.img}
+                                            alt={s.alt}
+                                            width={s.w}
+                                            height={s.h}
+                                            sizes="(max-width: 768px) 100vw, 360px"
+                                            className="h-auto w-full"
+                                        />
+                                        <figcaption className="border-t border-[var(--color-line)] px-4 py-2.5 text-[13px] font-semibold text-[var(--color-ink-muted)]">
+                                            {s.caption}
+                                        </figcaption>
+                                    </figure>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
