@@ -383,6 +383,8 @@ export const NAV_GROUPS: NavGroup[] = [
                     { label: "Product News", labelKo: "제품 소식", id: "cat-product", route: "/blog?cat=product" },
                     { label: "Tech Note", id: "cat-labs", route: "/blog?cat=labs" },
                     { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
+                    // 기여자(랩 멤버) — 블로그 그룹 아래로 편입, 영문 "Contributors" 표기.
+                    { label: "Contributors", id: "lab-members", route: "/members" },
                 ],
             },
             { label: "Newsletter", labelKo: "뉴스레터", id: "newsletter", route: "/newsletter" },
@@ -392,13 +394,6 @@ export const NAV_GROUPS: NavGroup[] = [
                 id: "resources",
                 route: "/resources",
                 blurb: "XGEN 소개서 등 다운로드 자료를 제공합니다.",
-            },
-            {
-                // 블로그(Insight) 메뉴 안 기여자 링크 — 영문 "Contributors"로 표기.
-                label: "Contributors",
-                id: "lab-members",
-                route: "/members",
-                blurb: "Plateer Labs를 만드는 기여자들을 소개합니다.",
             },
         ],
     },

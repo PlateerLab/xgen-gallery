@@ -13,9 +13,9 @@ import {
 } from "@/components/members-skeleton";
 
 export const metadata = pageMetadata({
-    title: "Lab Members",
+    title: "Contributors",
     description:
-        "Meet the people behind Plateer Labs — the open-source contributors building XGEN.",
+        "Meet the contributors behind Plateer Labs — the researchers and open-source engineers building XGEN.",
     path: "/members",
 });
 
@@ -31,7 +31,7 @@ export default function MembersPage() {
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: "/" },
-                    { name: "Lab Members", path: "/members" },
+                    { name: "Contributors", path: "/members" },
                 ])}
             />
             <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
