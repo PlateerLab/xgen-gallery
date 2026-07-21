@@ -139,11 +139,32 @@ const SCREENS: { img: string; alt: string; caption: string; w: number; h: number
         h: 900,
     },
     {
-        img: "/product/modelops-catalog.png",
-        alt: "XGEN LLM 모델 카탈로그 — OpenAI·Anthropic·Google 등 멀티 프로바이더 모델을 활성화하고 사용 현황을 관리하는 화면",
-        caption: "LLM 모델 카탈로그",
-        w: 1600,
-        h: 900,
+        img: "/product/screen-canvas.png",
+        alt: "XGEN 워크플로우 캔버스 — 노드를 드래그&드롭으로 추가·연결해 에이전트 업무 흐름을 시각적으로 설계하는 화면",
+        caption: "워크플로우 노드 편집",
+        w: 1904,
+        h: 894,
+    },
+    {
+        img: "/product/screen-ontology.png",
+        alt: "XGEN 온톨로지 — 기업 지식을 그래프로 구조화해 개념·관계를 연결한 지식 그래프 화면",
+        caption: "온톨로지 지식 그래프",
+        w: 1898,
+        h: 905,
+    },
+    {
+        img: "/product/screen-api-tool.png",
+        alt: "XGEN API 도구 생성 — 외부 API·함수를 Agent가 호출하는 도구로 등록·연동하는 화면",
+        caption: "API 도구 연동",
+        w: 1913,
+        h: 902,
+    },
+    {
+        img: "/product/screen-approval.png",
+        alt: "XGEN 배포 승인 결재 — 시스템 관리자와 거버넌스 담당자의 이중 승인으로 서비스 배포를 통제하는 화면",
+        caption: "배포 승인 결재",
+        w: 1904,
+        h: 892,
     },
     {
         img: "/product/manage-intro.png",
@@ -151,6 +172,27 @@ const SCREENS: { img: string; alt: string; caption: string; w: number; h: number
         caption: "통합 관리 센터",
         w: 1600,
         h: 900,
+    },
+    {
+        img: "/product/modelops-catalog.png",
+        alt: "XGEN LLM 모델 카탈로그 — OpenAI·Anthropic·Google 등 멀티 프로바이더 모델을 활성화하고 사용 현황을 관리하는 화면",
+        caption: "LLM 모델 카탈로그",
+        w: 1600,
+        h: 900,
+    },
+    {
+        img: "/product/screen-risk.png",
+        alt: "XGEN AI 위험도 등급 평가 — 요청·응답의 위험도를 등급으로 분류·통제하는 AI 거버넌스 화면",
+        caption: "AI 위험도 평가",
+        w: 1902,
+        h: 899,
+    },
+    {
+        img: "/product/screen-teams.png",
+        alt: "XGEN 팀 협업 — 팀 단위로 에이전트를 테스트하고 공유하는 협업 화면",
+        caption: "팀 협업 · 에이전트 테스트",
+        w: 1898,
+        h: 892,
     },
 ];
 
@@ -321,6 +363,15 @@ export default function ProductPage() {
 
             {/* Hero — 다크 배경 + 움직이는 에이전트플로우 캔버스 */}
             <section className="relative overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
+                {/* 배경 그라데이션 글로우 — 다른 다크 섹션과 통일 */}
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_78%_18%,rgba(47,123,255,0.16),transparent_60%)]"
+                />
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                />
                 <div className="relative mx-auto grid min-h-[540px] w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr]">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
@@ -448,26 +499,25 @@ export default function ProductPage() {
                             {FEATURES.map((f) => (
                                 <div
                                     key={f.tag}
-                                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    {/* 상단 그라디언트 액센트 바 */}
-                                    <span
-                                        aria-hidden
-                                        className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#00acee,#185aea)] opacity-70 transition group-hover:opacity-100"
-                                    />
-                                    <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                        <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
-                                            <f.icon className="h-4 w-4" />
-                                        </span>
-                                        {f.tag}
+                                    {/* 상단 영역 — 배경 틴트로 강조(수평선 위) */}
+                                    <div className="bg-[linear-gradient(160deg,#cfe0ff_0%,#e4eeff_100%)] p-6 transition group-hover:bg-[linear-gradient(160deg,#bfd6ff_0%,#d8e7ff_100%)]">
+                                        <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                            <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white text-[#2f7bff] shadow-[0_2px_8px_rgba(20,60,120,0.12)]">
+                                                <f.icon className="h-4 w-4" />
+                                            </span>
+                                            {f.tag}
+                                        </div>
+                                        <h3 className="mt-4 text-[18.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {f.ko}
+                                        </h3>
+                                        <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {f.desc}
+                                        </p>
                                     </div>
-                                    <h3 className="mt-4 text-[18.5px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {f.ko}
-                                    </h3>
-                                    <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {f.desc}
-                                    </p>
-                                    <ul className="mt-4 flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                    {/* 화살표 목록 — 흰 배경(수평선 아래) */}
+                                    <ul className="flex flex-1 flex-col gap-2 border-t border-[var(--color-line)] bg-white p-6 pt-4">
                                         {f.items.map((it) => (
                                             <li
                                                 key={it}
