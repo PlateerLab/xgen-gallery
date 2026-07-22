@@ -143,23 +143,19 @@ const TECH_VALUES: {
 
 function TechnologyMarketing() {
     return (
-        <section className="relative overflow-hidden border-t border-white/10 bg-[#070b1c] text-white">
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_50%_0%,rgba(103,232,249,0.12),transparent_65%)]"
-            />
-            <div className="relative mx-auto max-w-6xl px-6 py-24">
-                <p className="font-mono text-[12px] uppercase tracking-widest text-[#67e8f9]">
+        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            <div className="mx-auto max-w-6xl px-6 py-24">
+                <p className="font-mono text-[12px] uppercase tracking-widest text-[#2461d8]">
                     Enterprise AI Technology
                 </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight md:text-[40px]">
+                <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                     연구에서 검증하고,{" "}
-                    <span className="bg-gradient-to-r from-[#67e8f9] to-[#7dd3fc] bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         운영으로 완성하는
                     </span>{" "}
                     Enterprise AI 기술
                 </h2>
-                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/70">
+                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                     화려한 데모가 아닌, 기업의 보안·규제·운영 환경에서 실제로 작동하는
                     기술을 연구합니다. 핵심 엔진부터 프레임워크와 런타임까지 하나의 기술
                     스택으로 연결하여, 연구 성과가 제품을 거쳐 고객 현장의 성과로 이어지도록
@@ -170,18 +166,18 @@ function TechnologyMarketing() {
                     {TECH_VALUES.map((v) => (
                         <div
                             key={v.en}
-                            className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-[#67e8f9]/40"
+                            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#2f7bff]/40"
                         >
-                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#67e8f9]">
+                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                 <v.icon className="h-[20px] w-[20px]" />
                             </span>
-                            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-white/45">
+                            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                                 {v.en}
                             </p>
-                            <h3 className="mt-1 text-[18px] font-bold tracking-tight text-white">
+                            <h3 className="mt-1 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
                                 {v.title}
                             </h3>
-                            <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/65">
+                            <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                 {v.desc}
                             </p>
                         </div>
