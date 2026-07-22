@@ -145,9 +145,10 @@ function TechnologyMarketing() {
                     Enterprise AI 기술
                 </h2>
                 <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/70">
-                    화려한 데모가 아니라, 기업의 보안·규제·운영 요건 속에서 실제로 돌아가는
-                    기술을 만듭니다. 핵심 엔진부터 프레임워크·런타임까지 하나의 스택으로
-                    연결해, 연구 성과가 곧 제품과 현장의 성과로 이어집니다
+                    화려한 데모가 아닌, 기업의 보안·규제·운영 환경에서 실제로 작동하는
+                    기술을 연구합니다. 핵심 엔진부터 프레임워크와 런타임까지 하나의 기술
+                    스택으로 연결하여, 연구 성과가 제품을 거쳐 고객 현장의 성과로 이어지도록
+                    만듭니다.
                 </p>
 
                 <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
