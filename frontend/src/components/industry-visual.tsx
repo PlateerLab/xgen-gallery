@@ -15,118 +15,172 @@ const GRAD: Record<IndustryKey, [string, string, string]> = {
     "it-services": ["#22d3ee", "#3b82f6", "#4f46e5"],
 };
 
+/**
+ * 산업별 리치 씬 — 배경 실루엣 + 주요 오브젝트(면) + 액센트를 겹쳐 입체감을 준다.
+ * 좌표는 viewBox(400×250) 절대값. 하단(y>150)은 카드 그라디언트로 자연스럽게 어두워짐.
+ */
 function Motif({ industry }: { industry: IndustryKey }) {
-    // 흰색 라인/면 모티프 — 상단 중앙에 배치(하단은 그라디언트 오버레이로 덮임)
     switch (industry) {
         case "finance":
             return (
-                <g
-                    transform="translate(200 96)"
-                    fill="none"
-                    stroke="#eaf4ff"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    {/* 은행 건물 */}
-                    <path d="M-46 -30 L0 -50 L46 -30" />
-                    <line x1="-46" y1="-30" x2="46" y2="-30" />
-                    <line x1="-36" y1="-22" x2="-36" y2="26" />
-                    <line x1="-12" y1="-22" x2="-12" y2="26" />
-                    <line x1="12" y1="-22" x2="12" y2="26" />
-                    <line x1="36" y1="-22" x2="36" y2="26" />
-                    <line x1="-52" y1="34" x2="52" y2="34" />
-                    {/* 상승 그래프 */}
+                <g>
+                    {/* 상승 트렌드 라인 */}
                     <polyline
-                        points="-30,14 -12,-2 6,8 30,-16"
-                        stroke="#7dd3fc"
-                        strokeWidth="4.5"
+                        points="44,92 112,74 176,86 240,58 336,40"
+                        fill="none"
+                        stroke="#bfe3ff"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
-                    <circle cx="30" cy="-16" r="4" fill="#7dd3fc" stroke="none" />
+                    <path d="M336 40 l-15 1 l7 12 z" fill="#bfe3ff" />
+                    {/* 배경 빌딩 */}
+                    <g fill="#dbe9ff" opacity="0.2">
+                        <rect x="48" y="104" width="34" height="60" rx="3" />
+                        <rect x="312" y="96" width="34" height="68" rx="3" />
+                    </g>
+                    {/* 전경 스카이라인 */}
+                    <g fill="#eef5ff">
+                        <rect x="92" y="94" width="42" height="70" rx="3" />
+                        <rect x="150" y="70" width="46" height="94" rx="3" />
+                        <rect x="214" y="100" width="42" height="64" rx="3" />
+                        <rect x="264" y="82" width="42" height="82" rx="3" />
+                    </g>
+                    {/* 창문 */}
+                    <g fill="#3b6fe0" opacity="0.45">
+                        {[100, 118].map((x) =>
+                            [104, 122, 140].map((y) => (
+                                <rect key={`f${x}-${y}`} x={x} y={y} width="8" height="9" rx="1.5" />
+                            )),
+                        )}
+                        {[160, 178].map((x) =>
+                            [82, 100, 118, 136].map((y) => (
+                                <rect key={`g${x}-${y}`} x={x} y={y} width="9" height="9" rx="1.5" />
+                            )),
+                        )}
+                        {[274, 292].map((x) =>
+                            [94, 112, 130].map((y) => (
+                                <rect key={`h${x}-${y}`} x={x} y={y} width="8" height="9" rx="1.5" />
+                            )),
+                        )}
+                    </g>
+                    {/* ₩ 코인 */}
+                    <circle cx="200" cy="52" r="18" fill="#7dd3fc" />
+                    <text
+                        x="200"
+                        y="59"
+                        textAnchor="middle"
+                        fontSize="20"
+                        fontWeight="800"
+                        fill="#0b2f66"
+                    >
+                        ₩
+                    </text>
                 </g>
             );
         case "commerce":
             return (
-                <g
-                    transform="translate(200 96)"
-                    fill="none"
-                    stroke="#f1ecff"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    {/* 쇼핑백 */}
-                    <path d="M-40 -18 L-32 -40 L32 -40 L40 -18 Z" />
-                    <path d="M-40 -18 L-40 40 L40 40 L40 -18 Z" />
-                    <path d="M-16 -18 v-6 a16 16 0 0 1 32 0 v6" stroke="#c9b8ff" />
-                    {/* 태그 */}
+                <g>
+                    {/* 차양 */}
+                    <rect x="118" y="60" width="164" height="14" rx="3" fill="#efeaff" />
                     <path
-                        d="M6 2 L26 2 L34 20 L18 34 Z"
-                        stroke="#c9b8ff"
-                        strokeWidth="3.5"
+                        d="M118 74 h164 l-14 20 h-136 z"
+                        fill="#e5ddff"
                     />
-                    <circle cx="14" cy="12" r="2.6" fill="#c9b8ff" stroke="none" />
+                    <g fill="#c9b8ff">
+                        {[130, 164, 198, 232, 266].map((x) => (
+                            <path key={x} d={`M${x} 74 l-8 20 h16 z`} />
+                        ))}
+                    </g>
+                    {/* 배경 박스 */}
+                    <rect x="248" y="120" width="42" height="40" rx="3" fill="#dcd2f7" opacity="0.7" />
+                    <rect x="110" y="122" width="40" height="38" rx="3" fill="#dcd2f7" opacity="0.7" />
+                    {/* 쇼핑백 */}
+                    <g fill="#f4f0ff">
+                        <path d="M160 108 h52 v54 a4 4 0 0 1 -4 4 h-44 a4 4 0 0 1 -4 -4 z" />
+                    </g>
+                    <path
+                        d="M172 108 v-7 a14 14 0 0 1 28 0 v7"
+                        fill="none"
+                        stroke="#c9b8ff"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                    />
+                    {/* 가격 태그 */}
+                    <g transform="translate(224 118) rotate(12)">
+                        <path d="M0 0 h26 l12 14 -20 20 -18 -18 z" fill="#a78bfa" />
+                        <circle cx="9" cy="9" r="3.4" fill="#efeaff" />
+                    </g>
                 </g>
             );
         case "public":
             return (
-                <g
-                    transform="translate(200 96)"
-                    fill="none"
-                    stroke="#eaf4ff"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    {/* 관공서 건물 + 방패 */}
-                    <path d="M-48 -22 L0 -46 L48 -22" />
-                    <line x1="-54" y1="-14" x2="54" y2="-14" />
-                    <line x1="-38" y1="-14" x2="-38" y2="30" />
-                    <line x1="-13" y1="-14" x2="-13" y2="30" />
-                    <line x1="13" y1="-14" x2="13" y2="30" />
-                    <line x1="38" y1="-14" x2="38" y2="30" />
-                    <line x1="-58" y1="38" x2="58" y2="38" />
+                <g>
+                    {/* 깃발 */}
+                    <line x1="300" y1="52" x2="300" y2="150" stroke="#cfe0ff" strokeWidth="3.5" strokeLinecap="round" />
+                    <path d="M300 54 h40 l-9 11 l9 11 h-40 z" fill="#7dd3fc" />
+                    {/* 관공서 건물 */}
+                    <g fill="#eef5ff">
+                        <path d="M120 82 L196 50 L272 82 Z" />
+                        <rect x="120" y="82" width="152" height="12" rx="2" />
+                        {[132, 160, 188, 216, 244].map((x) => (
+                            <rect key={x} x={x} y="98" width="14" height="50" rx="2" />
+                        ))}
+                        <rect x="112" y="150" width="168" height="12" rx="2" />
+                    </g>
+                    {/* 계단 */}
+                    <g fill="#cfe0ff" opacity="0.45">
+                        <rect x="104" y="162" width="184" height="6" rx="2" />
+                        <rect x="96" y="168" width="200" height="6" rx="2" />
+                    </g>
+                    {/* 방패 엠블럼 */}
                     <path
-                        d="M0 -34 L14 -28 v10 c0 10 -7 16 -14 20 c-7 -4 -14 -10 -14 -20 v-10 Z"
-                        stroke="#7dd3fc"
-                        strokeWidth="3.5"
+                        d="M196 64 l16 6 v11 c0 12 -8 19 -16 23 c-8 -4 -16 -11 -16 -23 v-11 z"
+                        fill="#2563eb"
                     />
+                    <path d="M191 82 l3.5 3.5 L203 78" fill="none" stroke="#eef5ff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 </g>
             );
         case "it-services":
             return (
-                <g
-                    transform="translate(200 96)"
-                    fill="none"
-                    stroke="#e6f6fb"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    {/* 마이크로칩 */}
-                    <rect x="-34" y="-34" width="68" height="68" rx="8" />
-                    <rect
-                        x="-16"
-                        y="-16"
-                        width="32"
-                        height="32"
-                        rx="4"
-                        stroke="#67e8f9"
-                        strokeWidth="3.5"
-                    />
-                    {/* 핀 */}
-                    {[-20, 0, 20].map((d) => (
-                        <line key={`t${d}`} x1={d} y1="-34" x2={d} y2="-46" />
-                    ))}
-                    {[-20, 0, 20].map((d) => (
-                        <line key={`b${d}`} x1={d} y1="34" x2={d} y2="46" />
-                    ))}
-                    {[-20, 0, 20].map((d) => (
-                        <line key={`l${d}`} x1="-34" y1={d} x2="-46" y2={d} />
-                    ))}
-                    {[-20, 0, 20].map((d) => (
-                        <line key={`r${d}`} x1="34" y1={d} x2="46" y2={d} />
-                    ))}
+                <g>
+                    {/* 서버 랙 배경 */}
+                    <g fill="#e6f6fb" opacity="0.16">
+                        {[62, 300].map((x) => (
+                            <g key={x}>
+                                <rect x={x} y="66" width="58" height="98" rx="5" />
+                            </g>
+                        ))}
+                    </g>
+                    <g fill="#0a2b52" opacity="0.25">
+                        {[62, 300].map((x) =>
+                            [76, 96, 116, 136].map((y) => (
+                                <rect key={`${x}-${y}`} x={x + 8} y={y} width="42" height="10" rx="2" />
+                            )),
+                        )}
+                    </g>
+                    {/* 회로 라인 + 노드 */}
+                    <g stroke="#67e8f9" strokeWidth="2.5" fill="#67e8f9">
+                        <path d="M120 88 H164" fill="none" />
+                        <circle cx="120" cy="88" r="3.5" />
+                        <path d="M120 148 H164" fill="none" />
+                        <circle cx="120" cy="148" r="3.5" />
+                        <path d="M236 88 H280" fill="none" />
+                        <circle cx="280" cy="88" r="3.5" />
+                        <path d="M236 148 H280" fill="none" />
+                        <circle cx="280" cy="148" r="3.5" />
+                    </g>
+                    {/* 중앙 마이크로칩 */}
+                    <rect x="164" y="80" width="72" height="72" rx="10" fill="#eef7fb" />
+                    <rect x="182" y="98" width="36" height="36" rx="6" fill="none" stroke="#22d3ee" strokeWidth="4" />
+                    <g stroke="#eef7fb" strokeWidth="4" strokeLinecap="round">
+                        {[176, 200, 224].map((x) => (
+                            <line key={`t${x}`} x1={x} y1="80" x2={x} y2="70" />
+                        ))}
+                        {[176, 200, 224].map((x) => (
+                            <line key={`b${x}`} x1={x} y1="152" x2={x} y2="162" />
+                        ))}
+                    </g>
                 </g>
             );
     }
