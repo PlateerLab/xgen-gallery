@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, Menu, X, Users } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
+import { LanguageToggle } from "@/components/language-toggle";
 import { SiteSearch } from "@/components/site-search";
 import { useI18n } from "@/components/i18n-provider";
 import { NAV_GROUPS, DEMO_CTA, sectionHref, type NavLeaf } from "@/lib/nav";
@@ -337,6 +338,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                         >
                             <Users className="h-5 w-5" />
                         </Link>
+                        <LanguageToggle light={light} />
                         <Link
                             href={SITE.github}
                             target="_blank"
