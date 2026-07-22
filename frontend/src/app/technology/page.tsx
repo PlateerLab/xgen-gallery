@@ -145,10 +145,7 @@ function TechnologyMarketing() {
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-6xl px-6 py-24">
-                <p className="font-mono text-[12px] uppercase tracking-widest text-[#2461d8]">
-                    Enterprise AI Technology
-                </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                <h2 className="max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                     연구에서 검증하고,{" "}
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         운영으로 완성하는
