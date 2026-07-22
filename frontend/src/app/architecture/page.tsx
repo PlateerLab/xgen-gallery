@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
 import { XgenPlatformArchitecture } from "@/components/xgen-platform-arch";
+import { SecurityArchitecture } from "@/components/security-architecture";
 import { XgenCicd } from "@/components/xgen-cicd";
 import { CodeAssistantArchitecture } from "@/components/code-assistant-arch";
 import { ArchIndex } from "@/components/arch-index";
@@ -33,6 +34,7 @@ export const ARCH_SECTIONS = [
     { id: "foundation", label: "기반 아키텍처" },
     { id: "principles", label: "설계 원칙" },
     { id: "reference", label: "Enterprise AI 아키텍처" },
+    { id: "security", label: "온프레미스 보안" },
     { id: "platform", label: "XGEN 플랫폼" },
     { id: "code-assistant", label: "코드 어시스턴트" },
     { id: "cicd", label: "CI/CD 배포" },
@@ -201,6 +203,34 @@ export default function ArchitecturePage() {
                         </p>
                         <div className="mt-8">
                             <ArchitectureDiagram />
+                        </div>
+                    </div>
+                </section>
+
+                {/* 온프레미스 보안 아키텍처 — 신뢰 경계 기반 방어(다크 밴드) */}
+                <section
+                    id="security"
+                    className="relative scroll-mt-[140px] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
+                >
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/12 blur-[130px]"
+                    />
+                    <div className="relative mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
+                            On-Premise Security
+                        </p>
+                        <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
+                            온프레미스 보안 아키텍처 — 신뢰 경계 기반 방어
+                        </h2>
+                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-white/70">
+                            외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부
+                            서비스와 AI 모델, 데이터에 접근할 수 있습니다. 모든 AI 모델과
+                            데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전
+                            계층에 일관되게 적용됩니다.
+                        </p>
+                        <div className="mt-10">
+                            <SecurityArchitecture />
                         </div>
                     </div>
                 </section>

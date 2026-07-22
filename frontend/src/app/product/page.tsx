@@ -22,6 +22,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
+import { PathFinderArt } from "@/components/pathfinder-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
@@ -140,8 +141,8 @@ const DIFFERENTIATORS: {
         icon: Compass,
         en: "PathFinder",
         ko: "패스파인더",
-        tagline: "기존 웹 시스템을 코드 없이 Agent 도구로 연결합니다",
-        desc: "패스파인더는 기존 웹 시스템·API를 AI가 이해하고 사용할 수 있는 Agent Tool로 잇는 브라우저 자동화 기술입니다. 로그인부터 API 연결·도구 등록·테스트까지 코드 한 줄 없이 이어, 현업이 아이디어를 실행 도구로 만듭니다.",
+        tagline: "기존 시스템을 AI가 사용하는 Tool로 연결합니다",
+        desc: "패스파인더는 웹 시스템과 API를 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 기술입니다. 로그인부터 연결, 테스트, 등록까지 전 과정을 코드 없이 자동화하여, 기존 시스템을 빠르게 AI 업무 환경으로 확장합니다.",
         items: [
             "브라우저 자동화 기반 연결",
             "로그인·API·도구 등록·테스트 무코드",
@@ -571,9 +572,24 @@ export default function ProductPage() {
                         aria-hidden
                         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
                     />
+                    {/* 헤드라인 포커스 스포트라이트 — 방사형 밝은 그라데이션 */}
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute left-1/2 top-[64px] h-[280px] w-[640px] max-w-[92vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(125,211,252,0.3),rgba(47,123,255,0.14)_45%,transparent_75%)] blur-[46px]"
+                    />
                     <div className="relative mx-auto max-w-6xl px-6 py-16">
-                        <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/45">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
                             XGEN · Agentic AI Platform
+                        </p>
+                        <h2 className="mt-3 text-center text-3xl font-bold tracking-tight md:text-[40px]">
+                            XGEN은{" "}
+                            <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
+                                다릅니다
+                            </span>
+                        </h2>
+                        <p className="mx-auto mt-3 max-w-xl text-center text-[15px] leading-relaxed text-white/60">
+                            파일럿에서 멈추지 않고, 온프레미스에서 실제 운영으로 검증된 숫자로
+                            증명합니다.
                         </p>
                         <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
                         {STATS.map((s) => (
@@ -638,19 +654,24 @@ export default function ProductPage() {
                             Build for Everyone
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            개발자가 아니어도, 에이전트를 직접 만듭니다
+                            현업이 직접 만드는 Enterprise AI
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            복잡한 개발 지식 없이도 현업이 직접 에이전트를 설계하고, 기존
-                            시스템까지 연결합니다. 만드는 문턱을 낮춰 아이디어가 곧 실행
-                            도구가 됩니다.
+                            개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과
+                            연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로
+                            업무에 활용 가능한 AI로 구현합니다.
                         </p>
-                        <div className="mt-8 grid gap-4 md:grid-cols-2">
+                        <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-start">
                             {DIFFERENTIATORS.map((d) => (
                                 <div
                                     key={d.en}
                                     className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
+                                    {d.en === "PathFinder" && (
+                                        <div className="mb-6">
+                                            <PathFinderArt />
+                                        </div>
+                                    )}
                                     <div className="flex items-center gap-3">
                                         <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                             <d.icon className="h-5 w-5" />
@@ -681,6 +702,14 @@ export default function ProductPage() {
                                             </li>
                                         ))}
                                     </ul>
+                                    {/* 자세히 보기 — 상세 페이지 준비 중(링크 비활성, 자리만) */}
+                                    <span
+                                        aria-disabled="true"
+                                        className="mt-5 inline-flex cursor-default select-none items-center gap-1.5 text-[14px] font-semibold text-[var(--color-ink-subtle)]"
+                                    >
+                                        {d.ko} 자세히 보기
+                                        <ArrowRight className="h-4 w-4" />
+                                    </span>
                                 </div>
                             ))}
                         </div>
