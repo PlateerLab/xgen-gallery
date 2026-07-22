@@ -23,6 +23,7 @@ import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
+import { EasyModeArt } from "@/components/easy-mode-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
@@ -672,18 +673,33 @@ export default function ProductPage() {
                                             <PathFinderArt />
                                         </div>
                                     )}
-                                    <div className="flex items-center gap-3">
-                                        <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                            <d.icon className="h-5 w-5" />
-                                        </span>
-                                        <div>
-                                            <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
-                                                {d.en}
-                                            </p>
-                                            <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                {d.ko}
-                                            </h3>
+                                    {d.en === "Easy Mode" && (
+                                        <div className="mb-6">
+                                            <EasyModeArt />
                                         </div>
+                                    )}
+                                    <div className="flex items-center justify-between gap-3">
+                                        <div className="flex items-center gap-3">
+                                            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                <d.icon className="h-5 w-5" />
+                                            </span>
+                                            <div>
+                                                <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                                    {d.en}
+                                                </p>
+                                                <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                    {d.ko}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        {/* 자세히 보기 — 상세 페이지 준비 중(링크 비활성) */}
+                                        <span
+                                            aria-disabled="true"
+                                            className="inline-flex flex-none cursor-default select-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[var(--color-ink-subtle)]"
+                                        >
+                                            자세히 보기
+                                            <ArrowRight className="h-3.5 w-3.5" />
+                                        </span>
                                     </div>
                                     <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
                                         {d.tagline}
@@ -702,14 +718,6 @@ export default function ProductPage() {
                                             </li>
                                         ))}
                                     </ul>
-                                    {/* 자세히 보기 — 상세 페이지 준비 중(링크 비활성, 자리만) */}
-                                    <span
-                                        aria-disabled="true"
-                                        className="mt-5 inline-flex cursor-default select-none items-center gap-1.5 text-[14px] font-semibold text-[var(--color-ink-subtle)]"
-                                    >
-                                        {d.ko} 자세히 보기
-                                        <ArrowRight className="h-4 w-4" />
-                                    </span>
                                 </div>
                             ))}
                         </div>
