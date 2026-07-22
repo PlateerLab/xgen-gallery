@@ -107,8 +107,8 @@ export default function ContactPage() {
                             </div>
                         </div>
 
-                        {/* form */}
-                        <div>
+                        {/* form — 흰 카드가 다크 배경에 튀지 않도록 반투명 글래스 매트로 감쌈 */}
+                        <div className="rounded-[26px] border border-white/10 bg-white/[0.05] p-2.5 shadow-[0_40px_90px_-45px_rgba(0,0,0,0.85)] backdrop-blur-sm">
                             <DemoForm />
                         </div>
                     </div>

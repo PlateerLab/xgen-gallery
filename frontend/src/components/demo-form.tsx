@@ -322,9 +322,14 @@ export function DemoForm() {
     return (
         <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 shadow-xl sm:p-7"
+            className="relative overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white p-6 shadow-[0_20px_50px_-30px_rgba(20,40,80,0.5)] sm:p-7"
         >
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {/* 상단 브랜드 워시 — 흰 카드가 어두운 배경에 너무 도드라지지 않게 */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2f7bff]/[0.07] to-transparent"
+            />
+            <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Select
                     className="sm:col-span-2"
                     label={c.inquiryType}
