@@ -13,7 +13,6 @@ import {
     BookOpen,
     Boxes,
     FileClock,
-    Terminal,
 } from "lucide-react";
 
 /** XGEN 사용자 매뉴얼(외부) — 플랫폼 표준 사용 가이드. */
@@ -68,6 +67,25 @@ const CATEGORY_ORDER: ToolCategory[] = [
     "knowledge",
     "agent",
     "utility",
+];
+
+/** 라이브러리 활용 방법 3단계. */
+const USAGE_STEPS: { n: string; title: string; desc: string }[] = [
+    {
+        n: "01",
+        title: "설치",
+        desc: "pip install 한 줄로 사내 개발 환경에 라이브러리를 바로 설치합니다.",
+    },
+    {
+        n: "02",
+        title: "조합·활용",
+        desc: "수집·지식·에이전트 목적에 맞는 라이브러리를 조합해 RAG·에이전트 파이프라인을 구성합니다.",
+    },
+    {
+        n: "03",
+        title: "확장·운영",
+        desc: "MCP 런타임과 XGEN 플랫폼에 연동해 온프레미스 환경에서 안정적으로 운영합니다.",
+    },
 ];
 
 export default function DocumentationPage() {
@@ -186,40 +204,52 @@ export default function DocumentationPage() {
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN을 떠받치는 기술을 프로덕션급 파이썬 라이브러리로 공개합니다.
-                            모두 <code className="rounded bg-white px-1.5 py-0.5 font-mono text-[13px] text-[var(--color-ink)]">pip</code>{" "}
-                            로 설치하고, 각 라이브러리 페이지에서 사용법과 예제를 확인하세요.
+                            문서 수집·변환부터 지식 그래프, 에이전트 도구까지{" "}
+                            <span className="font-semibold text-[var(--color-ink)]">
+                                {TOOLS.length}종
+                            </span>
+                            을 모두 MIT 라이선스로 제공하며,{" "}
+                            <code className="rounded bg-white px-1.5 py-0.5 font-mono text-[13px] text-[var(--color-ink)]">
+                                pip
+                            </code>{" "}
+                            한 줄로 설치해 사내 환경에서 바로 활용할 수 있습니다.
                         </p>
 
-                        <div className="mt-10 space-y-10">
-                            {byCategory.map((group) => (
-                                <div key={group.cat}>
-                                    <h3 className="text-[13px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
-                                        {CATEGORY_LABEL[group.cat]}
+                        {/* 활용 방법 3단계 */}
+                        <div className="mt-10 grid gap-4 md:grid-cols-3">
+                            {USAGE_STEPS.map((s) => (
+                                <div
+                                    key={s.n}
+                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#2f7bff]/10 font-mono text-[14px] font-bold text-[#2f7bff]">
+                                        {s.n}
+                                    </span>
+                                    <h3 className="mt-4 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {s.title}
                                     </h3>
-                                    <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                        {group.items.map((t) => (
-                                            <Link
-                                                key={t.id}
-                                                href={`/tool/${t.id}`}
-                                                className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#2f7bff]/40 hover:shadow-[0_12px_30px_-16px_rgba(20,40,80,0.35)]"
-                                            >
-                                                <div className="flex items-center justify-between">
-                                                    <h4 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                        {t.name}
-                                                    </h4>
-                                                    <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2f7bff]" />
-                                                </div>
-                                                <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                                    {t.tagline}
-                                                </p>
-                                                <code className="mt-4 flex items-center gap-2 rounded-lg bg-[var(--color-surface-alt)] px-3 py-2 font-mono text-[12.5px] text-[var(--color-ink)]">
-                                                    <Terminal className="h-3.5 w-3.5 flex-none text-[var(--color-ink-subtle)]" />
-                                                    {t.install}
-                                                </code>
-                                            </Link>
-                                        ))}
-                                    </div>
+                                    <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {s.desc}
+                                    </p>
                                 </div>
+                            ))}
+                        </div>
+
+                        {/* 카테고리 개요 */}
+                        <div className="mt-8 flex flex-wrap items-center gap-2.5">
+                            <span className="text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
+                                카테고리
+                            </span>
+                            {byCategory.map((g) => (
+                                <span
+                                    key={g.cat}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-white px-3 py-1.5 text-[13.5px] font-medium text-[var(--color-ink-muted)]"
+                                >
+                                    {CATEGORY_LABEL[g.cat]}
+                                    <span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">
+                                        {g.items.length}
+                                    </span>
+                                </span>
                             ))}
                         </div>
 
@@ -228,7 +258,7 @@ export default function DocumentationPage() {
                                 href="/library-gallery"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-5 py-2.5 text-[15px] font-semibold text-white transition hover:opacity-90"
                             >
-                                전체 라이브러리 갤러리
+                                라이브러리 갤러리에서 자세히 보기
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <a
