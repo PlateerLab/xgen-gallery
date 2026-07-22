@@ -7,11 +7,12 @@ import type { IndustryKey } from "@/lib/customers";
  * 외부 이미지 없이 CSP-safe, 어떤 사례든 산업만으로 일관된 비주얼을 얻는다.
  */
 
-const GRAD: Record<IndustryKey, [string, string]> = {
-    finance: ["#0b2f66", "#1667b0"],
-    commerce: ["#3b1f6e", "#6d4bd6"],
-    public: ["#0e355e", "#1c6fae"],
-    "it-services": ["#0a2b52", "#0f6f86"],
+// 밝고 생동감 있는 산업별 3색 그라디언트(칙칙함 개선)
+const GRAD: Record<IndustryKey, [string, string, string]> = {
+    finance: ["#22d3ee", "#3b82f6", "#4f46e5"],
+    commerce: ["#c084fc", "#a855f7", "#ec4899"],
+    public: ["#38bdf8", "#2563eb", "#4338ca"],
+    "it-services": ["#2dd4bf", "#06b6d4", "#3b82f6"],
 };
 
 function Motif({ industry }: { industry: IndustryKey }) {
@@ -138,7 +139,7 @@ export function IndustryVisual({
     industry: IndustryKey;
     className?: string;
 }) {
-    const [from, to] = GRAD[industry];
+    const [from, mid, to] = GRAD[industry];
     const gid = `iv-${industry}`;
     return (
         <svg
@@ -150,23 +151,38 @@ export function IndustryVisual({
             <defs>
                 <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0" stopColor={from} />
+                    <stop offset="0.55" stopColor={mid} />
                     <stop offset="1" stopColor={to} />
                 </linearGradient>
-                <radialGradient id={`${gid}-glow`} cx="0.5" cy="0.32" r="0.6">
-                    <stop offset="0" stopColor="#ffffff" stopOpacity="0.18" />
+                <radialGradient id={`${gid}-glow`} cx="0.28" cy="0.2" r="0.75">
+                    <stop offset="0" stopColor="#ffffff" stopOpacity="0.35" />
                     <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
                 </radialGradient>
+                <linearGradient id={`${gid}-streak`} x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#ffffff" stopOpacity="0" />
+                    <stop offset="0.5" stopColor="#ffffff" stopOpacity="0.14" />
+                    <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+                </linearGradient>
                 <pattern
                     id={`${gid}-dots`}
-                    width="22"
-                    height="22"
+                    width="20"
+                    height="20"
                     patternUnits="userSpaceOnUse"
                 >
-                    <circle cx="2" cy="2" r="1.3" fill="#ffffff" fillOpacity="0.08" />
+                    <circle cx="2" cy="2" r="1.2" fill="#ffffff" fillOpacity="0.12" />
                 </pattern>
             </defs>
             <rect width="400" height="250" fill={`url(#${gid})`} />
             <rect width="400" height="250" fill={`url(#${gid}-dots)`} />
+            {/* 대각 라이트 스트릭 */}
+            <rect
+                x="-40"
+                y="-40"
+                width="200"
+                height="360"
+                transform="rotate(18 200 125)"
+                fill={`url(#${gid}-streak)`}
+            />
             <rect width="400" height="250" fill={`url(#${gid}-glow)`} />
             <Motif industry={industry} />
         </svg>

@@ -67,6 +67,21 @@ export default async function CustomersPage({
                             다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과
                             산업별로 원하는 사례를 찾아보세요.
                         </p>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <Link
+                                href="/contact?type=poc"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                            >
+                                우리 업무에 적용 검토
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <Link
+                                href="/blog?cat=case"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                사례 스토리 보기
+                            </Link>
+                        </div>
                     </div>
 
                     {/* 키비주얼 — 최근 사례 슬라이드 배너(산업 상징 비주얼 카드) */}
