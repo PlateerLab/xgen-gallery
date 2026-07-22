@@ -15,9 +15,9 @@ export const metadata = pageMetadata({
 });
 
 const BENEFITS = [
-    "제품 데모 · 15일 무료 체험 · PoC 상담을 한 양식에서 접수",
-    "과제 정의부터 PoC 설계·실행까지 전문가 1:1 상담",
-    "기술 요건에 맞춘 솔루션·레퍼런스 아키텍처 제안",
+    "제품 데모 · 15일 무료 체험 · PoC 상담을 한 번에 신청",
+    "과제 정의부터 PoC 설계·수행까지 전문가가 1:1로 지원",
+    "기술 요건에 맞는 솔루션과 레퍼런스 아키텍처 제안",
 ];
 
 export default function ContactPage() {
@@ -54,9 +54,11 @@ export default function ContactPage() {
                                 데모 · 체험 · 기술 상담
                             </h1>
                             <p className="mt-5 max-w-md text-lg leading-relaxed text-white/65">
-                                제품 데모 요청, XGEN 15일 무료 체험 신청, PoC·기술 상담을
-                                한 곳에서 접수합니다. 문의 유형을 선택하고 내용을 남겨주시면
-                                담당자가 영업일 기준 1–2일 내에 연락드립니다.
+                                제품 데모, XGEN 15일 무료 체험, PoC 및 기술 상담을 신청할 수
+                                있습니다.
+                                <br />
+                                문의 유형을 선택해 접수해 주시면 담당자가 영업일 기준 1~2일
+                                이내에 연락드립니다.
                             </p>
                             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
                                 현장에 배치되는{" "}

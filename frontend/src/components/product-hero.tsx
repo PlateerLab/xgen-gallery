@@ -11,8 +11,7 @@
  */
 
 import Link from "next/link";
-import { ArrowRight, Lock, ShieldCheck, Users } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const MODELS: { name: string; src: string }[] = [
@@ -23,25 +22,6 @@ const MODELS: { name: string; src: string }[] = [
     { name: "Mistral", src: "/models/mistralai.svg" },
     { name: "Qwen", src: "/models/qwen.svg" },
     { name: "DeepSeek", src: "/models/deepseek.svg" },
-];
-
-/** 슬라이드3 — 온프레미스 보안 3원칙(참조: On-premise Platform) */
-const SECURITY_POINTS: { icon: LucideIcon; title: string; desc: string }[] = [
-    {
-        icon: Lock,
-        title: "외부 유출 원천 차단",
-        desc: "온프레미스 구축으로 데이터가 외부로 유출되지 않고 안전하게 활용됩니다",
-    },
-    {
-        icon: Users,
-        title: "내부 접근 세분화",
-        desc: "부서·팀·개인 단위의 역할 기반 제어(RBAC)로 조직 내부 데이터 보안을 강화합니다",
-    },
-    {
-        icon: ShieldCheck,
-        title: "제로 트레이닝 보장",
-        desc: "고객사 데이터가 외부 모델의 학습 데이터로 쓰이는 것을 기술적으로 방지합니다",
-    },
 ];
 
 const SLIDE_COUNT = 3;
@@ -212,18 +192,11 @@ export function ProductHero() {
                             </span>
                             를 안심하고 활용하세요
                         </h2>
-                        <ul className="mt-8 grid grid-cols-3 gap-4">
-                            {SECURITY_POINTS.map((p) => (
-                                <li key={p.title} className="flex flex-col items-start gap-2.5">
-                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
-                                        <p.icon className="h-[18px] w-[18px]" />
-                                    </span>
-                                    <p className="text-[15px] font-bold leading-snug tracking-tight text-white">
-                                        {p.title}
-                                    </p>
-                                </li>
-                            ))}
-                        </ul>
+                        <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/70">
+                            온프레미스로 구축돼 데이터가 외부로 유출되지 않고, 역할 기반
+                            접근 제어(RBAC)로 내부 접근 권한을 세분화하며, 고객사 데이터가
+                            외부 모델의 학습 데이터로 쓰이지 않도록 기술적으로 차단합니다
+                        </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
                                 href="/contact?type=demo"
