@@ -176,6 +176,7 @@ export const NAV_GROUPS: NavGroup[] = [
                     { label: "Foundation", labelKo: "기반 아키텍처", id: "foundation", route: "/architecture#foundation" },
                     { label: "Design Principles", labelKo: "설계 원칙", id: "principles", route: "/architecture#principles" },
                     { label: "Enterprise AI Architecture", labelKo: "Enterprise AI 아키텍처", id: "reference", route: "/architecture#reference" },
+                    { label: "On-Premise Security", labelKo: "온프레미스·보안", id: "security", route: "/architecture#security" },
                     { label: "XGEN Platform", labelKo: "XGEN 플랫폼", id: "platform", route: "/architecture#platform" },
                     { label: "Code Assistant", labelKo: "코드 어시스턴트", id: "code-assistant", route: "/architecture#code-assistant" },
                     { label: "CI/CD", labelKo: "CI/CD 배포", id: "cicd", route: "/architecture#cicd" },
