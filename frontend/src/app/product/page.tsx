@@ -270,6 +270,18 @@ const SCREENS: { img: string; alt: string; caption: string; w: number; h: number
     },
 ];
 
+/** 핵심 기능 6종과 짝지을 대표 제품 화면(FEATURES 순서 정렬 — 에디토리얼 페어링). */
+const FEATURE_SCREENS = [
+    SCREENS[0], // 에이전트플로우 설계 → 캔버스
+    SCREENS[2], // 지식 관리와 검색 → 온톨로지
+    SCREENS[3], // 도구 연동과 확장 → API 도구
+    SCREENS[4], // 배포와 운영 → 배포 승인
+    SCREENS[7], // AI 거버넌스 → AI 위험도
+    SCREENS[5], // 대시보드·모니터링 → 통합 관리 센터
+];
+/** 에디토리얼 로우에 쓰이지 않은 나머지 화면 — 하단 보조 스트립. */
+const EXTRA_SCREENS = [SCREENS[1], SCREENS[6], SCREENS[8]]; // 노드 편집·모델 카탈로그·팀 협업
+
 /** 온프레미스 보안 3원칙 — 유출 차단·접근 세분화·제로 트레이닝. (구 xgen.im On-premise) */
 const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
     {
@@ -676,55 +688,79 @@ export default function ProductPage() {
                             전 과정이 하나의 플랫폼 안에서 연결됩니다.
                         </p>
 
-                        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                            {FEATURES.map((f) => (
-                                <div
-                                    key={f.tag}
-                                    className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                >
-                                    {/* 상단 영역 — 배경 틴트로 강조(수평선 위) */}
-                                    <div className="bg-[linear-gradient(160deg,#cfe0ff_0%,#e4eeff_100%)] p-6 transition group-hover:bg-[linear-gradient(160deg,#bfd6ff_0%,#d8e7ff_100%)]">
-                                        <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
-                                            <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white text-[#2f7bff] shadow-[0_2px_8px_rgba(20,60,120,0.12)]">
-                                                <f.icon className="h-4 w-4" />
-                                            </span>
-                                            {f.tag}
+                        {/* 에디토리얼 — 핵심 기능 6종을 대표 화면과 좌우 교차로 스프레드 */}
+                        <div className="mt-16 space-y-20 md:space-y-24">
+                            {FEATURES.map((f, i) => {
+                                const sc = FEATURE_SCREENS[i];
+                                const flip = i % 2 === 1;
+                                return (
+                                    <div
+                                        key={f.tag}
+                                        className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16"
+                                    >
+                                        {/* 텍스트 */}
+                                        <div className={flip ? "lg:order-2" : ""}>
+                                            <div className="flex items-baseline gap-3">
+                                                <span className="font-mono text-[34px] font-extrabold leading-none text-[var(--color-line-strong)]">
+                                                    {String(i + 1).padStart(2, "0")}
+                                                </span>
+                                                <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                                    <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                        <f.icon className="h-4 w-4" />
+                                                    </span>
+                                                    {f.tag}
+                                                </div>
+                                            </div>
+                                            <h3 className="mt-4 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[30px] md:leading-[1.2]">
+                                                {f.ko}
+                                            </h3>
+                                            <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                {f.desc}
+                                            </p>
+                                            <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                                                {f.items.map((it) => (
+                                                    <li
+                                                        key={it}
+                                                        className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
+                                                    >
+                                                        <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
+                                                        {it}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                        <h3 className="mt-4 text-[18.5px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {f.ko}
-                                        </h3>
-                                        <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {f.desc}
-                                        </p>
+                                        {/* 대표 제품 화면 */}
+                                        <div className={flip ? "lg:order-1" : ""}>
+                                            <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
+                                                <Image
+                                                    src={sc.img}
+                                                    alt={sc.alt}
+                                                    width={sc.w}
+                                                    height={sc.h}
+                                                    sizes="(max-width: 1024px) 100vw, 560px"
+                                                    className="h-auto w-full"
+                                                />
+                                                <figcaption className="border-t border-[var(--color-line)] bg-white px-5 py-3 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
+                                                    {sc.caption}
+                                                </figcaption>
+                                            </figure>
+                                        </div>
                                     </div>
-                                    {/* 화살표 목록 — 흰 배경(수평선 아래) */}
-                                    <ul className="flex flex-1 flex-col gap-2 border-t border-[var(--color-line)] bg-white p-6 pt-4">
-                                        {f.items.map((it) => (
-                                            <li
-                                                key={it}
-                                                className="flex items-start gap-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]"
-                                            >
-                                                <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                                                {it}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
 
-                        {/* 실제 제품 화면 쇼케이스 */}
-                        <div className="mt-14">
-                            <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                                실제 제품 화면
+                        {/* 더 많은 화면 — 보조 스트립 */}
+                        <div className="mt-20 border-t border-[var(--color-line)] pt-12">
+                            <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                더 많은 제품 화면
                             </p>
-                            <div className="mt-5 grid gap-5 md:grid-cols-3">
-                                {SCREENS.map((s) => (
+                            <div className="mt-5 grid gap-5 sm:grid-cols-3">
+                                {EXTRA_SCREENS.map((s) => (
                                     <figure
                                         key={s.img}
                                         className="flex flex-col overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
                                     >
-                                        {/* 고정 비율(16:9) 컨테이너 — 모든 썸네일 높이·캡션 위치 통일 */}
                                         <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--color-surface-alt)]">
                                             <Image
                                                 src={s.img}
