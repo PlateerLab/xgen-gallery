@@ -62,7 +62,7 @@ export function HomePositioning() {
                 <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     Plateer Labs
                 </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[38px] md:leading-[1.25]">
+                <h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
                     AI 연구가 제품이 되고,{" "}
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         고객 현장에서 검증됩니다

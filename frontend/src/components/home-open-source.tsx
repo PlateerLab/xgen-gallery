@@ -54,7 +54,7 @@ export function HomeOpenSource() {
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Open Source
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
                             연구를 오픈소스로 증명합니다
                         </h2>
                         <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
