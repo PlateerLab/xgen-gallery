@@ -310,21 +310,26 @@ export default function SupportPage() {
 
                         {/* 장애 심각도 단계 표 */}
                         <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--color-line)]">
-                            <table className="w-full min-w-[860px] border-collapse text-left">
+                            <table className="w-full min-w-[680px] border-collapse text-left">
                                 <thead>
                                     <tr className="bg-[var(--color-ink)] text-white">
                                         {[
                                             "구분",
                                             "긴급도",
                                             "장애 상태",
-                                            "시스템 운영 중단 여부",
+                                            "운영 중단",
                                             "대응 형태",
-                                            "최초응답시간",
-                                            "목표처리시간",
+                                            "최초 응답",
+                                            "목표 처리",
                                         ].map((h) => (
                                             <th
                                                 key={h}
-                                                className="px-4 py-3 text-[13.5px] font-semibold"
+                                                className={
+                                                    "px-3.5 py-2.5 text-[13px] font-semibold " +
+                                                    (h === "장애 상태"
+                                                        ? "w-full"
+                                                        : "whitespace-nowrap")
+                                                }
                                             >
                                                 {h}
                                             </th>
@@ -337,25 +342,25 @@ export default function SupportPage() {
                                             key={r.level}
                                             className="border-t border-[var(--color-line)] align-top"
                                         >
-                                            <td className="px-4 py-4 text-[15px] font-bold text-[#2461d8]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-[14px] font-bold text-[#2461d8]">
                                                 {r.level}
                                             </td>
-                                            <td className="px-4 py-4 text-[14px] font-semibold text-[var(--color-ink)]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
                                                 {r.urgency}
                                             </td>
-                                            <td className="px-4 py-4 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            <td className="w-full px-3.5 py-3 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                                 {r.state}
                                             </td>
-                                            <td className="px-4 py-4 text-center text-[15px] font-bold text-[var(--color-ink)]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-center text-[14px] font-bold text-[var(--color-ink)]">
                                                 {r.stop}
                                             </td>
-                                            <td className="px-4 py-4 text-[14px] font-semibold text-[#1f9d57]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-[13.5px] font-semibold text-[#1f9d57]">
                                                 {r.action}
                                             </td>
-                                            <td className="px-4 py-4 text-[14px] font-semibold text-[var(--color-ink)]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
                                                 {r.first}
                                             </td>
-                                            <td className="px-4 py-4 text-[14px] font-semibold text-[var(--color-ink)]">
+                                            <td className="whitespace-nowrap px-3.5 py-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
                                                 {r.target}
                                             </td>
                                         </tr>
