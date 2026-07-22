@@ -489,32 +489,24 @@ export default function ProductPage() {
                 ]}
             />
 
-            {/* Hero — 풀블리드 XGEN 소개영상 배경 + 태그라인(홈 두번째 슬라이드 컨셉) */}
+            {/* Hero — XGEN 소개영상 키비주얼(우측 패널) + 태그라인 */}
             <section className="relative flex min-h-[755px] items-center overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
-                {/* 배경 영상 — 실제 XGEN 제품 UI 소개영상 */}
-                <div aria-hidden className="pointer-events-none absolute inset-0">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        className="absolute inset-0 h-full w-full object-cover"
-                    >
-                        <source src="/hero-xgen.mp4" type="video/mp4" />
-                    </video>
-                    {/* 가독성 오버레이 — 좌측 텍스트 위로 어둡게 */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#070b1c]/90 via-[#070b1c]/60 to-[#070b1c]/15" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#070b1c]/70 to-transparent" />
-                </div>
-
-                <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 pt-28">
-                    <div className="max-w-2xl">
+                {/* 배경 글로우 */}
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_78%_18%,rgba(47,123,255,0.16),transparent_60%)]"
+                />
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                />
+                <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-2">
+                    <div className="max-w-xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                             XGEN · Agentic AI Platform
                         </div>
-                        <h1 className="mt-7 text-4xl font-bold leading-[1.15] tracking-tight md:text-[56px]">
+                        <h1 className="mt-7 text-4xl font-bold leading-[1.15] tracking-tight md:text-5xl">
                             기업의 AX 혁신을 돕는
                             <br />
                             <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
@@ -537,10 +529,26 @@ export default function ProductPage() {
                             </Link>
                             <a
                                 href="#platform"
-                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 backdrop-blur-sm transition hover:border-white/50 hover:text-white"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
                                 플랫폼 살펴보기
                             </a>
+                        </div>
+                    </div>
+
+                    {/* 키비주얼 — XGEN 소개영상 패널(우측) */}
+                    <div className="w-full lg:translate-x-4">
+                        <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                preload="auto"
+                                className="aspect-video w-full object-cover"
+                            >
+                                <source src="/hero-xgen.mp4" type="video/mp4" />
+                            </video>
                         </div>
                     </div>
                 </div>
