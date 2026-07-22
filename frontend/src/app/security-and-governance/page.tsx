@@ -116,6 +116,25 @@ const RISK_GRADES: [string, string][] = [
     ["저위험", "낮은 위험 수준 — 기본 통제 적용"],
 ];
 
+/** 온프레미스·보안 아키텍처 하이라이트 3축. */
+const ONPREM_HIGHLIGHTS: { icon: LucideIcon; title: string; desc: string }[] = [
+    {
+        icon: ShieldCheck,
+        title: "신뢰 경계 기반 접근",
+        desc: "외부 요청은 인증 게이트웨이에서 JWT를 신뢰 헤더로 변환한 뒤에만 내부 서비스에 도달합니다. 클라이언트가 권한 헤더를 직접 주입할 수 없습니다.",
+    },
+    {
+        icon: Lock,
+        title: "내부망·에어갭 운영",
+        desc: "LLM 서빙·임베딩·가드 모델부터 벡터 DB·문서 스토리지까지, 모든 AI 모델과 데이터를 내부망 엔드포인트에서 운영합니다.",
+    },
+    {
+        icon: Layers,
+        title: "전 계층 정책 일관 적용",
+        desc: "가드 모델·개인정보 마스킹·감사 로그·위험도 등급 통제가 특정 계층이 아니라 요청 경로 전체에 일관되게 적용됩니다.",
+    },
+];
+
 const FAQ: { q: string; a: string }[] = [
     {
         q: "XGEN의 가드레일은 어떤 계층으로 구성되나요?",
@@ -468,8 +487,49 @@ export default function SecurityPage() {
                     </div>
                 </section>
 
-                {/* FAQ */}
+                {/* 온프레미스·보안 아키텍처 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <Eyebrow>On-Premise Architecture</Eyebrow>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            온프레미스·보안 아키텍처 위에서 통제가 완성됩니다
+                        </h2>
+                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            지금까지의 통제 정책은 폐쇄망·온프레미스 배포를 전제로
+                            설계되었습니다. 외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한
+                            뒤에만 내부 서비스·AI 모델·데이터에 접근하며, 모든 모델과 데이터는
+                            내부망에서 운영됩니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                            {ONPREM_HIGHLIGHTS.map((h) => (
+                                <div
+                                    key={h.title}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                        <h.icon className="h-5 w-5" />
+                                    </span>
+                                    <h3 className="mt-4 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {h.title}
+                                    </h3>
+                                    <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {h.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                        <Link
+                            href="/architecture#security"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            온프레미스·보안 아키텍처 자세히 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
+                    </div>
+                </section>
+
+                {/* FAQ */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-4xl px-6 py-24">
                         <Eyebrow>FAQ</Eyebrow>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
