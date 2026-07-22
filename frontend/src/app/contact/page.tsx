@@ -95,7 +95,7 @@ export default function ContactPage() {
                                 <p className="text-[15px] leading-relaxed text-white/75">
                                     XGEN 15일 무료 체험은 문의 유형에서{" "}
                                     <span className="font-semibold text-white">
-                                        ‘무료 체험 신청’
+                                        ‘XGEN 15일 무료 체험 신청’
                                     </span>
                                     을 선택해 접수됩니다
                                 </p>
