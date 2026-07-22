@@ -221,7 +221,7 @@ export default function ArchitecturePage() {
                             On-Premise Security
                         </p>
                         <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
-                            온프레미스 보안 아키텍처 — 신뢰 경계 기반 방어
+                            온프레미스·보안 아키텍처
                         </h2>
                         <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-white/70">
                             외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부
