@@ -35,7 +35,8 @@ const COPY = {
             "기타",
         ],
         inquiry: "상담 내용",
-        inquiryPlaceholder: "PoC 과제나 검토 중인 기술, 궁금한 점을 적어주세요.",
+        inquiryPlaceholder:
+            "제품 데모·15일 무료 체험·PoC·기술 상담 중 필요한 내용과 검토 배경을 간단히 남겨주세요. 문의 유형을 선택해 접수하시면 영업일 1~2일 내 연락드립니다.",
         agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
         agreeThird: "[필수] 제3자 정보제공 동의",
@@ -86,7 +87,7 @@ const COPY = {
         ],
         inquiry: "Consultation details",
         inquiryPlaceholder:
-            "Describe your PoC scope, the tech you're evaluating, or any questions.",
+            "Briefly tell us what you need — product demo, 15-day free trial, PoC, or tech consultation — and your context. Select an inquiry type and we'll reply within 1–2 business days.",
         agreePolicy: "[Required] I agree to the Privacy Policy.",
         agreeCollect:
             "[Required] I consent to the collection and use of personal information.",
