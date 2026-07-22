@@ -34,7 +34,7 @@ export const ARCH_SECTIONS = [
     { id: "foundation", label: "기반 아키텍처" },
     { id: "principles", label: "설계 원칙" },
     { id: "reference", label: "Enterprise AI 아키텍처" },
-    { id: "security", label: "온프레미스 보안" },
+    { id: "security", label: "온프레미스·보안" },
     { id: "platform", label: "XGEN 플랫폼" },
     { id: "code-assistant", label: "코드 어시스턴트" },
     { id: "cicd", label: "CI/CD 배포" },
