@@ -55,10 +55,8 @@ export default function ContactPage() {
                             </h1>
                             <p className="mt-5 max-w-md text-lg leading-relaxed text-white/65">
                                 제품 데모, XGEN 15일 무료 체험, PoC 및 기술 상담을 신청할 수
-                                있습니다.
-                                <br />
-                                문의 유형을 선택해 접수해 주시면 담당자가 영업일 기준 1~2일
-                                이내에 연락드립니다.
+                                있습니다. 문의 유형을 선택해 접수해 주시면 담당자가 영업일
+                                기준 1~2일 이내에 연락드립니다.
                             </p>
                             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
                                 현장에 배치되는{" "}

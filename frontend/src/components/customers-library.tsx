@@ -7,7 +7,6 @@ import {
     Banknote,
     Landmark,
     Server,
-    ArrowRight,
     ArrowUpRight,
     type LucideIcon,
 } from "lucide-react";
@@ -92,43 +91,6 @@ function StatusBadge({ c }: { c: CaseStudy }) {
             <span className="h-1.5 w-1.5 rounded-full bg-[#1f9d57]" />
             {c.status}
         </span>
-    );
-}
-
-/** 대표 사례 — 상단 이미지(그라디언트) 오버레이 + 하단 콘텐츠. */
-function SpotlightCard({ c }: { c: CaseStudy }) {
-    return (
-        <Link
-            href={`/customers/case/${c.slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:-translate-y-0.5 hover:shadow-[0_26px_54px_-30px_rgba(20,40,80,0.4)]"
-        >
-            <Thumb c={c} iconSize="h-44 w-44" className="min-h-[236px] p-7">
-                <div className="mb-2 flex flex-wrap items-center gap-1.5">
-                    {c.products.map((p) => (
-                        <span
-                            key={p}
-                            className="inline-flex items-center rounded-md bg-white/15 px-2 py-0.5 text-[12px] font-bold text-white backdrop-blur-sm"
-                        >
-                            {PRODUCTS[p].name}
-                        </span>
-                    ))}
-                </div>
-                <h3 className="text-[22px] font-bold leading-snug tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]">
-                    {c.title}
-                </h3>
-            </Thumb>
-            <div className="flex flex-1 flex-col p-7">
-                <p className="line-clamp-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {c.summary}
-                </p>
-                <div className="mt-6 flex items-end justify-between gap-4">
-                    <HashTags c={c} />
-                    <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[var(--color-ink)] text-white transition group-hover:bg-[#2461d8]">
-                        <ArrowRight className="h-5 w-5" />
-                    </span>
-                </div>
-            </div>
-        </Link>
     );
 }
 
@@ -223,7 +185,6 @@ export function CustomersLibrary({
     // industry는 "all"로 고정되어 모든 사례가 그대로 보인다.
     const SHOW_INDUSTRY_FILTER = false;
 
-    const featured = useMemo(() => cases.filter((c) => c.featured).slice(0, 2), [cases]);
 
     const productKeys = useMemo(
         () =>
@@ -248,17 +209,8 @@ export function CustomersLibrary({
 
     return (
         <div>
-            {/* 대표 사례 스포트라이트 */}
-            {featured.length > 0 && (
-                <div className="grid gap-6 md:grid-cols-2">
-                    {featured.map((c) => (
-                        <SpotlightCard key={c.slug} c={c} />
-                    ))}
-                </div>
-            )}
-
             {/* 리드 문구 */}
-            <div className="mt-20 text-center">
+            <div className="text-center">
                 <h2 className="mx-auto max-w-3xl text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[32px] md:leading-snug">
                     XGEN·AI Code Assistant로 업무를 혁신한
                     <br className="hidden sm:block" /> 고객의 이야기를 살펴보세요

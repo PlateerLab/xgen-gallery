@@ -324,7 +324,7 @@ const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }
 const FAQ: { q: string; a: string }[] = [
     {
         q: "XGEN은 무엇인가요?",
-        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer Labs 연구소가 직접 설계·개발했습니다.",
+        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer Labs AI 연구소가 직접 설계·개발했습니다.",
     },
     {
         q: "어떤 LLM·파운데이션 모델을 사용할 수 있나요?",
@@ -899,12 +899,12 @@ export default function ProductPage() {
                             Deployment
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            반입에서 운영까지, 통제된 구축
+                            반입부터 운영까지, 검증된 구축 프로세스
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            폐쇄망 반입부터 실증·구축·운영까지, 온프레미스 환경에서
-                            단계적으로 도입합니다. 반입 절차만 끝나면 바로 실증으로 넘어가
-                            빠르게 성과를 냅니다.
+                            폐쇄망 반입부터 실증, 구축, 운영까지 온프레미스 환경에 맞춰
+                            단계적으로 지원합니다. 반입 절차가 완료되면 신속하게 실증을
+                            시작하여 운영 전 검증과 빠른 성과 확보를 지원합니다.
                         </p>
                         <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
                             {DEPLOY_STEPS.map((s) => (
