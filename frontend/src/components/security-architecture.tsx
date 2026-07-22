@@ -58,7 +58,7 @@ const ZONES: {
         sub: "JWT → 신뢰 헤더 변환",
         boundaryBefore: true,
         cards: [
-            { t: "Rust Gateway", s: "xgen-backend-gateway" },
+            { t: "Rust Gateway", s: "" },
             { t: "JWT 파싱·검증", s: "쿠키 → 사용자 컨텍스트" },
             { t: "x-user-* 헤더 주입", s: "id · roles · permissions · superuser" },
             { t: "스푸핑 차단", s: "클라이언트가 헤더 직접 주입 불가" },
@@ -72,7 +72,7 @@ const ZONES: {
         title: "애플리케이션 서비스",
         sub: "권한 집행 · 접근 제어",
         cards: [
-            { t: "xgen-core", s: "FastAPI · @require_perm ABAC" },
+            { t: "xgen-core", s: "ABAC 접근 제어" },
             { t: "xgen-workflow", s: "실행 · 접근제어 5단계" },
             { t: "이중 승인 게이트", s: "배포 + 거버넌스 승인 필수" },
             { t: "MCP Station", s: "샌드박스 격리 실행" },
@@ -86,9 +86,9 @@ const ZONES: {
         title: "AI 모델 영역",
         sub: "전부 내부 엔드포인트",
         cards: [
-            { t: "LLM 서빙", s: "vLLM · SGLang (사내 GPU)" },
+            { t: "LLM 서빙", s: "vLLM · SGLang · llama.cpp (사내 GPU)" },
             { t: "임베딩 · 리랭커", s: "Sentence Transformers · vLLM" },
-            { t: "Guard 모델", s: "Qwen3Guard · fail-closed" },
+            { t: "Guard 모델", s: "오픈 가드 모델 · fail-closed" },
         ],
         flow: "저장 · 조회",
     },
@@ -99,7 +99,7 @@ const ZONES: {
         title: "데이터 저장소",
         sub: "내부망 · 접근 제한",
         cards: [
-            { t: "Qdrant", s: "벡터 DB · 6333/6334" },
+            { t: "Qdrant", s: "벡터 DB" },
             { t: "애플리케이션 DB", s: "사용자·정책·메타" },
             { t: "MinIO", s: "문서 객체 스토리지" },
             { t: "감사 로그 저장소", s: "보존 정책 적용" },
@@ -191,9 +191,11 @@ export function SecurityArchitecture() {
                                                 <p className="text-[13px] font-bold leading-tight text-[var(--color-ink)]">
                                                     {c.t}
                                                 </p>
-                                                <p className="mt-1 text-[11px] leading-snug text-[var(--color-ink-subtle)]">
-                                                    {c.s}
-                                                </p>
+                                                {c.s && (
+                                                    <p className="mt-1 text-[11px] leading-snug text-[var(--color-ink-subtle)]">
+                                                        {c.s}
+                                                    </p>
+                                                )}
                                             </div>
                                         ))}
                                     </div>

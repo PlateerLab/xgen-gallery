@@ -54,16 +54,16 @@ const ACCESS = [
 ];
 
 const DOMAIN: Item[] = [
-    { icon: Landmark, t: "금융", s: "I캐피탈 · 제주은행" },
+    { icon: Landmark, t: "금융", s: "은행 · 캐피탈 · 여신" },
     { icon: Building2, t: "공공", s: "공공기관" },
-    { icon: ShoppingCart, t: "이커머스", s: "롯데홈쇼핑" },
-    { icon: MonitorPlay, t: "서비스", s: "아이스크림미디어" },
+    { icon: ShoppingCart, t: "이커머스", s: "홈쇼핑 · 리테일" },
+    { icon: MonitorPlay, t: "서비스", s: "미디어 · 콘텐츠" },
     { icon: Boxes, t: "기타", s: "Private LLM" },
 ];
 
 const AGENT: Item[] = [
     { icon: Workflow, t: "Workflow Canvas", s: "Low/No-code Agent 설계 · 60+ 노드 · 커스텀 노드" },
-    { icon: Bot, t: "Unit Agents", s: "대출상품 · 심사승인 · 사고예방 · 업무 단위 에이전트" },
+    { icon: Bot, t: "업무 에이전트", s: "상담 · 문서 처리 · 승인 등 업무 단위 에이전트" },
     { icon: Wrench, t: "MCP Station", s: "사내 도구 · API tool-call 연계 · 다중 도구 조합" },
     { icon: Network, t: "Multi-Agent Orchestration", s: "Planner → Agent 라우팅 · 단계별 기능 확장" },
 ];
@@ -83,7 +83,7 @@ const RAG_SIDE: Item[] = [
 ];
 
 const FOUNDATION: Item[] = [
-    { icon: Brain, t: "오픈소스 LLM", s: "Qwen3 계열 (32B / 8B) · Private · Vertical LLM" },
+    { icon: Brain, t: "오픈소스 LLM", s: "오픈 모델 · Private · Vertical LLM" },
     { icon: Wand2, t: "Fine-Tuning", s: "SFT / DPO · 도메인 특화 학습" },
     { icon: Boxes, t: "멀티모델 확장", s: "Model Router 연계 · Vision · 임베딩 모델" },
 ];
