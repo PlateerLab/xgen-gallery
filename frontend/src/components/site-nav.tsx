@@ -208,7 +208,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
 
     return (
         <header className={headerCls} onMouseLeave={scheduleClose}>
-            <div className="flex h-[84px] w-full items-center justify-between px-6">
+            <div className="flex h-[84px] w-full items-center px-6">
                 <Link
                     href="/"
                     className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-72rem)/2)]"
@@ -231,7 +231,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </Link>
 
                 {/* desktop groups */}
-                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-extrabold xl:flex 2xl:text-[19px]">
+                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-extrabold xl:ml-14 xl:flex 2xl:ml-16 2xl:text-[19px]">
                     {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                         const menuItems = g.items.filter((it) => !it.hidden);
                         const hasMenu = !g.flat && menuItems.length > 0;
@@ -320,7 +320,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     })}
                 </nav>
 
-                <div className="flex items-center justify-end gap-3">
+                <div className="ml-auto flex items-center justify-end gap-3">
                     <div className="w-[150px] sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
