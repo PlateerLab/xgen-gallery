@@ -293,7 +293,6 @@ export default function SupportPage() {
                                     <text x="524" y="286">* 고객사 연락 – 부문별 담당자 조치</text>
                                     <text x="688" y="286">* 장애조치 리포트</text>
                                 </g>
-                                <text x="824" y="388" textAnchor="end" fontSize="11" fill="#94a3b8">* DR (Disaster Recovery) : 재해복구</text>
                             </svg>
                         </div>
                     </div>
