@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { CustomersLibrary } from "@/components/customers-library";
+import { FeaturedCaseCard } from "@/components/featured-case-card";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
-import { getAllCases, PRODUCTS, INDUSTRIES, type ProductKey } from "@/lib/customers";
+import { getAllCases, PRODUCTS, type ProductKey } from "@/lib/customers";
 
 /**
  * 고객사례 라이브러리(/customers) — XGEN·Polar 등 제품을 실제 업무에 적용한
@@ -69,66 +69,8 @@ export default async function CustomersPage({
                         </p>
                     </div>
 
-                    {/* 키비주얼 — 가장 최근 대표 사례 1건을 이미지 카드로 비주얼라이징 */}
-                    {featured && (
-                        <div className="w-full">
-                            <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-white/50">
-                                최근 사례
-                            </p>
-                            <Link
-                                href={`/customers/case/${featured.slug}`}
-                                className="group block overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition hover:border-white/30"
-                            >
-                                <div className="relative aspect-[16/10] overflow-hidden">
-                                    {featured.cover ? (
-                                        <Image
-                                            src={featured.cover}
-                                            alt={featured.title}
-                                            fill
-                                            sizes="(max-width: 1024px) 100vw, 520px"
-                                            className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-                                        />
-                                    ) : (
-                                        <div className="absolute inset-0 bg-gradient-to-br from-[#0b1a3f] to-[#123a6b]" />
-                                    )}
-                                    {/* 하단 가독성 그라디언트 */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050813] via-[#050813]/55 to-[#050813]/10" />
-
-                                    {/* 상단 메타 배지 */}
-                                    <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2 text-[12.5px]">
-                                        <span className="rounded-full bg-[#5eead4]/20 px-2.5 py-0.5 font-semibold text-[#5eead4] backdrop-blur-sm">
-                                            {PRODUCTS[featured.products[0]].name}
-                                        </span>
-                                        <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-white/85 backdrop-blur-sm">
-                                            {INDUSTRIES[featured.industry].ko}
-                                        </span>
-                                        <time
-                                            dateTime={featured.published}
-                                            className="rounded-full bg-black/25 px-2.5 py-0.5 text-white/70 backdrop-blur-sm"
-                                        >
-                                            {featured.published.slice(0, 7).replace("-", ".")}
-                                        </time>
-                                    </div>
-
-                                    {/* 하단 타이틀·고객 */}
-                                    <div className="absolute inset-x-0 bottom-0 p-5">
-                                        <h3 className="text-[18px] font-bold leading-snug text-white">
-                                            {featured.title}
-                                        </h3>
-                                        <div className="mt-2.5 flex items-center gap-2 text-[13.5px]">
-                                            <span className="font-semibold text-white/85">
-                                                {featured.customer}
-                                            </span>
-                                            <span className="ml-auto inline-flex items-center gap-1 font-semibold text-[#5eead4]">
-                                                사례 보기
-                                                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-                    )}
+                    {/* 키비주얼 — 가장 최근 대표 사례 1건(산업 상징 비주얼 카드) */}
+                    {featured && <FeaturedCaseCard item={featured} />}
                 </div>
             </section>
 

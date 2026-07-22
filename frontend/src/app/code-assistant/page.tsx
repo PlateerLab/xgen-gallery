@@ -17,6 +17,8 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { FeaturedCaseCard } from "@/components/featured-case-card";
+import { getAllCases } from "@/lib/customers";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -193,6 +195,10 @@ const FAQ: { q: string; a: string }[] = [
 ];
 
 export default function CodeAssistantPage() {
+    // 최근 Code Assistant 고객 사례 — 히어로 키비주얼 카드
+    const featuredCase = getAllCases().find((c) =>
+        c.products.includes("code-assistant"),
+    );
     return (
         <>
             <SiteNav overlay />
@@ -240,37 +246,42 @@ export default function CodeAssistantPage() {
             {/* Hero */}
             <section className="relative flex min-h-[755px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
-                        Product · Code Assistant
-                    </p>
-                    <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        우리 코드베이스를 이해하는 AI Code Assistant
-                    </h1>
-                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        범용 자동완성을 넘어, 사내 코드·API·DB 스키마·산출물을 학습해 실제
-                        프로젝트 맥락에서 코드 수준으로 답합니다. GitLab과 연동되고
-                        온프레미스·폐쇄망에 설치돼 소스가 외부로 나가지 않습니다.
-                    </p>
-                    <div className="mt-8 flex flex-wrap gap-3">
-                        <Link
-                            href="/contact"
-                            className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b1020] transition hover:bg-white/90"
-                        >
-                            도입 문의
-                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </Link>
-                        <Link
-                            href="/customers?product=code-assistant"
-                            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
-                        >
-                            고객사례 보기
-                        </Link>
+                <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 pt-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+                    <div>
+                        <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
+                            Product · Code Assistant
+                        </p>
+                        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                            우리 코드베이스를 이해하는 AI Code Assistant
+                        </h1>
+                        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                            범용 자동완성을 넘어, 사내 코드·API·DB 스키마·산출물을 학습해 실제
+                            프로젝트 맥락에서 코드 수준으로 답합니다. GitLab과 연동되고
+                            온프레미스·폐쇄망에 설치돼 소스가 외부로 나가지 않습니다.
+                        </p>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <Link
+                                href="/contact"
+                                className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b1020] transition hover:bg-white/90"
+                            >
+                                도입 문의
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <Link
+                                href="/customers?product=code-assistant"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                고객사례 보기
+                            </Link>
+                        </div>
+                        <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
+                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                            엔터프라이즈 · 온프레미스 코드 어시스턴트
+                        </span>
                     </div>
-                    <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
-                        <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
-                        엔터프라이즈 · 온프레미스 코드 어시스턴트
-                    </span>
+
+                    {/* 키비주얼 — 최근 Code Assistant 고객 사례(산업 상징 카드) */}
+                    {featuredCase && <FeaturedCaseCard item={featuredCase} />}
                 </div>
             </section>
 

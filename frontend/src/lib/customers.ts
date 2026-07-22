@@ -77,8 +77,6 @@ export interface CaseStudy {
     quote?: { text: string; author?: string; role?: string };
     /** 정리 기준일(YYYY-MM-DD). */
     published: string;
-    /** 키비주얼용 대표 이미지(선택) — 최근 사례 히어로 카드에 노출. */
-    cover?: string;
     /** 대표 사례(상단 노출). */
     featured?: boolean;
     /** true면 목록/색인에서 제외(작성 중). */
@@ -162,7 +160,6 @@ export const CASE_STUDIES: CaseStudy[] = [
         status: "운영 중",
         published: "2026-03-11",
         featured: true,
-        cover: "/product/manage-intro.png",
     },
     {
         slug: "retail-genai-retention",
