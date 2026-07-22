@@ -1057,34 +1057,6 @@ export default function ProductPage() {
                     </div>
                 </section>
 
-                {/* FAQ */}
-                <section
-                    id="faq"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-4xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            FAQ
-                        </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            자주 묻는 질문
-                        </h2>
-                        <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
-                            {FAQ.map((f) => (
-                                <details key={f.q} className="group px-6 py-5">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
-                                        {f.q}
-                                        <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
-                                    </summary>
-                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {f.a}
-                                    </p>
-                                </details>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
                 {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-6xl px-6 py-16">
@@ -1114,6 +1086,34 @@ export default function ProductPage() {
                                     </span>
                                     <ArrowRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2461d8]" />
                                 </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* FAQ */}
+                <section
+                    id="faq"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
+                    <div className="mx-auto max-w-4xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            FAQ
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            자주 묻는 질문
+                        </h2>
+                        <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
+                            {FAQ.map((f) => (
+                                <details key={f.q} className="group px-6 py-5">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
+                                        {f.q}
+                                        <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
+                                    </summary>
+                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {f.a}
+                                    </p>
+                                </details>
                             ))}
                         </div>
                     </div>
