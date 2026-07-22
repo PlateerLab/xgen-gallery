@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { CustomersLibrary } from "@/components/customers-library";
-import { FeaturedCaseCard } from "@/components/featured-case-card";
+import { FeaturedCaseSlider } from "@/components/featured-case-slider";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import { getAllCases, PRODUCTS, type ProductKey } from "@/lib/customers";
@@ -27,7 +27,7 @@ export default async function CustomersPage({
     searchParams: Promise<{ product?: string }>;
 }) {
     const cases = getAllCases();
-    const featured = cases[0]; // 가장 최근 사례 — 키비주얼에 이미지 카드로 노출
+    const recent = cases.slice(0, 3); // 최근 사례 — 키비주얼 슬라이드 배너
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
         product && product in PRODUCTS ? (product as ProductKey) : "all";
@@ -69,8 +69,8 @@ export default async function CustomersPage({
                         </p>
                     </div>
 
-                    {/* 키비주얼 — 가장 최근 대표 사례 1건(산업 상징 비주얼 카드) */}
-                    {featured && <FeaturedCaseCard item={featured} />}
+                    {/* 키비주얼 — 최근 사례 슬라이드 배너(산업 상징 비주얼 카드) */}
+                    {recent.length > 0 && <FeaturedCaseSlider items={recent} />}
                 </div>
             </section>
 

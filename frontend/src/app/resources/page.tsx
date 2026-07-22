@@ -143,7 +143,7 @@ export default function ResourcesPage() {
                                     </ul>
                                     <div className="mt-5 flex items-center gap-2 border-t border-[var(--color-line)] pt-4 text-[13.5px] text-[var(--color-ink-subtle)]">
                                         <Check className="h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                                        신청 즉시 PDF 다운로드 · 담당 연구원이 도입 문의에 회신
+                                        신청 즉시 PDF 다운로드
                                     </div>
                                 </div>
                             </div>

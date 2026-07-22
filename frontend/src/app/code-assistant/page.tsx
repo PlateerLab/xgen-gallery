@@ -17,8 +17,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
-import { FeaturedCaseCard } from "@/components/featured-case-card";
-import { getAllCases } from "@/lib/customers";
+import { CodeAssistantHeroArt } from "@/components/code-assistant-hero-art";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -195,10 +194,6 @@ const FAQ: { q: string; a: string }[] = [
 ];
 
 export default function CodeAssistantPage() {
-    // 최근 Code Assistant 고객 사례 — 히어로 키비주얼 카드
-    const featuredCase = getAllCases().find((c) =>
-        c.products.includes("code-assistant"),
-    );
     return (
         <>
             <SiteNav overlay />
@@ -280,8 +275,8 @@ export default function CodeAssistantPage() {
                         </span>
                     </div>
 
-                    {/* 키비주얼 — 최근 Code Assistant 고객 사례(산업 상징 카드) */}
-                    {featuredCase && <FeaturedCaseCard item={featuredCase} />}
+                    {/* 키비주얼 — IDE 코드 에디터 목업(AI 제안) */}
+                    <CodeAssistantHeroArt />
                 </div>
             </section>
 
