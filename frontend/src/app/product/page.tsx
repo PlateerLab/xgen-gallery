@@ -75,44 +75,6 @@ const STATS: { n: string; label: string; sub: string }[] = [
 ];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
-const HIGHLIGHTS: {
-    tag: string;
-    title: string;
-    desc: string;
-    img: string;
-    alt: string;
-    w: number;
-    h: number;
-}[] = [
-    {
-        tag: "Build",
-        title: "코딩 없이, 드래그로 에이전트를 설계합니다",
-        desc: "캔버스에서 노드를 연결해 LLM 호출·도구 실행·분기를 조합합니다. 복잡한 개발 지식 없이도 업무 흐름을 시각적으로 만들고, 실시간 채팅으로 바로 검증합니다.",
-        img: "/product/agent-builder-canvas.png",
-        alt: "XGEN 에이전트플로우 캔버스 — 노드를 연결해 워크플로우를 시각적으로 설계하는 화면",
-        w: 1600,
-        h: 900,
-    },
-    {
-        tag: "Knowledge",
-        title: "흩어진 지식을 하나의 그래프로 연결합니다",
-        desc: "문서를 온톨로지로 구조화해 같은 대상의 여러 표현을 연결하고, 하이브리드 검색과 리랭킹으로 출처가 분명한 답변을 만듭니다. 정제되지 않은 데이터도 축적하며 품질이 올라갑니다.",
-        img: "/product/screen-ontology.png",
-        alt: "XGEN 온톨로지 — 기업 지식을 그래프로 구조화한 지식 그래프 화면",
-        w: 1898,
-        h: 905,
-    },
-    {
-        tag: "Govern",
-        title: "승인 없이는 배포되지 않도록 통제합니다",
-        desc: "에이전트 생성 시 위험도 평가와 이중 승인으로 걸러내고, 운영 중 이상은 킬 스위치로 즉시 중단합니다. 누가·무엇을·언제 했는지 모두 감사 로그로 남깁니다.",
-        img: "/product/screen-approval.png",
-        alt: "XGEN 배포 승인 결재 — 이중 승인으로 서비스 배포를 통제하는 화면",
-        w: 1904,
-        h: 892,
-    },
-];
-
 /** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
 const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
@@ -632,44 +594,6 @@ export default function ProductPage() {
                     </div>
                 </section>
 
-                {/* 하이라이트 — 대형 스크린샷 + 카피 좌우 교차(브로셔) */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl space-y-20 px-6 py-24 md:space-y-28">
-                        {HIGHLIGHTS.map((h, i) => (
-                            <div
-                                key={h.tag}
-                                className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
-                            >
-                                {/* 텍스트 — 짝수 블록은 오른쪽으로 교차 */}
-                                <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                                    <p className="font-mono text-[12px] uppercase tracking-widest text-[#2461d8]">
-                                        {h.tag}
-                                    </p>
-                                    <h3 className="mt-3 text-[26px] font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[32px]">
-                                        {h.title}
-                                    </h3>
-                                    <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {h.desc}
-                                    </p>
-                                </div>
-                                {/* 대형 스크린샷 */}
-                                <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                                    <div className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
-                                        <Image
-                                            src={h.img}
-                                            alt={h.alt}
-                                            width={h.w}
-                                            height={h.h}
-                                            sizes="(max-width: 1024px) 100vw, 560px"
-                                            className="h-auto w-full"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
                 {/* Features */}
                 <section
                     id="features"
@@ -701,7 +625,7 @@ export default function ProductPage() {
                                         {/* 텍스트 */}
                                         <div className={flip ? "lg:order-2" : ""}>
                                             <div className="flex items-baseline gap-3">
-                                                <span className="font-mono text-[34px] font-extrabold leading-none text-[var(--color-line-strong)]">
+                                                <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[34px] font-extrabold leading-none text-transparent">
                                                     {String(i + 1).padStart(2, "0")}
                                                 </span>
                                                 <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
