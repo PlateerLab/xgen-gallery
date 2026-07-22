@@ -500,7 +500,7 @@ export default function ProductPage() {
                     aria-hidden
                     className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
                 />
-                <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-2">
+                <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[0.85fr_1.15fr]">
                     <div className="max-w-xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
