@@ -36,11 +36,11 @@ const COPY = {
         ],
         inquiry: "상담 내용",
         inquiryPlaceholder: "PoC 과제나 검토 중인 기술, 궁금한 점을 적어주세요.",
-        agreePolicy: "[필수] 개인정보취급방침에 동의합니다",
+        agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
         agreeThird: "[필수] 제3자 정보제공 동의",
         agreeMarketing: "[선택] 마케팅 정보 수신 동의",
-        submit: "상담 신청하기",
+        submit: "신청하기",
         submitting: "전송 중…",
         successTitle: "상담 신청이 접수되었습니다",
         successBody: "소중한 문의 감사합니다. 담당 연구원이 내용을 확인한 뒤 곧 연락드리겠습니다",
@@ -93,7 +93,7 @@ const COPY = {
         agreeThird:
             "[Required] I consent to providing my information to third parties.",
         agreeMarketing: "[Optional] I agree to receive marketing communications.",
-        submit: "Request consultation",
+        submit: "Submit request",
         submitting: "Submitting…",
         successTitle: "Request received",
         successBody: "Thank you for reaching out. A researcher will review your request and get back to you shortly",
@@ -398,20 +398,23 @@ export function DemoForm() {
                 />
             </div>
 
-            <div className="mt-4 space-y-1.5 border-t border-[var(--color-line)] pt-3.5">
+            <div className="mt-4 grid grid-cols-1 gap-x-5 gap-y-1.5 border-t border-[var(--color-line)] pt-3.5 sm:grid-cols-2">
                 <Consent
+                    required
                     label={c.agreePolicy}
                     checked={fields.agreePrivacyPolicy}
                     onChange={(v) => set("agreePrivacyPolicy", v)}
                     error={errors.agreePrivacyPolicy}
                 />
                 <Consent
+                    required
                     label={c.agreeCollect}
                     checked={fields.agreePrivacyCollect}
                     onChange={(v) => set("agreePrivacyCollect", v)}
                     error={errors.agreePrivacyCollect}
                 />
                 <Consent
+                    required
                     label={c.agreeThird}
                     checked={fields.agreeThirdParty}
                     onChange={(v) => set("agreeThirdParty", v)}
@@ -583,11 +586,13 @@ function Consent({
     checked,
     onChange,
     error,
+    required,
 }: {
     label: string;
     checked: boolean;
     onChange: (v: boolean) => void;
     error?: string;
+    required?: boolean;
 }) {
     return (
         <label className="flex cursor-pointer items-start gap-2">
@@ -595,10 +600,11 @@ function Consent({
                 type="checkbox"
                 checked={checked}
                 onChange={(e) => onChange(e.target.checked)}
-                className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[var(--color-line-strong)] accent-[var(--color-ink)]"
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[var(--color-line-strong)] accent-[#2f7bff]"
             />
-            <span className="text-[13px] leading-snug text-[var(--color-ink-muted)]">
+            <span className="text-[12.5px] leading-snug text-[var(--color-ink-muted)]">
                 {label}
+                {required && <span className="text-red-500"> *</span>}
                 {error && <span className="ml-1 text-red-600">— {error}</span>}
             </span>
         </label>
