@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X, Users } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
-import { LanguageToggle } from "@/components/language-toggle";
 import { SiteSearch } from "@/components/site-search";
 import { useI18n } from "@/components/i18n-provider";
 import { NAV_GROUPS, DEMO_CTA, sectionHref, type NavLeaf } from "@/lib/nav";
@@ -324,9 +323,20 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     <div className="w-[150px] sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
-                    {/* utility icons — language + github (desktop only) */}
+                    {/* utility icons — members + github (desktop only) */}
                     <div className="hidden items-center gap-3 lg:flex">
-                        <LanguageToggle light={light} />
+                        <Link
+                            href="/members"
+                            aria-label="Members"
+                            className={cn(
+                                "inline-flex transition",
+                                light
+                                    ? "text-white/80 hover:text-white"
+                                    : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
+                            )}
+                        >
+                            <Users className="h-5 w-5" />
+                        </Link>
                         <Link
                             href={SITE.github}
                             target="_blank"
