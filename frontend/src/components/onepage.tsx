@@ -219,11 +219,8 @@ export function GroupPage({
                         item={it}
                         tone={i % 2 === 1 ? "alt" : "default"}
                     >
-                        {it.route ? (
-                            <RouteIntro item={it} />
-                        ) : (
-                            content?.[it.id]
-                        )}
+                        {content?.[it.id] ??
+                            (it.route ? <RouteIntro item={it} /> : undefined)}
                     </Section>
                 ))}
                 {trailing}

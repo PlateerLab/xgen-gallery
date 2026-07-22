@@ -185,9 +185,82 @@ function TechnologyMarketing() {
     );
 }
 
+/** Architecture 섹션 — 링크아웃 대신 맥락 있는 요약 + 아키텍처 페이지 딥링크. */
+const ARCH_LAYERS: { label: string; en: string; desc: string; href: string }[] = [
+    {
+        label: "기반 아키텍처",
+        en: "Foundation",
+        desc: "온프레미스·망분리까지 지원하는 인프라·데이터 계층",
+        href: "/architecture#foundation",
+    },
+    {
+        label: "설계 원칙",
+        en: "Design Principles",
+        desc: "보안·거버넌스·확장성을 관통하는 설계 기준",
+        href: "/architecture#principles",
+    },
+    {
+        label: "참조 아키텍처",
+        en: "Reference",
+        desc: "기업 도입에 바로 적용하는 Enterprise AI 청사진",
+        href: "/architecture#reference",
+    },
+    {
+        label: "XGEN 플랫폼",
+        en: "Platform",
+        desc: "엔진·프레임워크·런타임을 잇는 플랫폼 구조",
+        href: "/architecture#platform",
+    },
+];
+
+function ArchitectureContent() {
+    return (
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+                <p className="max-w-md text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                    신뢰할 수 있는 Enterprise AI는 모델이 아니라 아키텍처에서 나옵니다.
+                    XGEN은 기반 인프라부터 설계 원칙, 참조 아키텍처, 플랫폼 구조까지 하나의
+                    청사진으로 정의해 실제 기업 환경에 안전하게 이식됩니다
+                </p>
+                <Link
+                    href="/architecture"
+                    className="group mt-6 inline-flex items-center gap-2 rounded-md bg-[var(--color-ink)] px-4 py-2.5 text-[16px] font-semibold text-white transition hover:opacity-90"
+                >
+                    아키텍처 자세히 보기
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </Link>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+                {ARCH_LAYERS.map((a) => (
+                    <Link
+                        key={a.en}
+                        href={a.href}
+                        className="group rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#2f7bff]/40 hover:shadow-[0_12px_30px_-16px_rgba(20,40,80,0.35)]"
+                    >
+                        <div className="flex items-center justify-between">
+                            <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                {a.en}
+                            </span>
+                            <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2f7bff]" />
+                        </div>
+                        <h3 className="mt-2 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {a.label}
+                        </h3>
+                        <p className="mt-1.5 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {a.desc}
+                        </p>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function TechnologyPage() {
     // Research는 별도 페이지(/research)로 유지하되, 기술 원페이지에서는 링크아웃
-    // 섹션을 빼고 기술 전체를 아우르는 마케팅 밴드로 마무리한다.
+    // 섹션을 빼고 기술 전체를 아우르는 마케팅 밴드로 마무리한다. Architecture는
+    // 링크아웃 대신 맥락 있는 요약 + 아키텍처 페이지 딥링크로 대체한다.
     return (
         <GroupPage
             group={getGroup("technology")!}
@@ -195,6 +268,7 @@ export default function TechnologyPage() {
             content={{
                 engines: <EnginesContent />,
                 frameworks: <FrameworksContent />,
+                architecture: <ArchitectureContent />,
             }}
             hideSections={["research"]}
             leading={<TechnologyMarketing />}
