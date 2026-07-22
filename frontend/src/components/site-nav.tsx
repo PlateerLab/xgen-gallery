@@ -274,9 +274,9 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                 <div
                                     className={cn(
                                         "absolute left-0 top-full pt-3",
-                                        // 우측으로 넓게 펼쳐지는 Product 와이드 메뉴는 조금 왼쪽으로
+                                        // Product 와이드 메뉴는 트리거 기준 가운데로 펼침
                                         g.key === "product" &&
-                                            "lg:left-auto lg:right-0",
+                                            "lg:left-1/2 lg:-translate-x-1/2",
                                     )}
                                 >
                                     {g.wide ? (
