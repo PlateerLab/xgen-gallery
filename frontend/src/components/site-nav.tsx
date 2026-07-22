@@ -271,7 +271,14 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                             )}
 
                             {hasMenu && openKey === g.key && (
-                                <div className="absolute left-0 top-full pt-3">
+                                <div
+                                    className={cn(
+                                        "absolute left-0 top-full pt-3",
+                                        // 우측으로 넓게 펼쳐지는 Product 와이드 메뉴는 조금 왼쪽으로
+                                        g.key === "product" &&
+                                            "lg:left-auto lg:right-0",
+                                    )}
+                                >
                                     {g.wide ? (
                                         <div className="flex gap-8 rounded-xl border border-[var(--color-line)] bg-white p-4 shadow-xl">
                                             {buildColumns(
