@@ -553,18 +553,22 @@ export default function ProductPage() {
                     </div>
                 </section>
 
-                {/* 숫자로 보는 XGEN — 실측 사실 밴드 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
+                {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
+                <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
+                    />
+                    <div className="relative mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
                         {STATS.map((s) => (
                             <div key={s.label} className="text-center">
-                                <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
+                                <p className="bg-gradient-to-br from-[#00acee] to-[#7dd3fc] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
                                     {s.n}
                                 </p>
-                                <p className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                <p className="mt-3 text-[15px] font-bold tracking-tight text-white">
                                     {s.label}
                                 </p>
-                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                <p className="mt-1 text-[13px] text-white/50">
                                     {s.sub}
                                 </p>
                             </div>
