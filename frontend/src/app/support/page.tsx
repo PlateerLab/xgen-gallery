@@ -233,7 +233,7 @@ export default function SupportPage() {
                                     <rect x="28" y="22" width="140" height="26" rx="13" fill="#64748b" />
                                     <text x="98" y="39" fontSize="12.5" fill="#ffffff">고객사 담당자</text>
                                     <rect x="220" y="22" width="592" height="26" rx="13" fill="#2563eb" />
-                                    <text x="516" y="39" fontSize="12.5" fill="#ffffff">Plateer</text>
+                                    <text x="516" y="39" fontSize="12.5" fill="#ffffff" letterSpacing="0.08em">PLATEER</text>
                                 </g>
                                 {/* 자사 하위 레인 라벨 + 구분선 */}
                                 <g>
@@ -243,7 +243,7 @@ export default function SupportPage() {
                                 </g>
 
                                 {/* 커넥터 */}
-                                <g stroke="#8ea6c8" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" markerEnd="url(#ifa)">
+                                <g stroke="#8ea6c8" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" markerEnd="url(#ifa)">
                                     <path d="M152 98 L282 100" />
                                     <path d="M348 128 L348 196" />
                                     <path d="M406 236 L522 237" />
