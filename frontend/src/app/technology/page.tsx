@@ -59,6 +59,21 @@ function TechnologyHero() {
                     환경에서 실제 운영 가능한 핵심 엔진과 프레임워크를 연구하고
                     설계합니다.
                 </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                    <Link
+                        href="/architecture"
+                        className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                    >
+                        플랫폼 아키텍처 보기
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </Link>
+                    <Link
+                        href="/product"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                    >
+                        제품으로 확인하기
+                    </Link>
+                </div>
             </div>
 
             {/* 기술 스택 레이어 키비주얼 */}
@@ -171,22 +186,6 @@ function TechnologyMarketing() {
                             </p>
                         </div>
                     ))}
-                </div>
-
-                <div className="mt-12 flex flex-wrap gap-3">
-                    <Link
-                        href="/architecture"
-                        className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
-                    >
-                        플랫폼 아키텍처 보기
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                    </Link>
-                    <Link
-                        href="/product"
-                        className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
-                    >
-                        제품으로 확인하기
-                    </Link>
                 </div>
             </div>
         </section>
