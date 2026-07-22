@@ -282,7 +282,7 @@ export const NAV_GROUPS: NavGroup[] = [
                 children: [
                     { label: "Why XGEN", labelKo: "제품 개요", id: "why-xgen", route: "/product" },
                     { label: "Features · Core Technology", labelKo: "핵심 기능 · 핵심 기술", id: "features", route: "/product#features" },
-                    { label: "On-Premise & Security", labelKo: "온프레미스·보안", id: "on-premise", route: "/product#on-premise" },
+                    { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/product#on-premise" },
                     { label: "Certifications & Quality", labelKo: "인증·품질", id: "certification", route: "/product#certification" },
                     { label: "Customer Cases", labelKo: "고객사례", id: "xgen-cases", route: "/product#cases" },
                     { label: "Documentation", id: "documentation", route: "/documentation" },

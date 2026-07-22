@@ -15,6 +15,8 @@ import {
     ChevronRight,
     ArrowRight,
     Download,
+    Sparkles,
+    Compass,
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
@@ -110,6 +112,41 @@ const PILLARS: { no: string; title: string; desc: string }[] = [
         no: "04",
         title: "모델·시스템 유연 연동",
         desc: "다양한 LLM, API 기반 시스템, 사내 데이터, RAG, Tool·Function을 유연하게 연결합니다.",
+    },
+];
+
+/** XGEN 특장점 — 비개발자·현업도 직접 만드는 접근성(이지모드·패스파인더). */
+const DIFFERENTIATORS: {
+    icon: LucideIcon;
+    en: string;
+    ko: string;
+    tagline: string;
+    desc: string;
+    items: string[];
+}[] = [
+    {
+        icon: Sparkles,
+        en: "Easy Mode",
+        ko: "이지모드",
+        tagline: "코딩 없이, 약 90초면 에이전트가 완성됩니다",
+        desc: "드래그&드롭 가이드형 빌더로 비개발자도 지식·프롬프트·도구를 조합해 에이전트를 생성·조립합니다. 만드는 즉시 채팅으로 바로 검증합니다.",
+        items: [
+            "드래그&드롭 노코드 빌드",
+            "단계별 가이드형 구성",
+            "약 90초 만에 생성·조립",
+        ],
+    },
+    {
+        icon: Compass,
+        en: "PathFinder",
+        ko: "패스파인더",
+        tagline: "기존 웹 시스템을 코드 없이 Agent 도구로 연결합니다",
+        desc: "패스파인더는 기존 웹 시스템·API를 AI가 이해하고 사용할 수 있는 Agent Tool로 잇는 브라우저 자동화 기술입니다. 로그인부터 API 연결·도구 등록·테스트까지 코드 한 줄 없이 이어, 현업이 아이디어를 실행 도구로 만듭니다.",
+        items: [
+            "브라우저 자동화 기반 연결",
+            "로그인·API·도구 등록·테스트 무코드",
+            "현업이 직접 실행 도구화",
+        ],
     },
 ];
 
@@ -594,6 +631,62 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더) */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Build for Everyone
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            개발자가 아니어도, 에이전트를 직접 만듭니다
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            복잡한 개발 지식 없이도 현업이 직접 에이전트를 설계하고, 기존
+                            시스템까지 연결합니다. 만드는 문턱을 낮춰 아이디어가 곧 실행
+                            도구가 됩니다.
+                        </p>
+                        <div className="mt-8 grid gap-4 md:grid-cols-2">
+                            {DIFFERENTIATORS.map((d) => (
+                                <div
+                                    key={d.en}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <d.icon className="h-5 w-5" />
+                                        </span>
+                                        <div>
+                                            <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                                {d.en}
+                                            </p>
+                                            <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {d.ko}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
+                                        {d.tagline}
+                                    </p>
+                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {d.desc}
+                                    </p>
+                                    <ul className="mt-5 flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                        {d.items.map((it) => (
+                                            <li
+                                                key={it}
+                                                className="flex items-start gap-2 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                            >
+                                                <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
+                                                {it}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Features */}
                 <section
                     id="features"
@@ -948,6 +1041,13 @@ export default function ProductPage() {
                                     산업과 온프레미스 환경에서도 신뢰할 수 있는 거버넌스를
                                     제공합니다.
                                 </p>
+                                <Link
+                                    href="/security-and-governance"
+                                    className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
+                                >
+                                    보안·거버넌스 아키텍처 자세히 보기
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                </Link>
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {GOV.map((g) => (
