@@ -305,7 +305,7 @@ export default function SupportPage() {
                             Maintenance
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            유지보수 방법
+                            유지보수
                         </h2>
 
                         {/* 장애 심각도 단계 표 */}
