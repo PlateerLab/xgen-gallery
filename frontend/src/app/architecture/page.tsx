@@ -232,7 +232,7 @@ export default function ArchitecturePage() {
                 {/* XGEN 2.0 플랫폼 아키텍처 (공개-안전 구성) */}
                 <section
                     id="platform"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <Eyebrow>/ XGEN Platform</Eyebrow>
@@ -268,7 +268,7 @@ export default function ArchitecturePage() {
                 {/* 코드 어시스턴트 아키텍처 (공개-안전 구성) */}
                 <section
                     id="code-assistant"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <Eyebrow>/ Code Assistant</Eyebrow>
