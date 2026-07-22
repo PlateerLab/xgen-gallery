@@ -15,12 +15,12 @@ import { breadcrumbLd } from "@/lib/structured-data";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 export const metadata = {
-    title: "운영지원·기술지원",
+    title: "운영·기술지원",
     description:
         "구축을 넘어 운영까지 — XGEN 온프레미스 환경의 유지보수, 장애 대응, 모니터링, 운영지원(상주·원격)을 제공합니다.",
     alternates: { canonical: "/support" },
     openGraph: {
-        title: "운영지원·기술지원 · Plateer Labs",
+        title: "운영·기술지원 · Plateer Labs",
         description:
             "유지보수·장애처리·모니터링·SLA — 구축 이후 안정적인 운영을 책임집니다.",
         type: "website",
@@ -95,7 +95,7 @@ export default function SupportPage() {
                     {
                         "@context": "https://schema.org",
                         "@type": "Service",
-                        name: "운영지원·기술지원",
+                        name: "운영·기술지원",
                         serviceType: "Enterprise AI Operations & Support",
                         provider: {
                             "@type": "Organization",
@@ -109,7 +109,7 @@ export default function SupportPage() {
                     breadcrumbLd([
                         { name: "Home", path: "/" },
                         { name: "Applied AI", path: "/solutions" },
-                        { name: "운영지원·기술지원", path: "/support" },
+                        { name: "운영·기술지원", path: "/support" },
                     ]),
                 ]}
             />
@@ -119,7 +119,7 @@ export default function SupportPage() {
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                        Applied AI · 운영지원·기술지원
+                        Applied AI · 운영·기술지원
                     </p>
                     <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                         구축을 넘어, 운영까지 책임집니다
@@ -197,78 +197,103 @@ export default function SupportPage() {
                             장애 발생부터 접수·상태 파악·무상처리·종료까지, 담당 조직 간
                             협업으로 신속하게 처리합니다.
                         </p>
-                        <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--color-line)] bg-white p-5">
+                        <div className="mt-8 max-w-[60%] overflow-x-auto rounded-2xl border border-[var(--color-line)] bg-white p-5">
                             <svg
-                                viewBox="0 0 800 350"
-                                className="w-full min-w-[720px]"
+                                viewBox="0 0 840 400"
+                                className="w-full min-w-[440px]"
                                 role="img"
-                                aria-label="장애 처리 프로세스 흐름도 — 운영 담당자, 고객 기술지원, XGEN 플랫폼 운영팀"
+                                aria-label="장애 처리 프로세스 흐름도 — 고객사와 자사(Plateer Labs) 협업"
                                 fontFamily="Pretendard, system-ui, sans-serif"
                             >
                                 <defs>
-                                    <marker id="ifa" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-                                        <path d="M0 0 L9 4.5 L0 9 z" fill="#94a3b8" />
+                                    <marker id="ifa" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto">
+                                        <path d="M0 0 L10 5 L0 10 z" fill="#8ea6c8" />
                                     </marker>
+                                    <filter id="ifs" x="-30%" y="-30%" width="160%" height="170%">
+                                        <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#1e3a68" floodOpacity="0.14" />
+                                    </filter>
+                                    <linearGradient id="gAlert" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0" stopColor="#f87171" />
+                                        <stop offset="1" stopColor="#e23b3b" />
+                                    </linearGradient>
+                                    <linearGradient id="gEnd" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0" stopColor="#3b82f6" />
+                                        <stop offset="1" stopColor="#1e40af" />
+                                    </linearGradient>
                                 </defs>
-                                {/* 레인 헤더 */}
-                                <g>
-                                    <rect x="0" y="0" width="176" height="28" rx="4" fill="#eef2f8" />
-                                    <rect x="186" y="0" width="286" height="28" rx="4" fill="#e5edf9" />
-                                    <rect x="482" y="0" width="318" height="28" rx="4" fill="#eef2f8" />
-                                    <g textAnchor="middle" fontSize="13" fontWeight="700" fill="#33436e">
-                                        <text x="88" y="19">운영 담당자</text>
-                                        <text x="329" y="19">고객 기술지원</text>
-                                        <text x="641" y="19">XGEN 플랫폼 운영팀</text>
-                                    </g>
-                                </g>
-                                {/* 레인 구분선 */}
-                                <g stroke="#e6e8f4" strokeWidth="1.5" strokeDasharray="3 5">
-                                    <line x1="181" y1="34" x2="181" y2="344" />
-                                    <line x1="477" y1="34" x2="477" y2="344" />
-                                </g>
-                                {/* 화살표 */}
-                                <g stroke="#94a3b8" strokeWidth="2" fill="none" markerEnd="url(#ifa)">
-                                    <path d="M132 78 L198 74" />
-                                    <path d="M255 100 L255 160" />
-                                    <path d="M311 200 L494 202" />
-                                    <path d="M628 203 L652 203" />
-                                    <path d="M199 200 L164 205" />
-                                    <path d="M88 234 L88 291" />
-                                    <path d="M716 230 L716 320 L134 320" />
-                                </g>
-                                {/* 노드 — 운영 담당자 */}
-                                <g>
-                                    <ellipse cx="88" cy="78" rx="44" ry="27" fill="#eef4ff" stroke="#9db6f0" strokeWidth="1.5" />
-                                    <text x="88" y="74" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">장애</text>
-                                    <text x="88" y="90" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">발생</text>
 
-                                    <rect x="16" y="184" width="144" height="50" rx="9" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
-                                    <text x="88" y="214" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">장애 조치 진행중</text>
-
-                                    <ellipse cx="88" cy="318" rx="44" ry="27" fill="#eef4ff" stroke="#9db6f0" strokeWidth="1.5" />
-                                    <text x="88" y="314" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">장애</text>
-                                    <text x="88" y="330" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">종료</text>
-                                </g>
-                                {/* 노드 — 고객 기술지원 */}
+                                {/* 스윔레인 존 배경 */}
                                 <g>
-                                    <rect x="200" y="52" width="110" height="46" rx="9" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
-                                    <text x="255" y="79" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">장애접수</text>
-
-                                    <path d="M255 164 L311 200 L255 236 L199 200 Z" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
-                                    <text x="255" y="205" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">상태식별</text>
+                                    <rect x="8" y="8" width="180" height="384" rx="18" fill="#f5f8fc" stroke="#e4eaf2" />
+                                    <rect x="200" y="8" width="632" height="384" rx="18" fill="#eef4ff" stroke="#dbe7fb" />
                                 </g>
-                                {/* 노드 — XGEN 플랫폼 운영팀 */}
+
+                                {/* 존/레인 헤더 */}
+                                <g textAnchor="middle" fontWeight="700">
+                                    <rect x="28" y="22" width="140" height="26" rx="13" fill="#64748b" />
+                                    <text x="98" y="39" fontSize="12.5" fill="#ffffff">고객사 담당자</text>
+                                    <rect x="220" y="22" width="592" height="26" rx="13" fill="#2563eb" />
+                                    <text x="516" y="39" fontSize="12.5" fill="#ffffff">Plateer Labs · 자사</text>
+                                </g>
+                                {/* 자사 하위 레인 라벨 + 구분선 */}
                                 <g>
-                                    <rect x="496" y="178" width="132" height="50" rx="9" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
-                                    <text x="562" y="207" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">상태 파악</text>
-                                    <text x="496" y="250" fontSize="11" fill="#64748b">* 고객사 연락 – 부문별 담당자 조치</text>
-
-                                    <rect x="654" y="178" width="120" height="50" rx="9" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.5" />
-                                    <text x="714" y="207" textAnchor="middle" fontSize="13" fontWeight="600" fill="#33436e">무상처리</text>
-                                    <text x="654" y="250" fontSize="11" fill="#64748b">* 장애조치 리포트</text>
+                                    <line x1="496" y1="58" x2="496" y2="384" stroke="#dbe7fb" strokeWidth="1.5" strokeDasharray="3 6" />
+                                    <text x="348" y="70" textAnchor="middle" fontSize="11" fontWeight="700" fill="#5b78c4">기술지원</text>
+                                    <text x="664" y="70" textAnchor="middle" fontSize="11" fontWeight="700" fill="#5b78c4">플랫폼 운영팀</text>
                                 </g>
-                                {/* DR 각주 */}
-                                <text x="800" y="344" textAnchor="end" fontSize="11" fill="#94a3b8">* DR (Disaster Recovery) : 재해복구</text>
+
+                                {/* 커넥터 */}
+                                <g stroke="#8ea6c8" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" markerEnd="url(#ifa)">
+                                    <path d="M152 98 L282 100" />
+                                    <path d="M348 128 L348 196" />
+                                    <path d="M406 236 L522 237" />
+                                    <path d="M664 237 L686 237" />
+                                    <path d="M290 236 L172 238" />
+                                    <path d="M98 266 L98 328" />
+                                    <path d="M752 264 L752 352 L152 352" />
+                                </g>
+
+                                {/* 터미네이터 — 장애 발생(레드) / 장애 종료(블루) */}
+                                <g filter="url(#ifs)">
+                                    <rect x="46" y="76" width="104" height="44" rx="22" fill="url(#gAlert)" />
+                                    <rect x="46" y="330" width="104" height="44" rx="22" fill="url(#gEnd)" />
+                                </g>
+                                <g textAnchor="middle" fontSize="13.5" fontWeight="700" fill="#ffffff">
+                                    <text x="98" y="103">장애 발생</text>
+                                    <text x="98" y="357">장애 종료</text>
+                                </g>
+
+                                {/* 프로세스 카드 */}
+                                <g filter="url(#ifs)">
+                                    {/* 고객사 */}
+                                    <rect x="26" y="212" width="144" height="54" rx="13" fill="#ffffff" stroke="#e6ecf5" />
+                                    {/* 자사 */}
+                                    <rect x="284" y="76" width="128" height="52" rx="13" fill="#ffffff" stroke="#e6ecf5" />
+                                    <path d="M348 198 L406 236 L348 274 L290 236 Z" fill="#eff5ff" stroke="#93b8fb" strokeWidth="1.5" />
+                                    <rect x="524" y="210" width="140" height="54" rx="13" fill="#ffffff" stroke="#e6ecf5" />
+                                    <rect x="688" y="210" width="128" height="54" rx="13" fill="#ffffff" stroke="#e6ecf5" />
+                                </g>
+                                {/* 카드 좌측 액센트 스트립 */}
+                                <g>
+                                    <rect x="34" y="222" width="5" height="34" rx="2.5" fill="#94a3b8" />
+                                    <rect x="292" y="86" width="5" height="32" rx="2.5" fill="#2f7bff" />
+                                    <rect x="532" y="220" width="5" height="34" rx="2.5" fill="#2f7bff" />
+                                    <rect x="696" y="220" width="5" height="34" rx="2.5" fill="#2f7bff" />
+                                </g>
+                                {/* 카드 라벨 */}
+                                <g textAnchor="middle" fontSize="13.5" fontWeight="600">
+                                    <text x="102" y="244" fill="#334155">장애 조치 진행중</text>
+                                    <text x="350" y="107" fill="#1f2b45">장애접수</text>
+                                    <text x="348" y="241" fill="#1f2b45" fontWeight="700">상태식별</text>
+                                    <text x="596" y="242" fill="#1f2b45">상태 파악</text>
+                                    <text x="754" y="242" fill="#1f2b45">무상처리</text>
+                                </g>
+                                {/* 주석 */}
+                                <g fontSize="11" fill="#64748b">
+                                    <text x="524" y="286">* 고객사 연락 – 부문별 담당자 조치</text>
+                                    <text x="688" y="286">* 장애조치 리포트</text>
+                                </g>
+                                <text x="824" y="388" textAnchor="end" fontSize="11" fill="#94a3b8">* DR (Disaster Recovery) : 재해복구</text>
                             </svg>
                         </div>
                     </div>
@@ -358,8 +383,7 @@ export default function SupportPage() {
                             <li className="flex gap-2">
                                 <span className="mt-2 h-1 w-1 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
                                 고객에게 구두 사항, 해결 방법 제시 및 대응 시간에 맞추기 위해
-                                당사는 최대의 노력을 기울입니다. 단, 위에 명시된 시간을 준수하지
-                                못하는 경우가 계약 위반을 의미하지는 않습니다.
+                                당사는 최대의 노력을 기울입니다.
                             </li>
                             <li className="flex gap-2">
                                 <span className="mt-2 h-1 w-1 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
@@ -385,6 +409,30 @@ export default function SupportPage() {
                         <p className="mt-3 text-[13px] text-[var(--color-ink-subtle)]">
                             * DR (Disaster Recovery): 재해복구
                         </p>
+
+                        {/* 유상 유지보수 */}
+                        <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 md:p-8">
+                            <h3 className="text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
+                                유상 유지보수
+                            </h3>
+                            <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                <li className="flex gap-2.5">
+                                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
+                                    무상 유지보수 종료 후 별도 계약에 의해 지원합니다.
+                                </li>
+                                <li className="flex gap-2.5">
+                                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
+                                    유지보수 대상을 넘어서는 범위 또는 구조적 변경은 유지보수
+                                    대상에서 제외됩니다.
+                                </li>
+                                <li className="flex gap-2.5">
+                                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
+                                    유지보수 비용은 응용소프트웨어의 경우 지식경제부 고시
+                                    「소프트웨어 사업대가」 기준의 용역 유지보수 대가 산정에
+                                    의거하여 상호 협의로 결정합니다.
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
 

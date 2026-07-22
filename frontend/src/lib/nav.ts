@@ -227,7 +227,7 @@ export const NAV_GROUPS: NavGroup[] = [
                     // 납품 후 고객사 활용 지원·교육 — 딜리버리 사이클의 마지막 단계.
                     { label: "Enablement", labelKo: "교육 지원", id: "enablement", route: "/enablement" },
                     // 구축 이후 운영 — 유지보수·장애처리·모니터링·SLA.
-                    { label: "Operations & Support", labelKo: "운영지원·기술지원", id: "support", route: "/support" },
+                    { label: "Operations & Support", labelKo: "운영·기술지원", id: "support", route: "/support" },
                 ],
             },
             {
