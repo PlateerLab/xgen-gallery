@@ -212,13 +212,13 @@ export function ProductHero() {
                             </span>
                             를 안심하고 활용하세요
                         </h2>
-                        <ul className="mt-8 space-y-5">
+                        <ul className="mt-8 grid grid-cols-3 gap-4">
                             {SECURITY_POINTS.map((p) => (
                                 <li key={p.title} className="flex flex-col items-start gap-2.5">
                                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
                                         <p.icon className="h-[18px] w-[18px]" />
                                     </span>
-                                    <p className="text-[16px] font-bold tracking-tight text-white">
+                                    <p className="text-[15px] font-bold leading-snug tracking-tight text-white">
                                         {p.title}
                                     </p>
                                 </li>
@@ -354,9 +354,9 @@ function OnPremNetwork() {
             <text x="66" y="279" textAnchor="middle" fontSize="12.5" fontWeight="600" letterSpacing="0.04em" fill="#a7b8d6">
                 외부망 · Internet
             </text>
-            <circle cx="46" cy="112" r="6" fill="#8ea3c6" fillOpacity="0.8" />
-            <circle cx="62" cy="188" r="6" fill="#8ea3c6" fillOpacity="0.8" />
-            <line x1="52" y1="118" x2="60" y2="182" stroke="#8ea3c6" strokeOpacity="0.4" strokeWidth="1.4" />
+            <line x1="46" y1="112" x2="62" y2="188" stroke="#8ea3c6" strokeOpacity="0.5" strokeWidth="1.6" />
+            <circle cx="46" cy="112" r="6" fill="#8ea3c6" fillOpacity="0.85" />
+            <circle cx="62" cy="188" r="6" fill="#8ea3c6" fillOpacity="0.85" />
             {/* 침입 시도 → 방화벽에서 차단 */}
             <line x1="66" y1="150" x2="128" y2="150" stroke="#f0a3a3" strokeOpacity="0.7" strokeWidth="1.6" strokeDasharray="4 4" />
             <g transform="translate(133 150)">
