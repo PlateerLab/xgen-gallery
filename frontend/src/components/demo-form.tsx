@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Check, Clock, ArrowRight, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
@@ -23,6 +23,15 @@ const COPY = {
             "광고",
             "SNS / 유튜브",
             "세미나 / 컨퍼런스",
+            "기타",
+        ],
+        inquiryType: "문의 유형",
+        inquiryTypePlaceholder: "선택해주세요",
+        inquiryTypeOptions: [
+            "제품 데모 요청",
+            "XGEN 15일 무료 체험 신청",
+            "PoC · 기술 상담",
+            "도입 · 견적 문의",
             "기타",
         ],
         inquiry: "상담 내용",
@@ -66,6 +75,15 @@ const COPY = {
             "Seminar / Conference",
             "Other",
         ],
+        inquiryType: "Inquiry type",
+        inquiryTypePlaceholder: "Please select",
+        inquiryTypeOptions: [
+            "Product demo",
+            "XGEN 15-day free trial",
+            "PoC / Tech consultation",
+            "Pricing / Rollout inquiry",
+            "Other",
+        ],
         inquiry: "Consultation details",
         inquiryPlaceholder:
             "Describe your PoC scope, the tech you're evaluating, or any questions.",
@@ -104,6 +122,7 @@ type Fields = {
     department: string;
     jobTitle: string;
     phone: string;
+    inquiryType: string;
     referralPath: string;
     inquiry: string;
     agreePrivacyPolicy: boolean;
@@ -119,6 +138,7 @@ const EMPTY: Fields = {
     department: "",
     jobTitle: "",
     phone: "",
+    inquiryType: "",
     referralPath: "",
     inquiry: "",
     agreePrivacyPolicy: false,
@@ -133,9 +153,18 @@ const REQUIRED_TEXT = [
     "department",
     "jobTitle",
     "phone",
+    "inquiryType",
     "referralPath",
     "inquiry",
 ] as const;
+
+/** ?type= 딥링크 → 문의 유형 프리셋(옵션 인덱스). demo·trial·poc·pricing */
+const TYPE_PARAM_TO_INDEX: Record<string, number> = {
+    demo: 0,
+    trial: 1,
+    poc: 2,
+    pricing: 3,
+};
 
 const REQUIRED_CONSENTS = [
     "agreePrivacyPolicy",
@@ -154,6 +183,35 @@ export function DemoForm() {
 
     const set = (k: keyof Fields, v: string | boolean) =>
         setFields((f) => ({ ...f, [k]: v }));
+
+    // 진입 소스에 따라 문의 유형 프리셋: ?type= 우선, 없으면 레퍼러로 추론
+    //  · ?type=demo|trial|poc|pricing  · 레퍼러가 /xgen-trial → 무료 체험
+    useEffect(() => {
+        let idx: number | undefined;
+        const t = new URLSearchParams(window.location.search).get("type");
+        if (t && t in TYPE_PARAM_TO_INDEX) {
+            idx = TYPE_PARAM_TO_INDEX[t];
+        } else if (document.referrer) {
+            try {
+                const ref = new URL(document.referrer);
+                if (
+                    ref.origin === window.location.origin &&
+                    ref.pathname.startsWith("/xgen-trial")
+                ) {
+                    idx = TYPE_PARAM_TO_INDEX.trial;
+                }
+            } catch {
+                /* 잘못된 레퍼러는 무시 */
+            }
+        }
+        if (idx !== undefined) {
+            setFields((f) => ({
+                ...f,
+                inquiryType: c.inquiryTypeOptions[idx as number],
+            }));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const validate = (): boolean => {
         const e: Record<string, string> = {};
@@ -267,6 +325,15 @@ export function DemoForm() {
             className="rounded-2xl border border-[var(--color-line)] bg-white p-7 shadow-xl sm:p-8"
         >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Select
+                    className="sm:col-span-2"
+                    label={c.inquiryType}
+                    placeholder={c.inquiryTypePlaceholder}
+                    options={c.inquiryTypeOptions}
+                    value={fields.inquiryType}
+                    onChange={(v) => set("inquiryType", v)}
+                    error={errors.inquiryType}
+                />
                 <Field
                     className="sm:col-span-2"
                     label={c.email}

@@ -146,12 +146,30 @@ export default function TechnicalConsultingPage() {
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                         연구로 검증하고, PoC로 입증합니다
                     </span>
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        <Link
+                            href="/contact?type=poc"
+                            className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                        >
+                            기술 상담 신청하기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
+                        <a
+                            href="#core-services"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                        >
+                            핵심 서비스 보기
+                        </a>
+                    </div>
                 </div>
             </section>
 
             <main>
                 {/* 핵심 서비스 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section
+                    id="core-services"
+                    className="scroll-mt-[100px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Services

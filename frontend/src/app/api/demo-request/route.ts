@@ -10,6 +10,7 @@ interface DemoRequest {
     department?: string;
     jobTitle?: string;
     phone?: string;
+    inquiryType?: string;
     referralPath?: string;
     inquiry?: string;
     agreePrivacyPolicy?: boolean;

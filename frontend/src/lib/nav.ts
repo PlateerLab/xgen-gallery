@@ -252,7 +252,7 @@ export const NAV_GROUPS: NavGroup[] = [
                 route: "/#live-demo",
                 menuOnly: true,
                 children: [
-                    { label: "XGEN", id: "try-xgen", route: "/xgen-trial" },
+                    { label: "XGEN trial(15Days)", id: "try-xgen", route: "/xgen-trial" },
                     { label: "X2BEE AI", id: "try-x2bee", external: "https://ai-exp.x2bee.com" },
                 ],
             },

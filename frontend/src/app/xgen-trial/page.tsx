@@ -13,13 +13,13 @@ import {
     ShieldCheck,
     Check,
     Monitor,
+    ArrowRight,
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
-import { TrialSignupForm } from "@/components/trial-signup-form";
 import { AgentBuilderMockup } from "@/components/xgen-trial-art";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -171,12 +171,15 @@ export default function XgenTrialPage() {
                                 무료 데모 환경에서 직접 경험할 수 있습니다.
                             </p>
                             <div className="mt-8 flex flex-wrap gap-3">
-                                <TrialSignupForm
-                                    triggerLabel="15일 무료 체험 신청하기"
-                                    triggerClassName="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
-                                />
                                 <Link
-                                    href="/contact"
+                                    href="/contact?type=trial"
+                                    className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
+                                >
+                                    15일 무료 체험 신청하기
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                </Link>
+                                <Link
+                                    href="/contact?type=poc"
                                     className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                                 >
                                     도입·PoC 상담
@@ -373,10 +376,13 @@ export default function XgenTrialPage() {
                                 신청 양식만 제출하면 계정과 가이드를 보내드립니다. 설치 없이 데모 환경에서 바로 시작하세요.
                             </p>
                         </div>
-                        <TrialSignupForm
-                            triggerLabel="무료 체험 시작"
-                            triggerClassName="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
-                        />
+                        <Link
+                            href="/contact?type=trial"
+                            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
+                        >
+                            무료 체험 시작
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
                     </div>
                 </section>
             </main>

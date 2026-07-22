@@ -8,16 +8,16 @@ import { SiteFooter } from "@/components/site-footer";
 import { DemoForm } from "@/components/demo-form";
 
 export const metadata = pageMetadata({
-    title: "PoC · 기술 상담",
+    title: "데모 · 체험 · 기술 상담",
     description:
-        "Plateer Labs에 PoC와 Enterprise AI 기술 상담을 요청하세요. 과제를 남겨주시면 담당자가 영업일 기준 1–2일 내에 연락드립니다.",
+        "XGEN 제품 데모 요청, 15일 무료 체험 신청, PoC·기술 상담을 한 곳에서 접수합니다. 문의 유형을 선택해 남겨주시면 담당자가 영업일 기준 1–2일 내에 연락드립니다.",
     path: "/contact",
 });
 
 const BENEFITS = [
+    "제품 데모 · 15일 무료 체험 · PoC 상담을 한 양식에서 접수",
     "과제 정의부터 PoC 설계·실행까지 전문가 1:1 상담",
     "기술 요건에 맞춘 솔루션·레퍼런스 아키텍처 제안",
-    "PoC 결과 기반 도입 로드맵 가이드 제공",
 ];
 
 export default function ContactPage() {
@@ -48,15 +48,15 @@ export default function ContactPage() {
                         {/* intro */}
                         <div className="md:pt-6">
                             <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
-                                Plateer Labs · PoC · 기술 상담
+                                Plateer Labs · 데모 · 무료 체험 · 기술 상담
                             </p>
                             <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                                PoC · 기술 상담
+                                데모 · 체험 · 기술 상담
                             </h1>
                             <p className="mt-5 max-w-md text-lg leading-relaxed text-white/65">
-                                PoC나 Enterprise AI 기술 적용을 검토 중이신가요?
-                                과제와 문의 내용을 남겨주시면 담당자가 영업일 기준
-                                1–2일 내에 연락드립니다.
+                                제품 데모 요청, XGEN 15일 무료 체험 신청, PoC·기술 상담을
+                                한 곳에서 접수합니다. 문의 유형을 선택하고 내용을 남겨주시면
+                                담당자가 영업일 기준 1–2일 내에 연락드립니다.
                             </p>
                             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
                                 현장에 배치되는{" "}
@@ -88,16 +88,20 @@ export default function ContactPage() {
                                 </a>
                             </p>
 
-                            {/* 체험하기 연계 — 상담 전에 먼저 무료로 써보기 */}
-                            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
+                            {/* 무료 체험 연계 — 이제 같은 양식의 '무료 체험 신청' 유형으로 접수 */}
+                            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
                                 <p className="text-[15px] leading-relaxed text-white/75">
-                                    도입 전에 먼저 써보고 싶으신가요?
+                                    XGEN 15일 무료 체험은 문의 유형에서{" "}
+                                    <span className="font-semibold text-white">
+                                        ‘무료 체험 신청’
+                                    </span>
+                                    을 선택해 접수됩니다
                                 </p>
                                 <Link
                                     href="/xgen-trial"
                                     className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
                                 >
-                                    XGEN 15일 무료 체험하기
+                                    체험 안내 자세히 보기
                                     <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>

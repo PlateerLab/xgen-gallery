@@ -97,7 +97,7 @@ export function ProductHero() {
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
-                                href="/contact"
+                                href="/contact?type=demo"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
                                 데모 요청하기
@@ -176,7 +176,7 @@ export function ProductHero() {
 
                     <div className="mt-11 flex flex-wrap items-center justify-center gap-3">
                         <Link
-                            href="/contact"
+                            href="/contact?type=demo"
                             className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             데모 요청하기
@@ -212,10 +212,10 @@ export function ProductHero() {
                             </span>
                             를 안심하고 활용하세요
                         </h2>
-                        <ul className="mt-8 space-y-3.5">
+                        <ul className="mt-8 space-y-5">
                             {SECURITY_POINTS.map((p) => (
-                                <li key={p.title} className="flex items-center gap-3.5">
-                                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
+                                <li key={p.title} className="flex flex-col items-start gap-2.5">
+                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
                                         <p.icon className="h-[18px] w-[18px]" />
                                     </span>
                                     <p className="text-[16px] font-bold tracking-tight text-white">
@@ -226,7 +226,7 @@ export function ProductHero() {
                         </ul>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
-                                href="/contact"
+                                href="/contact?type=demo"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
                                 데모 요청하기
