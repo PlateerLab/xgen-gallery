@@ -309,10 +309,7 @@ export default function SupportPage() {
                         </h2>
 
                         {/* 장애 심각도 단계 표 */}
-                        <p className="mt-8 text-[15px] font-bold text-[var(--color-ink)]">
-                            장애 심각도 단계
-                        </p>
-                        <div className="mt-3 overflow-x-auto rounded-2xl border border-[var(--color-line)]">
+                        <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--color-line)]">
                             <table className="w-full min-w-[860px] border-collapse text-left">
                                 <thead>
                                     <tr className="bg-[var(--color-ink)] text-white">
