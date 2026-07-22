@@ -210,7 +210,7 @@ export default function ArchitecturePage() {
                 {/* 온프레미스·보안 아키텍처 — 신뢰 경계 기반 제로트러스트 */}
                 <section
                     id="security"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <Eyebrow>/ On-Premise Security</Eyebrow>
