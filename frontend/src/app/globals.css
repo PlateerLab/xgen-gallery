@@ -395,3 +395,10 @@ img {
 @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
 }
+
+/* ------ 온프레미스 네트워크 — 내부망 데이터 흐름(흐르는 점선) ------ */
+@keyframes dashflow { to { stroke-dashoffset: -28; } }
+.flowline { stroke-dasharray: 4 7; animation: dashflow 1.2s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .flowline { animation: none; }
+}

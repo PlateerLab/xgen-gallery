@@ -559,7 +559,11 @@ export default function ProductPage() {
                         aria-hidden
                         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
                     />
-                    <div className="relative mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
+                    <div className="relative mx-auto max-w-6xl px-6 py-16">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/45">
+                            XGEN · Agentic AI Platform
+                        </p>
+                        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
                         {STATS.map((s) => (
                             <div key={s.label} className="text-center">
                                 <p className="bg-gradient-to-br from-[#00acee] to-[#7dd3fc] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
@@ -573,6 +577,7 @@ export default function ProductPage() {
                                 </p>
                             </div>
                         ))}
+                        </div>
                     </div>
                 </section>
 

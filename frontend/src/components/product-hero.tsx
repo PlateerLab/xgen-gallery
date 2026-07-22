@@ -152,10 +152,6 @@ export function ProductHero() {
                         <br />
                         맞춤 Agentic AI 서비스를 생성하세요
                     </h2>
-                    <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-                        특정 벤더에 종속되지 않는 Model-Agnostic 설계 — 온프레미스 GPU부터
-                        사내 정책까지 환경에 맞춰 원하는 모델을 자유롭게 연결합니다.
-                    </p>
                     <div className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
                         <div className="marquee-track flex w-max items-center gap-12 pr-12 md:gap-16 md:pr-16">
                             {[...MODELS, ...MODELS].map((m, i) => (
@@ -206,7 +202,7 @@ export function ProductHero() {
                     <div className="max-w-xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            On-Premise Platform
+                            XGEN · Agentic AI Platform
                         </div>
                         <h2 className="mt-7 text-3xl font-bold leading-[1.22] tracking-tight md:text-[40px]">
                             외부 데이터 유출 걱정 없이
@@ -216,20 +212,15 @@ export function ProductHero() {
                             </span>
                             를 안심하고 활용하세요
                         </h2>
-                        <ul className="mt-8 space-y-4">
+                        <ul className="mt-8 space-y-3.5">
                             {SECURITY_POINTS.map((p) => (
-                                <li key={p.title} className="flex gap-3.5">
+                                <li key={p.title} className="flex items-center gap-3.5">
                                     <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
                                         <p.icon className="h-[18px] w-[18px]" />
                                     </span>
-                                    <div>
-                                        <p className="text-[16px] font-bold tracking-tight text-white">
-                                            {p.title}
-                                        </p>
-                                        <p className="mt-1 text-[14px] leading-relaxed text-white/60">
-                                            {p.desc}
-                                        </p>
-                                    </div>
+                                    <p className="text-[16px] font-bold tracking-tight text-white">
+                                        {p.title}
+                                    </p>
                                 </li>
                             ))}
                         </ul>
@@ -250,14 +241,10 @@ export function ProductHero() {
                         </div>
                     </div>
 
-                    {/* 실드 비주얼 패널 */}
+                    {/* 외부망/내부망 네트워크 보안 비주얼(움직임) */}
                     <div className="w-full lg:translate-x-2">
-                        <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[linear-gradient(135deg,#12295f_0%,#1e46b0_55%,#2f7bff_100%)] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
-                            <div
-                                aria-hidden
-                                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/15 blur-2xl"
-                            />
-                            <ShieldVisual />
+                        <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[radial-gradient(120%_120%_at_72%_18%,#173a86_0%,#0a1636_62%)] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
+                            <OnPremNetwork />
                         </div>
                     </div>
                 </div>
@@ -283,41 +270,99 @@ export function ProductHero() {
     );
 }
 
-/** 광택 3D 느낌의 실드+열쇠구멍 — 온프레미스 데이터 보호 상징(자체 SVG) */
-function ShieldVisual() {
+/**
+ * 외부망/내부망 네트워크 보안 — 데이터 유출 없는 사내 활용을 도식으로.
+ *  · 좌: 외부망(Internet) 노드 → 방화벽에서 침입 차단(×)
+ *  · 우: 내부망(On-Premise) 객체들이 유기적으로 연결, 링크에 데이터가 흐름
+ * SVG + CSS(.flowline 흐르는 점선, Tailwind animate-pulse) — 외부 에셋 없음.
+ */
+function OnPremNetwork() {
+    // 내부망 노드 좌표(viewBox 400x300 기준)
+    const core = { x: 292, y: 150 };
+    const inner = [
+        { x: 236, y: 92 },
+        { x: 356, y: 108 },
+        { x: 234, y: 214 },
+        { x: 360, y: 206 },
+    ];
     return (
         <svg
-            viewBox="0 0 200 232"
+            viewBox="0 0 400 300"
             role="img"
-            aria-label="온프레미스 데이터 보호 실드"
-            className="relative h-[62%] w-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.45)]"
+            aria-label="외부망과 내부망 — 방화벽으로 보호되는 온프레미스 네트워크"
+            className="block h-auto w-full"
         >
-            <defs>
-                <linearGradient id="ph-shield" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#dbeafe" />
-                    <stop offset="0.5" stopColor="#93b8fb" />
-                    <stop offset="1" stopColor="#3b6fe0" />
-                </linearGradient>
-                <linearGradient id="ph-gloss" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#ffffff" stopOpacity="0.75" />
-                    <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
-                </linearGradient>
-            </defs>
-            {/* 실드 본체 */}
-            <path
-                d="M100 8 L184 42 V116 C184 176 146 210 100 226 C54 210 16 176 16 116 V42 Z"
-                fill="url(#ph-shield)"
-                stroke="#eaf2ff"
-                strokeWidth="2"
+            {/* 내부망 존 */}
+            <rect
+                x="182"
+                y="46"
+                width="200"
+                height="208"
+                rx="20"
+                fill="#7dd3fc"
+                fillOpacity="0.05"
+                stroke="#7dd3fc"
+                strokeOpacity="0.28"
             />
-            {/* 상단 광택 하이라이트 */}
-            <path
-                d="M100 20 L172 49 V104 C150 92 126 86 100 86 C74 86 50 92 28 104 V49 Z"
-                fill="url(#ph-gloss)"
-            />
-            {/* 열쇠구멍 */}
-            <circle cx="100" cy="112" r="20" fill="#1e46b0" />
-            <path d="M92 128 h16 l5 34 h-26 z" fill="#1e46b0" />
+            <text x="282" y="279" textAnchor="middle" fontSize="12.5" fontWeight="600" letterSpacing="0.04em" fill="#cfe8ff">
+                내부망 · On-Premise
+            </text>
+
+            {/* 내부망 링크 — 유기적 연결 + 데이터 흐름 */}
+            <g stroke="#7dd3fc" strokeOpacity="0.55" strokeWidth="1.6" fill="none" strokeLinecap="round">
+                {inner.map((n, i) => (
+                    <line
+                        key={i}
+                        className="flowline"
+                        x1={core.x}
+                        y1={core.y}
+                        x2={n.x}
+                        y2={n.y}
+                        style={{ animationDelay: `${i * 0.25}s` }}
+                    />
+                ))}
+                <line className="flowline" x1={inner[0].x} y1={inner[0].y} x2={inner[1].x} y2={inner[1].y} style={{ animationDelay: "0.5s" }} />
+                <line className="flowline" x1={inner[2].x} y1={inner[2].y} x2={inner[3].x} y2={inner[3].y} style={{ animationDelay: "0.7s" }} />
+            </g>
+
+            {/* 내부망 노드 */}
+            {inner.map((n, i) => (
+                <circle
+                    key={i}
+                    className="animate-pulse"
+                    cx={n.x}
+                    cy={n.y}
+                    r="6.5"
+                    fill="#dff1ff"
+                    style={{ animationDelay: `${i * 0.4}s`, animationDuration: "2.4s" }}
+                />
+            ))}
+            {/* 내부망 코어(XGEN) */}
+            <circle cx={core.x} cy={core.y} r="20" fill="#2f7bff" fillOpacity="0.25" />
+            <circle cx={core.x} cy={core.y} r="12" fill="#eaf6ff" />
+            <circle cx={core.x} cy={core.y} r="4.5" fill="#1e46b0" />
+
+            {/* 방화벽(경계) + 잠금 배지 */}
+            <line x1="150" y1="60" x2="150" y2="240" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="2" strokeDasharray="2 6" />
+            <g transform="translate(150 150)">
+                <rect x="-16" y="-16" width="32" height="32" rx="9" fill="#0a1636" stroke="#7dd3fc" strokeOpacity="0.7" strokeWidth="1.5" />
+                <rect x="-6.5" y="-2" width="13" height="10" rx="2" fill="#7dd3fc" />
+                <path d="M-4 -2 v-4 a4 4 0 0 1 8 0 v4" fill="none" stroke="#7dd3fc" strokeWidth="2" />
+            </g>
+
+            {/* 외부망 노드 + 차단된 침입 시도 */}
+            <text x="66" y="279" textAnchor="middle" fontSize="12.5" fontWeight="600" letterSpacing="0.04em" fill="#a7b8d6">
+                외부망 · Internet
+            </text>
+            <circle cx="46" cy="112" r="6" fill="#8ea3c6" fillOpacity="0.8" />
+            <circle cx="62" cy="188" r="6" fill="#8ea3c6" fillOpacity="0.8" />
+            <line x1="52" y1="118" x2="60" y2="182" stroke="#8ea3c6" strokeOpacity="0.4" strokeWidth="1.4" />
+            {/* 침입 시도 → 방화벽에서 차단 */}
+            <line x1="66" y1="150" x2="128" y2="150" stroke="#f0a3a3" strokeOpacity="0.7" strokeWidth="1.6" strokeDasharray="4 4" />
+            <g transform="translate(133 150)">
+                <circle r="8" fill="#3a1420" stroke="#f08a8a" strokeWidth="1.5" />
+                <path d="M-3 -3 L3 3 M3 -3 L-3 3" stroke="#f6b0b0" strokeWidth="1.8" strokeLinecap="round" />
+            </g>
         </svg>
     );
 }
