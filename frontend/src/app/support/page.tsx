@@ -233,7 +233,7 @@ export default function SupportPage() {
                                     <rect x="28" y="22" width="140" height="26" rx="13" fill="#64748b" />
                                     <text x="98" y="39" fontSize="12.5" fill="#ffffff">고객사 담당자</text>
                                     <rect x="220" y="22" width="592" height="26" rx="13" fill="#2563eb" />
-                                    <text x="516" y="39" fontSize="12.5" fill="#ffffff">Plateer Labs · 자사</text>
+                                    <text x="516" y="39" fontSize="12.5" fill="#ffffff">Plateer</text>
                                 </g>
                                 {/* 자사 하위 레인 라벨 + 구분선 */}
                                 <g>
@@ -309,18 +309,8 @@ export default function SupportPage() {
                             유지보수 방법
                         </h2>
 
-                        {/* 유지보수 기간 */}
-                        <div className="mt-8 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-6 py-4">
-                            <span className="text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
-                                유지보수 기간
-                            </span>
-                            <span className="text-[20px] font-bold tracking-tight text-[#2461d8]">
-                                검수일로부터 1년
-                            </span>
-                        </div>
-
                         {/* 장애 심각도 단계 표 */}
-                        <p className="mt-10 text-[15px] font-bold text-[var(--color-ink)]">
+                        <p className="mt-8 text-[15px] font-bold text-[var(--color-ink)]">
                             장애 심각도 단계
                         </p>
                         <div className="mt-3 overflow-x-auto rounded-2xl border border-[var(--color-line)]">
