@@ -93,11 +93,11 @@ export default function ContactPage() {
                             {/* 무료 체험 연계 — 이제 같은 양식의 '무료 체험 신청' 유형으로 접수 */}
                             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
                                 <p className="text-[15px] leading-relaxed text-white/75">
-                                    XGEN 15일 무료 체험은 문의 유형에서{" "}
+                                    XGEN 체험은 문의 유형에서{" "}
                                     <span className="font-semibold text-white">
                                         ‘XGEN 15일 무료 체험 신청’
                                     </span>
-                                    을 선택해 접수됩니다
+                                    을 선택하세요
                                 </p>
                                 <Link
                                     href="/xgen-trial"
