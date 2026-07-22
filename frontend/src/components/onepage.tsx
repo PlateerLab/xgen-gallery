@@ -180,6 +180,7 @@ export function GroupPage({
     content,
     hero,
     hideSections,
+    leading,
     trailing,
 }: {
     group: NavGroup;
@@ -188,6 +189,8 @@ export function GroupPage({
     hero?: ReactNode;
     /** Section ids to omit from the one-page (e.g. replaced by a custom band). */
     hideSections?: string[];
+    /** Content rendered before all sections (e.g. a marketing/overview band). */
+    leading?: ReactNode;
     /** Extra content rendered after all sections (e.g. a marketing/CTA band). */
     trailing?: ReactNode;
 }) {
@@ -209,6 +212,7 @@ export function GroupPage({
             />
             <GroupHero group={group} content={hero} />
             <main>
+                {leading}
                 {sections.map((it, i) => (
                     <Section
                         key={it.id}

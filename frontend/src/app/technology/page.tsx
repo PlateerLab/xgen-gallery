@@ -135,7 +135,7 @@ function TechnologyMarketing() {
             />
             <div className="relative mx-auto max-w-6xl px-6 py-24">
                 <p className="font-mono text-[12px] uppercase tracking-widest text-[#67e8f9]">
-                    Why XGEN Technology
+                    Enterprise AI Technology
                 </p>
                 <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight md:text-[40px]">
                     연구에서 검증하고,{" "}
@@ -204,7 +204,7 @@ export default function TechnologyPage() {
                 frameworks: <FrameworksContent />,
             }}
             hideSections={["research"]}
-            trailing={<TechnologyMarketing />}
+            leading={<TechnologyMarketing />}
         />
     );
 }
