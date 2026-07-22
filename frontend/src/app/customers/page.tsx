@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
@@ -26,7 +27,7 @@ export default async function CustomersPage({
     searchParams: Promise<{ product?: string }>;
 }) {
     const cases = getAllCases();
-    const recent = cases.slice(0, 3); // 최근 발행 사례(키비주얼에 노출)
+    const featured = cases[0]; // 가장 최근 사례 — 키비주얼에 이미지 카드로 노출
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
         product && product in PRODUCTS ? (product as ProductKey) : "all";
@@ -68,42 +69,64 @@ export default async function CustomersPage({
                         </p>
                     </div>
 
-                    {/* 키비주얼 — 최근 발행 사례 카드(글래스). 실제 사례로 신뢰 전달 */}
-                    {recent.length > 0 && (
+                    {/* 키비주얼 — 가장 최근 대표 사례 1건을 이미지 카드로 비주얼라이징 */}
+                    {featured && (
                         <div className="w-full">
                             <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-white/50">
                                 최근 사례
                             </p>
-                            <div className="space-y-3">
-                                {recent.map((c) => (
-                                    <Link
-                                        key={c.slug}
-                                        href={`/customers/case/${c.slug}`}
-                                        className="group block rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-sm transition hover:border-white/30 hover:bg-white/[0.1]"
-                                    >
-                                        <div className="flex items-center gap-2 text-[12.5px]">
-                                            <span className="rounded-full bg-[#5eead4]/15 px-2 py-0.5 font-semibold text-[#5eead4]">
-                                                {PRODUCTS[c.products[0]].name}
-                                            </span>
-                                            <span className="text-white/55">
-                                                {INDUSTRIES[c.industry].ko}
-                                            </span>
-                                            <time
-                                                dateTime={c.published}
-                                                className="ml-auto text-white/45"
-                                            >
-                                                {c.published.slice(0, 7).replace("-", ".")}
-                                            </time>
-                                        </div>
-                                        <h3 className="mt-2 line-clamp-2 text-[15px] font-semibold leading-snug text-white transition group-hover:text-[#5eead4]">
-                                            {c.title}
+                            <Link
+                                href={`/customers/case/${featured.slug}`}
+                                className="group block overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition hover:border-white/30"
+                            >
+                                <div className="relative aspect-[16/10] overflow-hidden">
+                                    {featured.cover ? (
+                                        <Image
+                                            src={featured.cover}
+                                            alt={featured.title}
+                                            fill
+                                            sizes="(max-width: 1024px) 100vw, 520px"
+                                            className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                                        />
+                                    ) : (
+                                        <div className="absolute inset-0 bg-gradient-to-br from-[#0b1a3f] to-[#123a6b]" />
+                                    )}
+                                    {/* 하단 가독성 그라디언트 */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050813] via-[#050813]/55 to-[#050813]/10" />
+
+                                    {/* 상단 메타 배지 */}
+                                    <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2 text-[12.5px]">
+                                        <span className="rounded-full bg-[#5eead4]/20 px-2.5 py-0.5 font-semibold text-[#5eead4] backdrop-blur-sm">
+                                            {PRODUCTS[featured.products[0]].name}
+                                        </span>
+                                        <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-white/85 backdrop-blur-sm">
+                                            {INDUSTRIES[featured.industry].ko}
+                                        </span>
+                                        <time
+                                            dateTime={featured.published}
+                                            className="rounded-full bg-black/25 px-2.5 py-0.5 text-white/70 backdrop-blur-sm"
+                                        >
+                                            {featured.published.slice(0, 7).replace("-", ".")}
+                                        </time>
+                                    </div>
+
+                                    {/* 하단 타이틀·고객 */}
+                                    <div className="absolute inset-x-0 bottom-0 p-5">
+                                        <h3 className="text-[18px] font-bold leading-snug text-white">
+                                            {featured.title}
                                         </h3>
-                                        <p className="mt-1 text-[12.5px] text-white/55">
-                                            {c.customer}
-                                        </p>
-                                    </Link>
-                                ))}
-                            </div>
+                                        <div className="mt-2.5 flex items-center gap-2 text-[13.5px]">
+                                            <span className="font-semibold text-white/85">
+                                                {featured.customer}
+                                            </span>
+                                            <span className="ml-auto inline-flex items-center gap-1 font-semibold text-[#5eead4]">
+                                                사례 보기
+                                                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
                         </div>
                     )}
                 </div>
