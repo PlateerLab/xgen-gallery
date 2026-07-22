@@ -1,16 +1,18 @@
 "use client";
 
 /**
- * 제품(XGEN) 히어로 — 2슬라이드 키비주얼.
+ * 제품(XGEN) 히어로 — 3슬라이드 키비주얼.
  *  1) 태그라인 + XGEN 소개영상 패널(우측)
- *  2) Model-Agnostic 메시지 + 지원 LLM 로고 클라우드
- * 다크 히어로를 공유하도록 두 슬라이드를 absolute로 겹쳐 크로스페이드하고,
+ *  2) Model-Agnostic 메시지 + 지원 LLM 로고 마퀴
+ *  3) On-Premise — 외부 유출 걱정 없는 사내 데이터 활용(보안 3원칙 + 실드)
+ * 다크 히어로를 공유하도록 슬라이드를 absolute로 겹쳐 크로스페이드하고,
  * min-h로 높이를 고정한다. 자동 전환 + 하단 도트로 수동 이동.
  * 로고는 self-host한 공식 브랜드 SVG(/public/models/*).
  */
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock, ShieldCheck, Users } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const MODELS: { name: string; src: string }[] = [
@@ -23,7 +25,26 @@ const MODELS: { name: string; src: string }[] = [
     { name: "DeepSeek", src: "/models/deepseek.svg" },
 ];
 
-const SLIDE_COUNT = 2;
+/** 슬라이드3 — 온프레미스 보안 3원칙(참조: On-premise Platform) */
+const SECURITY_POINTS: { icon: LucideIcon; title: string; desc: string }[] = [
+    {
+        icon: Lock,
+        title: "외부 유출 원천 차단",
+        desc: "온프레미스 구축으로 데이터가 외부로 유출되지 않고 안전하게 활용됩니다",
+    },
+    {
+        icon: Users,
+        title: "내부 접근 세분화",
+        desc: "부서·팀·개인 단위의 역할 기반 제어(RBAC)로 조직 내부 데이터 보안을 강화합니다",
+    },
+    {
+        icon: ShieldCheck,
+        title: "제로 트레이닝 보장",
+        desc: "고객사 데이터가 외부 모델의 학습 데이터로 쓰이는 것을 기술적으로 방지합니다",
+    },
+];
+
+const SLIDE_COUNT = 3;
 
 export function ProductHero() {
     const [active, setActive] = useState(0);
@@ -175,6 +196,73 @@ export function ProductHero() {
                 </div>
             </div>
 
+            {/* 슬라이드 3 — On-Premise 보안 3원칙 + 실드 */}
+            <div
+                className={`absolute inset-0 flex items-center transition-opacity duration-700 ${
+                    active === 2 ? "opacity-100" : "pointer-events-none opacity-0"
+                }`}
+            >
+                <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div className="max-w-xl">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            On-Premise Platform
+                        </div>
+                        <h2 className="mt-7 text-3xl font-bold leading-[1.22] tracking-tight md:text-[40px]">
+                            외부 데이터 유출 걱정 없이
+                            <br />
+                            <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
+                                기업 내부 데이터
+                            </span>
+                            를 안심하고 활용하세요
+                        </h2>
+                        <ul className="mt-8 space-y-4">
+                            {SECURITY_POINTS.map((p) => (
+                                <li key={p.title} className="flex gap-3.5">
+                                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#7dd3fc]">
+                                        <p.icon className="h-[18px] w-[18px]" />
+                                    </span>
+                                    <div>
+                                        <p className="text-[16px] font-bold tracking-tight text-white">
+                                            {p.title}
+                                        </p>
+                                        <p className="mt-1 text-[14px] leading-relaxed text-white/60">
+                                            {p.desc}
+                                        </p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <Link
+                                href="/contact"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                            >
+                                데모 요청하기
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <a
+                                href="#on-premise"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                온프레미스 자세히
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* 실드 비주얼 패널 */}
+                    <div className="w-full lg:translate-x-2">
+                        <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[linear-gradient(135deg,#12295f_0%,#1e46b0_55%,#2f7bff_100%)] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
+                            <div
+                                aria-hidden
+                                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/15 blur-2xl"
+                            />
+                            <ShieldVisual />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {/* 슬라이드 도트 */}
             <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 gap-2.5">
                 {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
@@ -192,5 +280,44 @@ export function ProductHero() {
                 ))}
             </div>
         </section>
+    );
+}
+
+/** 광택 3D 느낌의 실드+열쇠구멍 — 온프레미스 데이터 보호 상징(자체 SVG) */
+function ShieldVisual() {
+    return (
+        <svg
+            viewBox="0 0 200 232"
+            role="img"
+            aria-label="온프레미스 데이터 보호 실드"
+            className="relative h-[62%] w-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.45)]"
+        >
+            <defs>
+                <linearGradient id="ph-shield" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#dbeafe" />
+                    <stop offset="0.5" stopColor="#93b8fb" />
+                    <stop offset="1" stopColor="#3b6fe0" />
+                </linearGradient>
+                <linearGradient id="ph-gloss" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor="#ffffff" stopOpacity="0.75" />
+                    <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+                </linearGradient>
+            </defs>
+            {/* 실드 본체 */}
+            <path
+                d="M100 8 L184 42 V116 C184 176 146 210 100 226 C54 210 16 176 16 116 V42 Z"
+                fill="url(#ph-shield)"
+                stroke="#eaf2ff"
+                strokeWidth="2"
+            />
+            {/* 상단 광택 하이라이트 */}
+            <path
+                d="M100 20 L172 49 V104 C150 92 126 86 100 86 C74 86 50 92 28 104 V49 Z"
+                fill="url(#ph-gloss)"
+            />
+            {/* 열쇠구멍 */}
+            <circle cx="100" cy="112" r="20" fill="#1e46b0" />
+            <path d="M92 128 h16 l5 34 h-26 z" fill="#1e46b0" />
+        </svg>
     );
 }
