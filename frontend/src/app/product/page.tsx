@@ -18,6 +18,7 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
+import { ProductHero } from "@/components/product-hero";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
@@ -489,70 +490,8 @@ export default function ProductPage() {
                 ]}
             />
 
-            {/* Hero — XGEN 소개영상 키비주얼(우측 패널) + 태그라인 */}
-            <section className="relative flex min-h-[755px] items-center overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
-                {/* 배경 글로우 */}
-                <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_78%_18%,rgba(47,123,255,0.16),transparent_60%)]"
-                />
-                <div
-                    aria-hidden
-                    className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
-                />
-                <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[0.85fr_1.15fr]">
-                    <div className="max-w-xl">
-                        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            XGEN · Agentic AI Platform
-                        </div>
-                        <h1 className="mt-7 text-4xl font-bold leading-[1.15] tracking-tight md:text-5xl">
-                            기업의 AX 혁신을 돕는
-                            <br />
-                            <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                                Agentic AI Platform
-                            </span>
-                            , XGEN
-                        </h1>
-                        <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-                            맞춤형 AI 서비스를 설계하고, 운영하며, 신뢰를 완성하는 하나의
-                            플랫폼 — 복잡한 개발 지식 없이도 Agent 기반 업무 자동화를
-                            안전하게 구현합니다.
-                        </p>
-                        <div className="mt-8 flex flex-wrap gap-3">
-                            <Link
-                                href="/contact"
-                                className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
-                            >
-                                데모 요청하기
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                            </Link>
-                            <a
-                                href="#platform"
-                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
-                            >
-                                플랫폼 살펴보기
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* 키비주얼 — XGEN 소개영상 패널(우측) */}
-                    <div className="w-full lg:translate-x-4">
-                        <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                preload="auto"
-                                className="aspect-video w-full object-cover"
-                            >
-                                <source src="/hero-xgen.mp4" type="video/mp4" />
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* Hero — 2슬라이드 키비주얼(소개영상 + Model-Agnostic 로고) */}
+            <ProductHero />
 
             {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
@@ -618,7 +557,7 @@ export default function ProductPage() {
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 py-16 md:grid-cols-4">
                         {STATS.map((s) => (
-                            <div key={s.label} className="text-center md:text-left">
+                            <div key={s.label} className="text-center">
                                 <p className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
                                     {s.n}
                                 </p>
