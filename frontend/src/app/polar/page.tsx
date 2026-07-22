@@ -15,6 +15,7 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
+import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
@@ -418,6 +419,25 @@ export default function PolarPage() {
                                     </p>
                                 </details>
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            After Deployment
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            도입 이후에도 함께합니다
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을
+                            위한 기술지원까지 이어집니다.
+                        </p>
+                        <div className="mt-8">
+                            <PostDeploymentSupport />
                         </div>
                     </div>
                 </section>

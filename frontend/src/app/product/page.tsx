@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
+import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
@@ -938,6 +939,20 @@ export default function ProductPage() {
                             GitOps 배포 파이프라인 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
+
+                        {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
+                        <div className="mt-12 border-t border-[var(--color-line)] pt-10">
+                            <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                도입 이후에도 함께합니다
+                            </h3>
+                            <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적
+                                운영을 위한 기술지원까지 이어집니다.
+                            </p>
+                            <div className="mt-6">
+                                <PostDeploymentSupport />
+                            </div>
+                        </div>
                     </div>
                 </section>
 
