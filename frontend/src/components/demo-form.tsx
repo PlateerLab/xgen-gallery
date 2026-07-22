@@ -324,10 +324,10 @@ export function DemoForm() {
             onSubmit={onSubmit}
             className="relative overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white p-6 shadow-[0_20px_50px_-30px_rgba(20,40,80,0.5)] sm:p-7"
         >
-            {/* 상단 브랜드 워시 — 흰 카드가 어두운 배경에 너무 도드라지지 않게 */}
+            {/* 상단 스카이블루 워시 — 위에서 회사 필드 부근까지 부드럽게 페이드 */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2f7bff]/[0.07] to-transparent"
+                className="pointer-events-none absolute inset-x-0 top-0 h-[320px] bg-gradient-to-b from-[#7dd3fc]/35 via-[#bfe3ff]/15 to-transparent"
             />
             <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Select
@@ -431,7 +431,7 @@ export function DemoForm() {
             <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[var(--color-ink)] px-5 py-2.5 text-[15px] font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_10px_24px_-10px_rgba(47,123,255,0.6)] transition hover:brightness-110 disabled:opacity-60"
             >
                 {status === "loading" && (
                     <Loader2 className="h-4 w-4 animate-spin" />
