@@ -1,3 +1,11 @@
+import Link from "next/link";
+import {
+    Settings2,
+    ShieldCheck,
+    Network,
+    Layers,
+    ArrowRight,
+} from "lucide-react";
 import { pageMetadata } from "@/lib/metadata";
 import { GroupPage } from "@/components/onepage";
 import {
@@ -85,9 +93,108 @@ function TechnologyHero() {
     );
 }
 
+/** 기술 전체를 아우르는 마케팅 밴드 — 운영·독립·연결·확장 4가치 + CTA. */
+const TECH_VALUES: {
+    icon: typeof Settings2;
+    title: string;
+    en: string;
+    desc: string;
+}[] = [
+    {
+        icon: Settings2,
+        title: "운영 가능성",
+        en: "Operable",
+        desc: "PoC를 넘어 실제 기업 환경에서 안정적으로 운영되는 AgenticOps 기반 기술",
+    },
+    {
+        icon: ShieldCheck,
+        title: "벤더 독립",
+        en: "Independent",
+        desc: "특정 모델·클라우드에 종속되지 않는 온프레미스·Model-Agnostic 설계",
+    },
+    {
+        icon: Network,
+        title: "지식 연결",
+        en: "Connected",
+        desc: "Ontology·Knowledge Graph·GraphRAG로 사내 지식을 정밀하게 연결",
+    },
+    {
+        icon: Layers,
+        title: "유연한 확장",
+        en: "Extensible",
+        desc: "MCP 런타임과 Runtime SDK·API로 도구·에이전트를 자유롭게 확장",
+    },
+];
+
+function TechnologyMarketing() {
+    return (
+        <section className="relative overflow-hidden border-t border-white/10 bg-[#070b1c] text-white">
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_50%_0%,rgba(103,232,249,0.12),transparent_65%)]"
+            />
+            <div className="relative mx-auto max-w-6xl px-6 py-24">
+                <p className="font-mono text-[12px] uppercase tracking-widest text-[#67e8f9]">
+                    Why XGEN Technology
+                </p>
+                <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight md:text-[40px]">
+                    연구에서 검증하고,{" "}
+                    <span className="bg-gradient-to-r from-[#67e8f9] to-[#7dd3fc] bg-clip-text text-transparent">
+                        운영으로 완성하는
+                    </span>{" "}
+                    Enterprise AI 기술
+                </h2>
+                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/70">
+                    화려한 데모가 아니라, 기업의 보안·규제·운영 요건 속에서 실제로 돌아가는
+                    기술을 만듭니다. 핵심 엔진부터 프레임워크·런타임까지 하나의 스택으로
+                    연결해, 연구 성과가 곧 제품과 현장의 성과로 이어집니다
+                </p>
+
+                <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {TECH_VALUES.map((v) => (
+                        <div
+                            key={v.en}
+                            className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-[#67e8f9]/40"
+                        >
+                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-[#67e8f9]">
+                                <v.icon className="h-[20px] w-[20px]" />
+                            </span>
+                            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-white/45">
+                                {v.en}
+                            </p>
+                            <h3 className="mt-1 text-[18px] font-bold tracking-tight text-white">
+                                {v.title}
+                            </h3>
+                            <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/65">
+                                {v.desc}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-12 flex flex-wrap gap-3">
+                    <Link
+                        href="/architecture"
+                        className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                    >
+                        플랫폼 아키텍처 보기
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </Link>
+                    <Link
+                        href="/product"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                    >
+                        제품으로 확인하기
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 export default function TechnologyPage() {
-    // Library Gallery is a standalone page (/library-gallery); the section here
-    // renders a short intro + link via the item's `route`.
+    // Research는 별도 페이지(/research)로 유지하되, 기술 원페이지에서는 링크아웃
+    // 섹션을 빼고 기술 전체를 아우르는 마케팅 밴드로 마무리한다.
     return (
         <GroupPage
             group={getGroup("technology")!}
@@ -96,6 +203,8 @@ export default function TechnologyPage() {
                 engines: <EnginesContent />,
                 frameworks: <FrameworksContent />,
             }}
+            hideSections={["research"]}
+            trailing={<TechnologyMarketing />}
         />
     );
 }

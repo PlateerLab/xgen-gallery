@@ -179,12 +179,24 @@ export function GroupPage({
     group,
     content,
     hero,
+    hideSections,
+    trailing,
 }: {
     group: NavGroup;
     content?: Record<string, ReactNode>;
     /** Custom hero key-visual content; falls back to the default title+blurb. */
     hero?: ReactNode;
+    /** Section ids to omit from the one-page (e.g. replaced by a custom band). */
+    hideSections?: string[];
+    /** Extra content rendered after all sections (e.g. a marketing/CTA band). */
+    trailing?: ReactNode;
 }) {
+    const sections = group.items.filter(
+        (it) =>
+            !it.external &&
+            !it.menuOnly &&
+            !hideSections?.includes(it.id),
+    );
     return (
         <>
             <SiteNav overlay />
@@ -197,21 +209,20 @@ export function GroupPage({
             />
             <GroupHero group={group} content={hero} />
             <main>
-                {group.items
-                    .filter((it) => !it.external && !it.menuOnly)
-                    .map((it, i) => (
-                        <Section
-                            key={it.id}
-                            item={it}
-                            tone={i % 2 === 1 ? "alt" : "default"}
-                        >
-                            {it.route ? (
-                                <RouteIntro item={it} />
-                            ) : (
-                                content?.[it.id]
-                            )}
-                        </Section>
-                    ))}
+                {sections.map((it, i) => (
+                    <Section
+                        key={it.id}
+                        item={it}
+                        tone={i % 2 === 1 ? "alt" : "default"}
+                    >
+                        {it.route ? (
+                            <RouteIntro item={it} />
+                        ) : (
+                            content?.[it.id]
+                        )}
+                    </Section>
+                ))}
+                {trailing}
             </main>
             <SiteFooter />
         </>
