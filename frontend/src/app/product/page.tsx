@@ -662,7 +662,7 @@ export default function ProductPage() {
                             연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로
                             업무에 활용 가능한 AI로 구현합니다.
                         </p>
-                        <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-start">
+                        <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-stretch">
                             {DIFFERENTIATORS.map((d) => (
                                 <div
                                     key={d.en}
