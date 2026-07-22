@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
 import { JsonLd } from "@/components/json-ld";
@@ -16,6 +17,7 @@ import {
     Lock,
     Blocks,
     Scale,
+    ArrowRight,
     type LucideIcon,
 } from "lucide-react";
 
@@ -229,6 +231,13 @@ export default function ArchitecturePage() {
                             비식별화 등 거버넌스가 전 계층을 크로스커팅하며, k3s·ArgoCD
                             기반으로 온프레미스·Air-gap 배포를 지원합니다.
                         </p>
+                        <Link
+                            href="/product"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            XGEN 제품 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
                     </div>
                 </section>
 
@@ -249,6 +258,13 @@ export default function ArchitecturePage() {
                         <div className="mt-8">
                             <CodeAssistantArchitecture />
                         </div>
+                        <Link
+                            href="/code-assistant"
+                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                        >
+                            AI Code Assistant 제품 보기
+                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </Link>
                     </div>
                 </section>
 
