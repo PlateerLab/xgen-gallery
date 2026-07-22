@@ -135,21 +135,21 @@ export function ProductHero() {
                         특정 벤더에 종속되지 않는 Model-Agnostic 설계 — 온프레미스 GPU부터
                         사내 정책까지 환경에 맞춰 원하는 모델을 자유롭게 연결합니다.
                     </p>
-                    <div className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_9%,#000_91%,transparent)]">
-                        <div className="marquee-track flex w-max items-center gap-4 pr-4">
+                    <div className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
+                        <div className="marquee-track flex w-max items-center gap-12 pr-12 md:gap-16 md:pr-16">
                             {[...MODELS, ...MODELS].map((m, i) => (
                                 <span
                                     key={i}
-                                    className="inline-flex shrink-0 items-center gap-2.5 rounded-xl border border-white/10 bg-white px-4 py-2.5 shadow-[0_8px_20px_-10px_rgba(0,0,0,0.6)]"
+                                    className="group flex shrink-0 items-center gap-2.5 opacity-80 transition duration-300 hover:opacity-100"
                                 >
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={m.src}
                                         alt={m.name}
                                         loading="lazy"
-                                        className="h-6 w-auto"
+                                        className="h-7 w-auto brightness-0 invert transition duration-300 group-hover:brightness-100 group-hover:invert-0 md:h-8"
                                     />
-                                    <span className="text-[15px] font-semibold tracking-tight text-slate-800">
+                                    <span className="text-[19px] font-semibold tracking-tight text-white/70 transition group-hover:text-white md:text-[21px]">
                                         {m.name}
                                     </span>
                                 </span>
