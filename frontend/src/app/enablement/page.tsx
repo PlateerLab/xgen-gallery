@@ -120,6 +120,52 @@ const FAQ: { q: string; a: string }[] = [
     },
 ];
 
+/** 교육 커리큘럼 — 역할·프로젝트 단계별 맞춤 과정(범용). */
+const CURRICULUM: {
+    course: string;
+    hours?: string;
+    content: string[];
+    when: string;
+    target: string;
+}[] = [
+    {
+        course: "프로젝트 일반",
+        hours: "4시간 4회",
+        content: ["XGEN 플랫폼 개요", "XGEN 플랫폼 사용법"],
+        when: "착수·안정화 단계",
+        target: "프로젝트 담당자(RM)",
+    },
+    {
+        course: "기본 기능 이해",
+        hours: "2시간 2회",
+        content: [
+            "서비스 확장 (API 연계·문서 적재·MCP 등)",
+            "업무 분석 설계 산출물 표준화 작성·교육",
+            "시스템 모니터링",
+        ],
+        when: "구축 단계",
+        target: "현업·IT 담당자",
+    },
+    {
+        course: "기본 기능 이해",
+        hours: "2시간 2회",
+        content: ["시스템 설치·운영 관리 방법", "패치 및 업그레이드"],
+        when: "인수 단계",
+        target: "현업·IT 담당자",
+    },
+    {
+        course: "확장(커스텀) 기능",
+        content: [
+            "주요 기능 설명",
+            "솔루션 전반의 메뉴 체계",
+            "메뉴별 기능 및 활용 방법",
+            "평가/모니터링·후속관리 프로세스 및 기능",
+        ],
+        when: "안정화 단계",
+        target: "현업·IT 담당자, RM, 기타 사용자",
+    },
+];
+
 export default function EnablementPage() {
     return (
         <>
@@ -282,6 +328,78 @@ export default function EnablementPage() {
                                     </li>
                                 ))}
                             </ol>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 교육 커리큘럼 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Curriculum
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            교육 커리큘럼
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            안정적인 운영과 업무 경쟁력·전문성 제고를 위해 사용자·프로젝트
+                            단계별로 교육 과정을 세분화하여 맞춤형으로 운영합니다.
+                        </p>
+                        <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--color-line)]">
+                            <table className="w-full min-w-[760px] border-collapse text-left">
+                                <thead>
+                                    <tr className="bg-[var(--color-ink)] text-white">
+                                        {["교육과정", "교육내용", "교육 시기", "대상"].map(
+                                            (h) => (
+                                                <th
+                                                    key={h}
+                                                    className="px-5 py-3 text-[13.5px] font-semibold"
+                                                >
+                                                    {h}
+                                                </th>
+                                            ),
+                                        )}
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white">
+                                    {CURRICULUM.map((c, i) => (
+                                        <tr
+                                            key={`${c.course}-${i}`}
+                                            className="border-t border-[var(--color-line)] align-top"
+                                        >
+                                            <td className="px-5 py-4">
+                                                <span className="text-[15px] font-bold text-[var(--color-ink)]">
+                                                    {c.course}
+                                                </span>
+                                                {c.hours && (
+                                                    <span className="mt-1 block text-[13px] text-[var(--color-ink-subtle)]">
+                                                        {c.hours}
+                                                    </span>
+                                                )}
+                                            </td>
+                                            <td className="px-5 py-4">
+                                                <ul className="space-y-1.5">
+                                                    {c.content.map((it) => (
+                                                        <li
+                                                            key={it}
+                                                            className="flex gap-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                                        >
+                                                            <span className="mt-2 h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
+                                                            {it}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </td>
+                                            <td className="px-5 py-4 text-[14.5px] font-semibold text-[var(--color-ink)]">
+                                                {c.when}
+                                            </td>
+                                            <td className="px-5 py-4 text-[14.5px] text-[var(--color-ink-muted)]">
+                                                {c.target}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>

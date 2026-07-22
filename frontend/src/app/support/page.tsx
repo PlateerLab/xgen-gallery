@@ -197,10 +197,10 @@ export default function SupportPage() {
                             장애 발생부터 접수·상태 파악·무상처리·종료까지, 담당 조직 간
                             협업으로 신속하게 처리합니다.
                         </p>
-                        <div className="mt-8 max-w-[60%] overflow-x-auto rounded-2xl border border-[var(--color-line)] bg-white p-5">
+                        <div className="mt-8 max-w-[90%] overflow-x-auto rounded-2xl border border-[var(--color-line)] bg-white p-5">
                             <svg
                                 viewBox="0 0 840 400"
-                                className="w-full min-w-[440px]"
+                                className="w-full min-w-[680px]"
                                 role="img"
                                 aria-label="장애 처리 프로세스 흐름도 — 고객사와 자사(Plateer Labs) 협업"
                                 fontFamily="Pretendard, system-ui, sans-serif"
