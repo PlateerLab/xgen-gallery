@@ -322,9 +322,9 @@ export function DemoForm() {
     return (
         <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-[var(--color-line)] bg-white p-7 shadow-xl sm:p-8"
+            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 shadow-xl sm:p-7"
         >
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Select
                     className="sm:col-span-2"
                     label={c.inquiryType}
@@ -393,7 +393,7 @@ export function DemoForm() {
                 />
             </div>
 
-            <div className="mt-5 space-y-2 border-t border-[var(--color-line)] pt-4">
+            <div className="mt-4 space-y-1.5 border-t border-[var(--color-line)] pt-3.5">
                 <Consent
                     label={c.agreePolicy}
                     checked={fields.agreePrivacyPolicy}
@@ -426,7 +426,7 @@ export function DemoForm() {
             <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[var(--color-ink)] px-5 py-3 text-[16px] font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[var(--color-ink)] px-5 py-2.5 text-[15px] font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
             >
                 {status === "loading" && (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -442,7 +442,7 @@ export function DemoForm() {
 /* ------------------------------------------------------------------ */
 
 const FIELD_BASE =
-    "w-full rounded-lg border bg-white px-3 py-2.5 text-[16px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-subtle)] focus:ring-2";
+    "w-full rounded-lg border bg-white px-3 py-2 text-[15px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-subtle)] focus:ring-2";
 
 function fieldCls(error?: string) {
     return cn(
@@ -457,7 +457,7 @@ function Label({ label, className }: { label: string; className?: string }) {
     return (
         <span
             className={cn(
-                "mb-1.5 block text-[14px] font-semibold text-[var(--color-ink)]",
+                "mb-1 block text-[13.5px] font-semibold text-[var(--color-ink)]",
                 className,
             )}
         >
@@ -562,7 +562,7 @@ function Textarea({
             <textarea
                 value={value}
                 placeholder={placeholder}
-                rows={4}
+                rows={3}
                 onChange={(e) => onChange(e.target.value)}
                 className={cn(fieldCls(error), "resize-y")}
             />
