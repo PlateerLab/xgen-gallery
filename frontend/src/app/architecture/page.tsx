@@ -207,29 +207,23 @@ export default function ArchitecturePage() {
                     </div>
                 </section>
 
-                {/* 온프레미스 보안 아키텍처 — 신뢰 경계 기반 방어(다크 밴드) */}
+                {/* 온프레미스·보안 아키텍처 — 신뢰 경계 기반 제로트러스트 */}
                 <section
                     id="security"
-                    className="relative scroll-mt-[140px] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/12 blur-[130px]"
-                    />
-                    <div className="relative mx-auto max-w-6xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
-                            On-Premise Security
-                        </p>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <Eyebrow>/ On-Premise Security</Eyebrow>
+                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             온프레미스·보안 아키텍처
                         </h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-white/70">
+                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부
                             서비스와 AI 모델, 데이터에 접근할 수 있습니다. 모든 AI 모델과
                             데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전
                             계층에 일관되게 적용됩니다.
                         </p>
-                        <div className="mt-10">
+                        <div className="mt-8">
                             <SecurityArchitecture />
                         </div>
                     </div>
