@@ -579,7 +579,7 @@ export default function ProductPage() {
                                     key={p.no}
                                     className="group relative bg-white p-7 transition hover:bg-[var(--color-surface-alt)]"
                                 >
-                                    <span className="block text-[38px] font-extrabold leading-none tracking-tight text-transparent [-webkit-text-stroke:1.8px_#2f7bff]">
+                                    <span className="block text-[38px] font-bold leading-none tracking-tight text-transparent [-webkit-text-stroke:1.1px_#2f7bff]">
                                         {p.no}
                                     </span>
                                     <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
