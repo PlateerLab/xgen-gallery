@@ -409,17 +409,6 @@ export default function SupportPage() {
                                     <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
                                     무상 유지보수 종료 후 별도 계약에 의해 지원합니다.
                                 </li>
-                                <li className="flex gap-2.5">
-                                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
-                                    유지보수 대상을 넘어서는 범위 또는 구조적 변경은 유지보수
-                                    대상에서 제외됩니다.
-                                </li>
-                                <li className="flex gap-2.5">
-                                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
-                                    유지보수 비용은 응용소프트웨어의 경우 지식경제부 고시
-                                    「소프트웨어 사업대가」 기준의 용역 유지보수 대가 산정에
-                                    의거하여 상호 협의로 결정합니다.
-                                </li>
                             </ul>
                         </div>
                     </div>
