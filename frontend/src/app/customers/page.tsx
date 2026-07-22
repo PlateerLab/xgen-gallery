@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { CustomersLibrary } from "@/components/customers-library";
 import { FeaturedCaseSlider } from "@/components/featured-case-slider";
@@ -52,11 +51,18 @@ export default async function CustomersPage({
             <SiteNav overlay />
             <JsonLd data={ld} />
 
-            <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 py-24 text-white">
-                <SceneBackground concept="solutions" />
+            <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 bg-[#070b1c] py-24 text-white">
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_60%_at_78%_16%,rgba(47,123,255,0.18),transparent_60%)]"
+                />
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                />
                 <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <div>
-                        <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
+                        <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Applied AI · 고객 사례
                         </p>
                         <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">

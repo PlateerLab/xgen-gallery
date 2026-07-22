@@ -7,12 +7,12 @@ import type { IndustryKey } from "@/lib/customers";
  * 외부 이미지 없이 CSP-safe, 어떤 사례든 산업만으로 일관된 비주얼을 얻는다.
  */
 
-// 밝고 생동감 있는 산업별 3색 그라디언트(칙칙함 개선)
+// B2B 블루/인디고/시안/바이올렛 계열 3색 그라디언트(초록 배제·생동감 유지)
 const GRAD: Record<IndustryKey, [string, string, string]> = {
-    finance: ["#22d3ee", "#3b82f6", "#4f46e5"],
-    commerce: ["#c084fc", "#a855f7", "#ec4899"],
+    finance: ["#38bdf8", "#3b82f6", "#4f46e5"],
+    commerce: ["#818cf8", "#6366f1", "#8b5cf6"],
     public: ["#38bdf8", "#2563eb", "#4338ca"],
-    "it-services": ["#2dd4bf", "#06b6d4", "#3b82f6"],
+    "it-services": ["#22d3ee", "#3b82f6", "#4f46e5"],
 };
 
 function Motif({ industry }: { industry: IndustryKey }) {

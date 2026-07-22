@@ -25,7 +25,7 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
 
                 {/* 상단 메타 배지 */}
                 <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2 text-[12.5px]">
-                    <span className="rounded-full bg-[#5eead4]/20 px-2.5 py-0.5 font-semibold text-[#5eead4] backdrop-blur-sm">
+                    <span className="rounded-full bg-[#7dd3fc]/20 px-2.5 py-0.5 font-semibold text-[#7dd3fc] backdrop-blur-sm">
                         {PRODUCTS[item.products[0]].name}
                     </span>
                     <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-white/85 backdrop-blur-sm">
@@ -47,7 +47,7 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
                     <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-white/70">
                         {item.summary}
                     </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#5eead4]">
+                    <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#7dd3fc]">
                         사례 보기
                         <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                     </span>
