@@ -326,7 +326,7 @@ const DEPLOY_STEPS: { no: string; title: string; desc: string }[] = [
         desc: "GitOps 파이프라인으로 통제된 배포·모니터링·개선을 지속합니다.",
     },
 ];
-const DEPLOY_CHIPS = ["온프레미스", "망분리 · Air-gap", "GPU 서빙", "k3s", "ArgoCD · GitOps"];
+const DEPLOY_CHIPS = ["온프레미스", "망분리 · Air-gap", "GPU 서빙", "k3s HA", "Istio", "Blue-Green · Canary", "ArgoCD · GitOps"];
 
 /** 개발자·도입 담당자용 리소스 스트립. */
 const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }[] = [
@@ -373,6 +373,10 @@ const FAQ: { q: string; a: string }[] = [
         q: "코딩 없이 에이전트를 만들 수 있나요?",
         a: "네. Agentflow의 드래그 기반 Visual Canvas로 코딩 없이 워크플로우를 설계하고, 실시간 채팅으로 검증한 뒤 API·워크플로우로 배포할 수 있습니다.",
     },
+    {
+        q: "오픈소스 라이선스는 조달·법무 관점에서 안전한가요?",
+        a: "XGEN을 구성하는 오픈소스는 MIT·Apache 2.0·BSD 계열로, 소스코드 공개 의무가 있는 GPL 계열을 사용하지 않아 상용·내부 배포 시 소스코드 공개 의무가 없습니다. 라이선스 유형별 의무사항(저작권 고지·NOTICE 등)을 점검해 제공하며, 필요 시 구성 요소별 라이선스 명세를 함께 정리해 드립니다.",
+    },
 ];
 
 /** Enterprise Trust — AI 거버넌스 통제 요건(3-레이어 권한·이중 승인·PII·감사). */
@@ -392,6 +396,14 @@ const GOV: { title: string; desc: string }[] = [
     {
         title: "감사 로그 · 정기 점검",
         desc: "사용자 활동과 시스템 이벤트를 보존하고, 배포된 Agent를 주기적으로 점검합니다.",
+    },
+    {
+        title: "비인가 접근 방지",
+        desc: "MFA(OTP) · 접속 IP 허용목록 · 세션 타임아웃을 함께 적용해 허가된 사용자만 접근하도록 다층 통제합니다.",
+    },
+    {
+        title: "개발부터 내재화된 보안",
+        desc: "OWASP ZAP을 개발·CI/CD 파이프라인에 내장해 배포 전 취약점을 자동 점검하는 Shift-Left 보안을 적용합니다.",
     },
 ];
 
@@ -431,29 +443,29 @@ const TECH_LAYERS: {
         no: "LAYER 01",
         en: "Model",
         title: "모델 오케스트레이션",
-        desc: "상용 클라우드 LLM과 사내 GPU 셀프호스팅 모델을 하나의 인터페이스로 다룹니다. 프로바이더를 교체해도 에이전트 설계는 그대로 유지됩니다.",
-        chips: ["OpenAI", "Anthropic", "Google Gemini", "AWS Bedrock", "vLLM", "SGLang"],
+        desc: "상용 클라우드 LLM과 사내 GPU 셀프호스팅 모델을 하나의 인터페이스로 다룹니다. Model Router가 쿼리 특성·비용·보안 기준으로 최적 모델을 자동 선택하고, 프로바이더를 교체해도 에이전트 설계는 그대로 유지됩니다.",
+        chips: ["Model Router", "OpenAI", "Anthropic", "Google Gemini", "AWS Bedrock", "vLLM", "SGLang"],
     },
     {
         no: "LAYER 02",
         en: "Retrieval",
         title: "고도화된 RAG",
-        desc: "밀집·희소 벡터와 전문검색을 결합한 하이브리드 검색에 리랭킹과 온톨로지 그래프를 더해, 출처가 분명한 응답을 만듭니다.",
-        chips: ["Qdrant", "Dense + Sparse", "Full-text", "Reranker", "Ontology Graph", "OCR"],
+        desc: "밀집·희소 벡터와 전문검색을 결합한 하이브리드 검색에 Late Chunking으로 문맥을 보존하고, 리랭킹과 온톨로지 그래프를 더해 출처가 분명한 응답을 만듭니다.",
+        chips: ["Qdrant", "Dense + Sparse", "Full-text", "Late Chunking", "Reranker", "Ontology Graph", "OCR"],
     },
     {
         no: "LAYER 03",
         en: "Orchestration",
         title: "Agent 오케스트레이션",
-        desc: "노드 기반 멀티 에이전트 흐름, MCP 표준 도구 연동, 스트리밍 실행으로 복잡한 업무 절차를 조립하고 실시간으로 처리합니다.",
-        chips: ["Multi-Agent", "MCP", "Tool / Function", "SSE Streaming", "Prompt Engine"],
+        desc: "Planner가 업무를 분해해 담당 Agent를 호출하고 Reviewer가 결과를 검증하는 멀티 에이전트 흐름을, MCP 표준 도구 연동과 스트리밍 실행으로 실시간 처리합니다.",
+        chips: ["Multi-Agent", "A2A", "MCP", "Tool / Function", "SSE Streaming", "Prompt Engine"],
     },
     {
         no: "LAYER 04",
         en: "Runtime & Infra",
         title: "엔터프라이즈 런타임",
-        desc: "게이트웨이 기반 인증 격리와 ABAC 접근 제어, 온프레미스·GPU 서빙, 가드레일로 통제된 실행 환경을 보장합니다.",
-        chips: ["API Gateway", "ABAC", "On-prem", "GPU Serving", "Guardrail"],
+        desc: "게이트웨이 기반 인증 격리와 ABAC 접근 제어, k3s HA·Istio로 단일 장애점(SPOF)을 제거한 온프레미스·GPU 서빙, 가드레일로 통제된 실행 환경을 보장합니다.",
+        chips: ["API Gateway", "ABAC", "k3s HA", "Istio", "On-prem", "GPU Serving", "Guardrail"],
     },
 ];
 
