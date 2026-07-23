@@ -45,7 +45,52 @@ const CA_SECTIONS = [
     { id: "capabilities", label: "핵심 기능" },
     { id: "how-it-works", label: "작동 원리" },
     { id: "integrations", label: "연동·배포" },
+    { id: "specs", label: "기술 사양" },
     { id: "use-cases", label: "활용 사례" },
+];
+
+/** 기술 사양 — 개발 환경·스택 자가검증용(제품 일반 사양). */
+const SPECS: { icon: LucideIcon; label: string; detail: string }[] = [
+    {
+        icon: Code2,
+        label: "개발환경 (IDE)",
+        detail: "VS Code 확장 — 인라인 자동완성·컨텍스트 메뉴·Diagnostics를 에디터에 통합",
+    },
+    {
+        icon: GitBranch,
+        label: "저장소 연동",
+        detail: "GitLab 코드 저장소 연계 · 실시간 증분 인덱싱으로 최신 코드를 동기화",
+    },
+    {
+        icon: SplitSquareVertical,
+        label: "코드 이해",
+        detail: "AST 기반 구조화 — 파일 단위가 아닌 호출·의존 관계로 코드베이스를 학습",
+    },
+    {
+        icon: Search,
+        label: "하이브리드 검색",
+        detail: "키워드(BM25) + 의미 벡터 검색을 결합하고 AI 재정렬(Re-rank)로 정확도 향상",
+    },
+    {
+        icon: FileCheck2,
+        label: "문서 파싱",
+        detail: "xlsx·docx·ppt·PDF·HTML 등 다양한 산출물을 통합 파싱해 컨텍스트로 활용",
+    },
+    {
+        icon: Workflow,
+        label: "도구·데이터 연동",
+        detail: "MCP(Model Context Protocol) 표준으로 이기종 시스템·DB를 안전하게 연계",
+    },
+    {
+        icon: Layers,
+        label: "모델",
+        detail: "온프레미스 self-host · 임베딩·리랭커 · 원하는 LLM을 선택·교체(모델 중립)",
+    },
+    {
+        icon: ShieldCheck,
+        label: "보안",
+        detail: "망분리·폐쇄망 · RBAC 접근통제 · 감사로그 · 시큐어코딩 기반 운영",
+    },
 ];
 
 /** 도입 효과 — 의사결정자 관점 기존 → 도입 후 + 핵심 가치. */
@@ -659,8 +704,41 @@ export default function CodeAssistantPage() {
                     </div>
                 </section>
 
+                {/* Technical Specs — 기술 사양 */}
+                <section id="specs" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Technical Specs
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            기술 사양 · 연동
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            사내 개발 환경과 스택에 맞춰 검토하실 수 있도록 핵심 기술
+                            사양을 정리했습니다.
+                        </p>
+                        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2">
+                            {SPECS.map((s) => (
+                                <div key={s.label} className="flex gap-4 bg-white p-6">
+                                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                        <s.icon className="h-5 w-5" />
+                                    </span>
+                                    <div>
+                                        <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {s.label}
+                                        </p>
+                                        <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {s.detail}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Use Cases — 활용 사례 */}
-                <section id="use-cases" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section id="use-cases" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Use Cases
@@ -711,7 +789,7 @@ export default function CodeAssistantPage() {
                 </section>
 
                 {/* FAQ */}
-                <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-3xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문

@@ -15,7 +15,16 @@ export function SiteFooter() {
     // CTA 배너에 '실증 데모' 영상 카드를 함께 노출. CTA가 뜨는 모든 페이지에 적용하되,
     // 데모 페이지 자신(/proof-in-action)에서는 중복이므로 제외한다.
     const showDemo = showCta && pathname !== "/proof-in-action";
-    const DEMO_ID = "4RiH3ThyIg0";
+    // 데모 영상은 페이지 맥락에 맞춰 노출한다. 특정 제품 페이지는 해당 제품 데모를,
+    // 그 외에는 XGEN 플랫폼 실증 데모를 기본으로 보여준다.
+    const DEMO_BY_PATH: Record<string, { id: string; title: string }> = {
+        "/code-assistant": { id: "dGEvX07WXKM", title: "AI Code Assistant 실증 데모" },
+    };
+    const demo = DEMO_BY_PATH[pathname] ?? {
+        id: "4RiH3ThyIg0",
+        title: "XGEN 플랫폼 실증 데모",
+    };
+    const DEMO_ID = demo.id;
     const DEMO_THUMB = `https://i.ytimg.com/vi/${DEMO_ID}/maxresdefault.jpg`;
     // 배너 내 인라인 재생 상태(클릭 전엔 썸네일 파사드, 클릭 시 임베드 로드).
     const [demoPlaying, setDemoPlaying] = useState(false);
@@ -104,7 +113,7 @@ export function SiteFooter() {
                                         <iframe
                                             className="aspect-video w-full"
                                             src={`https://www.youtube-nocookie.com/embed/${DEMO_ID}?autoplay=1&rel=0`}
-                                            title="XGEN 플랫폼 실증 데모"
+                                            title={demo.title}
                                             loading="lazy"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
                                             allowFullScreen
@@ -113,13 +122,13 @@ export function SiteFooter() {
                                         <button
                                             type="button"
                                             onClick={() => setDemoPlaying(true)}
-                                            aria-label="XGEN 플랫폼 실증 데모 재생"
+                                            aria-label={`${demo.title} 재생`}
                                             className="group relative block aspect-video w-full overflow-hidden"
                                         >
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={DEMO_THUMB}
-                                                alt="XGEN 플랫폼 실증 데모 썸네일"
+                                                alt={`${demo.title} 썸네일`}
                                                 loading="lazy"
                                                 className="absolute inset-0 h-full w-full object-cover brightness-[1.22] saturate-[1.05] transition group-hover:scale-[1.02]"
                                             />

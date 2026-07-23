@@ -301,9 +301,11 @@ export const NAV_GROUPS: NavGroup[] = [
                 blurb: "사내 코드·API·스키마를 학습하는 AI 코드 어시스턴트",
                 children: [
                     { label: "Overview", labelKo: "제품 개요", id: "ca-overview", route: "/code-assistant#overview" },
+                    { label: "Business Value", labelKo: "도입 효과", id: "ca-value", route: "/code-assistant#value" },
                     { label: "Capabilities", labelKo: "핵심 기능", id: "ca-capabilities", route: "/code-assistant#capabilities" },
                     { label: "How It Works", labelKo: "작동 원리", id: "ca-how", route: "/code-assistant#how-it-works" },
                     { label: "Integrations", labelKo: "연동·배포", id: "ca-integrations", route: "/code-assistant#integrations" },
+                    { label: "Technical Specs", labelKo: "기술 사양", id: "ca-specs", route: "/code-assistant#specs" },
                     { label: "Use Cases", labelKo: "활용 사례", id: "ca-use-cases", route: "/code-assistant#use-cases" },
                 ],
             },
