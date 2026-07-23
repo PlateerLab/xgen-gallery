@@ -7,11 +7,12 @@ const CONTACT_BCC = "swan@plateer.com,chat2plex@gmail.com";
 // 소개서 내부 접수 알림 수신자 (테스트 단계 — swan. 운영 전환 시 "xgen@plateer.com" 로 변경)
 const BROCHURE_TO = "swan@plateer.com";
 
-// 보낸사람(발신 주소). ⚠️ 실제로 이 주소로 나가려면 스크립트 소유 Gmail(chat2plex)의
-//   Gmail 설정 > 계정 및 가져오기 > '다른 주소에서 메일 보내기'에 xgen@plateer.com 을
-//   별칭으로 등록·인증해 둬야 한다. 미등록이면 sendMail_ 가 발신주소 없이(소유 계정으로)
-//   자동 폴백해 발송은 계속된다.
+// 브랜드 주소(답장 주소). ⚠️ plateer.com은 Microsoft365라 xgen@plateer.com은 O365 SMTP
+//   별칭이고, Apps Script(MailApp)는 SMTP 별칭을 from으로 못 쓴다(구조적 한계 → 실제 발신은
+//   소유 계정 chat2plex로 나감). 그래서 from은 지정하지 않고, 모든 메일의 표시이름을
+//   "Plateer Labs"로, 답장주소(replyTo)를 이 주소로 통일한다. (진짜 xgen 발신은 앱+O365 SMTP 필요)
 const FROM_ADDR = "xgen@plateer.com";
+const FROM_NAME = "Plateer Labs";
 
 // 브로셔 종류 — 요청의 asset 값 → { 표시명, 다운로드 PDF }.
 // 새 종류가 생기면 여기 한 줄만 추가 + 해당 PDF를 /public/downloads 에 올리면 된다.
@@ -127,7 +128,7 @@ function brochureMailToUser(data, t){
     '<a href="https://labs.plateer.com/contact">문의 페이지</a>를 이용해 주세요.</p>' +
     "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
   sendMail_({
-    to: to, from: FROM_ADDR, name: "Plateer Labs", replyTo: BROCHURE_TO,
+    to: to, name: FROM_NAME, replyTo: FROM_ADDR,
     subject: "[Plateer Labs] 요청하신 " + t.name + " 소개서를 보내드립니다",
     body: text, htmlBody: html
   });
@@ -161,7 +162,7 @@ function contactConfirmToUser_(data){
     "<p>담당자가 <b>영업일 기준 1~2일 내</b>에 이메일 또는 전화로 연락드리겠습니다.</p>" +
     "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
   sendMail_({
-    to: to, from: FROM_ADDR, name: "Plateer Labs", replyTo: FROM_ADDR,
+    to: to, name: FROM_NAME, replyTo: FROM_ADDR,
     subject: "[Plateer Labs] 상담 신청이 접수되었습니다",
     body: text, htmlBody: html
   });
@@ -190,14 +191,14 @@ function doPost(e){
     data.brochureType = t.name;                      // 시트 '소개서' 열에 종류 표시명 기록
     prepend("brochure", BROCHURE_COLS, data);        // 소개서 → brochure 탭
     brochureMailToUser(data, t);                     // ★ 요청자(폼 이메일)에게 다운로드 링크 메일(보낸사람 xgen)
-    sendMail_({ to: BROCHURE_TO, from: FROM_ADDR,    // 내부 접수 알림
+    sendMail_({ to: BROCHURE_TO, name: FROM_NAME, replyTo: FROM_ADDR,   // 내부 접수 알림
       subject: "[소개서 신청/" + t.name + "] " + (data.name||"") + " (" + (data.company||"") + ")",
       body: body(BROCHURE_COLS, data) });
 
   } else {
     prepend("leads", CONTACT_COLS, data);            // 컨택 → leads 탭
     contactConfirmToUser_(data);                     // ★ 신청자(폼 이메일)에게 접수 확인 메일(보낸사람 xgen)
-    sendMail_({ to: CONTACT_TO, bcc: CONTACT_BCC, from: FROM_ADDR,   // 내부 팀 알림(상세)
+    sendMail_({ to: CONTACT_TO, bcc: CONTACT_BCC, name: FROM_NAME, replyTo: FROM_ADDR,   // 내부 팀 알림(상세)
       subject: "[상담 문의] " + (data.inquiryType||"") + " - " + (data.name||"") + " (" + (data.company||"") + ")",
       body: body(CONTACT_COLS, data) + "\n레퍼러 페이지: " + fmt(data.referrer) });
   }
@@ -230,7 +231,7 @@ function contentNotify_(d, kind, word, heading){
   for (var i=0;i<subs.length;i++){
     // 수신자별 해지 링크(/unsubscribe?kind=…&email=…)
     var unsub = "https://labs.plateer.com/unsubscribe?kind=" + kind + "&email=" + encodeURIComponent(subs[i]);
-    sendMail_({ to: subs[i], from: FROM_ADDR, name:"Plateer Labs", subject: subject,
+    sendMail_({ to: subs[i], name: FROM_NAME, replyTo: FROM_ADDR, subject: subject,
       body: notifyText_(posts, unsub, heading), htmlBody: notifyHtml_(posts, unsub, heading) });
     sent++;
   }
