@@ -7,6 +7,12 @@ const CONTACT_BCC = "swan@plateer.com,chat2plex@gmail.com";
 // 소개서 내부 접수 알림 수신자 (테스트 단계 — swan. 운영 전환 시 "xgen@plateer.com" 로 변경)
 const BROCHURE_TO = "swan@plateer.com";
 
+// 보낸사람(발신 주소). ⚠️ 실제로 이 주소로 나가려면 스크립트 소유 Gmail(chat2plex)의
+//   Gmail 설정 > 계정 및 가져오기 > '다른 주소에서 메일 보내기'에 xgen@plateer.com 을
+//   별칭으로 등록·인증해 둬야 한다. 미등록이면 sendMail_ 가 발신주소 없이(소유 계정으로)
+//   자동 폴백해 발송은 계속된다.
+const FROM_ADDR = "xgen@plateer.com";
+
 // 브로셔 종류 — 요청의 asset 값 → { 표시명, 다운로드 PDF }.
 // 새 종류가 생기면 여기 한 줄만 추가 + 해당 PDF를 /public/downloads 에 올리면 된다.
 var BROCHURE_TYPES = {
@@ -40,6 +46,15 @@ function seoulTime(iso){
 }
 
 function fmt(v){ if (typeof v==="boolean") return v?"Y":"N"; return v==null?"":v; }
+
+// from(발신주소) 별칭이 미등록이면 MailApp이 예외를 던지므로, from 없이 재시도해 발송을 보장.
+function sendMail_(opts){
+  try { MailApp.sendEmail(opts); }
+  catch (err){
+    var o = {}; for (var k in opts){ if (k !== "from") o[k] = opts[k]; }
+    MailApp.sendEmail(o);
+  }
+}
 
 function sheetFor(name, cols){
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -111,9 +126,43 @@ function brochureMailToUser(data, t){
     "<p>도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나 " +
     '<a href="https://labs.plateer.com/contact">문의 페이지</a>를 이용해 주세요.</p>' +
     "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
-  MailApp.sendEmail({
-    to: to, name: "Plateer Labs", replyTo: BROCHURE_TO,
+  sendMail_({
+    to: to, from: FROM_ADDR, name: "Plateer Labs", replyTo: BROCHURE_TO,
     subject: "[Plateer Labs] 요청하신 " + t.name + " 소개서를 보내드립니다",
+    body: text, htmlBody: html
+  });
+}
+
+/** 상담 신청자에게 접수 확인 메일(보낸사람 xgen, 받는사람 = 폼 이메일). */
+function contactConfirmToUser_(data){
+  var to = String(data.email || "").trim();
+  if (!to) return;
+  var name = data.name || "고객";
+  var text = [
+    name + "님, 안녕하세요.",
+    "",
+    "Plateer Labs에 문의해 주셔서 감사합니다. 아래 내용으로 상담 신청이 접수되었습니다.",
+    "",
+    "• 문의 유형: " + (data.inquiryType || ""),
+    "• 상담 내용: " + (data.inquiry || ""),
+    "",
+    "담당자가 영업일 기준 1~2일 내에 이메일 또는 전화로 연락드리겠습니다.",
+    "",
+    "감사합니다.",
+    "Plateer Labs 드림"
+  ].join("\n");
+  var html =
+    '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
+    "<p>" + name + "님, 안녕하세요.</p>" +
+    "<p>Plateer Labs에 문의해 주셔서 감사합니다.<br>아래 내용으로 <b>상담 신청이 접수</b>되었습니다.</p>" +
+    '<div style="margin:16px 0;padding:14px 16px;background:#f5f7fb;border-radius:10px">' +
+    "<p style=\"margin:0 0 6px\"><b>문의 유형</b> · " + escapeHtml_(data.inquiryType || "") + "</p>" +
+    "<p style=\"margin:0;color:#5b6472\">" + escapeHtml_(data.inquiry || "") + "</p></div>" +
+    "<p>담당자가 <b>영업일 기준 1~2일 내</b>에 이메일 또는 전화로 연락드리겠습니다.</p>" +
+    "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
+  sendMail_({
+    to: to, from: FROM_ADDR, name: "Plateer Labs", replyTo: FROM_ADDR,
+    subject: "[Plateer Labs] 상담 신청이 접수되었습니다",
     body: text, htmlBody: html
   });
 }
@@ -137,14 +186,15 @@ function doPost(e){
     var t = brochureType(data);                      // 소개서 종류 구분(XGEN / AI Code Assistant …)
     data.brochureType = t.name;                      // 시트 '소개서' 열에 종류 표시명 기록
     prepend("brochure", BROCHURE_COLS, data);        // 소개서 → brochure 탭
-    brochureMailToUser(data, t);                     // ★ 요청자에게 종류별 다운로드 링크 메일
-    MailApp.sendEmail({ to: BROCHURE_TO,             // 내부 접수 알림
+    brochureMailToUser(data, t);                     // ★ 요청자(폼 이메일)에게 다운로드 링크 메일(보낸사람 xgen)
+    sendMail_({ to: BROCHURE_TO, from: FROM_ADDR,    // 내부 접수 알림
       subject: "[소개서 신청/" + t.name + "] " + (data.name||"") + " (" + (data.company||"") + ")",
       body: body(BROCHURE_COLS, data) });
 
   } else {
-    prepend("leads", CONTACT_COLS, data);            // 컨택 → leads 탭 + swan 메일
-    MailApp.sendEmail({ to: CONTACT_TO, bcc: CONTACT_BCC, from: CONTACT_TO,
+    prepend("leads", CONTACT_COLS, data);            // 컨택 → leads 탭
+    contactConfirmToUser_(data);                     // ★ 신청자(폼 이메일)에게 접수 확인 메일(보낸사람 xgen)
+    sendMail_({ to: CONTACT_TO, bcc: CONTACT_BCC, from: FROM_ADDR,   // 내부 팀 알림(상세)
       subject: "[상담 문의] " + (data.inquiryType||"") + " - " + (data.name||"") + " (" + (data.company||"") + ")",
       body: body(CONTACT_COLS, data) + "\n레퍼러 페이지: " + fmt(data.referrer) });
   }
