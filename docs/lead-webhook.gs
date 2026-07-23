@@ -222,11 +222,12 @@ function blogNotify_(d){
   var subject = posts.length === 1
       ? "[Plateer Labs] 새 글: " + posts[0].title
       : "[Plateer Labs] 새 글 " + posts.length + "건이 올라왔어요";
-  var html = blogNotifyHtml_(posts);
-  var text = blogNotifyText_(posts);
   var sent = 0;
   for (var i=0;i<subs.length;i++){
-    MailApp.sendEmail({ to: subs[i], name:"Plateer Labs", subject: subject, body: text, htmlBody: html });
+    // 수신자별 해지 링크(/unsubscribe?kind=blog&email=…)
+    var unsub = "https://labs.plateer.com/unsubscribe?kind=blog&email=" + encodeURIComponent(subs[i]);
+    MailApp.sendEmail({ to: subs[i], name:"Plateer Labs", subject: subject,
+      body: blogNotifyText_(posts, unsub), htmlBody: blogNotifyHtml_(posts, unsub) });
     sent++;
   }
   return jsonOut_({ ok:true, sent:sent, subscribers:subs.length });
@@ -247,7 +248,7 @@ function subscribedEmails_(kind){
   return out;
 }
 
-function blogNotifyText_(posts){
+function blogNotifyText_(posts, unsub){
   var lines = ["Plateer Labs 블로그에 새 글이 올라왔습니다.", ""];
   posts.forEach(function(p){
     lines.push("• " + (p.title || ""));
@@ -256,11 +257,12 @@ function blogNotifyText_(posts){
     lines.push("");
   });
   lines.push("— Plateer Labs");
-  lines.push("수신 해지: https://labs.plateer.com/newsletter");
+  lines.push("수신 해지: " + (unsub || "https://labs.plateer.com/unsubscribe?kind=blog"));
   return lines.join("\n");
 }
 
-function blogNotifyHtml_(posts){
+function blogNotifyHtml_(posts, unsub){
+  var unsubUrl = unsub || "https://labs.plateer.com/unsubscribe?kind=blog";
   var items = posts.map(function(p){
     return '<div style="margin:0 0 20px">' +
       '<a href="' + (p.url || "#") + '" style="font-size:17px;font-weight:bold;color:#1a2233;text-decoration:none">' + escapeHtml_(p.title) + '</a>' +
@@ -271,7 +273,7 @@ function blogNotifyHtml_(posts){
   return '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
     '<p>Plateer Labs 블로그에 새 글이 올라왔습니다.</p>' + items +
     '<p style="margin-top:24px;color:#8b93a4;font-size:12.5px">수신을 원치 않으시면 ' +
-    '<a href="https://labs.plateer.com/newsletter" style="color:#8b93a4">여기</a>에서 해지하실 수 있습니다.</p></div>';
+    '<a href="' + unsubUrl + '" style="color:#8b93a4">여기</a>에서 해지하실 수 있습니다.</p></div>';
 }
 
 function escapeHtml_(s){
