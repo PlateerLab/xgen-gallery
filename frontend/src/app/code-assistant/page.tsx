@@ -19,6 +19,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { CodeAssistantHeroArt } from "@/components/code-assistant-hero-art";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
+import { ArchIndex } from "@/components/arch-index";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -36,6 +37,62 @@ export const metadata = pageMetadata({
         "AI Code Assistant는 사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다. GitLab과 연동되고 온프레미스·폐쇄망에 설치돼 소스가 외부로 나가지 않습니다.",
     path: "/code-assistant",
 });
+
+/** 섹션 목차 — 히어로 하단 스티키 인덱스(ArchIndex 공용). */
+const CA_SECTIONS = [
+    { id: "overview", label: "제품 개요" },
+    { id: "value", label: "도입 효과" },
+    { id: "capabilities", label: "핵심 기능" },
+    { id: "how-it-works", label: "작동 원리" },
+    { id: "integrations", label: "연동·배포" },
+    { id: "use-cases", label: "활용 사례" },
+];
+
+/** 도입 효과 — 의사결정자 관점 기존 → 도입 후 + 핵심 가치. */
+const OUTCOMES: {
+    icon: LucideIcon;
+    title: string;
+    before: string;
+    after: string;
+    value: string;
+}[] = [
+    {
+        icon: Boxes,
+        title: "신규 개발자의 온보딩이 빨라집니다",
+        before: "신규 인력이 레거시 코드를 이해하는 데 수주~수개월",
+        after: "프로젝트 코드에 직접 질문하여 클래스·API·DB·호출 흐름을 즉시 이해",
+        value: "개발자 적응 시간 단축 및 생산성 향상",
+    },
+    {
+        icon: ShieldCheck,
+        title: "소스코드가 외부로 유출되지 않습니다",
+        before: "외부 AI 서비스 사용 시 소스코드 반출 및 보안 우려",
+        after: "온프레미스·폐쇄망 환경에서 코드와 데이터가 내부에 안전하게 유지",
+        value: "금융·공공·대기업 보안 정책 충족",
+    },
+    {
+        icon: FileCheck2,
+        title: "우리 프로젝트에 맞는 답을 제공합니다",
+        before: "범용 AI의 일반적인 코드 설명",
+        after: "프로젝트 코드를 기반으로 실제 컴포넌트·API·DB·근거 파일까지 함께 제시",
+        value: "정확한 답변과 신뢰 가능한 코드 근거 제공",
+    },
+    {
+        icon: Workflow,
+        title: "유지보수 생산성이 크게 향상됩니다",
+        before: "담당자 경험에 의존한 코드 탐색과 분석",
+        after: "질문 한 번으로 관련 코드·호출 관계·영향 범위를 즉시 확인",
+        value: "장애 대응 및 변경 영향 분석 시간 단축",
+    },
+];
+
+/** 보안 태세 트러스트 바. */
+const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
+    { icon: ShieldCheck, label: "온프레미스 설치", sub: "소스·데이터 사내 보관" },
+    { icon: Boxes, label: "폐쇄망 대응", sub: "Air-gap 환경 배포" },
+    { icon: GitBranch, label: "GitLab 접근통제", sub: "계정·권한 기반" },
+    { icon: Layers, label: "모델 중립", sub: "원하는 LLM 선택·교체" },
+];
 
 /** 3대 강점. */
 const PILLARS: { icon: LucideIcon; title: string; desc: string }[] = [
@@ -164,11 +221,43 @@ const COMPARISON: { aspect: string; generic: string; ca: string }[] = [
 ];
 
 /** 활용 사례. */
-const USE_CASES: string[] = [
-    "신규 기능 구현 가이드 — 재사용 컴포넌트·구현 절차·예시 코드",
-    "API 엔드포인트·테이블 탐색",
-    "레거시 코드 이해 및 신규 인력 온보딩",
-    "코드 리뷰와 코드 수준 개선 제안",
+const USE_CASES: { icon: LucideIcon; title: string; points: string[] }[] = [
+    {
+        icon: Workflow,
+        title: "신규 기능 구현 가이드",
+        points: [
+            "재사용 가능한 컴포넌트·패턴을 찾아 제시",
+            "구현 절차와 예시 코드까지 함께 안내",
+            "관련 API·테이블을 짚어 설계로 연결",
+        ],
+    },
+    {
+        icon: Search,
+        title: "API · 스키마 탐색",
+        points: [
+            "필요한 엔드포인트와 컨트롤러 위치 파악",
+            "DB 테이블·관계·카디널리티 확인",
+            "업무에 맞는 API·테이블을 정확히 지목",
+        ],
+    },
+    {
+        icon: Boxes,
+        title: "레거시 이해 · 온보딩",
+        points: [
+            "대규모 코드베이스 구조를 코드 수준으로 설명",
+            "문서화되지 않은 로직도 근거와 함께 파악",
+            "신규 인력의 온보딩 기간 단축",
+        ],
+    },
+    {
+        icon: FileCheck2,
+        title: "코드 리뷰 · 개선",
+        points: [
+            "인증·오류 처리·성능 등 문제점 진단",
+            "예시 코드가 포함된 구체적 개선안",
+            "규칙·보안 위반 사전 점검",
+        ],
+    },
 ];
 
 const FAQ: { q: string; a: string }[] = [
@@ -281,9 +370,32 @@ export default function CodeAssistantPage() {
                 </div>
             </section>
 
+            {/* 보안 태세 트러스트 바 */}
+            <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
+                <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-5 px-6 py-7 md:grid-cols-4">
+                    {TRUST.map((t) => (
+                        <div key={t.label} className="flex items-center gap-3">
+                            <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                <t.icon className="h-5 w-5" />
+                            </span>
+                            <div className="min-w-0">
+                                <p className="text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {t.label}
+                                </p>
+                                <p className="text-[12.5px] text-[var(--color-ink-subtle)]">
+                                    {t.sub}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <ArchIndex sections={CA_SECTIONS} />
+
             <main>
                 {/* Overview — 3대 강점 */}
-                <section id="overview" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section id="overview" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Why Code Assistant
@@ -316,32 +428,112 @@ export default function CodeAssistantPage() {
                     </div>
                 </section>
 
-                {/* Capabilities — 핵심 기능 */}
-                <section id="capabilities" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                {/* 도입 효과 — 의사결정자 관점 before → after */}
+                <section
+                    id="value"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
                     <div className="mx-auto max-w-6xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Business Value
+                        </p>
+                        <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            AI Code Assistant 도입으로 개발 생산성과 운영 안정성을 동시에
+                            확보합니다
+                        </h2>
+                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            프로젝트에 특화된 코드 이해와 안전한 온프레미스 운영으로 개발
+                            속도는 높이고, 유지보수 비용은 줄입니다.
+                        </p>
+                        <div className="mt-14 divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
+                            {OUTCOMES.map((o, i) => (
+                                <div
+                                    key={o.title}
+                                    className="grid gap-5 py-10 md:grid-cols-[128px_1fr] md:gap-10 lg:grid-cols-[168px_1fr]"
+                                >
+                                    {/* 큰 번호 */}
+                                    <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[48px] font-extrabold leading-none text-transparent md:text-[64px]">
+                                        {String(i + 1).padStart(2, "0")}
+                                    </span>
+                                    {/* 콘텐츠 */}
+                                    <div>
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                <o.icon className="h-5 w-5" />
+                                            </span>
+                                            <h3 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)] md:text-[25px]">
+                                                {o.title}
+                                            </h3>
+                                        </div>
+                                        <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+                                            <div className="rounded-xl bg-[var(--color-surface-alt)] px-4 py-3">
+                                                <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11.5px] font-bold text-[var(--color-ink-subtle)] ring-1 ring-[var(--color-line)]">
+                                                    기존
+                                                </span>
+                                                <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                    {o.before}
+                                                </p>
+                                            </div>
+                                            <ArrowRight className="mx-auto hidden h-5 w-5 flex-none text-[#2f7bff] sm:block" />
+                                            <div className="rounded-xl border border-[#bcd0f5] bg-[#eef4ff] px-4 py-3">
+                                                <span className="inline-flex items-center rounded-full bg-[#2f7bff] px-2.5 py-0.5 text-[11.5px] font-bold text-white">
+                                                    도입 후
+                                                </span>
+                                                <p className="mt-1 text-[14px] font-medium leading-relaxed text-[var(--color-ink)]">
+                                                    {o.after}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 flex items-center gap-2.5 rounded-r-xl border-l-[3px] border-[#1f9d6b] bg-[#e7f7f0]/60 px-4 py-2.5">
+                                            <span className="inline-flex flex-none items-center rounded-full bg-[#1f9d6b] px-2 py-0.5 text-[11px] font-bold text-white">
+                                                핵심 가치
+                                            </span>
+                                            <span className="text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)]">
+                                                {o.value}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Capabilities — 핵심 기능 */}
+                <section id="capabilities" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Core Capabilities
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             핵심 기능
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             사내 코드·API·스키마를 학습해 프로젝트 맥락에서 정확하게
                             답하는 기능들입니다.
                         </p>
-                        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                            {CAPABILITIES.map((c) => (
+                        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            {CAPABILITIES.map((c, i) => (
                                 <div
                                     key={c.title}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                    className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_18px_44px_-22px_rgba(20,40,80,0.28)]"
                                 >
+                                    <span
+                                        aria-hidden
+                                        className="pointer-events-none absolute -right-1 top-1 font-mono text-[64px] font-extrabold leading-none text-[#2f7bff]/[0.07]"
+                                    >
+                                        {String(i + 1).padStart(2, "0")}
+                                    </span>
                                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                         <c.icon className="h-5 w-5" />
                                     </span>
-                                    <h3 className="mt-4 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
                                         {c.title}
                                     </h3>
-                                    <p className="mt-0.5 text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
+                                    <p className="mt-0.5 font-mono text-[11.5px] font-semibold uppercase tracking-wider text-[#4a6aa8]">
                                         {c.en}
                                     </p>
-                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {c.desc}
                                     </p>
                                 </div>
@@ -351,9 +543,12 @@ export default function CodeAssistantPage() {
                 </section>
 
                 {/* How It Works — 작동 원리 */}
-                <section id="how-it-works" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section id="how-it-works" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            How It Works
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             작동 원리
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -378,11 +573,25 @@ export default function CodeAssistantPage() {
                                 </li>
                             ))}
                         </ol>
+                        {/* 아키텍처 연계 */}
+                        <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 sm:flex-row sm:items-center sm:justify-between">
+                            <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                게이트웨이 기반 인증 격리와 인덱싱·RAG·MCP로 구성된 전체
+                                구조는 아키텍처 문서에서 자세히 확인할 수 있습니다.
+                            </p>
+                            <Link
+                                href="/architecture#code-assistant"
+                                className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            >
+                                코드 어시스턴트 아키텍처 자세히 보기
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                        </div>
                     </div>
                 </section>
 
                 {/* Comparison — 범용 도구 대비 */}
-                <section className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             범용 코드 어시스턴트와 무엇이 다른가
@@ -424,7 +633,7 @@ export default function CodeAssistantPage() {
                 </section>
 
                 {/* Integrations — 연동·배포 */}
-                <section id="integrations" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section id="integrations" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             연동과 배포
@@ -451,34 +660,58 @@ export default function CodeAssistantPage() {
                 </section>
 
                 {/* Use Cases — 활용 사례 */}
-                <section id="use-cases" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section id="use-cases" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-6xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Use Cases
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             활용 사례
                         </h2>
-                        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            사내 코드·API·스키마를 이해한 답변이 실제 개발 현장에서 어떻게
+                            쓰이는지 정리했습니다.
+                        </p>
+                        <div className="mt-10 grid gap-4 md:grid-cols-2">
                             {USE_CASES.map((u) => (
-                                <li
-                                    key={u}
-                                    className="flex items-start gap-2.5 rounded-xl border border-[var(--color-line)] bg-white px-5 py-4 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                <div
+                                    key={u.title}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    <Check className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
-                                    {u}
-                                </li>
+                                    <div className="flex items-center gap-3">
+                                        <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <u.icon className="h-5 w-5" />
+                                        </span>
+                                        <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {u.title}
+                                        </h3>
+                                    </div>
+                                    <ul className="mt-4 flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                        {u.points.map((pt) => (
+                                            <li
+                                                key={pt}
+                                                className="flex items-start gap-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                            >
+                                                <Check className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
+                                                {pt}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                         <Link
                             href="/customers?product=code-assistant"
-                            className="mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
-                            Code Assistant 고객사례 보기
+                            AI Code Assistant 고객사례 보기
                             <ArrowRight className="h-4 w-4" />
                         </Link>
                     </div>
                 </section>
 
                 {/* FAQ */}
-                <section className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-3xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문
@@ -528,13 +761,21 @@ export default function CodeAssistantPage() {
                                 사내 저장소와 개발 환경에 맞는 도입 방안을 함께 설계해 드립니다.
                             </p>
                         </div>
-                        <Link
-                            href="/contact?from=code-assistant"
-                            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#2f7bff] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2461d8]"
-                        >
-                            도입 문의
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
+                        <div className="flex shrink-0 flex-wrap gap-3">
+                            <Link
+                                href="/contact?from=code-assistant"
+                                className="inline-flex items-center gap-2 rounded-full bg-[#2f7bff] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2461d8]"
+                            >
+                                도입 문의
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                            <Link
+                                href="/contact?type=poc&from=code-assistant"
+                                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] px-6 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-white"
+                            >
+                                보안·도입 요건 상담
+                            </Link>
+                        </div>
                     </div>
                 </section>
             </main>

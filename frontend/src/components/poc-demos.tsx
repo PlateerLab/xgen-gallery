@@ -94,6 +94,11 @@ export const DEMOS: Demo[] = [
         desc: "FLOUI(Flow UI)는 사용자의 질문과 업무 흐름에 따라 화면이 스스로 구성되는 AI 기반 Adaptive UI 기술입니다.",
         uploadDate: "2026-07-02",
     },
+    {
+        id: "dGEvX07WXKM",
+        title: "AI Code Assistant 실증 데모",
+        desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트를 실제 화면으로 시연합니다.",
+    },
 ];
 
 /** 키 비주얼(ProofHero)에 쓰는 대표 영상. featured 플래그가 붙은 첫 항목. */

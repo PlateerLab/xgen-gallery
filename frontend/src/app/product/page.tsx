@@ -734,56 +734,95 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            도입하면, 이렇게 달라집니다
+                        <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            AI 구축이 아닌, 기업 운영 방식이 달라집니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            기술 검증을 넘어 규제 산업의 실제 운영까지 — XGEN이 바꾸는 것을
-                            의사결정 관점에서 정리했습니다.
+                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            기업은 더 이상 AI 모델을 도입하는 것이 아니라,{" "}
+                            <span className="font-semibold text-[var(--color-ink)]">
+                                운영 가능한 AI 플랫폼
+                            </span>
+                            을 선택합니다. XGEN은 개발 속도보다 운영 안정성, 기능보다
+                            거버넌스, PoC보다 실제 업무 적용을 중심으로 Enterprise AI를
+                            구현합니다.
                         </p>
-                        <div className="mt-10 grid gap-4 md:grid-cols-2">
+                        <div className="mt-14 divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
                             {[
                                 {
-                                    title: "파일럿에서 실제 운영으로",
-                                    before: "기술 검증(PoC)에서 멈추고 업무에 배포되지 못하는 AI",
-                                    after: "보안·권한·감사를 처음부터 갖춰 실제 업무에 배포·운영",
+                                    title: "구축형 SI가 아닌 운영형 플랫폼",
+                                    before: "프로젝트마다 새롭게 개발하여 구축 기간과 유지보수 비용이 지속 증가",
+                                    after: "완성형 플랫폼 기반으로 Agent·RAG·Workflow를 조합해 서비스를 구성",
+                                    effect: "구축 기간 단축 — 수개월의 구축을 수주 내 운영 수준으로",
                                 },
                                 {
-                                    title: "규제·데이터 주권을 지키며 AI 활용",
-                                    before: "폐쇄망·규제 요건 때문에 외부 클라우드 AI 도입 불가",
-                                    after: "온프레미스·망분리·제로 트레이닝·다층 통제로 규제 산업에서도 운영",
+                                    title: "PoC를 넘어 실제 업무 운영",
+                                    before: "기술 검증은 성공하지만 현업 업무에는 적용되지 못하는 AI",
+                                    after: "권한·보안·감사체계를 포함한 운영 환경에서 바로 활용 가능한 Enterprise AI 서비스",
+                                    effect: "PoC를 넘어 운영 환경에서 즉시 활용",
                                 },
                                 {
-                                    title: "현업이 직접, 더 빠르게",
-                                    before: "개발 리소스 병목으로 느린 확산",
-                                    after: "노코드 캔버스·패스파인더로 현업이 직접 제작하고 기존 시스템과 연계",
+                                    title: "규제 산업도 가능한 AI 플랫폼",
+                                    before: "폐쇄망·망분리 환경으로 최신 AI 활용에 제약",
+                                    after: "온프레미스·망분리·제로트러스트 기반으로 규제 산업에서도 안정적으로 운영",
+                                    effect: "금융·공공·제조 등 규제 환경에서 운영 가능",
                                 },
                                 {
-                                    title: "벤더 주장이 아닌, 검증된 신뢰",
-                                    before: "품질·신뢰성을 벤더의 주장에 의존",
-                                    after: "GS 1등급 제3자 시험 검증 + 오픈소스로 공개 검증",
+                                    title: "현업이 직접 만드는 AI",
+                                    before: "개발조직 일정에 따라 AI 서비스 출시 지연",
+                                    after: "노코드 Canvas와 Pathfinder로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
+                                    effect: "개발 대기 없이 업무 부서가 직접 개선",
                                 },
-                            ].map((o) => (
+                                {
+                                    title: "개발부터 운영까지 하나의 플랫폼",
+                                    before: "개발·배포·모니터링·품질관리가 분리되어 운영 복잡도 증가",
+                                    after: "설계·지식관리·배포·평가·운영을 단일 플랫폼에서 통합 관리",
+                                    effect: "운영 도구를 하나의 플랫폼으로 통합",
+                                },
+                                {
+                                    title: "검증 가능한 Enterprise AI",
+                                    before: "벤더의 성능 주장과 LLM 자체 평가에 의존",
+                                    after: "GS인증 1등급·LLM Judge·감사로그·품질평가 체계로 신뢰할 수 있는 AI 운영 기반 제공",
+                                    effect: "GS인증·LLM Judge 기반 객관적 품질 검증",
+                                },
+                            ].map((o, i) => (
                                 <div
                                     key={o.title}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                    className="grid gap-5 py-10 md:grid-cols-[128px_1fr] md:gap-10 lg:grid-cols-[168px_1fr]"
                                 >
-                                    <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {o.title}
-                                    </h3>
-                                    <div className="mt-4 space-y-2.5">
-                                        <p className="flex items-start gap-2.5 text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
-                                            <span className="mt-0.5 inline-flex flex-none rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-[11px] font-semibold text-[var(--color-ink-subtle)]">
-                                                기존
+                                    <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[48px] font-extrabold leading-none text-transparent md:text-[64px]">
+                                        {String(i + 1).padStart(2, "0")}
+                                    </span>
+                                    <div>
+                                        <h3 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)] md:text-[25px]">
+                                            {o.title}
+                                        </h3>
+                                        <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+                                            <div className="rounded-xl bg-[var(--color-surface-alt)] px-4 py-3">
+                                                <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11.5px] font-bold text-[var(--color-ink-subtle)] ring-1 ring-[var(--color-line)]">
+                                                    기존
+                                                </span>
+                                                <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                    {o.before}
+                                                </p>
+                                            </div>
+                                            <ArrowRight className="mx-auto hidden h-5 w-5 flex-none text-[#2f7bff] sm:block" />
+                                            <div className="rounded-xl border border-[#bcd0f5] bg-[#eef4ff] px-4 py-3">
+                                                <span className="inline-flex items-center rounded-full bg-[#2f7bff] px-2.5 py-0.5 text-[11.5px] font-bold text-white">
+                                                    XGEN
+                                                </span>
+                                                <p className="mt-1 text-[14px] font-medium leading-relaxed text-[var(--color-ink)]">
+                                                    {o.after}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 flex items-center gap-2.5 rounded-r-xl border-l-[3px] border-[#1f9d6b] bg-[#e7f7f0]/60 px-4 py-2.5">
+                                            <span className="inline-flex flex-none items-center rounded-full bg-[#1f9d6b] px-2 py-0.5 text-[11px] font-bold text-white">
+                                                성과
                                             </span>
-                                            {o.before}
-                                        </p>
-                                        <p className="flex items-start gap-2.5 text-[14.5px] font-medium leading-relaxed text-[var(--color-ink)]">
-                                            <span className="mt-0.5 inline-flex flex-none rounded bg-[#2f7bff]/12 px-1.5 py-0.5 text-[11px] font-bold text-[#2461d8]">
-                                                XGEN
+                                            <span className="text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)]">
+                                                {o.effect}
                                             </span>
-                                            {o.after}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

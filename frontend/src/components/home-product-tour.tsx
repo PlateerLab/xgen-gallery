@@ -54,12 +54,12 @@ const PRODUCTS: Product[] = [
         poster: "https://img.youtube.com/vi/StxOW5PbC8w/maxresdefault.jpg",
     },
     {
-        key: "mcp",
-        name: "MCP Apps",
-        tagline: "Deploy",
-        desc: "MCP로 도구·시스템을 연결해 에이전트를 실제 환경에 배포하는 앱 런타임입니다",
-        video: null,
-        poster: null,
+        key: "code-assistant",
+        name: "AI Code Assistant",
+        tagline: "Code",
+        desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다",
+        video: "https://www.youtube-nocookie.com/embed/dGEvX07WXKM",
+        poster: "https://img.youtube.com/vi/dGEvX07WXKM/maxresdefault.jpg",
     },
 ];
 
