@@ -21,6 +21,13 @@ jobs:
           # Repo → Settings → Secrets and variables → Actions 의 OAUTH_CLIENT_SECRET(등록됨)을
           # 주입한다. 매 배포마다 아래 시드 단계가 go244의 .env에 자동으로 써 넣는다.
           GH_OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+          # 폼 리드 웹훅(Google Apps Script /exec) URL — go244 .env에 자동 주입해
+          # 노트북과 무관하게 24/7 동작하도록 한다. Repo Secrets에 등록:
+          #   DEMO_WEBHOOK_URL(문의·체험), NEWSLETTER_WEBHOOK_URL(뉴스레터·블로그),
+          #   BROCHURE_WEBHOOK_URL(소개서 다운로드 — 전용 시트/스크립트).
+          GH_DEMO_WEBHOOK_URL: ${{ secrets.DEMO_WEBHOOK_URL }}
+          GH_NEWSLETTER_WEBHOOK_URL: ${{ secrets.NEWSLETTER_WEBHOOK_URL }}
+          GH_BROCHURE_WEBHOOK_URL: ${{ secrets.BROCHURE_WEBHOOK_URL }}
         run: |
           set -euo pipefail
           cd ~/workspace/xgen-gallery
@@ -44,6 +51,21 @@ jobs:
           else
             echo "  → CI 시크릿(OAUTH_CLIENT_SECRET) 미설정 — .env의 기존 값 사용"
           fi
+          echo "=== seeding webhook URLs into .env (idempotent) ==="
+          # CI 시크릿이 주어졌을 때만 upsert(없으면 기존 .env 값 유지).
+          seed_env() {
+            key="$1"; val="${2:-}"
+            [ -z "$val" ] && { echo "  → ${key}: 시크릿 미설정 — 기존 .env 값 유지"; return 0; }
+            if grep -q "^${key}=" .env; then
+              sed -i "s#^${key}=.*#${key}=${val}#" .env
+            else
+              echo "${key}=${val}" >> .env
+            fi
+            echo "  → ${key}: CI 시크릿으로 주입함"
+          }
+          seed_env DEMO_WEBHOOK_URL       "${GH_DEMO_WEBHOOK_URL:-}"
+          seed_env NEWSLETTER_WEBHOOK_URL "${GH_NEWSLETTER_WEBHOOK_URL:-}"
+          seed_env BROCHURE_WEBHOOK_URL   "${GH_BROCHURE_WEBHOOK_URL:-}"
           echo "=== rebuilding ==="
           docker compose up -d --build
           docker image prune -f
