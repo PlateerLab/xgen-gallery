@@ -105,3 +105,8 @@ export function resolveBrochure(asset?: string | null): Brochure {
 export function publishedBrochures(): Brochure[] {
     return Object.values(BROCHURES).filter((b) => b.published);
 }
+
+/** 전체 소개서(비활성/준비 중 포함) — 자료실 카드 자리 표시용. */
+export function allBrochures(): Brochure[] {
+    return Object.values(BROCHURES);
+}

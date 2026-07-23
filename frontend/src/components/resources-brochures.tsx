@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FileText, Check, Layers, ShieldCheck, Building2 } from "lucide-react";
 import { BrochureForm } from "@/components/brochure-form";
-import { publishedBrochures } from "@/lib/brochures";
+import { allBrochures } from "@/lib/brochures";
 import { cn } from "@/lib/cn";
 
 /**
@@ -15,9 +15,10 @@ import { cn } from "@/lib/cn";
 const CONTENT_ICONS = [Layers, FileText, ShieldCheck, Building2];
 
 export function ResourcesBrochures() {
-    const items = publishedBrochures();
-    const [asset, setAsset] = useState(items[0]?.asset ?? "xgen-brochure");
-    const active = items.find((b) => b.asset === asset) ?? items[0];
+    const items = allBrochures(); // 카드 자리(비활성/준비 중 포함)
+    const ready = items.filter((b) => b.published); // 선택·다운로드 가능한 것
+    const [asset, setAsset] = useState(ready[0]?.asset ?? "xgen-brochure");
+    const active = ready.find((b) => b.asset === asset) ?? ready[0];
     if (!active) return null;
 
     return (
@@ -31,24 +32,42 @@ export function ResourcesBrochures() {
             >
                 {items.map((b) => {
                     const selected = b.asset === asset;
+                    const disabled = !b.published; // 준비 중 — 자리만, 선택·다운로드 불가
                     return (
                         <button
                             key={b.asset}
                             type="button"
-                            onClick={() => setAsset(b.asset)}
+                            onClick={() => !disabled && setAsset(b.asset)}
+                            disabled={disabled}
                             aria-pressed={selected}
                             className={cn(
-                                "relative flex items-start gap-4 rounded-2xl border bg-white p-5 text-left transition",
-                                selected
-                                    ? "border-[#2f7bff] ring-1 ring-[#2f7bff] shadow-[0_14px_36px_-18px_rgba(47,123,255,0.35)]"
-                                    : "border-[var(--color-line)] hover:border-[#bcd0f5]",
+                                "relative flex items-start gap-4 rounded-2xl border p-5 text-left transition",
+                                disabled
+                                    ? "cursor-not-allowed border-dashed border-[var(--color-line)] bg-[var(--color-surface-alt)] opacity-70"
+                                    : selected
+                                      ? "border-[#2f7bff] bg-white ring-1 ring-[#2f7bff] shadow-[0_14px_36px_-18px_rgba(47,123,255,0.35)]"
+                                      : "border-[var(--color-line)] bg-white hover:border-[#bcd0f5]",
                             )}
                         >
-                            <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] text-white">
+                            <span
+                                className={cn(
+                                    "inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl",
+                                    disabled
+                                        ? "bg-[var(--color-line)] text-[var(--color-ink-subtle)]"
+                                        : "bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] text-white",
+                                )}
+                            >
                                 <FileText className="h-6 w-6" />
                             </span>
                             <div className="min-w-0">
-                                <p className="text-[12.5px] font-semibold text-[#2461d8]">
+                                <p
+                                    className={cn(
+                                        "text-[12.5px] font-semibold",
+                                        disabled
+                                            ? "text-[var(--color-ink-subtle)]"
+                                            : "text-[#2461d8]",
+                                    )}
+                                >
                                     {b.tagline}
                                 </p>
                                 <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
@@ -58,11 +77,15 @@ export function ResourcesBrochures() {
                                     {b.summary}
                                 </p>
                             </div>
-                            {selected && (
+                            {disabled ? (
+                                <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[var(--color-line-strong)] px-2 py-0.5 text-[11px] font-bold text-white">
+                                    준비 중
+                                </span>
+                            ) : selected ? (
                                 <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[#2f7bff] px-2 py-0.5 text-[11px] font-bold text-white">
                                     <Check className="h-3 w-3" /> 선택됨
                                 </span>
-                            )}
+                            ) : null}
                         </button>
                     );
                 })}
