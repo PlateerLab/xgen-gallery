@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,19 +45,18 @@ export async function POST(req: Request) {
     const webhook =
         process.env.DEMO_WEBHOOK_URL || process.env.NEWSLETTER_WEBHOOK_URL;
     if (webhook) {
-        try {
-            await fetch(webhook, {
-                method: "POST",
-                headers: { "content-type": "application/json; charset=utf-8" },
-                body: JSON.stringify(record),
-            });
-        } catch (e) {
-            console.error("[newsletter] webhook forward failed:", e);
-            return NextResponse.json(
-                { error: "Delivery failed" },
-                { status: 502 },
-            );
-        }
+        // 느린 Apps Script 응답을 기다리지 않는다 — 응답을 먼저 보내고 전달은 백그라운드로.
+        after(async () => {
+            try {
+                await fetch(webhook, {
+                    method: "POST",
+                    headers: { "content-type": "application/json; charset=utf-8" },
+                    body: JSON.stringify(record),
+                });
+            } catch (e) {
+                console.error("[newsletter] webhook forward failed:", e);
+            }
+        });
     } else {
         // No delivery target configured yet — log so it's not lost.
         console.log("[newsletter] received:", JSON.stringify(record));
