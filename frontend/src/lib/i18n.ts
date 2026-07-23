@@ -139,9 +139,19 @@ export interface Dict {
 
 const FAQ_KO: FaqEntry[] = [
     {
-        question: "Plateer Labs는 어떤 일을 하는 곳인가요?",
+        question: "Plateer Labs는 어떤 곳인가요?",
         answer:
-            "Plateer Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
+            "Plateer Labs는 엔터프라이즈 AI를 연구하고 제품으로 구현하는 AI 연구소입니다. 연구 성과를 오픈소스 라이브러리로 공개하고, 이를 바탕으로 XGEN Agentic AI Platform을 만들며, 실제 고객 현장의 PoC로 검증합니다. ‘연구 → 오픈소스 → 제품 → 실증’으로 이어지는 구조가 특징입니다.",
+    },
+    {
+        question: "XGEN은 어떤 제품인가요?",
+        answer:
+            "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼입니다. 노드 캔버스와 헤드리스 엔진 기반으로 코딩 없이 에이전트를 만들고, 지식(RAG)·도구(MCP)·거버넌스와 함께 안전하게 운영합니다. 특정 LLM·클라우드에 종속되지 않는 모델 중립 설계라, 오픈소스·상용 모델과 사내 GPU를 목적·비용·정확도에 맞게 조합할 수 있습니다.",
+    },
+    {
+        question: "온프레미스·망분리 환경에서도 쓸 수 있나요? 데이터는 안전한가요?",
+        answer:
+            "네. XGEN은 온프레미스로 구축되어 데이터가 외부로 나가지 않으며, 인터넷과 분리된 망분리·에어갭 환경까지 지원합니다. 모든 AI 모델과 데이터는 내부망에서 운영되고, 인증 게이트웨이·신뢰 경계, 역할·속성 기반 접근제어(RBAC·ABAC), 개인정보(PII) 마스킹, 통합 감사 로그, AI 위험도 등급 등 다층 통제가 전 계층에 적용됩니다.",
     },
     {
         question: "XGEN이 받은 GS 인증 1등급은 무엇을 의미하나요?",
@@ -149,32 +159,37 @@ const FAQ_KO: FaqEntry[] = [
             "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증으로, 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 기능 적합성·성능 효율성·신뢰성·보안성 등을 시험·평가합니다. 1등급은 그중 최고 등급으로, XGEN Agentic AI Platform의 품질을 벤더의 주장이 아니라 제3자 공인시험으로 검증했다는 뜻입니다. 도입 관점에서는 조달청 우수조달물품 지정 신청 자격, 공공 소프트웨어 사업 분리발주 의무 대상, 중소벤처기업부 우선구매 대상이 되며, 다수 공공 입찰 평가표에서 최근 3년 내 유효한 소프트웨어 인증으로 인정되어 기술 가점을 받을 수 있습니다.",
     },
     {
-        question: "RAG 파이프라인을 만들려면 어떤 도구를 사용해야 하나요?",
+        question: "오픈소스 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
         answer:
-            "기본적인 RAG는 Contextifier → Doc2Chunk → 임베딩 → 검색 순으로 구성합니다. 먼저 Contextifier가 문서를 AI 친화적인 텍스트로 변환하고, Doc2Chunk가 문맥을 고려해 청킹합니다. 이후 임베딩 모델과 검색 엔진을 연결하면 RAG 파이프라인이 완성됩니다. 장기 기억이나 관계 기반 추론이 필요한 에이전트는 Synaptic Memory를 추가하여 지식그래프 기반 메모리를 함께 사용할 수 있습니다.",
+            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 프로덕션급 파이썬 라이브러리로 공개합니다. 모두 MIT 라이선스로 무료·상업적 사용이 가능하고 pip로 설치하며, 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
     },
     {
-        question: "Contextifier는 어떤 문서 포맷을 지원하나요?",
+        question: "어떤 산업에 적용되나요?",
         answer:
-            "Contextifier는 PDF, DOCX, PPTX, HWP 등 80개 이상의 문서 포맷을 AI 친화 텍스트로 변환하며, 표·코드 블록·문서 구조를 검색에 유리하게 보존합니다. `pip install contextifier`로 설치합니다.",
+            "금융·공공·커머스·제조·미디어·물류·통신 등 다양한 산업의 업무 특성과 규제를 반영해 적용합니다. 실제 PoC와 프로젝트로 검증한 적용 사례는 고객사례에서 확인할 수 있습니다.",
     },
     {
-        question: "Synaptic Memory는 일반 벡터 DB와 무엇이 다른가요?",
+        question: "도입은 어떻게 시작하나요? 무료 체험이 있나요?",
         answer:
-            "Synaptic Memory는 자동 온톨로지 구성, 헤비안 학습, 4단계 기억 통합을 갖춘 뇌 영감 지식 그래프입니다. 단순 벡터 유사도 검색을 넘어 노드·엣지로 개념 관계를 저장하므로, 오래 실행되는 에이전트의 장기 기억에 적합합니다. `pip install synaptic-memory`.",
-    },
-    {
-        question: "Plateer Labs에서 제공하는 이 도구들은 무료이고 상업적으로 쓸 수 있나요?",
-        answer:
-            "네. 모든 라이브러리는 MIT 라이선스의 오픈소스로 무료이며 상업적 사용이 가능합니다. 소스는 github.com/PlateerLab에서 확인할 수 있고 각 도구는 pip로 설치합니다.",
+            "제품 데모, XGEN 15일 무료 체험, PoC·기술 상담을 한 양식에서 접수합니다. 현장에 배치되는 FDE(Forward Deployed Engineer)가 요구사항 발굴부터 설계·구현·내재화까지 함께하며, 문의 유형을 선택해 남겨주시면 영업일 1~2일 이내에 연락드립니다.",
     },
 ];
 
 const FAQ_EN: FaqEntry[] = [
     {
-        question: "What does Plateer Labs do?",
+        question: "What is Plateer Labs?",
         answer:
-            "Plateer Labs is the open-source AI research lab behind the XGEN platform. It ships document-ingestion tools (Contextifier, Doc2Chunk, f2a), a knowledge graph (Synaptic Memory), and agent tooling (Googer) — all MIT-licensed Python packages you can install with pip or try directly in the browser.",
+            "Plateer Labs is an enterprise-AI research lab that turns research into products. We open-source the building blocks, build the XGEN Agentic AI Platform on top of them, and validate everything through real customer PoCs — a research → open source → product → proof pipeline.",
+    },
+    {
+        question: "What is XGEN?",
+        answer:
+            "XGEN is an on-premise Enterprise AI platform for designing, deploying, and governing Agentic AI services on the LLMs and infrastructure you choose. Built on a node canvas and a headless engine, it lets teams build agents without code and run them safely with knowledge (RAG), tools (MCP), and governance. It is model-agnostic, so you can mix open-source and commercial models with in-house GPUs by purpose, cost, and accuracy.",
+    },
+    {
+        question: "Does it run on-premise / air-gapped, and is our data safe?",
+        answer:
+            "Yes. XGEN runs on-premise so data never leaves your environment, and it supports network-separated and air-gapped deployments. All AI models and data stay on the internal network, protected by an authentication gateway and trust boundary, RBAC/ABAC access control, PII masking, unified audit logs, and AI risk-grade policies across every layer.",
     },
     {
         question: "What does XGEN's GS certification Grade 1 mean?",
@@ -182,24 +197,19 @@ const FAQ_EN: FaqEntry[] = [
             "GS (Good Software) certification is Korea's national software quality certification, operated by the Ministry of Science and ICT under the Software Promotion Act. Accredited labs test functional suitability, performance efficiency, reliability, and security against the ISO/IEC 25000 series of international standards. Grade 1 is the highest level — meaning XGEN Agentic AI Platform's quality is verified by independent, accredited testing rather than vendor claims. For buyers, it qualifies XGEN for public-procurement programs (Excellent Procurement Product designation, split-order eligibility, priority purchase) and counts as a scored technical credential in many public RFP evaluations.",
     },
     {
-        question: "Which tools do I use to build a RAG pipeline?",
+        question: "What are the open-source libraries, and how do they relate to XGEN?",
         answer:
-            "Ingest documents with Contextifier (converts files to AI-ready text), chunk them with Doc2Chunk (context-aware), then wire up embeddings and retrieval. For agents that need long-term memory, add the Synaptic Memory knowledge graph.",
+            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as production-grade Python packages. All are MIT-licensed, free for commercial use, installable via pip, and runnable directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
     },
     {
-        question: "Which document formats does Contextifier support?",
+        question: "Which industries is it applied to?",
         answer:
-            "Contextifier converts 80+ document formats — PDF, DOCX, PPTX, HWP and more — into AI-ready text, preserving tables, code blocks, and document structure for retrieval. Install with `pip install contextifier`.",
+            "Finance, public sector, commerce, manufacturing, media, logistics, telecom and more — adapted to each industry's workflows and regulations. See Customer Cases for PoCs and projects validated in the field.",
     },
     {
-        question: "How is Synaptic Memory different from a plain vector DB?",
+        question: "How do we get started? Is there a free trial?",
         answer:
-            "Synaptic Memory is a brain-inspired knowledge graph with auto-ontology, Hebbian learning, and four-stage memory consolidation. Beyond vector similarity, it stores concept relationships as nodes and edges, making it well-suited to long-term memory for long-running agents. `pip install synaptic-memory`.",
-    },
-    {
-        question: "Are these tools free and usable commercially?",
-        answer:
-            "Yes. Every library is free, MIT-licensed open source and can be used commercially. Source is on github.com/PlateerLab and each tool installs via pip.",
+            "Request a product demo, a 15-day XGEN free trial, or a PoC / technical consultation from a single form. A Forward Deployed Engineer works with you from requirements through design, implementation, and enablement. Pick an inquiry type and we'll reply within 1–2 business days.",
     },
 ];
 

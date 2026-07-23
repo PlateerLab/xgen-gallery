@@ -8,6 +8,7 @@ import { SceneBackground } from "@/components/scene-background";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
 import { XgenPlatformArchitecture } from "@/components/xgen-platform-arch";
 import { SecurityArchitecture } from "@/components/security-architecture";
+import { LayerFlowArt } from "@/components/hero-layer-art";
 import { XgenCicd } from "@/components/xgen-cicd";
 import { CodeAssistantArchitecture } from "@/components/code-assistant-arch";
 import { ArchIndex } from "@/components/arch-index";
@@ -42,20 +43,35 @@ export const ARCH_SECTIONS = [
 
 function ArchitectureHero() {
     return (
-        <div className="max-w-3xl">
-            <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
-                Architecture
-            </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-5xl">
-                Enterprise AI Architecture
-            </h1>
-            <p className="mt-5 text-xl font-semibold leading-relaxed text-white">
-                신뢰할 수 있는 AI를 위한 엔터프라이즈 아키텍처
-            </p>
-            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/70">
-                데이터 주권 · 보안 · 거버넌스를 지키는 폐쇄망 · 온프레미스 설계,
-                지식 · 추론 · 실행 · 운영을 하나로 잇는 Enterprise AI
-            </p>
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="max-w-3xl">
+                <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
+                    Architecture
+                </p>
+                <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-5xl">
+                    Enterprise AI Architecture
+                </h1>
+                <p className="mt-5 text-xl font-semibold leading-relaxed text-white">
+                    신뢰할 수 있는 AI를 위한 엔터프라이즈 아키텍처
+                </p>
+                <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/70">
+                    데이터 주권 · 보안 · 거버넌스를 지키는 폐쇄망 · 온프레미스 설계,
+                    지식 · 추론 · 실행 · 운영을 하나로 잇는 Enterprise AI
+                </p>
+            </div>
+            <div className="hidden lg:block">
+                <LayerFlowArt
+                    accent="#7dd3fc"
+                    accent2="#2f7bff"
+                    layers={[
+                        { t: "접근 · 콘솔", s: "Access" },
+                        { t: "AI 런타임", s: "Runtime" },
+                        { t: "파운데이션 모델", s: "Model" },
+                        { t: "인프라", s: "Infra" },
+                    ]}
+                    ariaLabel="접근·런타임·모델·인프라 계층을 관통하는 Enterprise AI 아키텍처 애니메이션"
+                />
+            </div>
         </div>
     );
 }

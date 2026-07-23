@@ -1,12 +1,11 @@
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/hero";
-import { LLMMarquee } from "@/components/llm-marquee";
+import { CustomerStrip } from "@/components/customer-strip";
 import { HomePositioning } from "@/components/home-positioning";
 import { HomeResearch } from "@/components/home-research";
 import { HomeOpenSource } from "@/components/home-open-source";
 import { HomeTechnology } from "@/components/home-technology";
-import { UseCases } from "@/components/usecases";
 import { HomeIndustries } from "@/components/home-industries";
 import { HomeProductTour } from "@/components/home-product-tour";
 import { HomeExperience } from "@/components/home-experience";
@@ -14,6 +13,7 @@ import { QualitySecurity } from "@/components/quality-security";
 import { HomeInsights } from "@/components/home-insights";
 import { HomeResources } from "@/components/home-resources";
 import { Faq } from "@/components/faq";
+import { Reveal } from "@/components/home-motion";
 import { JsonLd } from "@/components/json-ld";
 import { faqPageLd } from "@/lib/structured-data";
 import { dict } from "@/lib/i18n";
@@ -47,19 +47,21 @@ export default function Home() {
                     latestPost={latestPost}
                     latestIssue={latestIssue}
                 />
-                <LLMMarquee />
-                <HomePositioning />
-                <HomeResearch />
-                <HomeOpenSource />
-                <HomeTechnology />
-                <UseCases />
-                <HomeIndustries />
-                <HomeProductTour />
-                <HomeExperience />
-                <QualitySecurity />
-                <HomeInsights />
-                <HomeResources />
-                <Faq />
+                <CustomerStrip />
+                <Reveal><HomePositioning /></Reveal>
+                {/* 제품 가치·트러스트를 앞으로 */}
+                <Reveal><HomeProductTour /></Reveal>
+                <Reveal><HomeIndustries /></Reveal>
+                <Reveal><QualitySecurity /></Reveal>
+                {/* 연구·기술·오픈소스 = 신뢰 근거로 묶어 뒤로 */}
+                <Reveal><HomeResearch /></Reveal>
+                <Reveal><HomeOpenSource /></Reveal>
+                <Reveal><HomeTechnology /></Reveal>
+                {/* 전환 */}
+                <Reveal><HomeExperience /></Reveal>
+                <Reveal><HomeInsights /></Reveal>
+                <Reveal><HomeResources /></Reveal>
+                <Reveal><Faq /></Reveal>
             </main>
             <SiteFooter />
         </>

@@ -39,7 +39,6 @@ const COPY = {
             "제품 데모·15일 무료 체험·PoC·기술 상담 중 필요한 내용과 검토 배경을 간단히 남겨주세요. 문의 유형을 선택해 접수하시면 영업일 1~2일 내 연락드립니다.",
         agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
-        agreeThird: "[필수] 제3자 정보제공 동의",
         agreeMarketing: "[선택] 마케팅 정보 수신 동의",
         submit: "신청하기",
         submitting: "전송 중…",
@@ -119,8 +118,6 @@ const COPY = {
         agreePolicy: "[Required] I agree to the Privacy Policy.",
         agreeCollect:
             "[Required] I consent to the collection and use of personal information.",
-        agreeThird:
-            "[Required] I consent to providing my information to third parties.",
         agreeMarketing: "[Optional] I agree to receive marketing communications.",
         submit: "Submit request",
         submitting: "Submitting…",
@@ -184,7 +181,6 @@ type Fields = {
     inquiry: string;
     agreePrivacyPolicy: boolean;
     agreePrivacyCollect: boolean;
-    agreeThirdParty: boolean;
     agreeMarketing: boolean;
 };
 
@@ -200,7 +196,6 @@ const EMPTY: Fields = {
     inquiry: "",
     agreePrivacyPolicy: false,
     agreePrivacyCollect: false,
-    agreeThirdParty: false,
     agreeMarketing: false,
 };
 
@@ -226,7 +221,6 @@ const TYPE_PARAM_TO_INDEX: Record<string, number> = {
 const REQUIRED_CONSENTS = [
     "agreePrivacyPolicy",
     "agreePrivacyCollect",
-    "agreeThirdParty",
 ] as const;
 
 export function DemoForm() {
@@ -245,14 +239,12 @@ export function DemoForm() {
     const allConsentsChecked =
         fields.agreePrivacyPolicy &&
         fields.agreePrivacyCollect &&
-        fields.agreeThirdParty &&
         fields.agreeMarketing;
     const setAllConsents = (v: boolean) =>
         setFields((f) => ({
             ...f,
             agreePrivacyPolicy: v,
             agreePrivacyCollect: v,
-            agreeThirdParty: v,
             agreeMarketing: v,
         }));
 
@@ -509,12 +501,6 @@ export function DemoForm() {
                         checked={fields.agreePrivacyCollect}
                         onChange={(v) => set("agreePrivacyCollect", v)}
                         error={errors.agreePrivacyCollect}
-                    />
-                    <Consent
-                        label={c.agreeThird}
-                        checked={fields.agreeThirdParty}
-                        onChange={(v) => set("agreeThirdParty", v)}
-                        error={errors.agreeThirdParty}
                     />
                     <Consent
                         label={c.agreeMarketing}

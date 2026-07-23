@@ -3,21 +3,23 @@ import { ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
 /**
- * 메인 — Insight 미리보기. GS 인증 글을 맨 앞에 고정 노출하고, 그 뒤로 최근
- * Tech Note 글을 채운다. (server component — 빌드 시 content/blog 프론트매터를 읽어 렌더)
+ * 메인 — Insight 미리보기. 최신 제품 소식을 대표 카드로 자동 노출하고, 그 뒤로 최근
+ * Tech Note 글을 채운다. GS 인증은 품질·보안 섹션에서 다루므로 여기선 중복 제외.
+ * (server component — 빌드 시 content/blog 프론트매터를 읽어 렌더)
  */
-const PINNED_SLUG = "gs-certification-grade1";
+const EXCLUDE_SLUG = "gs-certification-grade1";
 
 function fmt(date: string) {
     return date.replaceAll("-", ".");
 }
 
 export function HomeInsights() {
-    const all = getAllPosts();
-    const pinned = all.find((p) => p.slug === PINNED_SLUG);
-    // 고정 글 아래에 노출할 최신 Tech Note.
+    const all = getAllPosts().filter((p) => p.slug !== EXCLUDE_SLUG);
+    // 대표 카드 = 최신 제품 소식(없으면 최신 글).
+    const pinned = all.find((p) => p.category === "제품 소식") ?? all[0];
+    // 대표 아래에 노출할 최신 Tech Note.
     const techNotes = all
-        .filter((p) => p.category === "Tech Note" && p.slug !== PINNED_SLUG)
+        .filter((p) => p.category === "Tech Note" && p.slug !== pinned?.slug)
         .slice(0, 3);
     if (!pinned && techNotes.length === 0) return null;
 

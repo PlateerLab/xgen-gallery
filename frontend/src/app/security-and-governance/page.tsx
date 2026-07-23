@@ -15,6 +15,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { SecurityHeroArt } from "@/components/security-hero-art";
 import { JsonLd } from "@/components/json-ld";
 import {
     LayeredControlArt,
@@ -199,23 +200,30 @@ export default function SecurityPage() {
             <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                        Applied AI · Security &amp; Governance
-                    </p>
-                    <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        선언한 대로 통제되는 Enterprise AI
-                    </h1>
-                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        XGEN Agentic AI Platform은 사용자 입력·워크플로우 실행·문서
-                        업로드 텍스트에 보안 정책을 적용하는 다층 통제 체계를
-                        제공합니다. 가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와
-                        AI 위험도 등급을 더해, 규제 산업에서도 신뢰할 수 있는 AI를
-                        운영합니다
-                    </p>
-                    <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        가드 모델 · PII 마스킹 · 금칙어 · 감사 로그 · 위험도 등급
-                    </span>
+                    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+                        <div>
+                            <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
+                                Applied AI · Security &amp; Governance
+                            </p>
+                            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                                선언한 대로 통제되는 Enterprise AI
+                            </h1>
+                            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                                XGEN Agentic AI Platform은 사용자 입력·워크플로우
+                                실행·문서 업로드 텍스트에 보안 정책을 적용하는 다층
+                                통제 체계를 제공합니다. 가드 모델·개인정보 마스킹·금칙어
+                                필터에 감사 로그와 AI 위험도 등급을 더해, 규제 산업에서도
+                                신뢰할 수 있는 AI를 운영합니다
+                            </p>
+                            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                가드 모델 · PII 마스킹 · 금칙어 · 감사 로그 · 위험도 등급
+                            </span>
+                        </div>
+                        <div className="hidden lg:block">
+                            <SecurityHeroArt />
+                        </div>
+                    </div>
                 </div>
             </section>
 

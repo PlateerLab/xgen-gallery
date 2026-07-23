@@ -16,7 +16,6 @@ interface DemoRequest {
     inquiry?: string;
     agreePrivacyPolicy?: boolean;
     agreePrivacyCollect?: boolean;
-    agreeThirdParty?: boolean;
     agreeMarketing?: boolean;
 }
 
@@ -62,7 +61,6 @@ export async function POST(req: Request) {
     const requiredConsents: (keyof DemoRequest)[] = [
         "agreePrivacyPolicy",
         "agreePrivacyCollect",
-        "agreeThirdParty",
     ];
     const missingConsent = requiredConsents.filter((k) => !body[k]);
     if (missingConsent.length > 0) {

@@ -29,7 +29,7 @@ const COPY = {
             "세미나 / 컨퍼런스",
             "기타",
         ],
-        agreePolicy: "[필수] 개인정보취급방침에 동의합니다",
+        agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
         agreeMarketing: "[선택] 마케팅 정보 수신 동의",
         submit: "소개서 받기",

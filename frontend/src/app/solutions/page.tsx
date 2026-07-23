@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import { GroupPage } from "@/components/onepage";
 import { getGroup } from "@/lib/nav";
+import { IndustryStreamsArt } from "@/components/hero-streams-art";
 
 export const metadata = pageMetadata({
     title: "Applied AI by Industry",
@@ -26,21 +27,41 @@ export const metadata = pageMetadata({
 
 function SolutionsHero() {
     return (
-        <div className="max-w-3xl">
-            <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                Applied AI
-            </p>
-            <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                Applied AI by Industry
-            </h1>
-            <p className="mt-5 text-lg font-medium leading-relaxed text-white/85">
-                산업별 업무를 이해하는 Enterprise AI를 연구하고 실증합니다
-            </p>
-            <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-white/65">
-                금융, 공공, 커머스, IT 서비스 등 다양한 산업의 업무 특성과 규제를
-                반영한 AI 기술을 연구하며, 실제 PoC와 프로젝트를 통해 검증된
-                Enterprise AI 적용 사례를 제공합니다
-            </p>
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="max-w-3xl">
+                <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
+                    Applied AI
+                </p>
+                <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+                    Applied AI by Industry
+                </h1>
+                <p className="mt-5 text-lg font-medium leading-relaxed text-white/85">
+                    산업별 업무를 이해하는 Enterprise AI를 연구하고 실증합니다
+                </p>
+                <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-white/65">
+                    금융, 공공, 커머스, IT 서비스 등 다양한 산업의 업무 특성과 규제를
+                    반영한 AI 기술을 연구하며, 실제 PoC와 프로젝트를 통해 검증된
+                    Enterprise AI 적용 사례를 제공합니다
+                </p>
+            </div>
+            <div className="hidden lg:block">
+                <IndustryStreamsArt
+                    accent="#5eead4"
+                    accent2="#2f7bff"
+                    industries={[
+                        "금융",
+                        "공공",
+                        "커머스",
+                        "제조",
+                        "미디어",
+                        "물류·유통",
+                        "통신",
+                        "IT 서비스",
+                    ]}
+                    products={["XGEN", "코드 어시스턴트", "Polar"]}
+                    ariaLabel="금융·공공·커머스·제조·미디어·물류·통신·IT 등 다양한 산업이 Applied AI로 수렴해 XGEN·코드 어시스턴트·Polar 제품으로 이어지는 애니메이션"
+                />
+            </div>
         </div>
     );
 }

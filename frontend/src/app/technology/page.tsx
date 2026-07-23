@@ -13,6 +13,7 @@ import {
     FrameworksContent,
 } from "@/components/technology-sections";
 import { getGroup } from "@/lib/nav";
+import { LayerFlowArt } from "@/components/hero-layer-art";
 
 export const metadata = pageMetadata({
     title: "Technology",
@@ -76,33 +77,14 @@ function TechnologyHero() {
                 </div>
             </div>
 
-            {/* 기술 스택 레이어 키비주얼 */}
-            <div className="w-full space-y-3">
-                {TECH_STACK.map((s) => (
-                    <div
-                        key={s.en}
-                        className="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-sm transition hover:border-[#67e8f9]/40"
-                    >
-                        <div className="flex items-baseline justify-between">
-                            <span className="text-[14.5px] font-bold text-white">
-                                {s.layer}
-                            </span>
-                            <span className="font-mono text-[11px] uppercase tracking-widest text-[#67e8f9]">
-                                {s.en}
-                            </span>
-                        </div>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                            {s.items.map((it) => (
-                                <span
-                                    key={it}
-                                    className="rounded-lg border border-white/10 bg-white/[0.05] px-2.5 py-1 font-mono text-[12.5px] text-white/80"
-                                >
-                                    {it}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                ))}
+            {/* 기술 스택 레이어 키비주얼 — 데이터가 계층을 관통하는 애니메이션 */}
+            <div className="hidden lg:block">
+                <LayerFlowArt
+                    accent="#67e8f9"
+                    accent2="#2f7bff"
+                    layers={TECH_STACK.map((s) => ({ t: s.layer, s: s.en }))}
+                    ariaLabel="핵심 기술·프레임워크·엔진·런타임 계층을 관통하는 XGEN 기술 스택 애니메이션"
+                />
             </div>
         </div>
     );

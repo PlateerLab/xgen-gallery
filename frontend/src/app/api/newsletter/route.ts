@@ -40,12 +40,15 @@ export async function POST(req: Request) {
         source: `Plateer Labs/${kind}`,
     };
 
-    const webhook = process.env.NEWSLETTER_WEBHOOK_URL;
+    // 통합 리드 웹훅(컨택·소개서·구독을 한 스프레드시트 탭으로 관리). 별도 운영 시
+    // NEWSLETTER_WEBHOOK_URL 로 오버라이드 가능.
+    const webhook =
+        process.env.DEMO_WEBHOOK_URL || process.env.NEWSLETTER_WEBHOOK_URL;
     if (webhook) {
         try {
             await fetch(webhook, {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: { "content-type": "application/json; charset=utf-8" },
                 body: JSON.stringify(record),
             });
         } catch (e) {

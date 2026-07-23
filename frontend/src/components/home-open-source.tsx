@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Terminal, Play } from "lucide-react";
 import { TOOLS, type ToolCategory } from "@/lib/tools";
 import { SITE } from "@/lib/site";
+import { CountUp } from "@/components/home-motion";
 
 /**
  * 홈 오픈소스 신뢰 섹션 — 연구소가 "연구를 오픈소스로 증명한다"는 서사의 핵심 자산.
@@ -36,11 +37,11 @@ export function HomeOpenSource() {
         TOOLS.filter((t) => t.id === id),
     );
 
-    const stats: { k: string; v: string }[] = [
-        { k: "오픈소스 라이브러리", v: `${TOOLS.length}종` },
-        { k: "카테고리", v: `${catCount.length}개 영역` },
-        { k: "라이선스", v: "MIT" },
-        { k: "설치", v: "pip" },
+    const stats: { k: string; num?: number; suffix?: string; text?: string }[] = [
+        { k: "오픈소스 라이브러리", num: TOOLS.length, suffix: "종" },
+        { k: "카테고리", num: catCount.length, suffix: "개 영역" },
+        { k: "라이선스", text: "MIT" },
+        { k: "설치", text: "pip" },
     ];
 
     return (
@@ -88,7 +89,11 @@ export function HomeOpenSource() {
                                 {s.k}
                             </dt>
                             <dd className="mt-1 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
-                                {s.v}
+                                {s.num != null ? (
+                                    <CountUp end={s.num} suffix={s.suffix} />
+                                ) : (
+                                    s.text
+                                )}
                             </dd>
                         </div>
                     ))}
