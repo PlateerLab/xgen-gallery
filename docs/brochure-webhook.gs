@@ -64,12 +64,18 @@ function seoulTime_(iso) {
   );
 }
 
-/** 전용 시트에 한 줄 저장 — 최신 데이터가 항상 2행(헤더 아래 맨 위)에 오도록. */
+/** 전용 시트에 한 줄 저장 — 1행 헤더 보장 + 최신 데이터가 항상 2행(헤더 아래 맨 위)에. */
 function saveToSheet_(d) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
-  if (sh.getLastRow() === 0) sh.appendRow(HEADERS);
+  // 헤더 보장(멱등) — 1행 A1이 헤더가 아니면(빈 시트·헤더 유실) 1행에 헤더를 삽입한다.
+  // 이미 데이터만 있고 헤더가 없던 경우, 다음 저장 시 헤더가 맨 위로 자가 복구된다.
+  if (sh.getRange(1, 1).getValue() !== HEADERS[0]) {
+    sh.insertRowBefore(1);
+    sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+    sh.setFrozenRows(1);
+  }
   const row = [
     seoulTime_(d.receivedAt),
     d.name || "",
