@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,9 +28,6 @@ interface BrochureRequest {
     agreeMarketing?: boolean;
     asset?: string;
 }
-
-/** 다운로드 대상 자산 — 프론트의 다운로드 노출과 동일 경로. */
-const DOWNLOAD_URL = "/downloads/xgen-brochure.pdf";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -74,9 +72,12 @@ export async function POST(req: Request) {
         );
     }
 
+    // 종류 구분자(asset)로 브로셔를 해석 — 다운로드 PDF·표시명이 종류별로 갈린다.
+    const brochure = resolveBrochure(body.asset);
     const record = {
         ...body,
-        asset: body.asset || "xgen-brochure",
+        asset: brochure.asset || DEFAULT_BROCHURE,
+        brochureName: brochure.name,
         receivedAt: new Date().toISOString(),
         source: "labs-site/resources",
     };
@@ -102,5 +103,5 @@ export async function POST(req: Request) {
         console.log("[brochure-request] received:", JSON.stringify(record));
     }
 
-    return NextResponse.json({ ok: true, downloadUrl: DOWNLOAD_URL });
+    return NextResponse.json({ ok: true, downloadUrl: brochure.file });
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, Download, FileText, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { cn } from "@/lib/cn";
+import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
 
 /**
  * XGEN 소개서 다운로드 리드 폼(게이팅). 제출 → /api/brochure-request 검증·수집 →
@@ -126,17 +127,21 @@ function triggerDownload(url: string) {
     a.remove();
 }
 
-export function BrochureForm() {
+export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
     const { locale } = useI18n();
     const c = COPY[locale === "en" ? "en" : "ko"];
+    // 종류 구분자(asset) → 이 폼이 받을 소개서(표시명·다운로드 PDF).
+    const brochure = resolveBrochure(asset);
+    const downloadLabel =
+        locale === "en"
+            ? `Download ${brochure.name} brochure (PDF)`
+            : `${brochure.name} 소개서 다운로드 (PDF)`;
 
     const [fields, setFields] = useState<Fields>(EMPTY);
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
     const [submitError, setSubmitError] = useState<string | null>(null);
-    const [downloadUrl, setDownloadUrl] = useState<string>(
-        "/downloads/xgen-brochure.pdf",
-    );
+    const [downloadUrl, setDownloadUrl] = useState<string>(brochure.file);
 
     const set = (k: keyof Fields, v: string | boolean) =>
         setFields((f) => ({ ...f, [k]: v }));
@@ -164,11 +169,11 @@ export function BrochureForm() {
             const res = await fetch("/api/brochure-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ...fields, asset: "xgen-brochure" }),
+                body: JSON.stringify({ ...fields, asset }),
             });
             if (!res.ok) throw new Error(String(res.status));
             const data = (await res.json()) as { downloadUrl?: string };
-            const url = data.downloadUrl || "/downloads/xgen-brochure.pdf";
+            const url = data.downloadUrl || brochure.file;
             setDownloadUrl(url);
             setStatus("done");
             triggerDownload(url);
@@ -202,7 +207,7 @@ export function BrochureForm() {
                             className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             <Download className="h-4 w-4" />
-                            {c.download}
+                            {downloadLabel}
                         </a>
                         <button
                             type="button"

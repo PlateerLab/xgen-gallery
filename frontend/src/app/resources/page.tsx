@@ -149,7 +149,7 @@ export default function ResourcesPage() {
                             </div>
 
                             {/* 우: 리드 폼(게이팅) */}
-                            <BrochureForm />
+                            <BrochureForm asset="xgen-brochure" />
                         </div>
                     </div>
                 </section>
