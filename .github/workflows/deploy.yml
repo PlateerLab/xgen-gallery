@@ -65,7 +65,14 @@ jobs:
           }
           seed_env DEMO_WEBHOOK_URL       "${GH_DEMO_WEBHOOK_URL:-}"
           seed_env NEWSLETTER_WEBHOOK_URL "${GH_NEWSLETTER_WEBHOOK_URL:-}"
-          seed_env BROCHURE_WEBHOOK_URL   "${GH_BROCHURE_WEBHOOK_URL:-}"
+          # 소개서: 전용 시크릿이 있으면 그 URL로. 없으면 .env에서 제거해
+          # 브로셔 요청이 DEMO 웹앱으로 폴백되게 한다(라우트: BROCHURE_WEBHOOK_URL || DEMO_WEBHOOK_URL).
+          if [ -n "${GH_BROCHURE_WEBHOOK_URL:-}" ]; then
+            seed_env BROCHURE_WEBHOOK_URL "${GH_BROCHURE_WEBHOOK_URL}"
+          else
+            sed -i '/^BROCHURE_WEBHOOK_URL=/d' .env
+            echo "  → BROCHURE_WEBHOOK_URL: 시크릿 미설정 → .env에서 제거(소개서는 DEMO 웹앱으로 폴백)"
+          fi
           echo "=== rebuilding ==="
           docker compose up -d --build
           docker image prune -f
