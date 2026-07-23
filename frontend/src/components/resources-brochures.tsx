@@ -22,43 +22,51 @@ export function ResourcesBrochures() {
 
     return (
         <div>
-            {/* 소개서 종류 카드 — 2개 이상일 때 선택 그리드로 노출 */}
-            {items.length > 1 && (
-                <div className="mb-10 grid gap-4 sm:grid-cols-2">
-                    {items.map((b) => {
-                        const selected = b.asset === asset;
-                        return (
-                            <button
-                                key={b.asset}
-                                type="button"
-                                onClick={() => setAsset(b.asset)}
-                                aria-pressed={selected}
-                                className={cn(
-                                    "flex items-start gap-4 rounded-2xl border bg-white p-5 text-left transition",
-                                    selected
-                                        ? "border-[#2f7bff] ring-1 ring-[#2f7bff] shadow-[0_14px_36px_-18px_rgba(47,123,255,0.35)]"
-                                        : "border-[var(--color-line)] hover:border-[#bcd0f5]",
-                                )}
-                            >
-                                <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] text-white">
-                                    <FileText className="h-6 w-6" />
+            {/* 소개서 종류 카드 — 항상 노출(선택 시 아래 미리보기·폼에 반영) */}
+            <div
+                className={cn(
+                    "mb-10 grid gap-4",
+                    items.length > 1 && "sm:grid-cols-2",
+                )}
+            >
+                {items.map((b) => {
+                    const selected = b.asset === asset;
+                    return (
+                        <button
+                            key={b.asset}
+                            type="button"
+                            onClick={() => setAsset(b.asset)}
+                            aria-pressed={selected}
+                            className={cn(
+                                "relative flex items-start gap-4 rounded-2xl border bg-white p-5 text-left transition",
+                                selected
+                                    ? "border-[#2f7bff] ring-1 ring-[#2f7bff] shadow-[0_14px_36px_-18px_rgba(47,123,255,0.35)]"
+                                    : "border-[var(--color-line)] hover:border-[#bcd0f5]",
+                            )}
+                        >
+                            <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] text-white">
+                                <FileText className="h-6 w-6" />
+                            </span>
+                            <div className="min-w-0">
+                                <p className="text-[12.5px] font-semibold text-[#2461d8]">
+                                    {b.tagline}
+                                </p>
+                                <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {b.name} 소개서
+                                </h3>
+                                <p className="mt-1 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {b.summary}
+                                </p>
+                            </div>
+                            {selected && (
+                                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[#2f7bff] px-2 py-0.5 text-[11px] font-bold text-white">
+                                    <Check className="h-3 w-3" /> 선택됨
                                 </span>
-                                <div>
-                                    <p className="text-[12.5px] font-semibold text-[#2461d8]">
-                                        {b.tagline}
-                                    </p>
-                                    <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {b.name} 소개서
-                                    </h3>
-                                    <p className="mt-1 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {b.summary}
-                                    </p>
-                                </div>
-                            </button>
-                        );
-                    })}
-                </div>
-            )}
+                            )}
+                        </button>
+                    );
+                })}
+            </div>
 
             {/* 선택된 소개서 — 미리보기(좌) + 리드 폼(우) */}
             <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
