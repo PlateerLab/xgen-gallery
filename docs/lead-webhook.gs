@@ -171,9 +171,12 @@ function doPost(e){
   var data = {};
   try { data = JSON.parse(e.postData.contents); } catch(err){}
 
-  // 새 블로그 발행 알림 — 구독자(블로그·구독중)에게 요약 메일. 공개 /exec 남용 방지로 토큰 인증.
+  // 새 콘텐츠 발행 알림 — 해당 종류 구독중(Y) 구독자에게 요약 메일. 공개 /exec 남용 방지로 토큰 인증.
   if (data.kind === "blog-notify"){
-    return blogNotify_(data);
+    return contentNotify_(data, "blog", "새 글", "Plateer Labs 블로그에 새 글이 올라왔습니다.");
+  }
+  if (data.kind === "newsletter-notify"){
+    return contentNotify_(data, "newsletter", "새 뉴스레터", "Plateer Labs 뉴스레터 새 호가 나왔습니다.");
   }
 
   // 모든 탭 공통 — 수신시각을 한국(서울) 시간으로 통일
@@ -209,7 +212,8 @@ function doPost(e){
  *        BLOG_NOTIFY_TOKEN = <임의의 긴 문자열>  (GitHub Actions 시크릿과 동일 값)
  * 요청 형식: { kind:"blog-notify", token:"...", posts:[{title, description, url}, ...] }
  */
-function blogNotify_(d){
+// 콘텐츠(블로그/뉴스레터) 발행 알림 공용. kind=구독 종류, word=제목 접두어, heading=본문 머리말.
+function contentNotify_(d, kind, word, heading){
   var token = PropertiesService.getScriptProperties().getProperty("BLOG_NOTIFY_TOKEN");
   if (!token || String(d.token || "") !== token){
     return jsonOut_({ ok:false, error:"unauthorized" });
@@ -218,16 +222,16 @@ function blogNotify_(d){
             : (d.title ? [{ title:d.title, description:d.description, url:d.url }] : []);
   if (!posts.length) return jsonOut_({ ok:false, error:"no posts" });
 
-  var subs = subscribedEmails_("blog");          // 블로그 구독중(Y) 이메일(취소 N 자동 제외)
+  var subs = subscribedEmails_(kind);            // 해당 종류 구독중(Y) 이메일(취소 N 자동 제외)
   var subject = posts.length === 1
-      ? "[Plateer Labs] 새 글: " + posts[0].title
-      : "[Plateer Labs] 새 글 " + posts.length + "건이 올라왔어요";
+      ? "[Plateer Labs] " + word + ": " + posts[0].title
+      : "[Plateer Labs] " + word + " " + posts.length + "건이 올라왔어요";
   var sent = 0;
   for (var i=0;i<subs.length;i++){
-    // 수신자별 해지 링크(/unsubscribe?kind=blog&email=…)
-    var unsub = "https://labs.plateer.com/unsubscribe?kind=blog&email=" + encodeURIComponent(subs[i]);
+    // 수신자별 해지 링크(/unsubscribe?kind=…&email=…)
+    var unsub = "https://labs.plateer.com/unsubscribe?kind=" + kind + "&email=" + encodeURIComponent(subs[i]);
     MailApp.sendEmail({ to: subs[i], name:"Plateer Labs", subject: subject,
-      body: blogNotifyText_(posts, unsub), htmlBody: blogNotifyHtml_(posts, unsub) });
+      body: notifyText_(posts, unsub, heading), htmlBody: notifyHtml_(posts, unsub, heading) });
     sent++;
   }
   return jsonOut_({ ok:true, sent:sent, subscribers:subs.length });
@@ -248,8 +252,8 @@ function subscribedEmails_(kind){
   return out;
 }
 
-function blogNotifyText_(posts, unsub){
-  var lines = ["Plateer Labs 블로그에 새 글이 올라왔습니다.", ""];
+function notifyText_(posts, unsub, heading){
+  var lines = [heading, ""];
   posts.forEach(function(p){
     lines.push("• " + (p.title || ""));
     if (p.description) lines.push("  " + p.description);
@@ -261,8 +265,8 @@ function blogNotifyText_(posts, unsub){
   return lines.join("\n");
 }
 
-function blogNotifyHtml_(posts, unsub){
-  var unsubUrl = unsub || "https://labs.plateer.com/unsubscribe?kind=blog";
+function notifyHtml_(posts, unsub, heading){
+  var unsubUrl = unsub || "https://labs.plateer.com/unsubscribe";
   var items = posts.map(function(p){
     return '<div style="margin:0 0 20px">' +
       '<a href="' + (p.url || "#") + '" style="font-size:17px;font-weight:bold;color:#1a2233;text-decoration:none">' + escapeHtml_(p.title) + '</a>' +
@@ -271,7 +275,7 @@ function blogNotifyHtml_(posts, unsub){
       '</div>';
   }).join('<hr style="border:none;border-top:1px solid #eceef2;margin:16px 0">');
   return '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
-    '<p>Plateer Labs 블로그에 새 글이 올라왔습니다.</p>' + items +
+    '<p>' + escapeHtml_(heading) + '</p>' + items +
     '<p style="margin-top:24px;color:#8b93a4;font-size:12.5px">수신을 원치 않으시면 ' +
     '<a href="' + unsubUrl + '" style="color:#8b93a4">여기</a>에서 해지하실 수 있습니다.</p></div>';
 }
