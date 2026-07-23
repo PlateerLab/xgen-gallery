@@ -20,18 +20,18 @@ const EXPERIENCES: {
     external: boolean;
 }[] = [
     {
-        kind: "x2bee",
-        name: "X2BEE AI 체험하기",
-        desc: "커머스에 특화된 AI 기능을 설치 없이 브라우저에서 바로 사용해보세요",
-        href: "https://ai-exp.x2bee.com",
-        external: true,
-    },
-    {
         kind: "xgen",
         name: "XGEN Agentic AI Platform 체험하기",
         desc: "데이터 연동부터 노코드 에이전트 구현까지, 15일 무료 체험으로 직접 경험해보세요",
         href: "/xgen-trial",
         external: false,
+    },
+    {
+        kind: "x2bee",
+        name: "X2BEE AI 체험하기",
+        desc: "커머스에 특화된 AI 기능을 설치 없이 브라우저에서 바로 사용해보세요",
+        href: "https://ai-exp.x2bee.com",
+        external: true,
     },
 ];
 

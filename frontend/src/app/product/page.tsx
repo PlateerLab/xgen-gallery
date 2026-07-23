@@ -82,6 +82,7 @@ const STATS: { n: string; label: string; sub: string }[] = [
 /** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
 const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
+    { id: "value", label: "도입 효과" },
     { id: "features", label: "핵심 기능" },
     { id: "core-tech", label: "핵심 기술" },
     { id: "roles", label: "역할별 경험" },
@@ -724,6 +725,72 @@ export default function ProductPage() {
                     </div>
                 </section>
 
+                {/* 도입 효과 — 의사결정자 관점 before → after (검증된 서사 기반) */}
+                <section
+                    id="value"
+                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
+                    <div className="mx-auto max-w-6xl px-6 py-24">
+                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Business Value
+                        </p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            도입하면, 이렇게 달라집니다
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            기술 검증을 넘어 규제 산업의 실제 운영까지 — XGEN이 바꾸는 것을
+                            의사결정 관점에서 정리했습니다.
+                        </p>
+                        <div className="mt-10 grid gap-4 md:grid-cols-2">
+                            {[
+                                {
+                                    title: "파일럿에서 실제 운영으로",
+                                    before: "기술 검증(PoC)에서 멈추고 업무에 배포되지 못하는 AI",
+                                    after: "보안·권한·감사를 처음부터 갖춰 실제 업무에 배포·운영",
+                                },
+                                {
+                                    title: "규제·데이터 주권을 지키며 AI 활용",
+                                    before: "폐쇄망·규제 요건 때문에 외부 클라우드 AI 도입 불가",
+                                    after: "온프레미스·망분리·제로 트레이닝·다층 통제로 규제 산업에서도 운영",
+                                },
+                                {
+                                    title: "현업이 직접, 더 빠르게",
+                                    before: "개발 리소스 병목으로 느린 확산",
+                                    after: "노코드 캔버스·패스파인더로 현업이 직접 제작하고 기존 시스템과 연계",
+                                },
+                                {
+                                    title: "벤더 주장이 아닌, 검증된 신뢰",
+                                    before: "품질·신뢰성을 벤더의 주장에 의존",
+                                    after: "GS 1등급 제3자 시험 검증 + 오픈소스로 공개 검증",
+                                },
+                            ].map((o) => (
+                                <div
+                                    key={o.title}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {o.title}
+                                    </h3>
+                                    <div className="mt-4 space-y-2.5">
+                                        <p className="flex items-start gap-2.5 text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
+                                            <span className="mt-0.5 inline-flex flex-none rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-[11px] font-semibold text-[var(--color-ink-subtle)]">
+                                                기존
+                                            </span>
+                                            {o.before}
+                                        </p>
+                                        <p className="flex items-start gap-2.5 text-[14.5px] font-medium leading-relaxed text-[var(--color-ink)]">
+                                            <span className="mt-0.5 inline-flex flex-none rounded bg-[#2f7bff]/12 px-1.5 py-0.5 text-[11px] font-bold text-[#2461d8]">
+                                                XGEN
+                                            </span>
+                                            {o.after}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Features */}
                 <section
                     id="features"
@@ -1127,6 +1194,20 @@ export default function ProductPage() {
                         </p>
                         <div className="mt-10">
                             <CertificationQuality />
+                        </div>
+                        {/* 보안·규제·조달 요건 상담 — 의사결정자 전환 경로 */}
+                        <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
+                            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                보안·규제·조달 요건을 검토 중이신가요? 요건에 맞춰
+                                아키텍처와 통제 방안을 함께 정리해 드립니다.
+                            </p>
+                            <Link
+                                href="/contact?type=poc&from=product"
+                                className="group inline-flex flex-none items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                            >
+                                보안·요건 상담
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
                         </div>
                     </div>
                 </section>
