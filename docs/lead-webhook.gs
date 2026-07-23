@@ -230,7 +230,7 @@ function contentNotify_(d, kind, word, heading){
   for (var i=0;i<subs.length;i++){
     // 수신자별 해지 링크(/unsubscribe?kind=…&email=…)
     var unsub = "https://labs.plateer.com/unsubscribe?kind=" + kind + "&email=" + encodeURIComponent(subs[i]);
-    MailApp.sendEmail({ to: subs[i], name:"Plateer Labs", subject: subject,
+    sendMail_({ to: subs[i], from: FROM_ADDR, name:"Plateer Labs", subject: subject,
       body: notifyText_(posts, unsub, heading), htmlBody: notifyHtml_(posts, unsub, heading) });
     sent++;
   }
