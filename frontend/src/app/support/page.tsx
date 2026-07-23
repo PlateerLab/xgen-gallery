@@ -131,7 +131,7 @@ export default function SupportPage() {
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <Link
-                            href="/contact?type=poc"
+                            href="/contact?type=poc&from=support"
                             className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             기술지원 문의
@@ -430,7 +430,7 @@ export default function SupportPage() {
                                 </p>
                             </div>
                             <Link
-                                href="/contact?type=poc"
+                                href="/contact?type=poc&from=support"
                                 className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
                                 기술지원 문의

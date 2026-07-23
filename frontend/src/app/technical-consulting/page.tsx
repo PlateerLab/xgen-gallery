@@ -148,7 +148,7 @@ export default function TechnicalConsultingPage() {
                     </span>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <Link
-                            href="/contact?type=poc"
+                            href="/contact?type=poc&from=technical-consulting"
                             className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             기술 상담 신청하기
@@ -319,7 +319,7 @@ export default function TechnicalConsultingPage() {
                             수립까지 Plateer Labs의 기술 전문성으로 함께합니다.
                         </p>
                         <Link
-                            href="/contact"
+                            href="/contact?from=technical-consulting"
                             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             PoC · 기술 컨설팅 문의

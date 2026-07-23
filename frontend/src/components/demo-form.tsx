@@ -44,14 +44,42 @@ const COPY = {
         submit: "신청하기",
         submitting: "전송 중…",
         successTitle: "상담 신청이 접수되었습니다",
-        successBody: "소중한 문의 감사합니다. 담당 연구원이 내용을 확인한 뒤 곧 연락드리겠습니다",
+        successBody: "소중한 문의 감사합니다. 담당자가 내용을 확인한 뒤 곧 연락드리겠습니다",
         successBadge: "영업일 1–2일 내 연락",
         successStepsTitle: "다음 단계",
         successSteps: [
-            "접수하신 내용을 담당 연구원이 검토합니다",
+            "접수하신 내용을 담당자가 검토합니다",
             "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
             "과제에 맞는 PoC 범위와 일정을 함께 설계합니다",
         ],
+        // 문의 유형별 '다음 단계' — inquiryTypeOptions 순서와 1:1
+        successStepsByType: [
+            [
+                "접수하신 내용을 담당자가 검토합니다",
+                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
+                "편하신 일정에 맞춰 제품 데모를 진행합니다",
+            ],
+            [
+                "접수하신 내용을 담당자가 검토합니다",
+                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
+                "체험 계정 발급 절차와 사용 가이드를 안내드립니다",
+            ],
+            [
+                "접수하신 내용을 담당자가 검토합니다",
+                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
+                "과제에 맞는 PoC 범위와 일정을 함께 설계합니다",
+            ],
+            [
+                "접수하신 내용을 담당자가 검토합니다",
+                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
+                "요건에 맞는 도입 방식과 견적을 제안드립니다",
+            ],
+            [
+                "접수하신 내용을 담당자가 검토합니다",
+                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
+                "문의 내용에 맞는 담당자가 상세히 안내드립니다",
+            ],
+        ] as string[][],
         successSecondary: "AI 기술 둘러보기",
         again: "다시 신청하기",
         errRequired: "필수 항목입니다.",
@@ -105,6 +133,34 @@ const COPY = {
             "We reach out by email or phone within 1–2 business days",
             "We design the PoC scope and timeline together",
         ],
+        // Per inquiry-type next steps — aligned 1:1 with inquiryTypeOptions
+        successStepsByType: [
+            [
+                "A researcher reviews your request",
+                "We reach out by email or phone within 1–2 business days",
+                "We schedule a product demo at a time that works for you",
+            ],
+            [
+                "A researcher reviews your request",
+                "We reach out by email or phone within 1–2 business days",
+                "We guide you through trial account setup and getting started",
+            ],
+            [
+                "A researcher reviews your request",
+                "We reach out by email or phone within 1–2 business days",
+                "We design the PoC scope and timeline together",
+            ],
+            [
+                "A researcher reviews your request",
+                "We reach out by email or phone within 1–2 business days",
+                "We propose a rollout approach and quote that fit your requirements",
+            ],
+            [
+                "A researcher reviews your request",
+                "We reach out by email or phone within 1–2 business days",
+                "The right specialist will follow up with details",
+            ],
+        ] as string[][],
         successSecondary: "Explore our AI technology",
         again: "Submit another request",
         errRequired: "This field is required.",
@@ -185,6 +241,21 @@ export function DemoForm() {
     const set = (k: keyof Fields, v: string | boolean) =>
         setFields((f) => ({ ...f, [k]: v }));
 
+    // 동의 전체 선택
+    const allConsentsChecked =
+        fields.agreePrivacyPolicy &&
+        fields.agreePrivacyCollect &&
+        fields.agreeThirdParty &&
+        fields.agreeMarketing;
+    const setAllConsents = (v: boolean) =>
+        setFields((f) => ({
+            ...f,
+            agreePrivacyPolicy: v,
+            agreePrivacyCollect: v,
+            agreeThirdParty: v,
+            agreeMarketing: v,
+        }));
+
     // 진입 소스에 따라 문의 유형 프리셋: ?type= 우선, 없으면 레퍼러로 추론
     //  · ?type=demo|trial|poc|pricing  · 레퍼러가 /xgen-trial → 무료 체험
     useEffect(() => {
@@ -234,10 +305,17 @@ export function DemoForm() {
         if (!validate()) return;
         setStatus("loading");
         try {
+            // 유입 경로: CTA 링크의 ?from= 우선, 없으면 브라우저 레퍼러
+            const fromParam = new URLSearchParams(window.location.search).get(
+                "from",
+            );
             const res = await fetch("/api/demo-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify(fields),
+                body: JSON.stringify({
+                    ...fields,
+                    referrer: fromParam || document.referrer || "",
+                }),
             });
             if (!res.ok) throw new Error(String(res.status));
             setStatus("done");
@@ -246,6 +324,13 @@ export function DemoForm() {
             setSubmitError(c.errSubmit);
         }
     };
+
+    // 문의 유형에 맞는 '다음 단계'(없으면 기본)
+    const typeIdx = (c.inquiryTypeOptions as readonly string[]).indexOf(
+        fields.inquiryType,
+    );
+    const successSteps =
+        (typeIdx >= 0 && c.successStepsByType[typeIdx]) || c.successSteps;
 
     if (status === "done") {
         return (
@@ -281,7 +366,7 @@ export function DemoForm() {
                             {c.successStepsTitle}
                         </p>
                         <div className="mt-3 space-y-3">
-                            {c.successSteps.map((s, i) => (
+                            {successSteps.map((s, i) => (
                                 <div key={i} className="flex items-start gap-3">
                                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] text-[13px] font-bold text-white">
                                         {i + 1}
@@ -399,33 +484,44 @@ export function DemoForm() {
                 />
             </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-x-5 gap-y-1.5 border-t border-[var(--color-line)] pt-3.5 sm:grid-cols-2">
-                <Consent
-                    required
-                    label={c.agreePolicy}
-                    checked={fields.agreePrivacyPolicy}
-                    onChange={(v) => set("agreePrivacyPolicy", v)}
-                    error={errors.agreePrivacyPolicy}
-                />
-                <Consent
-                    required
-                    label={c.agreeCollect}
-                    checked={fields.agreePrivacyCollect}
-                    onChange={(v) => set("agreePrivacyCollect", v)}
-                    error={errors.agreePrivacyCollect}
-                />
-                <Consent
-                    required
-                    label={c.agreeThird}
-                    checked={fields.agreeThirdParty}
-                    onChange={(v) => set("agreeThirdParty", v)}
-                    error={errors.agreeThirdParty}
-                />
-                <Consent
-                    label={c.agreeMarketing}
-                    checked={fields.agreeMarketing}
-                    onChange={(v) => set("agreeMarketing", v)}
-                />
+            <div className="mt-4 border-t border-[var(--color-line)] pt-3.5">
+                {/* 전체 동의 — (선택) 마케팅 수신 동의까지 함께 받기 위함 */}
+                <label className="flex cursor-pointer items-center gap-2 pb-2.5">
+                    <input
+                        type="checkbox"
+                        checked={allConsentsChecked}
+                        onChange={(e) => setAllConsents(e.target.checked)}
+                        className="h-4 w-4 shrink-0 rounded border-[var(--color-line-strong)] accent-[#2f7bff]"
+                    />
+                    <span className="text-[13.5px] font-bold text-[var(--color-ink)]">
+                        전체 동의
+                    </span>
+                </label>
+                <div className="grid grid-cols-1 gap-x-5 gap-y-1.5 border-t border-[var(--color-line)] pt-2.5 sm:grid-cols-2">
+                    <Consent
+                        label={c.agreePolicy}
+                        checked={fields.agreePrivacyPolicy}
+                        onChange={(v) => set("agreePrivacyPolicy", v)}
+                        error={errors.agreePrivacyPolicy}
+                    />
+                    <Consent
+                        label={c.agreeCollect}
+                        checked={fields.agreePrivacyCollect}
+                        onChange={(v) => set("agreePrivacyCollect", v)}
+                        error={errors.agreePrivacyCollect}
+                    />
+                    <Consent
+                        label={c.agreeThird}
+                        checked={fields.agreeThirdParty}
+                        onChange={(v) => set("agreeThirdParty", v)}
+                        error={errors.agreeThirdParty}
+                    />
+                    <Consent
+                        label={c.agreeMarketing}
+                        checked={fields.agreeMarketing}
+                        onChange={(v) => set("agreeMarketing", v)}
+                    />
+                </div>
             </div>
 
             {submitError && (
@@ -587,13 +683,11 @@ function Consent({
     checked,
     onChange,
     error,
-    required,
 }: {
     label: string;
     checked: boolean;
     onChange: (v: boolean) => void;
     error?: string;
-    required?: boolean;
 }) {
     return (
         <label className="flex cursor-pointer items-start gap-2">
@@ -605,7 +699,6 @@ function Consent({
             />
             <span className="text-[12.5px] leading-snug text-[var(--color-ink-muted)]">
                 {label}
-                {required && <span className="text-red-500"> *</span>}
                 {error && <span className="ml-1 text-red-600">— {error}</span>}
             </span>
         </label>

@@ -407,7 +407,7 @@ export function getGroup(key: string): NavGroup | undefined {
 export const DEMO_CTA = {
     ko: "PoC · 기술 상담",
     en: "PoC · Tech consulting",
-    href: "/contact",
+    href: "/contact?type=poc&from=nav",
 };
 
 /** Footer "About" column — its own one-page at /about. */

@@ -78,16 +78,6 @@ export default function ContactPage() {
                                 ))}
                             </ul>
 
-                            <p className="mt-8 text-[15px] leading-relaxed text-white/70">
-                                양식 대신 바로 메일로도 문의하실 수 있습니다{" "}
-                                <a
-                                    href="mailto:xgen@plateer.com?subject=PoC%C2%B7%EA%B8%B0%EC%88%A0%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98"
-                                    className="font-semibold text-[#7dd3fc] underline-offset-2 hover:underline"
-                                >
-                                    xgen@plateer.com
-                                </a>
-                            </p>
-
                             {/* 무료 체험 연계 — 이제 같은 양식의 '무료 체험 신청' 유형으로 접수 */}
                             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
                                 <p className="text-[15px] leading-relaxed text-white/75">

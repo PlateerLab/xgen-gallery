@@ -476,7 +476,7 @@ export default function EnablementPage() {
                             함께합니다. 교육 프로그램과 일정은 조직 상황에 맞춰 설계합니다.
                         </p>
                         <Link
-                            href="/contact"
+                            href="/contact?from=enablement"
                             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
                             활용 지원·교육 문의

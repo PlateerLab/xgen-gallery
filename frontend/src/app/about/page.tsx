@@ -315,7 +315,7 @@ export default function AboutPage() {
                                     <ArrowRight className="h-4 w-4" />
                                 </Link>
                                 <Link
-                                    href="/contact"
+                                    href="/contact?from=about"
                                     className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] px-5 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-ink)]"
                                 >
                                     도입·PoC 상담

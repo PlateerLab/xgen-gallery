@@ -257,7 +257,7 @@ export default function CodeAssistantPage() {
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
-                                href="/contact"
+                                href="/contact?from=code-assistant"
                                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b1020] transition hover:bg-white/90"
                             >
                                 도입 문의
@@ -529,7 +529,7 @@ export default function CodeAssistantPage() {
                             </p>
                         </div>
                         <Link
-                            href="/contact"
+                            href="/contact?from=code-assistant"
                             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#2f7bff] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2461d8]"
                         >
                             도입 문의

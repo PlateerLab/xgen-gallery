@@ -12,6 +12,7 @@ interface DemoRequest {
     phone?: string;
     inquiryType?: string;
     referralPath?: string;
+    referrer?: string;
     inquiry?: string;
     agreePrivacyPolicy?: boolean;
     agreePrivacyCollect?: boolean;
@@ -82,7 +83,7 @@ export async function POST(req: Request) {
         try {
             await fetch(webhook, {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: { "content-type": "application/json; charset=utf-8" },
                 body: JSON.stringify(record),
             });
         } catch (e) {

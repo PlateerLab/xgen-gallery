@@ -253,7 +253,7 @@ export default async function CaseStudyPage({
                         전체 고객사례
                     </Link>
                     <Link
-                        href="/contact"
+                        href="/contact?from=customers-case"
                         className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                     >
                         도입 문의

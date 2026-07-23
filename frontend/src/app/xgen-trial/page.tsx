@@ -172,14 +172,14 @@ export default function XgenTrialPage() {
                             </p>
                             <div className="mt-8 flex flex-wrap gap-3">
                                 <Link
-                                    href="/contact?type=trial"
+                                    href="/contact?type=trial&from=xgen-trial"
                                     className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
                                 >
                                     15일 무료 체험 신청하기
                                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                                 </Link>
                                 <Link
-                                    href="/contact?type=poc"
+                                    href="/contact?type=poc&from=xgen-trial"
                                     className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                                 >
                                     도입·PoC 상담
@@ -377,7 +377,7 @@ export default function XgenTrialPage() {
                             </p>
                         </div>
                         <Link
-                            href="/contact?type=trial"
+                            href="/contact?type=trial&from=xgen-trial"
                             className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition hover:brightness-110"
                         >
                             무료 체험 시작

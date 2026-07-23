@@ -566,7 +566,7 @@ export default function SecurityPage() {
                         </p>
                         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                             <Link
-                                href="/contact"
+                                href="/contact?from=security-governance"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
                                 보안 요건 · 도입 문의

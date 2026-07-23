@@ -63,12 +63,12 @@ export async function POST(req: Request) {
         source: "gallery-site/xgen-trial",
     };
 
-    const webhook = process.env.TRIAL_WEBHOOK_URL;
+    const webhook = process.env.TRIAL_WEBHOOK_URL || process.env.DEMO_WEBHOOK_URL;
     if (webhook) {
         try {
             await fetch(webhook, {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: { "content-type": "application/json; charset=utf-8" },
                 body: JSON.stringify(record),
             });
         } catch (e) {
