@@ -1,0 +1,31 @@
+name: Notify blog subscribers
+
+# 새 블로그 글(frontend/content/blog/*.md)이 main에 푸시되면,
+# 구독중(blog·Y) 구독자에게 요약 안내메일을 보낸다(Apps Script 웹훅 경유).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/content/blog/**.md"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # ※ 조직에 GitHub-hosted 러너가 없으면 아래를 [self-hosted, go244] 로 변경.
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # git diff 로 추가된 글을 찾기 위해 히스토리 필요
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # 사이트 재배포가 끝나 /blog/{slug} 링크가 살아난 뒤 보내도록 잠시 대기.
+      - name: Wait for site deploy
+        run: sleep 180
+      - name: Notify subscribers of new posts
+        env:
+          WEBHOOK: ${{ secrets.DEMO_WEBHOOK_URL }}
+          TOKEN: ${{ secrets.BLOG_NOTIFY_TOKEN }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: node .github/scripts/blog-notify.mjs

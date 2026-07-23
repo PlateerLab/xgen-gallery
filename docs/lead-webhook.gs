@@ -122,6 +122,11 @@ function doPost(e){
   var data = {};
   try { data = JSON.parse(e.postData.contents); } catch(err){}
 
+  // 새 블로그 발행 알림 — 구독자(블로그·구독중)에게 요약 메일. 공개 /exec 남용 방지로 토큰 인증.
+  if (data.kind === "blog-notify"){
+    return blogNotify_(data);
+  }
+
   // 모든 탭 공통 — 수신시각을 한국(서울) 시간으로 통일
   data.receivedAt = seoulTime(data.receivedAt);
 
@@ -145,4 +150,84 @@ function doPost(e){
   }
   return ContentService.createTextOutput(JSON.stringify({ ok:true }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+/* ── 블로그 발행 알림 ─────────────────────────────────────────────────
+ * 새 글이 올라오면(GitHub Action이 호출) 'blog' 구독중(Y) 구독자에게 요약 메일 발송.
+ * 공개 /exec 남용 방지: 스크립트 속성 BLOG_NOTIFY_TOKEN 과 요청 token 이 일치해야 실행.
+ *  설정: 좌측 ⚙️ 프로젝트 설정 > 스크립트 속성 > 속성 추가
+ *        BLOG_NOTIFY_TOKEN = <임의의 긴 문자열>  (GitHub Actions 시크릿과 동일 값)
+ * 요청 형식: { kind:"blog-notify", token:"...", posts:[{title, description, url}, ...] }
+ */
+function blogNotify_(d){
+  var token = PropertiesService.getScriptProperties().getProperty("BLOG_NOTIFY_TOKEN");
+  if (!token || String(d.token || "") !== token){
+    return jsonOut_({ ok:false, error:"unauthorized" });
+  }
+  var posts = (d.posts && d.posts.length) ? d.posts
+            : (d.title ? [{ title:d.title, description:d.description, url:d.url }] : []);
+  if (!posts.length) return jsonOut_({ ok:false, error:"no posts" });
+
+  var subs = subscribedEmails_("blog");          // 블로그 구독중(Y) 이메일(취소 N 자동 제외)
+  var subject = posts.length === 1
+      ? "[Plateer Labs] 새 글: " + posts[0].title
+      : "[Plateer Labs] 새 글 " + posts.length + "건이 올라왔어요";
+  var html = blogNotifyHtml_(posts);
+  var text = blogNotifyText_(posts);
+  var sent = 0;
+  for (var i=0;i<subs.length;i++){
+    MailApp.sendEmail({ to: subs[i], name:"Plateer Labs", subject: subject, body: text, htmlBody: html });
+    sent++;
+  }
+  return jsonOut_({ ok:true, sent:sent, subscribers:subs.length });
+}
+
+/** subscribers 탭에서 특정 종류의 '구독중(Y)' 이메일 목록(중복 제거). */
+function subscribedEmails_(kind){
+  var sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("subscribers");
+  var out = [];
+  if (sh && sh.getLastRow() >= 2){
+    var vals = sh.getRange(2, 1, sh.getLastRow() - 1, SUB_COLS.length).getValues();
+    for (var i=0;i<vals.length;i++){       // SUB_COLS: 0 수신시각 · 1 구분 · 2 이메일 · 3 구독여부
+      var k = vals[i][1], email = String(vals[i][2] || "").trim();
+      var sub = String(vals[i][3] || "").toUpperCase();
+      if (k === kind && sub === "Y" && email && out.indexOf(email) < 0) out.push(email);
+    }
+  }
+  return out;
+}
+
+function blogNotifyText_(posts){
+  var lines = ["Plateer Labs 블로그에 새 글이 올라왔습니다.", ""];
+  posts.forEach(function(p){
+    lines.push("• " + (p.title || ""));
+    if (p.description) lines.push("  " + p.description);
+    if (p.url) lines.push("  " + p.url);
+    lines.push("");
+  });
+  lines.push("— Plateer Labs");
+  lines.push("수신 해지: https://labs.plateer.com/newsletter");
+  return lines.join("\n");
+}
+
+function blogNotifyHtml_(posts){
+  var items = posts.map(function(p){
+    return '<div style="margin:0 0 20px">' +
+      '<a href="' + (p.url || "#") + '" style="font-size:17px;font-weight:bold;color:#1a2233;text-decoration:none">' + escapeHtml_(p.title) + '</a>' +
+      (p.description ? '<p style="margin:6px 0 8px;color:#5b6472;line-height:1.7">' + escapeHtml_(p.description) + '</p>' : '') +
+      (p.url ? '<a href="' + p.url + '" style="display:inline-block;color:#2f7bff;font-weight:bold;text-decoration:none">글 보러가기 →</a>' : '') +
+      '</div>';
+  }).join('<hr style="border:none;border-top:1px solid #eceef2;margin:16px 0">');
+  return '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
+    '<p>Plateer Labs 블로그에 새 글이 올라왔습니다.</p>' + items +
+    '<p style="margin-top:24px;color:#8b93a4;font-size:12.5px">수신을 원치 않으시면 ' +
+    '<a href="https://labs.plateer.com/newsletter" style="color:#8b93a4">여기</a>에서 해지하실 수 있습니다.</p></div>';
+}
+
+function escapeHtml_(s){
+  return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function jsonOut_(o){
+  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
 }
