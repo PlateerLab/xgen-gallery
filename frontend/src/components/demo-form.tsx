@@ -297,17 +297,30 @@ export function DemoForm() {
         if (!validate()) return;
         setStatus("loading");
         try {
-            // 유입 경로: CTA 링크의 ?from= 우선, 없으면 브라우저 레퍼러
-            const fromParam = new URLSearchParams(window.location.search).get(
-                "from",
-            );
+            // 레퍼러 페이지 = 상담 폼을 작성하기 "직전에 보던 페이지 주소".
+            //  - /contact 단독 페이지: 이 페이지로 유입시킨 이전 페이지(document.referrer)
+            //  - 모달(다른 페이지 위에서 열림): 지금 보고 있는 그 페이지(window.location)
+            let referrer = "";
+            try {
+                const onContact =
+                    window.location.pathname.startsWith("/contact");
+                const base = onContact
+                    ? document.referrer
+                    : window.location.href;
+                if (base) {
+                    const u = new URL(base, window.location.origin);
+                    referrer =
+                        u.origin === window.location.origin
+                            ? u.origin + u.pathname // 내부 페이지는 경로까지만(쿼리 제외)
+                            : u.href; // 외부 유입은 전체 URL
+                }
+            } catch {
+                referrer = "";
+            }
             const res = await fetch("/api/demo-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({
-                    ...fields,
-                    referrer: fromParam || document.referrer || "",
-                }),
+                body: JSON.stringify({ ...fields, referrer }),
             });
             if (!res.ok) throw new Error(String(res.status));
             setStatus("done");
