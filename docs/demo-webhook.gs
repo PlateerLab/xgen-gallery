@@ -57,7 +57,12 @@ function saveToSheet_(d) {
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) sh.appendRow(HEADERS);
   sh.appendRow([
-    d.receivedAt || new Date().toISOString(),
+    // 수신시각은 한국(서울) 시간으로 기록한다. receivedAt(UTC ISO)을 Asia/Seoul로 변환.
+    Utilities.formatDate(
+      d.receivedAt ? new Date(d.receivedAt) : new Date(),
+      "Asia/Seoul",
+      "yyyy-MM-dd HH:mm:ss",
+    ),
     d.name || "",
     d.email || "",
     d.phone || "",
