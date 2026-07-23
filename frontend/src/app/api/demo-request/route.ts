@@ -1,4 +1,9 @@
 import { NextResponse, after } from "next/server";
+import {
+    sendMail,
+    contactConfirmMail,
+    contactInternalMail,
+} from "@/lib/mailer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,24 +81,28 @@ export async function POST(req: Request) {
         source: "gallery-site/demo-page",
     };
 
+    // 응답을 먼저 보내고, 시트 적재(Apps Script 웹훅) + 이메일 발송(앱 O365 SMTP·발신 xgen)은
+    // 백그라운드로 처리한다(체감 지연 제거).
     const webhook = process.env.DEMO_WEBHOOK_URL;
-    if (webhook) {
-        // 느린 Apps Script 응답을 기다리지 않는다 — 응답을 먼저 보내고 전달은 백그라운드로.
-        after(async () => {
-            try {
-                await fetch(webhook, {
+    after(async () => {
+        const jobs: Promise<unknown>[] = [];
+        if (webhook) {
+            jobs.push(
+                fetch(webhook, {
                     method: "POST",
                     headers: { "content-type": "application/json; charset=utf-8" },
                     body: JSON.stringify(record),
-                });
-            } catch (e) {
-                console.error("[demo-request] webhook forward failed:", e);
-            }
-        });
-    } else {
-        // No delivery target configured yet — log so it's not lost.
-        console.log("[demo-request] received:", JSON.stringify(record));
-    }
+                }).catch((e) =>
+                    console.error("[demo-request] webhook forward failed:", e),
+                ),
+            );
+        } else {
+            console.log("[demo-request] received:", JSON.stringify(record));
+        }
+        jobs.push(sendMail(contactConfirmMail(record))); // 신청자 접수확인
+        jobs.push(sendMail(contactInternalMail(record))); // 내부 팀 알림
+        await Promise.allSettled(jobs);
+    });
 
     return NextResponse.json({ ok: true });
 }

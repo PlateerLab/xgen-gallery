@@ -1,5 +1,6 @@
 import { NextResponse, after } from "next/server";
 import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
+import { sendMail, brochureMail, brochureInternalMail } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -82,25 +83,29 @@ export async function POST(req: Request) {
         source: "labs-site/resources",
     };
 
+    // 다운로드가 바로 시작되도록 응답 먼저 — 시트 적재(웹훅) + 이메일(앱 O365 SMTP·발신 xgen)은 백그라운드.
     const webhook =
         process.env.BROCHURE_WEBHOOK_URL || process.env.DEMO_WEBHOOK_URL;
-    if (webhook) {
-        // 느린 Apps Script 응답을 기다리지 않는다 — 다운로드가 바로 시작되도록 응답 먼저.
-        after(async () => {
-            try {
-                await fetch(webhook, {
+    const info = { name: brochure.name, file: brochure.file };
+    after(async () => {
+        const jobs: Promise<unknown>[] = [];
+        if (webhook) {
+            jobs.push(
+                fetch(webhook, {
                     method: "POST",
                     headers: { "content-type": "application/json; charset=utf-8" },
                     body: JSON.stringify(record),
-                });
-            } catch (e) {
-                console.error("[brochure-request] webhook forward failed:", e);
-            }
-        });
-    } else {
-        // 전달 대상 미설정 — 리드가 유실되지 않게 서버 로그에 남긴다.
-        console.log("[brochure-request] received:", JSON.stringify(record));
-    }
+                }).catch((e) =>
+                    console.error("[brochure-request] webhook forward failed:", e),
+                ),
+            );
+        } else {
+            console.log("[brochure-request] received:", JSON.stringify(record));
+        }
+        jobs.push(sendMail(brochureMail(record, info))); // 요청자 다운로드 링크
+        jobs.push(sendMail(brochureInternalMail(record, info))); // 내부 접수 알림
+        await Promise.allSettled(jobs);
+    });
 
     return NextResponse.json({ ok: true, downloadUrl: brochure.file });
 }
