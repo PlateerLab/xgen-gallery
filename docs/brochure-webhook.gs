@@ -7,8 +7,8 @@
  *
  * 처리 흐름: /resources 소개서 폼 → /api/brochure-request → (BROCHURE_WEBHOOK_URL) 이 스크립트
  *   ① 전용 시트에 리드 저장 (수신시각 = 한국(서울) 시간, 최신 데이터가 위로)
- *   ② 요청자에게 XGEN 소개서 PDF 첨부 메일 발송
- *   ③ 내부 접수 알림 (첨부 없음)
+ *   ② 요청자에게 XGEN 소개서 다운로드 링크 메일 발송 (첨부 X — 외부요청 권한 회피)
+ *   ③ 내부 접수 알림
  *
  * ── 배포 방법 ───────────────────────────────────────────────────────
  * 1) 새 구글 스프레드시트 생성 (예: "소개서 다운로드")  ← 리드관리 시트와 별개 파일
@@ -23,9 +23,12 @@
  */
 
 const SHEET_NAME = "brochure";
-// 운영(labs.plateer.com)에 게시된 소개서 PDF(공개 정적 파일)를 가져와 첨부한다.
+// 소개서 PDF 다운로드 링크(운영 공개 정적 파일). 메일에 버튼/링크로 넣는다.
+// ※ 첨부(UrlFetchApp로 가져와 attachments) 대신 링크를 쓰는 이유:
+//   UrlFetchApp의 외부요청 권한(script.external_request)은 Google이 미검증 앱에
+//   대해 인증을 하드 차단("This app is blocked")한다. 링크 방식은 권한이
+//   Spreadsheet+Mail 뿐이라(리드 DEMO 웹훅과 동일) 승인이 정상 통과한다.
 const BROCHURE_PDF_URL = "https://labs.plateer.com/downloads/xgen-brochure.pdf";
-const BROCHURE_FILENAME = "XGEN_소개서.pdf";
 const FROM_NAME = "Plateer Labs";
 // 내부 접수 알림 수신자. (테스트 단계 — swan@plateer.com. 운영 전환 시 xgen@plateer.com 등)
 const INTERNAL_TO = "swan@plateer.com";
@@ -98,33 +101,45 @@ function sendBrochureEmail_(d) {
   const to = String(d.email || "").trim();
   if (!to) return;
 
-  const res = UrlFetchApp.fetch(BROCHURE_PDF_URL, { muteHttpExceptions: true });
-  if (res.getResponseCode() !== 200) {
-    throw new Error("brochure fetch failed: " + res.getResponseCode());
-  }
-  const pdf = res.getBlob().setName(BROCHURE_FILENAME);
   const name = d.name || "고객";
 
-  // ① 요청자에게 소개서 첨부 발송
+  // ① 요청자에게 소개서 다운로드 링크 발송 (첨부 대신 링크 — 상단 주석 참고)
+  const bodyText = [
+    name + "님, 안녕하세요.",
+    "",
+    "Plateer Labs XGEN에 관심 가져 주셔서 감사합니다.",
+    "요청하신 XGEN 소개서는 아래 링크에서 바로 받으실 수 있습니다.",
+    "",
+    BROCHURE_PDF_URL,
+    "",
+    "도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나",
+    "https://labs.plateer.com/contact 로 문의해 주세요.",
+    "",
+    "감사합니다.",
+    "Plateer Labs 드림",
+  ].join("\n");
+  const htmlBody =
+    '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
+    "<p>" + name + "님, 안녕하세요.</p>" +
+    "<p>Plateer Labs XGEN에 관심 가져 주셔서 감사합니다.<br>" +
+    "요청하신 <b>XGEN 소개서</b>를 아래 버튼에서 바로 받으실 수 있습니다.</p>" +
+    '<p style="margin:24px 0">' +
+    '<a href="' + BROCHURE_PDF_URL + '" style="display:inline-block;background:#2f7bff;' +
+    'color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">' +
+    "XGEN 소개서 다운로드 (PDF)</a></p>" +
+    '<p style="color:#5b6472;font-size:13.5px">버튼이 열리지 않으면 아래 주소를 복사해 주세요.<br>' +
+    BROCHURE_PDF_URL + "</p>" +
+    "<p>도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나 " +
+    '<a href="https://labs.plateer.com/contact">문의 페이지</a>를 이용해 주세요.</p>' +
+    "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
+
   MailApp.sendEmail({
     to: to,
     name: FROM_NAME,
     replyTo: INTERNAL_TO,
     subject: "[Plateer Labs] 요청하신 XGEN 소개서를 보내드립니다",
-    body: [
-      name + "님, 안녕하세요.",
-      "",
-      "Plateer Labs XGEN에 관심 가져 주셔서 감사합니다.",
-      "요청하신 XGEN 소개서를 첨부해 드립니다.",
-      "",
-      "도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나",
-      "아래 문의 페이지를 이용해 주세요.",
-      "https://labs.plateer.com/contact",
-      "",
-      "감사합니다.",
-      "Plateer Labs 드림",
-    ].join("\n"),
-    attachments: [pdf],
+    body: bodyText,
+    htmlBody: htmlBody,
   });
 
   // ② 내부 접수 알림(첨부 없음)
