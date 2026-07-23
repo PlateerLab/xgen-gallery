@@ -62,7 +62,7 @@ export function ProductHero() {
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                             XGEN · Agentic AI Platform
                         </div>
-                        <h1 className="mt-7 text-4xl font-bold leading-[1.15] tracking-tight md:text-5xl">
+                        <h1 className="mt-7 text-3xl font-bold leading-[1.2] tracking-tight md:text-[42px]">
                             기업의 AX 혁신을 돕는
                             <br />
                             <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">

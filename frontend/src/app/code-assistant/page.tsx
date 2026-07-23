@@ -247,7 +247,7 @@ export default function CodeAssistantPage() {
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · Code Assistant
                         </p>
-                        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-[42px]">
                             우리 코드베이스를 이해하는 AI Code Assistant
                         </h1>
                         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">

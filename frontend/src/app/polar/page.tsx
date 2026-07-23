@@ -218,7 +218,7 @@ export default function PolarPage() {
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · Polar
                         </p>
-                        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-[42px]">
                             커머스를 위한 Private sLLM, Polar
                         </h1>
                         <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
