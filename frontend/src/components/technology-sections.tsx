@@ -123,6 +123,29 @@ function OntologyGraph() {
                         />
                     );
                 })}
+                {/* ── 애니메이션: 질문에서 관계를 타고 '근거'로 흐르는 지식 경로 (CSP-safe SMIL) ── */}
+                {/* 근거(fact) 도달 펄스 링 — 이동 노드가 도착하는 타이밍(~82%)에 확장·소멸 */}
+                <circle cx={nodes.fact[0]} cy={nodes.fact[1]} r="26" fill="none" stroke="#10b981" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.82;1" values="26;26;46" />
+                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.82;0.9;1" values="0;0;0.55;0" />
+                </circle>
+                {/* 질문(q) 출발 펄스 링 — 사이클 시작에 살짝 번짐 */}
+                <circle cx={nodes.q[0]} cy={nodes.q[1]} r="26" fill="none" stroke="#2f7bff" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.14;1" values="26;40;40" />
+                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.02;0.14;1" values="0;0.5;0;0" />
+                </circle>
+                {/* 경로 위를 흐르는 에너지(점선 이동) — 방향성(→ 근거) 강조 */}
+                <path d="M70,175 L250,80 L440,175 L620,175" fill="none" stroke="#9dc0ff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1.5 15" opacity="0.9">
+                    <animate attributeName="stroke-dashoffset" from="16.5" to="0" dur="0.9s" repeatCount="indefinite" />
+                </path>
+                {/* 관계를 따라 이동하는 지식 노드 (질문 → 주문 → 상품 → 근거) */}
+                <g opacity="0">
+                    <animateMotion dur="3.2s" repeatCount="indefinite" path="M70,175 L250,80 L440,175 L620,175" />
+                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.06;0.9;1" values="0;1;1;0" />
+                    <circle r="12" fill="#2f7bff" opacity="0.2" />
+                    <circle r="5.5" fill="#2f7bff" />
+                    <circle r="2" fill="#ffffff" />
+                </g>
                 {/* nodes */}
                 {Object.entries(nodes).map(([k, [x, y, label]]) => {
                     const isQ = k === "q";
