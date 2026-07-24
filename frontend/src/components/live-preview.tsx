@@ -43,6 +43,14 @@ function featuredTools(): Tool[] {
     return [newest, ...rest].map((x) => x.tool);
 }
 
+// 'NEW' 배지 노출 기준 — addedAt이 최근 60일 이내인 라이브러리에만 표시(그 이후 자동 소멸).
+const NEW_WINDOW_MS = 60 * 24 * 60 * 60 * 1000;
+function isRecent(tool: Tool, now: number): boolean {
+    if (!tool.addedAt) return false;
+    const t = Date.parse(tool.addedAt);
+    return !Number.isNaN(t) && now >= t && now - t < NEW_WINDOW_MS;
+}
+
 /**
  * 라이브러리 키비주얼 — 상단(다크) 히어로 전체를 렌더한다.
  * 좌: 페이지 키 메시지(Library Gallery) + 그 아래 현재 슬라이드 캡션·컨트롤,
@@ -53,6 +61,9 @@ export function LivePreview() {
     const featured = useMemo(featuredTools, []);
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
+    // NEW 배지는 마운트 후에만 계산(현재시각 의존) — SSR/CSR 하이드레이션 불일치 방지.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
 
     useEffect(() => {
         if (paused || featured.length <= 1) return;
@@ -66,6 +77,7 @@ export function LivePreview() {
     if (featured.length === 0) return null;
     const cur = Math.min(index, featured.length - 1);
     const tool = featured[cur];
+    const showNew = mounted && isRecent(tool, Date.now());
     const go = (n: number) => setIndex((n + featured.length) % featured.length);
 
     const arrowCls =
@@ -98,6 +110,11 @@ export function LivePreview() {
                     transition={{ duration: 0.35 }}
                     className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/10 pt-6"
                 >
+                    {showNew && (
+                        <span className="rounded-full bg-[#fcd34d] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#0b1220]">
+                            New
+                        </span>
+                    )}
                     <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-wider text-[#7dd3fc]">
                         {tool.category}
                     </span>
@@ -158,6 +175,11 @@ export function LivePreview() {
                     key={`viz-${cur}`}
                     className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-white via-[#f5f7fd] to-[#e7ecf7] p-6 ring-1 ring-white/60 shadow-[0_40px_90px_-40px_rgba(251,191,36,0.35),0_24px_50px_-30px_rgba(0,0,0,0.65)] md:p-8"
                 >
+                    {showNew && (
+                        <span className="absolute left-4 top-4 z-10 rounded-full bg-[#fcd34d] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0b1220] shadow-md">
+                            New
+                        </span>
+                    )}
                     <div className="w-full max-w-md">
                         <Visual tool={tool} />
                     </div>
