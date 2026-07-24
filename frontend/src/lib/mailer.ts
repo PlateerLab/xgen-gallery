@@ -199,6 +199,60 @@ export function brochureMail(d: BrochureLead, b: BrochureInfo): Mail {
     };
 }
 
+/* ── 발행 알림(블로그/뉴스레터) ───────────────────────── */
+export interface NotifyPost {
+    title?: string;
+    description?: string;
+    url?: string;
+}
+
+/** 구독자 1인에게 보내는 새 글/새 호 요약 알림(수신자별 해지 링크 포함). */
+export function contentNotifyMail(
+    posts: NotifyPost[],
+    to: string,
+    unsubUrl: string,
+    heading: string,
+    word: string,
+): Mail {
+    const subject =
+        posts.length === 1
+            ? `[Plateer Labs] ${word}: ${posts[0].title || ""}`
+            : `[Plateer Labs] ${word} ${posts.length}건이 올라왔어요`;
+    const text = [
+        heading,
+        "",
+        ...posts.flatMap((p) => [
+            `• ${p.title || ""}`,
+            ...(p.description ? [`  ${p.description}`] : []),
+            ...(p.url ? [`  ${p.url}`] : []),
+            "",
+        ]),
+        "— Plateer Labs",
+        `수신 해지: ${unsubUrl}`,
+    ].join("\n");
+    const items = posts
+        .map(
+            (p) =>
+                `<div style="margin:0 0 20px">` +
+                `<a href="${p.url || "#"}" style="font-size:17px;font-weight:bold;color:#1a2233;text-decoration:none">${esc(p.title)}</a>` +
+                (p.description
+                    ? `<p style="margin:6px 0 8px;color:#5b6472;line-height:1.7">${esc(p.description)}</p>`
+                    : "") +
+                (p.url
+                    ? `<a href="${p.url}" style="display:inline-block;color:#2f7bff;font-weight:bold;text-decoration:none">글 보러가기 →</a>`
+                    : "") +
+                `</div>`,
+        )
+        .join(
+            '<hr style="border:none;border-top:1px solid #eceef2;margin:16px 0">',
+        );
+    const html = wrap(
+        `<p>${esc(heading)}</p>${items}` +
+            `<p style="margin-top:24px;color:#8b93a4;font-size:12.5px">수신을 원치 않으시면 <a href="${unsubUrl}" style="color:#8b93a4">여기</a>에서 해지하실 수 있습니다.</p>`,
+    );
+    return { to, subject, text, html };
+}
+
 /** 내부 팀 알림(소개서). */
 export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
     return {

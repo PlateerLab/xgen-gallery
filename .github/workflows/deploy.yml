@@ -30,6 +30,8 @@ jobs:
           GH_BROCHURE_WEBHOOK_URL: ${{ secrets.BROCHURE_WEBHOOK_URL }}
           # CTA 이메일을 xgen@plateer.com(O365 SMTP)에서 발송하기 위한 앱 비밀번호(시크릿).
           GH_SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          # 발행 알림 라우트(/api/content-notify) 토큰 — GitHub Action·Apps Script와 동일 값이어야 함.
+          GH_BLOG_NOTIFY_TOKEN: ${{ secrets.BLOG_NOTIFY_TOKEN }}
         run: |
           set -euo pipefail
           cd ~/workspace/xgen-gallery
@@ -68,6 +70,7 @@ jobs:
           seed_env DEMO_WEBHOOK_URL       "${GH_DEMO_WEBHOOK_URL:-}"
           seed_env NEWSLETTER_WEBHOOK_URL "${GH_NEWSLETTER_WEBHOOK_URL:-}"
           seed_env SMTP_PASS              "${GH_SMTP_PASS:-}"
+          seed_env BLOG_NOTIFY_TOKEN      "${GH_BLOG_NOTIFY_TOKEN:-}"
           # 소개서: 전용 시크릿이 있으면 그 URL로. 없으면 .env에서 제거해
           # 브로셔 요청이 DEMO 웹앱으로 폴백되게 한다(라우트: BROCHURE_WEBHOOK_URL || DEMO_WEBHOOK_URL).
           if [ -n "${GH_BROCHURE_WEBHOOK_URL:-}" ]; then

@@ -24,7 +24,7 @@ jobs:
         run: sleep 180
       - name: Notify subscribers of new posts
         env:
-          WEBHOOK: ${{ secrets.DEMO_WEBHOOK_URL }}
+          # 앱 라우트(/api/content-notify)가 구독자에게 xgen에서 발송한다. 기본 URL은 스크립트 내장.
           TOKEN: ${{ secrets.BLOG_NOTIFY_TOKEN }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}

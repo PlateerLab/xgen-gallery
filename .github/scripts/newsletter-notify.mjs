@@ -1,19 +1,20 @@
-// 새로 추가된 뉴스레터 이슈를 감지해 구독자 알림 웹훅(Apps Script)으로 전달한다.
+// 새로 추가된 뉴스레터 이슈를 감지해 앱 발행알림 라우트(/api/content-notify)로 전달한다.
+// 앱이 구독자에게 xgen@plateer.com(O365 SMTP)에서 요약 메일을 발송한다.
 // 뉴스레터는 frontend/src/lib/newsletter.ts 의 ISSUES 배열에 하드코딩된다.
-//   env: WEBHOOK(=DEMO_WEBHOOK_URL) · TOKEN(=BLOG_NOTIFY_TOKEN) · BEFORE · AFTER
+//   env: NOTIFY_URL(기본 https://labs.plateer.com/api/content-notify) · TOKEN(=BLOG_NOTIFY_TOKEN) · BEFORE · AFTER
 // 이번 푸시에서 "추가된" slug(vol-N)를 찾아 그 이슈의 title·summary·url을 보낸다.
 import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const WEBHOOK = process.env.WEBHOOK;
+const SITE = "https://labs.plateer.com";
+const NOTIFY_URL = process.env.NOTIFY_URL || `${SITE}/api/content-notify`;
 const TOKEN = process.env.TOKEN;
 const BEFORE = process.env.BEFORE || "";
 const AFTER = process.env.AFTER || "HEAD";
-const SITE = "https://labs.plateer.com";
 const FILE = "frontend/src/lib/newsletter.ts";
 
-if (!WEBHOOK || !TOKEN) {
-    console.log("WEBHOOK/BLOG_NOTIFY_TOKEN 시크릿 미설정 — 알림 생략");
+if (!TOKEN) {
+    console.log("BLOG_NOTIFY_TOKEN 시크릿 미설정 — 알림 생략");
     process.exit(0);
 }
 
@@ -63,11 +64,11 @@ if (!posts.length) {
     process.exit(0);
 }
 
-const res = await fetch(WEBHOOK, {
+const res = await fetch(NOTIFY_URL, {
     method: "POST",
     headers: { "content-type": "application/json; charset=utf-8" },
-    body: JSON.stringify({ kind: "newsletter-notify", token: TOKEN, posts }),
+    body: JSON.stringify({ kind: "newsletter", token: TOKEN, posts }),
 });
 console.log(
-    `뉴스레터 알림 전송: ${posts.map((p) => p.title).join(" / ")} → HTTP ${res.status}`,
+    `뉴스레터 알림 전송: ${posts.map((p) => p.title).join(" / ")} → HTTP ${res.status} ${await res.text()}`,
 );

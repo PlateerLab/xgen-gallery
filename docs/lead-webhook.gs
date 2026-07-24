@@ -179,6 +179,13 @@ function doPost(e){
   if (data.kind === "newsletter-notify"){
     return contentNotify_(data, "newsletter", "새 뉴스레터", "Plateer Labs 뉴스레터 새 호가 나왔습니다.");
   }
+  // 구독자 명단 조회 — 앱(/api/content-notify)이 xgen 발송을 위해 명단만 가져간다. 발송은 앱이 함.
+  // (발행 알림은 이제 앱이 xgen@plateer.com에서 보내므로 여기 contentNotify_는 호출되지 않는다 — 폴백용 보존)
+  if (data.kind === "subscribers"){
+    var subTk = PropertiesService.getScriptProperties().getProperty("BLOG_NOTIFY_TOKEN");
+    if (!subTk || String(data.token||"") !== subTk) return jsonOut_({ ok:false, error:"unauthorized" });
+    return jsonOut_({ ok:true, emails: subscribedEmails_(data.subKind === "newsletter" ? "newsletter" : "blog") });
+  }
 
   // 모든 탭 공통 — 수신시각을 한국(서울) 시간으로 통일
   data.receivedAt = seoulTime(data.receivedAt);
