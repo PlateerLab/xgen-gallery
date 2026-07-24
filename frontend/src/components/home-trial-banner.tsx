@@ -29,9 +29,6 @@ export function HomeTrialBanner() {
                         설치도 계약도 없이 가입 즉시 시작 — Agentic AI 워크플로우를
                         전 기능으로 15일간 무료로
                     </p>
-                    <p className="mt-3 text-[13px] text-white/75">
-                        신용카드 불필요 · 언제든 해지
-                    </p>
                 </div>
                 <div className="flex flex-none flex-col items-stretch gap-2.5 sm:flex-row sm:items-center">
                     <Link
