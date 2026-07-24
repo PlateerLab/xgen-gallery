@@ -18,7 +18,7 @@ const FROM_ADDR = process.env.MAIL_FROM || USER || "xgen@plateer.com";
 const FROM_NAME = "Plateer Labs";
 /** 내부 알림 수신처 — 상담/소개서 각각(둘 다 xgen 포함). env로 오버라이드 가능. */
 const CONTACT_INTERNAL_TO =
-    process.env.MAIL_CONTACT_TO || "chat2plex@plateer.com, xgen@plateer.com";
+    process.env.MAIL_CONTACT_TO || "chat2plex@gmail.com, xgen@plateer.com";
 const BROCHURE_INTERNAL_TO =
     process.env.MAIL_BROCHURE_TO || "swan@plateer.com, xgen@plateer.com";
 
