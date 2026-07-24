@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 
@@ -48,10 +49,13 @@ export function UseCases({ embedded = false }: { embedded?: boolean }) {
                         ))}
                     </div>
 
-                    <button className="mt-6 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                    <Link
+                        href="/library-gallery#tools"
+                        className="mt-6 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2"
+                    >
                         {t.usecases.seeRecipe}
                         <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
+                    </Link>
                 </div>
             ))}
         </div>
