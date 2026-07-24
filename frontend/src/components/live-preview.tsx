@@ -196,10 +196,20 @@ export function LivePreview() {
                             </span>
                         )}
                     </div>
-                    {/* 스크린 — 밝은 일러스트 캔버스(프레임 안에 인셋) */}
+                    {/* 스크린 — 은은한 톤의 '설계 캔버스'(도트 그리드 + 상단 글로우)로 빈 느낌 제거 */}
                     <div className="p-4 md:p-5">
-                        <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-white via-[#f5f7fd] to-[#eef2fb] p-5 ring-1 ring-white/40 md:p-6">
-                            <div className="w-full max-w-md">
+                        <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-[#eef2fb] via-[#e8eef8] to-[#dbe4f2] p-5 ring-1 ring-white/50 md:p-6">
+                            {/* 도트 그리드 텍스처 */}
+                            <div
+                                aria-hidden
+                                className="pointer-events-none absolute inset-0 opacity-50 [background-image:radial-gradient(circle,#bcc7db_1px,transparent_1px)] [background-size:16px_16px]"
+                            />
+                            {/* 상단 소프트 글로우 — 스크린에 깊이감 */}
+                            <div
+                                aria-hidden
+                                className="pointer-events-none absolute inset-x-0 top-0 h-2/3 [background:radial-gradient(60%_80%_at_50%_0%,rgba(255,255,255,0.75),transparent_70%)]"
+                            />
+                            <div className="relative w-full max-w-md">
                                 <Visual tool={tool} />
                             </div>
                         </div>
