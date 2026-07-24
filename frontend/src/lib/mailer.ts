@@ -32,6 +32,7 @@ function getTransport(): nodemailer.Transporter | null {
             host: HOST,
             port: PORT,
             secure: PORT === 465, // 587=STARTTLS
+            requireTLS: PORT !== 465, // O365는 587에서 STARTTLS 필수 — 명시적으로 강제
             auth: { user: USER, pass: PASS },
         });
     }
