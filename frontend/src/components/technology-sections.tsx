@@ -193,10 +193,26 @@ function OntologyGraph() {
         <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-4">
             <svg viewBox="0 0 1040 600" className="w-full" role="img" aria-label="질문에서 출발해 상품·리뷰·평점 등 다양한 데이터 엔티티 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
                 <defs>
-                    <linearGradient id="ont-g" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="#2f7bff" />
-                        <stop offset="1" stopColor="#7c5cff" />
-                    </linearGradient>
+                    {/* 구체(orb) 방사형 그라데이션 — 좌상단 하이라이트 → 하단 음영으로 입체감 */}
+                    <radialGradient id="orb-white" cx="0.35" cy="0.28" r="0.95">
+                        <stop offset="0" stopColor="#ffffff" />
+                        <stop offset="0.55" stopColor="#eef2fa" />
+                        <stop offset="1" stopColor="#c6d2e6" />
+                    </radialGradient>
+                    <radialGradient id="orb-blue" cx="0.35" cy="0.28" r="1">
+                        <stop offset="0" stopColor="#8fb4ff" />
+                        <stop offset="0.5" stopColor="#3f7bff" />
+                        <stop offset="1" stopColor="#5b46e0" />
+                    </radialGradient>
+                    <radialGradient id="orb-green" cx="0.35" cy="0.28" r="1">
+                        <stop offset="0" stopColor="#6ee7b0" />
+                        <stop offset="0.5" stopColor="#10b981" />
+                        <stop offset="1" stopColor="#047a58" />
+                    </radialGradient>
+                    {/* 소프트 드롭섀도 — 바닥에 붙은 듯한 입체감 */}
+                    <filter id="orb-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="3" stdDeviation="3.2" floodColor="#16224a" floodOpacity="0.3" />
+                    </filter>
                 </defs>
                 {/* edges — 경로는 굵은 실선, 그 외 관계는 옅은 점선 */}
                 {edges.map(([a, b]) => {
@@ -294,15 +310,26 @@ function OntologyGraph() {
                     return (
                         <g key={k}>
                             {(isQ || isFact) && (
-                                <circle cx={x} cy={y} r={r + 8} fill={isFact ? "#10b981" : "#2f7bff"} opacity="0.12" />
+                                <circle cx={x} cy={y} r={r + 9} fill={isFact ? "#10b981" : "#2f7bff"} opacity="0.1" />
                             )}
+                            {/* 구체 본체 — 방사형 그라데이션 + 드롭섀도로 입체감 */}
                             <circle
                                 cx={x}
                                 cy={y}
                                 r={r}
-                                fill={isQ ? "url(#ont-g)" : isFact ? "#10b981" : "#ffffff"}
-                                stroke={isQ || isFact ? "none" : onPath ? "#2f7bff" : "#aebfdd"}
-                                strokeWidth={onPath ? 2.5 : 1.6}
+                                fill={isQ ? "url(#orb-blue)" : isFact ? "url(#orb-green)" : "url(#orb-white)"}
+                                stroke={isQ || isFact ? "none" : onPath ? "#2f7bff" : "#c2cee1"}
+                                strokeWidth={onPath ? 1.5 : 1}
+                                filter="url(#orb-shadow)"
+                            />
+                            {/* 스페큘러 하이라이트(광택) */}
+                            <ellipse
+                                cx={x - r * 0.3}
+                                cy={y - r * 0.36}
+                                rx={r * 0.44}
+                                ry={r * 0.28}
+                                fill="#ffffff"
+                                opacity={isQ || isFact ? 0.38 : 0.6}
                             />
                             <text
                                 x={x}
