@@ -6,7 +6,8 @@ import nodemailer from "nodemailer";
  *
  * 환경변수(go244 .env / 시크릿):
  *   SMTP_HOST(기본 smtp.office365.com) · SMTP_PORT(기본 587) · SMTP_USER(=xgen@plateer.com)
- *   SMTP_PASS(앱 비밀번호 — 시크릿) · MAIL_FROM(기본 SMTP_USER) · MAIL_INTERNAL_TO(내부 알림 수신)
+ *   SMTP_PASS(앱 비밀번호 — 시크릿) · MAIL_FROM(기본 SMTP_USER)
+ *   MAIL_CONTACT_TO(상담 내부알림) · MAIL_BROCHURE_TO(소개서 내부알림 — swan,xgen)
  * SMTP_USER/PASS 미설정이면 발송을 조용히 생략(빌드·개발 안전).
  */
 const HOST = process.env.SMTP_HOST || "smtp.office365.com";
@@ -15,9 +16,11 @@ const USER = process.env.SMTP_USER || "xgen@plateer.com";
 const PASS = process.env.SMTP_PASS || ""; // 시크릿 — 이것만 설정하면 됨
 const FROM_ADDR = process.env.MAIL_FROM || USER || "xgen@plateer.com";
 const FROM_NAME = "Plateer Labs";
-/** CTA 내부 알림 수신처(둘 다). */
-export const INTERNAL_TO =
-    process.env.MAIL_INTERNAL_TO || "chat2plex@plateer.com, xgen@plateer.com";
+/** 내부 알림 수신처 — 상담/소개서 각각(둘 다 xgen 포함). env로 오버라이드 가능. */
+const CONTACT_INTERNAL_TO =
+    process.env.MAIL_CONTACT_TO || "chat2plex@plateer.com, xgen@plateer.com";
+const BROCHURE_INTERNAL_TO =
+    process.env.MAIL_BROCHURE_TO || "swan@plateer.com, xgen@plateer.com";
 
 const SITE = "https://labs.plateer.com";
 
@@ -146,7 +149,7 @@ export function contactInternalMail(d: ContactLead): Mail {
         `접수 시각(KST): ${seoulTime(d.receivedAt)}`,
     ];
     return {
-        to: INTERNAL_TO,
+        to: CONTACT_INTERNAL_TO,
         replyTo: String(d.email || "").trim() || FROM_ADDR,
         subject: `[상담 문의] ${d.inquiryType || ""} - ${d.name || ""} (${d.company || ""})`,
         text: lines.join("\n"),
@@ -198,7 +201,7 @@ export function brochureMail(d: BrochureLead, b: BrochureInfo): Mail {
 /** 내부 팀 알림(소개서). */
 export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
     return {
-        to: INTERNAL_TO,
+        to: BROCHURE_INTERNAL_TO,
         replyTo: String(d.email || "").trim() || FROM_ADDR,
         subject: `[소개서 신청/${b.name}] ${d.name || ""} (${d.company || ""})`,
         text: [
