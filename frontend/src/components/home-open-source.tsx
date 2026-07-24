@@ -56,15 +56,15 @@ export function HomeOpenSource() {
                             Open Source
                         </p>
                         <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
-                            연구를 오픈소스로 증명합니다
+                            오픈소스로 기술력을 검증합니다
                         </h2>
                         <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            Plateer Labs는 XGEN을 떠받치는 기술을 프로덕션급 파이썬
-                            라이브러리로 공개합니다. 모두 MIT 라이선스로 자유롭게 쓰고,
+                            Plateer Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python
+                            라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,
                             <code className="mx-1 rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 font-mono text-[13px] text-[var(--color-ink)]">
                                 pip
                             </code>
-                            로 설치하며, 브라우저 갤러리에서 바로 실행해볼 수 있습니다.
+                            으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.
                         </p>
                     </div>
                     <Link

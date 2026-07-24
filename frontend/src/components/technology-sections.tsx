@@ -70,42 +70,60 @@ function Quote({ children }: { children: ReactNode }) {
 /** Ontology — 관계를 따라가는 지식 그래프 (인라인 SVG). */
 function OntologyGraph() {
     const nodes: Record<string, [number, number, string]> = {
-        q: [70, 175, "질문"],
-        order: [250, 80, "주문"],
-        cust: [250, 270, "고객"],
-        item: [440, 175, "상품"],
-        eval: [430, 60, "평가"],
-        react: [430, 290, "반응"],
-        fact: [620, 175, "근거"],
+        q: [66, 195, "질문"],
+        order: [210, 100, "주문"],
+        cust: [190, 300, "고객"],
+        item: [370, 190, "상품"],
+        cat: [360, 332, "카테고리"],
+        review: [520, 95, "리뷰"],
+        brand: [530, 300, "브랜드"],
+        rating: [640, 190, "평점"],
+        fact: [710, 195, "근거"],
     };
+    // 관계형 간선 — 근거 경로 위의 핵심 관계 외에도 교차 관계를 촘촘히 둔다.
     const edges: [string, string][] = [
         ["q", "order"],
         ["q", "cust"],
-        ["order", "eval"],
+        ["cust", "order"],
         ["order", "item"],
-        ["cust", "react"],
-        ["item", "eval"],
-        ["item", "fact"],
-        ["react", "fact"],
+        ["item", "cat"],
+        ["item", "review"],
+        ["item", "brand"],
+        ["cust", "review"],
+        ["review", "rating"],
+        ["rating", "fact"],
+        ["brand", "fact"],
+        ["cat", "rating"],
     ];
+    // 근거 경로 — 질문에서 다중 홉 관계를 타고 근거에 도달(유사도 검색보다 정교한 추론).
     const path: [string, string][] = [
         ["q", "order"],
         ["order", "item"],
-        ["item", "fact"],
+        ["item", "review"],
+        ["review", "rating"],
+        ["rating", "fact"],
     ];
+    const pathNodes = new Set([
+        "q",
+        "order",
+        "item",
+        "review",
+        "rating",
+        "fact",
+    ]);
     const isPath = (a: string, b: string) =>
         path.some(([x, y]) => x === a && y === b);
 
     return (
         <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-4">
-            <svg viewBox="0 0 700 340" className="w-full" role="img" aria-label="질문에서 출발해 데이터 간 관계를 따라 근거에 도달하는 지식 그래프">
+            <svg viewBox="0 0 760 400" className="w-full" role="img" aria-label="질문에서 출발해 데이터 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
                 <defs>
                     <linearGradient id="ont-g" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
                         <stop offset="1" stopColor="#7c5cff" />
                     </linearGradient>
                 </defs>
-                {/* edges */}
+                {/* edges — 경로는 굵은 실선, 그 외 관계는 옅은 점선 */}
                 {edges.map(([a, b]) => {
                     const [x1, y1] = nodes[a];
                     const [x2, y2] = nodes[b];
@@ -117,66 +135,101 @@ function OntologyGraph() {
                             y1={y1}
                             x2={x2}
                             y2={y2}
-                            stroke={hot ? "#2f7bff" : "#c4ccdb"}
-                            strokeWidth={hot ? 3 : 1.5}
-                            strokeDasharray={hot ? "0" : "4 4"}
+                            stroke={hot ? "#2f7bff" : "#ccd4e2"}
+                            strokeWidth={hot ? 3 : 1.4}
+                            strokeDasharray={hot ? "0" : "4 5"}
                         />
                     );
                 })}
-                {/* ── 애니메이션: 질문에서 관계를 타고 '근거'로 흐르는 지식 경로 (CSP-safe SMIL) ── */}
-                {/* 근거(fact) 도달 펄스 링 — 이동 노드가 도착하는 타이밍(~82%)에 확장·소멸 */}
-                <circle cx={nodes.fact[0]} cy={nodes.fact[1]} r="26" fill="none" stroke="#10b981" strokeWidth="2.5" opacity="0">
-                    <animate attributeName="r" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.82;1" values="26;26;46" />
-                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.82;0.9;1" values="0;0;0.55;0" />
+                {/* 경로 위 핵심 관계 라벨(할로로 선 위에서도 읽히게) */}
+                {(
+                    [
+                        [132, 140, "질의"],
+                        [288, 132, "포함"],
+                        [447, 130, "리뷰"],
+                        [582, 132, "평점"],
+                        [678, 176, "도출"],
+                    ] as [number, number, string][]
+                ).map(([x, y, txt]) => (
+                    <text key={txt} x={x} y={y} textAnchor="middle" fontSize="10.5" fontWeight="600" fill="#3f5fb0" stroke="#f3f5fa" strokeWidth="3.5" paintOrder="stroke">
+                        {txt}
+                    </text>
+                ))}
+                {/* ── 애니메이션: 질문에서 다중 홉 관계를 타고 '근거'로 흐르는 추론 (CSP-safe SMIL) ── */}
+                {/* 근거(fact) 도달 펄스 링 */}
+                <circle cx={nodes.fact[0]} cy={nodes.fact[1]} r="27" fill="none" stroke="#10b981" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.85;1" values="27;27;48" />
+                    <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.85;0.92;1" values="0;0;0.55;0" />
                 </circle>
-                {/* 질문(q) 출발 펄스 링 — 사이클 시작에 살짝 번짐 */}
-                <circle cx={nodes.q[0]} cy={nodes.q[1]} r="26" fill="none" stroke="#2f7bff" strokeWidth="2.5" opacity="0">
-                    <animate attributeName="r" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.14;1" values="26;40;40" />
-                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.02;0.14;1" values="0;0.5;0;0" />
+                {/* 질문(q) 출발 펄스 링 */}
+                <circle cx={nodes.q[0]} cy={nodes.q[1]} r="27" fill="none" stroke="#2f7bff" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.12;1" values="27;42;42" />
+                    <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.02;0.12;1" values="0;0.5;0;0" />
                 </circle>
-                {/* 경로 위를 흐르는 에너지(점선 이동) — 방향성(→ 근거) 강조 */}
-                <path d="M70,175 L250,80 L440,175 L620,175" fill="none" stroke="#9dc0ff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1.5 15" opacity="0.9">
+                {/* 경로 위를 흐르는 에너지(점선 이동) — 다중 홉 방향성 강조 */}
+                <path d="M66,195 L210,100 L370,190 L520,95 L640,190 L710,195" fill="none" stroke="#9dc0ff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1.5 15" opacity="0.9">
                     <animate attributeName="stroke-dashoffset" from="16.5" to="0" dur="0.9s" repeatCount="indefinite" />
                 </path>
-                {/* 관계를 따라 이동하는 지식 노드 (질문 → 주문 → 상품 → 근거) */}
+                {/* 관계를 타고 이동하는 추론 노드 (질문 → 주문 → 상품 → 리뷰 → 평점 → 근거) */}
                 <g opacity="0">
-                    <animateMotion dur="3.2s" repeatCount="indefinite" path="M70,175 L250,80 L440,175 L620,175" />
-                    <animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" keyTimes="0;0.06;0.9;1" values="0;1;1;0" />
+                    <animateMotion dur="4s" repeatCount="indefinite" path="M66,195 L210,100 L370,190 L520,95 L640,190 L710,195" />
+                    <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.05;0.92;1" values="0;1;1;0" />
                     <circle r="12" fill="#2f7bff" opacity="0.2" />
                     <circle r="5.5" fill="#2f7bff" />
                     <circle r="2" fill="#ffffff" />
                 </g>
-                {/* nodes */}
+                {/* 주변 관계에도 흐름을 둬 밀도감을 준다 */}
+                <g opacity="0">
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M66,195 L190,300" />
+                    <animate attributeName="opacity" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.5;0.5;0" />
+                    <circle r="3.5" fill="#8aa0c8" />
+                </g>
+                <g opacity="0">
+                    <animateMotion dur="3.4s" repeatCount="indefinite" path="M370,190 L530,300" />
+                    <animate attributeName="opacity" dur="3.4s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.45;0.45;0" />
+                    <circle r="3.5" fill="#8aa0c8" />
+                </g>
+                <g opacity="0">
+                    <animateMotion dur="3.1s" repeatCount="indefinite" path="M190,300 L520,95" />
+                    <animate attributeName="opacity" dur="3.1s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.4;0.4;0" />
+                    <circle r="3" fill="#8aa0c8" />
+                </g>
+                {/* nodes — 경로 노드는 진하게, 그 외는 옅게 대비 */}
                 {Object.entries(nodes).map(([k, [x, y, label]]) => {
                     const isQ = k === "q";
                     const isFact = k === "fact";
+                    const onPath = pathNodes.has(k);
+                    const fs = label.length >= 4 ? 10.5 : label.length === 3 ? 12 : 14;
                     return (
                         <g key={k}>
+                            {(isQ || isFact) && (
+                                <circle cx={x} cy={y} r="35" fill={isFact ? "#10b981" : "#2f7bff"} opacity="0.12" />
+                            )}
                             <circle
                                 cx={x}
                                 cy={y}
-                                r="26"
+                                r="27"
                                 fill={isQ ? "url(#ont-g)" : isFact ? "#10b981" : "#ffffff"}
-                                stroke={isQ || isFact ? "none" : "#2f7bff"}
-                                strokeWidth="2"
+                                stroke={isQ || isFact ? "none" : onPath ? "#2f7bff" : "#aebfdd"}
+                                strokeWidth={onPath ? 2.5 : 1.6}
                             />
                             <text
                                 x={x}
                                 y={y + 5}
                                 textAnchor="middle"
-                                fontSize="14"
+                                fontSize={fs}
                                 fontWeight="700"
-                                fill={isQ || isFact ? "#fff" : "#1f2733"}
+                                fill={isQ || isFact ? "#fff" : onPath ? "#1f2733" : "#5b6478"}
                             >
                                 {label}
                             </text>
                         </g>
                     );
                 })}
-                {/* labels */}
-                <text x="70" y="232" textAnchor="middle" fontSize="12" fill="#5a6478">유사도가 아닌</text>
-                <text x="160" y="150" fontSize="11" fill="#8b93a4" transform="rotate(-26 160 150)">관계</text>
-                <text x="620" y="232" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">근거 경로 도달</text>
+                {/* captions */}
+                <text x="66" y="250" textAnchor="middle" fontSize="12" fill="#5a6478">유사도가 아닌</text>
+                <text x="66" y="266" textAnchor="middle" fontSize="12" fill="#5a6478">관계 그래프 탐색</text>
+                <text x="710" y="250" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">근거 경로 도달</text>
             </svg>
         </div>
     );
