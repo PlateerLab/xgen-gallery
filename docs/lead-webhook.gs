@@ -189,18 +189,21 @@ function doPost(e){
   } else if (!!data.asset || (data.source||"").indexOf("resources") >= 0){
     var t = brochureType(data);                      // 소개서 종류 구분(XGEN / AI Code Assistant …)
     data.brochureType = t.name;                      // 시트 '소개서' 열에 종류 표시명 기록
-    prepend("brochure", BROCHURE_COLS, data);        // 소개서 → brochure 탭
-    brochureMailToUser(data, t);                     // 요청자에게 다운로드 링크 메일
-    sendMail_({ to: BROCHURE_TO, name: FROM_NAME, replyTo: FROM_ADDR,   // 내부 접수 알림 → swan + xgen
-      subject: "[소개서 신청/" + t.name + "] " + (data.name||"") + " (" + (data.company||"") + ")",
-      body: body(BROCHURE_COLS, data) });
+    prepend("brochure", BROCHURE_COLS, data);        // 소개서 → brochure 탭(기록만)
+    // ⛔ 소개서 CTA 메일(요청자 다운로드 링크 + 내부 알림)은 앱이 xgen@plateer.com(O365 SMTP)에서
+    //    발송한다. 중복 방지를 위해 여기선 메일을 보내지 않는다. (앱 실패 시 아래 2줄 주석 해제로 롤백)
+    // brochureMailToUser(data, t);
+    // sendMail_({ to: BROCHURE_TO, name: FROM_NAME, replyTo: FROM_ADDR,
+    //   subject: "[소개서 신청/" + t.name + "] " + (data.name||"") + " (" + (data.company||"") + ")", body: body(BROCHURE_COLS, data) });
 
   } else {
-    prepend("leads", CONTACT_COLS, data);            // 컨택 → leads 탭
-    contactConfirmToUser_(data);                     // 신청자에게 접수 확인 메일
-    sendMail_({ to: CONTACT_TO, bcc: CONTACT_BCC, name: FROM_NAME, replyTo: FROM_ADDR,   // 내부 팀 알림
-      subject: "[상담 문의] " + (data.inquiryType||"") + " - " + (data.name||"") + " (" + (data.company||"") + ")",
-      body: body(CONTACT_COLS, data) + "\n레퍼러 페이지: " + fmt(data.referrer) });
+    prepend("leads", CONTACT_COLS, data);            // 컨택 → leads 탭(기록만)
+    // ⛔ 상담 CTA 메일(접수확인 + 내부 알림)도 앱이 xgen@plateer.com에서 발송 → 여기선 미발송(중복 방지).
+    //    (앱 실패 시 아래 2줄 주석 해제로 롤백)
+    // contactConfirmToUser_(data);
+    // sendMail_({ to: CONTACT_TO, bcc: CONTACT_BCC, name: FROM_NAME, replyTo: FROM_ADDR,
+    //   subject: "[상담 문의] " + (data.inquiryType||"") + " - " + (data.name||"") + " (" + (data.company||"") + ")",
+    //   body: body(CONTACT_COLS, data) + "\n레퍼러 페이지: " + fmt(data.referrer) });
   }
   return ContentService.createTextOutput(JSON.stringify({ ok:true }))
     .setMimeType(ContentService.MimeType.JSON);
