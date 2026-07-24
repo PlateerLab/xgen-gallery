@@ -70,28 +70,40 @@ function Quote({ children }: { children: ReactNode }) {
 /** Ontology — 관계를 따라가는 지식 그래프 (인라인 SVG). */
 function OntologyGraph() {
     const nodes: Record<string, [number, number, string]> = {
-        q: [66, 195, "질문"],
-        order: [210, 100, "주문"],
-        cust: [190, 300, "고객"],
-        item: [370, 190, "상품"],
-        cat: [360, 332, "카테고리"],
-        review: [520, 95, "리뷰"],
-        brand: [530, 300, "브랜드"],
-        rating: [640, 190, "평점"],
-        fact: [710, 195, "근거"],
+        q: [72, 212, "질문"],
+        order: [214, 110, "주문"],
+        stock: [398, 54, "재고"],
+        item: [386, 212, "상품"],
+        review: [548, 100, "리뷰"],
+        rating: [662, 212, "평점"],
+        fact: [764, 216, "근거"],
+        cust: [214, 340, "고객"],
+        pay: [92, 344, "결제"],
+        cat: [386, 374, "카테고리"],
+        seller: [552, 360, "판매자"],
+        brand: [660, 350, "브랜드"],
+        ship: [716, 300, "배송"],
     };
-    // 관계형 간선 — 근거 경로 위의 핵심 관계 외에도 교차 관계를 촘촘히 둔다.
+    // 관계형 간선 — 근거 경로 위의 핵심 관계 외에도 교차 관계를 촘촘히 둬 온톨로지 웹을 만든다.
     const edges: [string, string][] = [
         ["q", "order"],
         ["q", "cust"],
         ["cust", "order"],
+        ["cust", "pay"],
+        ["pay", "order"],
         ["order", "item"],
+        ["order", "stock"],
+        ["item", "stock"],
         ["item", "cat"],
         ["item", "review"],
+        ["item", "seller"],
         ["item", "brand"],
+        ["seller", "brand"],
         ["cust", "review"],
         ["review", "rating"],
         ["rating", "fact"],
+        ["rating", "ship"],
+        ["ship", "fact"],
         ["brand", "fact"],
         ["cat", "rating"],
     ];
@@ -116,7 +128,7 @@ function OntologyGraph() {
 
     return (
         <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-4">
-            <svg viewBox="0 0 760 400" className="w-full" role="img" aria-label="질문에서 출발해 데이터 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
+            <svg viewBox="0 0 820 440" className="w-full" role="img" aria-label="질문에서 출발해 상품·리뷰·평점 등 데이터 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
                 <defs>
                     <linearGradient id="ont-g" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
@@ -144,11 +156,11 @@ function OntologyGraph() {
                 {/* 경로 위 핵심 관계 라벨(할로로 선 위에서도 읽히게) */}
                 {(
                     [
-                        [132, 140, "질의"],
-                        [288, 132, "포함"],
-                        [447, 130, "리뷰"],
-                        [582, 132, "평점"],
-                        [678, 176, "도출"],
+                        [136, 153, "질의"],
+                        [298, 151, "포함"],
+                        [474, 147, "리뷰"],
+                        [613, 147, "평점"],
+                        [713, 200, "도출"],
                     ] as [number, number, string][]
                 ).map(([x, y, txt]) => (
                     <text key={txt} x={x} y={y} textAnchor="middle" fontSize="10.5" fontWeight="600" fill="#3f5fb0" stroke="#f3f5fa" strokeWidth="3.5" paintOrder="stroke">
@@ -167,31 +179,36 @@ function OntologyGraph() {
                     <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.02;0.12;1" values="0;0.5;0;0" />
                 </circle>
                 {/* 경로 위를 흐르는 에너지(점선 이동) — 다중 홉 방향성 강조 */}
-                <path d="M66,195 L210,100 L370,190 L520,95 L640,190 L710,195" fill="none" stroke="#9dc0ff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1.5 15" opacity="0.9">
+                <path d="M72,212 L214,110 L386,212 L548,100 L662,212 L764,216" fill="none" stroke="#9dc0ff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1.5 15" opacity="0.9">
                     <animate attributeName="stroke-dashoffset" from="16.5" to="0" dur="0.9s" repeatCount="indefinite" />
                 </path>
                 {/* 관계를 타고 이동하는 추론 노드 (질문 → 주문 → 상품 → 리뷰 → 평점 → 근거) */}
                 <g opacity="0">
-                    <animateMotion dur="4s" repeatCount="indefinite" path="M66,195 L210,100 L370,190 L520,95 L640,190 L710,195" />
+                    <animateMotion dur="4s" repeatCount="indefinite" path="M72,212 L214,110 L386,212 L548,100 L662,212 L764,216" />
                     <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.05;0.92;1" values="0;1;1;0" />
                     <circle r="12" fill="#2f7bff" opacity="0.2" />
                     <circle r="5.5" fill="#2f7bff" />
                     <circle r="2" fill="#ffffff" />
                 </g>
-                {/* 주변 관계에도 흐름을 둬 밀도감을 준다 */}
+                {/* 주변 관계에도 흐름을 둬 온톨로지 웹의 밀도감을 준다 */}
                 <g opacity="0">
-                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M66,195 L190,300" />
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M214,340 L548,100" />
                     <animate attributeName="opacity" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.5;0.5;0" />
                     <circle r="3.5" fill="#8aa0c8" />
                 </g>
                 <g opacity="0">
-                    <animateMotion dur="3.4s" repeatCount="indefinite" path="M370,190 L530,300" />
+                    <animateMotion dur="3.4s" repeatCount="indefinite" path="M386,212 L660,350" />
                     <animate attributeName="opacity" dur="3.4s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.45;0.45;0" />
                     <circle r="3.5" fill="#8aa0c8" />
                 </g>
                 <g opacity="0">
-                    <animateMotion dur="3.1s" repeatCount="indefinite" path="M190,300 L520,95" />
+                    <animateMotion dur="3.1s" repeatCount="indefinite" path="M214,110 L398,54" />
                     <animate attributeName="opacity" dur="3.1s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.4;0.4;0" />
+                    <circle r="3" fill="#8aa0c8" />
+                </g>
+                <g opacity="0">
+                    <animateMotion dur="3.6s" repeatCount="indefinite" path="M716,300 L764,216" />
+                    <animate attributeName="opacity" dur="3.6s" repeatCount="indefinite" keyTimes="0;0.1;0.85;1" values="0;0.4;0.4;0" />
                     <circle r="3" fill="#8aa0c8" />
                 </g>
                 {/* nodes — 경로 노드는 진하게, 그 외는 옅게 대비 */}
@@ -227,9 +244,9 @@ function OntologyGraph() {
                     );
                 })}
                 {/* captions */}
-                <text x="66" y="250" textAnchor="middle" fontSize="12" fill="#5a6478">유사도가 아닌</text>
-                <text x="66" y="266" textAnchor="middle" fontSize="12" fill="#5a6478">관계 그래프 탐색</text>
-                <text x="710" y="250" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">근거 경로 도달</text>
+                <text x="72" y="258" textAnchor="middle" fontSize="12" fill="#5a6478">유사도가 아닌</text>
+                <text x="72" y="274" textAnchor="middle" fontSize="12" fill="#5a6478">관계 그래프 탐색</text>
+                <text x="764" y="256" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">근거 경로 도달</text>
             </svg>
         </div>
     );
