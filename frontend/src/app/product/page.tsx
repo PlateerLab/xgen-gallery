@@ -27,6 +27,9 @@ import { EasyModeArt } from "@/components/easy-mode-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { ArchIndex } from "@/components/arch-index";
+import { LayerStackArt } from "@/components/layer-stack-art";
+import { GovernanceArt } from "@/components/governance-art";
+import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/metadata";
@@ -95,26 +98,60 @@ const PRODUCT_SECTIONS = [
 ];
 
 /** 제품 개요 4축 — 파일럿을 넘어 실제 업무에 배포되는 기업용 AI의 근거. */
-const PILLARS: { no: string; title: string; desc: string }[] = [
+// XGEN 4대 핵심 가치 — 엔터프라이즈 AI의 한계를 넘는 네 축(최신 제품 덱 기준).
+const PILLARS: { variant: PillarVariant; en: string; ko: string; desc: string }[] = [
     {
-        no: "01",
-        title: "Agent 기반 서비스 구성",
-        desc: "목적에 맞는 Agent를 생성·조합하고, Prompt·Workflow로 업무를 연결합니다. 다중 Agent 협업까지 지원합니다.",
+        variant: "orchestration",
+        en: "Agentic AI",
+        ko: "지능형 오케스트레이션",
+        desc: "멀티에이전트 워크플로우와 태스크 라우팅을 통한 능동적 업무 자동화",
     },
     {
-        no: "02",
-        title: "기업 환경 최적화 운영",
-        desc: "역할 기반 접근 제어, 배포 승인, 감사 로그, 조직 기반 권한 체계로 안전한 운영 구조를 갖춥니다.",
+        variant: "reliability",
+        en: "Zero Hallucination",
+        ko: "무결점 신뢰성",
+        desc: "하이브리드 RAG와 5단계 정밀 검색으로 환각을 최소화한 근거 기반(Grounded) 답변",
     },
     {
-        no: "03",
-        title: "자연어 업무 자동화",
-        desc: "문서 요약·데이터 질의·절차 자동화·지식 검색을 자연어로 실행합니다. 반복 업무를 위임합니다.",
+        variant: "routing",
+        en: "Multi-LLM Routing",
+        ko: "완벽한 유연성",
+        desc: "GPT · Claude · Private LLM 등 벤더 종속 없이 업무 요건에 맞춘 동적 모델 선택",
     },
     {
-        no: "04",
-        title: "모델·시스템 유연 연동",
-        desc: "다양한 LLM, API 기반 시스템, 사내 데이터, RAG, Tool·Function을 유연하게 연결합니다.",
+        variant: "uptime",
+        en: "Zero-Downtime",
+        ko: "무중단 안정성",
+        desc: "k3s 고가용성 아키텍처와 GitOps 기반 배포로 엔터프라이즈급 운영 환경 보장",
+    },
+];
+
+/** 도입 효과 — XGEN 도입으로 달성하는 5대 혁신 효과(최신 제품 덱 기준). */
+const EFFECTS: { en: string; ko: string; desc: string }[] = [
+    {
+        en: "Efficiency",
+        ko: "업무 효율 향상",
+        desc: "RAG 기반의 빠르고 정확한 정보 검색으로 사내 반복 업무 처리시간을 획기적으로 단축",
+    },
+    {
+        en: "Risk Management",
+        ko: "리스크 최소화",
+        desc: "모델·데이터·보안에 이르는 5대 리스크를 사전 통제해 안전한 AI 환경 구축",
+    },
+    {
+        en: "Trust",
+        ko: "신뢰성 확보",
+        desc: "환각 최소화와 투명한 근거 제시로 사내 AI 사용자의 높은 신뢰도 제고",
+    },
+    {
+        en: "Flexibility",
+        ko: "확장 유연성",
+        desc: "Model Router 기반 멀티 LLM 운용으로 벤더 종속 없이 최적의 비용·성능 구조 확보",
+    },
+    {
+        en: "Compliance",
+        ko: "글로벌 규제 준수",
+        desc: "AI-Master 인증기준과 데이터 보안 법규에 부합하는 투명한 거버넌스 실현",
     },
 ];
 
@@ -431,7 +468,7 @@ const ROLES: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** 핵심 기술 4계층 — 검증된 오픈 기술 위, 벤더 종속 없이(모델→검색→오케스트레이션→런타임). */
+/** 5계층 코어 엔진 — 인프라부터 에이전트까지 통합된 XGEN 아키텍처(위→아래 스택). */
 const TECH_LAYERS: {
     no: string;
     en: string;
@@ -441,31 +478,38 @@ const TECH_LAYERS: {
 }[] = [
     {
         no: "LAYER 01",
-        en: "Model",
-        title: "모델 오케스트레이션",
-        desc: "상용 클라우드 LLM과 사내 GPU 셀프호스팅 모델을 하나의 인터페이스로 다룹니다. Model Router가 쿼리 특성·비용·보안 기준으로 최적 모델을 자동 선택하고, 프로바이더를 교체해도 에이전트 설계는 그대로 유지됩니다.",
-        chips: ["Model Router", "OpenAI", "Anthropic", "Google Gemini", "AWS Bedrock", "vLLM", "SGLang"],
+        en: "Agent Orchestration",
+        title: "에이전트 오케스트레이션",
+        desc: "멀티에이전트 워크플로우와 태스크 라우팅, 프롬프트 관리로 업무를 능동적으로 실행합니다. Planner가 업무를 분해해 담당 Agent를 호출하고 Reviewer가 결과를 검증하는 흐름을 MCP 표준 도구 연동·스트리밍으로 실시간 처리합니다.",
+        chips: ["Multi-Agent", "Task Routing", "A2A", "MCP", "Tool / Function", "Prompt Engine"],
     },
     {
         no: "LAYER 02",
-        en: "Retrieval",
-        title: "고도화된 RAG",
-        desc: "밀집·희소 벡터와 전문검색을 결합한 하이브리드 검색에 Late Chunking으로 문맥을 보존하고, 리랭킹과 온톨로지 그래프를 더해 출처가 분명한 응답을 만듭니다.",
-        chips: ["Qdrant", "Dense + Sparse", "Full-text", "Late Chunking", "Reranker", "Ontology Graph", "OCR"],
+        en: "RAG Hybrid Search",
+        title: "RAG 하이브리드 검색",
+        desc: "Dense·Sparse(SPLADE) 하이브리드 검색에 Reranker·Late Chunking·Vision을 더해 문맥을 보존하고, 출처가 분명한 근거 기반(Grounded) 응답을 만듭니다.",
+        chips: ["Dense + Sparse(SPLADE)", "Reranker", "Late Chunking", "Vision", "Ontology Graph", "OCR"],
     },
     {
         no: "LAYER 03",
-        en: "Orchestration",
-        title: "Agent 오케스트레이션",
-        desc: "Planner가 업무를 분해해 담당 Agent를 호출하고 Reviewer가 결과를 검증하는 멀티 에이전트 흐름을, MCP 표준 도구 연동과 스트리밍 실행으로 실시간 처리합니다.",
-        chips: ["Multi-Agent", "A2A", "MCP", "Tool / Function", "SSE Streaming", "Prompt Engine"],
+        en: "Model Router",
+        title: "Model Router · 멀티 LLM",
+        desc: "업무 유형·비용·성능·보안 기준으로 최적 LLM을 자동 선택합니다. 상용·사내 모델을 하나의 인터페이스로 다루고, 프로바이더를 교체해도 에이전트 설계는 그대로 유지됩니다.",
+        chips: ["Model Router", "GPT", "Claude", "Gemini", "HCX", "Solar", "Private LLM"],
     },
     {
         no: "LAYER 04",
-        en: "Runtime & Infra",
-        title: "엔터프라이즈 런타임",
-        desc: "게이트웨이 기반 인증 격리와 ABAC 접근 제어, k3s HA·Istio로 단일 장애점(SPOF)을 제거한 온프레미스·GPU 서빙, 가드레일로 통제된 실행 환경을 보장합니다.",
-        chips: ["API Gateway", "ABAC", "k3s HA", "Istio", "On-prem", "GPU Serving", "Guardrail"],
+        en: "Data Layer",
+        title: "데이터 레이어",
+        desc: "벡터·객체·관계형·캐시를 아우르는 엔터프라이즈 데이터 스택으로 검색 인덱스·상태·산출물을 안정적으로 저장합니다.",
+        chips: ["Qdrant(Vector DB)", "MinIO(Object Storage)", "CNPG(PostgreSQL)", "Valkey(Cache)"],
+    },
+    {
+        no: "LAYER 05",
+        en: "Infra Layer",
+        title: "인프라 레이어",
+        desc: "k3s 고가용성 쿠버네티스와 ArgoCD GitOps로 자동 복구·무중단 배포를 보장하는 온프레미스·GPU 서빙 기반입니다.",
+        chips: ["k3s HA", "ArgoCD GitOps", "Istio", "On-prem", "GPU Serving", "Auto-Healing"],
     },
 ];
 
@@ -630,31 +674,36 @@ export default function ProductPage() {
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Why XGEN
+                            4 Core Values
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            파일럿에서 끝나지 않는, 실제 업무에 배포되는 기업용 AI
+                            엔터프라이즈 AI 운영을 위한 핵심 가치
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            기술 검증에서 멈추는 대부분의 AI 도입과 달리, XGEN은 조직의
-                            보안 정책·권한 체계·감사 요건을 처음부터 전제로 설계되었습니다.
-                            만드는 것과 통제하는 것을 하나의 플랫폼에서 다룹니다.
+                            AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고,
+                            통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈
+                            AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다.
                         </p>
-                        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                             {PILLARS.map((p) => (
                                 <div
-                                    key={p.no}
-                                    className="group relative bg-white p-7 transition hover:bg-[var(--color-surface-alt)]"
+                                    key={p.en}
+                                    className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    <span className="block text-[38px] font-bold leading-none tracking-tight text-transparent [-webkit-text-stroke:1.1px_#2f7bff]">
-                                        {p.no}
-                                    </span>
-                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {p.title}
-                                    </h3>
-                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {p.desc}
-                                    </p>
+                                    <div className="border-b border-[#1f57c4] bg-[linear-gradient(160deg,#4f8bf0_0%,#2f6fe0_55%,#1f57c4_100%)] px-5 pt-4">
+                                        <PillarArt variant={p.variant} />
+                                    </div>
+                                    <div className="flex flex-1 flex-col items-center px-4 py-6 text-center">
+                                        <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {p.ko}
+                                        </h3>
+                                        <p className="mt-0.5 text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            ({p.en})
+                                        </p>
+                                        <p className="mt-3 text-[12px] leading-[1.6] text-[var(--color-ink-muted)]">
+                                            {p.desc}
+                                        </p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -758,7 +807,53 @@ export default function ProductPage() {
                             거버넌스, PoC보다 실제 업무 적용을 중심으로 Enterprise AI를
                             구현합니다.
                         </p>
-                        <div className="mt-14 divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
+
+                        {/* 5대 혁신 효과 — 경쟁·가치 우위 관점의 전략 성과(최신 제품 덱) */}
+                        <div className="mt-14">
+                            <h3 className="text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
+                                XGEN 도입을 통해 달성하는 5대 혁신 효과
+                            </h3>
+                            <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                기능 우위를 넘어, 도입 즉시 조직의 경쟁력이 되는 다섯 가지
+                                성과 — 효율·리스크·신뢰·유연성·규제 대응을 하나의 플랫폼에서
+                                확보합니다.
+                            </p>
+                            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                                {EFFECTS.map((e, i) => (
+                                    <div
+                                        key={e.en}
+                                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    >
+                                        <span className="h-1.5 w-12 rounded-full bg-[linear-gradient(90deg,#00acee,#185aea)]" />
+                                        <div className="mt-4 flex items-baseline gap-2">
+                                            <span className="font-mono text-[13px] font-extrabold text-[#2461d8]">
+                                                {String(i + 1).padStart(2, "0")}
+                                            </span>
+                                            <span className="font-mono text-[10.5px] font-semibold uppercase tracking-wide text-[#4a6aa8]">
+                                                {e.en}
+                                            </span>
+                                        </div>
+                                        <h4 className="mt-1.5 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {e.ko}
+                                        </h4>
+                                        <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {e.desc}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 기존 방식 대비 전환 — 운영 모델 관점(성과의 근거) */}
+                        <h3 className="mt-16 text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
+                            기존 방식 대비, 무엇이 달라지는가
+                        </h3>
+                        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                            같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는
+                            접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는
+                            구조로 전환합니다.
+                        </p>
+                        <div className="mt-8 divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
                             {[
                                 {
                                     title: "구축형 SI가 아닌 운영형 플랫폼",
@@ -773,12 +868,6 @@ export default function ProductPage() {
                                     effect: "PoC를 넘어 운영 환경에서 즉시 활용",
                                 },
                                 {
-                                    title: "규제 산업도 가능한 AI 플랫폼",
-                                    before: "폐쇄망·망분리 환경으로 최신 AI 활용에 제약",
-                                    after: "온프레미스·망분리·제로트러스트 기반으로 규제 산업에서도 안정적으로 운영",
-                                    effect: "금융·공공·제조 등 규제 환경에서 운영 가능",
-                                },
-                                {
                                     title: "현업이 직접 만드는 AI",
                                     before: "개발조직 일정에 따라 AI 서비스 출시 지연",
                                     after: "노코드 Canvas와 Pathfinder로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
@@ -790,12 +879,6 @@ export default function ProductPage() {
                                     after: "설계·지식관리·배포·평가·운영을 단일 플랫폼에서 통합 관리",
                                     effect: "운영 도구를 하나의 플랫폼으로 통합",
                                 },
-                                {
-                                    title: "검증 가능한 Enterprise AI",
-                                    before: "벤더의 성능 주장과 LLM 자체 평가에 의존",
-                                    after: "GS인증 1등급·LLM Judge·감사로그·품질평가 체계로 신뢰할 수 있는 AI 운영 기반 제공",
-                                    effect: "GS인증·LLM Judge 기반 객관적 품질 검증",
-                                },
                             ].map((o, i) => (
                                 <div
                                     key={o.title}
@@ -805,9 +888,9 @@ export default function ProductPage() {
                                         {String(i + 1).padStart(2, "0")}
                                     </span>
                                     <div>
-                                        <h3 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)] md:text-[25px]">
+                                        <h4 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)] md:text-[25px]">
                                             {o.title}
-                                        </h3>
+                                        </h4>
                                         <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
                                             <div className="rounded-xl bg-[var(--color-surface-alt)] px-4 py-3">
                                                 <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11.5px] font-bold text-[var(--color-ink-subtle)] ring-1 ring-[var(--color-line)]">
@@ -959,48 +1042,25 @@ export default function ProductPage() {
                 >
                     <div className="mx-auto max-w-6xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Core Technology
+                            Core Technology · 6 Layers
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            검증된 오픈 기술 위에, 벤더 종속 없이
+                            6계층 코어 엔진 아키텍처
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            인프라부터 AI 에이전트까지, 엔터프라이즈 AI 운영을 하나의
+                            플랫폼으로 연결합니다.
+                        </p>
+                        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN은 특정 모델이나 클라우드에 묶이지 않습니다. 표준
-                            프로토콜과 검증된 엔진을 4개 계층으로 쌓아, 사내 GPU 모델부터
+                            프로토콜과 검증된 엔진을 6개 계층으로 쌓아, 사내 GPU 모델부터
                             상용 API까지 같은 방식으로 다룹니다.
                         </p>
-                        <div className="mt-8 grid gap-4 md:grid-cols-2">
-                            {TECH_LAYERS.map((l) => (
-                                <div
-                                    key={l.no}
-                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:p-7"
-                                >
-                                    <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest">
-                                        <span className="font-bold text-[#2461d8]">
-                                            {l.no}
-                                        </span>
-                                        <span className="text-[var(--color-ink-subtle)]">
-                                            · {l.en}
-                                        </span>
-                                    </div>
-                                    <h3 className="mt-4 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {l.title}
-                                    </h3>
-                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {l.desc}
-                                    </p>
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {l.chips.map((c) => (
-                                            <span
-                                                key={c}
-                                                className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 font-mono text-[12.5px] text-[var(--color-ink-muted)]"
-                                            >
-                                                {c}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
+                        {/* 5계층 코어 엔진 — 아이소메트릭 분해 스택 도해(네이티브 SVG) */}
+                        <div className="mt-8 overflow-x-auto">
+                            <div className="mx-auto min-w-[760px] max-w-5xl">
+                                <LayerStackArt />
+                            </div>
                         </div>
 
                         {/* 4계층 기술 스택의 참조 아키텍처로 연결 */}
@@ -1203,6 +1263,10 @@ export default function ProductPage() {
                                     보안·거버넌스 아키텍처 자세히 보기
                                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                                 </Link>
+                                {/* 빈 공간 — 보안 통제 개념도(동심 방어 링 + 통제 칩) */}
+                                <div className="mt-10 hidden lg:block">
+                                    <GovernanceArt />
+                                </div>
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {GOV.map((g) => (
