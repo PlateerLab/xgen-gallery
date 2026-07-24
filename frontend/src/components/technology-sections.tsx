@@ -173,6 +173,22 @@ function OntologyGraph() {
     const isPath = (a: string, b: string) =>
         path.some(([x, y]) => x === a && y === b);
 
+    // 노드 크기를 연결 수(degree)로 다채롭게 — 허브는 크고 말단은 작게(경로 노드는 하한 보장).
+    const degree: Record<string, number> = {};
+    for (const [a, b] of edges) {
+        degree[a] = (degree[a] || 0) + 1;
+        degree[b] = (degree[b] || 0) + 1;
+    }
+    const radiusOf = (k: string) => {
+        const d = degree[k] || 1;
+        let r =
+            d >= 12 ? 31 : d >= 7 ? 27 : d >= 5 ? 24 : d >= 3 ? 21 : d >= 2 ? 18 : 15;
+        if (pathNodes.has(k)) r = Math.max(r, 24);
+        return r;
+    };
+    const rQ = radiusOf("q");
+    const rFact = radiusOf("fact");
+
     return (
         <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-4">
             <svg viewBox="0 0 1040 600" className="w-full" role="img" aria-label="질문에서 출발해 상품·리뷰·평점 등 다양한 데이터 엔티티 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
@@ -216,13 +232,13 @@ function OntologyGraph() {
                 ))}
                 {/* ── 애니메이션: 질문에서 다중 홉 관계를 타고 '근거'로 흐르는 추론 (CSP-safe SMIL) ── */}
                 {/* 근거(fact) 도달 펄스 링 */}
-                <circle cx={nodes.fact[0]} cy={nodes.fact[1]} r="23" fill="none" stroke="#10b981" strokeWidth="2.5" opacity="0">
-                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.85;1" values="23;23;44" />
+                <circle cx={nodes.fact[0]} cy={nodes.fact[1]} r={rFact} fill="none" stroke="#10b981" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.85;1" values={`${rFact};${rFact};${rFact + 21}`} />
                     <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.85;0.92;1" values="0;0;0.55;0" />
                 </circle>
                 {/* 질문(q) 출발 펄스 링 */}
-                <circle cx={nodes.q[0]} cy={nodes.q[1]} r="23" fill="none" stroke="#2f7bff" strokeWidth="2.5" opacity="0">
-                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.12;1" values="23;38;38" />
+                <circle cx={nodes.q[0]} cy={nodes.q[1]} r={rQ} fill="none" stroke="#2f7bff" strokeWidth="2.5" opacity="0">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" keyTimes="0;0.12;1" values={`${rQ};${rQ + 15};${rQ + 15}`} />
                     <animate attributeName="opacity" dur="4s" repeatCount="indefinite" keyTimes="0;0.02;0.12;1" values="0;0.5;0;0" />
                 </circle>
                 {/* 경로 위를 흐르는 에너지(점선 이동) — 다중 홉 방향성 강조 */}
@@ -263,23 +279,34 @@ function OntologyGraph() {
                     const isQ = k === "q";
                     const isFact = k === "fact";
                     const onPath = pathNodes.has(k);
-                    const fs = label.length >= 4 ? 10 : label.length === 3 ? 11.5 : 13.5;
+                    const r = radiusOf(k);
+                    const fs = Math.max(
+                        8,
+                        Math.round(
+                            r *
+                                (label.length >= 4
+                                    ? 0.42
+                                    : label.length === 3
+                                      ? 0.5
+                                      : 0.58),
+                        ),
+                    );
                     return (
                         <g key={k}>
                             {(isQ || isFact) && (
-                                <circle cx={x} cy={y} r="31" fill={isFact ? "#10b981" : "#2f7bff"} opacity="0.12" />
+                                <circle cx={x} cy={y} r={r + 8} fill={isFact ? "#10b981" : "#2f7bff"} opacity="0.12" />
                             )}
                             <circle
                                 cx={x}
                                 cy={y}
-                                r="23"
+                                r={r}
                                 fill={isQ ? "url(#ont-g)" : isFact ? "#10b981" : "#ffffff"}
                                 stroke={isQ || isFact ? "none" : onPath ? "#2f7bff" : "#aebfdd"}
                                 strokeWidth={onPath ? 2.5 : 1.6}
                             />
                             <text
                                 x={x}
-                                y={y + 5}
+                                y={y + fs * 0.35}
                                 textAnchor="middle"
                                 fontSize={fs}
                                 fontWeight="700"
