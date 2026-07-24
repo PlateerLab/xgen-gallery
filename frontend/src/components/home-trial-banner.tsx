@@ -26,8 +26,8 @@ export function HomeTrialBanner() {
                         지금, 15일 무료로 XGEN을 직접 경험하세요
                     </p>
                     <p className="mt-2 text-[15px] leading-relaxed text-white/85">
-                        온프레미스 환경에서도 설치와 구축 부담 없이 가입 즉시 시작 —
-                        Agentic AI 워크플로우를 전 기능으로 15일간 무료로
+                        온프레미스 환경에서도 설치와 구축 부담 없이 — Agentic AI
+                        워크플로우를 전 기능으로 15일간 무료로
                     </p>
                 </div>
                 <div className="flex flex-none flex-col items-stretch gap-2.5 sm:flex-row sm:items-center">
