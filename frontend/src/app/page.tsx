@@ -1,6 +1,7 @@
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/hero";
+import { HomeTrialBanner } from "@/components/home-trial-banner";
 import { CustomerStrip } from "@/components/customer-strip";
 import { HomePositioning } from "@/components/home-positioning";
 import { HomeResearch } from "@/components/home-research";
@@ -47,6 +48,7 @@ export default function Home() {
                     latestPost={latestPost}
                     latestIssue={latestIssue}
                 />
+                <HomeTrialBanner />
                 <CustomerStrip />
                 <Reveal><HomePositioning /></Reveal>
                 {/* 제품 가치·트러스트를 앞으로 */}
