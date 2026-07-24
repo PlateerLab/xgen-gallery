@@ -10,6 +10,12 @@ export interface Tool {
     install: string;
     hasDemo: boolean;
     language: string;
+    /**
+     * 추가일(YYYY-MM-DD, 선택). 신규 라이브러리를 키비주얼에 '먼저' 띄우는 기준.
+     * 넣으면 이 날짜로 최신순 판별, 생략하면 이 배열의 '뒤에 있을수록 최신'으로 폴백.
+     * → 새 라이브러리를 배열 끝에 추가(또는 addedAt 지정)하면 자동으로 키비주얼 첫 슬라이드가 된다.
+     */
+    addedAt?: string;
 }
 
 export const TOOLS: Tool[] = [

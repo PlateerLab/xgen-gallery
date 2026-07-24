@@ -10,8 +10,9 @@ import { useI18n } from "@/components/i18n-provider";
 
 const SLIDE_DURATION = 7000;
 
-// 키비주얼에는 카테고리별 '가장 최근에 추가된' 라이브러리 1개씩만 노출한다.
-// TOOLS 배열은 추가 순서이므로 각 카테고리에서 마지막 항목이 최신이다.
+// 키비주얼 = '가장 최신 라이브러리'를 첫 슬라이드로, 이어서 카테고리별 최신 1개씩(다양성).
+// 최신 판별: addedAt(있으면 날짜) 우선, 없으면 TOOLS 배열 순서(뒤일수록 최신)로 폴백.
+// → 새 라이브러리를 배열 끝에 추가하거나 addedAt을 지정하면 자동으로 맨 앞에 노출된다.
 const CATEGORY_ORDER: Tool["category"][] = [
     "ingestion",
     "knowledge",
@@ -19,11 +20,27 @@ const CATEGORY_ORDER: Tool["category"][] = [
     "utility",
 ];
 function featuredTools(): Tool[] {
-    const latest = new Map<Tool["category"], Tool>();
-    for (const tool of TOOLS) latest.set(tool.category, tool); // 뒤 항목이 덮어씀 = 최신
-    return CATEGORY_ORDER.map((c) => latest.get(c)).filter(
-        (tool): tool is Tool => Boolean(tool),
-    );
+    const items = TOOLS.map((tool, idx) => ({ tool, idx }));
+    const recency = (x: { tool: Tool; idx: number }) =>
+        x.tool.addedAt ? Date.parse(x.tool.addedAt) : x.idx;
+
+    // 카테고리별 최신 1개
+    const latest = new Map<Tool["category"], { tool: Tool; idx: number }>();
+    for (const x of items) {
+        const cur = latest.get(x.tool.category);
+        if (!cur || recency(x) >= recency(cur)) latest.set(x.tool.category, x);
+    }
+    // 전체 최신 = 키비주얼 첫 슬라이드
+    const newest = [...items].sort((a, b) => recency(b) - recency(a))[0];
+    if (!newest) return [];
+
+    // 나머지 = 다른 카테고리들의 최신 1개(최신순), 중복 제외
+    const rest = CATEGORY_ORDER.map((c) => latest.get(c))
+        .filter((x): x is { tool: Tool; idx: number } => Boolean(x))
+        .filter((x) => x.tool.id !== newest.tool.id)
+        .sort((a, b) => recency(b) - recency(a));
+
+    return [newest, ...rest].map((x) => x.tool);
 }
 
 /**
