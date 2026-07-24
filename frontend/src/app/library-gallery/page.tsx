@@ -6,7 +6,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { LivePreview } from "@/components/live-preview";
 import { ToolGrid } from "@/components/tool-grid";
-import { UseCases } from "@/components/usecases";
 import { RuntimeContent } from "@/components/technology-sections";
 
 export const metadata = pageMetadata({
@@ -36,9 +35,6 @@ export default function LibraryGalleryPage() {
             {/* 메인 페이지(키비주얼 제외)와 동일한 콘텐츠 구성 */}
             <main>
                 <ToolGrid />
-                <section id="recipes" className="scroll-mt-24">
-                    <UseCases />
-                </section>
                 {/* Runtime — Technology에서 이관. onepage Section과 동일한 컨테이너로 래핑 */}
                 <section
                     id="runtime"

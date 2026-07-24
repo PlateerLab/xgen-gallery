@@ -340,14 +340,6 @@ export const NAV_GROUPS: NavGroup[] = [
                 label: "Library Gallery",
                 id: "library-gallery",
                 route: "/library-gallery",
-                // 라이브러리 레시피는 갤러리 하위 서브메뉴로 둔다(같은 페이지 #recipes 앵커).
-                children: [
-                    {
-                        label: "Library Recipes",
-                        id: "library-recipes",
-                        route: "/library-gallery#recipes",
-                    },
-                ],
             },
             {
                 // Runtime — 독립 MCP 런타임. 단일 열이라 Library 항목들과 함께
