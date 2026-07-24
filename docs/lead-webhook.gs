@@ -190,6 +190,11 @@ function doPost(e){
   // 모든 탭 공통 — 수신시각을 한국(서울) 시간으로 통일
   data.receivedAt = seoulTime(data.receivedAt);
 
+  // 시트 쓰기는 스크립트 락으로 직렬화 — 동시 제출이 겹쳐 같은 행을 덮어쓰는 유실 방지.
+  var lock = LockService.getScriptLock();
+  try { lock.waitLock(15000); } catch (e) {}
+  try {
+
   if (data.kind === "newsletter" || data.kind === "blog"){
     upsertSubscriber(data);                          // 구독 → subscribers 탭(메일 없음)
 
@@ -212,6 +217,8 @@ function doPost(e){
     //   subject: "[상담 문의] " + (data.inquiryType||"") + " - " + (data.name||"") + " (" + (data.company||"") + ")",
     //   body: body(CONTACT_COLS, data) + "\n레퍼러 페이지: " + fmt(data.referrer) });
   }
+
+  } finally { lock.releaseLock(); }
   return ContentService.createTextOutput(JSON.stringify({ ok:true }))
     .setMimeType(ContentService.MimeType.JSON);
 }
