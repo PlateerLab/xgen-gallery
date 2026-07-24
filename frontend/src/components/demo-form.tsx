@@ -314,6 +314,17 @@ export function DemoForm() {
                             ? u.origin + u.pathname // 내부 페이지는 경로까지만(쿼리 제외)
                             : u.href; // 외부 유입은 전체 URL
                 }
+                // 이전 페이지를 못 잡으면(예: /contact 직접 방문) 최소한의 유입 맥락을 남긴다.
+                //  - CTA의 from 파라미터가 있으면 그걸 붙이고, 없으면 현재 페이지 경로.
+                if (!referrer) {
+                    const from = new URLSearchParams(
+                        window.location.search,
+                    ).get("from");
+                    referrer =
+                        window.location.origin +
+                        window.location.pathname +
+                        (from ? `?from=${from}` : "");
+                }
             } catch {
                 referrer = "";
             }

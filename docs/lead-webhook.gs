@@ -27,7 +27,7 @@ var CONTACT_COLS = [
   ["name","성함"], ["email","이메일"], ["phone","연락처"], ["company","회사"],
   ["department","부서"], ["jobTitle","직급"], ["referralPath","방문경로"], ["inquiry","상담 내용"],
   ["agreePrivacyPolicy","개인정보취급방침 동의"], ["agreePrivacyCollect","개인정보 수집·이용 동의"],
-  ["agreeThirdParty","제3자 정보제공 동의"], ["agreeMarketing","마케팅 수신 동의"]
+  ["agreeMarketing","마케팅 수신 동의"]
 ];
 // '소개서' 열에는 종류 표시명(XGEN / AI Code Assistant)을 기록(brochureType 필드).
 var BROCHURE_COLS = [
