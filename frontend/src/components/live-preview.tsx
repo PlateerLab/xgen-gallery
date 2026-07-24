@@ -171,17 +171,38 @@ export function LivePreview() {
 
             {/* 우: 일러스트(밝은 서피스 카드) */}
             <div className="order-1 md:order-2">
+                {/* 다크 디바이스 프레임 — 코드 어시스턴트 히어로와 같은 어휘로 배경에 녹아들게.
+                    (일러스트는 밝은 서피스 전제라 안쪽에 밝은 '스크린'으로 유지) */}
                 <div
                     key={`viz-${cur}`}
-                    className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-white via-[#f5f7fd] to-[#e7ecf7] p-6 ring-1 ring-white/60 shadow-[0_40px_90px_-40px_rgba(251,191,36,0.35),0_24px_50px_-30px_rgba(0,0,0,0.65)] md:p-8"
+                    className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#0b1020]/70 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.85)] backdrop-blur-md"
                 >
-                    {showNew && (
-                        <span className="absolute left-4 top-4 z-10 rounded-full bg-[#fcd34d] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0b1220] shadow-md">
-                            New
+                    {/* 크롬 바 — 맥 도트 + 라이브러리명 + (신규 New / 카테고리) */}
+                    <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+                        <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                        <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                        <span className="ml-2 rounded-md bg-white/[0.06] px-2.5 py-1 font-mono text-[12px] text-white/70">
+                            {tool.name}
                         </span>
-                    )}
-                    <div className="w-full max-w-md">
-                        <Visual tool={tool} />
+                        {showNew ? (
+                            <span className="ml-auto rounded-full bg-[#fcd34d] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#0b1220]">
+                                New
+                            </span>
+                        ) : (
+                            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-[#7dd3fc]/30 bg-[#7dd3fc]/10 px-2.5 py-1 text-[11.5px] font-semibold text-[#7dd3fc]">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[#7dd3fc]" />
+                                {tool.category}
+                            </span>
+                        )}
+                    </div>
+                    {/* 스크린 — 밝은 일러스트 캔버스(프레임 안에 인셋) */}
+                    <div className="p-4 md:p-5">
+                        <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-white via-[#f5f7fd] to-[#eef2fb] p-5 ring-1 ring-white/40 md:p-6">
+                            <div className="w-full max-w-md">
+                                <Visual tool={tool} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

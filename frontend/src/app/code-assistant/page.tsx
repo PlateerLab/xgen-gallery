@@ -446,11 +446,15 @@ export default function CodeAssistantPage() {
                             Why Code Assistant
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            코드를 아는 것을 넘어, 우리 프로젝트를 이해합니다
+                            AI는 코드를 생성하는 것이 아니라, 우리 개발 환경을
+                            이해해야 합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            사내 저장소를 학습해 프로젝트 맥락에서 답하고, 온프레미스로
-                            소스를 보호하며, 모델 중립 구조로 원하는 LLM을 선택합니다.
+                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            사내 Git 저장소와 개발 표준을 기반으로 프로젝트 맥락을
+                            이해하고 정확한 답변을 제공합니다. 온프레미스 환경에서
+                            소스코드를 안전하게 보호하며, 특정 AI 모델에 종속되지 않는
+                            개방형 구조로 기업 환경에 맞는 LLM을 자유롭게 선택할 수
+                            있습니다.
                         </p>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
                             {PILLARS.map((p) => (
