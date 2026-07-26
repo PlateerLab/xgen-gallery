@@ -299,7 +299,7 @@ export function Hero({
 
             {/* 최근 소식 — 동영상 위 하단 오버레이 (제품소식 한 줄 + 최근 블로그·뉴스레터) */}
             {(productNews || latestPost || latestIssue) && (
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden md:block">
                     <div className="mx-auto w-full max-w-6xl px-6 pb-16 md:pb-24">
                         <div className="pointer-events-auto flex flex-col gap-3">
                             {/* 제품소식 — 블로그·뉴스레터 위 한 줄 */}

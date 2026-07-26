@@ -321,7 +321,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </nav>
 
                 <div className="ml-auto flex items-center justify-end gap-3">
-                    <div className="w-[150px] sm:w-[180px] lg:w-[210px]">
+                    <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
                     {/* utility icons — members + github (desktop only) */}
