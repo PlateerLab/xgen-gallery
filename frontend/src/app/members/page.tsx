@@ -36,12 +36,12 @@ export default function MembersPage() {
             />
             <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="members" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <MembersHeader />
                 </div>
             </section>
 
-            <main className="mx-auto max-w-6xl px-6 pb-24 pt-12">
+            <main className="mx-auto max-w-7xl px-6 pb-24 pt-12">
                 <Suspense
                     fallback={
                         <>

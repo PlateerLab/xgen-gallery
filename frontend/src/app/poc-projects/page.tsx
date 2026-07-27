@@ -26,7 +26,7 @@ export default function PocProjectsPage() {
             />
             <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
                         Applied AI
                     </p>
@@ -44,7 +44,7 @@ export default function PocProjectsPage() {
                 </div>
             </section>
 
-            <main className="mx-auto max-w-6xl px-6 py-24">
+            <main className="mx-auto max-w-7xl px-6 py-24">
                 <PocContent />
                 <div className="mt-8">
                     <PocCatalog />

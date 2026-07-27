@@ -28,7 +28,7 @@ export default function LibraryGalleryPage() {
             {/* 히어로 — LivePreview가 좌(키 메시지+캡션+컨트롤)/우(일러스트) 전체를 렌더 */}
             <section className="relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="tools" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 pt-28 md:pb-20 md:pt-36">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-28 md:pb-20 md:pt-36">
                     <LivePreview />
                 </div>
             </section>
@@ -40,7 +40,7 @@ export default function LibraryGalleryPage() {
                     id="runtime"
                     className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             / Runtime
                         </p>

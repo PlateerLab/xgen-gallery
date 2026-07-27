@@ -566,7 +566,7 @@ export default function ProductPage() {
 
             {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6 sm:justify-between">
+                <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6 sm:justify-between">
                     {TRUST.map((t) => (
                         <div key={t.label} className="flex items-center gap-2.5">
                             <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
@@ -590,7 +590,7 @@ export default function ProductPage() {
             <main>
                 {/* 문제 제기 — 브로셔 오프너 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             The Challenge
                         </p>
@@ -635,7 +635,7 @@ export default function ProductPage() {
                         aria-hidden
                         className="pointer-events-none absolute left-1/2 top-[64px] h-[280px] w-[640px] max-w-[92vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(125,211,252,0.3),rgba(47,123,255,0.14)_45%,transparent_75%)] blur-[46px]"
                     />
-                    <div className="relative mx-auto max-w-6xl px-6 py-16">
+                    <div className="relative mx-auto max-w-7xl px-6 py-16">
                         <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
                             XGEN · Agentic AI Platform
                         </p>
@@ -672,7 +672,7 @@ export default function ProductPage() {
                     id="platform"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             4 Core Values
                         </p>
@@ -712,7 +712,7 @@ export default function ProductPage() {
 
                 {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더) */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Build for Everyone
                         </p>
@@ -791,7 +791,7 @@ export default function ProductPage() {
                     id="value"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
@@ -931,7 +931,7 @@ export default function ProductPage() {
                     id="features"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Features
                         </p>
@@ -1041,7 +1041,7 @@ export default function ProductPage() {
                     id="core-tech"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Technology · 6 Layers
                         </p>
@@ -1080,7 +1080,7 @@ export default function ProductPage() {
                     id="roles"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Roles
                         </p>
@@ -1118,7 +1118,7 @@ export default function ProductPage() {
                     id="on-premise"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             On-Premise
                         </p>
@@ -1164,7 +1164,7 @@ export default function ProductPage() {
                     id="deployment"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Deployment
                         </p>
@@ -1239,7 +1239,7 @@ export default function ProductPage() {
                         aria-hidden
                         className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
                     />
-                    <div className="relative mx-auto max-w-6xl px-6 py-24">
+                    <div className="relative mx-auto max-w-7xl px-6 py-24">
                         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
                             <div className="flex h-full flex-col">
                                 <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
@@ -1297,7 +1297,7 @@ export default function ProductPage() {
                     id="certification"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Certifications & Quality
                         </p>
@@ -1334,7 +1334,7 @@ export default function ProductPage() {
                     id="cases"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="flex flex-wrap items-end justify-between gap-4">
                             <div>
                                 <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1394,7 +1394,7 @@ export default function ProductPage() {
 
                 {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-16">
+                    <div className="mx-auto max-w-7xl px-6 py-16">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Resources
                         </p>

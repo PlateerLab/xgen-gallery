@@ -213,7 +213,7 @@ export default function PolarPage() {
                     aria-hidden
                     className="absolute inset-0 bg-gradient-to-r from-[#070b1c] via-[#070b1c]/75 to-transparent"
                 />
-                <div className="relative mx-auto flex min-h-[755px] w-full max-w-6xl items-center px-6 pt-20">
+                <div className="relative mx-auto flex min-h-[755px] w-full max-w-7xl items-center px-6 pt-20">
                     <div className="max-w-xl">
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · Polar
@@ -237,7 +237,7 @@ export default function PolarPage() {
             <main>
                 {/* 왜 Polar인가 (소개 / Overview) */}
                 <section id="overview" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Why Polar
                         </p>
@@ -272,7 +272,7 @@ export default function PolarPage() {
 
                 {/* 작동 원리 (How It Works) */}
                 <section id="how-it-works" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             How it works
                         </p>
@@ -296,7 +296,7 @@ export default function PolarPage() {
 
                 {/* 핵심 기술 (Technology) */}
                 <section id="technology" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Technology
                         </p>
@@ -338,7 +338,7 @@ export default function PolarPage() {
 
                 {/* 활용 사례 (Use Cases) */}
                 <section id="use-cases" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Use Cases
                         </p>
@@ -425,7 +425,7 @@ export default function PolarPage() {
 
                 {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             After Deployment
                         </p>

@@ -24,7 +24,7 @@ const ROTATE_MS = 6000;
 // 증명한다"는 서사를 살린다. XGEN 소개영상(hero-xgen.mp4, xgen.im 공식)은 두 번째.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
-    "/hero-vision.jpeg",
+    "/hero-vision.mp4",
     "/hero-xgen.mp4",
     "/hero-security.jpeg",
     "/hero-slide2.mp4",
@@ -290,7 +290,7 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
             </div>
 
-            <div className="relative mx-auto w-full max-w-6xl px-6 py-28">
+            <div className="relative mx-auto w-full max-w-7xl px-6 py-28">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter">
                     {active === 0 ? (
@@ -327,7 +327,7 @@ export function Hero({
             {/* 최근 소식 — 동영상 위 하단 오버레이 (제품소식 한 줄 + 최근 블로그·뉴스레터) */}
             {(productNews || latestPost || latestIssue) && (
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden md:block">
-                    <div className="mx-auto w-full max-w-6xl px-6 pb-16 md:pb-24">
+                    <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:pb-24">
                         <div className="pointer-events-auto flex flex-col gap-3">
                             {/* 제품소식 — 블로그·뉴스레터 위 한 줄 */}
                             {productNews && (

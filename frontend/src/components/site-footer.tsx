@@ -46,7 +46,7 @@ export function SiteFooter() {
                     />
 
                     <div
-                        className={`relative mx-auto max-w-6xl px-6 py-20 md:py-24 ${
+                        className={`relative mx-auto max-w-7xl px-6 py-20 md:py-24 ${
                             showDemo
                                 ? "grid items-center gap-10 text-center md:grid-cols-[1.2fr_0.8fr] md:text-left"
                                 : "text-center"
@@ -156,7 +156,7 @@ export function SiteFooter() {
                     </div>
                 </div>
             )}
-            <div className="mx-auto max-w-6xl px-6 py-16">
+            <div className="mx-auto max-w-7xl px-6 py-16">
                 <div className="grid gap-10 md:grid-cols-[1.1fr_1.5fr_1fr]">
                     {/* brand */}
                     <div className="flex flex-col gap-3">

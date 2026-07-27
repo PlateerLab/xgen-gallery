@@ -23,7 +23,7 @@ function GroupHero({
     return (
         <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
             <SceneBackground concept={group.concept} />
-            <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+            <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                 {content ?? (
                     <DefaultGroupHero group={group} />
                 )}
@@ -109,7 +109,7 @@ export function Section({
                     : "bg-[var(--color-surface)]",
             )}
         >
-            <div className="mx-auto max-w-6xl px-6 py-24">
+            <div className="mx-auto max-w-7xl px-6 py-24">
                 <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / {item.label}
                 </p>

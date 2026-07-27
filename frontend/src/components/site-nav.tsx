@@ -197,19 +197,19 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
             <div className="flex h-[84px] w-full items-center px-6">
                 <Link
                     href="/"
-                    className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-72rem)/2)]"
+                    className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-80rem)/2)]"
                 >
                     <BrandMark
                         className={cn(
-                            "h-[21px] w-auto transition",
+                            "h-[33px] w-auto transition",
                             light && "brightness-0 invert",
                         )}
                     />
                     <span
-                        className="relative text-[28px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
+                        className="relative text-[42px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
                     >
                         {/* LABS 글자 위 Beta 표기 (오른쪽 정렬 — S 위) */}
-                        <span className="pointer-events-none absolute -top-2.5 right-0 text-[10px] font-bold uppercase tracking-wide text-[#00adee]">
+                        <span className="pointer-events-none absolute -top-3 right-0 text-[11px] font-bold uppercase tracking-wide text-[#00adee]">
                             Beta
                         </span>
                         LABS
@@ -217,7 +217,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </Link>
 
                 {/* desktop groups */}
-                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-extrabold xl:ml-14 xl:flex 2xl:ml-16 2xl:text-[19px]">
+                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-medium xl:ml-14 xl:flex 2xl:ml-16">
                     {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                         const menuItems = g.items.filter((it) => !it.hidden);
                         const hasMenu = !g.flat && menuItems.length > 0;
@@ -259,9 +259,9 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                             {hasMenu && openKey === g.key && (
                                 <div
                                     className={cn(
+                                        // 업스테이지 벤치마크 — 와이드 메뉴 포함 모든 드롭다운을
+                                        // 트리거 좌측 끝에 앵커해 바로 아래로 펼친다.
                                         "absolute left-0 top-full pt-3",
-                                        // 와이드 메뉴는 트리거 기준 가운데로 펼침
-                                        g.wide && "lg:left-1/2 lg:-translate-x-1/2",
                                     )}
                                 >
                                     {g.wide ? (
@@ -370,7 +370,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
             {/* mobile drawer — full-width accordion rows */}
             {mobileOpen && (
                 <div className="border-t border-[var(--color-line)] bg-white xl:hidden">
-                    <div className="mx-auto max-h-[80vh] max-w-6xl divide-y divide-[var(--color-line)] overflow-y-auto px-6">
+                    <div className="mx-auto max-h-[80vh] max-w-7xl divide-y divide-[var(--color-line)] overflow-y-auto px-6">
                         {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                             const items = g.items.filter((it) => !it.hidden);
                             const hasMenu = !g.flat && items.length > 0;

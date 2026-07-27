@@ -43,7 +43,7 @@ export default function ContactPage() {
                     <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
                 </div>
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-[140px] pb-20 md:pt-[160px] md:pb-24">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-[140px] pb-20 md:pt-[160px] md:pb-24">
                     <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
                         {/* intro */}
                         <div className="md:pt-6">

@@ -29,7 +29,7 @@ const EFFECTS = [
 export function QualitySecurity() {
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-            <div className="mx-auto max-w-6xl px-6 py-28">
+            <div className="mx-auto max-w-7xl px-6 py-28">
                 {/* 헤딩 + 상태 (좌) · 제품 이미지 (우) */}
                 <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
                 <div className="max-w-3xl">

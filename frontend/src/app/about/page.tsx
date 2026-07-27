@@ -105,7 +105,7 @@ export default function AboutPage() {
             {/* Hero */}
             <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="about" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                         About · Plateer Labs
                     </p>
@@ -123,7 +123,7 @@ export default function AboutPage() {
             <main>
                 {/* Mission */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Mission
                         </p>
@@ -153,7 +153,7 @@ export default function AboutPage() {
 
                 {/* 우리가 하는 일 — 파이프라인 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             AI 연구소가 만든 것을, 제품으로 증명합니다
                         </h2>
@@ -202,7 +202,7 @@ export default function AboutPage() {
 
                 {/* 신뢰의 근거 + 연혁 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             신뢰의 근거
                         </h2>
@@ -253,7 +253,7 @@ export default function AboutPage() {
 
                 {/* 팀 + Company + CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid gap-4 md:grid-cols-2">
                             <Link
                                 href="/members"

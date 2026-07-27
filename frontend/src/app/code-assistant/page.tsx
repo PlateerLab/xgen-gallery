@@ -376,7 +376,7 @@ export default function CodeAssistantPage() {
             {/* Hero */}
             <section className="relative flex min-h-[755px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
-                <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 pt-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+                <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-6 pt-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
                     <div>
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Product · Code Assistant
@@ -417,7 +417,7 @@ export default function CodeAssistantPage() {
 
             {/* 보안 태세 트러스트 바 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-5 px-6 py-7 md:grid-cols-4">
+                <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-5 px-6 py-7 md:grid-cols-4">
                     {TRUST.map((t) => (
                         <div key={t.label} className="flex items-center gap-3">
                             <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
@@ -441,7 +441,7 @@ export default function CodeAssistantPage() {
             <main>
                 {/* Overview — 3대 강점 */}
                 <section id="overview" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Why Code Assistant
                         </p>
@@ -482,7 +482,7 @@ export default function CodeAssistantPage() {
                     id="value"
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
@@ -550,7 +550,7 @@ export default function CodeAssistantPage() {
 
                 {/* Capabilities — 핵심 기능 */}
                 <section id="capabilities" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Capabilities
                         </p>
@@ -593,7 +593,7 @@ export default function CodeAssistantPage() {
 
                 {/* How It Works — 작동 원리 */}
                 <section id="how-it-works" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             How It Works
                         </p>
@@ -641,7 +641,7 @@ export default function CodeAssistantPage() {
 
                 {/* Comparison — 범용 도구 대비 */}
                 <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             범용 코드 어시스턴트와 무엇이 다른가
                         </h2>
@@ -683,7 +683,7 @@ export default function CodeAssistantPage() {
 
                 {/* Integrations — 연동·배포 */}
                 <section id="integrations" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             연동과 배포
                         </h2>
@@ -710,7 +710,7 @@ export default function CodeAssistantPage() {
 
                 {/* Technical Specs — 기술 사양 */}
                 <section id="specs" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Technical Specs
                         </p>
@@ -743,7 +743,7 @@ export default function CodeAssistantPage() {
 
                 {/* Use Cases — 활용 사례 */}
                 <section id="use-cases" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Use Cases
                         </p>
@@ -815,7 +815,7 @@ export default function CodeAssistantPage() {
 
                 {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             After Deployment
                         </p>
@@ -834,7 +834,7 @@ export default function CodeAssistantPage() {
 
                 {/* CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
                                 우리 코드베이스에 맞춰 검토해 보세요

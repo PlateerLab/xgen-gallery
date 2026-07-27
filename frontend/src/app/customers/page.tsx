@@ -60,7 +60,7 @@ export default async function CustomersPage({
                     aria-hidden
                     className="pointer-events-none absolute -bottom-40 -left-24 h-[440px] w-[440px] rounded-full bg-[#00acee]/10 blur-[130px]"
                 />
-                <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <div>
                         <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                             Applied AI · 고객 사례
@@ -95,7 +95,7 @@ export default async function CustomersPage({
                 </div>
             </section>
 
-            <main className="mx-auto w-full max-w-6xl px-6 py-16">
+            <main className="mx-auto w-full max-w-7xl px-6 py-16">
                 <CustomersLibrary cases={cases} initialProduct={initialProduct} />
 
                 <p className="mt-8 text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">

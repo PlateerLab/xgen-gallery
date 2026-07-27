@@ -139,7 +139,7 @@ function ExperienceArt({ kind }: { kind: ArtKind }) {
 export function HomeExperience() {
     return (
         <section id="live-demo" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-            <div className="mx-auto max-w-6xl px-6 py-28">
+            <div className="mx-auto max-w-7xl px-6 py-28">
                 <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / Live Demo
                 </p>

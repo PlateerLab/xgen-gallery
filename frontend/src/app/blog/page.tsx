@@ -85,7 +85,7 @@ export default function BlogPage() {
             />
 
             <section className="border-b border-[var(--color-line)] bg-white">
-                <div className="mx-auto w-full max-w-6xl px-6 pb-12 pt-10 md:pb-16 md:pt-14">
+                <div className="mx-auto w-full max-w-7xl px-6 pb-12 pt-10 md:pb-16 md:pt-14">
                     <div className="mb-8 flex items-baseline gap-2.5">
                         <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
                             Insight
@@ -98,7 +98,7 @@ export default function BlogPage() {
                 </div>
             </section>
 
-            <main id="articles" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14">
+            <main id="articles" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-14">
                 <Suspense fallback={null}>
                     <BlogList posts={posts} />
                 </Suspense>

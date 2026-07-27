@@ -107,7 +107,7 @@ export default function DocumentationPage() {
             {/* Hero */}
             <section className="relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="resources" />
-                <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">
+                <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
                         Resources · Documentation
                     </p>
@@ -141,7 +141,7 @@ export default function DocumentationPage() {
             <main>
                 {/* 플랫폼 가이드 */}
                 <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Platform
                         </p>
@@ -195,7 +195,7 @@ export default function DocumentationPage() {
 
                 {/* 라이브러리 가이드 */}
                 <section className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Libraries
                         </p>
@@ -276,7 +276,7 @@ export default function DocumentationPage() {
 
                 {/* 사용자 매뉴얼 임베드 — 상세 레퍼런스 */}
                 <section className="bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Manual
                         </p>

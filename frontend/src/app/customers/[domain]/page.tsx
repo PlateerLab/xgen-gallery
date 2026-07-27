@@ -106,7 +106,7 @@ export default async function CustomerDomainPage({
 
             <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 py-24 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     {cases.length === 0 && (
                         <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
@@ -146,7 +146,7 @@ export default async function CustomerDomainPage({
             </section>
 
             {cases.length > 0 && (
-                <main className="mx-auto w-full max-w-6xl px-6 py-16">
+                <main className="mx-auto w-full max-w-7xl px-6 py-16">
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {cases.map((c) => (
                             <Link

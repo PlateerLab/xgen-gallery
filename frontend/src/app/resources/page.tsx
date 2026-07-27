@@ -43,7 +43,7 @@ export default function ResourcesPage() {
             {/* Hero */}
             <section className="relative flex min-h-[440px] items-center overflow-hidden border-b border-white/10 py-24 text-white">
                 <SceneBackground concept="products" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                         Resources · 자료실
                     </p>
@@ -60,7 +60,7 @@ export default function ResourcesPage() {
 
             <main>
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Download
                         </p>

@@ -19,7 +19,7 @@ const CUSTOMERS: { name: string; src?: string; h?: string }[] = [
 export function CustomerStrip() {
     return (
         <section className="overflow-hidden border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-            <div className="mx-auto max-w-6xl px-6 py-9">
+            <div className="mx-auto max-w-7xl px-6 py-9">
                 <p className="mb-6 text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     Trusted by Industry Leaders
                 </p>

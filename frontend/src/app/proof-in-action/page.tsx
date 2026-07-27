@@ -29,12 +29,12 @@ export default function ProofInActionPage() {
             />
             <section className="relative overflow-hidden border-b border-white/10 py-24 pt-36 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-6xl px-6">
+                <div className="relative mx-auto w-full max-w-7xl px-6">
                     <ProofHero />
                 </div>
             </section>
 
-            <main className="mx-auto max-w-6xl px-6 py-24">
+            <main className="mx-auto max-w-7xl px-6 py-24">
                 <PocDemos />
             </main>
             <SiteFooter />

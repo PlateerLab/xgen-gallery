@@ -49,7 +49,7 @@ export function HomeOpenSource() {
             id="open-source"
             className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
         >
-            <div className="mx-auto max-w-6xl px-6 py-24">
+            <div className="mx-auto max-w-7xl px-6 py-24">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div className="max-w-2xl">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">

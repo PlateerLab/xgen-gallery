@@ -995,7 +995,7 @@ export function SynapticDemoClient({ tool }: { tool: Tool }) {
     }, [exploreContext, mode, searchHits, askResponse]);
 
     return (
-        <main className="mx-auto max-w-6xl px-6 pt-8 pb-24">
+        <main className="mx-auto max-w-7xl px-6 pt-8 pb-24">
             <Link
                 href="/library-gallery"
                 className="inline-flex items-center gap-1.5 text-[16px] text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"

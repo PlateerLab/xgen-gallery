@@ -58,7 +58,7 @@ const STEPS: {
 export function HomePositioning() {
     return (
         <section className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-            <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+            <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
                 <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     Plateer Labs
                 </p>

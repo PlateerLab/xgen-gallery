@@ -22,7 +22,7 @@ const LOGOS: { name: string; src: string }[] = [
 export function LLMMarquee() {
     return (
         <section className="overflow-hidden border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-            <div className="mx-auto max-w-6xl px-6 py-9">
+            <div className="mx-auto max-w-7xl px-6 py-9">
                 <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_7%,#000_93%,transparent)]">
                     <div className="marquee-track flex w-max items-center gap-12 pr-12 md:gap-16 md:pr-16">
                         {[...LOGOS, ...LOGOS].map((l, i) => (

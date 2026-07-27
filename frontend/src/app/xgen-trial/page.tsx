@@ -157,7 +157,7 @@ export default function XgenTrialPage() {
             {/* Hero — 2단: 카피/CTA + 제품 목업 */}
             <section className="relative flex min-h-[600px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
                         <div>
                             <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
@@ -207,7 +207,7 @@ export default function XgenTrialPage() {
             <main>
                 {/* What is XGEN — 연동·설계·운영 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             What is XGEN
                         </p>
@@ -245,7 +245,7 @@ export default function XgenTrialPage() {
 
                 {/* 이런 기업에 추천 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Who it&apos;s for
                         </p>
@@ -287,7 +287,7 @@ export default function XgenTrialPage() {
 
                 {/* 핵심 기능 8 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             체험에서 직접 써보는 핵심 기능
                         </h2>
@@ -318,7 +318,7 @@ export default function XgenTrialPage() {
 
                 {/* 신청 방법 STEP */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             신청부터 시작까지, 4단계
                         </h2>
@@ -367,7 +367,7 @@ export default function XgenTrialPage() {
 
                 {/* CTA 밴드 */}
                 <section className="border-t border-[var(--color-line)] bg-[linear-gradient(120deg,#eaf5ff,#eef4fc)]">
-                    <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
                                 지금 15일 무료로 시작하세요

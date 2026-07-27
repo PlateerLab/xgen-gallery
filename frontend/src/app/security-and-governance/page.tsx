@@ -199,7 +199,7 @@ export default function SecurityPage() {
             {/* Hero */}
             <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-6xl px-6 pt-16">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
                         <div>
                             <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
@@ -230,7 +230,7 @@ export default function SecurityPage() {
             <main>
                 {/* 다층 통제 체계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
                                 <Eyebrow>Layered Control</Eyebrow>
@@ -276,7 +276,7 @@ export default function SecurityPage() {
 
                 {/* 가드레일 모델 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
                                 <Eyebrow>Guard Model</Eyebrow>
@@ -337,7 +337,7 @@ export default function SecurityPage() {
 
                 {/* PII + 금칙어 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
                                 <Eyebrow>Data Protection</Eyebrow>
@@ -394,7 +394,7 @@ export default function SecurityPage() {
 
                 {/* 감사 로그 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
                                 <Eyebrow>Audit &amp; Compliance</Eyebrow>
@@ -433,7 +433,7 @@ export default function SecurityPage() {
 
                 {/* AI 위험도 등급 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
                                 <Eyebrow>AI Risk Governance</Eyebrow>
@@ -497,7 +497,7 @@ export default function SecurityPage() {
 
                 {/* 온프레미스·보안 아키텍처 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-6xl px-6 py-24">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>On-Premise Architecture</Eyebrow>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             온프레미스·보안 아키텍처 위에서 통제가 완성됩니다

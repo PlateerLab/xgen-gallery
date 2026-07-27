@@ -85,7 +85,7 @@ export function HomeProductTour() {
 
     return (
         <section className="border-t border-white/10 bg-[#070b1c] text-white">
-            <div className="mx-auto max-w-6xl px-6 py-28">
+            <div className="mx-auto max-w-7xl px-6 py-28">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div>
                         <p className="font-mono text-[13px] uppercase tracking-widest text-white/45">

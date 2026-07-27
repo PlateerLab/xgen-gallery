@@ -16,7 +16,7 @@ export function HomeTrialBanner() {
                 aria-hidden
                 className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(60%_120%_at_15%_0%,rgba(255,255,255,.22),transparent_60%)]"
             />
-            <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-7 px-6 py-10 md:flex-row md:items-center md:justify-between md:py-12">
+            <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-7 px-6 py-10 md:flex-row md:items-center md:justify-between md:py-12">
                 <div className="max-w-2xl">
                     <div className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[12.5px] font-semibold backdrop-blur-sm">
                         <Sparkles className="h-3.5 w-3.5" />
