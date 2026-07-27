@@ -566,7 +566,7 @@ export default function ProductPage() {
 
             {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6 sm:justify-between">
+                <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6">
                     {TRUST.map((t) => (
                         <div key={t.label} className="flex items-center gap-2.5">
                             <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
@@ -851,8 +851,9 @@ export default function ProductPage() {
                         </h3>
                         <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                             같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는
-                            접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는
-                            구조로 전환합니다.
+                            접근을 넘어,<br />
+                            XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로
+                            전환합니다.
                         </p>
                         <div className="mx-auto mt-8 max-w-4xl divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
                             {[
