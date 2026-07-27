@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Terminal, Play } from "lucide-react";
+import { ArrowRight, Terminal, Play } from "lucide-react";
 import { TOOLS, type ToolCategory } from "@/lib/tools";
-import { SITE } from "@/lib/site";
 import { CountUp } from "@/components/home-motion";
 
 /**
@@ -50,32 +49,21 @@ export function HomeOpenSource() {
             className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
         >
             <div className="mx-auto max-w-7xl px-6 py-24">
-                <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                    <div className="max-w-2xl">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Open Source
-                        </p>
-                        <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
-                            오픈소스로 기술력을 검증합니다
-                        </h2>
-                        <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            Plateer Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python
-                            라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,
-                            <code className="mx-1 rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 font-mono text-[13px] text-[var(--color-ink)]">
-                                pip
-                            </code>
-                            으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.
-                        </p>
-                    </div>
-                    <Link
-                        href={SITE.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                    >
-                        GitHub에서 보기
-                        <ArrowUpRight className="h-4 w-4" />
-                    </Link>
+                <div className="mx-auto max-w-2xl text-center">
+                    <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        Open Source
+                    </p>
+                    <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
+                        오픈소스로 기술력을 검증합니다
+                    </h2>
+                    <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        Plateer Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python
+                        라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,
+                        <code className="mx-1 rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 font-mono text-[13px] text-[var(--color-ink)]">
+                            pip
+                        </code>
+                        으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.
+                    </p>
                 </div>
 
                 {/* 실측 신뢰 지표 — 미검증 수치(스타/설치수) 없이 사실만 */}

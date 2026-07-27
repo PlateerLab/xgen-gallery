@@ -24,7 +24,7 @@ const ROTATE_MS = 6000;
 // 증명한다"는 서사를 살린다. XGEN 소개영상(hero-xgen.mp4, xgen.im 공식)은 두 번째.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
-    "/hero-vision.mp4",
+    "/hero-vision.jpeg",
     "/hero-xgen.mp4",
     "/hero-security.jpeg",
     "/hero-slide2.mp4",
@@ -333,12 +333,12 @@ export function Hero({
                             {productNews && (
                                 <Link
                                     href={`/blog/${productNews.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-2.5 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-2.5 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-transparent bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                         {productNews.category}
                                     </span>
-                                    <div className="min-w-0">
+                                    <div className="min-w-0 text-center">
                                         <p className="text-[11px] text-white/50">
                                             최신 소식 ·{" "}
                                             {productNews.date.replaceAll("-", ".")}
@@ -347,19 +347,19 @@ export function Hero({
                                             {productNews.title}
                                         </p>
                                     </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                                    <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                                 </Link>
                             )}
                             <div className="grid gap-3 sm:grid-cols-2">
                             {latestPost && (
                                 <Link
                                     href={`/blog/${latestPost.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                         {latestPost.category}
                                     </span>
-                                    <div className="min-w-0">
+                                    <div className="min-w-0 text-center">
                                         <p className="text-[11px] text-white/50">
                                             최근 블로그 ·{" "}
                                             {latestPost.date.replaceAll("-", ".")}
@@ -368,18 +368,18 @@ export function Hero({
                                             {latestPost.title}
                                         </p>
                                     </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                                    <ArrowRight className="h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
                                 </Link>
                             )}
                             {latestIssue && (
                                 <Link
                                     href={`/newsletter/${latestIssue.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                         vol.{latestIssue.vol}
                                     </span>
-                                    <div className="min-w-0">
+                                    <div className="min-w-0 text-center">
                                         <p className="text-[11px] text-white/50">
                                             최근 뉴스레터 ·{" "}
                                             {latestIssue.date.replaceAll("-", ".")}
@@ -388,7 +388,7 @@ export function Hero({
                                             {latestIssue.title}
                                         </p>
                                     </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                                    <ArrowRight className="h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
                                 </Link>
                             )}
                             </div>

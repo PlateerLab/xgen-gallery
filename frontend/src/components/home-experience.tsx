@@ -170,7 +170,7 @@ export function HomeExperience() {
                                 </div>
 
                                 {/* 콘텐츠 */}
-                                <div className="flex flex-1 flex-col border-t border-[var(--color-line)] p-7">
+                                <div className="flex flex-1 flex-col items-center border-t border-[var(--color-line)] p-7 text-center">
                                     <h3 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)]">
                                         {it.name}
                                     </h3>

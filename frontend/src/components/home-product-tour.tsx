@@ -86,34 +86,25 @@ export function HomeProductTour() {
     return (
         <section className="border-t border-white/10 bg-[#070b1c] text-white">
             <div className="mx-auto max-w-7xl px-6 py-28">
-                <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                    <div>
-                        <p className="font-mono text-[13px] uppercase tracking-widest text-white/45">
-                            / Product Tour
-                        </p>
-                        <h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
-                            제품을{" "}
-                            <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
-                                영상
-                            </span>
-                            으로 만나보세요
-                        </h2>
-                        <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/65">
-                            XGEN과 핵심 제품의 주요 기능을 짧은 소개영상으로 확인할 수
-                            있습니다
-                        </p>
-                    </div>
-                    <Link
-                        href="/proof-in-action"
-                        className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#5eead4] transition hover:text-white"
-                    >
-                        데모 영상 더보기
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                    </Link>
+                <div className="text-center">
+                    <p className="font-mono text-[13px] uppercase tracking-widest text-white/45">
+                        / Product Tour
+                    </p>
+                    <h2 className="mt-3 mx-auto max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
+                        제품을{" "}
+                        <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
+                            영상
+                        </span>
+                        으로 만나보세요
+                    </h2>
+                    <p className="mt-5 mx-auto max-w-2xl text-[17px] leading-relaxed text-white/65">
+                        XGEN과 핵심 제품의 주요 기능을 짧은 소개영상으로 확인할 수
+                        있습니다
+                    </p>
                 </div>
 
                 {/* 탭 메뉴 */}
-                <div className="mt-10 flex flex-wrap gap-2">
+                <div className="mt-10 flex flex-wrap justify-center gap-2">
                     {PRODUCTS.map((p) => (
                         <button
                             key={p.key}
@@ -210,6 +201,17 @@ export function HomeProductTour() {
                             {active.desc}
                         </p>
                     </div>
+                </div>
+
+                {/* 데모 영상 더보기 — 하단 우측 */}
+                <div className="mt-10 flex justify-end">
+                    <Link
+                        href="/proof-in-action"
+                        className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#5eead4] transition hover:text-white"
+                    >
+                        데모 영상 더보기
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </Link>
                 </div>
             </div>
         </section>

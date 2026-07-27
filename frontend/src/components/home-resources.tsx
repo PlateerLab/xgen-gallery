@@ -50,7 +50,7 @@ export function HomeResources() {
                         <Link
                             key={it.title}
                             href={it.href}
-                            className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
+                            className="group flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
                         >
                             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                 <it.icon className="h-5 w-5" />

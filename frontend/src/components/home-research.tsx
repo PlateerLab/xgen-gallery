@@ -53,7 +53,7 @@ export function HomeResearch() {
                     {PILLARS.map((p) => (
                         <div
                             key={p.title}
-                            className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center"
                         >
                             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                 <p.icon className="h-5 w-5" />
@@ -68,7 +68,7 @@ export function HomeResearch() {
                     ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-2">
+                <div className="mt-8 flex flex-wrap justify-center gap-2">
                     {AREAS.map((a) => (
                         <span
                             key={a}
@@ -79,7 +79,7 @@ export function HomeResearch() {
                     ))}
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-10 flex justify-end">
                     <Link
                         href="/research"
                         className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"

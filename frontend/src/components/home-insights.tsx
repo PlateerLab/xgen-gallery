@@ -26,34 +26,25 @@ export function HomeInsights() {
     return (
         <section className="border-t border-[var(--color-line)] bg-white">
             <div className="mx-auto max-w-7xl px-6 py-28">
-                <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                    <div>
-                        <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            / Insight
-                        </p>
-                        <h2 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl">
-                            연구와 현장에서 얻은{" "}
-                            <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
-                                인사이트
-                            </span>
-                        </h2>
-                    </div>
-                    <Link
-                        href="/blog"
-                        className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                    >
-                        블로그 전체 보기
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                    </Link>
+                <div className="text-center">
+                    <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        / Insight
+                    </p>
+                    <h2 className="mt-3 mx-auto max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl">
+                        연구와 현장에서 얻은{" "}
+                        <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
+                            인사이트
+                        </span>
+                    </h2>
                 </div>
 
                 {/* 고정: 제품 소식 — GS 인증 (상단 대표 카드) */}
                 {pinned && (
                     <Link
                         href={`/blog/${pinned.slug}`}
-                        className="group mt-12 block overflow-hidden rounded-2xl border border-[#bcd0f5] bg-gradient-to-br from-[#eef4ff] to-white p-7 transition hover:border-[#2f7bff] hover:shadow-[0_18px_44px_-20px_rgba(40,80,180,0.3)] md:p-9"
+                        className="group mt-12 block overflow-hidden rounded-2xl border border-[#bcd0f5] bg-gradient-to-br from-[#eef4ff] to-white p-7 text-center transition hover:border-[#2f7bff] hover:shadow-[0_18px_44px_-20px_rgba(40,80,180,0.3)] md:p-9"
                     >
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-center gap-2">
                             <span className="rounded-full bg-[#2f7bff] px-2.5 py-1 text-[12px] font-bold text-white">
                                 {pinned.category}
                             </span>
@@ -61,10 +52,10 @@ export function HomeInsights() {
                                 {fmt(pinned.date)}
                             </span>
                         </div>
-                        <h3 className="mt-3.5 max-w-3xl text-2xl font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                        <h3 className="mt-3.5 mx-auto max-w-3xl text-2xl font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[28px]">
                             {pinned.title}
                         </h3>
-                        <p className="mt-2.5 max-w-3xl text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-2.5 mx-auto max-w-3xl text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
                             {pinned.description}
                         </p>
                         <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition group-hover:gap-2.5">
@@ -77,7 +68,7 @@ export function HomeInsights() {
                 {/* 그 아래: 최신 Tech Note */}
                 {techNotes.length > 0 && (
                     <>
-                        <p className="mt-10 font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="mt-10 text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             / 최신 Tech Note
                         </p>
                         <div className="mt-4 grid gap-4 md:grid-cols-3">
@@ -85,9 +76,9 @@ export function HomeInsights() {
                                 <Link
                                     key={p.slug}
                                     href={`/blog/${p.slug}`}
-                                    className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
+                                    className="group flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
                                 >
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center justify-center gap-2">
                                         <span className="rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 font-mono text-[11.5px] text-[#2461d8]">
                                             {p.category}
                                         </span>
@@ -110,6 +101,17 @@ export function HomeInsights() {
                         </div>
                     </>
                 )}
+
+                {/* 블로그 전체 보기 — 하단 우측 */}
+                <div className="mt-10 flex justify-end">
+                    <Link
+                        href="/blog"
+                        className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                    >
+                        블로그 전체 보기
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </Link>
+                </div>
             </div>
         </section>
     );

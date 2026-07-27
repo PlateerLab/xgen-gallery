@@ -88,7 +88,7 @@ export function HomeTechnology() {
                     ))}
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-10 flex justify-end">
                     <Link
                         href="/technology"
                         className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"

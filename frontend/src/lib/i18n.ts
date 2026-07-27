@@ -141,7 +141,7 @@ const FAQ_KO: FaqEntry[] = [
     {
         question: "Plateer Labs는 어떤 곳인가요?",
         answer:
-            "Plateer Labs는 엔터프라이즈 AI를 연구하고 제품으로 구현하는 AI 연구소입니다. 연구 성과를 오픈소스 라이브러리로 공개하고, 이를 바탕으로 XGEN Agentic AI Platform을 만들며, 실제 고객 현장의 PoC로 검증합니다. ‘연구 → 오픈소스 → 제품 → 실증’으로 이어지는 구조가 특징입니다.",
+            "Plateer Labs는 엔터프라이즈 AI를 연구하고, 기술을 제품으로 구현하는 AI 연구소입니다. 연구 성과를 오픈소스로 공개하고, 이를 XGEN Agentic AI Platform에 반영한 뒤, 실제 고객 환경에서 검증하며 지속적으로 고도화합니다. 연구부터 오픈소스, 제품, 고객 검증까지 이어지는 선순환 구조를 통해 기업이 신뢰하고 사용할 수 있는 AI 기술을 만들어갑니다.",
     },
     {
         question: "XGEN은 어떤 제품인가요?",
