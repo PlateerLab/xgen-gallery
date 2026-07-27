@@ -31,7 +31,8 @@ export function pageMetadata({
     description,
     path,
     image = SITE.ogImage,
-    imageDims,
+    // 기본 OG 이미지 사용 시 규격(1200×630)을 함께 emit해 링크 미리보기를 안정화.
+    imageDims = image === SITE.ogImage ? SITE.ogImageDims : undefined,
     robots,
 }: PageMetaInput): Metadata {
     // og:title은 template이 자동 적용되지 않으므로 브랜드 접미사를 명시적으로 붙인다.

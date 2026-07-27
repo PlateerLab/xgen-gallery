@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         description: OG_DESCRIPTION,
         url: SITE.url,
         locale: SITE.locale,
-        images: [{ url: SITE.ogImage }],
+        images: [{ url: SITE.ogImage, ...SITE.ogImageDims }],
     },
     twitter: {
         card: "summary_large_image",

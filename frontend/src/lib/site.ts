@@ -20,8 +20,9 @@ export const SITE = {
     githubOrg: "PlateerLab",
     youtube: "https://www.youtube.com/@PlateerLabs",
     locale: "ko_KR",
-    /** OG/Twitter share image (served from app/icon.png). */
-    ogImage: "/icon.png",
+    /** OG/Twitter share image — 1200×630 브랜드 카드(public/og.png). */
+    ogImage: "/og.png",
+    ogImageDims: { width: 1200, height: 630 },
 } as const;
 
 /** Absolute URL helper — always returns a canonical, origin-prefixed URL. */
