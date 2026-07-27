@@ -289,6 +289,19 @@ export function Hero({
                 )}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
+                {/* 1번째 슬라이드: 중앙 텍스트 뒤 배경을 부드럽게 블러(가독성) */}
+                {active === 0 && (
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
+                        style={{
+                            WebkitMaskImage:
+                                "radial-gradient(46% 42% at 50% 44%, #000 45%, transparent 78%)",
+                            maskImage:
+                                "radial-gradient(46% 42% at 50% 44%, #000 45%, transparent 78%)",
+                        }}
+                    />
+                )}
             </div>
 
             <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-64">
