@@ -238,13 +238,13 @@ export default function PolarPage() {
                 {/* 왜 Polar인가 (소개 / Overview) */}
                 <section id="overview" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Why Polar
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자체 개발 sLLM으로 데이터 유출 걱정을 해결합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             구축형 온프레미스·프라이빗 클라우드로 운영하고, 내부 데이터
                             학습으로 정확성을 확보하며, 고객 맞춤 Fine-tuning과 RAG로
                             비즈니스를 최적화합니다.
@@ -273,13 +273,13 @@ export default function PolarPage() {
                 {/* 작동 원리 (How It Works) */}
                 <section id="how-it-works" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             How it works
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             Polar의 작동 방식
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             질의 분석부터 생성·검증·답변 생성까지, Polar는 도메인 최적화
                             모델과 RAG를 결합해 정확한 커머스 답변을 만들어냅니다.
                         </p>
@@ -297,10 +297,10 @@ export default function PolarPage() {
                 {/* 핵심 기술 (Technology) */}
                 <section id="technology" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Technology
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             커머스에 최적화된 핵심 기술
                         </h2>
                         <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -339,13 +339,13 @@ export default function PolarPage() {
                 {/* 활용 사례 (Use Cases) */}
                 <section id="use-cases" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Use Cases
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             커머스 특화 에이전트
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             Polar는 검색·쇼핑·상담 전 영역에서 커머스에 최적화된 에이전트로
                             고객 경험과 운영 효율을 끌어올립니다.
                         </p>
@@ -401,10 +401,10 @@ export default function PolarPage() {
                 {/* FAQ */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-4xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             FAQ
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문
                         </h2>
                         <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
@@ -426,13 +426,13 @@ export default function PolarPage() {
                 {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             After Deployment
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             도입 이후에도 함께합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을
                             위한 기술지원까지 이어집니다.
                         </p>
@@ -445,10 +445,10 @@ export default function PolarPage() {
                 {/* CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
                     <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-white/45">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-white/45">
                             Commerce-specialized AI
                         </p>
-                        <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-[40px]">
+                        <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">
                             커머스 AI, Polar로 시작하세요
                         </h2>
                         <p className="mx-auto mt-5 max-w-2xl text-[16px] leading-relaxed text-white/70">

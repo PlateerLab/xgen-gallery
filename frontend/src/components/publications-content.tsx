@@ -181,8 +181,8 @@ export function PublicationsContent() {
         <div className="space-y-10">
             <JsonLd data={scholarLd} />
 
-            <div className="flex flex-col items-center gap-6 md:flex-row md:gap-10">
-                <div className="min-w-0 flex-1 order-2 text-center md:order-1">
+            <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-8">
+                <div className="min-w-0 order-2 text-center md:order-1 md:max-w-xl">
                     <h4 className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
                         구성원들의 연구 성과
                     </h4>

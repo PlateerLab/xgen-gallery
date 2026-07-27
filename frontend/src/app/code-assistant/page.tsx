@@ -442,14 +442,14 @@ export default function CodeAssistantPage() {
                 {/* Overview — 3대 강점 */}
                 <section id="overview" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Why Code Assistant
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             AI는 코드를 생성하는 것이 아니라, 우리 개발 환경을
                             이해해야 합니다
                         </h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             사내 Git 저장소와 개발 표준을 기반으로 프로젝트 맥락을
                             이해하고 정확한 답변을 제공합니다. 온프레미스 환경에서
                             소스코드를 안전하게 보호하며, 특정 AI 모델에 종속되지 않는
@@ -483,14 +483,14 @@ export default function CodeAssistantPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
-                        <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 max-w-4xl mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             AI Code Assistant 도입으로 개발 생산성과 운영 안정성을 동시에
                             확보합니다
                         </h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             프로젝트에 특화된 코드 이해와 안전한 온프레미스 운영으로 개발
                             속도는 높이고, 유지보수 비용은 줄입니다.
                         </p>
@@ -551,13 +551,13 @@ export default function CodeAssistantPage() {
                 {/* Capabilities — 핵심 기능 */}
                 <section id="capabilities" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Capabilities
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             핵심 기능
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             사내 코드·API·스키마를 학습해 프로젝트 맥락에서 정확하게
                             답하는 기능들입니다.
                         </p>
@@ -594,13 +594,13 @@ export default function CodeAssistantPage() {
                 {/* How It Works — 작동 원리 */}
                 <section id="how-it-works" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             How It Works
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             작동 원리
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             저장소를 인덱싱해 근거를 만들고, 질문에 맞는 컨텍스트를
                             검색해 코드 수준의 답을 생성합니다.
                         </p>
@@ -642,7 +642,7 @@ export default function CodeAssistantPage() {
                 {/* Comparison — 범용 도구 대비 */}
                 <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             범용 코드 어시스턴트와 무엇이 다른가
                         </h2>
                         <div className="mt-8 overflow-x-auto">
@@ -684,7 +684,7 @@ export default function CodeAssistantPage() {
                 {/* Integrations — 연동·배포 */}
                 <section id="integrations" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             연동과 배포
                         </h2>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -711,13 +711,13 @@ export default function CodeAssistantPage() {
                 {/* Technical Specs — 기술 사양 */}
                 <section id="specs" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Technical Specs
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             기술 사양 · 연동
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             기존 개발 환경과의 연동 방식부터 핵심 기술 사양까지 한눈에
                             확인할 수 있습니다.
                         </p>
@@ -744,13 +744,13 @@ export default function CodeAssistantPage() {
                 {/* Use Cases — 활용 사례 */}
                 <section id="use-cases" className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Use Cases
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             활용 사례
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             사내 코드·API·스키마를 이해하는 AI Code Assistant가 실제 개발
                             현장에서 어떻게 활용되는지 소개합니다.
                         </p>
@@ -795,7 +795,7 @@ export default function CodeAssistantPage() {
                 {/* FAQ */}
                 <section className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-3xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문
                         </h2>
                         <dl className="mt-8 divide-y divide-[var(--color-line)]">
@@ -816,13 +816,13 @@ export default function CodeAssistantPage() {
                 {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             After Deployment
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             도입 이후에도 함께합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을
                             위한 기술지원까지 이어집니다.
                         </p>
