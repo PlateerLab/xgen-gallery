@@ -109,7 +109,7 @@ function CategoryBlock({
     const sorted = [...items].sort((a, b) => b.year - a.year);
     return (
         <div>
-            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            <p className="mt-5 text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                 {sub}
             </p>
             <ul className="mt-4 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white px-6">
@@ -199,7 +199,7 @@ export function PublicationsContent() {
             <div
                 role="tablist"
                 aria-label="연구 카테고리"
-                className="flex flex-wrap gap-2 border-b border-[var(--color-line)]"
+                className="flex flex-wrap justify-center gap-2 border-b border-[var(--color-line)]"
             >
                 {TABS.map((t) => {
                     const isActive = active === t.key;
