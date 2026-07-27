@@ -247,7 +247,7 @@ export function Hero({
 
     return (
         <>
-        <section className="relative flex min-h-[72vh] items-center overflow-hidden border-b border-white/10 bg-[#050813] text-white">
+        <section className="relative flex min-h-[72vh] items-start overflow-hidden bg-[#050813] text-white">
             {/* main background videos — crossfade between slides */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 {SLIDE_BG.map((src, i) =>
@@ -291,7 +291,7 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
             </div>
 
-            <div className="relative mx-auto w-full max-w-7xl px-6 py-28">
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-44">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
@@ -329,7 +329,7 @@ export function Hero({
 
             {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드 */}
             {(productNews || latestPost || latestIssue) && (
-                <section aria-label="최근 소식" className="border-b border-white/10 bg-[#070b1c] py-6">
+                <section aria-label="최근 소식" className="bg-[#070b1c] py-6">
                     <div className="mx-auto flex max-w-4xl flex-col gap-3 px-6">
                             {/* 제품소식 — 블로그·뉴스레터 위 한 줄 */}
                             {productNews && (
