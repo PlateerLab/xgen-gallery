@@ -1067,7 +1067,7 @@ export default function ProductPage() {
                         {/* 4계층 기술 스택의 참조 아키텍처로 연결 */}
                         <Link
                             href="/architecture#platform"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             XGEN 플랫폼 아키텍처 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -1151,7 +1151,7 @@ export default function ProductPage() {
                         {/* 심화 — 보안·거버넌스 전용 페이지로 연결(이중화 해소) */}
                         <Link
                             href="/security-and-governance"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             보안·거버넌스 아키텍처 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -1203,7 +1203,7 @@ export default function ProductPage() {
                         </div>
                         <Link
                             href="/architecture#cicd"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             GitOps 배포 파이프라인 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -1335,27 +1335,16 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <div className="flex flex-wrap items-end justify-between gap-4">
-                            <div>
-                                <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                    Customer Cases
-                                </p>
-                                <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                                    고객 현장에서 검증됩니다
-                                </h2>
-                                <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고
-                                    운영한 고객사례입니다.
-                                </p>
-                            </div>
-                            <Link
-                                href="/customers?product=xgen"
-                                className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                            >
-                                XGEN 고객사례 전체 보기
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                            </Link>
-                        </div>
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Customer Cases
+                        </p>
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            고객 현장에서 검증됩니다
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고
+                            운영한 고객사례입니다.
+                        </p>
                         <div className="mt-10 grid gap-5 md:grid-cols-3">
                             {recentCases.map((c) => (
                                 <Link
@@ -1388,6 +1377,15 @@ export default function ProductPage() {
                                     </p>
                                 </Link>
                             ))}
+                        </div>
+                        <div className="mt-8 flex justify-end">
+                            <Link
+                                href="/customers?product=xgen"
+                                className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            >
+                                XGEN 고객사례 전체 보기
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
                         </div>
                     </div>
                 </section>
