@@ -48,7 +48,7 @@ function ArchitectureHero() {
                 <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                     Architecture
                 </p>
-                <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-5xl">
+                <h1 className="mx-auto mt-2 text-center text-3xl font-bold tracking-tight md:text-5xl">
                     Enterprise AI Architecture
                 </h1>
                 <p className="mt-5 text-xl font-semibold leading-relaxed text-white">
@@ -114,7 +114,7 @@ const PRINCIPLES: { icon: LucideIcon; title: string; desc: string }[] = [
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
     return (
-        <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+        <p className="text-center font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
             {children}
         </p>
     );
@@ -146,7 +146,7 @@ export default function ArchitecturePage() {
                     className="scroll-mt-[140px] border-b border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="max-w-3xl text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                        <h2 className="mx-auto max-w-3xl text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
                             데이터 주권과 AI Runtime을 위한 핵심 기반 아키텍처
                         </h2>
                         <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -178,10 +178,10 @@ export default function ArchitecturePage() {
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Design Principles</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             아키텍처 설계 원칙
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             엔터프라이즈 환경에서 AI를 신뢰하고 운영하기 위해 모든
                             계층이 공유하는 네 가지 설계 기준입니다
                         </p>
@@ -210,10 +210,10 @@ export default function ArchitecturePage() {
                 <section id="reference" className="scroll-mt-[140px] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Reference Architecture</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             Enterprise AI 아키텍처
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             접근 채널부터 모델·인프라까지, 신뢰할 수 있는 Enterprise
                             AI를 구성하는 전체 계층 구조
                         </p>
@@ -230,10 +230,10 @@ export default function ArchitecturePage() {
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ On-Premise Security</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             온프레미스·보안 아키텍처
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부
                             서비스와 AI 모델, 데이터에 접근할 수 있습니다. 모든 AI 모델과
                             데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전
@@ -259,10 +259,10 @@ export default function ArchitecturePage() {
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ XGEN Platform</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             XGEN 2.0 플랫폼 아키텍처
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             접근·콘솔부터 도메인·채널, 에이전트·응용, AI Platform 코어,
                             RAG·지식, 파운데이션 모델, 인프라까지 — 전 계층을 관통하는
                             거버넌스·보안 위에서 동작하는 Enterprise AI 플랫폼
@@ -295,10 +295,10 @@ export default function ArchitecturePage() {
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Code Assistant</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             코드 어시스턴트 아키텍처
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             자연어 질문 · 코드 검색 요청을 인덱싱과 하이브리드 검색, AI
                             재정렬로 처리해 근거 있는 코드 답변을 제공합니다
                         </p>
@@ -322,10 +322,10 @@ export default function ArchitecturePage() {
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ CI/CD</Eyebrow>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
                             GitOps 배포 파이프라인
                         </h2>
-                        <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-3 mx-auto max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             소스 변경부터 운영 반영까지 — 컨테이너 이미지 빌드와 선언형
                             GitOps 동기화로 통제된 배포를 수행합니다
                         </p>
