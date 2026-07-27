@@ -404,8 +404,9 @@ export function ResearchContent() {
                 <header className="mx-auto max-w-3xl border-b border-[var(--color-line)] pb-12 text-center">
                     <p className="text-[16px] leading-relaxed text-[var(--color-ink-subtle)]">
                         공공기관과 대기업은 데이터 주권, 보안, 감사 추적, 조직
-                        거버넌스, 운영 안정성까지 고려해야 하며, AI는 단순한 실험을
-                        넘어 실제 업무 프로세스에 통합되어야 합니다
+                        거버넌스, 운영 안정성까지 고려해야 하며,
+                        <br />
+                        AI는 단순한 실험을 넘어 실제 업무 프로세스에 통합되어야 합니다
                     </p>
                     <h2 className="mt-5 text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[28px] md:leading-snug">
                         Plateer Labs는 이러한 요구에 대응하기 위해 기업 환경에
