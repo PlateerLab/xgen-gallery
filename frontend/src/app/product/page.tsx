@@ -846,15 +846,15 @@ export default function ProductPage() {
                         </div>
 
                         {/* 기존 방식 대비 전환 — 운영 모델 관점(성과의 근거) */}
-                        <h3 className="mt-16 text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
+                        <h3 className="mx-auto mt-16 text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
                             기존 방식 대비, 무엇이 달라지는가
                         </h3>
-                        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                             같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는
                             접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는
                             구조로 전환합니다.
                         </p>
-                        <div className="mt-8 divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
+                        <div className="mx-auto mt-8 max-w-4xl divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
                             {[
                                 {
                                     title: "구축형 SI가 아닌 운영형 플랫폼",
