@@ -22,12 +22,14 @@ const ROTATE_MS = 6000;
 // Per-slide background videos (index matches the active slide).
 // 연구소 정체성(Research Vision)을 첫 슬라이드로 두어 "연구소가 만든 것을 제품으로
 // 증명한다"는 서사를 살린다. XGEN 소개영상(hero-xgen.mp4, xgen.im 공식)은 두 번째.
+// 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
-    "/hero-vision.mp4",
+    "/hero-vision.jpeg",
     "/hero-xgen.mp4",
     "/hero-security-v4.mp4",
     "/hero-slide2.mp4",
 ];
+const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
 // Per-slide object-position (all centered — subjects are frame-centered).
 const SLIDE_POS = ["center", "center", "center", "center"];
 
@@ -239,26 +241,40 @@ export function Hero({
         <section className="relative flex min-h-[calc(100dvh+2px)] items-center overflow-hidden border-b border-white/10 bg-[#050813] text-white">
             {/* main background videos — crossfade between slides */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
-                {SLIDE_BG.map((src, i) => (
-                    <video
-                        key={src}
-                        ref={(el) => {
-                            videoRefs.current[i] = el;
-                        }}
-                        autoPlay={i === 0}
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        style={{ objectPosition: SLIDE_POS[i] }}
-                        className={cn(
-                            "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out",
-                            i === active ? "opacity-100" : "opacity-0",
-                        )}
-                    >
-                        <source src={src} type="video/mp4" />
-                    </video>
-                ))}
+                {SLIDE_BG.map((src, i) =>
+                    isImage(src) ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                            key={src}
+                            src={src}
+                            alt=""
+                            style={{ objectPosition: SLIDE_POS[i] }}
+                            className={cn(
+                                "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out",
+                                i === active ? "opacity-100" : "opacity-0",
+                            )}
+                        />
+                    ) : (
+                        <video
+                            key={src}
+                            ref={(el) => {
+                                videoRefs.current[i] = el;
+                            }}
+                            autoPlay={i === 0}
+                            loop
+                            muted
+                            playsInline
+                            preload="auto"
+                            style={{ objectPosition: SLIDE_POS[i] }}
+                            className={cn(
+                                "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out",
+                                i === active ? "opacity-100" : "opacity-0",
+                            )}
+                        >
+                            <source src={src} type="video/mp4" />
+                        </video>
+                    ),
+                )}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
             </div>
