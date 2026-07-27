@@ -32,7 +32,7 @@ export const metadata = pageMetadata({
 const HIGHLIGHTS = [
     "사내 생성형 AI 플랫폼 구축",
     "망분리·온프레미스 운영",
-    "현업 직접 저작(실행형 AX)",
+    "현업 직접 제작",
     "전행 업무 프로세스 내재화",
 ];
 
@@ -149,7 +149,7 @@ export default function JejuGenAIPreviewPage() {
             <SiteNav />
 
             {/* 리뷰용 안내 리본 — 고객 검토본임을 알림(대외 공개 전) */}
-            <div className="fixed inset-x-0 top-0 z-[60] bg-[#0b1730] py-1.5 text-center text-[12px] font-semibold text-white/80">
+            <div className="fixed inset-x-0 top-0 z-[60] bg-[#c81e1e] py-1.5 text-center text-[12px] font-semibold text-white">
                 검토용 미리보기 · 대외 공개 전 확인본
             </div>
 
@@ -444,19 +444,23 @@ export default function JejuGenAIPreviewPage() {
 
                 {/* 고객 인용 */}
                 <section className="mx-auto w-full max-w-4xl px-6 pb-20">
+                    {/* 프로젝트를 이끈 담당자의 자평 + AI Native Bank 비전 — 통합 인용 */}
                     <blockquote className="relative overflow-hidden rounded-3xl bg-[#070b1c] p-8 text-white md:p-12">
                         <div
                             aria-hidden
                             className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-[#2f7bff]/25 blur-[100px]"
                         />
                         <Quote className="relative h-8 w-8 text-[#4d7fd6]" />
-                        <p className="relative mt-5 text-[20px] font-medium leading-relaxed md:text-[24px]">
-                            “생성형 AI 플랫폼 구축은 끝이 아닌 시작입니다. 제주은행은
-                            AI를 활용하는 은행을 넘어, AI와 함께 일하는 AI Native
-                            Bank로 도약하겠습니다.”
+                        <p className="relative mt-5 text-[19px] font-medium leading-relaxed md:text-[23px]">
+                            “생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
+                            프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는
+                            과정이었습니다. 쉽지 않은 여정이었지만, 현업과 함께 검증하며
+                            안정적으로 구축할 수 있었습니다. 이제 제주은행은 AI를 활용하는
+                            수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
+                            도약해 나갈 것입니다.”
                         </p>
                         <footer className="relative mt-6 text-[14px] text-white/55">
-                            제주은행
+                            제주은행 AI 혁신팀장
                         </footer>
                     </blockquote>
 
