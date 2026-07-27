@@ -804,7 +804,7 @@ export function RuntimeContent() {
                     컨테이너 · 서버리스 · 엣지까지 원하는 모든 환경에 단독 배포할 수
                     있습니다. 표준 MCP 인터페이스로 어떤 클라이언트와도 연결됩니다.
                 </p>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap justify-center gap-2">
                     {clients.map((c) => (
                         <span key={c} className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-3 py-1.5 text-[14px] font-semibold text-[var(--color-ink-muted)]">
                             <Cable className="h-3.5 w-3.5 text-[#2f7bff]" />
