@@ -71,7 +71,7 @@ export function HomeOpenSource() {
                     {stats.map((s) => (
                         <div
                             key={s.k}
-                            className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-5 py-4"
+                            className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-5 py-4 text-center"
                         >
                             <dt className="text-[13px] font-medium text-[var(--color-ink-subtle)]">
                                 {s.k}
@@ -88,7 +88,7 @@ export function HomeOpenSource() {
                 </dl>
 
                 {/* 카테고리 분포 — 전체를 나열하지 않고 영역별 개수로 폭을 전달 */}
-                <div className="mt-6 flex flex-wrap items-center gap-2">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
                     {catCount.map((x) => (
                         <span
                             key={x.c}
@@ -106,9 +106,9 @@ export function HomeOpenSource() {
                         <Link
                             key={t.id}
                             href={`/tool/${t.id}`}
-                            className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                            className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                         >
-                            <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center justify-center gap-2">
                                 <h3 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
                                     {t.name}
                                 </h3>
@@ -121,13 +121,13 @@ export function HomeOpenSource() {
                             <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
                                 {t.tagline}
                             </p>
-                            <div className="mt-3 flex items-center gap-2 border-t border-[var(--color-line)] pt-3">
+                            <div className="mt-3 flex items-center justify-center gap-2 border-t border-[var(--color-line)] pt-3">
                                 <Terminal className="h-3.5 w-3.5 flex-none text-[var(--color-ink-subtle)]" />
                                 <code className="truncate font-mono text-[12.5px] text-[var(--color-ink-muted)]">
                                     {t.install}
                                 </code>
                                 {t.hasDemo && (
-                                    <span className="ml-auto inline-flex flex-none items-center gap-1 rounded-full bg-[#e7f7f0] px-2 py-0.5 text-[11px] font-semibold text-[#1f9d6b]">
+                                    <span className="inline-flex flex-none items-center gap-1 rounded-full bg-[#e7f7f0] px-2 py-0.5 text-[11px] font-semibold text-[#1f9d6b]">
                                         <Play className="h-2.5 w-2.5" />
                                         Live
                                     </span>
@@ -137,7 +137,7 @@ export function HomeOpenSource() {
                     ))}
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-8 flex justify-center">
                     <Link
                         href="/library-gallery"
                         className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
