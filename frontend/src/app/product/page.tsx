@@ -1045,16 +1045,16 @@ export default function ProductPage() {
                             Core Technology · 6 Layers
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            6계층 코어 엔진 아키텍처
+                            엔터프라이즈 AI를 위한 6계층 코어 아키텍처
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            인프라부터 AI 에이전트까지, 엔터프라이즈 AI 운영을 하나의
-                            플랫폼으로 연결합니다.
+                            인프라부터 AI 에이전트까지, 기업의 AI 운영에 필요한 핵심 기술을
+                            하나의 플랫폼으로 통합합니다.
                         </p>
                         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                            XGEN은 특정 모델이나 클라우드에 묶이지 않습니다. 표준
-                            프로토콜과 검증된 엔진을 6개 계층으로 쌓아, 사내 GPU 모델부터
-                            상용 API까지 같은 방식으로 다룹니다.
+                            XGEN은 특정 AI 모델이나 클라우드에 종속되지 않습니다. 표준
+                            프로토콜 기반의 6계층 아키텍처를 통해 온프레미스 GPU, 상용 AI
+                            API, 사내 시스템을 일관된 방식으로 연결하고 운영할 수 있습니다.
                         </p>
                         {/* 5계층 코어 엔진 — 아이소메트릭 분해 스택 도해(네이티브 SVG) */}
                         <div className="mt-8 overflow-x-auto">
