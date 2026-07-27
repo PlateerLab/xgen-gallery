@@ -594,7 +594,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             The Challenge
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                             Enterprise AI, 왜 현장에서 멈출까요
                         </h2>
                         <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
@@ -795,7 +795,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
-                        <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-4xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             AI는 구축이 아니라, 기업 운영의 새로운 표준입니다
                         </h2>
                         <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -1122,7 +1122,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             On-Premise
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             데이터는 기업 안에, 안심하고 활용
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -1242,10 +1242,10 @@ export default function ProductPage() {
                     <div className="relative mx-auto max-w-7xl px-6 py-24">
                         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
                             <div className="flex h-full flex-col">
-                                <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
+                                <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[#7dd3fc]">
                                     Enterprise Trust
                                 </p>
-                                <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
+                                <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
                                     신뢰할 수 없는 AI는
                                     <br />
                                     기업에서 운영될 수 없습니다
@@ -1301,7 +1301,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Certifications & Quality
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             국가 공인 품질·신뢰성 인증
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -1340,7 +1340,7 @@ export default function ProductPage() {
                                 <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                                     Customer Cases
                                 </p>
-                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                                     고객 현장에서 검증됩니다
                                 </h2>
                                 <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -1398,7 +1398,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Resources
                         </p>
-                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
                             개발자·도입 담당자를 위한 자료
                         </h2>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -1435,7 +1435,7 @@ export default function ProductPage() {
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             FAQ
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문
                         </h2>
                         <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
@@ -1457,10 +1457,10 @@ export default function ProductPage() {
                 {/* CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
                     <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-white/45">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-white/45">
                             Get Started
                         </p>
-                        <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-[40px]">
+                        <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">
                             업무에 바로 투입되는 기업용 AI를 확인해 보세요
                         </h2>
                         <p className="mx-auto mt-5 max-w-2xl text-[16px] leading-relaxed text-white/70">
