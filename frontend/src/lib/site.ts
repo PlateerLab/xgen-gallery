@@ -12,7 +12,7 @@ export const SITE = {
     // (2026-07-23~) 운영 도메인이 gallery-xgen.x2bee.com → labs.plateer.com 으로 변경됨.
     url: (process.env.NEXT_PUBLIC_SITE_URL || "https://labs.plateer.com").replace(/\/$/, ""),
     description:
-        "Plateer Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
+        "기업용 Agentic AI 플랫폼 XGEN을 제공합니다. 원하는 LLM과 온프레미스·망분리 인프라 위에서 보안·거버넌스를 갖춰 AI를 구축하고, 실제 업무에 적용해 검증된 성과로 이어지도록 지원합니다.",
     descriptionEn:
         "Plateer Labs researches and shares the core technology for building AI platforms enterprises can trust. We open-source proven AI building blocks behind XGEN — document ingestion, knowledge graphs, and agent frameworks — so anyone can install, experiment, and put them into production.",
     github: "https://github.com/PlateerLab",

@@ -13,10 +13,14 @@ import { ContentGuard } from "@/components/content-guard";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { LOCALE_COOKIE, DEFAULT_LOCALE, isLocale } from "@/lib/i18n";
 
+// OG/트위터 링크 미리보기용 짧은 설명(≤80자). 메타 description(SITE.description)과 분리.
+const OG_DESCRIPTION =
+    "기업이 신뢰하고 운영하는 Agentic AI 플랫폼 XGEN. 원하는 LLM·인프라에 보안·거버넌스를 갖춰 실제 업무에 적용합니다.";
+
 export const metadata: Metadata = {
     metadataBase: new URL(SITE.url),
     title: {
-        default: `${SITE.name} — Open-source AI building blocks`,
+        default: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
         template: `%s · ${SITE.name}`,
     },
     description: SITE.description,
@@ -40,16 +44,16 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         siteName: SITE.name,
-        title: `${SITE.name} — Open-source AI building blocks`,
-        description: SITE.description,
+        title: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
+        description: OG_DESCRIPTION,
         url: SITE.url,
         locale: SITE.locale,
         images: [{ url: SITE.ogImage }],
     },
     twitter: {
         card: "summary_large_image",
-        title: `${SITE.name} — Open-source AI building blocks`,
-        description: SITE.description,
+        title: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
+        description: OG_DESCRIPTION,
         images: [SITE.ogImage],
     },
     robots: {
