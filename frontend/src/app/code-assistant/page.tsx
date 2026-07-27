@@ -718,8 +718,8 @@ export default function CodeAssistantPage() {
                             기술 사양 · 연동
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            사내 개발 환경과 스택에 맞춰 검토하실 수 있도록 핵심 기술
-                            사양을 정리했습니다.
+                            기존 개발 환경과의 연동 방식부터 핵심 기술 사양까지 한눈에
+                            확인할 수 있습니다.
                         </p>
                         <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2">
                             {SPECS.map((s) => (
@@ -751,8 +751,8 @@ export default function CodeAssistantPage() {
                             활용 사례
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            사내 코드·API·스키마를 이해한 답변이 실제 개발 현장에서 어떻게
-                            쓰이는지 정리했습니다.
+                            사내 코드·API·스키마를 이해하는 AI Code Assistant가 실제 개발
+                            현장에서 어떻게 활용되는지 소개합니다.
                         </p>
                         <div className="mt-10 grid gap-4 md:grid-cols-2">
                             {USE_CASES.map((u) => (
