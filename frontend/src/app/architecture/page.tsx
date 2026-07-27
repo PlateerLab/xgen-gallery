@@ -270,7 +270,7 @@ export default function ArchitecturePage() {
                         <div className="mx-auto mt-8 max-w-5xl">
                             <XgenPlatformArchitecture />
                         </div>
-                        <p className="mt-6 max-w-3xl text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
+                        <p className="mx-auto mt-6 max-w-5xl text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
                             사용자·관리자·API 접근을 단일 콘솔로 통합하고, 워크플로우
                             캔버스·유닛 에이전트·MCP 도구·멀티에이전트 오케스트레이션이 AI
                             코어(LLMOps·MLOps·Model Router)와 하이브리드 RAG, 파운데이션
