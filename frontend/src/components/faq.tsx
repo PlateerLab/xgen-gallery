@@ -10,10 +10,10 @@ export function Faq() {
             className="border-t border-[var(--color-line)] bg-white"
         >
             <div className="mx-auto max-w-3xl px-6 py-28">
-                <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="text-center font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     {t.faq.eyebrow}
                 </p>
-                <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+                <h2 className="mt-3 text-center text-4xl font-semibold tracking-tight md:text-5xl">
                     {t.faq.title}
                 </h2>
 
