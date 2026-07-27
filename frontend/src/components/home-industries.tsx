@@ -40,16 +40,16 @@ export function HomeIndustries() {
     return (
         <section className="border-t border-[var(--color-line)] bg-white">
             <div className="mx-auto max-w-7xl px-6 py-28">
-                <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="font-mono text-[13px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / Applied AI
                 </p>
-                <h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
+                <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight md:text-5xl">
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         산업별
                     </span>
                     로 검증하는 Enterprise AI
                 </h2>
-                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mt-5 mx-auto max-w-2xl text-[17px] text-center leading-relaxed text-[var(--color-ink-muted)]">
                     금융·공공·커머스·IT 서비스 — 산업별 업무와 규제를 이해하는
                     Enterprise AI를 연구하고 실증합니다
                 </p>

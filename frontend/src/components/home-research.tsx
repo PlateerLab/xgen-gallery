@@ -36,16 +36,16 @@ export function HomeResearch() {
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-7xl px-6 py-28">
-                <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="font-mono text-[13px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / Research
                 </p>
-                <h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
+                <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight md:text-5xl">
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         Enterprise AI
                     </span>
                     를 현실로 만드는 연구
                 </h2>
-                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mt-5 mx-auto max-w-2xl text-[17px] text-center leading-relaxed text-[var(--color-ink-muted)]">
                     기업 환경의 AI 도입은 더 이상 모델 성능만으로 결정되지 않습니다
                 </p>
 

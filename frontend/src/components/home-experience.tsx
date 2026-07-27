@@ -140,16 +140,16 @@ export function HomeExperience() {
     return (
         <section id="live-demo" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
             <div className="mx-auto max-w-7xl px-6 py-28">
-                <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="font-mono text-[13px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / Live Demo
                 </p>
-                <h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
+                <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight md:text-5xl">
                     지금 바로{" "}
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         체험해보세요
                     </span>
                 </h2>
-                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mt-5 mx-auto max-w-2xl text-[17px] text-center leading-relaxed text-[var(--color-ink-muted)]">
                     설치 없이 브라우저에서 X2BEE AI와 XGEN Agentic AI Platform을 직접
                     사용해볼 수 있습니다
                 </p>
