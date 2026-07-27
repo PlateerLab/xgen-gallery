@@ -197,13 +197,13 @@ const AGENTIC: { icon: LucideIcon; title: string; en: string; desc: string }[] =
 
 function AgenticAI() {
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-4xl space-y-6">
             <p className="mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                 Plateer Labs는 에이전트가 스스로 계획하고, 협업하고, 도구를
                 다루며, 신뢰성 있게 운영되도록 만드는 <strong className="font-semibold text-[var(--color-ink)]">기반 기술과 연구</strong>를 다룹니다.
             </p>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2">
                 {AGENTIC.map((a) => (
                     <div
                         key={a.title}
