@@ -1240,8 +1240,8 @@ export default function ProductPage() {
                         className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
                     />
                     <div className="relative mx-auto max-w-6xl px-6 py-24">
-                        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-                            <div>
+                        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+                            <div className="flex h-full flex-col">
                                 <p className="font-mono text-[12px] uppercase tracking-widest text-[#7dd3fc]">
                                     Enterprise Trust
                                 </p>
@@ -1264,8 +1264,9 @@ export default function ProductPage() {
                                     보안·거버넌스 아키텍처 자세히 보기
                                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                                 </Link>
-                                {/* 빈 공간 — 보안 통제 개념도(동심 방어 링 + 통제 칩) */}
-                                <div className="mt-10 hidden lg:block">
+                                {/* 보안 통제 개념도(동심 방어 링 + 좌우 통제 칩) — 하단 정렬로
+                                    오른쪽 카드 박스 높이에 맞춰 아래를 채운다. */}
+                                <div className="mt-auto hidden pt-10 lg:block">
                                     <GovernanceArt />
                                 </div>
                             </div>
