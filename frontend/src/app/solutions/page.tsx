@@ -97,7 +97,7 @@ const INDUSTRIES: { icon: LucideIcon; title: string; sub: string; items: string[
 function Industries() {
     return (
         <div className="space-y-6">
-            <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+            <p className="mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                 산업마다 업무 특성과 규제가 다릅니다. 각 산업의 맥락을 반영해 검증된
                 Enterprise AI 적용 영역을 정리했습니다.
             </p>
@@ -105,9 +105,9 @@ function Industries() {
                 {INDUSTRIES.map((ind) => (
                     <div
                         key={ind.title}
-                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                        className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                     >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center gap-3">
                             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                 <ind.icon className="h-5 w-5" />
                             </span>
@@ -198,7 +198,7 @@ const AGENTIC: { icon: LucideIcon; title: string; en: string; desc: string }[] =
 function AgenticAI() {
     return (
         <div className="space-y-6">
-            <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+            <p className="mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                 Plateer Labs는 에이전트가 스스로 계획하고, 협업하고, 도구를
                 다루며, 신뢰성 있게 운영되도록 만드는 <strong className="font-semibold text-[var(--color-ink)]">기반 기술과 연구</strong>를 다룹니다.
             </p>
@@ -207,7 +207,7 @@ function AgenticAI() {
                 {AGENTIC.map((a) => (
                     <div
                         key={a.title}
-                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                        className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-5 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                     >
                         <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                             <a.icon className="h-5 w-5" />
@@ -230,7 +230,7 @@ function AgenticAI() {
                 id="industries"
                 className="scroll-mt-24 border-t border-[var(--color-line)] pt-10"
             >
-                <h3 className="text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                <h3 className="text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
                     산업별 적용{" "}
                     <span className="text-[var(--color-ink-subtle)]">
                         Industries
