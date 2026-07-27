@@ -247,7 +247,7 @@ export function Hero({
 
     return (
         <>
-        <section className="relative flex min-h-[calc(100vh-96px)] items-start overflow-hidden bg-[#050813] text-white">
+        <section className="relative flex min-h-[calc(100vh-80px)] items-start overflow-hidden bg-[#050813] text-white">
             {/* main background videos — crossfade between slides */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 {SLIDE_BG.map((src, i) =>
@@ -339,15 +339,9 @@ export function Hero({
                                 <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                     {productNews.category}
                                 </span>
-                                <div className="min-w-0 text-center">
-                                    <p className="text-[11px] text-white/50">
-                                        최신 소식 ·{" "}
-                                        {productNews.date.replaceAll("-", ".")}
-                                    </p>
-                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                        {productNews.title}
-                                    </p>
-                                </div>
+                                <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
+                                    {productNews.title}
+                                </p>
                                 <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
@@ -359,15 +353,9 @@ export function Hero({
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                     vol.{latestIssue.vol}
                                 </span>
-                                <div className="min-w-0 text-center">
-                                    <p className="text-[11px] text-white/50">
-                                        최근 뉴스레터 ·{" "}
-                                        {latestIssue.date.replaceAll("-", ".")}
-                                    </p>
-                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                        {latestIssue.title}
-                                    </p>
-                                </div>
+                                <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
+                                    {latestIssue.title}
+                                </p>
                                 <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
@@ -379,15 +367,9 @@ export function Hero({
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                     {latestPost.category}
                                 </span>
-                                <div className="min-w-0 text-center">
-                                    <p className="text-[11px] text-white/50">
-                                        최근 블로그 ·{" "}
-                                        {latestPost.date.replaceAll("-", ".")}
-                                    </p>
-                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                        {latestPost.title}
-                                    </p>
-                                </div>
+                                <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
+                                    {latestPost.title}
+                                </p>
                                 <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
