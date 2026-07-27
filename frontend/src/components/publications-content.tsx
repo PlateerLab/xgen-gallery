@@ -112,7 +112,7 @@ function CategoryBlock({
             <p className="mt-5 text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                 {sub}
             </p>
-            <ul className="mt-4 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white px-6">
+            <ul className="mx-auto mt-4 max-w-3xl divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white px-6">
                 {sorted.map((p, i) => (
                     <PublicationRow key={`${p.title}-${i}`} p={p} />
                 ))}

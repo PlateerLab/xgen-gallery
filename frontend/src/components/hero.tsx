@@ -289,8 +289,8 @@ export function Hero({
                 )}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
-                {/* 1번째 슬라이드: 중앙 텍스트 뒤 배경을 부드럽게 블러(가독성) */}
-                {active === 0 && (
+                {/* 1·3번째 슬라이드: 중앙 텍스트 뒤 배경을 부드럽게 블러(가독성) */}
+                {(active === 0 || active === 2) && (
                     <div
                         aria-hidden
                         className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"

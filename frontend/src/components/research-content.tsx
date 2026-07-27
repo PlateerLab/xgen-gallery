@@ -398,10 +398,7 @@ export function ResearchContent() {
     const active = useScrollSpy(NAV.map((n) => n.id));
 
     return (
-        <div className="grid gap-12 lg:grid-cols-[240px_minmax(0,1fr)_240px]">
-            {/* 좌측 스페이서 — 우측 인덱스와 대칭을 이뤄 본문을 전체폭 중앙에 정렬
-                (섹션 헤더 'Research Areas'와 위치를 맞추기 위함) */}
-            <div aria-hidden className="hidden lg:block" />
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_240px]">
             <div className="min-w-0 space-y-24">
                 {/* 콘텐츠 헤드라인 — 키비주얼에서 분리한 연구 메시지 */}
                 <header className="mx-auto max-w-3xl border-b border-[var(--color-line)] pb-12 text-center">
