@@ -217,7 +217,7 @@ export default function ArchitecturePage() {
                             접근 채널부터 모델·인프라까지, 신뢰할 수 있는 Enterprise
                             AI를 구성하는 전체 계층 구조
                         </p>
-                        <div className="mt-8">
+                        <div className="mx-auto mt-8 max-w-5xl">
                             <ArchitectureDiagram />
                         </div>
                     </div>
@@ -239,7 +239,7 @@ export default function ArchitecturePage() {
                             데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전
                             계층에 일관되게 적용됩니다.
                         </p>
-                        <div className="mt-8">
+                        <div className="mx-auto mt-8 max-w-5xl">
                             <SecurityArchitecture />
                         </div>
                         <Link
@@ -267,7 +267,7 @@ export default function ArchitecturePage() {
                             RAG·지식, 파운데이션 모델, 인프라까지 — 전 계층을 관통하는
                             거버넌스·보안 위에서 동작하는 Enterprise AI 플랫폼
                         </p>
-                        <div className="mt-8">
+                        <div className="mx-auto mt-8 max-w-5xl">
                             <XgenPlatformArchitecture />
                         </div>
                         <p className="mt-6 max-w-3xl text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
@@ -302,7 +302,7 @@ export default function ArchitecturePage() {
                             자연어 질문 · 코드 검색 요청을 인덱싱과 하이브리드 검색, AI
                             재정렬로 처리해 근거 있는 코드 답변을 제공합니다
                         </p>
-                        <div className="mt-8">
+                        <div className="mx-auto mt-8 max-w-5xl">
                             <CodeAssistantArchitecture />
                         </div>
                         <Link
@@ -329,7 +329,7 @@ export default function ArchitecturePage() {
                             소스 변경부터 운영 반영까지 — 컨테이너 이미지 빌드와 선언형
                             GitOps 동기화로 통제된 배포를 수행합니다
                         </p>
-                        <div className="mt-8">
+                        <div className="mx-auto mt-8 max-w-5xl">
                             <XgenCicd />
                         </div>
                     </div>
