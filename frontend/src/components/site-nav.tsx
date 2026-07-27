@@ -170,6 +170,22 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
         return () => window.removeEventListener("scroll", onScroll);
     }, [overlay]);
 
+    // 상단 프로모션 배너(15일 무료 체험) — dismiss 시 localStorage에 기억.
+    // SSR/hydration 불일치를 피하려 초기엔 노출하고, 마운트 후 해제 상태면 숨긴다.
+    const [bannerOpen, setBannerOpen] = useState(true);
+    useEffect(() => {
+        try {
+            if (localStorage.getItem("xgen-trial-banner") === "dismissed")
+                setBannerOpen(false);
+        } catch {}
+    }, []);
+    const dismissBanner = () => {
+        setBannerOpen(false);
+        try {
+            localStorage.setItem("xgen-trial-banner", "dismissed");
+        } catch {}
+    };
+
     // light = transparent nav over the dark hero (top of an overlay page).
     // The bar turns solid white only on scroll — not when a dropdown opens.
     const light = overlay && !scrolled;
@@ -194,6 +210,29 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
 
     return (
         <header className={headerCls} onMouseLeave={scheduleClose}>
+            {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
+            {bannerOpen && (
+                <div className="relative flex items-center justify-center gap-2.5 bg-[linear-gradient(90deg,#e9f4ff_0%,#eafcf5_100%)] px-10 py-2 text-center text-[13.5px] leading-snug text-[#0b1730]">
+                    <span className="font-medium">
+                        XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요
+                    </span>
+                    <Link
+                        href="/xgen-trial"
+                        className="inline-flex flex-none items-center gap-1 font-semibold text-[#185aea] underline-offset-2 hover:underline"
+                    >
+                        체험 신청
+                        <span aria-hidden>→</span>
+                    </Link>
+                    <button
+                        type="button"
+                        onClick={dismissBanner}
+                        aria-label="배너 닫기"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0b1730]/45 transition hover:text-[#0b1730]"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                </div>
+            )}
             <div className="flex h-[84px] w-full items-center px-6">
                 <Link
                     href="/"
@@ -201,15 +240,15 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 >
                     <BrandMark
                         className={cn(
-                            "h-[33px] w-auto transition",
+                            "h-[25px] w-auto transition",
                             light && "brightness-0 invert",
                         )}
                     />
                     <span
-                        className="relative text-[42px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
+                        className="relative text-[32px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
                     >
                         {/* LABS 글자 위 Beta 표기 (오른쪽 정렬 — S 위) */}
-                        <span className="pointer-events-none absolute -top-3 right-0 text-[11px] font-bold uppercase tracking-wide text-[#00adee]">
+                        <span className="pointer-events-none absolute -top-2.5 right-0 text-[10px] font-bold uppercase tracking-wide text-[#00adee]">
                             Beta
                         </span>
                         LABS

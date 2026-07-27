@@ -42,7 +42,7 @@ const SLIDE_TRANSFORM: (string | undefined)[] = [
 ];
 
 const H1_CLS =
-    "max-w-5xl text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]";
+    "mx-auto max-w-5xl text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]";
 
 /** CTA buttons — defaults to the XGEN toolkit pair; per-slide overridable. */
 function HeroActions({
@@ -60,7 +60,7 @@ function HeroActions({
         external: true,
     };
     return (
-        <div className="mt-10 flex flex-wrap items-center gap-3">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
                 href={p.href}
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[16px] font-semibold text-[#070b1c] transition hover:bg-white/90"
@@ -96,7 +96,7 @@ function XgenPlatformSlide() {
                 Agentic AI Platform
             </h1>
 
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/70">
+            <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
                 원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼 —
                 <br className="hidden sm:block" />
                 XGEN을 지금 직접 경험해보세요
@@ -120,7 +120,7 @@ function VisionSlide() {
                 of Enterprise AI
             </h1>
 
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/70">
+            <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
                 Plateer Labs는 단순한 AI 기능 개발을 넘어,
                 <br className="hidden sm:block" />
                 기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다
@@ -160,7 +160,7 @@ function XgenSlide() {
                 )}
             </h1>
 
-            <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/70">
+            <p className="mt-7 mx-auto max-w-xl text-xl leading-relaxed text-white/70">
                 {t.hero.desc}
             </p>
 
@@ -184,7 +184,7 @@ function SecuritySlide() {
                 Enterprise AI
             </h1>
 
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/70">
+            <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
                 가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와 AI 위험도
                 등급까지 —
                 <br className="hidden sm:block" />
@@ -292,7 +292,7 @@ export function Hero({
 
             <div className="relative mx-auto w-full max-w-7xl px-6 py-28">
                 {/* rolling slides — fade/slide-in on change */}
-                <div key={active} className="hero-slide-enter">
+                <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
                         <VisionSlide />
                     ) : active === 1 ? (
@@ -305,7 +305,7 @@ export function Hero({
                 </div>
 
                 {/* slide indicators */}
-                <div className="mt-12 flex items-center gap-2">
+                <div className="mt-12 flex items-center justify-center gap-2">
                     {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
                         <button
                             key={i}
