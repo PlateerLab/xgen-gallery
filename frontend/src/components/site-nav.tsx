@@ -212,13 +212,13 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
         <header className={headerCls} onMouseLeave={scheduleClose}>
             {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
             {bannerOpen && (
-                <div className="relative flex items-center justify-center gap-2.5 bg-[linear-gradient(90deg,#e9f4ff_0%,#eafcf5_100%)] px-10 py-2 text-center text-[13.5px] leading-snug text-[#0b1730]">
-                    <span className="font-medium">
+                <div className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-[linear-gradient(90deg,#00acee_0%,#185aea_100%)] px-12 py-3 text-center text-[14px] leading-snug text-white">
+                    <span className="font-semibold">
                         XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요
                     </span>
                     <Link
                         href="/xgen-trial"
-                        className="inline-flex flex-none items-center gap-1 font-semibold text-[#185aea] underline-offset-2 hover:underline"
+                        className="inline-flex flex-none items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-[13px] font-bold text-white backdrop-blur-sm transition hover:bg-white/30"
                     >
                         체험 신청
                         <span aria-hidden>→</span>
@@ -227,7 +227,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                         type="button"
                         onClick={dismissBanner}
                         aria-label="배너 닫기"
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0b1730]/45 transition hover:text-[#0b1730]"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 transition hover:text-white"
                     >
                         <X className="h-4 w-4" />
                     </button>

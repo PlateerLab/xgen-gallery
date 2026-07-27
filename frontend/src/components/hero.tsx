@@ -207,9 +207,11 @@ type HeroIssue = { slug: string; title: string; vol: number; date: string };
 
 export function Hero({
     productNews,
+    latestPost,
     latestIssue,
 }: {
     productNews?: HeroPost | null;
+    latestPost?: HeroPost | null;
     latestIssue?: HeroIssue | null;
 }) {
     const [active, setActive] = useState(0);
@@ -326,18 +328,18 @@ export function Hero({
         </section>
 
             {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드(배경 박스 없이 제품소식·뉴스레터만) */}
-            {(productNews || latestIssue) && (
+            {(productNews || latestPost || latestIssue) && (
                 <section aria-label="최근 소식" className="bg-[#070b1c] py-4">
-                    <div className="mx-auto grid max-w-4xl gap-x-8 gap-y-2 px-6 sm:grid-cols-2">
+                    <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-2 px-6 sm:grid-cols-3">
                         {productNews && (
                             <Link
                                 href={`/blog/${productNews.slug}`}
-                                className="group flex items-center gap-3 py-3"
+                                className="group flex items-center justify-center gap-3 py-3"
                             >
                                 <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                     {productNews.category}
                                 </span>
-                                <div className="min-w-0">
+                                <div className="min-w-0 text-center">
                                     <p className="text-[11px] text-white/50">
                                         최신 소식 ·{" "}
                                         {productNews.date.replaceAll("-", ".")}
@@ -346,18 +348,18 @@ export function Hero({
                                         {productNews.title}
                                     </p>
                                 </div>
-                                <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                                <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
                         {latestIssue && (
                             <Link
                                 href={`/newsletter/${latestIssue.slug}`}
-                                className="group flex items-center gap-3 py-3"
+                                className="group flex items-center justify-center gap-3 py-3"
                             >
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                     vol.{latestIssue.vol}
                                 </span>
-                                <div className="min-w-0">
+                                <div className="min-w-0 text-center">
                                     <p className="text-[11px] text-white/50">
                                         최근 뉴스레터 ·{" "}
                                         {latestIssue.date.replaceAll("-", ".")}
@@ -366,7 +368,27 @@ export function Hero({
                                         {latestIssue.title}
                                     </p>
                                 </div>
-                                <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                                <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                            </Link>
+                        )}
+                        {latestPost && (
+                            <Link
+                                href={`/blog/${latestPost.slug}`}
+                                className="group flex items-center justify-center gap-3 py-3"
+                            >
+                                <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
+                                    {latestPost.category}
+                                </span>
+                                <div className="min-w-0 text-center">
+                                    <p className="text-[11px] text-white/50">
+                                        최근 블로그 ·{" "}
+                                        {latestPost.date.replaceAll("-", ".")}
+                                    </p>
+                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
+                                        {latestPost.title}
+                                    </p>
+                                </div>
+                                <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
                     </div>

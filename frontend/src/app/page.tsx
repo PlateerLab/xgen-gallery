@@ -28,6 +28,11 @@ export default function Home() {
     const productNews = news
         ? { slug: news.slug, title: news.title, category: news.category, date: news.date }
         : null;
+    // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나.
+    const tech = posts.find((x) => x.category === "Tech Note");
+    const latestPost = tech
+        ? { slug: tech.slug, title: tech.title, category: tech.category, date: tech.date }
+        : null;
     const iss = getIssues()[0];
     const latestIssue = iss
         ? { slug: iss.slug, title: iss.title, vol: iss.vol, date: iss.date }
@@ -40,6 +45,7 @@ export default function Home() {
             <main>
                 <Hero
                     productNews={productNews}
+                    latestPost={latestPost}
                     latestIssue={latestIssue}
                 />
                 <HomeTrialBanner />
