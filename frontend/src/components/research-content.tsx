@@ -457,10 +457,10 @@ export function ResearchContent() {
                         {FIELDS.map((f) => (
                             <div
                                 key={f.title}
-                                className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 shadow-[0_1px_2px_rgba(20,40,80,0.04)] transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)] md:p-7"
+                                className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center shadow-[0_1px_2px_rgba(20,40,80,0.04)] transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)] md:p-7"
                             >
                                 {/* 아이콘 박스 + 배지 (첨부 논문 카드 스타일) */}
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center justify-center gap-3">
                                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                         <f.icon className="h-5 w-5" />
                                     </span>
