@@ -240,15 +240,15 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 >
                     <BrandMark
                         className={cn(
-                            "h-[25px] w-auto transition",
+                            "h-[21px] w-auto transition",
                             light && "brightness-0 invert",
                         )}
                     />
                     <span
-                        className="relative text-[32px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
+                        className="relative text-[26px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
                     >
                         {/* LABS 글자 위 Beta 표기 (오른쪽 정렬 — S 위) */}
-                        <span className="pointer-events-none absolute -top-2.5 right-0 text-[10px] font-bold uppercase tracking-wide text-[#00adee]">
+                        <span className="pointer-events-none absolute -top-2 right-0 text-[9px] font-bold uppercase tracking-wide text-[#00adee]">
                             Beta
                         </span>
                         LABS
