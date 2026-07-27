@@ -27,13 +27,13 @@ export function PostDeploymentSupport() {
                 <Link
                     key={it.href}
                     href={it.href}
-                    className="group flex items-start gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#2f7bff]/40 hover:shadow-[0_12px_30px_-16px_rgba(20,40,80,0.35)]"
+                    className="group flex flex-col items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#2f7bff]/40 hover:shadow-[0_12px_30px_-16px_rgba(20,40,80,0.35)]"
                 >
                     <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                         <it.icon className="h-5 w-5" />
                     </span>
                     <div className="min-w-0">
-                        <h3 className="flex items-center gap-1.5 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                        <h3 className="flex items-center justify-center gap-1.5 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
                             {it.title}
                             <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2f7bff]" />
                         </h3>
