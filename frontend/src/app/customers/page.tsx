@@ -95,7 +95,7 @@ export default async function CustomersPage({
                 </div>
             </section>
 
-            <main className="mx-auto w-full max-w-7xl px-6 py-16">
+            <main className="mx-auto w-full max-w-5xl px-6 py-16">
                 <CustomersLibrary cases={cases} initialProduct={initialProduct} />
 
                 <p className="mt-8 text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">
