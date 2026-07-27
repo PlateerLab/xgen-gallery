@@ -293,8 +293,8 @@ export const NAV_GROUPS: NavGroup[] = [
             {
                 // Code Assistant — 사내 코드베이스를 이해하는 코드 어시스턴트. colBreak로
                 // XGEN 오른쪽(col2)에 둔다. 라벨은 요청에 따라 영문 표기(labelKo도 영문).
-                label: "Code Assistant",
-                labelKo: "Code Assistant",
+                label: "AI Code Assistant",
+                labelKo: "AI Code Assistant",
                 id: "code-assistant",
                 route: "/code-assistant",
                 colBreak: true,
