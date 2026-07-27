@@ -328,12 +328,12 @@ export function Hero({
             {(productNews || latestPost || latestIssue) && (
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden md:block">
                     <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:pb-24">
-                        <div className="pointer-events-auto flex flex-col gap-3">
+                        <div className="pointer-events-auto flex flex-col items-center gap-3">
                             {/* 제품소식 — 블로그·뉴스레터 위 한 줄 */}
                             {productNews && (
                                 <Link
                                     href={`/blog/${productNews.slug}`}
-                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-2.5 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group inline-flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-2.5 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-transparent bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                         {productNews.category}
@@ -350,11 +350,11 @@ export function Hero({
                                     <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                                 </Link>
                             )}
-                            <div className="grid gap-3 sm:grid-cols-2">
+                            <div className="flex flex-wrap items-center justify-center gap-3">
                             {latestPost && (
                                 <Link
                                     href={`/blog/${latestPost.slug}`}
-                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group inline-flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                         {latestPost.category}
@@ -374,7 +374,7 @@ export function Hero({
                             {latestIssue && (
                                 <Link
                                     href={`/newsletter/${latestIssue.slug}`}
-                                    className="group flex items-center justify-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
+                                    className="group inline-flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
                                 >
                                     <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                         vol.{latestIssue.vol}
