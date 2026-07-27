@@ -291,7 +291,7 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
             </div>
 
-            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-56">
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-64">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
