@@ -239,12 +239,6 @@ export function SiteFooter() {
                                 ),
                             )}
                             <Link
-                                href="/contact?from=footer"
-                                className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-                            >
-                                PoC · 기술 상담
-                            </Link>
-                            <Link
                                 href="/newsletter"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                             >

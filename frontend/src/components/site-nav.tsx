@@ -8,21 +8,7 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { SiteSearch } from "@/components/site-search";
 import { useI18n } from "@/components/i18n-provider";
 import { NAV_GROUPS, DEMO_CTA, sectionHref, type NavLeaf } from "@/lib/nav";
-import { SITE } from "@/lib/site";
 import { cn } from "@/lib/cn";
-
-function GithubIcon({ className }: { className?: string }) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className={className}
-            aria-hidden="true"
-        >
-            <path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.77 2.7 1.26 3.36.97.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.48.11-3.08 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.6.24 2.78.12 3.08.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.77 1.07.77 2.16v3.2c0 .32.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
-        </svg>
-    );
-}
 
 /**
  * Split dropdown items into columns for a `wide` layout. If any item sets
@@ -324,7 +310,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
-                    {/* utility icons — members + github (desktop only) */}
+                    {/* members 아이콘 + 언어 전환 유지(github 아이콘 제거 — 요청). desktop only */}
                     <div className="hidden items-center gap-3 lg:flex">
                         <Link
                             href="/members"
@@ -339,20 +325,6 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                             <Users className="h-5 w-5" />
                         </Link>
                         <LanguageToggle light={light} />
-                        <Link
-                            href={SITE.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="GitHub"
-                            className={cn(
-                                "inline-flex transition",
-                                light
-                                    ? "text-white/80 hover:text-white"
-                                    : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
-                            )}
-                        >
-                            <GithubIcon className="h-5 w-5" />
-                        </Link>
                     </div>
 
                     {/* primary CTA — 임시 숨김 (요청: 검색바 확장). false && 로 비활성화. */}

@@ -415,5 +415,6 @@ export const ABOUT_GROUP: NavGroup = {
     blurb: "Plateer Labs를 만드는 미션과 사람들.",
     items: [
         { label: "Company", id: "company", external: "https://www.plateer.com/" },
+        { label: "깃허브 바로가기", id: "github", external: "https://github.com/PlateerLab" },
     ],
 };

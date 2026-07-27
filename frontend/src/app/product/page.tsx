@@ -796,16 +796,17 @@ export default function ProductPage() {
                             Business Value
                         </p>
                         <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            AI 구축이 아닌, 기업 운영 방식이 달라집니다
+                            AI는 구축이 아니라, 기업 운영의 새로운 표준입니다
                         </h2>
                         <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            기업은 더 이상 AI 모델을 도입하는 것이 아니라,{" "}
+                            기업은 더 이상 AI 모델을 도입하는 것에 머물지 않습니다. 기존
+                            시스템과 AI를 안전하게 연결하고, 보안과 거버넌스를 기반으로 실제
+                            업무에 적용할 수 있는{" "}
                             <span className="font-semibold text-[var(--color-ink)]">
-                                운영 가능한 AI 플랫폼
+                                운영 플랫폼
                             </span>
-                            을 선택합니다. XGEN은 개발 속도보다 운영 안정성, 기능보다
-                            거버넌스, PoC보다 실제 업무 적용을 중심으로 Enterprise AI를
-                            구현합니다.
+                            을 선택합니다. XGEN은 AI를 도입하는 플랫폼이 아니라, 기업의
+                            AI 운영을 지속적으로 확장하는 Enterprise AI 플랫폼입니다.
                         </p>
 
                         {/* 5대 혁신 효과 — 경쟁·가치 우위 관점의 전략 성과(최신 제품 덱) */}
