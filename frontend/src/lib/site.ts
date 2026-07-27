@@ -14,7 +14,7 @@ export const SITE = {
     description:
         "기업용 Agentic AI 플랫폼 XGEN을 제공합니다. 원하는 LLM과 온프레미스·망분리 인프라 위에서 보안·거버넌스를 갖춰 AI를 구축하고, 실제 업무에 적용해 검증된 성과로 이어지도록 지원합니다.",
     descriptionEn:
-        "Plateer Labs researches and shares the core technology for building AI platforms enterprises can trust. We open-source proven AI building blocks behind XGEN — document ingestion, knowledge graphs, and agent frameworks — so anyone can install, experiment, and put them into production.",
+        "Plateer Labs provides XGEN, an Agentic AI platform for enterprises. Build AI on your choice of LLM and on-premise or air-gapped infrastructure with built-in security and governance, then apply it to real business workflows for proven results.",
     github: "https://github.com/PlateerLab",
     githubOrg: "PlateerLab",
     youtube: "https://www.youtube.com/@PlateerLabs",
