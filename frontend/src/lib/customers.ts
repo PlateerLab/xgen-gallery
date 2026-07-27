@@ -19,6 +19,14 @@
  * 아래 사례는 실제 납품/운영 프로젝트를 위 원칙에 따라 정리한 것이다.
  */
 
+/**
+ * 고객사례 목록/슬라이더에서 개별 사례 상세(/customers/case/*)로의 링크 활성화 여부.
+ * false면 리스트 행·키비주얼 카드 클릭이 상세로 이동하지 않는다(검증 전 비공개).
+ * 사례를 하나씩 검증해 공개할 준비가 되면 true로 바꾼다.
+ * (상세 라우트 자체는 살아 있어 직접 URL로 검증 가능)
+ */
+export const CASE_LINKS_ENABLED = false;
+
 export type ProductKey = "xgen" | "polar" | "code-assistant";
 export type IndustryKey = "commerce" | "finance" | "public" | "it-services";
 export type CaseStatus = "운영 중" | "구축 완료" | "확산 중" | "구축·운영 중";

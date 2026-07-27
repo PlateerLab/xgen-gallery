@@ -13,6 +13,7 @@ import {
 import {
     PRODUCTS,
     INDUSTRIES,
+    CASE_LINKS_ENABLED,
     type CaseStudy,
     type ProductKey,
     type IndustryKey,
@@ -96,11 +97,8 @@ function StatusBadge({ c }: { c: CaseStudy }) {
 
 /** 리스트 행 — 좌측 그라디언트 썸네일 + 우측 제목·설명·태그. */
 function CaseRow({ c }: { c: CaseStudy }) {
-    return (
-        <Link
-            href={`/customers/case/${c.slug}`}
-            className="group grid grid-cols-1 items-center gap-6 py-8 sm:grid-cols-[288px_1fr]"
-        >
+    const inner = (
+        <>
             <Thumb c={c} iconSize="h-28 w-28" className="min-h-[172px] p-5" />
             <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -119,7 +117,11 @@ function CaseRow({ c }: { c: CaseStudy }) {
                     ))}
                     <StatusBadge c={c} />
                 </div>
-                <h3 className="mt-2.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                <h3
+                    className={`mt-2.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition ${
+                        CASE_LINKS_ENABLED ? "group-hover:text-[#2461d8]" : ""
+                    }`}
+                >
                     {c.title}
                 </h3>
                 <p className="mt-2 line-clamp-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -127,12 +129,28 @@ function CaseRow({ c }: { c: CaseStudy }) {
                 </p>
                 <div className="mt-3.5 flex items-center justify-between gap-3">
                     <HashTags c={c} />
-                    <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
-                        자세히 보기
-                        <ArrowUpRight className="h-4 w-4" />
-                    </span>
+                    {/* 상세 링크 비활성 시 '자세히 보기' 어포던스는 숨긴다(오해 방지) */}
+                    {CASE_LINKS_ENABLED && (
+                        <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                            자세히 보기
+                            <ArrowUpRight className="h-4 w-4" />
+                        </span>
+                    )}
                 </div>
             </div>
+        </>
+    );
+
+    const cls =
+        "group grid grid-cols-1 items-center gap-6 py-8 sm:grid-cols-[288px_1fr]";
+
+    // 검증 전에는 상세로 이동하지 않도록 링크를 비활성화(클릭 무반응).
+    if (!CASE_LINKS_ENABLED) {
+        return <div className={`${cls} cursor-default`}>{inner}</div>;
+    }
+    return (
+        <Link href={`/customers/case/${c.slug}`} className={cls}>
+            {inner}
         </Link>
     );
 }

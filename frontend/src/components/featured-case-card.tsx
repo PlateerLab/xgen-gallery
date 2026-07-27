@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { PRODUCTS, INDUSTRIES, type CaseStudy } from "@/lib/customers";
+import {
+    PRODUCTS,
+    INDUSTRIES,
+    CASE_LINKS_ENABLED,
+    type CaseStudy,
+} from "@/lib/customers";
 import { IndustryVisual } from "@/components/industry-visual";
 
 /**
@@ -9,11 +14,11 @@ import { IndustryVisual } from "@/components/industry-visual";
  * 라벨/슬라이더 등은 호출부(FeaturedCaseSlider)에서 감싼다.
  */
 export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
-    return (
-        <Link
-            href={`/customers/case/${item.slug}`}
-            className="group block overflow-hidden rounded-2xl border border-white/15 shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] transition hover:border-white/30"
-        >
+    const cls =
+        "group block overflow-hidden rounded-2xl border border-white/15 shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] transition hover:border-white/30";
+
+    const body = (
+        <>
             <div className="relative aspect-[16/10] overflow-hidden">
                 {/* 산업 상징 비주얼 */}
                 <IndustryVisual
@@ -47,12 +52,25 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
                     <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-white/70">
                         {item.summary}
                     </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#7dd3fc]">
-                        사례 보기
-                        <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                    </span>
+                    {/* 상세 링크 비활성 시 '사례 보기' 어포던스는 숨긴다 */}
+                    {CASE_LINKS_ENABLED && (
+                        <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#7dd3fc]">
+                            사례 보기
+                            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                        </span>
+                    )}
                 </div>
             </div>
+        </>
+    );
+
+    // 검증 전에는 카드 클릭이 상세로 이동하지 않도록 링크 비활성화(클릭 무반응).
+    if (!CASE_LINKS_ENABLED) {
+        return <div className={`${cls} cursor-default`}>{body}</div>;
+    }
+    return (
+        <Link href={`/customers/case/${item.slug}`} className={cls}>
+            {body}
         </Link>
     );
 }
