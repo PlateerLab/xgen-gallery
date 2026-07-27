@@ -798,7 +798,7 @@ export default function ProductPage() {
                         <h2 className="mx-auto mt-3 max-w-4xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             AI는 구축이 아니라, 기업 운영의 새로운 표준입니다
                         </h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             기업은 더 이상 AI 모델을 도입하는 것에 머물지 않습니다. 기존
                             시스템과 AI를 안전하게 연결하고, 보안과 거버넌스를 기반으로 실제
                             업무에 적용할 수 있는{" "}
@@ -1052,7 +1052,7 @@ export default function ProductPage() {
                             인프라부터 AI 에이전트까지, 기업의 AI 운영에 필요한 핵심 기술을
                             하나의 플랫폼으로 통합합니다.
                         </p>
-                        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN은 특정 AI 모델이나 클라우드에 종속되지 않습니다. 표준
                             프로토콜 기반의 6계층 아키텍처를 통해 온프레미스 GPU, 상용 AI
                             API, 사내 시스템을 일관된 방식으로 연결하고 운영할 수 있습니다.
@@ -1250,7 +1250,7 @@ export default function ProductPage() {
                                     <br />
                                     기업에서 운영될 수 없습니다
                                 </h2>
-                                <p className="mt-5 max-w-md text-[16px] leading-relaxed text-white/65">
+                                <p className="mx-auto mt-5 max-w-md text-center text-[16px] leading-relaxed text-white/65">
                                     XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을
                                     추적하고, 위험한 변경은 배포 전에 검증하며, 승인된
                                     에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제
@@ -1463,7 +1463,7 @@ export default function ProductPage() {
                         <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">
                             업무에 바로 투입되는 기업용 AI를 확인해 보세요
                         </h2>
-                        <p className="mx-auto mt-5 max-w-2xl text-[16px] leading-relaxed text-white/70">
+                        <p className="mx-auto mt-5 max-w-2xl text-center text-[16px] leading-relaxed text-white/70">
                             조직의 보안·권한·감사 요건을 만족하는 Agentic AI 플랫폼.
                             데모에서 설계·배포·통제의 전체 흐름을 직접 보여드립니다.
                         </p>
