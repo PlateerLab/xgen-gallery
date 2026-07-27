@@ -21,6 +21,112 @@ export interface Release {
 
 export const RELEASES: Release[] = [
     {
+        version: "v2.4.0",
+        date: "2026-07-27",
+        product: "xgen",
+        tagline: "Voice I/O, Agent-level Masking & Data Access Audit",
+        summary:
+            "음성으로 주고받는 대화(STT·TTS), 에이전트 단위로 켜고 끄는 PII·금칙어 마스킹, 데이터 접근 감사와 관리자 엑셀 내보내기까지 — 쓰는 방식과 통제하는 방식을 함께 넓혔습니다.",
+        highlights: [
+            "음성 대화 (STT · TTS)",
+            "에이전트별 PII · 금칙어 마스킹",
+            "데이터 접근 감사 · 엑셀 내보내기",
+            "DB → 온톨로지 색인",
+        ],
+        items: [
+            {
+                category: "new",
+                title: "음성 대화 — STT · TTS",
+                detail: "사용자는 마이페이지에서 음성 인식·합성 엔진을 고르고, 관리자는 [오디오] 설정에서 제공자별 카탈로그를 등록한 뒤 연결 테스트와 모델 자동 확인으로 검증합니다. 엔드포인트별 완성형 보이스를 만드는 [TTS 프로파일] 스튜디오와 기본 보이스 4종, 게이트웨이 /api/audio/* 라우팅까지 함께 들어갔습니다.",
+                modules: ["xgen-core", "xgen-frontend", "xgen-backend-gateway"],
+            },
+            {
+                category: "new",
+                title: "에이전트별 PII · 금칙어 마스킹",
+                detail: "통제 정책을 에이전트 단위로 켜고 끌 수 있습니다. 마스킹 범위를 답변 본문에서 도구 실행 결과·RAG 컨텍스트·출처로 표시되는 원본 문서까지 넓혔고, 정책 변경 이력에 무엇이 언제 바뀌었는지와 관여한 인원수가 남습니다.",
+                modules: ["xgen-core", "xgen-workflow", "xgen-frontend", "xgen-documents"],
+            },
+            {
+                category: "new",
+                title: "데이터 접근 감사 · 관리자 엑셀 내보내기",
+                detail: "에이전트가 접근한 DB 컬렉션과 문서명을 감사 로그로 남깁니다. 점검 이력·로그인 로그·채팅 통계·문서 재색인 등 관리자 화면 20여 곳에서 xlsx로 내려받을 수 있고, 실행 통계는 화면에 보이는 전체를 멀티시트로 내보냅니다.",
+                modules: ["xgen-core", "xgen-documents", "xgen-frontend"],
+            },
+            {
+                category: "new",
+                title: "매뉴얼 인앱 뷰어",
+                detail: "제품 매뉴얼을 앱을 벗어나지 않고 [솔루션 가이드]에서 바로 봅니다. 마크다운 원본을 실시간으로 서빙하는 방식이라 문서를 고치면 곧바로 반영됩니다.",
+                modules: ["xgen-frontend"],
+            },
+            {
+                category: "new",
+                title: "사용자용 다운로드 센터 · 폐쇄망 번들",
+                detail: "지원 섹션에 사용자가 직접 쓰는 다운로드 센터를 열고, 접속기 종류와 설치본 원본 형식을 지원합니다. 완전 폐쇄망 빌드를 위해 번들 설치본을 소스 레벨로 포함하고 시딩합니다.",
+                modules: ["xgen-frontend", "xgen-core"],
+            },
+            {
+                category: "improved",
+                title: "DB → 온톨로지 색인",
+                detail: "DB SELECT 결과를 LLM 추출 없이 온톨로지로 색인하는 경로를 다듬었습니다. 행 PK를 RDF URI에 연결하고, 그래프는 staging 기반으로 원자 교체하며, 색인 identity와 lease 스키마를 강제합니다.",
+                modules: ["xgen-documents", "xgen-core"],
+            },
+            {
+                category: "improved",
+                title: "토큰 한도 정책 배포 범위",
+                detail: "토큰 사용량 정책을 개발·검증·운영 등 배포 상태(agent_deploy_scope)별로 따로 집행합니다. 누적 집계도 같은 기준으로 나뉘어, 해당 배포 상태의 실행에만 정책이 걸립니다.",
+                modules: ["xgen-core", "xgen-workflow"],
+            },
+            {
+                category: "improved",
+                title: "Oracle 연결 SQLAlchemy 통합",
+                detail: "Oracle 조회를 SQLAlchemy 엔진으로 일원화하고 TCPS/SSL 연결, 연결 모드별 DSN, db_schema 적용, CLOB 조회 오류를 함께 정리했습니다. 외부 DB 쿼리에는 liveness 보호를 적용했습니다.",
+                modules: ["xgen-workflow", "xgen-core"],
+            },
+            {
+                category: "improved",
+                title: "컨텍스트 초과 진단",
+                detail: "컨텍스트 초과를 일반 오류로 뭉뚱그리지 않고 vLLM 실측 포맷 기준으로 진단해 무엇이 얼마나 넘쳤는지 안내합니다. 파일·컨텍스트 한도 하드코딩을 걷어내고 모델 카탈로그 기반으로 동적화했습니다.",
+                modules: ["xgen-workflow"],
+            },
+            {
+                category: "improved",
+                title: "채팅 수식 렌더링 · 출처 뷰어",
+                detail: "채팅 마크다운에서 KaTeX로 LaTeX 수식을 렌더링합니다. 본문에 중복 표시되던 출처 마커를 정리하고, 엑셀·CSV도 출처 뷰어로 열립니다.",
+                modules: ["xgen-frontend"],
+            },
+            {
+                category: "improved",
+                title: "실행 통계 · 로그인 관리",
+                detail: "에이전트 실행 통계와 장애 로그를 캘린더 범위로 조회하고, 로그인 관리 상단에 누적 로그인 사용자 수를 집계해 보여줍니다.",
+                modules: ["xgen-core", "xgen-frontend"],
+            },
+            {
+                category: "fixed",
+                title: "모델 서버 자가복구 하드닝",
+                detail: "동시성·누수 회수를 포함한 자가복구 경로를 강화하고, GPU별 메모리와 서빙 설정 스냅샷을 재기동 이력에 남깁니다. 재기동 사유를 호출자가 지정해 수동·자동을 구분합니다.",
+                modules: ["xgen-model"],
+            },
+            {
+                category: "fixed",
+                title: "문서 저장소 암호화 기록 · MinIO 감사",
+                detail: "업로드 이력에 실제 암호화 정보를 기록하도록 바로잡고, MinIO 업로드가 실패한 것처럼 잘못 남던 이력을 정리했습니다. 동일 파일 중복 업로드 스킵도 감사 기록으로 남깁니다.",
+                modules: ["xgen-documents"],
+            },
+            {
+                category: "fixed",
+                title: "공유 컬렉션 피공유자 접근",
+                detail: "피공유자가 컬렉션 폴더와 파일 저장소에 접근할 때 소유자 스코프가 어긋나 목록·업로드·일괄삭제가 막히던 문제를 공통 검사로 통일했습니다.",
+                modules: ["xgen-documents"],
+            },
+            {
+                category: "fixed",
+                title: "Teams 멀티파드 메시지 정합",
+                detail: "Redis pub/sub 백플레인을 도입해 여러 파드에 걸친 채팅 메시지 브로드캐스트가 어긋나지 않도록 했습니다.",
+                modules: ["xgen-workflow"],
+            },
+        ],
+    },
+    {
         version: "v2.3.0",
         date: "2026-06-18",
         product: "xgen",
