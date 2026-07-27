@@ -22,7 +22,7 @@ import {
 
 function Lead({ children }: { children: ReactNode }) {
     return (
-        <p className="max-w-3xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+        <p className="mx-auto max-w-3xl text-center text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
             {children}
         </p>
     );
@@ -43,13 +43,13 @@ function Topic({
 }) {
     return (
         <div id={id} className="scroll-mt-24 border-t border-[var(--color-line)] pt-14 first:border-t-0 first:pt-0">
-            <div className="flex items-center gap-2 text-[14px] font-semibold">
+            <div className="flex items-center justify-center gap-2 text-[14px] font-semibold">
                 <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 text-[#2461d8]">
                     {pillar}
                 </span>
                 <span className="text-[var(--color-ink-subtle)]">{en}</span>
             </div>
-            <h3 className="mt-3 text-xl font-bold tracking-tight text-[var(--color-ink)] md:text-2xl">
+            <h3 className="mt-3 text-center text-xl font-bold tracking-tight text-[var(--color-ink)] md:text-2xl">
                 {title}
             </h3>
             <div className="mt-4">{children}</div>
@@ -632,7 +632,7 @@ export function EnginesContent() {
             </Lead>
 
             <Topic id="ontology" pillar="운영" en="Knowledge Engine" title="Ontology — 관계로 ‘맞는 사실’을 따라가는 지식 엔진">
-                <p className="max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                     벡터 기반 검색은 유사도가 높은 단편을 찾는 데 그칩니다. XGEN
                     Ontology RAG는 데이터 사이의 관계를 따라가며 ‘무엇이 있는가’가
                     아니라 ‘왜 그런가, 무엇과 연결되는가’까지 추적합니다. 문서 검색을
@@ -666,7 +666,7 @@ export function EnginesContent() {
             </Topic>
 
             <Topic id="harness" pillar="운영" en="Execution Harness" title="Harness — AI가 일하는 환경 전체를 설계하는 기술">
-                <p className="max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                     AI를 움직이는 것은 모델이 아니라 환경입니다. Harness
                     Engineering은 지시(Prompt)와 맥락(Context)을 넘어, LLM이 실제로
                     일하는 환경 전체를 통제해 신뢰할 수 있는 실행을 보장합니다.
@@ -781,7 +781,7 @@ export function RuntimeContent() {
             </Lead>
 
             <Topic id="mcp-apps" pillar="독립" en="Open Architecture" title="MCP Apps — 감싸지(Wrapper) 않고, 코드로 담아(Compiler)냅니다">
-                <p className="max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                     대부분의 플랫폼은 엔진을 내부에 상시 구동하고 MCP로 겉면만 감쌉니다.
                     XGEN은 SDK로 워크플로우와 보안 정책 자체를 표준 프로세스 코드로
                     내재화해 ‘독립 MCP 서버 패키지’로 내보냅니다 — 한 번 만들고 어디서나
@@ -791,7 +791,7 @@ export function RuntimeContent() {
             </Topic>
 
             <Topic id="runtime-sdk" pillar="독립" en="Runtime SDK" title="Runtime SDK — 엔진 전체를 단 하나의 SDK API로">
-                <p className="max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                     RAG · 워크플로우 · 세션 · LLMOps 전체를 표준 Python / Node 코드로
                     조합합니다. 워크플로우와 정책을 자산화해 배포 가능한 실행 패키지로
                     만듭니다.
@@ -800,7 +800,7 @@ export function RuntimeContent() {
             </Topic>
 
             <Topic id="runtime-api" pillar="연결" en="Runtime API" title="Runtime API — 어디서나 배포하고, 어떤 클라이언트와도 연결">
-                <p className="max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                     컨테이너 · 서버리스 · 엣지까지 원하는 모든 환경에 단독 배포할 수
                     있습니다. 표준 MCP 인터페이스로 어떤 클라이언트와도 연결됩니다.
                 </p>

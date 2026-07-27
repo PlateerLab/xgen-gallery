@@ -224,7 +224,7 @@ function useScrollSpy(ids: string[]) {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
     return (
-        <h3 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+        <h3 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
             {children}
         </h3>
     );
@@ -401,7 +401,7 @@ export function ResearchContent() {
         <div className="grid gap-12 lg:grid-cols-[1fr_240px]">
             <div className="min-w-0 space-y-24">
                 {/* 콘텐츠 헤드라인 — 키비주얼에서 분리한 연구 메시지 */}
-                <header className="max-w-3xl border-b border-[var(--color-line)] pb-12">
+                <header className="mx-auto max-w-3xl border-b border-[var(--color-line)] pb-12 text-center">
                     <p className="text-[16px] leading-relaxed text-[var(--color-ink-subtle)]">
                         공공기관과 대기업은 데이터 주권, 보안, 감사 추적, 조직
                         거버넌스, 운영 안정성까지 고려해야 하며, AI는 단순한 실험을
@@ -488,7 +488,7 @@ export function ResearchContent() {
                 {/* 3. 실증 연구 사례 */}
                 <section id="cases" className="scroll-mt-28">
                     <SectionHeading>실증 연구 사례</SectionHeading>
-                    <p className="mt-3 text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mx-auto mt-3 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         연구 성과는 XGEN의 기술 스택으로 제품화됩니다
                     </p>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -518,7 +518,7 @@ export function ResearchContent() {
                 {/* 4. 검증 가능한 AI를 위한 연구 방법론 */}
                 <section id="methodology" className="scroll-mt-28">
                     <SectionHeading>검증 가능한 AI를 위한 연구 방법론</SectionHeading>
-                    <p className="mt-3 text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mx-auto mt-3 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         Plateer Labs는 단순 데모가 아닌 재현 가능한 검증 체계를
                         운영합니다
                     </p>
