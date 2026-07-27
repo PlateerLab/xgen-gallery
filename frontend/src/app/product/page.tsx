@@ -591,7 +591,7 @@ export default function ProductPage() {
                 {/* 문제 제기 — 브로셔 오프너 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             The Challenge
                         </p>
                         <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
@@ -673,13 +673,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             4 Core Values
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             엔터프라이즈 AI 운영을 위한 핵심 가치
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고,
                             통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈
                             AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다.
@@ -713,7 +713,7 @@ export default function ProductPage() {
                 {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더) */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Build for Everyone
                         </p>
                         <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
@@ -792,7 +792,7 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Business Value
                         </p>
                         <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
@@ -932,13 +932,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Features
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             설계부터 운영까지, 하나의 흐름으로 연결됩니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             각 기능은 개별 도구가 아니라 하나의 운영 파이프라인으로
                             이어집니다. 에이전트를 만들고, 배포하고, 운영하고, 개선하는
                             전 과정이 하나의 플랫폼 안에서 연결됩니다.
@@ -1042,13 +1042,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Technology · 6 Layers
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             엔터프라이즈 AI를 위한 6계층 코어 아키텍처
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             인프라부터 AI 에이전트까지, 기업의 AI 운영에 필요한 핵심 기술을
                             하나의 플랫폼으로 통합합니다.
                         </p>
@@ -1081,13 +1081,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Roles
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             하나의 플랫폼, 역할에 맞는 경험
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             하나의 플랫폼에서도 역할과 권한에 따라 최적화된 업무 환경이
                             구성됩니다. 각 사용자는 자신의 업무에 필요한 기능과 정보만
                             제공받아 더욱 효율적으로 AI를 활용할 수 있습니다.
@@ -1119,13 +1119,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             On-Premise
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             데이터는 기업 안에, 안심하고 활용
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN은 온프레미스로 구축돼 데이터가 외부로 나가지 않으며,
                             고객사 데이터가 외부 모델 학습에 쓰이지 않도록 기술적으로 차단합니다.
                         </p>
@@ -1165,13 +1165,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Deployment
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             반입부터 운영까지, 검증된 구축 프로세스
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             폐쇄망 반입부터 실증, 구축, 운영까지 온프레미스 환경에 맞춰
                             단계적으로 지원합니다. 반입 절차가 완료되면 신속하게 실증을
                             시작하여 운영 전 검증과 빠른 성과 확보를 지원합니다.
@@ -1298,13 +1298,13 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Certifications & Quality
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             국가 공인 품질·신뢰성 인증
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN은 GS인증 1등급을 획득했고, AI 신뢰성 인증(AI-MASTER)
                             시험을 받고 있습니다. 제3자 시험기관이 제품의 품질과 신뢰성을
                             검증합니다.
@@ -1337,13 +1337,13 @@ export default function ProductPage() {
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="flex flex-wrap items-end justify-between gap-4">
                             <div>
-                                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                                     Customer Cases
                                 </p>
                                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                                     고객 현장에서 검증됩니다
                                 </h2>
-                                <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                                     금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고
                                     운영한 고객사례입니다.
                                 </p>
@@ -1395,7 +1395,7 @@ export default function ProductPage() {
                 {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-16">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Resources
                         </p>
                         <h2 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
@@ -1432,7 +1432,7 @@ export default function ProductPage() {
                     className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-4xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             FAQ
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
