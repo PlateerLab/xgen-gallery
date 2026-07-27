@@ -367,7 +367,7 @@ function HarnessPipeline() {
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-[repeat(5,1fr)] sm:items-stretch">
                 {steps.map(([no, t, d], i) => (
                     <div key={no} className="flex items-center gap-2 sm:flex-col sm:items-stretch sm:gap-0">
-                        <div className="flex flex-1 flex-col rounded-xl border border-[var(--color-line)] bg-white p-3.5">
+                        <div className="flex flex-1 flex-col items-center rounded-xl border border-[var(--color-line)] bg-white p-3.5 text-center">
                             <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#2f7bff] to-[#7c5cff] font-mono text-[13px] font-bold text-white">
                                 {no}
                             </span>
@@ -380,7 +380,7 @@ function HarnessPipeline() {
                     </div>
                 ))}
             </div>
-            <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[13px] font-medium text-[var(--color-ink-muted)]">
+            <p className="mx-auto mt-3 flex w-fit items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[13px] font-medium text-[var(--color-ink-muted)]">
                 <RotateCw className="h-3.5 w-3.5 text-[#2f7bff]" />
                 피드백 루프 기반 지속 개선 — 점수 미달 시 재시도로 환각·오류 차단
             </p>
@@ -674,8 +674,8 @@ export function EnginesContent() {
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {harnessLayers.map(([Icon, t, d], i) => (
-                        <div key={t} className="rounded-xl border border-[var(--color-line)] bg-white p-5">
-                            <div className="flex items-center gap-2">
+                        <div key={t} className="rounded-xl border border-[var(--color-line)] bg-white p-5 text-center">
+                            <div className="flex items-center justify-center gap-2">
                                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
                                     <Icon className="h-4 w-4" />
                                 </span>
@@ -754,7 +754,7 @@ export function FrameworksContent() {
                     <div
                         key={id}
                         id={id}
-                        className="scroll-mt-24 flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                        className="scroll-mt-24 flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                     >
                         <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                             <Icon className="h-5 w-5" />

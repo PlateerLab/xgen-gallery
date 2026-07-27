@@ -128,7 +128,7 @@ function TechnologyMarketing() {
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-7xl px-6 py-24">
                 <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
-                    연구에서 검증하고,{" "}
+                    연구에서 검증하고,<br />
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         운영으로 완성하는
                     </span>{" "}
@@ -145,7 +145,7 @@ function TechnologyMarketing() {
                     {TECH_VALUES.map((v) => (
                         <div
                             key={v.en}
-                            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#2f7bff]/40"
+                            className="rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#2f7bff]/40"
                         >
                             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                 <v.icon className="h-[20px] w-[20px]" />
