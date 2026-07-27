@@ -232,7 +232,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 function Chips({ items }: { items: string[] }) {
     return (
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
             {items.map((t) => (
                 <span
                     key={t}
@@ -523,8 +523,8 @@ export function ResearchContent() {
                         Plateer Labs는 단순 데모가 아닌 재현 가능한 검증 체계를
                         운영합니다
                     </p>
-                    <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7">
-                        <div className="flex items-center gap-3">
+                    <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 text-center">
+                        <div className="flex items-center justify-center gap-3">
                             <IconBadge icon={BadgeCheck} />
                             <h4 className="text-lg font-bold tracking-tight text-[var(--color-ink)]">
                                 Validation Framework
