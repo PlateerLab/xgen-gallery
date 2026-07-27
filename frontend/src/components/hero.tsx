@@ -207,11 +207,9 @@ type HeroIssue = { slug: string; title: string; vol: number; date: string };
 
 export function Hero({
     productNews,
-    latestPost,
     latestIssue,
 }: {
     productNews?: HeroPost | null;
-    latestPost?: HeroPost | null;
     latestIssue?: HeroIssue | null;
 }) {
     const [active, setActive] = useState(0);
@@ -291,7 +289,7 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
             </div>
 
-            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-44">
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-56">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
@@ -327,76 +325,53 @@ export function Hero({
 
         </section>
 
-            {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드 */}
-            {(productNews || latestPost || latestIssue) && (
-                <section aria-label="최근 소식" className="bg-[#070b1c] py-6">
-                    <div className="mx-auto flex max-w-4xl flex-col gap-3 px-6">
-                            {/* 제품소식 — 블로그·뉴스레터 위 한 줄 */}
-                            {productNews && (
-                                <Link
-                                    href={`/blog/${productNews.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-2.5 backdrop-blur-md transition hover:bg-white/15"
-                                >
-                                    <span className="flex-none rounded-full border border-transparent bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
-                                        {productNews.category}
-                                    </span>
-                                    <div className="min-w-0">
-                                        <p className="text-[11px] text-white/50">
-                                            최신 소식 ·{" "}
-                                            {productNews.date.replaceAll("-", ".")}
-                                        </p>
-                                        <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                            {productNews.title}
-                                        </p>
-                                    </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
-                                </Link>
-                            )}
-                            <div className="grid gap-3 sm:grid-cols-2">
-                            {latestPost && (
-                                <Link
-                                    href={`/blog/${latestPost.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
-                                >
-                                    <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
-                                        {latestPost.category}
-                                    </span>
-                                    <div className="min-w-0">
-                                        <p className="text-[11px] text-white/50">
-                                            최근 블로그 ·{" "}
-                                            {latestPost.date.replaceAll("-", ".")}
-                                        </p>
-                                        <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                            {latestPost.title}
-                                        </p>
-                                    </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
-                                </Link>
-                            )}
-                            {latestIssue && (
-                                <Link
-                                    href={`/newsletter/${latestIssue.slug}`}
-                                    className="group flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-md transition hover:bg-white/15"
-                                >
-                                    <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
-                                        vol.{latestIssue.vol}
-                                    </span>
-                                    <div className="min-w-0">
-                                        <p className="text-[11px] text-white/50">
-                                            최근 뉴스레터 ·{" "}
-                                            {latestIssue.date.replaceAll("-", ".")}
-                                        </p>
-                                        <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
-                                            {latestIssue.title}
-                                        </p>
-                                    </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/55 transition group-hover:translate-x-0.5 group-hover:text-white" />
-                                </Link>
-                            )}
-                            </div>
-                        </div>
-                    </section>
-                )}
+            {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드(배경 박스 없이 제품소식·뉴스레터만) */}
+            {(productNews || latestIssue) && (
+                <section aria-label="최근 소식" className="bg-[#070b1c] py-4">
+                    <div className="mx-auto flex max-w-4xl flex-col divide-y divide-white/10 px-6">
+                        {productNews && (
+                            <Link
+                                href={`/blog/${productNews.slug}`}
+                                className="group flex items-center gap-3 py-3"
+                            >
+                                <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
+                                    {productNews.category}
+                                </span>
+                                <div className="min-w-0">
+                                    <p className="text-[11px] text-white/50">
+                                        최신 소식 ·{" "}
+                                        {productNews.date.replaceAll("-", ".")}
+                                    </p>
+                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
+                                        {productNews.title}
+                                    </p>
+                                </div>
+                                <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                            </Link>
+                        )}
+                        {latestIssue && (
+                            <Link
+                                href={`/newsletter/${latestIssue.slug}`}
+                                className="group flex items-center gap-3 py-3"
+                            >
+                                <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
+                                    vol.{latestIssue.vol}
+                                </span>
+                                <div className="min-w-0">
+                                    <p className="text-[11px] text-white/50">
+                                        최근 뉴스레터 ·{" "}
+                                        {latestIssue.date.replaceAll("-", ".")}
+                                    </p>
+                                    <p className="truncate text-[14px] font-semibold text-white group-hover:underline">
+                                        {latestIssue.title}
+                                    </p>
+                                </div>
+                                <ArrowRight className="ml-auto h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                            </Link>
+                        )}
+                    </div>
+                </section>
+            )}
         </>
     );
 }
