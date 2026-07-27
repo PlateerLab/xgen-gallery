@@ -26,12 +26,20 @@ const ROTATE_MS = 6000;
 const SLIDE_BG = [
     "/hero-vision.jpeg",
     "/hero-xgen.mp4",
-    "/hero-security-v4.mp4",
+    "/hero-security.jpeg",
     "/hero-slide2.mp4",
 ];
 const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
-// Per-slide object-position (all centered — subjects are frame-centered).
+// Per-slide object-position (기본 중앙).
 const SLIDE_POS = ["center", "center", "center", "center"];
+// Per-slide 추가 이동/확대(이미지 슬라이드용). 3번째(보안) 이미지는 피사체를 더
+// 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시킨다.
+const SLIDE_TRANSFORM: (string | undefined)[] = [
+    undefined,
+    undefined,
+    "scale(1.3) translateX(16%)",
+    undefined,
+];
 
 const H1_CLS =
     "max-w-5xl text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]";
@@ -248,7 +256,10 @@ export function Hero({
                             key={src}
                             src={src}
                             alt=""
-                            style={{ objectPosition: SLIDE_POS[i] }}
+                            style={{
+                                objectPosition: SLIDE_POS[i],
+                                transform: SLIDE_TRANSFORM[i],
+                            }}
                             className={cn(
                                 "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out",
                                 i === active ? "opacity-100" : "opacity-0",
