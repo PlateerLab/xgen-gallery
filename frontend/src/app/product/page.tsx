@@ -566,7 +566,7 @@ export default function ProductPage() {
 
             {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-6 py-6">
+                <div className="mx-auto flex max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-6 sm:justify-between">
                     {TRUST.map((t) => (
                         <div key={t.label} className="flex items-center gap-2.5">
                             <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
