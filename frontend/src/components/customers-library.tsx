@@ -237,7 +237,7 @@ export function CustomersLibrary({
 
             {/* 필터 */}
             <div className="mt-10 space-y-3">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center justify-center gap-2">
                     <span className="mr-1 text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
                         제품
                     </span>
