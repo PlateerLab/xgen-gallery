@@ -170,19 +170,20 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
         return () => window.removeEventListener("scroll", onScroll);
     }, [overlay]);
 
-    // 상단 프로모션 배너(15일 무료 체험) — dismiss 시 localStorage에 기억.
+    // 상단 프로모션 배너(15일 무료 체험) — dismiss 시 sessionStorage에 기억.
+    // 세션 한정: 같은 탭 새로고침엔 유지되지만, 탭/브라우저를 완전히 닫았다 다시 열면 재노출.
     // SSR/hydration 불일치를 피하려 초기엔 노출하고, 마운트 후 해제 상태면 숨긴다.
     const [bannerOpen, setBannerOpen] = useState(true);
     useEffect(() => {
         try {
-            if (localStorage.getItem("xgen-trial-banner") === "dismissed")
+            if (sessionStorage.getItem("xgen-trial-banner") === "dismissed")
                 setBannerOpen(false);
         } catch {}
     }, []);
     const dismissBanner = () => {
         setBannerOpen(false);
         try {
-            localStorage.setItem("xgen-trial-banner", "dismissed");
+            sessionStorage.setItem("xgen-trial-banner", "dismissed");
         } catch {}
     };
 
