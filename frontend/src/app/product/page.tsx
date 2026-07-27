@@ -811,10 +811,10 @@ export default function ProductPage() {
 
                         {/* 5대 혁신 효과 — 경쟁·가치 우위 관점의 전략 성과(최신 제품 덱) */}
                         <div className="mt-14">
-                            <h3 className="text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
+                            <h3 className="mx-auto text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
                                 XGEN 도입을 통해 달성하는 5대 혁신 효과
                             </h3>
-                            <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                                 기능 우위를 넘어, 도입 즉시 조직의 경쟁력이 되는 다섯 가지
                                 성과 — 효율·리스크·신뢰·유연성·규제 대응을 하나의 플랫폼에서
                                 확보합니다.
