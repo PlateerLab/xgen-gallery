@@ -23,9 +23,9 @@ function PublicationRow({ p }: { p: Publication }) {
     return (
         <li className="py-5">
             <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 text-center">
                     {/* 메타 뱃지 */}
-                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
                         <span className="inline-flex items-center rounded-full border border-[var(--color-line)] bg-white px-2.5 py-0.5 text-[12.5px] font-semibold text-[var(--color-ink-muted)]">
                             {p.type}
                         </span>
@@ -69,7 +69,7 @@ function PublicationRow({ p }: { p: Publication }) {
                     </p>
 
                     {/* 구성원 프로필 링크 */}
-                    <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                    <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5">
                         {p.memberLogins.map((login) => (
                             <Link
                                 key={login}

@@ -27,7 +27,7 @@ export function ToolGrid() {
 
     return (
         <section id="tools" className="mx-auto max-w-7xl px-6 py-28">
-            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col items-center gap-8 text-center">
                 <div>
                     <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                         {t.toolsSection.eyebrow}
@@ -41,7 +41,7 @@ export function ToolGrid() {
                     </h2>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center justify-center gap-2">
                     {CATEGORIES.map((c) => (
                         <button
                             key={c.id}

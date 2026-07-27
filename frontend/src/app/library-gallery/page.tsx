@@ -41,10 +41,10 @@ export default function LibraryGalleryPage() {
                     className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             / Runtime
                         </p>
-                        <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-semibold tracking-tight md:text-4xl">
                             Runtime
                         </h2>
                         <div className="mt-8">
