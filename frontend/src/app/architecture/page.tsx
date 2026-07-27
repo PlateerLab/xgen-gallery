@@ -48,7 +48,7 @@ function ArchitectureHero() {
                 <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
                     Architecture
                 </p>
-                <h1 className="mx-auto mt-2 text-center text-3xl font-bold tracking-tight md:text-5xl">
+                <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-5xl">
                     Enterprise AI Architecture
                 </h1>
                 <p className="mt-5 text-xl font-semibold leading-relaxed text-white">
@@ -244,7 +244,7 @@ export default function ArchitecturePage() {
                         </div>
                         <Link
                             href="/security-and-governance"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             보안·거버넌스 통제 정책 자세히 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -280,7 +280,7 @@ export default function ArchitecturePage() {
                         </p>
                         <Link
                             href="/product"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             XGEN 제품 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -307,7 +307,7 @@ export default function ArchitecturePage() {
                         </div>
                         <Link
                             href="/code-assistant"
-                            className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             AI Code Assistant 제품 보기
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
