@@ -713,13 +713,13 @@ export default function ProductPage() {
                 {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더) */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Build for Everyone
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             현업이 직접 만드는 Enterprise AI
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과
                             연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로
                             업무에 활용 가능한 AI로 구현합니다.
