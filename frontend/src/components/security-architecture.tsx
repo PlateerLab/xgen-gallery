@@ -128,7 +128,7 @@ export function SecurityArchitecture() {
     return (
         <div>
             {/* 범례 */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                 {LEGEND.map((l) => (
                     <span
                         key={l.label}
