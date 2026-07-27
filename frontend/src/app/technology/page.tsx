@@ -127,14 +127,14 @@ function TechnologyMarketing() {
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-7xl px-6 py-24">
-                <h2 className="max-w-3xl text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                     연구에서 검증하고,{" "}
                     <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                         운영으로 완성하는
                     </span>{" "}
                     Enterprise AI 기술
                 </h2>
-                <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p className="mx-auto mt-5 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                     화려한 데모가 아닌, 기업의 보안·규제·운영 환경에서 실제로 작동하는
                     기술을 연구합니다. 핵심 엔진부터 프레임워크와 런타임까지 하나의 기술
                     스택으로 연결하여, 연구 성과가 제품을 거쳐 고객 현장의 성과로 이어지도록

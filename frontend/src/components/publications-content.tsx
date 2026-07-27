@@ -182,11 +182,11 @@ export function PublicationsContent() {
             <JsonLd data={scholarLd} />
 
             <div className="flex flex-col items-center gap-6 md:flex-row md:gap-10">
-                <div className="min-w-0 flex-1 order-2 md:order-1">
+                <div className="min-w-0 flex-1 order-2 text-center md:order-1">
                     <h4 className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
                         구성원들의 연구 성과
                     </h4>
-                    <p className="mt-4 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mx-auto mt-4 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-ink-muted)]">
                         Plateer Labs 구성원들이 학회·저널에 발표한 논문입니다. 자연어처리,
                         딥러닝, 그래프·추천, 분산학습 등 Enterprise AI와 맞닿은 연구가
                         제품의 기술적 토대가 됩니다

@@ -110,10 +110,10 @@ export function Section({
             )}
         >
             <div className="mx-auto max-w-7xl px-6 py-24">
-                <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="text-center font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     / {item.label}
                 </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                <h2 className="mt-3 text-center text-3xl font-semibold tracking-tight md:text-4xl">
                     {item.label}
                 </h2>
 
@@ -121,7 +121,7 @@ export function Section({
                     섹션(예: research-areas)에서는 중복 id를 피하려고 렌더하지 않는다.
                     GNB 드롭다운의 하위 메뉴는 별도로 동작한다. */}
                 {!children && item.children && item.children.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
+                    <div className="mt-5 flex flex-wrap justify-center gap-2">
                         {item.children.map((c) => (
                             <a
                                 key={c.id}
