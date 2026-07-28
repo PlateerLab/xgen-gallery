@@ -39,6 +39,11 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+    volumes:
+      # Members 디스크 캐시(/app/.cache)를 배포 간 유지 — 매 재빌드마다 캐시가
+      # 비면 첫 /members 방문이 전 멤버를 콜드 페치(GitHub)해 느려진다. 볼륨으로
+      # 유지하면 콜드 스타트가 디스크 fast-path(수 ms)로 응답한다.
+      - members_cache:/app/.cache
 
   backend:
     build:
@@ -74,3 +79,4 @@ services:
 
 volumes:
   views_data:
+  members_cache:
