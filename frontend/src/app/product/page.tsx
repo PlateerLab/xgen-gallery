@@ -754,14 +754,24 @@ export default function ProductPage() {
                                                 </h3>
                                             </div>
                                         </div>
-                                        {/* 자세히 보기 — 상세 페이지 준비 중(링크 비활성) */}
-                                        <span
-                                            aria-disabled="true"
-                                            className="inline-flex flex-none cursor-default select-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[var(--color-ink-subtle)]"
-                                        >
-                                            자세히 보기
-                                            <ArrowRight className="h-3.5 w-3.5" />
-                                        </span>
+                                        {/* 자세히 보기 — PathFinder는 상세 페이지 연결, 그 외는 준비 중(비활성) */}
+                                        {d.en === "PathFinder" ? (
+                                            <Link
+                                                href="/pathfinder"
+                                                className="group/link inline-flex flex-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                                            >
+                                                자세히 보기
+                                                <ArrowRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
+                                            </Link>
+                                        ) : (
+                                            <span
+                                                aria-disabled="true"
+                                                className="inline-flex flex-none cursor-default select-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[var(--color-ink-subtle)]"
+                                            >
+                                                자세히 보기
+                                                <ArrowRight className="h-3.5 w-3.5" />
+                                            </span>
+                                        )}
                                     </div>
                                     <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
                                         {d.tagline}
