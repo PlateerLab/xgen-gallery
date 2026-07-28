@@ -413,34 +413,45 @@ export default function JejuGenAIPreviewPage() {
                     <h2 className={`mt-3 ${H2}`}>
                         플랫폼 안정화에서 AI Native Bank까지
                     </h2>
-                    {/* 세로 타임라인 — 단계별 진행(여정)을 스파인 라인 + 번호 노드로 표현 */}
-                    <ol className="relative mx-auto mt-12 max-w-2xl space-y-9 before:absolute before:bottom-3 before:left-[22px] before:top-3 before:w-px before:bg-gradient-to-b before:from-[#2461d8] before:via-[var(--color-line-strong)] before:to-[var(--color-line)]">
+                    {/* 가로 타임라인 — 노드가 상단 라인 위에 놓이고 단계 콘텐츠는 중앙정렬 */}
+                    <ol className="mt-12 grid gap-y-12 sm:grid-cols-3 sm:gap-x-6">
                         {ROADMAP.map((r, i) => (
-                            <li key={r.step} className="relative flex gap-5 text-left md:gap-7">
-                                <span className="relative z-10 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
-                                    {i + 1}
-                                </span>
-                                <div className="pb-1">
-                                    <div className="flex flex-wrap items-center gap-2">
-                                        <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
-                                            {r.step}
-                                        </span>
-                                        <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
-                                            {r.when}
-                                        </span>
-                                    </div>
-                                    <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
-                                        {r.title}
-                                    </p>
-                                    <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {r.points.map((p) => (
-                                            <li key={p} className="flex gap-2">
-                                                <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
-                                                {p}
-                                            </li>
-                                        ))}
-                                    </ul>
+                            <li
+                                key={r.step}
+                                className="flex flex-col items-center text-center"
+                            >
+                                {/* 노드 + 연결선 (sm 이상에서 노드 중심을 관통) */}
+                                <div className="relative flex w-full items-center justify-center">
+                                    {i > 0 && (
+                                        <span className="absolute right-1/2 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-[var(--color-line-strong)] sm:block" />
+                                    )}
+                                    {i < ROADMAP.length - 1 && (
+                                        <span className="absolute left-1/2 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-[var(--color-line-strong)] sm:block" />
+                                    )}
+                                    <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
+                                        {i + 1}
+                                    </span>
                                 </div>
+
+                                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                                    <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
+                                        {r.step}
+                                    </span>
+                                    <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
+                                        {r.when}
+                                    </span>
+                                </div>
+                                <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
+                                    {r.title}
+                                </p>
+                                <ul className="mt-3 space-y-1.5 text-left text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {r.points.map((p) => (
+                                        <li key={p} className="flex gap-2">
+                                            <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
+                                            {p}
+                                        </li>
+                                    ))}
+                                </ul>
                             </li>
                         ))}
                     </ol>
@@ -448,14 +459,37 @@ export default function JejuGenAIPreviewPage() {
 
                 {/* 고객 인용 */}
                 <section className="mx-auto w-full max-w-4xl px-6 pb-20">
-                    {/* 프로젝트를 이끈 담당자의 자평 + AI Native Bank 비전 — 통합 인용 */}
-                    <blockquote className="relative overflow-hidden rounded-3xl bg-[#070b1c] p-8 text-white md:p-12">
+                    {/* 고객의 소리(VoC) — 화자 아이덴티티 + 자평/비전 인용 */}
+                    <p className={KICKER}>Voice of Customer</p>
+                    <h2 className={`mt-3 ${H2}`}>고객의 목소리</h2>
+
+                    <figure className="relative mt-10 overflow-hidden rounded-3xl bg-[#070b1c] p-8 text-white md:p-11">
                         <div
                             aria-hidden
                             className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-[#2f7bff]/25 blur-[100px]"
                         />
-                        <Quote className="relative h-8 w-8 text-[#4d7fd6]" />
-                        <p className="relative mt-5 text-[19px] font-medium leading-relaxed md:text-[23px]">
+                        {/* 화자 아이덴티티 */}
+                        <figcaption className="relative flex items-center gap-4">
+                            <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#2461d8,#00acee)] shadow-[0_10px_26px_-10px_rgba(47,123,255,0.8)]">
+                                <Building2 className="h-7 w-7 text-white" />
+                            </span>
+                            <div className="min-w-0 text-left">
+                                <p className="text-[16px] font-bold text-white">
+                                    제주은행 AI 혁신팀장
+                                </p>
+                                <p className="mt-0.5 text-[13.5px] font-semibold text-[#7fb0ff]">
+                                    제주은행 · 금융
+                                </p>
+                            </div>
+                            <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[12.5px] font-bold text-emerald-300 sm:inline-flex">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                운영 중 고객
+                            </span>
+                        </figcaption>
+
+                        {/* 인용 */}
+                        <Quote className="relative mt-8 h-7 w-7 text-[#4d7fd6]" />
+                        <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed md:text-[21px]">
                             “생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
                             프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는
                             과정이었습니다. 쉽지 않은 여정이었지만, XGEN의 안정적인
@@ -465,11 +499,8 @@ export default function JejuGenAIPreviewPage() {
                             있었던 점이 인상적이었습니다. 이제 제주은행은 AI를 활용하는
                             수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
                             도약해 나갈 것입니다.”
-                        </p>
-                        <footer className="relative mt-6 text-right text-[14px] text-white/55">
-                            — 제주은행 AI 혁신팀장
-                        </footer>
-                    </blockquote>
+                        </blockquote>
+                    </figure>
 
                     <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] pt-8">
                         <p className="text-[14px] text-[var(--color-ink-subtle)]">
