@@ -16,6 +16,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { PathfinderPulseArt } from "@/components/pathfinder-pulse-art";
 import { JsonLd } from "@/components/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbLd, faqPageLd } from "@/lib/structured-data";
@@ -217,6 +218,9 @@ export default function PathFinderPage() {
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-4xl px-6 py-14">
                         <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center md:p-8">
+                            <div className="mx-auto mb-6 max-w-lg">
+                                <PathfinderPulseArt />
+                            </div>
                             <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#2461d8]">
                                 핵심 요약
                             </p>
