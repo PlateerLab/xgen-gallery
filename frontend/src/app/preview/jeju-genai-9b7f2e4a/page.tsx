@@ -479,7 +479,7 @@ export default function JejuGenAIPreviewPage() {
                         {/* 인용 */}
                         <Quote className="relative mt-6 h-7 w-7 rotate-180 text-[#2461d8]/25" />
                         <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[21px]">
-                            “생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
+                            생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
                             프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는
                             과정이었습니다. 쉽지 않은 여정이었지만, XGEN의 안정적인
                             플랫폼과 수행팀의 빠르고 유연한 대응 덕분에 프로젝트를
@@ -487,7 +487,7 @@ export default function JejuGenAIPreviewPage() {
                             요구사항을 신속하게 반영하며 안정적으로 구축을 완료할 수
                             있었던 점이 인상적이었습니다. 이제 제주은행은 AI를 활용하는
                             수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
-                            도약해 나갈 것입니다.”
+                            도약해 나갈 것입니다.
                         </blockquote>
                         {/* 닫는 인용부호 — 우측 하단에 배치 */}
                         <div className="relative mt-1 flex justify-end">
