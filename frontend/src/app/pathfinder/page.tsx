@@ -183,7 +183,7 @@ export default function PathFinderPage() {
                         XGEN · PathFinder
                     </p>
                     <h1 className="mx-auto mt-5 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        웹 시스템을 AI가 쓰는 Tool로 연결합니다
+                        레거시 시스템을 AI가 쓰는 Tool로 연결합니다
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
                         패스파인더는 웹 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는
