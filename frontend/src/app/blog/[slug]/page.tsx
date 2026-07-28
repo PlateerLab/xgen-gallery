@@ -179,7 +179,7 @@ export default async function BlogPostPage({
                 {post.summary && (
                     <aside className="mb-10 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
                         <p className="text-[12.5px] font-bold uppercase tracking-[0.14em] text-[#2461d8]">
-                            TL;DR
+                            핵심 요약
                         </p>
                         <p className="mt-2.5 text-[15.5px] leading-relaxed text-[var(--color-ink)]">
                             {post.summary}

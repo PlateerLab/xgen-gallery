@@ -68,7 +68,7 @@ collections:
           - { name: cover, label: "커버 이미지", widget: image, required: false, choose_url: false, hint: "SNS 공유·검색 썸네일(OG image). 1200×630 권장" }
           - { name: draft, label: "초안(체크 시 비공개)", widget: boolean, default: false }
           - { name: featured, label: "키비주얼(히어로) 노출", widget: boolean, default: false, required: false, hint: "체크하면 인사이트 상단 키비주얼 캐러셀에 노출됩니다(여러 개 선택 가능, 최신순 정렬). 아무 것도 선택 안 하면 최신 글이 자동 노출" }
-          - { name: summary, label: "TL;DR 요약(선택)", widget: text, required: false, hint: "본문 상단 하이라이트 박스. 핵심 결론 3~4문장 — AI 검색(ChatGPT·Perplexity)이 인용하기 좋음(GEO)" }
+          - { name: summary, label: "핵심 요약(선택)", widget: text, required: false, hint: "본문 상단 하이라이트 박스. 핵심 결론 3~4문장 — AI 검색(ChatGPT·Perplexity)이 인용하기 좋음(GEO)" }
           - name: faq
             label: "자주 묻는 질문(FAQ · 선택)"
             widget: list

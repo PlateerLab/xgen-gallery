@@ -24,7 +24,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 export const metadata = pageMetadata({
     title: "PathFinder — 웹 시스템을 AI Agent Tool로 연결",
     description:
-        "패스파인더(PathFinder)는 웹 시스템과 API를 코드 없이 AI 에이전트가 쓰는 Agent Tool로 연결하는 XGEN 기술입니다. 로그인·연결·테스트·등록을 브라우저에서 자동화합니다.",
+        "패스파인더(PathFinder)는 시스템과 API를 코드 없이 AI 에이전트가 쓰는 Agent Tool로 연결하는 XGEN 기술입니다. 로그인·연결·테스트·등록을 브라우저에서 자동화합니다.",
     path: "/pathfinder",
 });
 
@@ -121,7 +121,7 @@ const USE_CASES: { title: string; desc: string }[] = [
 const FAQ: { q: string; a: string }[] = [
     {
         q: "패스파인더(PathFinder)란 무엇인가요?",
-        a: "패스파인더는 웹 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 XGEN 기술이자, 대화로 XGEN Canvas의 에이전트 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트입니다. 로그인·연결·테스트·등록의 전 과정을 브라우저에서 자동화합니다.",
+        a: "패스파인더는 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 XGEN 기술이자, 대화로 XGEN Canvas의 에이전트 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트입니다. 로그인·연결·테스트·등록의 전 과정을 브라우저에서 자동화합니다.",
     },
     {
         q: "패스파인더는 어떻게 작동하나요?",
@@ -155,7 +155,7 @@ export default function PathFinderPage() {
                         applicationCategory: "BrowserApplication",
                         operatingSystem: "Chrome",
                         description:
-                            "웹 시스템과 API를 코드 없이 AI 에이전트가 사용하는 Agent Tool로 연결하고, 대화로 XGEN Canvas 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트.",
+                            "시스템과 API를 코드 없이 AI 에이전트가 사용하는 Agent Tool로 연결하고, 대화로 XGEN Canvas 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트.",
                         url: absoluteUrl("/pathfinder"),
                         isPartOf: {
                             "@type": "SoftwareApplication",
@@ -186,7 +186,7 @@ export default function PathFinderPage() {
                         레거시 시스템을 AI가 쓰는 Tool로 연결합니다
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-                        패스파인더는 웹 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는
+                        패스파인더는 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는
                         Agent Tool로 연결하는 기술입니다. 로그인부터 연결, 테스트, 등록까지
                         전 과정을 브라우저에서 자동화해, 기존 시스템을 빠르게 AI 업무 환경으로
                         확장합니다.
@@ -217,8 +217,8 @@ export default function PathFinderPage() {
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-4xl px-6 py-14">
                         <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center md:p-8">
-                            <p className="font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-[#2461d8]">
-                                TL;DR
+                            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#2461d8]">
+                                핵심 요약
                             </p>
                             <p className="mx-auto mt-3 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink)]">
                                 패스파인더는 기존 웹 시스템·API를 코드 없이 AI 에이전트의
