@@ -48,8 +48,8 @@ export default function Home() {
                     latestPost={latestPost}
                     latestIssue={latestIssue}
                 />
-                <HomeTrialBanner />
                 <CustomerStrip />
+                <HomeTrialBanner />
                 <Reveal><HomePositioning /></Reveal>
                 {/* 제품 가치·트러스트를 앞으로 */}
                 <Reveal><HomeProductTour /></Reveal>
