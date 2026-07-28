@@ -171,15 +171,15 @@ export default function TechnicalConsultingPage() {
                     className="scroll-mt-[100px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Core Services
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             핵심 서비스
                         </h2>
 
                         {/* FDE — 현장 밀착형 전달 모델 */}
-                        <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-[#bcd0f5] bg-[#f1f6ff] p-6 sm:flex-row sm:items-start sm:gap-5 md:p-7">
+                        <div className="mt-8 flex flex-col items-center gap-4 rounded-2xl border border-[#bcd0f5] bg-[#f1f6ff] p-6 text-center md:p-7">
                             <span className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[#2f7bff] text-white">
                                 <UsersRound className="h-6 w-6" />
                             </span>
@@ -187,7 +187,7 @@ export default function TechnicalConsultingPage() {
                                 <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
                                     현장 FDE가 함께합니다
                                 </h3>
-                                <p className="mt-2 max-w-3xl text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                <p className="mx-auto mt-2 max-w-3xl text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                     사업 수행 과정에 현장 밀착형 AI 전문 기술
                                     인력인{" "}
                                     <span className="font-semibold text-[var(--color-ink)]">
@@ -204,9 +204,9 @@ export default function TechnicalConsultingPage() {
                             {SERVICES.map((s) => (
                                 <div
                                     key={s.en}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center justify-center gap-3">
                                         <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                             <s.icon className="h-5 w-5" />
                                         </span>
@@ -242,10 +242,10 @@ export default function TechnicalConsultingPage() {
                 {/* Consulting Framework */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Consulting Framework
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             Enterprise AI Consulting Process
                         </h2>
                         <div className="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-[repeat(6,1fr)] sm:items-stretch">
@@ -254,7 +254,7 @@ export default function TechnicalConsultingPage() {
                                     key={step}
                                     className="flex items-center gap-2 sm:flex-col sm:items-stretch sm:gap-0"
                                 >
-                                    <div className="flex flex-1 flex-col rounded-xl border border-[var(--color-line)] bg-white p-4">
+                                    <div className="flex flex-1 flex-col items-center rounded-xl border border-[var(--color-line)] bg-white p-4 text-center">
                                         <span className="font-mono text-[13px] font-bold text-[#2461d8]">
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
@@ -274,10 +274,10 @@ export default function TechnicalConsultingPage() {
                 {/* 산업별 컨설팅 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             By Industry
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             산업별 컨설팅
                         </h2>
                         <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)]">
