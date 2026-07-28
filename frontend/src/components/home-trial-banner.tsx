@@ -9,12 +9,12 @@ export function HomeTrialBanner() {
     return (
         <section
             aria-label="XGEN 15일 무료 체험"
-            className="relative overflow-hidden bg-gradient-to-r from-[#2f7bff] to-[#00acee] text-white"
+            className="relative overflow-hidden border-t border-white/10 bg-[#070b1c] text-white"
         >
-            {/* 은은한 하이라이트 — 밋밋한 단색 방지 */}
+            {/* 은은한 블루 글로우 — 위 다크 히어로에서 자연스럽게 이어지도록 */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(60%_120%_at_15%_0%,rgba(255,255,255,.22),transparent_60%)]"
+                className="pointer-events-none absolute inset-0 [background:radial-gradient(70%_150%_at_50%_0%,rgba(47,123,255,.28),transparent_62%)]"
             />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-7 px-6 py-10 text-center md:py-12">
                 <div className="max-w-2xl">

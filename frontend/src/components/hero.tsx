@@ -304,7 +304,7 @@ export function Hero({
                 )}
             </div>
 
-            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-80">
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-72">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
