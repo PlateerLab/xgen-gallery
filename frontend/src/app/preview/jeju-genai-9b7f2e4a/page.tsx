@@ -375,7 +375,7 @@ export default function JejuGenAIPreviewPage() {
                 </section>
 
                 {/* 고객 인용 */}
-                <section className="mx-auto w-full max-w-4xl px-6 pb-20">
+                <section className="mx-auto w-full max-w-4xl px-6 pb-20 pt-16 md:pt-20">
                     {/* 고객의 소리(VoC) — 화자 아이덴티티 + 자평/비전 인용 */}
                     <p className={KICKER}>Voice of Customer</p>
                     <h2 className={`mt-3 ${H2}`}>고객의 목소리</h2>
