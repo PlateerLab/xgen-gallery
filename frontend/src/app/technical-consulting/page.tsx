@@ -280,7 +280,7 @@ export default function TechnicalConsultingPage() {
                         <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             산업별 컨설팅
                         </h2>
-                        <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)]">
+                        <div className="mx-auto mt-8 max-w-3xl divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)]">
                             {INDUSTRIES.map(([Icon, name, desc]) => (
                                 <div
                                     key={name}
