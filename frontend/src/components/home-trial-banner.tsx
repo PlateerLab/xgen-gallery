@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 /**
  * 히어로(영상 키비주얼) 바로 아래 풀폭 전환 배너 — XGEN 15일 무료 체험 CTA.
@@ -18,11 +18,7 @@ export function HomeTrialBanner() {
             />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-7 px-6 py-10 text-center md:py-12">
                 <div className="max-w-2xl">
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[12.5px] font-semibold backdrop-blur-sm">
-                        <Sparkles className="h-3.5 w-3.5" />
-                        15일 무료 체험
-                    </div>
-                    <p className="mt-3 text-2xl font-bold leading-snug md:text-[28px]">
+                    <p className="text-2xl font-bold leading-snug md:text-[28px]">
                         지금, 15일 무료로 XGEN을 직접 경험하세요
                     </p>
                     <p className="mt-2 text-[15px] leading-relaxed text-white/85">
