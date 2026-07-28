@@ -105,39 +105,6 @@ const OUTCOMES = [
     },
 ];
 
-const ROADMAP = [
-    {
-        step: "1단계",
-        when: "2026년 3/4분기",
-        title: "플랫폼 안정화 및 활용 확산",
-        points: [
-            "전 직원 생성형 AI 플랫폼 오픈 및 사용 활성화",
-            "QA·업무지원 Agent 지속 확대",
-            "지식 컬렉션 구축 및 업무 데이터 지속 축적",
-        ],
-    },
-    {
-        step: "2단계",
-        when: "2026년 하반기",
-        title: "AI Agent 고도화",
-        points: [
-            "부서별 Vertical AI Agent 확대",
-            "MCP·API 연계를 통한 업무 자동화 강화",
-            "협업 Agent 기반 협업 체계 구축",
-        ],
-    },
-    {
-        step: "3단계",
-        when: "2027년",
-        title: "AI Native Bank 구현",
-        points: [
-            "AI가 스스로 업무를 수행하는 Agent 중심 업무환경 구축",
-            "핵심 업무 프로세스에 AI 내재화",
-            "고객서비스와 내부업무를 잇는 AI 생태계 완성",
-        ],
-    },
-];
-
 const H2 =
     "text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]";
 const KICKER =
@@ -405,45 +372,6 @@ export default function JejuGenAIPreviewPage() {
                             ))}
                         </div>
                     </div>
-                </section>
-
-                {/* 향후 계획 */}
-                <section className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
-                    <p className={KICKER}>Roadmap</p>
-                    <h2 className={`mt-3 ${H2}`}>
-                        플랫폼 안정화에서 AI Native Bank까지
-                    </h2>
-                    {/* 세로 타임라인 — 스파인 라인 + 번호 노드로 단계 진행(여정) 표현 */}
-                    <ol className="relative mx-auto mt-12 max-w-2xl space-y-9 before:absolute before:bottom-4 before:left-[23px] before:top-4 before:w-0.5 before:bg-gradient-to-b before:from-[#2461d8] before:via-[var(--color-line-strong)] before:to-[var(--color-line)]">
-                        {ROADMAP.map((r, i) => (
-                            <li key={r.step} className="relative flex gap-5 text-left md:gap-7">
-                                <span className="relative z-10 flex h-12 w-12 flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
-                                    {i + 1}
-                                </span>
-                                <div className="pb-1 pt-1">
-                                    <div className="flex flex-wrap items-center gap-2">
-                                        <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
-                                            {r.step}
-                                        </span>
-                                        <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
-                                            {r.when}
-                                        </span>
-                                    </div>
-                                    <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
-                                        {r.title}
-                                    </p>
-                                    <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {r.points.map((p) => (
-                                            <li key={p} className="flex gap-2">
-                                                <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
-                                                {p}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </li>
-                        ))}
-                    </ol>
                 </section>
 
                 {/* 고객 인용 */}
