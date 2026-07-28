@@ -418,7 +418,7 @@ export default function JejuGenAIPreviewPage() {
                         {ROADMAP.map((r, i) => (
                             <li
                                 key={r.step}
-                                className="flex flex-col items-center text-center"
+                                className="flex flex-col items-start text-left"
                             >
                                 {/* 노드 + 연결선 (sm 이상에서 노드 중심을 관통) */}
                                 <div className="relative flex w-full items-center justify-center">
@@ -433,7 +433,7 @@ export default function JejuGenAIPreviewPage() {
                                     </span>
                                 </div>
 
-                                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                                <div className="mt-5 flex flex-wrap items-center gap-2">
                                     <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
                                         {r.step}
                                     </span>
