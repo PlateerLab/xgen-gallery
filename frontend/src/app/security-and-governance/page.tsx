@@ -206,7 +206,8 @@ export default function SecurityPage() {
                                 Applied AI · Security &amp; Governance
                             </p>
                             <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                                선언한 대로 통제되는 Enterprise AI
+                                선언한 대로 통제되는<br />
+                                Enterprise AI
                             </h1>
                             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
                                 XGEN Agentic AI Platform은 사용자 입력·워크플로우
