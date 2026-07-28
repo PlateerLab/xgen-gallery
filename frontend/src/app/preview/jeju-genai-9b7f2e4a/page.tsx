@@ -477,7 +477,7 @@ export default function JejuGenAIPreviewPage() {
                         </figcaption>
 
                         {/* 인용 */}
-                        <Quote className="relative mt-8 h-7 w-7 text-[#2461d8]/25" />
+                        <Quote className="relative mt-6 h-7 w-7 rotate-180 text-[#2461d8]/25" />
                         <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[21px]">
                             “생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
                             프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는
@@ -489,9 +489,9 @@ export default function JejuGenAIPreviewPage() {
                             수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
                             도약해 나갈 것입니다.”
                         </blockquote>
-                        {/* 닫는 인용부호 — 180° 회전해 우측 하단에 배치 */}
-                        <div className="relative mt-4 flex justify-end">
-                            <Quote className="h-7 w-7 rotate-180 text-[#2461d8]/25" />
+                        {/* 닫는 인용부호 — 우측 하단에 배치 */}
+                        <div className="relative mt-1 flex justify-end">
+                            <Quote className="h-7 w-7 text-[#2461d8]/25" />
                         </div>
                     </figure>
 
