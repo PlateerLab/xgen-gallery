@@ -27,6 +27,10 @@ export interface PostMeta {
     cover?: string;
     draft?: boolean;
     featured?: boolean; // 키비주얼(히어로) 캐러셀 노출 — Decap에서 편집자가 선정
+    /** TL;DR 요약 — 본문 상단 하이라이트 박스. AI 검색이 인용하기 쉬운 3~4문장 핵심. */
+    summary?: string;
+    /** FAQ — 본문 하단 Q&A + FAQPage 구조화 데이터(SEO/GEO 인용 최적화). */
+    faq?: { q: string; a: string }[];
 }
 
 export interface Post extends PostMeta {
@@ -89,6 +93,15 @@ function parse(slug: string): Post | null {
         cover: data.cover ? String(data.cover) : undefined,
         draft: Boolean(data.draft),
         featured: Boolean(data.featured),
+        summary: data.summary ? String(data.summary) : undefined,
+        faq: Array.isArray(data.faq)
+            ? (data.faq as unknown[])
+                  .map((e) => {
+                      const o = (e ?? {}) as Record<string, unknown>;
+                      return { q: String(o.q ?? ""), a: String(o.a ?? "") };
+                  })
+                  .filter((e) => e.q && e.a)
+            : undefined,
     };
     const words = content.trim().split(/\s+/).length;
     return {
