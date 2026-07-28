@@ -247,7 +247,7 @@ export function Hero({
 
     return (
         <>
-        <section className="relative flex min-h-[calc(100vh-80px)] items-start overflow-hidden bg-[#050813] text-white">
+        <section className="relative flex min-h-screen items-start overflow-hidden bg-[#050813] text-white">
             {/* main background videos — crossfade between slides */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 {SLIDE_BG.map((src, i) =>
