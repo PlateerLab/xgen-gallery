@@ -413,33 +413,37 @@ export default function JejuGenAIPreviewPage() {
                     <h2 className={`mt-3 ${H2}`}>
                         플랫폼 안정화에서 AI Native Bank까지
                     </h2>
-                    <div className="mt-8 space-y-4">
-                        {ROADMAP.map((r) => (
-                            <div
-                                key={r.step}
-                                className="rounded-2xl border border-[var(--color-line)] bg-white p-6 md:flex md:gap-8"
-                            >
-                                <div className="md:w-44 md:flex-none">
-                                    <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
-                                        {r.step}
-                                    </span>
-                                    <p className="mt-2 text-[13px] font-semibold text-[var(--color-ink-subtle)]">
-                                        {r.when}
-                                    </p>
-                                </div>
-                                <div className="mt-4 md:mt-0">
-                                    <p className="text-[16px] font-bold text-[var(--color-ink)]">
+                    {/* 세로 타임라인 — 단계별 진행(여정)을 스파인 라인 + 번호 노드로 표현 */}
+                    <ol className="relative mx-auto mt-12 max-w-2xl space-y-9 before:absolute before:bottom-3 before:left-[22px] before:top-3 before:w-px before:bg-gradient-to-b before:from-[#2461d8] before:via-[var(--color-line-strong)] before:to-[var(--color-line)]">
+                        {ROADMAP.map((r, i) => (
+                            <li key={r.step} className="relative flex gap-5 text-left md:gap-7">
+                                <span className="relative z-10 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
+                                    {i + 1}
+                                </span>
+                                <div className="pb-1">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
+                                            {r.step}
+                                        </span>
+                                        <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
+                                            {r.when}
+                                        </span>
+                                    </div>
+                                    <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
                                         {r.title}
                                     </p>
                                     <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {r.points.map((p) => (
-                                            <li key={p}>· {p}</li>
+                                            <li key={p} className="flex gap-2">
+                                                <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
+                                                {p}
+                                            </li>
                                         ))}
                                     </ul>
                                 </div>
-                            </div>
+                            </li>
                         ))}
-                    </div>
+                    </ol>
                 </section>
 
                 {/* 고객 인용 */}
@@ -462,8 +466,8 @@ export default function JejuGenAIPreviewPage() {
                             수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
                             도약해 나갈 것입니다.”
                         </p>
-                        <footer className="relative mt-6 text-[14px] text-white/55">
-                            제주은행 AI 혁신팀장
+                        <footer className="relative mt-6 text-right text-[14px] text-white/55">
+                            — 제주은행 AI 혁신팀장
                         </footer>
                     </blockquote>
 
