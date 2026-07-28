@@ -489,6 +489,10 @@ export default function JejuGenAIPreviewPage() {
                             수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더
                             도약해 나갈 것입니다.”
                         </blockquote>
+                        {/* 닫는 인용부호 — 180° 회전해 우측 하단에 배치 */}
+                        <div className="relative mt-4 flex justify-end">
+                            <Quote className="h-7 w-7 rotate-180 text-[#2461d8]/25" />
+                        </div>
                     </figure>
 
                     <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] pt-8">
