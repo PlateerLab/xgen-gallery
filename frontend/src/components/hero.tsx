@@ -35,7 +35,7 @@ const SLIDE_POS = ["center", "center", "center", "center"];
 // Per-slide 추가 이동/확대(이미지 슬라이드용). 3번째(보안) 이미지는 피사체를 더
 // 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시킨다.
 const SLIDE_TRANSFORM: (string | undefined)[] = [
-    "scale(1.3) translate(calc(-10% + 5px), 6%)",
+    "scale(1.3) translate(calc(-10% + 5px), 12%)",
     undefined,
     "scale(1.3) translateX(16%)",
     undefined,
