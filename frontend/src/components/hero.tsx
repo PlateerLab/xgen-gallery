@@ -338,11 +338,9 @@ export function Hero({
                 </div>
             </div>
 
-        </section>
-
-            {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드(배경 박스 없이 제품소식·뉴스레터만) */}
+            {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
             {(productNews || latestPost || latestIssue) && (
-                <section aria-label="최근 소식" className="relative z-10 -mt-14 bg-gradient-to-t from-[#070b1c] via-[#070b1c] to-[#070b1c]/85 py-4">
+                <div aria-label="최근 소식" className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-[#050813]/85 via-[#050813]/35 to-transparent pb-3 pt-12">
                     <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-2 px-6 sm:grid-cols-3">
                         {productNews && (
                             <Link
@@ -387,8 +385,9 @@ export function Hero({
                             </Link>
                         )}
                     </div>
-                </section>
+                </div>
             )}
+        </section>
         </>
     );
 }
