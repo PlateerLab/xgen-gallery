@@ -221,10 +221,11 @@ export default function PathFinderPage() {
                                 핵심 요약
                             </p>
                             <p className="mx-auto mt-3 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink)]">
-                                패스파인더는 기존 웹 시스템·API를 코드 없이 AI 에이전트의
-                                Agent Tool로 연결하고, 대화로 XGEN Canvas 워크플로우 제작을 돕는
-                                크롬 확장형 AI 어시스턴트입니다. 로그인 → API 연결 → 도구 등록 →
-                                테스트를 브라우저에서 자동화해 현업이 직접 자동화를 만듭니다
+                                패스파인더는 기존 웹 시스템과 API를 코드 없이 AI 에이전트의
+                                Agent Tool로 연결하고, 대화만으로 XGEN Canvas 워크플로우를
+                                생성하는 크롬 기반 AI 어시스턴트입니다. 로그인부터 API 연결,
+                                도구 등록, 테스트까지 브라우저에서 자동화하여 현업도 직접 업무
+                                자동화를 구현할 수 있습니다.
                             </p>
                         </div>
                     </div>
