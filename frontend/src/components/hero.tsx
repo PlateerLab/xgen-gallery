@@ -342,7 +342,7 @@ export function Hero({
 
             {/* 헤드라인 뉴스 — 키비주얼 아래 별도 밴드(배경 박스 없이 제품소식·뉴스레터만) */}
             {(productNews || latestPost || latestIssue) && (
-                <section aria-label="최근 소식" className="bg-[#070b1c] py-4">
+                <section aria-label="최근 소식" className="relative z-10 -mt-14 bg-gradient-to-t from-[#070b1c] via-[#070b1c] to-[#070b1c]/85 py-4">
                     <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-2 px-6 sm:grid-cols-3">
                         {productNews && (
                             <Link
