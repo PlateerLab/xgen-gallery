@@ -1192,7 +1192,7 @@ export default function ProductPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-6 flex flex-wrap items-center gap-2">
+                        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
                             {DEPLOY_CHIPS.map((c) => (
                                 <span
                                     key={c}
