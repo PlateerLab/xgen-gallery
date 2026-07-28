@@ -21,7 +21,7 @@ export const SITE = {
     youtube: "https://www.youtube.com/@PlateerLabs",
     locale: "ko_KR",
     /** OG/Twitter share image — 1200×630 브랜드 카드(public/og.png). */
-    ogImage: "/og.png",
+    ogImage: "/og-v2.png",
     ogImageDims: { width: 1200, height: 630 },
 } as const;
 
