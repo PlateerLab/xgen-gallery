@@ -13,7 +13,7 @@ import {
 import {
     PRODUCTS,
     INDUSTRIES,
-    CASE_LINKS_ENABLED,
+    caseLinkEnabled,
     type CaseStudy,
     type ProductKey,
     type IndustryKey,
@@ -97,6 +97,7 @@ function StatusBadge({ c }: { c: CaseStudy }) {
 
 /** 리스트 행 — 좌측 그라디언트 썸네일 + 우측 제목·설명·태그. */
 function CaseRow({ c }: { c: CaseStudy }) {
+    const linkable = caseLinkEnabled(c.slug);
     const inner = (
         <>
             <Thumb c={c} iconSize="h-28 w-28" className="min-h-[172px] p-5" />
@@ -119,7 +120,7 @@ function CaseRow({ c }: { c: CaseStudy }) {
                 </div>
                 <h3
                     className={`mt-2.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition ${
-                        CASE_LINKS_ENABLED ? "group-hover:text-[#2461d8]" : ""
+                        linkable ? "group-hover:text-[#2461d8]" : ""
                     }`}
                 >
                     {c.title}
@@ -130,7 +131,7 @@ function CaseRow({ c }: { c: CaseStudy }) {
                 <div className="mt-3.5 flex items-center justify-between gap-3">
                     <HashTags c={c} />
                     {/* 상세 링크 비활성 시 '자세히 보기' 어포던스는 숨긴다(오해 방지) */}
-                    {CASE_LINKS_ENABLED && (
+                    {linkable && (
                         <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                             자세히 보기
                             <ArrowUpRight className="h-4 w-4" />
@@ -144,8 +145,8 @@ function CaseRow({ c }: { c: CaseStudy }) {
     const cls =
         "group grid grid-cols-1 items-center gap-6 py-8 sm:grid-cols-[288px_1fr]";
 
-    // 검증 전에는 상세로 이동하지 않도록 링크를 비활성화(클릭 무반응).
-    if (!CASE_LINKS_ENABLED) {
+    // 링크 비활성 사례(제주은행)는 상세로 이동하지 않도록 클릭 무반응 처리.
+    if (!linkable) {
         return <div className={`${cls} cursor-default`}>{inner}</div>;
     }
     return (

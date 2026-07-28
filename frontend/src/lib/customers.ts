@@ -20,12 +20,15 @@
  */
 
 /**
- * 고객사례 목록/슬라이더에서 개별 사례 상세(/customers/case/*)로의 링크 활성화 여부.
- * false면 리스트 행·키비주얼 카드 클릭이 상세로 이동하지 않는다(검증 전 비공개).
- * 사례를 하나씩 검증해 공개할 준비가 되면 true로 바꾼다.
- * (상세 라우트 자체는 살아 있어 직접 URL로 검증 가능)
+ * 개별 사례가 목록/슬라이더에서 상세(/customers/case/*)로 링크되는지 여부.
+ * 제주은행은 공개 상세본이 검토 중(히든 프리뷰)이라 링크를 비활성화하고,
+ * 그 외 사례는 링크를 활성화한다. (상세 라우트 자체는 모든 사례에 대해 살아 있음)
  */
-export const CASE_LINKS_ENABLED = false;
+const CASE_LINK_DISABLED_SLUGS = new Set(["jeju-bank-genai-platform"]);
+
+export function caseLinkEnabled(slug: string): boolean {
+    return !CASE_LINK_DISABLED_SLUGS.has(slug);
+}
 
 export type ProductKey = "xgen" | "polar" | "code-assistant";
 export type IndustryKey = "commerce" | "finance" | "public" | "it-services";

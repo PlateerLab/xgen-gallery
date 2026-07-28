@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import {
     PRODUCTS,
     INDUSTRIES,
-    CASE_LINKS_ENABLED,
+    caseLinkEnabled,
     type CaseStudy,
 } from "@/lib/customers";
 import { IndustryVisual } from "@/components/industry-visual";
@@ -14,6 +14,7 @@ import { IndustryVisual } from "@/components/industry-visual";
  * 라벨/슬라이더 등은 호출부(FeaturedCaseSlider)에서 감싼다.
  */
 export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
+    const linkable = caseLinkEnabled(item.slug);
     const cls =
         "group block overflow-hidden rounded-2xl border border-white/15 shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] transition hover:border-white/30";
 
@@ -53,7 +54,7 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
                         {item.summary}
                     </p>
                     {/* 상세 링크 비활성 시 '사례 보기' 어포던스는 숨긴다 */}
-                    {CASE_LINKS_ENABLED && (
+                    {linkable && (
                         <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#7dd3fc]">
                             사례 보기
                             <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
@@ -64,8 +65,8 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
         </>
     );
 
-    // 검증 전에는 카드 클릭이 상세로 이동하지 않도록 링크 비활성화(클릭 무반응).
-    if (!CASE_LINKS_ENABLED) {
+    // 링크 비활성 사례(제주은행)는 카드 클릭이 상세로 이동하지 않도록 무반응 처리.
+    if (!linkable) {
         return <div className={`${cls} cursor-default`}>{body}</div>;
     }
     return (
