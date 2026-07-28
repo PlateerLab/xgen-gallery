@@ -257,7 +257,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </Link>
 
                 {/* desktop groups */}
-                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-medium xl:ml-14 xl:flex 2xl:ml-16">
+                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-medium xl:ml-24 xl:flex 2xl:ml-28">
                     {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                         const menuItems = g.items.filter((it) => !it.hidden);
                         const hasMenu = !g.flat && menuItems.length > 0;
