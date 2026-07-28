@@ -127,9 +127,9 @@ export function HomeProductTour() {
                 </div>
 
                 {/* 영상 패널 */}
-                <div className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr] lg:items-stretch">
+                <div className="mt-6 grid gap-6 lg:grid-cols-[1.9fr_1fr] lg:items-stretch">
                     <div className="overflow-hidden rounded-2xl border border-white/12 bg-black/40">
-                        <div className="aspect-video w-full">
+                        <div className="aspect-video w-full lg:aspect-auto lg:h-full lg:min-h-[620px]">
                             {active.video ? (
                                 playing ? (
                                     // 클릭 후에만 실제 플레이어를 로드한다.
