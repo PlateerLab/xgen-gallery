@@ -208,13 +208,13 @@ export default function XgenTrialPage() {
                 {/* What is XGEN — 연동·설계·운영 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             What is XGEN
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             기업 데이터로 맞춤형 AI Agent를 만들고 한 곳에서 운영합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN은 기업 데이터 기반 맞춤형 AI Agent를 개발하고 통합
                             관리할 수 있는 Agentic AI 플랫폼입니다. 연동 · 설계 · 운영의
                             세 단계로 이어집니다.
@@ -223,7 +223,7 @@ export default function XgenTrialPage() {
                             {PILLARS.map((p) => (
                                 <div
                                     key={p.title}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
                                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                         <p.icon className="h-5 w-5" />
@@ -246,13 +246,13 @@ export default function XgenTrialPage() {
                 {/* 이런 기업에 추천 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Who it&apos;s for
                         </p>
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             이런 기업에 추천합니다
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             도입을 검토 중이라면, 설명을 듣기 전에 직접 만들어 보고
                             판단하세요. 다음과 같은 팀에 특히 잘 맞습니다.
                         </p>
@@ -260,7 +260,7 @@ export default function XgenTrialPage() {
                             {AUDIENCE.map((a, i) => (
                                 <div
                                     key={a.title}
-                                    className="group relative flex gap-4 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    className="group relative flex flex-col items-center gap-4 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
                                     <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-[linear-gradient(135deg,#00acee,#185aea)] text-white shadow-[0_6px_16px_-6px_rgba(24,90,234,0.6)]">
                                         <a.icon className="h-6 w-6" />
@@ -288,10 +288,10 @@ export default function XgenTrialPage() {
                 {/* 핵심 기능 8 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             체험에서 직접 써보는 핵심 기능
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             데이터 연동부터 에이전트 빌드, 지식베이스, 거버넌스까지 XGEN의
                             핵심 기능을 데모 환경에서 그대로 사용해봅니다.
                         </p>
@@ -299,7 +299,7 @@ export default function XgenTrialPage() {
                             {FEATURES.map((f) => (
                                 <div
                                     key={f.title}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                    className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center"
                                 >
                                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                                         <f.icon className="h-5 w-5" />
@@ -319,14 +319,14 @@ export default function XgenTrialPage() {
                 {/* 신청 방법 STEP */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             신청부터 시작까지, 4단계
                         </h2>
                         <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                             {STEPS.map((s) => (
                                 <li
                                     key={s.step}
-                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center"
                                 >
                                     <span className="font-mono text-[14px] font-bold text-[#2f7bff]">
                                         STEP {s.step}
@@ -337,7 +337,7 @@ export default function XgenTrialPage() {
                                 </li>
                             ))}
                         </ol>
-                        <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#f4d9a6] bg-[#fef6e7] px-3.5 py-1.5 text-[13.5px] font-semibold text-[#b45309]">
+                        <p className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-[#f4d9a6] bg-[#fef6e7] px-3.5 py-1.5 text-[13.5px] font-semibold text-[#b45309]">
                             <Monitor className="h-3.5 w-3.5" />
                             XGEN 체험 데모 환경은 PC에서만 사용할 수 있습니다
                         </p>
@@ -347,7 +347,7 @@ export default function XgenTrialPage() {
                 {/* FAQ */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-3xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             자주 묻는 질문
                         </h2>
                         <dl className="mt-8 divide-y divide-[var(--color-line)]">
