@@ -340,8 +340,8 @@ export function Hero({
 
             {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
             {(productNews || latestPost || latestIssue) && (
-                <div aria-label="최근 소식" className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-[#050813]/85 via-[#050813]/35 to-transparent pb-3 pt-12">
-                    <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-2 px-6 sm:grid-cols-3">
+                <div aria-label="최근 소식" className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
+                    <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-1 rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md sm:grid-cols-3">
                         {productNews && (
                             <Link
                                 href={`/blog/${productNews.slug}`}
