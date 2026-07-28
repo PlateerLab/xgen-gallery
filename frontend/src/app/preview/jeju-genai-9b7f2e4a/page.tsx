@@ -139,9 +139,9 @@ const ROADMAP = [
 ];
 
 const H2 =
-    "text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]";
+    "text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]";
 const KICKER =
-    "text-[12px] font-bold uppercase tracking-[0.14em] text-[var(--color-ink-subtle)]";
+    "text-center text-[12px] font-bold uppercase tracking-[0.14em] text-[var(--color-ink-subtle)]";
 
 export default function JejuGenAIPreviewPage() {
     return (
@@ -161,7 +161,7 @@ export default function JejuGenAIPreviewPage() {
                         className="pointer-events-none absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#2f7bff]/20 blur-[120px]"
                     />
                     <div className="relative mx-auto w-full max-w-4xl px-6 pt-28 pb-20">
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center justify-center gap-2">
                             <span className="inline-flex items-center rounded-full border border-[#2f7bff]/40 bg-[#2f7bff]/15 px-3 py-1 text-[12.5px] font-bold text-[#7fb0ff]">
                                 XGEN
                             </span>
@@ -177,12 +177,12 @@ export default function JejuGenAIPreviewPage() {
                         <p className={`mt-8 ${KICKER} text-white/45`}>
                             Customer Story
                         </p>
-                        <h1 className="mt-3 text-[34px] font-bold leading-[1.15] tracking-tight md:text-[48px]">
+                        <h1 className="mt-3 text-center text-[34px] font-bold leading-[1.15] tracking-tight md:text-[48px]">
                             제주은행,
                             <br />
                             AI와 함께 일하는 은행으로
                         </h1>
-                        <p className="mt-6 max-w-2xl text-[18px] leading-relaxed text-white/70 md:text-[20px]">
+                        <p className="mx-auto mt-6 max-w-2xl text-center text-[18px] leading-relaxed text-white/70 md:text-[20px]">
                             XGEN 기반 사내 생성형 AI 플랫폼을 구축해, 직원 누구나
                             직접 AI Agent를 만들고 실제 업무에 활용하는 실행형 AX
                             환경을 마련했습니다. 준법·감사부터 소비자보호,
@@ -190,7 +190,7 @@ export default function JejuGenAIPreviewPage() {
                             내재화하고 있습니다.
                         </p>
 
-                        <ul className="mt-9 flex flex-wrap gap-2">
+                        <ul className="mt-9 flex flex-wrap justify-center gap-2">
                             {HIGHLIGHTS.map((h) => (
                                 <li
                                     key={h}
@@ -208,7 +208,7 @@ export default function JejuGenAIPreviewPage() {
                 <section className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                     <p className={KICKER}>The Challenge</p>
                     <h2 className={`mt-3 ${H2}`}>보안 위에서, 현업이 직접 쓰는 AI</h2>
-                    <p className="mt-5 max-w-3xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         금융권은 강한 보안·망분리 요건 위에서 업무를 운영합니다.
                         외부 생성형 AI 서비스를 그대로 쓰기 어려운 환경에서,
                         제주은행은 세 가지를 동시에 풀어야 했습니다.
@@ -230,7 +230,7 @@ export default function JejuGenAIPreviewPage() {
                         ].map((c) => (
                             <div
                                 key={c.t}
-                                className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-5"
+                                className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-5 text-center"
                             >
                                 <p className="text-[15.5px] font-bold text-[var(--color-ink)]">
                                     {c.t}
@@ -250,7 +250,7 @@ export default function JejuGenAIPreviewPage() {
                         <h2 className={`mt-3 ${H2}`}>
                             직원이 직접 만드는 실행형 AX 플랫폼
                         </h2>
-                        <p className="mt-5 max-w-3xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                             XGEN 기반 생성형 AI 플랫폼을 은행 인프라에 온프레미스로
                             구축하고, 현업 직원이 직접 AI Agent를 설계·검증·활용하는
                             실행형 체계를 마련했습니다.
@@ -333,7 +333,7 @@ export default function JejuGenAIPreviewPage() {
                 <section className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                     <p className={KICKER}>What We Built</p>
                     <h2 className={`mt-3 ${H2}`}>전행 6개 영역에 AI Agent 적용</h2>
-                    <p className="mt-5 max-w-3xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         전행 업무를 6개 영역으로 나눠 분야별 대표 과제를 선정하고,
                         AI Agent를 적용했습니다. 분야별 대표 Agent를 중심으로 전행
                         차원의 확산을 이어가고 있습니다.
@@ -366,7 +366,7 @@ export default function JejuGenAIPreviewPage() {
                         })}
                     </div>
 
-                    <div className="mt-8 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
+                    <div className="mt-8 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center">
                         <p className="text-[15px] font-bold text-[var(--color-ink)]">
                             개별 업무 보조를 넘어, 전행 프로세스로
                         </p>
