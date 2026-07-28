@@ -246,12 +246,8 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                         )}
                     />
                     <span
-                        className="relative text-[26px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
+                        className="text-[26px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
                     >
-                        {/* LABS 글자 위 Beta 표기 (오른쪽 정렬 — S 위) */}
-                        <span className="pointer-events-none absolute -top-2 right-0 text-[9px] font-bold uppercase tracking-wide text-[#00adee]">
-                            Beta
-                        </span>
                         LABS
                     </span>
                 </Link>

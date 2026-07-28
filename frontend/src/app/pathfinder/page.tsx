@@ -221,7 +221,7 @@ export default function PathFinderPage() {
                             <div className="mx-auto mb-6 max-w-lg">
                                 <PathfinderPulseArt />
                             </div>
-                            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#2461d8]">
+                            <p className="text-[19px] font-bold tracking-tight text-[#2461d8] md:text-[22px]">
                                 핵심 요약
                             </p>
                             <p className="mx-auto mt-3 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink)]">

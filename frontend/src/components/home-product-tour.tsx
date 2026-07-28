@@ -25,6 +25,8 @@ type Product = {
     poster?: string | null;
     /** 설정 시 클릭 전 썸네일 대신 영상 첫 N초를 무음 루프로 재생한다(살아있는 썸네일). */
     previewEndSeconds?: number;
+    /** 설정 시 설명 패널에 상세 페이지 링크를 노출한다. */
+    detail?: { href: string; label: string };
 };
 
 // XGEN 우산 아래 Overview → Build(PathFinder) → Experience(FloUI) → Deploy(MCP Apps).
@@ -44,6 +46,7 @@ const PRODUCTS: Product[] = [
         desc: "복잡한 목표를 실행 가능한 에이전트 워크플로우로 설계·구성하는 단계입니다",
         video: "https://www.youtube-nocookie.com/embed/4T7tT2nTXfw",
         poster: "https://img.youtube.com/vi/4T7tT2nTXfw/maxresdefault.jpg",
+        detail: { href: "/pathfinder", label: "패스파인더 자세히 보기" },
     },
     {
         key: "floui",
@@ -200,6 +203,15 @@ export function HomeProductTour() {
                         <p className="mt-3 text-[15.5px] leading-relaxed text-white/70">
                             {active.desc}
                         </p>
+                        {active.detail && (
+                            <Link
+                                href={active.detail.href}
+                                className="group mt-5 inline-flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#5eead4] transition hover:text-white"
+                            >
+                                {active.detail.label}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                        )}
                     </div>
                 </div>
 
