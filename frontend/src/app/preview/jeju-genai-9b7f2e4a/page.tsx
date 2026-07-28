@@ -413,45 +413,34 @@ export default function JejuGenAIPreviewPage() {
                     <h2 className={`mt-3 ${H2}`}>
                         플랫폼 안정화에서 AI Native Bank까지
                     </h2>
-                    {/* 가로 타임라인 — 노드가 상단 라인 위에 놓이고 단계 콘텐츠는 중앙정렬 */}
-                    <ol className="mt-12 grid gap-y-12 sm:grid-cols-3 sm:gap-x-6">
+                    {/* 세로 타임라인 — 스파인 라인 + 번호 노드로 단계 진행(여정) 표현 */}
+                    <ol className="relative mx-auto mt-12 max-w-2xl space-y-9 before:absolute before:bottom-4 before:left-[23px] before:top-4 before:w-0.5 before:bg-gradient-to-b before:from-[#2461d8] before:via-[var(--color-line-strong)] before:to-[var(--color-line)]">
                         {ROADMAP.map((r, i) => (
-                            <li
-                                key={r.step}
-                                className="flex flex-col items-start text-left"
-                            >
-                                {/* 노드 + 연결선 (sm 이상에서 노드 중심을 관통) */}
-                                <div className="relative flex w-full items-center justify-center">
-                                    {i > 0 && (
-                                        <span className="absolute right-1/2 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-[var(--color-line-strong)] sm:block" />
-                                    )}
-                                    {i < ROADMAP.length - 1 && (
-                                        <span className="absolute left-1/2 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-[var(--color-line-strong)] sm:block" />
-                                    )}
-                                    <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
-                                        {i + 1}
-                                    </span>
+                            <li key={r.step} className="relative flex gap-5 text-left md:gap-7">
+                                <span className="relative z-10 flex h-12 w-12 flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[15px] font-bold text-white ring-4 ring-[var(--color-surface)]">
+                                    {i + 1}
+                                </span>
+                                <div className="pb-1 pt-1">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
+                                            {r.step}
+                                        </span>
+                                        <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
+                                            {r.when}
+                                        </span>
+                                    </div>
+                                    <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
+                                        {r.title}
+                                    </p>
+                                    <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {r.points.map((p) => (
+                                            <li key={p} className="flex gap-2">
+                                                <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
+                                                {p}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-
-                                <div className="mt-5 flex flex-wrap items-center gap-2">
-                                    <span className="inline-flex items-center rounded-full bg-[#eaf1fe] px-3 py-1 text-[13px] font-bold text-[#2461d8]">
-                                        {r.step}
-                                    </span>
-                                    <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
-                                        {r.when}
-                                    </span>
-                                </div>
-                                <p className="mt-2.5 text-[17px] font-bold text-[var(--color-ink)]">
-                                    {r.title}
-                                </p>
-                                <ul className="mt-3 space-y-1.5 text-left text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {r.points.map((p) => (
-                                        <li key={p} className="flex gap-2">
-                                            <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[#2f7bff]" />
-                                            {p}
-                                        </li>
-                                    ))}
-                                </ul>
                             </li>
                         ))}
                     </ol>
