@@ -379,7 +379,7 @@ export default function JejuGenAIPreviewPage() {
 
                 {/* 기대효과 */}
                 <section className="border-y border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
+                    <div className="mx-auto w-full max-w-5xl px-6 py-16 md:py-20">
                         <p className={KICKER}>Outcomes</p>
                         <h2 className={`mt-3 ${H2}`}>
                             업무혁신·활용문화·서비스 확장을 전행으로
@@ -452,33 +452,33 @@ export default function JejuGenAIPreviewPage() {
                     <p className={KICKER}>Voice of Customer</p>
                     <h2 className={`mt-3 ${H2}`}>고객의 목소리</h2>
 
-                    <figure className="relative mt-10 overflow-hidden rounded-3xl bg-[#070b1c] p-8 text-white md:p-11">
+                    <figure className="relative mt-10 overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-8 md:p-11">
                         <div
                             aria-hidden
-                            className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-[#2f7bff]/25 blur-[100px]"
+                            className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#2f7bff]/[0.06] blur-3xl"
                         />
                         {/* 화자 아이덴티티 */}
                         <figcaption className="relative flex items-center gap-4">
-                            <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#2461d8,#00acee)] shadow-[0_10px_26px_-10px_rgba(47,123,255,0.8)]">
+                            <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#2461d8,#00acee)] shadow-[0_10px_26px_-12px_rgba(47,123,255,0.6)]">
                                 <Building2 className="h-7 w-7 text-white" />
                             </span>
                             <div className="min-w-0 text-left">
-                                <p className="text-[16px] font-bold text-white">
+                                <p className="text-[16px] font-bold text-[var(--color-ink)]">
                                     제주은행 AI 혁신팀장
                                 </p>
-                                <p className="mt-0.5 text-[13.5px] font-semibold text-[#7fb0ff]">
+                                <p className="mt-0.5 text-[13.5px] font-semibold text-[#2461d8]">
                                     제주은행 · 금융
                                 </p>
                             </div>
-                            <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[12.5px] font-bold text-emerald-300 sm:inline-flex">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[12.5px] font-bold text-emerald-600 sm:inline-flex">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                                 운영 중 고객
                             </span>
                         </figcaption>
 
                         {/* 인용 */}
-                        <Quote className="relative mt-8 h-7 w-7 text-[#4d7fd6]" />
-                        <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed md:text-[21px]">
+                        <Quote className="relative mt-8 h-7 w-7 text-[#2461d8]/25" />
+                        <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[21px]">
                             “생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는
                             프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는
                             과정이었습니다. 쉽지 않은 여정이었지만, XGEN의 안정적인
