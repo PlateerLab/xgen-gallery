@@ -1,10 +1,9 @@
-# XGEN 기능 QA 테스트 로그 (stg 소스 카탈로그)
+# XGEN 기능 QA 테스트 로그
 
-- 생성 기준: results ranAt `2026-07-29T08:26:26.989Z` · 소스 `permission-taxonomy.ts (stage)`
-- **전체 단위기능 255** · 실행 32 (PASS 28/FAIL 3/WARN 1) · 미실행 223 · 실행 커버리지 13%
-- 스코프: 공통 7 · MAIN 119 · ADMIN 129
+- 전체 232 · 실행 16 · 미실행 216 · 커버리지 7%
+- 스코프: 시나리오 12 · 공통 7 · MAIN 84 · ADMIN 129
 
-| 케이스ID | 스코프 | 대분류 | 메뉴 | 액션 | 상태 | 목적 |
+| 케이스ID | 스코프 | 대분류 | 메뉴/기능 | 액션 | 상태 | 목적 |
 |---|---|---|---|---|---|---|
 | TC-CMN-001 | 공통 | Agent 채팅 | 채팅 시작 | 조회 | PASS | Agent 채팅 · 채팅 시작 — 조회·목록 렌더 정상 확인 |
 | TC-CMN-002 | 공통 | Agent 채팅 | 현재 채팅 | 조회 | 미실행 | Agent 채팅 · 현재 채팅 — 조회·목록 렌더 정상 확인 |
@@ -13,125 +12,6 @@
 | TC-CMN-005 | 공통 | Agent 채팅 | 메시지 | 전송 | 미실행 | Agent 채팅 · 메시지 — 메시지 전송→응답 수신 정상 동작 확인 |
 | TC-CMN-006 | 공통 | Teams | Teams | 조회 | PASS | Teams · Teams — 조회·목록 렌더 정상 확인 |
 | TC-CMN-007 | 공통 | Canvas | Canvas | 조회 | 미실행 | Canvas · Canvas — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-001 | MAIN | 분석 / 기획 | 업무기획 | 조회 | 미실행 | 분석 / 기획 · 업무기획 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-002 | MAIN | 분석 / 기획 | 사용자 설정 | 조회 | 미실행 | 분석 / 기획 · 사용자 설정 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-003 | MAIN | Agent 제작 | Agent 설계 | 조회 | 미실행 | Agent 제작 · Agent 설계 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-004 | MAIN | Agent 제작 | Agent 설계 | 생성 | 미실행 | Agent 제작 · Agent 설계 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-005 | MAIN | Agent 제작 | Agent 설계 | 수정 | 미실행 | Agent 제작 · Agent 설계 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-006 | MAIN | Agent 제작 | Agent 설계 | 삭제 | 미실행 | Agent 제작 · Agent 설계 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-007 | MAIN | Agent 제작 | Agent 설계 | 저장 | 미실행 | Agent 제작 · Agent 설계 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-008 | MAIN | Agent 제작 | Agent 설계 | 캔버스 | PASS | Agent 제작 · Agent 설계 — 캔버스 노드 추가·연결 상호작용 확인 |
-| TC-MAIN-009 | MAIN | Agent 제작 | Agent 목록 | 조회 | PASS | Agent 제작 · Agent 목록 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-010 | MAIN | Agent 제작 | Agent 목록 | 생성 | PASS | Agent 제작 · Agent 목록 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-011 | MAIN | Agent 제작 | Agent 목록 | 수정 | PASS | Agent 제작 · Agent 목록 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-012 | MAIN | Agent 제작 | Agent 목록 | 삭제 | PASS | Agent 제작 · Agent 목록 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-013 | MAIN | Agent 제작 | Agent 목록 | 저장 | 미실행 | Agent 제작 · Agent 목록 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-014 | MAIN | Agent 제작 | Agent 목록 | 일괄 | FAIL | Agent 제작 · Agent 목록 — 다건 일괄 작업 정상 동작 확인 |
-| TC-MAIN-015 | MAIN | Agent 제작 | Agent 목록 | 실행 | PASS | Agent 제작 · Agent 목록 — 작업/에이전트 실행 정상 동작 확인 |
-| TC-MAIN-016 | MAIN | Agent 제작 | Agent 목록 | 배포·승인 | 미실행 | Agent 제작 · Agent 목록 — 배포 요청·이중 승인 흐름 확인 |
-| TC-MAIN-017 | MAIN | Agent 제작 | Agent 목록 | 공유 | 미실행 | Agent 제작 · Agent 목록 — 공유·권한 부여 정상 동작 확인 |
-| TC-MAIN-018 | MAIN | Agent 제작 | Agent 목록 | 복제 | PASS | Agent 제작 · Agent 목록 —  |
-| TC-MAIN-019 | MAIN | Agent 제작 | Agent 운영 설정 | 조회 | 미실행 | Agent 제작 · Agent 운영 설정 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-020 | MAIN | Agent 제작 | Agent 운영 설정 | 생성 | 미실행 | Agent 제작 · Agent 운영 설정 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-021 | MAIN | Agent 제작 | Agent 운영 설정 | 수정 | 미실행 | Agent 제작 · Agent 운영 설정 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-022 | MAIN | Agent 제작 | Agent 운영 설정 | 삭제 | 미실행 | Agent 제작 · Agent 운영 설정 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-023 | MAIN | Agent 제작 | Agent 운영 설정 | 저장 | 미실행 | Agent 제작 · Agent 운영 설정 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-024 | MAIN | Agent 제작 | Agent 운영 설정 | 배포·승인 | 미실행 | Agent 제작 · Agent 운영 설정 — 배포 요청·이중 승인 흐름 확인 |
-| TC-MAIN-025 | MAIN | Agent 제작 | Agent 품질 평가 | 조회 | PASS | Agent 제작 · Agent 품질 평가 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-026 | MAIN | Agent 제작 | Agent 품질 평가 | 생성 | 미실행 | Agent 제작 · Agent 품질 평가 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-027 | MAIN | Agent 제작 | Agent 품질 평가 | 수정 | 미실행 | Agent 제작 · Agent 품질 평가 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-028 | MAIN | Agent 제작 | Agent 품질 평가 | 삭제 | 미실행 | Agent 제작 · Agent 품질 평가 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-029 | MAIN | Agent 제작 | Agent 품질 평가 | 저장 | 미실행 | Agent 제작 · Agent 품질 평가 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-030 | MAIN | Agent 제작 | Agent 프롬프트 | 조회 | PASS | Agent 제작 · Agent 프롬프트 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-031 | MAIN | Agent 제작 | Agent 프롬프트 | 생성 | 미실행 | Agent 제작 · Agent 프롬프트 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-032 | MAIN | Agent 제작 | Agent 프롬프트 | 수정 | 미실행 | Agent 제작 · Agent 프롬프트 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-033 | MAIN | Agent 제작 | Agent 프롬프트 | 삭제 | 미실행 | Agent 제작 · Agent 프롬프트 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-034 | MAIN | Agent 제작 | Agent 프롬프트 | 저장 | 미실행 | Agent 제작 · Agent 프롬프트 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-035 | MAIN | 도구 연동 | API 도구 | 조회 | PASS | 도구 연동 · API 도구 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-036 | MAIN | 도구 연동 | API 도구 | 생성 | FAIL | 도구 연동 · API 도구 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-037 | MAIN | 도구 연동 | API 도구 | 수정 | 미실행 | 도구 연동 · API 도구 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-038 | MAIN | 도구 연동 | API 도구 | 삭제 | 미실행 | 도구 연동 · API 도구 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-039 | MAIN | 도구 연동 | API 도구 | 저장 | 미실행 | 도구 연동 · API 도구 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-040 | MAIN | 도구 연동 | API 도구 | 연결·테스트 | 미실행 | 도구 연동 · API 도구 — 외부 연동 연결 테스트 정상 동작 확인 |
-| TC-MAIN-041 | MAIN | 도구 연동 | 인증 프로필 | 조회 | PASS | 도구 연동 · 인증 프로필 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-042 | MAIN | 도구 연동 | 인증 프로필 | 생성 | 미실행 | 도구 연동 · 인증 프로필 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-043 | MAIN | 도구 연동 | 인증 프로필 | 수정 | 미실행 | 도구 연동 · 인증 프로필 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-044 | MAIN | 도구 연동 | 인증 프로필 | 삭제 | 미실행 | 도구 연동 · 인증 프로필 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-045 | MAIN | 도구 연동 | 인증 프로필 | 저장 | 미실행 | 도구 연동 · 인증 프로필 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-046 | MAIN | 도구 연동 | 인증 프로필 | 연결·테스트 | 미실행 | 도구 연동 · 인증 프로필 — 외부 연동 연결 테스트 정상 동작 확인 |
-| TC-MAIN-047 | MAIN | 지식관리 | 지식 컬렉션 | 조회 | PASS | 지식관리 · 지식 컬렉션 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-048 | MAIN | 지식관리 | 지식 컬렉션 | 생성 | 미실행 | 지식관리 · 지식 컬렉션 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-049 | MAIN | 지식관리 | 지식 컬렉션 | 수정 | 미실행 | 지식관리 · 지식 컬렉션 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-050 | MAIN | 지식관리 | 지식 컬렉션 | 삭제 | 미실행 | 지식관리 · 지식 컬렉션 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-051 | MAIN | 지식관리 | 지식 컬렉션 | 저장 | 미실행 | 지식관리 · 지식 컬렉션 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-052 | MAIN | 지식관리 | 지식 컬렉션 | 업로드/다운로드 | PASS | 지식관리 · 지식 컬렉션 — 파일 업로드/다운로드 정상 동작 확인 |
-| TC-MAIN-053 | MAIN | 지식관리 | DB 연동 | 조회 | 미실행 | 지식관리 · DB 연동 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-054 | MAIN | 지식관리 | DB 연동 | 생성 | 미실행 | 지식관리 · DB 연동 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-055 | MAIN | 지식관리 | DB 연동 | 수정 | 미실행 | 지식관리 · DB 연동 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-056 | MAIN | 지식관리 | DB 연동 | 삭제 | 미실행 | 지식관리 · DB 연동 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-057 | MAIN | 지식관리 | DB 연동 | 저장 | 미실행 | 지식관리 · DB 연동 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-058 | MAIN | 지식관리 | DB 연동 | 연결·테스트 | 미실행 | 지식관리 · DB 연동 — 외부 연동 연결 테스트 정상 동작 확인 |
-| TC-MAIN-059 | MAIN | 지식관리 | 파일 저장소 | 조회 | PASS | 지식관리 · 파일 저장소 — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-060 | MAIN | 지식관리 | 파일 저장소 | 생성 | 미실행 | 지식관리 · 파일 저장소 — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-061 | MAIN | 지식관리 | 파일 저장소 | 수정 | 미실행 | 지식관리 · 파일 저장소 — 기존 항목 수정·반영 확인 |
-| TC-MAIN-062 | MAIN | 지식관리 | 파일 저장소 | 삭제 | 미실행 | 지식관리 · 파일 저장소 — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-063 | MAIN | 지식관리 | 파일 저장소 | 저장 | 미실행 | 지식관리 · 파일 저장소 — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-064 | MAIN | 지식관리 | 파일 저장소 | 업로드/다운로드 | 미실행 | 지식관리 · 파일 저장소 — 파일 업로드/다운로드 정상 동작 확인 |
-| TC-MAIN-065 | MAIN | Model Studio | Workbench | 조회 | 미실행 | Model Studio · Workbench — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-066 | MAIN | Model Studio | Workbench | 생성 | 미실행 | Model Studio · Workbench — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-067 | MAIN | Model Studio | Workbench | 수정 | 미실행 | Model Studio · Workbench — 기존 항목 수정·반영 확인 |
-| TC-MAIN-068 | MAIN | Model Studio | Workbench | 삭제 | 미실행 | Model Studio · Workbench — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-069 | MAIN | Model Studio | Workbench | 저장 | 미실행 | Model Studio · Workbench — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-070 | MAIN | Model Studio | Datasets | 조회 | 미실행 | Model Studio · Datasets — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-071 | MAIN | Model Studio | Datasets | 생성 | 미실행 | Model Studio · Datasets — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-072 | MAIN | Model Studio | Datasets | 수정 | 미실행 | Model Studio · Datasets — 기존 항목 수정·반영 확인 |
-| TC-MAIN-073 | MAIN | Model Studio | Datasets | 삭제 | 미실행 | Model Studio · Datasets — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-074 | MAIN | Model Studio | Datasets | 저장 | 미실행 | Model Studio · Datasets — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-075 | MAIN | Model Studio | Experiments | 조회 | 미실행 | Model Studio · Experiments — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-076 | MAIN | Model Studio | Experiments | 생성 | 미실행 | Model Studio · Experiments — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-077 | MAIN | Model Studio | Experiments | 수정 | 미실행 | Model Studio · Experiments — 기존 항목 수정·반영 확인 |
-| TC-MAIN-078 | MAIN | Model Studio | Experiments | 삭제 | 미실행 | Model Studio · Experiments — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-079 | MAIN | Model Studio | Experiments | 저장 | 미실행 | Model Studio · Experiments — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-080 | MAIN | Model Studio | Fine-tuning | 조회 | 미실행 | Model Studio · Fine-tuning — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-081 | MAIN | Model Studio | Fine-tuning | 생성 | 미실행 | Model Studio · Fine-tuning — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-082 | MAIN | Model Studio | Fine-tuning | 수정 | 미실행 | Model Studio · Fine-tuning — 기존 항목 수정·반영 확인 |
-| TC-MAIN-083 | MAIN | Model Studio | Fine-tuning | 삭제 | 미실행 | Model Studio · Fine-tuning — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-084 | MAIN | Model Studio | Fine-tuning | 저장 | 미실행 | Model Studio · Fine-tuning — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-085 | MAIN | Model Studio | Training Jobs | 조회 | 미실행 | Model Studio · Training Jobs — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-086 | MAIN | Model Studio | Training Jobs | 생성 | 미실행 | Model Studio · Training Jobs — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-087 | MAIN | Model Studio | Training Jobs | 수정 | 미실행 | Model Studio · Training Jobs — 기존 항목 수정·반영 확인 |
-| TC-MAIN-088 | MAIN | Model Studio | Training Jobs | 삭제 | 미실행 | Model Studio · Training Jobs — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-089 | MAIN | Model Studio | Training Jobs | 저장 | 미실행 | Model Studio · Training Jobs — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-090 | MAIN | Model Studio | Models | 조회 | 미실행 | Model Studio · Models — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-091 | MAIN | Model Studio | Models | 생성 | 미실행 | Model Studio · Models — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-092 | MAIN | Model Studio | Models | 수정 | 미실행 | Model Studio · Models — 기존 항목 수정·반영 확인 |
-| TC-MAIN-093 | MAIN | Model Studio | Models | 삭제 | 미실행 | Model Studio · Models — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-094 | MAIN | Model Studio | Models | 저장 | 미실행 | Model Studio · Models — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-095 | MAIN | Model Studio | Serving | 조회 | 미실행 | Model Studio · Serving — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-096 | MAIN | Model Studio | Serving | 생성 | 미실행 | Model Studio · Serving — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-097 | MAIN | Model Studio | Serving | 수정 | 미실행 | Model Studio · Serving — 기존 항목 수정·반영 확인 |
-| TC-MAIN-098 | MAIN | Model Studio | Serving | 삭제 | 미실행 | Model Studio · Serving — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-099 | MAIN | Model Studio | Serving | 저장 | 미실행 | Model Studio · Serving — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-100 | MAIN | Model Studio | LLM Eval | 조회 | 미실행 | Model Studio · LLM Eval — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-101 | MAIN | Model Studio | LLM Eval | 생성 | 미실행 | Model Studio · LLM Eval — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-102 | MAIN | Model Studio | LLM Eval | 수정 | 미실행 | Model Studio · LLM Eval — 기존 항목 수정·반영 확인 |
-| TC-MAIN-103 | MAIN | Model Studio | LLM Eval | 삭제 | 미실행 | Model Studio · LLM Eval — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-104 | MAIN | Model Studio | LLM Eval | 저장 | 미실행 | Model Studio · LLM Eval — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-105 | MAIN | Model Studio | Agent Trace | 조회 | 미실행 | Model Studio · Agent Trace — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-106 | MAIN | Model Studio | Agent Trace | 생성 | 미실행 | Model Studio · Agent Trace — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-107 | MAIN | Model Studio | Agent Trace | 수정 | 미실행 | Model Studio · Agent Trace — 기존 항목 수정·반영 확인 |
-| TC-MAIN-108 | MAIN | Model Studio | Agent Trace | 삭제 | 미실행 | Model Studio · Agent Trace — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-109 | MAIN | Model Studio | Agent Trace | 저장 | 미실행 | Model Studio · Agent Trace — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-110 | MAIN | Model Studio | Monitoring | 조회 | 미실행 | Model Studio · Monitoring — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-111 | MAIN | Model Studio | Monitoring | 생성 | 미실행 | Model Studio · Monitoring — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-112 | MAIN | Model Studio | Monitoring | 수정 | 미실행 | Model Studio · Monitoring — 기존 항목 수정·반영 확인 |
-| TC-MAIN-113 | MAIN | Model Studio | Monitoring | 삭제 | 미실행 | Model Studio · Monitoring — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-114 | MAIN | Model Studio | Monitoring | 저장 | 미실행 | Model Studio · Monitoring — 변경사항 서버 저장 반영 확인 |
-| TC-MAIN-115 | MAIN | Model Studio | Prompt Studio | 조회 | 미실행 | Model Studio · Prompt Studio — 조회·목록 렌더 정상 확인 |
-| TC-MAIN-116 | MAIN | Model Studio | Prompt Studio | 생성 | 미실행 | Model Studio · Prompt Studio — 신규 생성 흐름 정상 동작 확인 |
-| TC-MAIN-117 | MAIN | Model Studio | Prompt Studio | 수정 | 미실행 | Model Studio · Prompt Studio — 기존 항목 수정·반영 확인 |
-| TC-MAIN-118 | MAIN | Model Studio | Prompt Studio | 삭제 | 미실행 | Model Studio · Prompt Studio — 삭제 동작·복구불가 처리 확인 |
-| TC-MAIN-119 | MAIN | Model Studio | Prompt Studio | 저장 | 미실행 | Model Studio · Prompt Studio — 변경사항 서버 저장 반영 확인 |
 | TC-ADM-001 | ADMIN | 사용자 / 접근제어 | 사용자 관리 | 조회 | PASS | 사용자 / 접근제어 · 사용자 관리 — 조회·목록 렌더 정상 확인 |
 | TC-ADM-002 | ADMIN | 사용자 / 접근제어 | 사용자 관리 | 수정 | 미실행 | 사용자 / 접근제어 · 사용자 관리 — 기존 항목 수정·반영 확인 |
 | TC-ADM-003 | ADMIN | 사용자 / 접근제어 | 사용자 관리 | 삭제 | 미실행 | 사용자 / 접근제어 · 사용자 관리 — 삭제 동작·복구불가 처리 확인 |
@@ -261,3 +141,99 @@
 | TC-ADM-127 | ADMIN | 지식 운영 | 컬렉션 관리 | 삭제 | 미실행 | 지식 운영 · 컬렉션 관리 — 삭제 동작·복구불가 처리 확인 |
 | TC-ADM-128 | ADMIN | 지식 운영 | 컬렉션 관리 | 저장 | 미실행 | 지식 운영 · 컬렉션 관리 — 변경사항 서버 저장 반영 확인 |
 | TC-ADM-129 | ADMIN | 지식 운영 | 컬렉션 관리 | 업로드/다운로드 | 미실행 | 지식 운영 · 컬렉션 관리 — 파일 업로드/다운로드 정상 동작 확인 |
+| SC-001 | 시나리오 | 에이전트 구축 | B2B SNS 자동화 에이전트(RAG) 구축 | 시나리오 | 미실행 | 지식 컬렉션 생성 → SNS 콘텐츠 문서 업로드 → 임베딩/인덱싱 → Agent 설계 빈 캔버스 → 문서 로더+에이전트 노드 추가·포트 연결 → 프롬프트 구성 → 저장 → 배포 → 채팅 실행·응답/인용 검증 |
+| SC-002 | 시나리오 | 에이전트 구축 | 빈 캔버스 워크플로우 작성 | 시나리오 | 미실행 | Agent 설계 → 빈 캔버스로 시작 → 시작/에이전트/종료 노드 추가 → 노드 데이터 선택·포트 연결 → 저장 → 에이전트 시작(실행) |
+| SC-003 | 시나리오 | 에이전트 구축 | 대화로 워크플로우 생성 | 시나리오 | 미실행 | Agent 설계 → 대화로 워크플로우 생성 → 요구사항 입력 → 자동 생성된 워크플로우 검토 → 저장 |
+| SC-004 | 시나리오 | 에이전트 구축 | Agent 템플릿으로 시작 | 시나리오 | 미실행 | Agent 설계 → 템플릿 선택 → 파라미터 수정 → 저장 → 실행 |
+| SC-005 | 시나리오 | 에이전트 라이프사이클 | 에이전트 생성→배포→실행→삭제 | 시나리오 | 미실행 | Agent 생성하기 → 편집·저장 → 복제 → 배포 요청 → 이중 승인 → 목록에서 실행 → 보관 → 삭제(정리) |
+| SC-006 | 시나리오 | RAG 파이프라인 | 지식 컬렉션 RAG 구성·질의 | 시나리오 | 미실행 | 지식 컬렉션 생성 → 문서 업로드 → 임베딩/인덱싱 → 검색 질의 → 인용 출처 점프 확인 |
+| SC-007 | 시나리오 | RAG 파이프라인 | 파일 저장소·DB 연동 RAG | 시나리오 | 미실행 | 파일 저장소 업로드/다운로드 → DB 연동 연결 테스트 → 에이전트에 지식 소스 연결 → 실행 |
+| SC-008 | 시나리오 | 도구 연동 | 외부 API 도구 연동 | 시나리오 | 미실행 | API 도구 등록 → 인증 프로필 생성·연결 → 연결 테스트 → 에이전트 노드에 도구 연결 → 실행 |
+| SC-009 | 시나리오 | 거버넌스 | 배포 거버넌스 흐름 | 시나리오 | 미실행 | 통제 정책(PII·금칙어·위험등급) 설정 → 에이전트 배포 요청 → AI 위험도 평가 → 승인/반려 → 점검 이력·서비스 변경 이력 확인 |
+| SC-010 | 시나리오 | 사용자/권한 | 역할·권한 부여 흐름 | 시나리오 | 미실행 | 역할 생성 → 권한 설정(MAIN/ADMIN) → 사용자에 역할 할당 → 로그인 → 접근 범위(사이드바 노출) 검증 |
+| SC-011 | 시나리오 | 채팅 실행 | 에이전트 채팅 대화 | 시나리오 | 미실행 | 채팅 시작 → 에이전트플로우 선택 → 프롬프트 전송 → 응답 수신 → 인용 확인 → 이력 저장·재조회 |
+| SC-012 | 시나리오 | 운영 모니터링 | 운영 모니터링·피드백 | 시나리오 | 미실행 | Agent 관리 조회 → 채팅 모니터링 → 사용자 피드백 확인 → 응답 품질 평가 → Agent 리텐션 분석 |
+| TC-MAIN-001 | MAIN | Agent 제작 · Agent 목록 | 컬렉션 목록 조회 | 조회 | 미실행 | 에이전트 목록·카드 렌더 확인 |
+| TC-MAIN-002 | MAIN | Agent 제작 · Agent 목록 | 새 에이전트 생성 | 생성 | 미실행 | 신규 에이전트 생성 진입·저장 확인 |
+| TC-MAIN-003 | MAIN | Agent 제작 · Agent 목록 | 편집 | 수정 | 미실행 | 기존 에이전트 편집(캔버스) 진입 확인 |
+| TC-MAIN-004 | MAIN | Agent 제작 · Agent 목록 | 복제 | 복제 | 미실행 | 에이전트 복제 생성 확인 |
+| TC-MAIN-005 | MAIN | Agent 제작 · Agent 목록 | 실행 | 실행 | 미실행 | 목록에서 에이전트 실행(채팅) 확인 |
+| TC-MAIN-006 | MAIN | Agent 제작 · Agent 목록 | 삭제 | 삭제 | 미실행 | 에이전트 삭제·확인 모달 처리 확인 |
+| TC-MAIN-007 | MAIN | Agent 제작 · Agent 목록 | 공유 | 공유 | 미실행 | 에이전트 공유·권한 부여 확인 |
+| TC-MAIN-008 | MAIN | Agent 제작 · Agent 목록 | 배포 | 배포·승인 | 미실행 | 배포 요청·이중 승인 흐름 확인 |
+| TC-MAIN-009 | MAIN | Agent 제작 · Agent 목록 | 다중 선택(일괄) | 일괄 | 미실행 | 다중 선택 일괄 작업 모드 확인 |
+| TC-MAIN-010 | MAIN | Agent 제작 · Agent 목록 | 검색 | 조회 | 미실행 | 에이전트 검색 필터 확인 |
+| TC-MAIN-011 | MAIN | Agent 제작 · Agent 목록 | 보관함 조회 | 조회 | 미실행 | 보관함 탭 목록 확인 |
+| TC-MAIN-012 | MAIN | Agent 제작 · Agent 목록 | 템플릿 조회 | 조회 | 미실행 | 템플릿 탭 목록 확인 |
+| TC-MAIN-013 | MAIN | Agent 제작 · Agent 설계(캔버스) | 빈 캔버스로 시작 | 생성 | 미실행 | 빈 캔버스 진입·에디터 로드 확인 |
+| TC-MAIN-014 | MAIN | Agent 제작 · Agent 설계(캔버스) | 노드 추가 | 캔버스 | 미실행 | 팔레트에서 노드 캔버스 배치 확인 |
+| TC-MAIN-015 | MAIN | Agent 제작 · Agent 설계(캔버스) | 노드 데이터 선택 | 캔버스 | 미실행 | 노드 데이터/모델 선택 확인 |
+| TC-MAIN-016 | MAIN | Agent 제작 · Agent 설계(캔버스) | 노드 포트 연결 | 캔버스 | 미실행 | 노드 간 포트 드래그 연결 확인 |
+| TC-MAIN-017 | MAIN | Agent 제작 · Agent 설계(캔버스) | 노드 설정 | 수정 | 미실행 | 노드 파라미터 설정·반영 확인 |
+| TC-MAIN-018 | MAIN | Agent 제작 · Agent 설계(캔버스) | 노드 삭제 | 삭제 | 미실행 | 노드 삭제 확인 |
+| TC-MAIN-019 | MAIN | Agent 제작 · Agent 설계(캔버스) | 정렬 | 캔버스 | 미실행 | 노드 자동 정렬 확인 |
+| TC-MAIN-020 | MAIN | Agent 제작 · Agent 설계(캔버스) | 저장 | 저장 | 미실행 | 에이전트플로우 저장(서버 반영) 확인 |
+| TC-MAIN-021 | MAIN | Agent 제작 · Agent 설계(캔버스) | 복사 | 복제 | 미실행 | 캔버스 복사 확인 |
+| TC-MAIN-022 | MAIN | Agent 제작 · Agent 설계(캔버스) | 배포하기 | 배포·승인 | 미실행 | 캔버스에서 배포 확인 |
+| TC-MAIN-023 | MAIN | Agent 제작 · Agent 설계(캔버스) | 에이전트 시작(실행) | 실행 | 미실행 | 캔버스에서 에이전트 실행·응답 확인 |
+| TC-MAIN-024 | MAIN | Agent 제작 · Agent 설계(캔버스) | 작업 히스토리 | 조회 | 미실행 | 작업 히스토리 조회 확인 |
+| TC-MAIN-025 | MAIN | Agent 제작 · Agent 설계(캔버스) | 이름 편집 | 수정 | 미실행 | 에이전트플로우 이름 편집 확인 |
+| TC-MAIN-026 | MAIN | Agent 제작 · Agent 설계(캔버스) | 지우기 | 삭제 | 미실행 | 캔버스 전체 지우기 확인 |
+| TC-MAIN-027 | MAIN | Agent 제작 · Agent 기획 | 기획서 조회 | 조회 | 미실행 | 개발 기획서 목록 조회 확인 |
+| TC-MAIN-028 | MAIN | Agent 제작 · Agent 기획 | 기획서 작성/정리 | 생성 | 미실행 | 기획서 작성·정리 확인 |
+| TC-MAIN-029 | MAIN | Agent 제작 · Agent 기획 | 저장 | 저장 | 미실행 | 기획서 저장 확인 |
+| TC-MAIN-030 | MAIN | Agent 제작 · Agent 운영 설정 | 운영 설정 조회 | 조회 | 미실행 | 운영 설정 화면 조회 확인 |
+| TC-MAIN-031 | MAIN | Agent 제작 · Agent 운영 설정 | 배포 정책 설정 | 수정 | 미실행 | 배포 정책 설정·반영 확인 |
+| TC-MAIN-032 | MAIN | Agent 제작 · Agent 운영 설정 | 저장 | 저장 | 미실행 | 운영 설정 저장 확인 |
+| TC-MAIN-033 | MAIN | Agent 제작 · Agent 품질 평가 | 평가 지표 조회 | 조회 | 미실행 | 품질 평가 지표 조회 확인 |
+| TC-MAIN-034 | MAIN | Agent 제작 · Agent 품질 평가 | 평가 실행 | 실행 | 미실행 | 품질 평가 실행 확인 |
+| TC-MAIN-035 | MAIN | Agent 제작 · Agent 프롬프트 | 프롬프트 목록 조회 | 조회 | 미실행 | 프롬프트 자산 목록 조회 확인 |
+| TC-MAIN-036 | MAIN | Agent 제작 · Agent 프롬프트 | 새 프롬프트 | 생성 | 미실행 | 프롬프트 신규 생성 확인 |
+| TC-MAIN-037 | MAIN | Agent 제작 · Agent 프롬프트 | 편집 | 수정 | 미실행 | 프롬프트 편집 확인 |
+| TC-MAIN-038 | MAIN | Agent 제작 · Agent 프롬프트 | 저장 | 저장 | 미실행 | 프롬프트 저장 확인 |
+| TC-MAIN-039 | MAIN | Agent 제작 · Agent 프롬프트 | 삭제 | 삭제 | 미실행 | 프롬프트 삭제 확인 |
+| TC-MAIN-040 | MAIN | Agent 제작 · Agent 프롬프트 | 버전 관리 | 수정 | 미실행 | 프롬프트 버전 관리 확인 |
+| TC-MAIN-041 | MAIN | 도구 연동 · API 도구 | 도구 목록 조회 | 조회 | 미실행 | API 도구 목록 조회 확인 |
+| TC-MAIN-042 | MAIN | 도구 연동 · API 도구 | 새 도구 등록 | 생성 | 미실행 | API 도구 신규 등록 확인 |
+| TC-MAIN-043 | MAIN | 도구 연동 · API 도구 | 도구 설정 | 수정 | 미실행 | 도구 파라미터 설정 확인 |
+| TC-MAIN-044 | MAIN | 도구 연동 · API 도구 | 연결 테스트 | 연결·테스트 | 미실행 | 외부 API 연결 테스트 확인 |
+| TC-MAIN-045 | MAIN | 도구 연동 · API 도구 | 스키마 조회 | 조회 | 미실행 | 도구 스키마 조회 확인 |
+| TC-MAIN-046 | MAIN | 도구 연동 · API 도구 | 도구 삭제 | 삭제 | 미실행 | 도구 삭제 확인 |
+| TC-MAIN-047 | MAIN | 도구 연동 · API 도구 | 에이전트 연결 | 공유 | 미실행 | 에이전트 노드에 도구 연결 확인 |
+| TC-MAIN-048 | MAIN | 도구 연동 · 인증 프로필 | 프로필 목록 조회 | 조회 | 미실행 | 인증 프로필 목록 조회 확인 |
+| TC-MAIN-049 | MAIN | 도구 연동 · 인증 프로필 | 새 프로필 생성 | 생성 | 미실행 | 인증 프로필 신규 생성 확인 |
+| TC-MAIN-050 | MAIN | 도구 연동 · 인증 프로필 | 시크릿 설정 | 수정 | 미실행 | 자격증명/시크릿 설정 확인 |
+| TC-MAIN-051 | MAIN | 도구 연동 · 인증 프로필 | 연결 검증 | 연결·테스트 | 미실행 | 인증 프로필 연결 검증 확인 |
+| TC-MAIN-052 | MAIN | 도구 연동 · 인증 프로필 | 프로필 삭제 | 삭제 | 미실행 | 인증 프로필 삭제 확인 |
+| TC-MAIN-053 | MAIN | 지식관리 · 지식 컬렉션 | 컬렉션 목록 조회 | 조회 | 미실행 | 컬렉션 목록(모두/개인/공유) 조회 확인 |
+| TC-MAIN-054 | MAIN | 지식관리 · 지식 컬렉션 | 새 컬렉션 생성 | 생성 | 미실행 | 새 컬렉션 생성 확인 |
+| TC-MAIN-055 | MAIN | 지식관리 · 지식 컬렉션 | 컬렉션 설정 | 수정 | 미실행 | 컬렉션 설정 변경·반영 확인 |
+| TC-MAIN-056 | MAIN | 지식관리 · 지식 컬렉션 | 컬렉션 삭제 | 삭제 | 미실행 | 컬렉션 삭제 확인 |
+| TC-MAIN-057 | MAIN | 지식관리 · 지식 컬렉션 | 문서 업로드 | 업로드/다운로드 | 미실행 | 개별 문서 업로드·인덱싱 확인 |
+| TC-MAIN-058 | MAIN | 지식관리 · 지식 컬렉션 | 폴더 업로드 | 업로드/다운로드 | 미실행 | 폴더(다건) 업로드·인덱싱 확인 |
+| TC-MAIN-059 | MAIN | 지식관리 · 지식 컬렉션 | 문서 목록 조회 | 조회 | 미실행 | 컬렉션 내 문서 목록 조회 확인 |
+| TC-MAIN-060 | MAIN | 지식관리 · 지식 컬렉션 | 문서 삭제 | 삭제 | 미실행 | 문서 삭제 확인 |
+| TC-MAIN-061 | MAIN | 지식관리 · 지식 컬렉션 | 문서 미리보기 | 조회 | 미실행 | 문서 미리보기·본문 확인 |
+| TC-MAIN-062 | MAIN | 지식관리 · 지식 컬렉션 | 임베딩 설정 | 수정 | 미실행 | 임베딩 모델/설정 변경 확인 |
+| TC-MAIN-063 | MAIN | 지식관리 · 지식 컬렉션 | 청킹 설정 | 수정 | 미실행 | 청킹 전략 설정 확인 |
+| TC-MAIN-064 | MAIN | 지식관리 · 지식 컬렉션 | 검색 질의 | 조회 | 미실행 | 컬렉션 검색 질의·결과 확인 |
+| TC-MAIN-065 | MAIN | 지식관리 · 지식 컬렉션 | 다중 선택(일괄) | 일괄 | 미실행 | 다중 선택 일괄 작업 확인 |
+| TC-MAIN-066 | MAIN | 지식관리 · 지식 컬렉션 | 업로드 이력 조회 | 조회 | 미실행 | 업로드 이력 탭 조회 확인 |
+| TC-MAIN-067 | MAIN | 지식관리 · 지식 컬렉션 | 용어사전 관리 | 수정 | 미실행 | 용어사전 등록·수정 확인 |
+| TC-MAIN-068 | MAIN | 지식관리 · 지식 컬렉션 | 온톨로지 구성 | 수정 | 미실행 | 온톨로지 구성·매핑 확인 |
+| TC-MAIN-069 | MAIN | 지식관리 · 지식 컬렉션 | 휴지통 복원 | 전환 | 미실행 | 휴지통 항목 복원/영구삭제 확인 |
+| TC-MAIN-070 | MAIN | 지식관리 · 지식 컬렉션 | 공유 설정 | 공유 | 미실행 | 컬렉션 공유 범위 설정 확인 |
+| TC-MAIN-071 | MAIN | 지식관리 · 파일 저장소 | 파일 목록 조회 | 조회 | 미실행 | 파일 저장소 목록 조회 확인 |
+| TC-MAIN-072 | MAIN | 지식관리 · 파일 저장소 | 파일 업로드 | 업로드/다운로드 | 미실행 | 파일 업로드 확인 |
+| TC-MAIN-073 | MAIN | 지식관리 · 파일 저장소 | 폴더 업로드 | 업로드/다운로드 | 미실행 | 폴더 업로드 확인 |
+| TC-MAIN-074 | MAIN | 지식관리 · 파일 저장소 | 파일 다운로드 | 업로드/다운로드 | 미실행 | 원본 파일 다운로드 확인 |
+| TC-MAIN-075 | MAIN | 지식관리 · 파일 저장소 | 파일 삭제 | 삭제 | 미실행 | 파일 삭제 확인 |
+| TC-MAIN-076 | MAIN | 지식관리 · 파일 저장소 | 폴더 생성 | 생성 | 미실행 | 폴더 생성 확인 |
+| TC-MAIN-077 | MAIN | 지식관리 · 파일 저장소 | 검색 | 조회 | 미실행 | 파일 검색 확인 |
+| TC-MAIN-078 | MAIN | 지식관리 · 파일 저장소 | 업로드 이력 | 조회 | 미실행 | 업로드 이력 조회 확인 |
+| TC-MAIN-079 | MAIN | 지식관리 · DB 연동 | 연결 목록 조회 | 조회 | 미실행 | DB 연동 목록 조회 확인 |
+| TC-MAIN-080 | MAIN | 지식관리 · DB 연동 | 새 연결 생성 | 생성 | 미실행 | DB 연결 신규 생성 확인 |
+| TC-MAIN-081 | MAIN | 지식관리 · DB 연동 | 연결 설정 | 수정 | 미실행 | DB 연결 설정 변경 확인 |
+| TC-MAIN-082 | MAIN | 지식관리 · DB 연동 | 연결 테스트 | 연결·테스트 | 미실행 | DB 연결 테스트 확인 |
+| TC-MAIN-083 | MAIN | 지식관리 · DB 연동 | 스키마 조회 | 조회 | 미실행 | DB 스키마 조회 확인 |
+| TC-MAIN-084 | MAIN | 지식관리 · DB 연동 | 연결 삭제 | 삭제 | 미실행 | DB 연결 삭제 확인 |

@@ -1,11 +1,11 @@
 {
  "env": "stg",
  "source": "permission-taxonomy.ts (stage)",
- "total": 267,
+ "total": 232,
  "byScope": {
   "시나리오": 12,
   "공통": 7,
-  "MAIN": 119,
+  "MAIN": 84,
   "ADMIN": 129
  },
  "cases": [
@@ -78,1196 +78,6 @@
    "desc": "Canvas · Canvas — 조회·목록 렌더 정상 확인",
    "outcome": "미실행",
    "persona": "all"
-  },
-  {
-   "scope": "MAIN",
-   "category": "분석 / 기획",
-   "menu": "업무기획",
-   "action": "조회",
-   "id": "TC-MAIN-001",
-   "desc": "분석 / 기획 · 업무기획 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "분석 / 기획",
-   "menu": "사용자 설정",
-   "action": "조회",
-   "id": "TC-MAIN-002",
-   "desc": "분석 / 기획 · 사용자 설정 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "조회",
-   "id": "TC-MAIN-003",
-   "desc": "Agent 제작 · Agent 설계 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "생성",
-   "id": "TC-MAIN-004",
-   "desc": "Agent 제작 · Agent 설계 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "수정",
-   "id": "TC-MAIN-005",
-   "desc": "Agent 제작 · Agent 설계 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "삭제",
-   "id": "TC-MAIN-006",
-   "desc": "Agent 제작 · Agent 설계 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "저장",
-   "id": "TC-MAIN-007",
-   "desc": "Agent 제작 · Agent 설계 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 설계",
-   "action": "캔버스",
-   "id": "TC-MAIN-008",
-   "desc": "Agent 제작 · Agent 설계 — 캔버스 노드 추가·연결 상호작용 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "조회",
-   "id": "TC-MAIN-009",
-   "desc": "Agent 제작 · Agent 목록 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "생성",
-   "id": "TC-MAIN-010",
-   "desc": "Agent 제작 · Agent 목록 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "수정",
-   "id": "TC-MAIN-011",
-   "desc": "Agent 제작 · Agent 목록 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "삭제",
-   "id": "TC-MAIN-012",
-   "desc": "Agent 제작 · Agent 목록 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "저장",
-   "id": "TC-MAIN-013",
-   "desc": "Agent 제작 · Agent 목록 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "일괄",
-   "id": "TC-MAIN-014",
-   "desc": "Agent 제작 · Agent 목록 — 다건 일괄 작업 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "실행",
-   "id": "TC-MAIN-015",
-   "desc": "Agent 제작 · Agent 목록 — 작업/에이전트 실행 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "배포·승인",
-   "id": "TC-MAIN-016",
-   "desc": "Agent 제작 · Agent 목록 — 배포 요청·이중 승인 흐름 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "공유",
-   "id": "TC-MAIN-017",
-   "desc": "Agent 제작 · Agent 목록 — 공유·권한 부여 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 목록",
-   "action": "복제",
-   "id": "TC-MAIN-018",
-   "desc": "Agent 제작 · Agent 목록 — ",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "조회",
-   "id": "TC-MAIN-019",
-   "desc": "Agent 제작 · Agent 운영 설정 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "생성",
-   "id": "TC-MAIN-020",
-   "desc": "Agent 제작 · Agent 운영 설정 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "수정",
-   "id": "TC-MAIN-021",
-   "desc": "Agent 제작 · Agent 운영 설정 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "삭제",
-   "id": "TC-MAIN-022",
-   "desc": "Agent 제작 · Agent 운영 설정 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "저장",
-   "id": "TC-MAIN-023",
-   "desc": "Agent 제작 · Agent 운영 설정 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 운영 설정",
-   "action": "배포·승인",
-   "id": "TC-MAIN-024",
-   "desc": "Agent 제작 · Agent 운영 설정 — 배포 요청·이중 승인 흐름 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 품질 평가",
-   "action": "조회",
-   "id": "TC-MAIN-025",
-   "desc": "Agent 제작 · Agent 품질 평가 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 품질 평가",
-   "action": "생성",
-   "id": "TC-MAIN-026",
-   "desc": "Agent 제작 · Agent 품질 평가 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 품질 평가",
-   "action": "수정",
-   "id": "TC-MAIN-027",
-   "desc": "Agent 제작 · Agent 품질 평가 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 품질 평가",
-   "action": "삭제",
-   "id": "TC-MAIN-028",
-   "desc": "Agent 제작 · Agent 품질 평가 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 품질 평가",
-   "action": "저장",
-   "id": "TC-MAIN-029",
-   "desc": "Agent 제작 · Agent 품질 평가 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 프롬프트",
-   "action": "조회",
-   "id": "TC-MAIN-030",
-   "desc": "Agent 제작 · Agent 프롬프트 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 프롬프트",
-   "action": "생성",
-   "id": "TC-MAIN-031",
-   "desc": "Agent 제작 · Agent 프롬프트 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 프롬프트",
-   "action": "수정",
-   "id": "TC-MAIN-032",
-   "desc": "Agent 제작 · Agent 프롬프트 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 프롬프트",
-   "action": "삭제",
-   "id": "TC-MAIN-033",
-   "desc": "Agent 제작 · Agent 프롬프트 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Agent 제작",
-   "menu": "Agent 프롬프트",
-   "action": "저장",
-   "id": "TC-MAIN-034",
-   "desc": "Agent 제작 · Agent 프롬프트 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "조회",
-   "id": "TC-MAIN-035",
-   "desc": "도구 연동 · API 도구 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "생성",
-   "id": "TC-MAIN-036",
-   "desc": "도구 연동 · API 도구 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "수정",
-   "id": "TC-MAIN-037",
-   "desc": "도구 연동 · API 도구 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "삭제",
-   "id": "TC-MAIN-038",
-   "desc": "도구 연동 · API 도구 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "저장",
-   "id": "TC-MAIN-039",
-   "desc": "도구 연동 · API 도구 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "API 도구",
-   "action": "연결·테스트",
-   "id": "TC-MAIN-040",
-   "desc": "도구 연동 · API 도구 — 외부 연동 연결 테스트 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "조회",
-   "id": "TC-MAIN-041",
-   "desc": "도구 연동 · 인증 프로필 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "생성",
-   "id": "TC-MAIN-042",
-   "desc": "도구 연동 · 인증 프로필 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "수정",
-   "id": "TC-MAIN-043",
-   "desc": "도구 연동 · 인증 프로필 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "삭제",
-   "id": "TC-MAIN-044",
-   "desc": "도구 연동 · 인증 프로필 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "저장",
-   "id": "TC-MAIN-045",
-   "desc": "도구 연동 · 인증 프로필 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "도구 연동",
-   "menu": "인증 프로필",
-   "action": "연결·테스트",
-   "id": "TC-MAIN-046",
-   "desc": "도구 연동 · 인증 프로필 — 외부 연동 연결 테스트 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "조회",
-   "id": "TC-MAIN-047",
-   "desc": "지식관리 · 지식 컬렉션 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "생성",
-   "id": "TC-MAIN-048",
-   "desc": "지식관리 · 지식 컬렉션 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "수정",
-   "id": "TC-MAIN-049",
-   "desc": "지식관리 · 지식 컬렉션 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "삭제",
-   "id": "TC-MAIN-050",
-   "desc": "지식관리 · 지식 컬렉션 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "저장",
-   "id": "TC-MAIN-051",
-   "desc": "지식관리 · 지식 컬렉션 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "지식 컬렉션",
-   "action": "업로드/다운로드",
-   "id": "TC-MAIN-052",
-   "desc": "지식관리 · 지식 컬렉션 — 파일 업로드/다운로드 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "조회",
-   "id": "TC-MAIN-053",
-   "desc": "지식관리 · DB 연동 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "생성",
-   "id": "TC-MAIN-054",
-   "desc": "지식관리 · DB 연동 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "수정",
-   "id": "TC-MAIN-055",
-   "desc": "지식관리 · DB 연동 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "삭제",
-   "id": "TC-MAIN-056",
-   "desc": "지식관리 · DB 연동 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "저장",
-   "id": "TC-MAIN-057",
-   "desc": "지식관리 · DB 연동 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "DB 연동",
-   "action": "연결·테스트",
-   "id": "TC-MAIN-058",
-   "desc": "지식관리 · DB 연동 — 외부 연동 연결 테스트 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "조회",
-   "id": "TC-MAIN-059",
-   "desc": "지식관리 · 파일 저장소 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "생성",
-   "id": "TC-MAIN-060",
-   "desc": "지식관리 · 파일 저장소 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "수정",
-   "id": "TC-MAIN-061",
-   "desc": "지식관리 · 파일 저장소 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "삭제",
-   "id": "TC-MAIN-062",
-   "desc": "지식관리 · 파일 저장소 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "저장",
-   "id": "TC-MAIN-063",
-   "desc": "지식관리 · 파일 저장소 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "지식관리",
-   "menu": "파일 저장소",
-   "action": "업로드/다운로드",
-   "id": "TC-MAIN-064",
-   "desc": "지식관리 · 파일 저장소 — 파일 업로드/다운로드 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Workbench",
-   "action": "조회",
-   "id": "TC-MAIN-065",
-   "desc": "Model Studio · Workbench — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Workbench",
-   "action": "생성",
-   "id": "TC-MAIN-066",
-   "desc": "Model Studio · Workbench — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Workbench",
-   "action": "수정",
-   "id": "TC-MAIN-067",
-   "desc": "Model Studio · Workbench — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Workbench",
-   "action": "삭제",
-   "id": "TC-MAIN-068",
-   "desc": "Model Studio · Workbench — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Workbench",
-   "action": "저장",
-   "id": "TC-MAIN-069",
-   "desc": "Model Studio · Workbench — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Datasets",
-   "action": "조회",
-   "id": "TC-MAIN-070",
-   "desc": "Model Studio · Datasets — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Datasets",
-   "action": "생성",
-   "id": "TC-MAIN-071",
-   "desc": "Model Studio · Datasets — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Datasets",
-   "action": "수정",
-   "id": "TC-MAIN-072",
-   "desc": "Model Studio · Datasets — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Datasets",
-   "action": "삭제",
-   "id": "TC-MAIN-073",
-   "desc": "Model Studio · Datasets — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Datasets",
-   "action": "저장",
-   "id": "TC-MAIN-074",
-   "desc": "Model Studio · Datasets — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Experiments",
-   "action": "조회",
-   "id": "TC-MAIN-075",
-   "desc": "Model Studio · Experiments — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Experiments",
-   "action": "생성",
-   "id": "TC-MAIN-076",
-   "desc": "Model Studio · Experiments — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Experiments",
-   "action": "수정",
-   "id": "TC-MAIN-077",
-   "desc": "Model Studio · Experiments — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Experiments",
-   "action": "삭제",
-   "id": "TC-MAIN-078",
-   "desc": "Model Studio · Experiments — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Experiments",
-   "action": "저장",
-   "id": "TC-MAIN-079",
-   "desc": "Model Studio · Experiments — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Fine-tuning",
-   "action": "조회",
-   "id": "TC-MAIN-080",
-   "desc": "Model Studio · Fine-tuning — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Fine-tuning",
-   "action": "생성",
-   "id": "TC-MAIN-081",
-   "desc": "Model Studio · Fine-tuning — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Fine-tuning",
-   "action": "수정",
-   "id": "TC-MAIN-082",
-   "desc": "Model Studio · Fine-tuning — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Fine-tuning",
-   "action": "삭제",
-   "id": "TC-MAIN-083",
-   "desc": "Model Studio · Fine-tuning — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Fine-tuning",
-   "action": "저장",
-   "id": "TC-MAIN-084",
-   "desc": "Model Studio · Fine-tuning — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Training Jobs",
-   "action": "조회",
-   "id": "TC-MAIN-085",
-   "desc": "Model Studio · Training Jobs — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Training Jobs",
-   "action": "생성",
-   "id": "TC-MAIN-086",
-   "desc": "Model Studio · Training Jobs — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Training Jobs",
-   "action": "수정",
-   "id": "TC-MAIN-087",
-   "desc": "Model Studio · Training Jobs — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Training Jobs",
-   "action": "삭제",
-   "id": "TC-MAIN-088",
-   "desc": "Model Studio · Training Jobs — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Training Jobs",
-   "action": "저장",
-   "id": "TC-MAIN-089",
-   "desc": "Model Studio · Training Jobs — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Models",
-   "action": "조회",
-   "id": "TC-MAIN-090",
-   "desc": "Model Studio · Models — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Models",
-   "action": "생성",
-   "id": "TC-MAIN-091",
-   "desc": "Model Studio · Models — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Models",
-   "action": "수정",
-   "id": "TC-MAIN-092",
-   "desc": "Model Studio · Models — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Models",
-   "action": "삭제",
-   "id": "TC-MAIN-093",
-   "desc": "Model Studio · Models — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Models",
-   "action": "저장",
-   "id": "TC-MAIN-094",
-   "desc": "Model Studio · Models — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Serving",
-   "action": "조회",
-   "id": "TC-MAIN-095",
-   "desc": "Model Studio · Serving — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Serving",
-   "action": "생성",
-   "id": "TC-MAIN-096",
-   "desc": "Model Studio · Serving — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Serving",
-   "action": "수정",
-   "id": "TC-MAIN-097",
-   "desc": "Model Studio · Serving — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Serving",
-   "action": "삭제",
-   "id": "TC-MAIN-098",
-   "desc": "Model Studio · Serving — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Serving",
-   "action": "저장",
-   "id": "TC-MAIN-099",
-   "desc": "Model Studio · Serving — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "LLM Eval",
-   "action": "조회",
-   "id": "TC-MAIN-100",
-   "desc": "Model Studio · LLM Eval — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "LLM Eval",
-   "action": "생성",
-   "id": "TC-MAIN-101",
-   "desc": "Model Studio · LLM Eval — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "LLM Eval",
-   "action": "수정",
-   "id": "TC-MAIN-102",
-   "desc": "Model Studio · LLM Eval — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "LLM Eval",
-   "action": "삭제",
-   "id": "TC-MAIN-103",
-   "desc": "Model Studio · LLM Eval — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "LLM Eval",
-   "action": "저장",
-   "id": "TC-MAIN-104",
-   "desc": "Model Studio · LLM Eval — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Agent Trace",
-   "action": "조회",
-   "id": "TC-MAIN-105",
-   "desc": "Model Studio · Agent Trace — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Agent Trace",
-   "action": "생성",
-   "id": "TC-MAIN-106",
-   "desc": "Model Studio · Agent Trace — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Agent Trace",
-   "action": "수정",
-   "id": "TC-MAIN-107",
-   "desc": "Model Studio · Agent Trace — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Agent Trace",
-   "action": "삭제",
-   "id": "TC-MAIN-108",
-   "desc": "Model Studio · Agent Trace — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Agent Trace",
-   "action": "저장",
-   "id": "TC-MAIN-109",
-   "desc": "Model Studio · Agent Trace — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Monitoring",
-   "action": "조회",
-   "id": "TC-MAIN-110",
-   "desc": "Model Studio · Monitoring — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Monitoring",
-   "action": "생성",
-   "id": "TC-MAIN-111",
-   "desc": "Model Studio · Monitoring — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Monitoring",
-   "action": "수정",
-   "id": "TC-MAIN-112",
-   "desc": "Model Studio · Monitoring — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Monitoring",
-   "action": "삭제",
-   "id": "TC-MAIN-113",
-   "desc": "Model Studio · Monitoring — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Monitoring",
-   "action": "저장",
-   "id": "TC-MAIN-114",
-   "desc": "Model Studio · Monitoring — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Prompt Studio",
-   "action": "조회",
-   "id": "TC-MAIN-115",
-   "desc": "Model Studio · Prompt Studio — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Prompt Studio",
-   "action": "생성",
-   "id": "TC-MAIN-116",
-   "desc": "Model Studio · Prompt Studio — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Prompt Studio",
-   "action": "수정",
-   "id": "TC-MAIN-117",
-   "desc": "Model Studio · Prompt Studio — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Prompt Studio",
-   "action": "삭제",
-   "id": "TC-MAIN-118",
-   "desc": "Model Studio · Prompt Studio — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "dev"
-  },
-  {
-   "scope": "MAIN",
-   "category": "Model Studio",
-   "menu": "Prompt Studio",
-   "action": "저장",
-   "id": "TC-MAIN-119",
-   "desc": "Model Studio · Prompt Studio — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "dev"
   },
   {
    "scope": "ADMIN",
@@ -2678,6 +1488,846 @@
    "desc": "Agent 관리 조회 → 채팅 모니터링 → 사용자 피드백 확인 → 응답 품질 평가 → Agent 리텐션 분석",
    "outcome": "미실행",
    "persona": "admin"
+  },
+  {
+   "id": "TC-MAIN-001",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "컬렉션 목록 조회",
+   "action": "조회",
+   "desc": "에이전트 목록·카드 렌더 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-002",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "새 에이전트 생성",
+   "action": "생성",
+   "desc": "신규 에이전트 생성 진입·저장 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-003",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "편집",
+   "action": "수정",
+   "desc": "기존 에이전트 편집(캔버스) 진입 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-004",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "복제",
+   "action": "복제",
+   "desc": "에이전트 복제 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-005",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "실행",
+   "action": "실행",
+   "desc": "목록에서 에이전트 실행(채팅) 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-006",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "삭제",
+   "action": "삭제",
+   "desc": "에이전트 삭제·확인 모달 처리 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-007",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "공유",
+   "action": "공유",
+   "desc": "에이전트 공유·권한 부여 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-008",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "배포",
+   "action": "배포·승인",
+   "desc": "배포 요청·이중 승인 흐름 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-009",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "다중 선택(일괄)",
+   "action": "일괄",
+   "desc": "다중 선택 일괄 작업 모드 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-010",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "검색",
+   "action": "조회",
+   "desc": "에이전트 검색 필터 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-011",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "보관함 조회",
+   "action": "조회",
+   "desc": "보관함 탭 목록 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-012",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 목록",
+   "menu": "템플릿 조회",
+   "action": "조회",
+   "desc": "템플릿 탭 목록 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-013",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "빈 캔버스로 시작",
+   "action": "생성",
+   "desc": "빈 캔버스 진입·에디터 로드 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-014",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "노드 추가",
+   "action": "캔버스",
+   "desc": "팔레트에서 노드 캔버스 배치 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-015",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "노드 데이터 선택",
+   "action": "캔버스",
+   "desc": "노드 데이터/모델 선택 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-016",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "노드 포트 연결",
+   "action": "캔버스",
+   "desc": "노드 간 포트 드래그 연결 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-017",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "노드 설정",
+   "action": "수정",
+   "desc": "노드 파라미터 설정·반영 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-018",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "노드 삭제",
+   "action": "삭제",
+   "desc": "노드 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-019",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "정렬",
+   "action": "캔버스",
+   "desc": "노드 자동 정렬 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-020",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "저장",
+   "action": "저장",
+   "desc": "에이전트플로우 저장(서버 반영) 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-021",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "복사",
+   "action": "복제",
+   "desc": "캔버스 복사 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-022",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "배포하기",
+   "action": "배포·승인",
+   "desc": "캔버스에서 배포 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-023",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "에이전트 시작(실행)",
+   "action": "실행",
+   "desc": "캔버스에서 에이전트 실행·응답 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-024",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "작업 히스토리",
+   "action": "조회",
+   "desc": "작업 히스토리 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-025",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "이름 편집",
+   "action": "수정",
+   "desc": "에이전트플로우 이름 편집 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-026",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 설계(캔버스)",
+   "menu": "지우기",
+   "action": "삭제",
+   "desc": "캔버스 전체 지우기 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-027",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 기획",
+   "menu": "기획서 조회",
+   "action": "조회",
+   "desc": "개발 기획서 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-028",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 기획",
+   "menu": "기획서 작성/정리",
+   "action": "생성",
+   "desc": "기획서 작성·정리 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-029",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 기획",
+   "menu": "저장",
+   "action": "저장",
+   "desc": "기획서 저장 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-030",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 운영 설정",
+   "menu": "운영 설정 조회",
+   "action": "조회",
+   "desc": "운영 설정 화면 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-031",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 운영 설정",
+   "menu": "배포 정책 설정",
+   "action": "수정",
+   "desc": "배포 정책 설정·반영 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-032",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 운영 설정",
+   "menu": "저장",
+   "action": "저장",
+   "desc": "운영 설정 저장 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-033",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 품질 평가",
+   "menu": "평가 지표 조회",
+   "action": "조회",
+   "desc": "품질 평가 지표 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-034",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 품질 평가",
+   "menu": "평가 실행",
+   "action": "실행",
+   "desc": "품질 평가 실행 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-035",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "프롬프트 목록 조회",
+   "action": "조회",
+   "desc": "프롬프트 자산 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-036",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "새 프롬프트",
+   "action": "생성",
+   "desc": "프롬프트 신규 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-037",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "편집",
+   "action": "수정",
+   "desc": "프롬프트 편집 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-038",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "저장",
+   "action": "저장",
+   "desc": "프롬프트 저장 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-039",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "삭제",
+   "action": "삭제",
+   "desc": "프롬프트 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-040",
+   "scope": "MAIN",
+   "category": "Agent 제작 · Agent 프롬프트",
+   "menu": "버전 관리",
+   "action": "수정",
+   "desc": "프롬프트 버전 관리 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-041",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "도구 목록 조회",
+   "action": "조회",
+   "desc": "API 도구 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-042",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "새 도구 등록",
+   "action": "생성",
+   "desc": "API 도구 신규 등록 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-043",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "도구 설정",
+   "action": "수정",
+   "desc": "도구 파라미터 설정 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-044",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "연결 테스트",
+   "action": "연결·테스트",
+   "desc": "외부 API 연결 테스트 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-045",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "스키마 조회",
+   "action": "조회",
+   "desc": "도구 스키마 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-046",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "도구 삭제",
+   "action": "삭제",
+   "desc": "도구 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-047",
+   "scope": "MAIN",
+   "category": "도구 연동 · API 도구",
+   "menu": "에이전트 연결",
+   "action": "공유",
+   "desc": "에이전트 노드에 도구 연결 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-048",
+   "scope": "MAIN",
+   "category": "도구 연동 · 인증 프로필",
+   "menu": "프로필 목록 조회",
+   "action": "조회",
+   "desc": "인증 프로필 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-049",
+   "scope": "MAIN",
+   "category": "도구 연동 · 인증 프로필",
+   "menu": "새 프로필 생성",
+   "action": "생성",
+   "desc": "인증 프로필 신규 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-050",
+   "scope": "MAIN",
+   "category": "도구 연동 · 인증 프로필",
+   "menu": "시크릿 설정",
+   "action": "수정",
+   "desc": "자격증명/시크릿 설정 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-051",
+   "scope": "MAIN",
+   "category": "도구 연동 · 인증 프로필",
+   "menu": "연결 검증",
+   "action": "연결·테스트",
+   "desc": "인증 프로필 연결 검증 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-052",
+   "scope": "MAIN",
+   "category": "도구 연동 · 인증 프로필",
+   "menu": "프로필 삭제",
+   "action": "삭제",
+   "desc": "인증 프로필 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-053",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "컬렉션 목록 조회",
+   "action": "조회",
+   "desc": "컬렉션 목록(모두/개인/공유) 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-054",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "새 컬렉션 생성",
+   "action": "생성",
+   "desc": "새 컬렉션 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-055",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "컬렉션 설정",
+   "action": "수정",
+   "desc": "컬렉션 설정 변경·반영 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-056",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "컬렉션 삭제",
+   "action": "삭제",
+   "desc": "컬렉션 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-057",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "문서 업로드",
+   "action": "업로드/다운로드",
+   "desc": "개별 문서 업로드·인덱싱 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-058",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "폴더 업로드",
+   "action": "업로드/다운로드",
+   "desc": "폴더(다건) 업로드·인덱싱 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-059",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "문서 목록 조회",
+   "action": "조회",
+   "desc": "컬렉션 내 문서 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-060",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "문서 삭제",
+   "action": "삭제",
+   "desc": "문서 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-061",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "문서 미리보기",
+   "action": "조회",
+   "desc": "문서 미리보기·본문 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-062",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "임베딩 설정",
+   "action": "수정",
+   "desc": "임베딩 모델/설정 변경 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-063",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "청킹 설정",
+   "action": "수정",
+   "desc": "청킹 전략 설정 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-064",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "검색 질의",
+   "action": "조회",
+   "desc": "컬렉션 검색 질의·결과 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-065",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "다중 선택(일괄)",
+   "action": "일괄",
+   "desc": "다중 선택 일괄 작업 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-066",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "업로드 이력 조회",
+   "action": "조회",
+   "desc": "업로드 이력 탭 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-067",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "용어사전 관리",
+   "action": "수정",
+   "desc": "용어사전 등록·수정 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-068",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "온톨로지 구성",
+   "action": "수정",
+   "desc": "온톨로지 구성·매핑 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-069",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "휴지통 복원",
+   "action": "전환",
+   "desc": "휴지통 항목 복원/영구삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-070",
+   "scope": "MAIN",
+   "category": "지식관리 · 지식 컬렉션",
+   "menu": "공유 설정",
+   "action": "공유",
+   "desc": "컬렉션 공유 범위 설정 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-071",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "파일 목록 조회",
+   "action": "조회",
+   "desc": "파일 저장소 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-072",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "파일 업로드",
+   "action": "업로드/다운로드",
+   "desc": "파일 업로드 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-073",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "폴더 업로드",
+   "action": "업로드/다운로드",
+   "desc": "폴더 업로드 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-074",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "파일 다운로드",
+   "action": "업로드/다운로드",
+   "desc": "원본 파일 다운로드 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-075",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "파일 삭제",
+   "action": "삭제",
+   "desc": "파일 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-076",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "폴더 생성",
+   "action": "생성",
+   "desc": "폴더 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-077",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "검색",
+   "action": "조회",
+   "desc": "파일 검색 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-078",
+   "scope": "MAIN",
+   "category": "지식관리 · 파일 저장소",
+   "menu": "업로드 이력",
+   "action": "조회",
+   "desc": "업로드 이력 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-079",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "연결 목록 조회",
+   "action": "조회",
+   "desc": "DB 연동 목록 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-080",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "새 연결 생성",
+   "action": "생성",
+   "desc": "DB 연결 신규 생성 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-081",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "연결 설정",
+   "action": "수정",
+   "desc": "DB 연결 설정 변경 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-082",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "연결 테스트",
+   "action": "연결·테스트",
+   "desc": "DB 연결 테스트 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-083",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "스키마 조회",
+   "action": "조회",
+   "desc": "DB 스키마 조회 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "TC-MAIN-084",
+   "scope": "MAIN",
+   "category": "지식관리 · DB 연동",
+   "menu": "연결 삭제",
+   "action": "삭제",
+   "desc": "DB 연결 삭제 확인",
+   "outcome": "미실행",
+   "persona": "dev"
   }
  ]
 }
