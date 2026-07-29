@@ -1,11 +1,11 @@
 {
  "env": "stg",
  "base": "https://stg-xgen.x2bee.com",
- "ranAt": "2026-07-29T06:46:35.746Z",
+ "ranAt": "2026-07-29T07:35:44.293Z",
  "total": 28,
- "pass": 25,
+ "pass": 26,
  "fail": 1,
- "warn": 2,
+ "warn": 1,
  "results": [
   {
    "id": "TC-CHT-001",
@@ -14,7 +14,7 @@
    "category": "Agent 채팅",
    "menu": "채팅 시작",
    "action": "조회",
-   "ms": 4687,
+   "ms": 7239,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -26,7 +26,7 @@
    "category": "Agent 채팅",
    "menu": "현재 채팅",
    "action": "조회",
-   "ms": 2146,
+   "ms": 2068,
    "outcome": "warn",
    "error": "본문 렌더 미흡(23chars)",
    "shot": "shots/TC-CHT-002.png"
@@ -38,7 +38,7 @@
    "category": "Agent 채팅",
    "menu": "채팅 이력",
    "action": "조회",
-   "ms": 2049,
+   "ms": 2024,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -50,7 +50,7 @@
    "category": "Teams",
    "menu": "Teams",
    "action": "조회",
-   "ms": 1625,
+   "ms": 1609,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -62,7 +62,7 @@
    "category": "Agent 채팅",
    "menu": "에이전트 실행",
    "action": "실행",
-   "ms": 14363,
+   "ms": 10679,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -74,7 +74,7 @@
    "category": "Agent 제작",
    "menu": "Agent 설계",
    "action": "조회",
-   "ms": 2066,
+   "ms": 2028,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -86,7 +86,7 @@
    "category": "Agent 제작",
    "menu": "Agent 목록",
    "action": "조회",
-   "ms": 2062,
+   "ms": 2030,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -98,7 +98,7 @@
    "category": "Agent 제작",
    "menu": "Agent 운영 설정",
    "action": "조회",
-   "ms": 2047,
+   "ms": 2028,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -110,7 +110,7 @@
    "category": "Agent 제작",
    "menu": "Agent 품질 평가",
    "action": "조회",
-   "ms": 2046,
+   "ms": 2024,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -122,7 +122,7 @@
    "category": "Agent 제작",
    "menu": "Agent 프롬프트",
    "action": "조회",
-   "ms": 2047,
+   "ms": 2022,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -134,7 +134,7 @@
    "category": "도구 연동",
    "menu": "API 도구",
    "action": "조회",
-   "ms": 2030,
+   "ms": 2024,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -146,7 +146,7 @@
    "category": "도구 연동",
    "menu": "인증 프로필",
    "action": "조회",
-   "ms": 2049,
+   "ms": 2022,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -158,7 +158,7 @@
    "category": "지식관리",
    "menu": "지식 컬렉션",
    "action": "조회",
-   "ms": 2059,
+   "ms": 2028,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -170,7 +170,7 @@
    "category": "지식관리",
    "menu": "파일 저장소",
    "action": "조회",
-   "ms": 2035,
+   "ms": 2021,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -182,7 +182,7 @@
    "category": "지식관리",
    "menu": "DB 연동",
    "action": "조회",
-   "ms": 2057,
+   "ms": 2023,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -194,7 +194,7 @@
    "category": "사용자 / 접근제어",
    "menu": "사용자 관리",
    "action": "조회",
-   "ms": 4507,
+   "ms": 6744,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -206,7 +206,7 @@
    "category": "사용자 / 접근제어",
    "menu": "역할/권한 관리",
    "action": "조회",
-   "ms": 2034,
+   "ms": 2027,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -218,7 +218,7 @@
    "category": "Agent 운영",
    "menu": "Agent 관리",
    "action": "조회",
-   "ms": 2033,
+   "ms": 2019,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -230,7 +230,7 @@
    "category": "Agent 운영",
    "menu": "채팅 모니터링",
    "action": "조회",
-   "ms": 2087,
+   "ms": 2108,
    "outcome": "fail",
    "error": "에러 바운더리 감지",
    "shot": "shots/TC-ADM-104.png"
@@ -242,7 +242,7 @@
    "category": "Agent 운영",
    "menu": "사용자 피드백",
    "action": "조회",
-   "ms": 2056,
+   "ms": 2024,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -254,7 +254,7 @@
    "category": "AI 거버넌스",
    "menu": "AI 위험도 평가",
    "action": "조회",
-   "ms": 2049,
+   "ms": 2045,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -266,7 +266,7 @@
    "category": "AI 거버넌스",
    "menu": "통제 정책 관리",
    "action": "조회",
-   "ms": 2036,
+   "ms": 2035,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -278,10 +278,10 @@
    "category": "환경 설정",
    "menu": "전체 설정",
    "action": "조회",
-   "ms": 2109,
-   "outcome": "warn",
-   "error": "본문 렌더 미흡(46chars)",
-   "shot": "shots/TC-ADM-108.png"
+   "ms": 2019,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-ADM-109",
@@ -290,7 +290,7 @@
    "category": "시스템 상태",
    "menu": "시스템 모니터링",
    "action": "조회",
-   "ms": 2034,
+   "ms": 2026,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -302,7 +302,7 @@
    "category": "데이터 관리",
    "menu": "데이터베이스",
    "action": "조회",
-   "ms": 2054,
+   "ms": 2018,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -314,7 +314,7 @@
    "category": "MCP 관리",
    "menu": "MCP 라이브러리",
    "action": "조회",
-   "ms": 2031,
+   "ms": 2022,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -326,7 +326,7 @@
    "category": "서비스 운영",
    "menu": "공지 게시판",
    "action": "조회",
-   "ms": 2053,
+   "ms": 2030,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -338,7 +338,7 @@
    "category": "지식 운영",
    "menu": "지식 컬렉션 관리",
    "action": "조회",
-   "ms": 2051,
+   "ms": 2027,
    "outcome": "pass",
    "error": "",
    "shot": ""
