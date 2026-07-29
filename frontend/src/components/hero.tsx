@@ -207,14 +207,26 @@ type HeroIssue = { slug: string; title: string; vol: number; date: string };
 
 export function Hero({
     productNews,
-    latestPost,
+    techPosts = [],
     latestIssue,
 }: {
     productNews?: HeroPost | null;
-    latestPost?: HeroPost | null;
+    /** 최근 Tech Note 후보(최신순, 최대 5개) — 이 중 하나를 무작위 노출한다. */
+    techPosts?: HeroPost[];
     latestIssue?: HeroIssue | null;
 }) {
     const [active, setActive] = useState(0);
+
+    // 헤드라인 뉴스의 Tech Note 슬롯: 방문할 때마다 최근 글 중 하나를 무작위로.
+    // 서버/최초 렌더는 최신 글로 고정해 하이드레이션 불일치를 피하고, 마운트 후
+    // 무작위로 교체한다(정적 빌드라 서버에서 뽑으면 값이 고정되어 버린다).
+    const [techIdx, setTechIdx] = useState(0);
+    useEffect(() => {
+        if (techPosts.length > 1) {
+            setTechIdx(Math.floor(Math.random() * techPosts.length));
+        }
+    }, [techPosts.length]);
+    const latestPost = techPosts[techIdx] ?? techPosts[0] ?? null;
 
     useEffect(() => {
         const id = setInterval(
