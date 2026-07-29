@@ -225,9 +225,9 @@
   .gnbtoggle{font-size:16px;line-height:1;flex:none}
 
   .side{position:sticky}
-  .sidefold{position:absolute;right:-13px;top:74px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center;font-size:15px;line-height:1;box-shadow:var(--shadow);z-index:30;transition:transform .18s ease,color .15s}
+  .sidefold{position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center;font-size:15px;line-height:1;box-shadow:var(--shadow);z-index:30;transition:transform .18s ease,color .15s}
   .sidefold:hover{color:var(--accent);border-color:var(--accent)}
-  .app.collapsed .sidefold{transform:rotate(180deg)}
+  .app.collapsed .sidefold{transform:translateY(-50%) rotate(180deg)}
   .gnbtoggle{display:none}
 
   .scpb.base{background:var(--pass-soft);color:var(--pass)}
