@@ -33,18 +33,19 @@ concurrency:
 
 jobs:
   smoke:
-    runs-on: ubuntu-latest
+    # 내부망 stg/dev에 접근 가능한 go244 자체호스팅 러너 + Playwright 컨테이너(브라우저·node 사전탑재).
+    # (GitHub 클라우드 러너는 내부 XGEN에 네트워크 접근이 안 될 수 있어 self-hosted로 실행)
+    runs-on: [self-hosted, go244]
+    container:
+      image: mcr.microsoft.com/playwright:v1.48.0-jammy
+      options: --user root
     steps:
+      - name: Ensure git
+        run: command -v git >/dev/null 2>&1 || (apt-get update && apt-get install -y git)
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
       - name: Install deps
         working-directory: qa
         run: npm install --no-audit --no-fund
-      - name: Install browser
-        working-directory: qa
-        run: npx playwright install --with-deps chromium
       - name: Run QA smoke
         env:
           QA_ENV: ${{ github.event.inputs.env || 'dev' }}
@@ -54,6 +55,7 @@ jobs:
         continue-on-error: true   # 실패 케이스가 있어도 리포트는 커밋
       - name: Commit results
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "qa-bot"
           git config user.email "qa-bot@users.noreply.github.com"
           git add frontend/public/qa-console/results.json frontend/public/qa-console/shots || true
