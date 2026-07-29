@@ -1,11 +1,11 @@
 {
  "env": "stg",
  "base": "https://stg-xgen.x2bee.com",
- "ranAt": "2026-07-29T12:02:17.333Z",
- "total": 53,
- "pass": 50,
+ "ranAt": "2026-07-29T15:02:26.840Z",
+ "total": 57,
+ "pass": 55,
  "fail": 1,
- "warn": 2,
+ "warn": 1,
  "results": [
   {
    "id": "TC-CMN-001",
@@ -15,7 +15,7 @@
    "menu": "채팅 시작",
    "action": "조회",
    "desc": "채팅 시작 화면 진입 확인",
-   "ms": 5309,
+   "ms": 4780,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -28,7 +28,7 @@
    "menu": "채팅 이력",
    "action": "조회",
    "desc": "채팅 이력 조회 확인",
-   "ms": 2031,
+   "ms": 2034,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -41,7 +41,7 @@
    "menu": "Teams",
    "action": "조회",
    "desc": "Teams 진입 확인",
-   "ms": 1618,
+   "ms": 1621,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -54,7 +54,59 @@
    "menu": "에이전트 실행",
    "action": "실행",
    "desc": "에이전트 실행: 프롬프트→응답 수신 확인",
-   "ms": 6232,
+   "ms": 6222,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
+  },
+  {
+   "id": "SC-009",
+   "persona": "all",
+   "scope": "시나리오",
+   "category": "채팅 실행",
+   "menu": "에이전트 채팅 대화",
+   "action": "시나리오",
+   "desc": "채팅 시작→에이전트 선택→프롬프트 전송→응답 수신 E2E",
+   "ms": 6354,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
+  },
+  {
+   "id": "SC-006",
+   "persona": "dev",
+   "scope": "시나리오",
+   "category": "RAG 파이프라인",
+   "menu": "지식 컬렉션 RAG 구성·질의",
+   "action": "시나리오",
+   "desc": "지식 컬렉션 생성→검증→정리 RAG 파이프라인 준비 E2E(자동 정리)",
+   "ms": 13916,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
+  },
+  {
+   "id": "SC-003",
+   "persona": "dev",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "대화로 워크플로우 생성",
+   "action": "시나리오",
+   "desc": "Agent 설계 대화형 워크플로우 생성 E2E",
+   "ms": 10175,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
+  },
+  {
+   "id": "SC-001",
+   "persona": "dev",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "B2B SNS 자동화 에이전트(RAG) 구축",
+   "action": "시나리오",
+   "desc": "B2B SNS RAG 에이전트 대화형 구축 E2E",
+   "ms": 10117,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -67,7 +119,7 @@
    "menu": "새 컬렉션 생성",
    "action": "생성",
    "desc": "새 컬렉션 실제 생성(자동 정리 포함) 확인",
-   "ms": 13866,
+   "ms": 13941,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -92,7 +144,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4602,
+   "ms": 4671,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -104,7 +156,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "새 에이전트 생성",
    "action": "생성",
-   "ms": 4581,
+   "ms": 4599,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -116,7 +168,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "편집",
    "action": "수정",
-   "ms": 4565,
+   "ms": 4602,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -128,7 +180,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "복제",
    "action": "복제",
-   "ms": 4550,
+   "ms": 4593,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -140,7 +192,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "실행",
    "action": "실행",
-   "ms": 4533,
+   "ms": 4566,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -152,7 +204,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "삭제",
    "action": "삭제",
-   "ms": 4549,
+   "ms": 4565,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -164,7 +216,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 4551,
+   "ms": 4535,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -176,7 +228,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "검색",
    "action": "조회",
-   "ms": 4600,
+   "ms": 4986,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -188,7 +240,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "보관함 조회",
    "action": "조회",
-   "ms": 4751,
+   "ms": 4582,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -200,7 +252,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "템플릿 조회",
    "action": "조회",
-   "ms": 4712,
+   "ms": 4619,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -212,7 +264,7 @@
    "category": "Agent 제작 · Agent 기획",
    "menu": "기획서 조회",
    "action": "조회",
-   "ms": 4669,
+   "ms": 4617,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -224,7 +276,7 @@
    "category": "Agent 제작 · Agent 운영 설정",
    "menu": "운영 설정 조회",
    "action": "조회",
-   "ms": 4547,
+   "ms": 4593,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -236,7 +288,7 @@
    "category": "Agent 제작 · Agent 품질 평가",
    "menu": "평가 지표 조회",
    "action": "조회",
-   "ms": 4589,
+   "ms": 4587,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -248,7 +300,7 @@
    "category": "Agent 제작 · Agent 프롬프트",
    "menu": "프롬프트 목록 조회",
    "action": "조회",
-   "ms": 4679,
+   "ms": 4682,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -260,7 +312,7 @@
    "category": "도구 연동 · API 도구",
    "menu": "도구 목록 조회",
    "action": "조회",
-   "ms": 4533,
+   "ms": 4564,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -272,7 +324,7 @@
    "category": "도구 연동 · 인증 프로필",
    "menu": "프로필 목록 조회",
    "action": "조회",
-   "ms": 4584,
+   "ms": 4568,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -284,7 +336,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4600,
+   "ms": 4603,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -296,7 +348,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "검색 질의",
    "action": "조회",
-   "ms": 4549,
+   "ms": 4552,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -308,7 +360,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 4550,
+   "ms": 4565,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -320,7 +372,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "업로드 이력 조회",
    "action": "조회",
-   "ms": 4580,
+   "ms": 4582,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -332,7 +384,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "용어사전 관리",
    "action": "수정",
-   "ms": 4596,
+   "ms": 4598,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -344,7 +396,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "온톨로지 구성",
    "action": "수정",
-   "ms": 4572,
+   "ms": 4622,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -356,7 +408,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "휴지통 복원",
    "action": "전환",
-   "ms": 4632,
+   "ms": 4594,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -368,7 +420,7 @@
    "category": "지식관리 · 파일 저장소",
    "menu": "파일 목록 조회",
    "action": "조회",
-   "ms": 4519,
+   "ms": 4567,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -380,7 +432,7 @@
    "category": "지식관리 · DB 연동",
    "menu": "연결 목록 조회",
    "action": "조회",
-   "ms": 4766,
+   "ms": 4550,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -393,7 +445,7 @@
    "menu": "사용자 관리",
    "action": "조회",
    "desc": "사용자 계정 목록 조회·관리 화면 로드 확인",
-   "ms": 5684,
+   "ms": 5102,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -406,7 +458,7 @@
    "menu": "역할/권한 관리",
    "action": "조회",
    "desc": "역할·권한 관리 화면 로드 확인",
-   "ms": 2032,
+   "ms": 2035,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -419,7 +471,7 @@
    "menu": "Agent 관리",
    "action": "조회",
    "desc": "배포 에이전트 운영 목록 조회 확인",
-   "ms": 2033,
+   "ms": 2049,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -432,7 +484,7 @@
    "menu": "채팅 모니터링",
    "action": "조회",
    "desc": "채팅 모니터링 대시보드 로드 확인",
-   "ms": 2119,
+   "ms": 2177,
    "outcome": "fail",
    "error": "에러 바운더리 감지",
    "shot": "shots/TC-ADM-104.png"
@@ -445,7 +497,7 @@
    "menu": "사용자 피드백",
    "action": "조회",
    "desc": "사용자 피드백 현황 조회 확인",
-   "ms": 2048,
+   "ms": 2052,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -458,7 +510,7 @@
    "menu": "AI 위험도 평가",
    "action": "조회",
    "desc": "AI 위험도 평가 화면 로드 확인",
-   "ms": 2066,
+   "ms": 2083,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -471,7 +523,7 @@
    "menu": "통제 정책 관리",
    "action": "조회",
    "desc": "통제 정책 관리 화면 로드 확인",
-   "ms": 2051,
+   "ms": 2064,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -484,7 +536,7 @@
    "menu": "전체 설정",
    "action": "조회",
    "desc": "환경 전체 설정 화면 로드 확인",
-   "ms": 2079,
+   "ms": 2108,
    "outcome": "warn",
    "error": "본문 렌더 미흡(46chars)",
    "shot": "shots/TC-ADM-108.png"
@@ -497,10 +549,10 @@
    "menu": "시스템 모니터링",
    "action": "조회",
    "desc": "시스템 상태 모니터링 로드 확인",
-   "ms": 2105,
-   "outcome": "warn",
-   "error": "본문 렌더 미흡(57chars)",
-   "shot": "shots/TC-ADM-109.png"
+   "ms": 2043,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-ADM-110",
@@ -510,7 +562,7 @@
    "menu": "데이터베이스",
    "action": "조회",
    "desc": "데이터베이스 관리 화면 로드 확인",
-   "ms": 2031,
+   "ms": 2032,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -523,7 +575,7 @@
    "menu": "MCP 라이브러리",
    "action": "조회",
    "desc": "MCP 라이브러리 조회 확인",
-   "ms": 2033,
+   "ms": 2049,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -536,7 +588,7 @@
    "menu": "공지 게시판",
    "action": "조회",
    "desc": "공지 게시판 화면 로드 확인",
-   "ms": 2033,
+   "ms": 2052,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -549,7 +601,7 @@
    "menu": "지식 컬렉션 관리",
    "action": "조회",
    "desc": "관리자 지식 컬렉션 운영 화면 로드 확인",
-   "ms": 2034,
+   "ms": 2048,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -562,7 +614,7 @@
    "menu": "로그인 관리",
    "action": "조회",
    "desc": "로그인 관리 화면 로드 확인",
-   "ms": 2031,
+   "ms": 2047,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -575,7 +627,7 @@
    "menu": "사용자 토큰",
    "action": "조회",
    "desc": "사용자 토큰 사용량·정책 화면 로드 확인",
-   "ms": 2033,
+   "ms": 2051,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -588,7 +640,7 @@
    "menu": "노드 관리",
    "action": "조회",
    "desc": "노드 관리 화면 로드 확인",
-   "ms": 2034,
+   "ms": 2037,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -601,7 +653,7 @@
    "menu": "프롬프트 템플릿",
    "action": "조회",
    "desc": "프롬프트 템플릿 관리 화면 로드 확인",
-   "ms": 2034,
+   "ms": 2045,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -614,7 +666,7 @@
    "menu": "응답 품질 평가",
    "action": "조회",
    "desc": "응답 품질 평가 화면 로드 확인",
-   "ms": 2033,
+   "ms": 2058,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -627,7 +679,7 @@
    "menu": "Agent 리텐션 분석",
    "action": "조회",
    "desc": "Agent 리텐션 분석 화면 로드 확인",
-   "ms": 2050,
+   "ms": 2063,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -653,7 +705,7 @@
    "menu": "점검 이력 관리",
    "action": "조회",
    "desc": "점검 이력 관리 화면 로드 확인",
-   "ms": 2049,
+   "ms": 2047,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -666,7 +718,7 @@
    "menu": "데이터 감사 로그",
    "action": "조회",
    "desc": "데이터 감사 로그 화면 로드 확인",
-   "ms": 2031,
+   "ms": 2034,
    "outcome": "pass",
    "error": "",
    "shot": ""

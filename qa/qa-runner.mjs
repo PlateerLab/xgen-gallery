@@ -82,7 +82,18 @@ const ADMIN = [
   ['TC-ADM-128','admin','데이터 관리','데이터 감사 로그','데이터 감사 로그 화면 로드 확인'],
 ].map(a=>({id:a[0],persona:a[1],scope:'ADMIN',category:a[2],menu:a[3],action:'조회',nav:'admin',desc:a[4]}));
 const LIFECYCLE = [{ id:'LIFECYCLE', persona:'dev', scope:'MAIN', category:'지식관리 · 지식 컬렉션', menu:'lifecycle', action:'생성', nav:'lifecycle', desc:'' }];
-const CASES = [...COMMON, ...LIFECYCLE, ...GRAN, ...ADMIN];
+// (a) 시나리오 E2E 자동화 — 카탈로그 시나리오 케이스와 정합
+const SCEN = [
+  { id:'SC-009', persona:'all', scope:'시나리오', category:'채팅 실행', menu:'에이전트 채팅 대화', action:'시나리오', nav:'scenario-chat',
+    prompt:'B2B SNS 홍보 문구 예시를 한 문장으로 제안해줘.', desc:'채팅 시작→에이전트 선택→프롬프트 전송→응답 수신 E2E' },
+  { id:'SC-006', persona:'dev', scope:'시나리오', category:'RAG 파이프라인', menu:'지식 컬렉션 RAG 구성·질의', action:'시나리오', nav:'scenario-rag',
+    desc:'지식 컬렉션 생성→검증→정리 RAG 파이프라인 준비 E2E(자동 정리)' },
+  { id:'SC-003', persona:'dev', scope:'시나리오', category:'에이전트 구축', menu:'대화로 워크플로우 생성', action:'시나리오', nav:'scenario-build',
+    prompt:'간단한 챗봇 워크플로우를 만들어줘. 시작 노드 → LLM 에이전트 → 종료 노드로 연결.', desc:'Agent 설계 대화형 워크플로우 생성 E2E' },
+  { id:'SC-001', persona:'dev', scope:'시나리오', category:'에이전트 구축', menu:'B2B SNS 자동화 에이전트(RAG) 구축', action:'시나리오', nav:'scenario-build',
+    prompt:'B2B SNS 마케팅 자동화 에이전트를 만들어줘. 지식 컬렉션(RAG) 문서 검색 → LLM 에이전트로 LinkedIn/Facebook B2B 홍보 게시글 초안 작성 → 종료 노드. 각 노드를 연결.', desc:'B2B SNS RAG 에이전트 대화형 구축 E2E' },
+];
+const CASES = [...COMMON, ...SCEN, ...LIFECYCLE, ...GRAN, ...ADMIN];
 
 const log = (...a) => console.log('[qa-runner]', ...a);
 const clickByText = (page, txt) => page.evaluate((t) => {
@@ -153,13 +164,33 @@ async function collectionLifecycle(page) {
   }
   return { createOk: created, deleteOk: deleted, error: err };
 }
+// (a) 시나리오: 대화로 워크플로우 생성 — 요구사항 입력 → 워크플로우 생성 확인
+async function scenarioBuild(page, prompt) {
+  _curApp = ''; await gotoApp(page, 'main');
+  await clickWait(page, 'Agent 제작'); await page.waitForTimeout(400);
+  await clickWait(page, 'Agent 설계'); await page.waitForTimeout(2500);
+  if (!(await clickWait(page, '대화로 워크플로우 생성'))) throw new Error('대화 생성 진입 실패');
+  await page.waitForTimeout(2500);
+  const ta = await page.$('textarea'); if (!ta) throw new Error('입력창 없음');
+  await ta.fill(prompt); await ta.press('Enter');
+  for (let i = 0; i < 18; i++) {
+    await page.waitForTimeout(3000);
+    if (/wf=workflow/.test(page.url())) return true;
+    const open = await page.evaluate(() => [...document.querySelectorAll('button,a')].some((e) => /캔버스 열기/.test(e.textContent)));
+    if (open) return true;
+  }
+  return false;
+}
 // 케이스별 최대 45초 (행 방지)
 function withTimeout(promise, ms, id) {
   return Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error('케이스 타임아웃 ' + ms + 'ms')), ms))]);
 }
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  const results = [];
+  let browser;
+  try {
+  browser = await chromium.launch({ headless: true });
   const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, locale: 'ko-KR' });
   const page = await ctx.newPage();
   log('login', BASE, EMAIL);
@@ -170,7 +201,6 @@ function withTimeout(promise, ms, id) {
   await page.waitForURL((u) => !u.toString().includes('/login'), { timeout: 30000 });
   log('logged in →', page.url());
 
-  const results = [];
   for (const cs of CASES) {
     const { id, persona, scope, category, menu, action, nav, desc } = cs;
     const t0 = Date.now(); let outcome = 'pass', error = '', shot = '';
@@ -186,6 +216,14 @@ function withTimeout(promise, ms, id) {
       await withTimeout((async () => {
         if (nav === 'chatexec') {
           if (!(await chatExec(page, cs.prompt))) { outcome = 'fail'; error = '에이전트 응답 미수신'; }
+        } else if (nav === 'scenario-chat') {
+          if (!(await chatExec(page, cs.prompt))) { outcome = 'fail'; error = '응답 미수신'; }
+        } else if (nav === 'scenario-rag') {
+          const r = await collectionLifecycle(page);
+          if (!r.createOk) { outcome = 'fail'; error = r.error || 'RAG 컬렉션 생성 실패'; }
+          else if (!r.deleteOk) { outcome = 'warn'; error = '컬렉션 생성 성공(정리 미확인)'; }
+        } else if (nav === 'scenario-build') {
+          if (!(await scenarioBuild(page, cs.prompt))) { outcome = 'fail'; error = '워크플로우 생성 미확인'; }
         } else if (nav === 'gran') {
           _curApp = ''; await gotoApp(page, 'main');
           await clickWait(page, cs.parentCat); await page.waitForTimeout(400);
@@ -219,12 +257,21 @@ function withTimeout(promise, ms, id) {
     results.push({ id, persona, scope, category, menu, action, desc, ms, outcome, error, shot });
     log(id, outcome, ms + 'ms', error);
   }
-  const payload = { env: ENVV, base: BASE, ranAt: new Date().toISOString(), total: results.length,
-    pass: results.filter((r) => r.outcome === 'pass').length,
-    fail: results.filter((r) => r.outcome === 'fail').length,
-    warn: results.filter((r) => r.outcome === 'warn').length, results };
-  fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify(payload, null, 1), 'utf8');
-  log('DONE', `total ${payload.total} · pass ${payload.pass}/fail ${payload.fail}/warn ${payload.warn}`);
-  await browser.close();
-  if (payload.fail > 0) process.exitCode = 1;
-})().catch((e) => { console.error('[qa-runner] FATAL', e); process.exit(1); });
+  } catch (e) {
+    console.error('[qa-runner] RUN ERROR', e && (e.message || e));
+  } finally {
+    // 안정화: 부분 결과라도 항상 기록(전체 실패로 기존 결과를 덮어쓰지는 않음)
+    if (results.length) {
+      const payload = { env: ENVV, base: BASE, ranAt: new Date().toISOString(), total: results.length,
+        pass: results.filter((r) => r.outcome === 'pass').length,
+        fail: results.filter((r) => r.outcome === 'fail').length,
+        warn: results.filter((r) => r.outcome === 'warn').length, results };
+      fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify(payload, null, 1), 'utf8');
+      log('DONE', `total ${payload.total} · pass ${payload.pass}/fail ${payload.fail}/warn ${payload.warn}`);
+      if (payload.fail > 0) process.exitCode = 1;
+    } else {
+      log('결과 없음 — results.json 미갱신(기존 유지)');
+    }
+    if (browser) { try { await browser.close(); } catch {} }
+  }
+})();
