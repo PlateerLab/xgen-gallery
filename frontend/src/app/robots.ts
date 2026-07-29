@@ -54,13 +54,24 @@ export const BLOCKED_BOTS = [
     "SiteAuditBot",
 ];
 
+/**
+ * 색인에서 제외할 내부용 경로 — CMS 어드민, 내부 QA 콘솔.
+ * 검색·AI 봇 규칙 양쪽에 동일하게 적용한다(named 규칙만 읽는 봇이 있어서).
+ * robots.txt를 무시하는 봇 대비로 next.config.ts에서 X-Robots-Tag도 함께 내려준다.
+ */
+const PRIVATE_PATHS = ["/admin/", "/qa-console/"];
+
 export default function robots(): MetadataRoute.Robots {
     return {
         rules: [
-            // Default: allow everything to all generic crawlers (except CMS admin).
-            { userAgent: "*", allow: "/", disallow: "/admin/" },
+            // Default: allow everything to all generic crawlers (except internal paths).
+            { userAgent: "*", allow: "/", disallow: PRIVATE_PATHS },
             // Be explicit about beneficial AI crawlers (some honor only named rules).
-            ...AI_BOTS.map((userAgent) => ({ userAgent, allow: "/" })),
+            ...AI_BOTS.map((userAgent) => ({
+                userAgent,
+                allow: "/",
+                disallow: PRIVATE_PATHS,
+            })),
             // Block competitor SEO/scraper bots — keeps content out of their indexes
             // while leaving search + GEO answer engines fully allowed.
             ...BLOCKED_BOTS.map((userAgent) => ({ userAgent, disallow: "/" })),

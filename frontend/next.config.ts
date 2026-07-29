@@ -11,6 +11,30 @@ const nextConfig: NextConfig = {
             { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
         ],
     },
+    async headers() {
+        return [
+            // 내부용 QA 콘솔 — 색인 금지. robots.txt는 "예의 바른" 봇만 막으므로
+            // 헤더로도 못 박는다(robots.txt를 무시하고 크롤한 경우에도 색인 제외).
+            {
+                source: '/qa-console',
+                headers: [
+                    {
+                        key: 'X-Robots-Tag',
+                        value: 'noindex, nofollow, noarchive, nosnippet',
+                    },
+                ],
+            },
+            {
+                source: '/qa-console/:path*',
+                headers: [
+                    {
+                        key: 'X-Robots-Tag',
+                        value: 'noindex, nofollow, noarchive, nosnippet',
+                    },
+                ],
+            },
+        ];
+    },
     async redirects() {
         return [
             // 블로그를 /insights → /blog 로 이전 (SEO 손실 방지, 영구 리다이렉트).
