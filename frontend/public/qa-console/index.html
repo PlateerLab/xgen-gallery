@@ -231,6 +231,36 @@
   .gnbtoggle{display:none}
 
   .scpb.base{background:var(--pass-soft);color:var(--pass)}
+
+  tr.running{opacity:.7}
+  .chip.run{background:var(--accent-soft);color:var(--accent)}
+  .chip.run::before{content:"";width:8px;height:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;display:inline-block;margin-right:5px;animation:qspin .6s linear infinite;vertical-align:-1px}
+  @keyframes qspin{to{transform:rotate(360deg)}}
+  .runbar{position:fixed;right:18px;bottom:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 30px rgba(16,24,40,.18);padding:13px 16px;font-size:13px;z-index:200;min-width:240px;display:none}
+  .runbar.show{display:block}
+  .runbar .rt{font-weight:650;margin-bottom:9px;display:flex;justify-content:space-between;gap:12px}
+  .runbar .rt .rc{font-family:var(--mono);color:var(--muted)}
+  .runbar .rp{height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+  .runbar .rp i{display:block;height:100%;background:var(--brand);width:0;transition:width .2s ease}
+  .runbar.done .rp i{background:var(--pass)} .runbar.fail .rp i{background:var(--fail)}
+  .capwrap{margin-top:2px}
+  .caps{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px;padding:14px}
+  .caps.empty{display:block;color:var(--faint);font-size:12.5px;padding:16px 18px}
+  .cap{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .capshot{background:#0f1420;aspect-ratio:16/10;display:flex;flex-direction:column}
+  .capbar{display:flex;align-items:center;gap:5px;padding:6px 8px;background:#1b2230}
+  .capbar i{width:8px;height:8px;border-radius:50%;background:#3a4356}
+  .capbar span{margin-left:6px;font-size:9px;color:#7f8ba3;font-family:var(--mono)}
+  .capbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px}
+  .capng{font-size:11px;font-weight:700;padding:6px 12px;border-radius:6px}
+  .capng.f{background:#3a1416;border:1px solid #e4646433;color:#ff9a9a}
+  .capng.w{background:#3a2f12;border:1px solid #debd5933;color:#f0d288}
+  .capln{font-family:var(--mono);font-size:9.5px;color:#6b7688;text-align:center;word-break:break-all}
+  .capmeta{padding:9px 11px;font-size:11.5px}
+  .capmeta .cm1{font-weight:650;display:flex;justify-content:space-between;gap:8px}
+  .capmeta .cm1 .sev{font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:4px}
+  .capmeta .cm1 .sev.f{background:var(--fail-soft);color:var(--fail)} .capmeta .cm1 .sev.w{background:var(--warn-soft);color:var(--warn)}
+  .capmeta .cm2{color:var(--muted);font-family:var(--mono);font-size:10px;margin-top:4px}
 </style>
 </head>
 <body>
@@ -521,6 +551,117 @@ Internal Server Error
 })();
 </script>
 <script>(function(){var t=document.getElementById("gnbBtn"),app=document.querySelector(".app");t&&t.addEventListener("click",function(){app.classList.toggle("collapsed");});})();</script>
+<script>
+(function(){
+  var table=document.querySelector('table.cases'); if(!table) return;
+  var OUT=['pass','fail','warn','na'];
+  function rows(){return Array.prototype.slice.call(table.querySelectorAll('tbody tr[data-id]'));}
+  rows().forEach(function(tr){var chip=tr.querySelector('td:last-child .chip');
+    var o=chip?OUT.filter(function(x){return chip.classList.contains(x);})[0]:'na';tr.dataset.outcome=o||'na';});
+  var LBL={pass:'PASS',fail:'FAIL',warn:'WARN',na:'—'};
+  function two(n){return(n<10?'0':'')+n;}
+  function stamp(){var d=new Date();return two(d.getMonth()+1)+'-'+two(d.getDate())+' '+two(d.getHours())+':'+two(d.getMinutes())+':'+two(d.getSeconds());}
+  function rid(){return 'req-'+Math.random().toString(16).slice(2,8);}
+  function setResult(tr,o){tr.querySelector('td:last-child').innerHTML='<span class="chip '+o+' sm">'+LBL[o]+'</span>';}
+  function setKpi(match,val,keepSpan){var tiles=document.querySelectorAll('.kpis .kpi');
+    for(var i=0;i<tiles.length;i++){var l=tiles[i].querySelector('.l');if(l&&l.textContent.indexOf(match)>=0){
+      var v=tiles[i].querySelector('.v');if(!v)return;var sp=v.querySelector('span');
+      if(keepSpan&&v.childNodes[0]){v.childNodes[0].nodeValue=val;}else{v.textContent=val;if(sp)v.appendChild(sp);}return;}}}
+
+  // ---- 자동 캡처 증적 패널 (cases view) ----
+  var capCard=document.createElement('div');capCard.className='card capwrap';
+  capCard.innerHTML='<div class="ch"><b>자동 캡처 증적</b>'
+    +'<span style="color:var(--faint);font-size:12px">실패·주의 발생 시 화면·요청 자동 수집</span>'
+    +'<span class="legend" style="margin-left:auto"><span id="capcount" class="mono">0건 캡처</span></span></div>'
+    +'<div class="caps empty" id="caps">아직 캡처된 실패가 없습니다 — 실행 시 실패·주의가 발생하면 자동으로 증적이 수집됩니다.</div>';
+  var split=document.querySelector('.view[data-view="cases"] .split');
+  if(split&&split.parentNode) split.parentNode.insertBefore(capCard,split.nextSibling);
+  var caps=capCard.querySelector('#caps'), capN=0;
+  function captureFailure(tr,o){
+    var id=tr.dataset.id;
+    var menu=(tr.querySelector('.fn2')||{}).textContent||'';
+    var cat=(tr.querySelector('.cat')||{}).textContent||'';
+    var act=(tr.querySelector('.atype')||{}).textContent||'';
+    var tgt=(tr.querySelector('.tgt')||{}).textContent||'';
+    var f=(o==='fail');
+    if(caps.classList.contains('empty')){caps.classList.remove('empty');caps.innerHTML='';}
+    var el=document.createElement('div');el.className='cap';
+    el.innerHTML='<div class="capshot"><div class="capbar"><i></i><i></i><i></i><span>QA · stg-xgen · '+cat+'</span></div>'
+      +'<div class="capbody"><div class="capng '+(f?'f':'w')+'">'+(f?'⚠ 500 · 저장 실패':'⚠ 예외 응답 · 미표시')+'</div>'
+      +'<div class="capln">'+tgt+'</div></div></div>'
+      +'<div class="capmeta"><div class="cm1"><span>'+id+'</span><span class="sev '+(f?'f':'w')+'">'+(f?'FAIL':'WARN')+'</span></div>'
+      +'<div class="cm2">'+menu+' · '+act+'</div>'
+      +'<div class="cm2">'+stamp()+' · '+rid()+'</div></div>';
+    caps.insertBefore(el,caps.firstChild);
+    capN++; document.getElementById('capcount').textContent=capN+'건 캡처';
+  }
+
+  // ---- 실행 엔진 ----
+  var bar=document.createElement('div');bar.className='runbar';
+  bar.innerHTML='<div class="rt"><span class="rl">실행</span><span class="rc"></span></div><div class="rp"><i></i></div>';
+  document.body.appendChild(bar);
+  var rl=bar.querySelector('.rl'),rc=bar.querySelector('.rc'),ri=bar.querySelector('.rp i');
+  function runCase(tr){return new Promise(function(res){
+    if(tr.classList.contains('running'))return res(tr.dataset.outcome);
+    tr.classList.add('running');tr.querySelector('td:last-child').innerHTML='<span class="chip run sm">실행</span>';
+    var seed=(tr.dataset.id.charCodeAt(tr.dataset.id.length-1)||5);var dur=420+(seed%6)*130;
+    setTimeout(function(){tr.classList.remove('running');setResult(tr,tr.dataset.outcome);
+      if(tr.dataset.outcome==='fail'||tr.dataset.outcome==='warn')captureFailure(tr,tr.dataset.outcome);
+      res(tr.dataset.outcome);},dur);});}
+  var busy=false;
+  function runBatch(list,title){
+    if(busy||!list.length)return;busy=true;bar.className='runbar show';rl.textContent=title||'실행 중';
+    var total=list.length,done=0,pass=0,fail=0,warn=0;ri.style.width='0%';rc.textContent='0 / '+total;
+    (function next(){
+      if(!list.length){busy=false;var rate=total?(100*pass/total).toFixed(1):'0';
+        bar.className='runbar show '+(fail?'fail':'done');rl.textContent='완료';
+        rc.textContent=pass+' 통과 · '+fail+' 실패'+(warn?' · '+warn+' 주의':'');
+        setKpi('통과율',rate,true);setKpi('오픈 이슈',fail);setKpi('마지막 실행',stamp().slice(0,11));
+        setTimeout(function(){bar.classList.remove('show');},2800);return;}
+      var tr=list.shift();
+      runCase(tr).then(function(o){done++;if(o==='pass')pass++;else if(o==='fail')fail++;else if(o==='warn')warn++;
+        ri.style.width=Math.round(100*done/total)+'%';rc.textContent=done+' / '+total;next();});})();}
+  function visibleRows(){return rows().filter(function(tr){return tr.offsetParent!==null;});}
+  function checked(){return rows().filter(function(tr){var cb=tr.querySelector('.tcheck');return cb&&cb.checked;});}
+  function byText(scope,txt){return Array.prototype.slice.call(document.querySelectorAll(scope+' button')).filter(function(b){return b.textContent.replace(/\s+/g,' ').indexOf(txt)>=0;})[0];}
+  var bSel=byText('.tbar','선택 실행'),bFail=byText('.tbar','실패만'),bOne=byText('.detail','실행'),bTop=byText('.top','실행');
+  bSel&&bSel.addEventListener('click',function(){var ch=checked();runBatch(ch.length?ch:visibleRows(),'선택 실행');});
+  bFail&&bFail.addEventListener('click',function(){runBatch(rows().filter(function(t){return t.dataset.outcome==='fail'||t.dataset.outcome==='warn';}),'실패·주의 재실행');});
+  bTop&&bTop.addEventListener('click',function(){runBatch(rows(),'전체 실행');});
+  bOne&&bOne.addEventListener('click',function(){var sel=table.querySelector('tbody tr.sel')||visibleRows()[0];if(sel)runBatch([sel],'단건 실행');});
+  table.addEventListener('dblclick',function(e){var tr=e.target.closest('tbody tr[data-id]');if(tr)runBatch([tr],'단건 실행');});
+})();
+</script>
+<script data-driven-actionfilter="1">
+(function(){
+  var table=document.querySelector('table.cases'); if(!table) return;
+  var selects=document.querySelectorAll('.tbar .fsel'); var actSel=null;
+  selects.forEach(function(s){ if(s.options[0] && s.options[0].textContent.indexOf('액션')>=0) actSel=s; });
+  if(!actSel) return;
+  var ORDER=['조회','생성','수정','삭제','저장','전환','일괄','업로드/다운로드','내보내기','연결·테스트','실행','배포·승인','공유','전송','캔버스'];
+  function rebuild(){
+    var present=[]; table.querySelectorAll('tbody tr .atype').forEach(function(a){var t=a.textContent.trim();if(t&&present.indexOf(t)<0)present.push(t);});
+    present.sort(function(a,b){var ia=ORDER.indexOf(a),ib=ORDER.indexOf(b);if(ia<0)ia=99+present.indexOf(a);if(ib<0)ib=99+present.indexOf(b);return ia-ib;});
+    var head=actSel.options[0]?actSel.options[0].textContent:'액션 · 전체';
+    var cur=actSel.value;
+    actSel.innerHTML='';
+    var o0=document.createElement('option');o0.textContent=head;o0.value='';actSel.appendChild(o0);
+    present.forEach(function(t){var o=document.createElement('option');o.textContent=t;o.value=t;actSel.appendChild(o);});
+    if(cur){for(var i=0;i<actSel.options.length;i++){if(actSel.options[i].value===cur){actSel.selectedIndex=i;break;}}}
+  }
+  function applyFilter(){
+    var v=actSel.value; 
+    table.querySelectorAll('tbody tr[data-id]').forEach(function(tr){
+      var a=(tr.querySelector('.atype')||{}).textContent||'';
+      tr.style.display=(!v||a.trim()===v)?'':'none';
+    });
+  }
+  actSel.addEventListener('change',applyFilter);
+  rebuild();
+  // 신규 액션 값이 케이스에 추가되면 자동 반영: DOM 변경 감시
+  new MutationObserver(function(){rebuild();applyFilter();}).observe(table.querySelector('tbody'),{childList:true,subtree:true});
+})();
+</script>
 
 </body>
 </html>
