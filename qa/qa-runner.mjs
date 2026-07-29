@@ -46,7 +46,6 @@ const GRAN = [
   G('TC-MAIN-046','도구 연동 · 인증 프로필','도구 연동','인증 프로필','프로필 목록 조회','조회','load'),
   // 지식관리 · 지식 컬렉션
   G('TC-MAIN-051','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','컬렉션 목록 조회','조회','load'),
-  G('TC-MAIN-052','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','새 컬렉션 생성','생성','present','새 컬렉션 생성'),
   G('TC-MAIN-062','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','검색 질의','조회','present','검색'),
   G('TC-MAIN-063','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','다중 선택(일괄)','일괄','present','다중 선택'),
   G('TC-MAIN-064','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','업로드 이력 조회','조회','present','업로드 이력'),
@@ -71,8 +70,19 @@ const ADMIN = [
   ['TC-ADM-111','admin','MCP 관리','MCP 라이브러리','MCP 라이브러리 조회 확인'],
   ['TC-ADM-112','admin','서비스 운영','공지 게시판','공지 게시판 화면 로드 확인'],
   ['TC-ADM-113','admin','지식 운영','지식 컬렉션 관리','관리자 지식 컬렉션 운영 화면 로드 확인'],
+  // 세분 ADMIN 조회 확대(카탈로그 섹션명과 정합)
+  ['TC-ADM-120','admin','사용자 / 접근제어','로그인 관리','로그인 관리 화면 로드 확인'],
+  ['TC-ADM-121','admin','Agent 운영','사용자 토큰','사용자 토큰 사용량·정책 화면 로드 확인'],
+  ['TC-ADM-122','admin','Agent 운영','노드 관리','노드 관리 화면 로드 확인'],
+  ['TC-ADM-123','admin','Agent 운영','프롬프트 템플릿','프롬프트 템플릿 관리 화면 로드 확인'],
+  ['TC-ADM-124','admin','Agent 운영','응답 품질 평가','응답 품질 평가 화면 로드 확인'],
+  ['TC-ADM-125','admin','Agent 운영','Agent 리텐션 분석','Agent 리텐션 분석 화면 로드 확인'],
+  ['TC-ADM-126','admin','시스템 상태','로그 조회','로그 조회 화면 로드 확인'],
+  ['TC-GOV-127','gov','AI 거버넌스','점검 이력 관리','점검 이력 관리 화면 로드 확인'],
+  ['TC-ADM-128','admin','데이터 관리','데이터 감사 로그','데이터 감사 로그 화면 로드 확인'],
 ].map(a=>({id:a[0],persona:a[1],scope:'ADMIN',category:a[2],menu:a[3],action:'조회',nav:'admin',desc:a[4]}));
-const CASES = [...COMMON, ...GRAN, ...ADMIN];
+const LIFECYCLE = [{ id:'LIFECYCLE', persona:'dev', scope:'MAIN', category:'지식관리 · 지식 컬렉션', menu:'lifecycle', action:'생성', nav:'lifecycle', desc:'' }];
+const CASES = [...COMMON, ...LIFECYCLE, ...GRAN, ...ADMIN];
 
 const log = (...a) => console.log('[qa-runner]', ...a);
 const clickByText = (page, txt) => page.evaluate((t) => {
@@ -118,6 +128,31 @@ async function chatExec(page, prompt) {
     if (/AI가 생성한|생성한 참고|답변/.test(txt)) return true; }
   return false;
 }
+// 심층 라이프사이클: 지식 컬렉션 실제 생성 → 검증 → 삭제(정리)
+async function collectionLifecycle(page) {
+  _curApp = ''; await gotoApp(page, 'main');
+  await clickWait(page, '지식관리'); await page.waitForTimeout(400);
+  if (!(await clickWait(page, '지식 컬렉션'))) return { createOk: false, deleteOk: false, error: '지식 컬렉션 화면 없음' };
+  await page.waitForTimeout(2600);
+  const name = 'QA_자동_' + Date.now();
+  if (!(await clickWait(page, '새 컬렉션 생성'))) return { createOk: false, deleteOk: false, error: '새 컬렉션 생성 버튼 없음' };
+  await page.waitForTimeout(1500);
+  try { await page.fill('input[placeholder*="컬렉션 이름"]', name); }
+  catch { return { createOk: false, deleteOk: false, error: '이름 입력 실패' }; }
+  await page.evaluate(() => { const bs = [...document.querySelectorAll('button')].filter((b) => b.offsetParent && b.textContent.trim() === '생성'); const b = bs[bs.length - 1]; if (b) b.click(); });
+  await page.waitForTimeout(3500);
+  const created = await page.evaluate((n) => [...document.querySelectorAll('*')].some((e) => e.offsetParent && e.textContent.trim() === n), name);
+  let deleted = false, err = created ? '' : '생성 미확인';
+  if (created) {
+    await page.evaluate(() => { const b = [...document.querySelectorAll('button')].find((x) => x.offsetParent && x.textContent.trim() === '삭제'); if (b) b.click(); });
+    await page.waitForTimeout(1200);
+    await page.evaluate(() => { const b = [...document.querySelectorAll('[role=dialog] button,[role=alertdialog] button,[aria-modal="true"] button')].find((x) => /삭제|확인/.test(x.textContent.trim())); if (b) b.click(); });
+    await page.waitForTimeout(3000);
+    deleted = await page.evaluate((n) => ![...document.querySelectorAll('*')].some((e) => e.offsetParent && e.textContent.trim() === n), name);
+    if (!deleted) err = '삭제 미확인(정리 실패)';
+  }
+  return { createOk: created, deleteOk: deleted, error: err };
+}
 // 케이스별 최대 45초 (행 방지)
 function withTimeout(promise, ms, id) {
   return Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error('케이스 타임아웃 ' + ms + 'ms')), ms))]);
@@ -139,6 +174,14 @@ function withTimeout(promise, ms, id) {
   for (const cs of CASES) {
     const { id, persona, scope, category, menu, action, nav, desc } = cs;
     const t0 = Date.now(); let outcome = 'pass', error = '', shot = '';
+    if (nav === 'lifecycle') {
+      let r; try { r = await withTimeout(collectionLifecycle(page), 60000, id); }
+      catch (e) { r = { createOk: false, deleteOk: false, error: String(e.message || e) }; }
+      results.push({ id: 'TC-MAIN-052', persona: 'dev', scope: 'MAIN', category: '지식관리 · 지식 컬렉션', menu: '새 컬렉션 생성', action: '생성', desc: '새 컬렉션 실제 생성(자동 정리 포함) 확인', ms: Date.now() - t0, outcome: r.createOk ? 'pass' : 'fail', error: r.createOk ? '' : r.error, shot: '' });
+      results.push({ id: 'TC-MAIN-054', persona: 'dev', scope: 'MAIN', category: '지식관리 · 지식 컬렉션', menu: '컬렉션 삭제', action: '삭제', desc: '컬렉션 실제 삭제(정리) 확인', ms: 0, outcome: r.deleteOk ? 'pass' : (r.createOk ? 'fail' : 'na'), error: r.deleteOk ? '' : (r.createOk ? '삭제 미확인' : ''), shot: '' });
+      log('LIFECYCLE', 'create=' + r.createOk + ' delete=' + r.deleteOk);
+      continue;
+    }
     try {
       await withTimeout((async () => {
         if (nav === 'chatexec') {
