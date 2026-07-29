@@ -291,6 +291,12 @@
   .lbox-cap .sev.f{background:var(--fail-soft);color:var(--fail)} .lbox-cap .sev.w{background:var(--warn-soft);color:var(--warn)}
   .lbox-cap .mono{color:var(--muted);font-size:11.5px}
   .lbox-x{position:absolute;top:20px;right:22px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;font-size:17px;cursor:pointer;z-index:1}
+
+  .citoast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 30px rgba(16,24,40,.2);padding:12px 18px;font-size:13px;z-index:300;display:none;max-width:560px}
+  .citoast.show{display:flex;align-items:center;gap:10px}
+  .citoast .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;animation:qspin 1s linear infinite}
+  .citoast.err{border-color:var(--fail)} .citoast.err .dot{background:var(--fail);animation:none}
+  .citoast.ok{border-color:var(--pass)} .citoast.ok .dot{background:var(--pass);animation:none}
 </style>
 </head>
 <body>
@@ -813,6 +819,31 @@ Internal Server Error
     var card=e.target.closest('#caps .cap'); if(card){open(card);}
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
+<script data-feature="ci-trigger">
+(function(){
+  var t=document.createElement('div');t.className='citoast';t.innerHTML='<span class="dot"></span><span class="msg"></span>';document.body.appendChild(t);
+  var msg=t.querySelector('.msg');
+  function status(text,kind){t.className='citoast show'+(kind?(' '+kind):'');msg.textContent=text;if(kind==='err'||kind==='ok'){setTimeout(function(){t.classList.remove('show');},7000);}}
+  function currentEnv(){var on=document.querySelector('#pipe .pstage.on');var v=on?on.getAttribute('data-v'):'QA';return v==='개발'?'dev':(v==='QA'?'stg':null);}
+  var pollIv=null;
+  function poll(){if(pollIv)clearInterval(pollIv);var n=0;pollIv=setInterval(function(){n++;if(window.__qaLoad)window.__qaLoad();if(n>=18)clearInterval(pollIv);},20000);}
+  function trigger(){
+    var env=currentEnv();
+    if(!env){status('개발(dev) 또는 QA(stg) 스테이지를 선택한 뒤 실행하세요.','err');return;}
+    status('CI 실행 요청 중… ('+env+')');
+    fetch('/api/qa-run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({env:env})})
+      .then(function(r){return r.json().then(function(d){return {s:r.status,d:d};});})
+      .then(function(x){
+        if(x.d&&x.d.ok){status('✅ CI 실행 시작됨 · '+env+' · 결과 반영까지 수 분(자동 갱신 중)','ok');poll();}
+        else if(x.s===503){status('⚠ 트리거 토큰(QA_DISPATCH_TOKEN) 미설정 — qa/README 참고','err');}
+        else{status('트리거 실패: '+((x.d&&x.d.error)||x.s),'err');}
+      })
+      .catch(function(e){status('트리거 실패(네트워크): '+e,'err');});
+  }
+  var top=Array.prototype.slice.call(document.querySelectorAll('.top button')).filter(function(b){return /실행/.test(b.textContent);})[0];
+  if(top){top.textContent='▶ 실제 실행 (CI)';top.setAttribute('data-norefresh','1');top.title='선택한 환경(개발/QA)에서 실제 QA 러너를 CI로 실행';top.addEventListener('click',trigger);}
 })();
 </script>
 
