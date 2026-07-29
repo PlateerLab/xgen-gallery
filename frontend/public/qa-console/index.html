@@ -810,7 +810,7 @@ Internal Server Error
       .then(function(r){return r.json().then(function(d){return {s:r.status,d:d};});})
       .then(function(x){
         if(x.d&&x.d.ok){status('✅ CI 실행 시작됨 · '+env+' · 결과 반영까지 수 분(자동 갱신 중)','ok');poll();}
-        else if(x.s===503){status('⚠ 트리거 토큰(QA_DISPATCH_TOKEN) 미설정 — qa/README 참고','err');}
+        else if(x.s===503){t.className='citoast show err';msg.innerHTML='⚠ 서버 트리거 토큰 미설정 — <a href="https://github.com/PlateerLab/xgen-gallery/actions/workflows/qa-smoke.yml" target="_blank" rel="noopener" style="color:var(--accent);font-weight:650;text-decoration:underline">GitHub Actions에서 실행 ▶</a> (Secrets 등록 후 이 버튼이 직접 동작)';}
         else{status('트리거 실패: '+((x.d&&x.d.error)||x.s),'err');}
       })
       .catch(function(e){status('트리거 실패(네트워크): '+e,'err');});
