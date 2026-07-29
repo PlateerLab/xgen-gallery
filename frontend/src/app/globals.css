@@ -422,3 +422,80 @@ img {
 @media (prefers-reduced-motion: reduce) {
     .flowline { animation: none; }
 }
+
+/* ---------------- 우주 배경(컨택트) — cosmic-background.tsx ----------------
+   별 반짝임 · 성운 표류 · 궤도 회전 · 스캔빔. 모두 opacity/transform만 건드려
+   합성 단계에서 처리되게 한다(레이아웃·페인트 유발 없음). */
+@keyframes cosmicTwinkle {
+    0%, 100% { opacity: var(--tw-star-min, 0.25); }
+    50%      { opacity: var(--tw-star-max, 1); }
+}
+.cosmic-star { animation: cosmicTwinkle var(--tw-star-dur, 4s) ease-in-out var(--tw-star-delay, 0s) infinite; }
+
+@keyframes cosmicDrift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50%      { transform: translate3d(2.5%, -2%, 0) scale(1.08); }
+}
+.cosmic-nebula { animation: cosmicDrift var(--tw-drift-dur, 26s) ease-in-out var(--tw-drift-delay, 0s) infinite; }
+
+@keyframes cosmicSpin { to { transform: rotate(360deg); } }
+.cosmic-orbit { animation: cosmicSpin var(--tw-orbit-dur, 90s) linear infinite; transform-origin: center; }
+
+/* 아래에서 위로 훑고 지나가는 옅은 스캔빔 — 사이버틱한 결을 준다 */
+@keyframes cosmicScan {
+    0%   { transform: translateY(18%); opacity: 0; }
+    12%  { opacity: 0.5; }
+    88%  { opacity: 0.5; }
+    100% { transform: translateY(-118%); opacity: 0; }
+}
+.cosmic-scan { animation: cosmicScan 14s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* 북극성 — 층마다 다른 속도로 움직여야 "반짝인다"로 읽힌다.
+   전부 같은 주기로 깜빡이면 그냥 밝기 조절처럼 보인다.
+   헤일로(느린 호흡) · 광선(회전+길이) · 코어(빠른 반짝임)로 나눈다. */
+@keyframes cosmicPolarisHalo {
+    0%, 100% { opacity: 0.72; transform: scale(0.94); }
+    50%      { opacity: 1;    transform: scale(1.14); }
+}
+.cosmic-polaris-halo { animation: cosmicPolarisHalo 7s ease-in-out infinite; transform-origin: center; }
+
+/* 광선은 아주 느리게 돌아 방향이 고정돼 보이지 않게 한다 */
+@keyframes cosmicPolarisSpin { to { transform: rotate(360deg); } }
+.cosmic-polaris-spin { animation: cosmicPolarisSpin 140s linear infinite; transform-origin: center; }
+
+/* 광선 길이가 숨 쉬듯 늘었다 줄었다 — 반짝임의 핵심 */
+@keyframes cosmicPolarisFlare {
+    0%, 100% { opacity: 0.5;  transform: scale(0.82); }
+    38%      { opacity: 1;    transform: scale(1.18); }
+    62%      { opacity: 0.78; transform: scale(1.02); }
+}
+.cosmic-polaris-flare { animation: cosmicPolarisFlare 4.4s ease-in-out infinite; transform-origin: center; }
+
+/* 코어는 가장 빠르고 미세하게 — 대기의 흔들림 */
+@keyframes cosmicPolarisCore {
+    0%, 100% { opacity: 1; }
+    28%      { opacity: 0.74; }
+    46%      { opacity: 1; }
+    70%      { opacity: 0.86; }
+}
+.cosmic-polaris-core { animation: cosmicPolarisCore 2.6s ease-in-out infinite; }
+
+/* 북극성이 실루엣으로 내리는 빛줄기 — 아주 옅게 숨 쉬듯 */
+@keyframes cosmicGuide {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 0.85; }
+}
+.cosmic-guide { animation: cosmicGuide 6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .cosmic-star,
+    .cosmic-nebula,
+    .cosmic-orbit,
+    .cosmic-scan,
+    .cosmic-polaris-halo,
+    .cosmic-polaris-spin,
+    .cosmic-polaris-flare,
+    .cosmic-polaris-core,
+    .cosmic-guide { animation: none; }
+    .cosmic-scan { opacity: 0; }
+}

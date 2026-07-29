@@ -18,7 +18,8 @@ export type ConceptId =
     | "solutions"
     | "insights"
     | "resources"
-    | "about";
+    | "about"
+    | "contact";
 
 export interface BgConcept {
     /** human label (for reference) */
@@ -115,6 +116,15 @@ export const CONCEPTS: Record<ConceptId, BgConcept> = {
         base: "#0a0a18",
         glow1: "rgba(124,92,255,0.30)",
         glow2: "rgba(236,72,153,0.18)",
+    },
+    // 컨택트는 전환 페이지 — home·products와 같은 블루/바이올렛 계열을 써서
+    // 메인에서 넘어왔을 때 같은 세계관으로 읽히게 한다. base는 기존 컨택트
+    // 히어로 오버레이(#050813)와 맞춘 값.
+    contact: {
+        label: "Nebula · Contact",
+        base: "#050813",
+        glow1: "rgba(47,123,255,0.30)",
+        glow2: "rgba(124,92,255,0.22)",
     },
 };
 
