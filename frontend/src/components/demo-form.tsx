@@ -513,7 +513,9 @@ export function DemoForm() {
                         전체 동의
                     </span>
                 </label>
-                <div className="grid grid-cols-1 gap-x-5 gap-y-1.5 border-t border-[var(--color-line)] pt-2.5 sm:grid-cols-2">
+                {/* 동의 항목은 3개라 2열로 두면 둘째 줄에 하나만 남아 고아가 된다.
+                    한 줄에 하나씩 쌓아 읽는 순서도 분명하게 한다. */}
+                <div className="grid grid-cols-1 gap-y-1.5 border-t border-[var(--color-line)] pt-2.5">
                     <Consent
                         label={c.agreePolicy}
                         checked={fields.agreePrivacyPolicy}
