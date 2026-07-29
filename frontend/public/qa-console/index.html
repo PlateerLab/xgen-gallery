@@ -261,6 +261,12 @@
   .capmeta .cm1 .sev{font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:4px}
   .capmeta .cm1 .sev.f{background:var(--fail-soft);color:var(--fail)} .capmeta .cm1 .sev.w{background:var(--warn-soft);color:var(--warn)}
   .capmeta .cm2{color:var(--muted);font-family:var(--mono);font-size:10px;margin-top:4px}
+
+  table.cases th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
+  table.cases th.sortable:hover{color:var(--ink)}
+  table.cases th.sortable::after{content:"⇅";opacity:.3;margin-left:5px;font-size:10px}
+  table.cases th.sorted[data-dir="asc"]::after{content:"▲";opacity:.9;font-size:9px}
+  table.cases th.sorted[data-dir="desc"]::after{content:"▼";opacity:.9;font-size:9px}
 </style>
 </head>
 <body>
@@ -660,6 +666,36 @@ Internal Server Error
   rebuild();
   // 신규 액션 값이 케이스에 추가되면 자동 반영: DOM 변경 감시
   new MutationObserver(function(){rebuild();applyFilter();}).observe(table.querySelector('tbody'),{childList:true,subtree:true});
+})();
+</script>
+<script data-feature="cases-sort">
+(function(){
+  var table=document.querySelector('table.cases'); if(!table||!table.tHead) return;
+  var tbody=table.tBodies[0];
+  var ths=Array.prototype.slice.call(table.tHead.rows[0].cells);
+  var resultCol=ths.length-1, prioCol=ths.length-2;
+  var rank={fail:0,warn:1,pass:2,na:3};
+  ths.forEach(function(th,idx){
+    if(idx===0) return; // 체크박스 열 제외
+    th.classList.add('sortable');
+    th.addEventListener('click',function(){
+      var asc = th.getAttribute('data-dir')!=='asc';
+      ths.forEach(function(t){t.removeAttribute('data-dir');t.classList.remove('sorted');});
+      th.setAttribute('data-dir',asc?'asc':'desc'); th.classList.add('sorted');
+      var rows=Array.prototype.slice.call(tbody.querySelectorAll('tr[data-id]'));
+      function key(tr){
+        var cell=tr.cells[idx]; if(!cell) return '';
+        if(idx===resultCol){var chip=cell.querySelector('.chip');var cls=chip?['fail','warn','pass','na'].filter(function(x){return chip.classList.contains(x);})[0]:'na';return rank[cls]!=null?rank[cls]:9;}
+        if(idx===prioCol){var n=parseInt(cell.textContent,10);return isNaN(n)?99:n;}
+        return cell.textContent.trim();
+      }
+      rows.sort(function(a,b){var ka=key(a),kb=key(b);
+        if(typeof ka==='number'&&typeof kb==='number')return asc?ka-kb:kb-ka;
+        return asc?String(ka).localeCompare(String(kb),'ko'):String(kb).localeCompare(String(ka),'ko');});
+      var frag=document.createDocumentFragment(); rows.forEach(function(r){frag.appendChild(r);});
+      tbody.appendChild(frag);
+    });
+  });
 })();
 </script>
 
