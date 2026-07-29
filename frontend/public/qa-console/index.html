@@ -681,36 +681,6 @@ Internal Server Error
   table.addEventListener('dblclick',function(e){var tr=e.target.closest('tbody tr[data-id]');if(tr)runBatch([tr],'단건 실행');});
 })();
 </script>
-<script data-driven-actionfilter="1">
-(function(){
-  var table=document.querySelector('table.cases'); if(!table) return;
-  var selects=document.querySelectorAll('.tbar .fsel'); var actSel=null;
-  selects.forEach(function(s){ if(s.options[0] && s.options[0].textContent.indexOf('액션')>=0) actSel=s; });
-  if(!actSel) return;
-  var ORDER=['조회','생성','수정','삭제','저장','전환','일괄','업로드/다운로드','내보내기','연결·테스트','실행','배포·승인','공유','전송','캔버스'];
-  function rebuild(){
-    var present=[]; table.querySelectorAll('tbody tr .atype').forEach(function(a){var t=a.textContent.trim();if(t&&present.indexOf(t)<0)present.push(t);});
-    present.sort(function(a,b){var ia=ORDER.indexOf(a),ib=ORDER.indexOf(b);if(ia<0)ia=99+present.indexOf(a);if(ib<0)ib=99+present.indexOf(b);return ia-ib;});
-    var head=actSel.options[0]?actSel.options[0].textContent:'액션 · 전체';
-    var cur=actSel.value;
-    actSel.innerHTML='';
-    var o0=document.createElement('option');o0.textContent=head;o0.value='';actSel.appendChild(o0);
-    present.forEach(function(t){var o=document.createElement('option');o.textContent=t;o.value=t;actSel.appendChild(o);});
-    if(cur){for(var i=0;i<actSel.options.length;i++){if(actSel.options[i].value===cur){actSel.selectedIndex=i;break;}}}
-  }
-  function applyFilter(){
-    var v=actSel.value; 
-    table.querySelectorAll('tbody tr[data-id]').forEach(function(tr){
-      var a=(tr.querySelector('.atype')||{}).textContent||'';
-      tr.style.display=(!v||a.trim()===v)?'':'none';
-    });
-  }
-  actSel.addEventListener('change',applyFilter);
-  rebuild();
-  // 신규 액션 값이 케이스에 추가되면 자동 반영: DOM 변경 감시
-  new MutationObserver(function(){rebuild();applyFilter();}).observe(table.querySelector('tbody'),{childList:true,subtree:true});
-})();
-</script>
 <script data-feature="cases-sort">
 (function(){
   var table=document.querySelector('table.cases'); if(!table||!table.tHead) return;
