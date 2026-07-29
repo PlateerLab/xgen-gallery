@@ -229,6 +229,8 @@
   .sidefold:hover{color:var(--accent);border-color:var(--accent)}
   .app.collapsed .sidefold{transform:rotate(180deg)}
   .gnbtoggle{display:none}
+
+  .scpb.base{background:var(--pass-soft);color:var(--pass)}
 </style>
 </head>
 <body>
@@ -300,7 +302,7 @@
       </div>
 
       <div class="kpis">
-        <div class="kpi"><div class="l">대상 케이스</div><div class="v mono">307</div><div class="sub">4 페르소나 · MAIN 5 · ADMIN 10 카테고리</div></div>
+        <div class="kpi"><div class="l">대상 케이스</div><div class="v mono">307</div><div class="sub">4 페르소나 · 공통 2 · MAIN 5 · ADMIN 10</div></div>
         <div class="kpi"><div class="l">통과율</div><div class="v mono b">95.4<span>%</span></div><div class="sub">293 / 307 통과</div></div>
         <div class="kpi"><div class="l">오픈 이슈</div><div class="v mono b">3</div><div class="sub">critical 1 · high 1 · med 1</div></div>
         <div class="kpi"><div class="l">커버리지</div><div class="v mono">96<span>%</span></div><div class="sub">0·1순위 100%</div></div>
@@ -337,6 +339,9 @@
         <div class="mtx"><table class="grid" id="mtx">
           <thead><tr><th class="fn">서비스 도메인</th><th data-p="user">일반</th><th data-p="dev">개발자</th><th data-p="admin">시스템관리자</th><th data-p="gov">거버넌스</th></tr></thead>
           <tbody>
+            <tr class="grp"><td colspan="5">공통 · 권한 무관 — 모든 사용자 (로그인만으로 접근)</td></tr>
+            <tr><td class="fn">Agent 채팅<small>시작·메시지 전송·이력·인용</small></td><td class="cell" data-p="user"><span class="chip pass">4/4</span></td><td class="cell" data-p="dev"><span class="chip pass">4/4</span></td><td class="cell" data-p="admin"><span class="chip pass">2/2</span></td><td class="cell" data-p="gov"><span class="chip pass">2/2</span></td></tr>
+            <tr><td class="fn">Teams<small>팀·워크스페이스·멤버 초대</small></td><td class="cell" data-p="user"><span class="chip pass">2/2</span></td><td class="cell" data-p="dev"><span class="chip pass">2/2</span></td><td class="cell" data-p="admin"><span class="chip na">—</span></td><td class="cell" data-p="gov"><span class="chip na">—</span></td></tr>
             <tr class="grp"><td colspan="5">에이전트 작업실 · MAIN — 사이드바 기능 (일반 사용자 · 에이전트 개발자)</td></tr>
             <tr><td class="fn">분석 / 기획<small>업무기획 · 사용자 설정</small></td><td class="cell" data-p="user"><span class="chip pass">2/2</span></td><td class="cell" data-p="dev"><span class="chip pass">2/2</span></td><td class="cell" data-p="admin"><span class="chip na">—</span></td><td class="cell" data-p="gov"><span class="chip na">—</span></td></tr>
             <tr><td class="fn">Agent 제작<small>설계·목록·운영설정·품질평가·프롬프트</small></td><td class="cell" data-p="user"><span class="chip na">—</span></td><td class="cell" data-p="dev"><span class="chip fail">4/5</span></td><td class="cell" data-p="admin"><span class="chip na">—</span></td><td class="cell" data-p="gov"><span class="chip na">—</span></td></tr>
@@ -388,7 +393,7 @@
         <div class="tbar">
           <div class="fset">
             <select class="fsel"><option>페르소나 · 전체</option><option>일반 사용자</option><option>에이전트 개발자</option><option>시스템 관리자</option><option>거버넌스 담당자</option></select>
-            <select class="fsel"><option>스코프 · 전체</option><option>에이전트 작업실 (MAIN)</option><option>관리설정 (ADMIN)</option></select>
+            <select class="fsel"><option>스코프 · 전체</option><option>공통 · 권한 무관 (Agent 채팅·Teams)</option><option>에이전트 작업실 (MAIN)</option><option>관리설정 (ADMIN)</option></select>
             <select class="fsel"><option>액션 · 전체</option><option>조회</option><option>생성</option><option>수정</option><option>삭제</option><option>저장</option><option>전환</option><option>일괄</option><option>업로드/다운로드</option><option>내보내기</option><option>연결·테스트</option><option>실행</option><option>배포·승인</option><option>공유</option><option>전송</option><option>캔버스</option></select>
             <select class="fsel"><option>우선순위 · 전체</option><option>0 (필수)</option><option>1</option><option>2</option></select>
             <select class="fsel"><option>상태 · 전체</option><option>PASS</option><option>FAIL</option><option>WARN</option><option>미실행</option></select>
@@ -402,6 +407,12 @@
             <div class="mtx"><table class="cases">
               <thead><tr><th style="width:34px"></th><th>케이스 ID</th><th>스코프</th><th>대분류</th><th>메뉴</th><th>액션</th><th>맥락</th><th>대상 버튼 / 엔드포인트</th><th>페르소나</th><th style="text-align:center">P</th><th style="text-align:center">최근 결과</th></tr></thead>
               <tbody>
+            <tr data-id="TC-USR-001"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-001</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Agent 채팅</td><td><span class="atype">조회</span></td><td class="actx r">읽기 · 부작용 없음</td><td class="tgt">대화 목록·이력 조회</td><td>일반</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
+            <tr data-id="TC-USR-002"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-002</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Agent 채팅</td><td><span class="atype">생성</span></td><td class="actx w">쓰기 · 새 리소스 등록</td><td class="tgt">새 대화 시작</td><td>일반</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
+            <tr data-id="TC-USR-003"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-003</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Agent 채팅</td><td><span class="atype">전송</span></td><td class="actx w">메시지 전송</td><td class="tgt">메시지 전송 → 응답 수신</td><td>일반</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
+            <tr data-id="TC-USR-004"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-004</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Agent 채팅</td><td><span class="atype">조회</span></td><td class="actx r">읽기 · 부작용 없음</td><td class="tgt">응답 인용 출처 열람</td><td>일반</td><td style="text-align:center" class="mono">1</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
+            <tr data-id="TC-USR-010"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-010</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Teams</td><td><span class="atype">조회</span></td><td class="actx r">읽기 · 부작용 없음</td><td class="tgt">팀·워크스페이스 목록</td><td>일반</td><td style="text-align:center" class="mono">1</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
+            <tr data-id="TC-USR-011"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-USR-011</td><td><span class="scpb base">공통</span></td><td class="cat">공통</td><td class="fn2">Teams</td><td><span class="atype">연결·테스트</span></td><td class="actx r">외부 연동 검증 · 부작용 낮음</td><td class="tgt">팀 참여·멤버 초대</td><td>일반</td><td style="text-align:center" class="mono">1</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
             <tr data-id="TC-DEV-001"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-DEV-001</td><td><span class="scpb main">MAIN</span></td><td class="cat">Agent 제작</td><td class="fn2">Agent 설계</td><td><span class="atype">조회</span></td><td class="actx r">읽기 · 부작용 없음</td><td class="tgt">캔버스 진입·노드 패널 로드</td><td>개발자</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
             <tr data-id="TC-DEV-002"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-DEV-002</td><td><span class="scpb main">MAIN</span></td><td class="cat">Agent 제작</td><td class="fn2">Agent 설계</td><td><span class="atype">생성</span></td><td class="actx w">쓰기 · 새 리소스 등록</td><td class="tgt">[+ 노드] 팔레트에서 추가</td><td>개발자</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
             <tr data-id="TC-DEV-003"><td><input type="checkbox" class="tcheck"></td><td class="id">TC-DEV-003</td><td><span class="scpb main">MAIN</span></td><td class="cat">Agent 제작</td><td class="fn2">Agent 설계</td><td><span class="atype">캔버스</span></td><td class="actx r">UI 상호작용 · 편집 상태</td><td class="tgt">노드 포트 드래그 연결</td><td>개발자</td><td style="text-align:center" class="mono">0</td><td style="text-align:center"><span class="chip pass sm">PASS</span></td></tr>
