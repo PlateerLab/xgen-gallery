@@ -1,0 +1,28 @@
+# 내부 GitLab(gitlab.x2bee.com)에서 실행할 경우의 QA 스모크 파이프라인.
+# dev/stg 가 내부망에서만 접근된다면 이 파일을 내부 GitLab 프로젝트로 올려 사용.
+# (GitHub Actions 로 충분하면 이 파일은 무시)
+#
+# 사전 준비: 프로젝트 Settings > CI/CD > Variables 에 QA_EMAIL / QA_PASS (Masked) 등록.
+# 결과 발행: 아래 예시는 artifact 로 남긴다. go244 갤러리에 반영하려면 배포 스텝에서
+#           results.json + shots 를 갤러리 public/qa-console 로 rsync/scp 하도록 확장.
+
+stages: [qa]
+
+qa-smoke:
+  stage: qa
+  image: mcr.microsoft.com/playwright:v1.48.0-jammy
+  variables:
+    QA_ENV: "dev"
+    QA_OUT: "$CI_PROJECT_DIR/out/qa-console"
+  script:
+    - cd qa && npm install --no-audit --no-fund && cd ..
+    - node qa/qa-runner.mjs
+  artifacts:
+    when: always
+    paths:
+      - out/qa-console/results.json
+      - out/qa-console/shots/
+    expire_in: 30 days
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'        # 수동 실행(Run pipeline) 버튼
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'   # 스케줄
