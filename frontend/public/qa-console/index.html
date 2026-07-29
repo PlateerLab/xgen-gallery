@@ -6,11 +6,11 @@
 <meta name="description" content="XGEN 기능 품질 콘솔 — 페르소나·액션 단위 기능 테스트 콘솔">
 <title>XGEN 기능 품질 콘솔</title>
 <style>
-@font-face{font-family:'Pretendard';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/PretendardVariable.woff2) format('woff2');}
+@font-face{font-family:"Pretendard Variable";font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/PretendardVariable.woff2) format("woff2-variations");}
 
-  :root{--bg:#f7f8fa;--surface:#fff;--surface-2:#f2f4f7;--panel:#fff;--line:#e4e7ec;--line-strong:#d0d5dd;--ink:#1d1f23;--muted:#7a7f89;--faint:#abb1ba;--accent:#305eeb;--accent-ink:#fff;--accent-soft:#e6ebfc;--brand:linear-gradient(90deg,#305eeb,#783ced);--side:#fff;--side-2:#f7f8fa;--side-ink:#40444d;--side-ink-strong:#1d1f23;--side-line:#eef0f3;--side-active:#e6ebfc;--pass:#0a7d3f;--pass-soft:#eaf5ee;--fail:#d23535;--fail-soft:#fce9e9;--warn:#9a7400;--warn-soft:#f7f0d9;--skip:#7a7f89;--skip-soft:#f2f4f7;--shadow:0 1px 2px rgba(16,24,40,.06);--sans:"Pretendard","Segoe UI","Malgun Gothic",system-ui,-apple-system,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;}
+  :root{--bg:#f7f8fa;--surface:#fff;--surface-2:#f2f4f7;--panel:#fff;--line:#e4e7ec;--line-strong:#d0d5dd;--ink:#1d1f23;--muted:#7a7f89;--faint:#abb1ba;--accent:#305eeb;--accent-ink:#fff;--accent-soft:#e6ebfc;--brand:linear-gradient(90deg,#305eeb,#783ced);--side:#fff;--side-2:#f7f8fa;--side-ink:#40444d;--side-ink-strong:#1d1f23;--side-line:#eef0f3;--side-active:#e6ebfc;--pass:#0a7d3f;--pass-soft:#eaf5ee;--fail:#d23535;--fail-soft:#fce9e9;--warn:#9a7400;--warn-soft:#f7f0d9;--skip:#7a7f89;--skip-soft:#f2f4f7;--shadow:0 1px 2px rgba(16,24,40,.06);--sans:"Pretendard Variable",Pretendard,"Segoe UI","Malgun Gothic",system-ui,-apple-system,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;}
   @media (prefers-color-scheme: dark){:root{--bg:#17181c;--surface:#1d1f23;--surface-2:#282b31;--panel:#1d1f23;--line:#282b31;--line-strong:#40444d;--ink:#f2f4f7;--muted:#abb1ba;--faint:#7a7f89;--accent:#839ef3;--accent-ink:#17181c;--accent-soft:rgba(131,158,243,.16);--brand:linear-gradient(90deg,#4f7bf0,#9a6bf2);--side:#1d1f23;--side-2:#17181c;--side-ink:#abb1ba;--side-ink-strong:#f2f4f7;--side-line:#282b31;--side-active:rgba(131,158,243,.18);--pass:#59ac59;--pass-soft:rgba(89,172,89,.16);--fail:#e96363;--fail-soft:rgba(233,99,99,.16);--warn:#debd59;--warn-soft:rgba(222,189,89,.16);--skip:#7a7f89;--skip-soft:rgba(122,127,137,.16);--shadow:0 1px 2px rgba(0,0,0,.45);}}
-  :root[data-theme="light"]{--bg:#f7f8fa;--surface:#fff;--surface-2:#f2f4f7;--panel:#fff;--line:#e4e7ec;--line-strong:#d0d5dd;--ink:#1d1f23;--muted:#7a7f89;--faint:#abb1ba;--accent:#305eeb;--accent-ink:#fff;--accent-soft:#e6ebfc;--brand:linear-gradient(90deg,#305eeb,#783ced);--side:#fff;--side-2:#f7f8fa;--side-ink:#40444d;--side-ink-strong:#1d1f23;--side-line:#eef0f3;--side-active:#e6ebfc;--pass:#0a7d3f;--pass-soft:#eaf5ee;--fail:#d23535;--fail-soft:#fce9e9;--warn:#9a7400;--warn-soft:#f7f0d9;--skip:#7a7f89;--skip-soft:#f2f4f7;--shadow:0 1px 2px rgba(16,24,40,.06);--sans:"Pretendard","Segoe UI","Malgun Gothic",system-ui,-apple-system,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;}
+  :root[data-theme="light"]{--bg:#f7f8fa;--surface:#fff;--surface-2:#f2f4f7;--panel:#fff;--line:#e4e7ec;--line-strong:#d0d5dd;--ink:#1d1f23;--muted:#7a7f89;--faint:#abb1ba;--accent:#305eeb;--accent-ink:#fff;--accent-soft:#e6ebfc;--brand:linear-gradient(90deg,#305eeb,#783ced);--side:#fff;--side-2:#f7f8fa;--side-ink:#40444d;--side-ink-strong:#1d1f23;--side-line:#eef0f3;--side-active:#e6ebfc;--pass:#0a7d3f;--pass-soft:#eaf5ee;--fail:#d23535;--fail-soft:#fce9e9;--warn:#9a7400;--warn-soft:#f7f0d9;--skip:#7a7f89;--skip-soft:#f2f4f7;--shadow:0 1px 2px rgba(16,24,40,.06);--sans:"Pretendard Variable",Pretendard,"Segoe UI","Malgun Gothic",system-ui,-apple-system,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;}
   :root[data-theme="dark"]{--bg:#17181c;--surface:#1d1f23;--surface-2:#282b31;--panel:#1d1f23;--line:#282b31;--line-strong:#40444d;--ink:#f2f4f7;--muted:#abb1ba;--faint:#7a7f89;--accent:#839ef3;--accent-ink:#17181c;--accent-soft:rgba(131,158,243,.16);--brand:linear-gradient(90deg,#4f7bf0,#9a6bf2);--side:#1d1f23;--side-2:#17181c;--side-ink:#abb1ba;--side-ink-strong:#f2f4f7;--side-line:#282b31;--side-active:rgba(131,158,243,.18);--pass:#59ac59;--pass-soft:rgba(89,172,89,.16);--fail:#e96363;--fail-soft:rgba(233,99,99,.16);--warn:#debd59;--warn-soft:rgba(222,189,89,.16);--skip:#7a7f89;--skip-soft:rgba(122,127,137,.16);--shadow:0 1px 2px rgba(0,0,0,.45);}
 
   * { box-sizing: border-box; }
@@ -223,6 +223,12 @@
   .app.collapsed .side .who{justify-content:center;padding:14px 0}
   .app.collapsed .side .who>div:last-child{display:none}
   .gnbtoggle{font-size:16px;line-height:1;flex:none}
+
+  .side{position:sticky}
+  .sidefold{position:absolute;right:-13px;top:74px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center;font-size:15px;line-height:1;box-shadow:var(--shadow);z-index:30;transition:transform .18s ease,color .15s}
+  .sidefold:hover{color:var(--accent);border-color:var(--accent)}
+  .app.collapsed .sidefold{transform:rotate(180deg)}
+  .gnbtoggle{display:none}
 </style>
 </head>
 <body>
@@ -231,6 +237,7 @@
 <div class="app">
   <!-- Sidebar -->
   <aside class="side">
+    <button class="sidefold" id="gnbBtn" aria-label="메뉴 접기/펼치기" title="메뉴 접기/펼치기">‹</button>
     <div class="brand"><div class="logo">Q</div><div class="txt"><b>XGEN QA</b><span>기능 품질 콘솔</span></div></div>
     <nav>
       <span class="navlbl">품질 관리</span>
@@ -250,7 +257,6 @@
   <!-- Main -->
   <div class="maincol">
     <header class="top">
-      <button class="icObtn gnbtoggle" id="gnbBtn" aria-label="메뉴 접기/펼치기" title="메뉴 접기/펼치기">☰</button>
       <h1>테스트 케이스</h1>
       <span class="crumb mono" id="crumb">env: QA · 페르소나: 전체</span>
       <span class="sp"></span>
