@@ -297,6 +297,9 @@
   .citoast .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;animation:qspin 1s linear infinite}
   .citoast.err{border-color:var(--fail)} .citoast.err .dot{background:var(--fail);animation:none}
   .citoast.ok{border-color:var(--pass)} .citoast.ok .dot{background:var(--pass);animation:none}
+
+  .freset{color:var(--muted)}
+  .freset:hover{color:var(--accent);border-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -884,6 +887,22 @@ Internal Server Error
   if(tb) new MutationObserver(function(){apply();}).observe(tb,{childList:true});
   window.__qaApplyFilters=apply;
   apply();
+})();
+</script>
+<script data-feature="filter-reset">
+(function(){
+  var fset=document.querySelector('.tbar .fset'); if(!fset) return;
+  var btn=document.createElement('button'); btn.type='button'; btn.className='btn sm freset';
+  btn.textContent='↺ 초기화'; btn.title='필터·검색 초기화';
+  fset.appendChild(btn);
+  btn.addEventListener('click',function(){
+    Array.prototype.slice.call(fset.querySelectorAll('.fsel')).forEach(function(s){s.selectedIndex=0;});
+    var q=fset.querySelector('.fsearch'); if(q) q.value='';
+    if(window.__qaApplyFilters){window.__qaApplyFilters();}
+    else{ // 폴백: 전체 표시
+      Array.prototype.slice.call(document.querySelectorAll('table.cases tbody tr[data-id]')).forEach(function(tr){tr.style.display='';});
+    }
+  });
 })();
 </script>
 
