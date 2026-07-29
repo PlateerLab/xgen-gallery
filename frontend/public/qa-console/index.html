@@ -749,7 +749,7 @@ Internal Server Error
   var CRIT={'사용자 / 접근제어':0,'AI 거버넌스':0,'시스템 상태':0};
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
   function rowEl(r){
-    var tr=document.createElement('tr');tr.setAttribute('data-id',r.id);tr.dataset.outcome=r.outcome;
+    var tr=document.createElement('tr');tr.setAttribute('data-id',r.id);tr.dataset.outcome=r.outcome;tr.dataset.persona=r.persona;
     var sc=SCLS[r.scope]||'admin';var pr=(CRIT[r.category]!=null?CRIT[r.category]:1);
     var res={pass:'PASS',fail:'FAIL',warn:'WARN'}[r.outcome]||'—';
     tr.innerHTML='<td><input type="checkbox" class="tcheck"></td>'
@@ -855,25 +855,44 @@ Internal Server Error
   var tbar=document.querySelector('.tbar'); if(!tbar) return;
   var sels=Array.prototype.slice.call(tbar.querySelectorAll('.fsel'));
   var search=tbar.querySelector('.fsearch');
+  function nz(s){return (s||'').normalize('NFC').trim();}
   function first(s){return s.options[0]?s.options[0].textContent:'';}
   var byKind={};
   sels.forEach(function(s){var f=first(s);
     if(/페르소나/.test(f))byKind.persona=s; else if(/스코프/.test(f))byKind.scope=s;
     else if(/액션/.test(f))byKind.action=s; else if(/우선순위/.test(f))byKind.prio=s;
     else if(/상태/.test(f))byKind.status=s;});
-  function active(s){if(!s||s.selectedIndex<=0)return null;var o=s.options[s.selectedIndex];return (o.value||o.textContent).trim();}
+  if(byKind.persona) byKind.persona.title='페르소나 = 접근 범위 합집합(공통 포함). 선택 후 실행 시 그 역할이 수행하는 케이스 전체를 실행.';
+  function active(s){if(!s||s.selectedIndex<=0)return null;var o=s.options[s.selectedIndex];return nz(o.value||o.textContent);}
+  function pkey(label){if(!label)return null;
+    if(label.indexOf('일반')>=0)return 'user';
+    if(label.indexOf('개발')>=0)return 'dev';
+    if(label.indexOf('거버넌스')>=0)return 'gov';
+    if(label.indexOf('관리자')>=0)return 'admin';
+    return null;}
+  // ASCII 신호만 사용 (한글 비교 없음)
+  function scopeKey(scopeText){var s=nz(scopeText); return (s==='MAIN'||s==='ADMIN')?s:'COMMON';}
+  function allows(key, sk, rowGov){
+    if(sk==='COMMON')return true;             // 공통(권한무관) = 모든 페르소나
+    if(key==='user')return false;
+    if(key==='dev')return sk==='MAIN';
+    if(key==='admin')return sk==='ADMIN'&&!rowGov;
+    if(key==='gov')return sk==='ADMIN'&&rowGov;
+    return true;}
   function rows(){return Array.prototype.slice.call(table.querySelectorAll('tbody tr[data-id]'));}
   function apply(){
-    var pv=active(byKind.persona), sv=active(byKind.scope), av=active(byKind.action),
+    var pk=pkey(active(byKind.persona)), sv=active(byKind.scope), av=active(byKind.action),
         prv=active(byKind.prio), stv=active(byKind.status),
         q=(search&&search.value||'').trim().toLowerCase();
-    var prd = prv ? (prv.match(/\d/)||[null])[0] : null;
+    var prd = prv ? (prv.match(/[0-9]/)||[null])[0] : null;
     rows().forEach(function(tr){
-      var show=true, c=tr.cells;
-      if(pv){var pc=(c[8]?c[8].textContent:'').trim(); if(pc&&pv.indexOf(pc)<0)show=false;}
-      if(show&&sv){var sc=((tr.querySelector('.scpb')||{}).textContent||'').trim(); if(sc&&sv.indexOf(sc)<0)show=false;}
-      if(show&&av){var ac=((tr.querySelector('.atype')||{}).textContent||'').trim(); if(ac!==av)show=false;}
-      if(show&&prd!=null){var pp=(c[9]?c[9].textContent:'').trim(); if(pp!==prd)show=false;}
+      var show=true, cells=tr.cells;
+      var sk=scopeKey((tr.querySelector('.scpb')||{}).textContent);
+      var rowGov=(tr.dataset.persona==='gov');
+      if(pk && !allows(pk, sk, rowGov)) show=false;
+      if(show&&sv){ var scopeTxt=nz((tr.querySelector('.scpb')||{}).textContent); if(sv.indexOf(scopeTxt)<0)show=false; }
+      if(show&&av){var ac=nz((tr.querySelector('.atype')||{}).textContent); if(ac!==av)show=false;}
+      if(show&&prd!=null){var pp=(cells[9]?cells[9].textContent:'').trim(); if(pp!==prd)show=false;}
       if(show&&stv){var rc=((tr.querySelector('td:last-child .chip')||{}).textContent||'').trim();
         if(stv==='미실행'){if(rc!=='—')show=false;} else if(rc.indexOf(stv)<0)show=false;}
       if(show&&q){if(tr.textContent.toLowerCase().indexOf(q)<0)show=false;}
@@ -882,7 +901,6 @@ Internal Server Error
   }
   sels.forEach(function(s){s.addEventListener('change',apply);});
   search&&search.addEventListener('input',apply);
-  // 실데이터 렌더/정렬 등으로 행이 바뀌면 재적용
   var tb=table.tBodies[0];
   if(tb) new MutationObserver(function(){apply();}).observe(tb,{childList:true});
   window.__qaApplyFilters=apply;
