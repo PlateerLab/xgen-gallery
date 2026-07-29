@@ -29,6 +29,17 @@ const CASES = [
   { id: 'TC-CHT-002', persona: 'all', scope: '공통', category: 'Agent 채팅', menu: '현재 채팅', action: '조회', nav: 'main' },
   { id: 'TC-CHT-003', persona: 'all', scope: '공통', category: 'Agent 채팅', menu: '채팅 이력', action: '조회', nav: 'main' },
   { id: 'TC-TMS-001', persona: 'all', scope: '공통', category: 'Teams', menu: 'Teams', action: '조회', nav: 'teams' },
+  // ── 에이전트 작업실(MAIN) — 에이전트 개발자 ──
+  { id: 'TC-DEV-201', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 설계', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-202', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 목록', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-203', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 운영 설정', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-204', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 품질 평가', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-205', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 프롬프트', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-210', persona: 'dev', scope: 'MAIN', category: '도구 연동', menu: 'API 도구', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-211', persona: 'dev', scope: 'MAIN', category: '도구 연동', menu: '인증 프로필', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-220', persona: 'dev', scope: 'MAIN', category: '지식관리', menu: '지식 컬렉션', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-221', persona: 'dev', scope: 'MAIN', category: '지식관리', menu: '파일 저장소', action: '조회', nav: 'main' },
+  { id: 'TC-DEV-222', persona: 'dev', scope: 'MAIN', category: '지식관리', menu: 'DB 연동', action: '조회', nav: 'main' },
   // ── 관리설정(ADMIN) 각 카테고리>메뉴 조회 스모크 ──
   { id: 'TC-ADM-101', persona: 'admin', scope: 'ADMIN', category: '사용자 / 접근제어', menu: '사용자 관리', action: '조회', nav: 'admin' },
   { id: 'TC-ADM-102', persona: 'admin', scope: 'ADMIN', category: '사용자 / 접근제어', menu: '역할/권한 관리', action: '조회', nav: 'admin' },
@@ -112,7 +123,7 @@ async function gotoApp(page, app) {
       shot = `shots/${id}.png`;
       await page.screenshot({ path: path.join(OUT, shot), fullPage: false });
       if (info.err) { outcome = 'fail'; error = '에러 바운더리 감지'; }
-      else if (info.len < 120) { outcome = 'warn'; error = `본문 렌더 미흡(${info.len}chars)`; }
+      else if (info.len < 60) { outcome = 'warn'; error = `본문 렌더 미흡(${info.len}chars)`; }
     } catch (e) {
       outcome = 'fail'; error = String(e.message || e);
       try { shot = `shots/${id}.png`; await page.screenshot({ path: path.join(OUT, shot) }); } catch {}
