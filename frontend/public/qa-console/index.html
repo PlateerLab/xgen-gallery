@@ -846,6 +846,46 @@ Internal Server Error
   if(top){top.textContent='▶ 실제 실행 (CI)';top.setAttribute('data-norefresh','1');top.title='선택한 환경(개발/QA)에서 실제 QA 러너를 CI로 실행';top.addEventListener('click',trigger);}
 })();
 </script>
+<script data-feature="unified-filters">
+(function(){
+  var table=document.querySelector('table.cases'); if(!table) return;
+  var tbar=document.querySelector('.tbar'); if(!tbar) return;
+  var sels=Array.prototype.slice.call(tbar.querySelectorAll('.fsel'));
+  var search=tbar.querySelector('.fsearch');
+  function first(s){return s.options[0]?s.options[0].textContent:'';}
+  var byKind={};
+  sels.forEach(function(s){var f=first(s);
+    if(/페르소나/.test(f))byKind.persona=s; else if(/스코프/.test(f))byKind.scope=s;
+    else if(/액션/.test(f))byKind.action=s; else if(/우선순위/.test(f))byKind.prio=s;
+    else if(/상태/.test(f))byKind.status=s;});
+  function active(s){if(!s||s.selectedIndex<=0)return null;var o=s.options[s.selectedIndex];return (o.value||o.textContent).trim();}
+  function rows(){return Array.prototype.slice.call(table.querySelectorAll('tbody tr[data-id]'));}
+  function apply(){
+    var pv=active(byKind.persona), sv=active(byKind.scope), av=active(byKind.action),
+        prv=active(byKind.prio), stv=active(byKind.status),
+        q=(search&&search.value||'').trim().toLowerCase();
+    var prd = prv ? (prv.match(/\d/)||[null])[0] : null;
+    rows().forEach(function(tr){
+      var show=true, c=tr.cells;
+      if(pv){var pc=(c[8]?c[8].textContent:'').trim(); if(pc&&pv.indexOf(pc)<0)show=false;}
+      if(show&&sv){var sc=((tr.querySelector('.scpb')||{}).textContent||'').trim(); if(sc&&sv.indexOf(sc)<0)show=false;}
+      if(show&&av){var ac=((tr.querySelector('.atype')||{}).textContent||'').trim(); if(ac!==av)show=false;}
+      if(show&&prd!=null){var pp=(c[9]?c[9].textContent:'').trim(); if(pp!==prd)show=false;}
+      if(show&&stv){var rc=((tr.querySelector('td:last-child .chip')||{}).textContent||'').trim();
+        if(stv==='미실행'){if(rc!=='—')show=false;} else if(rc.indexOf(stv)<0)show=false;}
+      if(show&&q){if(tr.textContent.toLowerCase().indexOf(q)<0)show=false;}
+      tr.style.display=show?'':'none';
+    });
+  }
+  sels.forEach(function(s){s.addEventListener('change',apply);});
+  search&&search.addEventListener('input',apply);
+  // 실데이터 렌더/정렬 등으로 행이 바뀌면 재적용
+  var tb=table.tBodies[0];
+  if(tb) new MutationObserver(function(){apply();}).observe(tb,{childList:true});
+  window.__qaApplyFilters=apply;
+  apply();
+})();
+</script>
 
 </body>
 </html>
