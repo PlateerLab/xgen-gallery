@@ -11,7 +11,7 @@ import { SecurityArchitecture } from "@/components/security-architecture";
 import { LayerFlowArt } from "@/components/hero-layer-art";
 import { XgenCicd } from "@/components/xgen-cicd";
 import { CodeAssistantArchitecture } from "@/components/code-assistant-arch";
-import { ArchIndex } from "@/components/arch-index";
+import { SectionIndex } from "@/components/section-index";
 import {
     ShieldCheck,
     Share2,
@@ -137,13 +137,13 @@ export default function ArchitecturePage() {
                 </div>
             </section>
 
-            <ArchIndex sections={ARCH_SECTIONS} />
+            <SectionIndex sections={ARCH_SECTIONS} />
 
             <main>
                 {/* 신뢰 컨셉 — 2-card (콘텐츠 시작) */}
                 <section
                     id="foundation"
-                    className="scroll-mt-[140px] border-b border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-b border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <h2 className="mx-auto max-w-3xl text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
@@ -174,7 +174,7 @@ export default function ArchitecturePage() {
                 {/* 설계 원칙 */}
                 <section
                     id="principles"
-                    className="scroll-mt-[140px] border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Design Principles</Eyebrow>
@@ -207,7 +207,7 @@ export default function ArchitecturePage() {
                 </section>
 
                 {/* 참조 아키텍처 다이어그램 */}
-                <section id="reference" className="scroll-mt-[140px] bg-[var(--color-surface)]">
+                <section id="reference" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Reference Architecture</Eyebrow>
                         <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
@@ -226,7 +226,7 @@ export default function ArchitecturePage() {
                 {/* 온프레미스·보안 아키텍처 — 신뢰 경계 기반 제로트러스트 */}
                 <section
                     id="security"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ On-Premise Security</Eyebrow>
@@ -255,7 +255,7 @@ export default function ArchitecturePage() {
                 {/* XGEN 2.0 플랫폼 아키텍처 (공개-안전 구성) */}
                 <section
                     id="platform"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ XGEN Platform</Eyebrow>
@@ -291,7 +291,7 @@ export default function ArchitecturePage() {
                 {/* 코드 어시스턴트 아키텍처 (공개-안전 구성) */}
                 <section
                     id="code-assistant"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ Code Assistant</Eyebrow>
@@ -318,7 +318,7 @@ export default function ArchitecturePage() {
                 {/* CI/CD — GitOps 배포 파이프라인 (공개-안전 구성) */}
                 <section
                     id="cicd"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <Eyebrow>/ CI/CD</Eyebrow>

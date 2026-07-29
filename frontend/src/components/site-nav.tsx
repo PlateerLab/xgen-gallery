@@ -187,6 +187,31 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
         } catch {}
     };
 
+    /**
+     * 헤더 실제 높이를 `--nav-h`로 노출한다. 프로모 배너 노출/해제와 좁은 화면에서의
+     * 배너 줄바꿈 때문에 헤더 높이가 84px로 고정되지 않는다 — 스티키 섹션 인덱스와
+     * 앵커 점프 오프셋(scroll-mt)이 이 값을 기준으로 GNB 바로 아래에 붙는다.
+     */
+    const headerRef = useRef<HTMLElement>(null);
+    const navRowRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const header = headerRef.current;
+        const row = navRowRef.current;
+        if (!header || !row) return;
+        // 헤더 전체 높이가 아니라 "배너 + 메뉴줄"의 아래 끝을 쓴다 — 모바일 드로어가
+        // 열리면 헤더가 최대 80vh까지 커지는데, 거기에 인덱스를 붙이면 안 된다.
+        const sync = () =>
+            document.documentElement.style.setProperty(
+                "--nav-h",
+                `${Math.round(row.getBoundingClientRect().bottom)}px`,
+            );
+        sync();
+        // 배너 해제·좁은 화면에서의 배너 줄바꿈으로 높이가 바뀌면 다시 계산.
+        const ro = new ResizeObserver(sync);
+        ro.observe(header);
+        return () => ro.disconnect();
+    }, []);
+
     // light = transparent nav over the dark hero (top of an overlay page).
     // The bar turns solid white only on scroll — not when a dropdown opens.
     const light = overlay && !scrolled;
@@ -210,7 +235,11 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
     const demoLabel = locale === "en" ? DEMO_CTA.en : DEMO_CTA.ko;
 
     return (
-        <header className={headerCls} onMouseLeave={scheduleClose}>
+        <header
+            ref={headerRef}
+            className={headerCls}
+            onMouseLeave={scheduleClose}
+        >
             {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
             {bannerOpen && (
                 <div className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-[linear-gradient(90deg,#00acee_0%,#185aea_100%)] px-12 py-3 text-center text-[14px] leading-snug text-white">
@@ -234,7 +263,10 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     </button>
                 </div>
             )}
-            <div className="flex h-[84px] w-full items-center px-6">
+            <div
+                ref={navRowRef}
+                className="flex h-[84px] w-full items-center px-6"
+            >
                 <Link
                     href="/"
                     className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-80rem)/2)]"

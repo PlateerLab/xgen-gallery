@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { SectionIndex } from "@/components/section-index";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import type { NavGroup, NavLeaf } from "@/lib/nav";
@@ -103,7 +104,8 @@ export function Section({
         <section
             id={item.id}
             className={cn(
-                "scroll-mt-24 border-t border-[var(--color-line)]",
+                // GNB(--nav-h) + 스티키 섹션 인덱스(58) 아래로 제목이 오도록.
+                "scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)]",
                 tone === "alt"
                     ? "bg-[var(--color-surface-alt)]"
                     : "bg-[var(--color-surface)]",
@@ -127,7 +129,7 @@ export function Section({
                                 key={c.id}
                                 id={c.id}
                                 href={`#${c.id}`}
-                                className="scroll-mt-24 rounded-full border border-[var(--color-line)] bg-white px-3 py-1.5 text-[14px] font-medium text-[var(--color-ink-muted)] transition hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+                                className="scroll-mt-[calc(var(--nav-h,84px)+58px)] rounded-full border border-[var(--color-line)] bg-white px-3 py-1.5 text-[14px] font-medium text-[var(--color-ink-muted)] transition hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
                             >
                                 {c.label}
                             </a>
@@ -211,6 +213,16 @@ export function GroupPage({
                 ])}
             />
             <GroupHero group={group} content={hero} />
+            {/* 섹션 인덱스 — 히어로의 quick-jump는 스크롤하면 사라지므로, 페이지 내내
+                상단에 고정되는 스티키 인덱스를 둔다(/architecture·/product와 동일 패턴). */}
+            {sections.length > 1 && (
+                <SectionIndex
+                    sections={sections.map((it) => ({
+                        id: it.id,
+                        label: it.label,
+                    }))}
+                />
+            )}
             <main>
                 {leading}
                 {sections.map((it, i) => (

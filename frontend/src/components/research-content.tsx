@@ -540,7 +540,11 @@ export function ResearchContent() {
 
             {/* sticky scroll-spy index (right) */}
             <aside className="hidden lg:block">
-                <nav className="sticky top-28 border-l border-[var(--color-line)]">
+                {/* GNB(--nav-h) + 그룹 스티키 인덱스(58) 아래에 고정 */}
+                <nav
+                    style={{ top: "calc(var(--nav-h, 84px) + 74px)" }}
+                    className="sticky border-l border-[var(--color-line)]"
+                >
                     {NAV.map((n) => (
                         <a
                             key={n.id}

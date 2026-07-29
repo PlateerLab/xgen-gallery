@@ -26,7 +26,7 @@ import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
-import { ArchIndex } from "@/components/arch-index";
+import { SectionIndex } from "@/components/section-index";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -82,7 +82,7 @@ const STATS: { n: string; label: string; sub: string }[] = [
 ];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
-/** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(ArchIndex 공용). */
+/** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(SectionIndex 공용). */
 const PRODUCT_SECTIONS = [
     { id: "platform", label: "제품 개요" },
     { id: "value", label: "도입 효과" },
@@ -585,7 +585,7 @@ export default function ProductPage() {
                 </div>
             </section>
 
-            <ArchIndex sections={PRODUCT_SECTIONS} />
+            <SectionIndex sections={PRODUCT_SECTIONS} />
 
             <main>
                 {/* 문제 제기 — 브로셔 오프너 */}
@@ -670,7 +670,7 @@ export default function ProductPage() {
                 {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
                     id="platform"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -791,7 +791,7 @@ export default function ProductPage() {
                 {/* 도입 효과 — 의사결정자 관점 before → after (검증된 서사 기반) */}
                 <section
                     id="value"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -932,7 +932,7 @@ export default function ProductPage() {
                 {/* Features */}
                 <section
                     id="features"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1042,7 +1042,7 @@ export default function ProductPage() {
                 {/* 핵심 기술 — 검증된 오픈 기술 위, 벤더 종속 없이 (4계층) */}
                 <section
                     id="core-tech"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1081,7 +1081,7 @@ export default function ProductPage() {
                 {/* Roles — 역할별 경험 (제품 사용 관점: 신뢰 블록 앞에 배치) */}
                 <section
                     id="roles"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1119,7 +1119,7 @@ export default function ProductPage() {
                 {/* On-Premise */}
                 <section
                     id="on-premise"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1165,7 +1165,7 @@ export default function ProductPage() {
                 {/* 도입·구축 — 반입에서 운영까지(온프레미스 딜리버리) */}
                 <section
                     id="deployment"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1231,7 +1231,7 @@ export default function ProductPage() {
                 {/* Governance — Enterprise Trust (다크 밴드: 신뢰의 포컬 포인트) */}
                 <section
                     id="governance"
-                    className="relative scroll-mt-[140px] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
+                    className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
                 >
                     {/* 배경 글로우 — 다크 밴드에 깊이감 */}
                     <div
@@ -1298,7 +1298,7 @@ export default function ProductPage() {
                 {/* Certifications & Quality — 국가 공인 품질/신뢰성 인증(구 /solutions#certification 이전) */}
                 <section
                     id="certification"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1335,7 +1335,7 @@ export default function ProductPage() {
                 {/* 고객사례 — 최근 3건 + /customers 연계 */}
                 <section
                     id="cases"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                 >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -1430,7 +1430,7 @@ export default function ProductPage() {
                 {/* FAQ */}
                 <section
                     id="faq"
-                    className="scroll-mt-[140px] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                 >
                     <div className="mx-auto max-w-4xl px-6 py-24">
                         <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
