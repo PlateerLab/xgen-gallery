@@ -721,7 +721,7 @@ Internal Server Error
   var CRIT={'사용자 / 접근제어':0,'AI 거버넌스':0,'시스템 상태':0,'Agent 제작':0};
   function nz(s){return (s||'').normalize('NFC').trim();}
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
-  function keyOf(c){return nz(c.scope)+'|'+nz(c.menu)+'|'+nz(c.action);}
+  function keyOf(c){return nz(c.scope)+'|'+nz(c.category)+'|'+nz(c.menu)+'|'+nz(c.action);}
   function rowEl(c){
     var tr=document.createElement('tr');tr.setAttribute('data-id',c.id);
     var oc=c.outcome||'미실행'; var cls={pass:'pass',fail:'fail',warn:'warn'}[oc]||'na';
