@@ -83,6 +83,22 @@ jobs:
             sed -i '/^BROCHURE_WEBHOOK_URL=/d' .env
             echo "  → BROCHURE_WEBHOOK_URL: 시크릿 미설정 → .env에서 제거(소개서는 DEMO 웹앱으로 폴백)"
           fi
+          echo "=== guard: /qa-console 색인 차단 유지 확인 ==="
+          # 내부용 QA 콘솔이 검색엔진에 노출되면 되돌리기 어렵다(색인 제거까지 수일).
+          # index.html은 손으로 재작성되는 파일이라 meta가 쉽게 지워지므로,
+          # 빌드 전에 3중 방어가 모두 살아있는지 확인하고 하나라도 빠지면 배포를 멈춘다.
+          qa_guard_fail=0
+          grep -q '"/qa-console/"' frontend/src/app/robots.ts \
+            || { echo "  ✗ robots.ts: PRIVATE_PATHS에 /qa-console/ 없음"; qa_guard_fail=1; }
+          grep -q "qa-console/:path\*" frontend/next.config.ts \
+            || { echo "  ✗ next.config.ts: /qa-console X-Robots-Tag 헤더 없음"; qa_guard_fail=1; }
+          grep -qi 'name="robots"[^>]*noindex' frontend/public/qa-console/index.html \
+            || { echo "  ✗ qa-console/index.html: meta robots noindex 없음(재작성 시 유실됨)"; qa_guard_fail=1; }
+          if [ "$qa_guard_fail" = "1" ]; then
+            echo "배포 중단 — /qa-console 색인 차단이 깨졌다. 위 항목을 복구한 뒤 다시 배포하세요."
+            exit 1
+          fi
+          echo "  robots.txt + X-Robots-Tag + meta noindex ✓"
           echo "=== rebuilding ==="
           docker compose up -d --build
           docker image prune -f
@@ -96,3 +112,12 @@ jobs:
           sleep 10
           curl -sSf -o /dev/null -w "backend=%{http_code} " --max-time 10 http://localhost:8800/health
           curl -sSf -o /dev/null -w "frontend=%{http_code}\n" --max-time 10 http://localhost:3100/
+          echo "=== verify: /qa-console 색인 차단이 실제 응답에 반영됐는지 ==="
+          # 정적 검사만으론 부족 — 실제로 내려가는 헤더·robots.txt를 확인한다.
+          curl -s --max-time 10 http://localhost:3100/robots.txt | grep -q '^Disallow: /qa-console/' \
+            && echo "  robots.txt Disallow ✓" \
+            || { echo "  robots.txt에 /qa-console/ Disallow 없음 ✗"; exit 1; }
+          curl -sI --max-time 10 http://localhost:3100/qa-console/index.html \
+            | grep -qi '^x-robots-tag:.*noindex' \
+            && echo "  X-Robots-Tag noindex ✓" \
+            || { echo "  /qa-console/index.html 응답에 X-Robots-Tag noindex 없음 ✗"; exit 1; }
