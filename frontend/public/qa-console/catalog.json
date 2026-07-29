@@ -1,8 +1,9 @@
 {
  "env": "stg",
  "source": "permission-taxonomy.ts (stage)",
- "total": 255,
+ "total": 267,
  "byScope": {
+  "시나리오": 12,
   "공통": 7,
   "MAIN": 119,
   "ADMIN": 129
@@ -2555,6 +2556,126 @@
    "action": "업로드/다운로드",
    "id": "TC-ADM-129",
    "desc": "지식 운영 · 컬렉션 관리 — 파일 업로드/다운로드 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "SC-001",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "B2B SNS 자동화 에이전트(RAG) 구축",
+   "action": "시나리오",
+   "desc": "지식 컬렉션 생성 → SNS 콘텐츠 문서 업로드 → 임베딩/인덱싱 → Agent 설계 빈 캔버스 → 문서 로더+에이전트 노드 추가·포트 연결 → 프롬프트 구성 → 저장 → 배포 → 채팅 실행·응답/인용 검증",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-002",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "빈 캔버스 워크플로우 작성",
+   "action": "시나리오",
+   "desc": "Agent 설계 → 빈 캔버스로 시작 → 시작/에이전트/종료 노드 추가 → 노드 데이터 선택·포트 연결 → 저장 → 에이전트 시작(실행)",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-003",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "대화로 워크플로우 생성",
+   "action": "시나리오",
+   "desc": "Agent 설계 → 대화로 워크플로우 생성 → 요구사항 입력 → 자동 생성된 워크플로우 검토 → 저장",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-004",
+   "scope": "시나리오",
+   "category": "에이전트 구축",
+   "menu": "Agent 템플릿으로 시작",
+   "action": "시나리오",
+   "desc": "Agent 설계 → 템플릿 선택 → 파라미터 수정 → 저장 → 실행",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-005",
+   "scope": "시나리오",
+   "category": "에이전트 라이프사이클",
+   "menu": "에이전트 생성→배포→실행→삭제",
+   "action": "시나리오",
+   "desc": "Agent 생성하기 → 편집·저장 → 복제 → 배포 요청 → 이중 승인 → 목록에서 실행 → 보관 → 삭제(정리)",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-006",
+   "scope": "시나리오",
+   "category": "RAG 파이프라인",
+   "menu": "지식 컬렉션 RAG 구성·질의",
+   "action": "시나리오",
+   "desc": "지식 컬렉션 생성 → 문서 업로드 → 임베딩/인덱싱 → 검색 질의 → 인용 출처 점프 확인",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-007",
+   "scope": "시나리오",
+   "category": "RAG 파이프라인",
+   "menu": "파일 저장소·DB 연동 RAG",
+   "action": "시나리오",
+   "desc": "파일 저장소 업로드/다운로드 → DB 연동 연결 테스트 → 에이전트에 지식 소스 연결 → 실행",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-008",
+   "scope": "시나리오",
+   "category": "도구 연동",
+   "menu": "외부 API 도구 연동",
+   "action": "시나리오",
+   "desc": "API 도구 등록 → 인증 프로필 생성·연결 → 연결 테스트 → 에이전트 노드에 도구 연결 → 실행",
+   "outcome": "미실행",
+   "persona": "dev"
+  },
+  {
+   "id": "SC-009",
+   "scope": "시나리오",
+   "category": "거버넌스",
+   "menu": "배포 거버넌스 흐름",
+   "action": "시나리오",
+   "desc": "통제 정책(PII·금칙어·위험등급) 설정 → 에이전트 배포 요청 → AI 위험도 평가 → 승인/반려 → 점검 이력·서비스 변경 이력 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "SC-010",
+   "scope": "시나리오",
+   "category": "사용자/권한",
+   "menu": "역할·권한 부여 흐름",
+   "action": "시나리오",
+   "desc": "역할 생성 → 권한 설정(MAIN/ADMIN) → 사용자에 역할 할당 → 로그인 → 접근 범위(사이드바 노출) 검증",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "SC-011",
+   "scope": "시나리오",
+   "category": "채팅 실행",
+   "menu": "에이전트 채팅 대화",
+   "action": "시나리오",
+   "desc": "채팅 시작 → 에이전트플로우 선택 → 프롬프트 전송 → 응답 수신 → 인용 확인 → 이력 저장·재조회",
+   "outcome": "미실행",
+   "persona": "all"
+  },
+  {
+   "id": "SC-012",
+   "scope": "시나리오",
+   "category": "운영 모니터링",
+   "menu": "운영 모니터링·피드백",
+   "action": "시나리오",
+   "desc": "Agent 관리 조회 → 채팅 모니터링 → 사용자 피드백 확인 → 응답 품질 평가 → Agent 리텐션 분석",
    "outcome": "미실행",
    "persona": "admin"
   }

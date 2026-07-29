@@ -300,6 +300,8 @@
 
   .freset{color:var(--muted)}
   .freset:hover{color:var(--accent);border-color:var(--accent)}
+
+  .scpb.scn{background:#efe7fd;color:#783ced}
 </style>
 </head>
 <body>
@@ -460,13 +462,13 @@
         <div class="tbar">
           <div class="fset">
             <select class="fsel"><option>페르소나 · 전체</option><option>일반 사용자</option><option>에이전트 개발자</option><option>시스템 관리자</option><option>거버넌스 담당자</option></select>
-            <select class="fsel"><option>스코프 · 전체</option><option>공통 · 권한 무관 (Agent 채팅·Teams)</option><option>에이전트 작업실 (MAIN)</option><option>관리설정 (ADMIN)</option></select>
-            <select class="fsel"><option>액션 · 전체</option><option>조회</option><option>생성</option><option>수정</option><option>삭제</option><option>저장</option><option>전환</option><option>일괄</option><option>업로드/다운로드</option><option>내보내기</option><option>연결·테스트</option><option>실행</option><option>배포·승인</option><option>공유</option><option>전송</option><option>캔버스</option></select>
+            <select class="fsel"><option>스코프 · 전체</option><option>시나리오 (E2E 플로우)</option><option>공통 · 권한 무관 (Agent 채팅·Teams)</option><option>에이전트 작업실 (MAIN)</option><option>관리설정 (ADMIN)</option></select>
+            <select class="fsel"><option>액션 · 전체</option><option>조회</option><option>생성</option><option>수정</option><option>삭제</option><option>저장</option><option>전환</option><option>일괄</option><option>업로드/다운로드</option><option>내보내기</option><option>연결·테스트</option><option>실행</option><option>배포·승인</option><option>공유</option><option>전송</option><option>캔버스</option><option>시나리오</option></select>
             <select class="fsel"><option>우선순위 · 전체</option><option>0 (필수)</option><option>1</option><option>2</option></select>
             <select class="fsel"><option>상태 · 전체</option><option>PASS</option><option>FAIL</option><option>WARN</option><option>미실행</option></select>
             <input class="fsearch" placeholder="기능·엔드포인트 검색">
           </div>
-          <div class="tact"><span>선택 <b class="mono">1</b>건</span><button class="btn sm">실패만 실행</button><button class="btn primary sm">▶ 선택 실행</button></div>
+          <div class="tact"><span>선택 <b class="mono">1</b>건</span><button class="btn sm">실패만 실행</button><button class="btn sm" id="csvlog">⭳ 로그(CSV)</button><button class="btn primary sm">▶ 선택 실행</button></div>
         </div>
         <div class="split">
           <div class="card">
@@ -714,7 +716,7 @@ Internal Server Error
 <script data-feature="qa-realdata">
 (function(){
   var table=document.querySelector('table.cases'); if(!table) return;
-  var SCLS={ADMIN:'admin',MAIN:'main','공통':'base'};
+  var SCLS={ADMIN:'admin',MAIN:'main','공통':'base','시나리오':'scn'};
   var PER={admin:'관리자',gov:'거버넌스',user:'일반',dev:'개발자',all:'공통'};
   var CRIT={'사용자 / 접근제어':0,'AI 거버넌스':0,'시스템 상태':0,'Agent 제작':0};
   function nz(s){return (s||'').normalize('NFC').trim();}
@@ -897,6 +899,28 @@ Internal Server Error
     else{ // 폴백: 전체 표시
       Array.prototype.slice.call(document.querySelectorAll('table.cases tbody tr[data-id]')).forEach(function(tr){tr.style.display='';});
     }
+  });
+})();
+</script>
+<script data-feature="csv-export">
+(function(){
+  document.addEventListener('click',function(e){var b=e.target.closest('#csvlog'); if(!b)return;
+    var t=document.querySelector('table.cases'); if(!t)return;
+    var head=['케이스ID','스코프','대분류','메뉴','액션','목적(맥락)','상태','대상/에러','페르소나'];
+    function esc(s){s=(s==null?'':String(s)); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+    var lines=[head.join(',')];
+    Array.prototype.slice.call(t.querySelectorAll('tbody tr[data-id]')).forEach(function(tr){
+      var c=tr.cells;
+      var row=[tr.dataset.id, (tr.querySelector('.scpb')||{}).textContent||'', (c[3]||{}).textContent||'', (c[4]||{}).textContent||'',
+        (tr.querySelector('.atype')||{}).textContent||'', (tr.querySelector('.actx')||{}).textContent||'',
+        (tr.querySelector('td:last-child .chip')||{}).textContent||'', (c[7]||{}).textContent||'', (c[8]||{}).textContent||''];
+      lines.push(row.map(function(x){return esc((x||'').trim());}).join(','));
+    });
+    var blob=new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    var d=new Date(); function z(n){return(n<10?'0':'')+n;}
+    a.download='xgen-qa-test-log_'+z(d.getMonth()+1)+z(d.getDate())+'_'+z(d.getHours())+z(d.getMinutes())+'.csv';
+    document.body.appendChild(a); a.click(); a.remove();
   });
 })();
 </script>
