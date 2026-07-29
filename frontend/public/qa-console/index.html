@@ -208,7 +208,7 @@
   .atype.deploy{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line-strong))}
   .atype.bulk{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,var(--line-strong))}
 
-  table.cases td.actx{font-size:11px;white-space:nowrap}
+  table.cases td.actx{font-size:11px;color:var(--muted);white-space:normal;max-width:240px;line-height:1.4}
   td.actx.r{color:var(--faint)}  td.actx.w{color:var(--muted)}  td.actx.d{color:var(--fail);font-weight:550}
 
   .app{transition:grid-template-columns .18s ease}
@@ -728,7 +728,7 @@ Internal Server Error
       +'<td class="cat">'+esc(r.category)+'</td>'
       +'<td class="fn2">'+esc(r.menu)+'</td>'
       +'<td><span class="atype">'+esc(r.action)+'</span></td>'
-      +'<td class="actx r">읽기 · 부작용 없음</td>'
+      +'<td class="actx" title="'+esc(r.desc||'')+'">'+esc(r.desc||'—')+'</td>'
       +'<td class="tgt">사이드바 진입 · 조회'+(r.error?(' · '+esc(r.error)):'')+'</td>'
       +'<td>'+(PER[r.persona]||r.persona)+'</td>'
       +'<td style="text-align:center" class="mono">'+pr+'</td>'
