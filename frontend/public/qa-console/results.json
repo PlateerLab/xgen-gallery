@@ -1,11 +1,11 @@
 {
- "env": "dev",
- "base": "https://dev-xgen.x2bee.com",
- "ranAt": "2026-07-29T06:22:45.860Z",
- "total": 27,
+ "env": "stg",
+ "base": "https://stg-xgen.x2bee.com",
+ "ranAt": "2026-07-29T06:46:35.746Z",
+ "total": 28,
  "pass": 25,
  "fail": 1,
- "warn": 1,
+ "warn": 2,
  "results": [
   {
    "id": "TC-CHT-001",
@@ -14,10 +14,10 @@
    "category": "Agent 채팅",
    "menu": "채팅 시작",
    "action": "조회",
-   "ms": 4658,
+   "ms": 4687,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-CHT-001.png"
+   "shot": ""
   },
   {
    "id": "TC-CHT-002",
@@ -26,7 +26,7 @@
    "category": "Agent 채팅",
    "menu": "현재 채팅",
    "action": "조회",
-   "ms": 2069,
+   "ms": 2146,
    "outcome": "warn",
    "error": "본문 렌더 미흡(23chars)",
    "shot": "shots/TC-CHT-002.png"
@@ -38,10 +38,10 @@
    "category": "Agent 채팅",
    "menu": "채팅 이력",
    "action": "조회",
-   "ms": 2064,
+   "ms": 2049,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-CHT-003.png"
+   "shot": ""
   },
   {
    "id": "TC-TMS-001",
@@ -50,10 +50,22 @@
    "category": "Teams",
    "menu": "Teams",
    "action": "조회",
-   "ms": 1651,
+   "ms": 1625,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-TMS-001.png"
+   "shot": ""
+  },
+  {
+   "id": "TC-CHT-EXEC",
+   "persona": "all",
+   "scope": "공통",
+   "category": "Agent 채팅",
+   "menu": "에이전트 실행",
+   "action": "실행",
+   "ms": 14363,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-DEV-201",
@@ -62,10 +74,10 @@
    "category": "Agent 제작",
    "menu": "Agent 설계",
    "action": "조회",
-   "ms": 4570,
+   "ms": 2066,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-201.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-202",
@@ -74,10 +86,10 @@
    "category": "Agent 제작",
    "menu": "Agent 목록",
    "action": "조회",
-   "ms": 2068,
+   "ms": 2062,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-202.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-203",
@@ -86,10 +98,10 @@
    "category": "Agent 제작",
    "menu": "Agent 운영 설정",
    "action": "조회",
-   "ms": 2060,
+   "ms": 2047,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-203.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-204",
@@ -98,10 +110,10 @@
    "category": "Agent 제작",
    "menu": "Agent 품질 평가",
    "action": "조회",
-   "ms": 2073,
+   "ms": 2046,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-204.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-205",
@@ -110,10 +122,10 @@
    "category": "Agent 제작",
    "menu": "Agent 프롬프트",
    "action": "조회",
-   "ms": 2060,
+   "ms": 2047,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-205.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-210",
@@ -122,10 +134,10 @@
    "category": "도구 연동",
    "menu": "API 도구",
    "action": "조회",
-   "ms": 2077,
+   "ms": 2030,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-210.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-211",
@@ -134,10 +146,10 @@
    "category": "도구 연동",
    "menu": "인증 프로필",
    "action": "조회",
-   "ms": 2076,
+   "ms": 2049,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-211.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-220",
@@ -146,10 +158,10 @@
    "category": "지식관리",
    "menu": "지식 컬렉션",
    "action": "조회",
-   "ms": 2082,
+   "ms": 2059,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-220.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-221",
@@ -158,10 +170,10 @@
    "category": "지식관리",
    "menu": "파일 저장소",
    "action": "조회",
-   "ms": 2070,
+   "ms": 2035,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-221.png"
+   "shot": ""
   },
   {
    "id": "TC-DEV-222",
@@ -170,10 +182,10 @@
    "category": "지식관리",
    "menu": "DB 연동",
    "action": "조회",
-   "ms": 2062,
+   "ms": 2057,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-DEV-222.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-101",
@@ -182,10 +194,10 @@
    "category": "사용자 / 접근제어",
    "menu": "사용자 관리",
    "action": "조회",
-   "ms": 4733,
+   "ms": 4507,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-101.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-102",
@@ -194,10 +206,10 @@
    "category": "사용자 / 접근제어",
    "menu": "역할/권한 관리",
    "action": "조회",
-   "ms": 2077,
+   "ms": 2034,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-102.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-103",
@@ -206,10 +218,10 @@
    "category": "Agent 운영",
    "menu": "Agent 관리",
    "action": "조회",
-   "ms": 2083,
+   "ms": 2033,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-103.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-104",
@@ -218,7 +230,7 @@
    "category": "Agent 운영",
    "menu": "채팅 모니터링",
    "action": "조회",
-   "ms": 2086,
+   "ms": 2087,
    "outcome": "fail",
    "error": "에러 바운더리 감지",
    "shot": "shots/TC-ADM-104.png"
@@ -230,10 +242,10 @@
    "category": "Agent 운영",
    "menu": "사용자 피드백",
    "action": "조회",
-   "ms": 2075,
+   "ms": 2056,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-105.png"
+   "shot": ""
   },
   {
    "id": "TC-GOV-106",
@@ -242,10 +254,10 @@
    "category": "AI 거버넌스",
    "menu": "AI 위험도 평가",
    "action": "조회",
-   "ms": 2153,
+   "ms": 2049,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-GOV-106.png"
+   "shot": ""
   },
   {
    "id": "TC-GOV-107",
@@ -254,10 +266,10 @@
    "category": "AI 거버넌스",
    "menu": "통제 정책 관리",
    "action": "조회",
-   "ms": 2137,
+   "ms": 2036,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-GOV-107.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-108",
@@ -266,9 +278,9 @@
    "category": "환경 설정",
    "menu": "전체 설정",
    "action": "조회",
-   "ms": 2120,
-   "outcome": "pass",
-   "error": "",
+   "ms": 2109,
+   "outcome": "warn",
+   "error": "본문 렌더 미흡(46chars)",
    "shot": "shots/TC-ADM-108.png"
   },
   {
@@ -278,10 +290,10 @@
    "category": "시스템 상태",
    "menu": "시스템 모니터링",
    "action": "조회",
-   "ms": 2116,
+   "ms": 2034,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-109.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-110",
@@ -290,10 +302,10 @@
    "category": "데이터 관리",
    "menu": "데이터베이스",
    "action": "조회",
-   "ms": 2120,
+   "ms": 2054,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-110.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-111",
@@ -302,10 +314,10 @@
    "category": "MCP 관리",
    "menu": "MCP 라이브러리",
    "action": "조회",
-   "ms": 2115,
+   "ms": 2031,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-111.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-112",
@@ -314,10 +326,10 @@
    "category": "서비스 운영",
    "menu": "공지 게시판",
    "action": "조회",
-   "ms": 2114,
+   "ms": 2053,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-112.png"
+   "shot": ""
   },
   {
    "id": "TC-ADM-113",
@@ -326,10 +338,10 @@
    "category": "지식 운영",
    "menu": "지식 컬렉션 관리",
    "action": "조회",
-   "ms": 2117,
+   "ms": 2051,
    "outcome": "pass",
    "error": "",
-   "shot": "shots/TC-ADM-113.png"
+   "shot": ""
   }
  ]
 }

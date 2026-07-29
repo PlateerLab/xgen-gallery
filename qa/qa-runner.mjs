@@ -29,6 +29,9 @@ const CASES = [
   { id: 'TC-CHT-002', persona: 'all', scope: '공통', category: 'Agent 채팅', menu: '현재 채팅', action: '조회', nav: 'main' },
   { id: 'TC-CHT-003', persona: 'all', scope: '공통', category: 'Agent 채팅', menu: '채팅 이력', action: '조회', nav: 'main' },
   { id: 'TC-TMS-001', persona: 'all', scope: '공통', category: 'Teams', menu: 'Teams', action: '조회', nav: 'teams' },
+  // ── 에이전트 실행(채팅) — 샘플 프롬프트 생성해 실제 실행·응답 검증 ──
+  { id: 'TC-CHT-EXEC', persona: 'all', scope: '공통', category: 'Agent 채팅', menu: '에이전트 실행', action: '실행', nav: 'chatexec',
+    prompt: '안녕하세요. XGEN QA 자동 점검입니다. 이 에이전트의 역할을 한 문장으로 소개해 주세요.' },
   // ── 에이전트 작업실(MAIN) — 에이전트 개발자 ──
   { id: 'TC-DEV-201', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 설계', action: '조회', nav: 'main' },
   { id: 'TC-DEV-202', persona: 'dev', scope: 'MAIN', category: 'Agent 제작', menu: 'Agent 목록', action: '조회', nav: 'main' },
@@ -80,9 +83,37 @@ async function gotoApp(page, app) {
   const seg = app === 'admin' ? '/admin' : '/main';
   if (_curApp !== app || !page.url().includes(seg)) {
     await page.goto(BASE + seg, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForTimeout(2400);
+    // 사이드바(버튼)가 충분히 렌더될 때까지 대기 — stg 슬로우 대응
+    try { await page.waitForFunction(() => document.querySelectorAll('button').length > 20, { timeout: 15000 }); } catch {}
+    await page.waitForTimeout(1200);
     _curApp = app;
   }
+}
+
+// 에이전트 실행(채팅) — 첫 에이전트플로우를 골라 생성한 프롬프트를 전송하고 응답 수신 검증
+async function chatExec(page, prompt) {
+  _curApp = ''; // 채팅 화면 진입은 매번 새로
+  await gotoApp(page, 'main');
+  await clickWait(page, 'Agent 채팅');
+  await page.waitForTimeout(300);
+  await clickWait(page, '채팅 시작');      // → 에이전트플로우 선택(new-chat)
+  await page.waitForTimeout(2200);
+  const started = await page.evaluate(() => {
+    const m = document.querySelector('main');
+    const b = [...m.querySelectorAll('button')].find((x) => x.textContent.trim() === '채팅 시작' && x.offsetParent);
+    if (b) { b.click(); return true; } return false;
+  });
+  if (!started) throw new Error('실행할 에이전트플로우 없음');
+  await page.waitForSelector('textarea', { timeout: 15000 });
+  const ta = await page.$('textarea');
+  await ta.fill(prompt);
+  await ta.press('Enter');
+  for (let i = 0; i < 20; i++) {              // 응답 수신 대기(최대 ~40s)
+    await page.waitForTimeout(2000);
+    const txt = await page.evaluate(() => (document.querySelector('main') || document.body).innerText);
+    if (/AI가 생성한|생성한 참고|답변/.test(txt)) return true;
+  }
+  return false;
 }
 
 (async () => {
@@ -104,26 +135,34 @@ async function gotoApp(page, app) {
     const t0 = Date.now();
     let outcome = 'pass', error = '', shot = '';
     try {
-      if (nav === 'admin' || nav === 'main') {
-        await gotoApp(page, nav === 'admin' ? 'admin' : 'main');
-        await clickWait(page, category);            // 카테고리 펼침
-        await page.waitForTimeout(400);
-        if (!(await clickWait(page, menu))) throw new Error('메뉴 버튼 없음: ' + menu);
-      } else if (nav === 'teams') {
-        await gotoApp(page, 'main');
-        if (!(await clickWait(page, menu))) throw new Error('버튼 없음: ' + menu);
+      if (nav === 'chatexec') {
+        const got = await chatExec(page, cs.prompt);
+        if (!got) { outcome = 'fail'; error = '에이전트 응답 미수신'; }
+      } else {
+        if (nav === 'admin' || nav === 'main') {
+          await gotoApp(page, nav === 'admin' ? 'admin' : 'main');
+          await clickWait(page, category);            // 카테고리 펼침
+          await page.waitForTimeout(400);
+          if (!(await clickWait(page, menu))) throw new Error('메뉴 버튼 없음: ' + menu);
+        } else if (nav === 'teams') {
+          await gotoApp(page, 'main');
+          if (!(await clickWait(page, menu))) throw new Error('버튼 없음: ' + menu);
+        }
+        await page.waitForTimeout(1600);
+        const info = await page.evaluate(() => {
+          const main = document.querySelector('main') || document.body;
+          const txt = main.innerText || '';
+          const err = /문제가 발생|오류가 발생|Something went wrong|Error:/.test(txt);
+          return { len: txt.length, err };
+        });
+        if (info.err) { outcome = 'fail'; error = '에러 바운더리 감지'; }
+        else if (info.len < 60) { outcome = 'warn'; error = `본문 렌더 미흡(${info.len}chars)`; }
       }
-      await page.waitForTimeout(1600);
-      const info = await page.evaluate(() => {
-        const main = document.querySelector('main') || document.body;
-        const txt = main.innerText || '';
-        const err = /문제가 발생|오류가 발생|Something went wrong|Error:/.test(txt);
-        return { len: txt.length, err };
-      });
-      shot = `shots/${id}.png`;
-      await page.screenshot({ path: path.join(OUT, shot), fullPage: false });
-      if (info.err) { outcome = 'fail'; error = '에러 바운더리 감지'; }
-      else if (info.len < 60) { outcome = 'warn'; error = `본문 렌더 미흡(${info.len}chars)`; }
+      // 문제(실패/주의)일 때만 증적 캡처 — 통과는 캡처하지 않음
+      if (outcome !== 'pass') {
+        shot = `shots/${id}.png`;
+        await page.screenshot({ path: path.join(OUT, shot), fullPage: false });
+      }
     } catch (e) {
       outcome = 'fail'; error = String(e.message || e);
       try { shot = `shots/${id}.png`; await page.screenshot({ path: path.join(OUT, shot) }); } catch {}
