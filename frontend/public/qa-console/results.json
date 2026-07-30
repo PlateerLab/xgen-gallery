@@ -1,10 +1,10 @@
 {
  "env": "dev",
  "base": "https://dev-xgen.x2bee.com",
- "ranAt": "2026-07-29T22:05:22.745Z",
+ "ranAt": "2026-07-30T22:50:54.079Z",
  "total": 57,
- "pass": 25,
- "fail": 31,
+ "pass": 0,
+ "fail": 56,
  "warn": 0,
  "results": [
   {
@@ -15,10 +15,10 @@
    "menu": "채팅 시작",
    "action": "조회",
    "desc": "채팅 시작 화면 진입 확인",
-   "ms": 7494,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45195,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-001.png"
   },
   {
    "id": "TC-CMN-003",
@@ -28,10 +28,10 @@
    "menu": "채팅 이력",
    "action": "조회",
    "desc": "채팅 이력 조회 확인",
-   "ms": 2021,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45197,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-003.png"
   },
   {
    "id": "TC-CMN-006",
@@ -41,10 +41,10 @@
    "menu": "Teams",
    "action": "조회",
    "desc": "Teams 진입 확인",
-   "ms": 1607,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 40648,
+   "outcome": "fail",
+   "error": "버튼 없음: Teams",
+   "shot": "shots/TC-CMN-006.png"
   },
   {
    "id": "TC-CMN-004",
@@ -54,10 +54,10 @@
    "menu": "에이전트 실행",
    "action": "실행",
    "desc": "에이전트 실행: 프롬프트→응답 수신 확인",
-   "ms": 8720,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45218,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-004.png"
   },
   {
    "id": "SC-009",
@@ -67,10 +67,10 @@
    "menu": "에이전트 채팅 대화",
    "action": "시나리오",
    "desc": "채팅 시작→에이전트 선택→프롬프트 전송→응답 수신 E2E",
-   "ms": 6767,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45195,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-009.png"
   },
   {
    "id": "SC-006",
@@ -80,10 +80,10 @@
    "menu": "지식 컬렉션 RAG 구성·질의",
    "action": "시나리오",
    "desc": "지식 컬렉션 생성→검증→정리 RAG 파이프라인 준비 E2E(자동 정리)",
-   "ms": 14267,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-006.png"
   },
   {
    "id": "SC-003",
@@ -93,10 +93,10 @@
    "menu": "대화로 워크플로우 생성",
    "action": "시나리오",
    "desc": "Agent 설계 대화형 워크플로우 생성 E2E",
-   "ms": 10433,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-003.png"
   },
   {
    "id": "SC-001",
@@ -106,10 +106,10 @@
    "menu": "B2B SNS 자동화 에이전트(RAG) 구축",
    "action": "시나리오",
    "desc": "B2B SNS RAG 에이전트 대화형 구축 E2E",
-   "ms": 10421,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45197,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-001.png"
   },
   {
    "id": "TC-MAIN-052",
@@ -119,9 +119,9 @@
    "menu": "새 컬렉션 생성",
    "action": "생성",
    "desc": "새 컬렉션 실제 생성(자동 정리 포함) 확인",
-   "ms": 10042,
+   "ms": 49859,
    "outcome": "fail",
-   "error": "생성 미확인",
+   "error": "지식 컬렉션 화면 없음",
    "shot": ""
   },
   {
@@ -144,10 +144,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4972,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45204,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-001.png"
   },
   {
    "id": "TC-MAIN-002",
@@ -156,10 +156,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "새 에이전트 생성",
    "action": "생성",
-   "ms": 4976,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-002.png"
   },
   {
    "id": "TC-MAIN-003",
@@ -168,10 +168,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "편집",
    "action": "수정",
-   "ms": 4966,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45196,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-003.png"
   },
   {
    "id": "TC-MAIN-004",
@@ -180,10 +180,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "복제",
    "action": "복제",
-   "ms": 4962,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-004.png"
   },
   {
    "id": "TC-MAIN-005",
@@ -192,10 +192,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "실행",
    "action": "실행",
-   "ms": 4955,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45200,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-005.png"
   },
   {
    "id": "TC-MAIN-006",
@@ -204,10 +204,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "삭제",
    "action": "삭제",
-   "ms": 4953,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45196,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-006.png"
   },
   {
    "id": "TC-MAIN-009",
@@ -216,10 +216,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 4951,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-009.png"
   },
   {
    "id": "TC-MAIN-010",
@@ -228,10 +228,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "검색",
    "action": "조회",
-   "ms": 4966,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45197,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-010.png"
   },
   {
    "id": "TC-MAIN-011",
@@ -240,10 +240,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "보관함 조회",
    "action": "조회",
-   "ms": 4965,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-011.png"
   },
   {
    "id": "TC-MAIN-012",
@@ -252,10 +252,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "템플릿 조회",
    "action": "조회",
-   "ms": 4958,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-012.png"
   },
   {
    "id": "TC-MAIN-025",
@@ -264,10 +264,10 @@
    "category": "Agent 제작 · Agent 기획",
    "menu": "기획서 조회",
    "action": "조회",
-   "ms": 4956,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-025.png"
   },
   {
    "id": "TC-MAIN-028",
@@ -276,10 +276,10 @@
    "category": "Agent 제작 · Agent 운영 설정",
    "menu": "운영 설정 조회",
    "action": "조회",
-   "ms": 4971,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-028.png"
   },
   {
    "id": "TC-MAIN-031",
@@ -288,10 +288,10 @@
    "category": "Agent 제작 · Agent 품질 평가",
    "menu": "평가 지표 조회",
    "action": "조회",
-   "ms": 4982,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-031.png"
   },
   {
    "id": "TC-MAIN-033",
@@ -300,10 +300,10 @@
    "category": "Agent 제작 · Agent 프롬프트",
    "menu": "프롬프트 목록 조회",
    "action": "조회",
-   "ms": 4967,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45198,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-033.png"
   },
   {
    "id": "TC-MAIN-039",
@@ -312,10 +312,10 @@
    "category": "도구 연동 · API 도구",
    "menu": "도구 목록 조회",
    "action": "조회",
-   "ms": 4958,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45197,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-039.png"
   },
   {
    "id": "TC-MAIN-046",
@@ -324,10 +324,10 @@
    "category": "도구 연동 · 인증 프로필",
    "menu": "프로필 목록 조회",
    "action": "조회",
-   "ms": 4959,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45199,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-046.png"
   },
   {
    "id": "TC-MAIN-051",
@@ -336,10 +336,10 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4956,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45212,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-051.png"
   },
   {
    "id": "TC-MAIN-062",
@@ -348,9 +348,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "검색 질의",
    "action": "조회",
-   "ms": 5009,
+   "ms": 45201,
    "outcome": "fail",
-   "error": "기능 노출 안 됨: 검색",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-062.png"
   },
   {
@@ -360,9 +360,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 216,
+   "ms": 45202,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-063.png"
   },
   {
@@ -372,9 +372,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "업로드 이력 조회",
    "action": "조회",
-   "ms": 216,
+   "ms": 45194,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-064.png"
   },
   {
@@ -384,9 +384,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "용어사전 관리",
    "action": "수정",
-   "ms": 232,
+   "ms": 45214,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-065.png"
   },
   {
@@ -396,9 +396,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "온톨로지 구성",
    "action": "수정",
-   "ms": 217,
+   "ms": 45204,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-066.png"
   },
   {
@@ -408,9 +408,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "휴지통 복원",
    "action": "전환",
-   "ms": 217,
+   "ms": 45195,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-067.png"
   },
   {
@@ -420,9 +420,9 @@
    "category": "지식관리 · 파일 저장소",
    "menu": "파일 목록 조회",
    "action": "조회",
-   "ms": 216,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-069.png"
   },
   {
@@ -432,9 +432,9 @@
    "category": "지식관리 · DB 연동",
    "menu": "연결 목록 조회",
    "action": "조회",
-   "ms": 234,
+   "ms": 45196,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/main\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/main\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-MAIN-077.png"
   },
   {
@@ -445,9 +445,9 @@
    "menu": "사용자 관리",
    "action": "조회",
    "desc": "사용자 계정 목록 조회·관리 화면 로드 확인",
-   "ms": 234,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-101.png"
   },
   {
@@ -458,9 +458,9 @@
    "menu": "역할/권한 관리",
    "action": "조회",
    "desc": "역할·권한 관리 화면 로드 확인",
-   "ms": 216,
+   "ms": 45196,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-102.png"
   },
   {
@@ -471,9 +471,9 @@
    "menu": "Agent 관리",
    "action": "조회",
    "desc": "배포 에이전트 운영 목록 조회 확인",
-   "ms": 233,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-103.png"
   },
   {
@@ -484,9 +484,9 @@
    "menu": "채팅 모니터링",
    "action": "조회",
    "desc": "채팅 모니터링 대시보드 로드 확인",
-   "ms": 218,
+   "ms": 45211,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-104.png"
   },
   {
@@ -497,9 +497,9 @@
    "menu": "사용자 피드백",
    "action": "조회",
    "desc": "사용자 피드백 현황 조회 확인",
-   "ms": 232,
+   "ms": 45201,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-105.png"
   },
   {
@@ -510,9 +510,9 @@
    "menu": "AI 위험도 평가",
    "action": "조회",
    "desc": "AI 위험도 평가 화면 로드 확인",
-   "ms": 233,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-GOV-106.png"
   },
   {
@@ -523,9 +523,9 @@
    "menu": "통제 정책 관리",
    "action": "조회",
    "desc": "통제 정책 관리 화면 로드 확인",
-   "ms": 233,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-GOV-107.png"
   },
   {
@@ -536,9 +536,9 @@
    "menu": "전체 설정",
    "action": "조회",
    "desc": "환경 전체 설정 화면 로드 확인",
-   "ms": 234,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-108.png"
   },
   {
@@ -549,9 +549,9 @@
    "menu": "시스템 모니터링",
    "action": "조회",
    "desc": "시스템 상태 모니터링 로드 확인",
-   "ms": 217,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-109.png"
   },
   {
@@ -562,9 +562,9 @@
    "menu": "데이터베이스",
    "action": "조회",
    "desc": "데이터베이스 관리 화면 로드 확인",
-   "ms": 11399,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-110.png"
   },
   {
@@ -575,9 +575,9 @@
    "menu": "MCP 라이브러리",
    "action": "조회",
    "desc": "MCP 라이브러리 조회 확인",
-   "ms": 233,
+   "ms": 45197,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-111.png"
   },
   {
@@ -588,9 +588,9 @@
    "menu": "공지 게시판",
    "action": "조회",
    "desc": "공지 게시판 화면 로드 확인",
-   "ms": 218,
+   "ms": 45219,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-112.png"
   },
   {
@@ -601,9 +601,9 @@
    "menu": "지식 컬렉션 관리",
    "action": "조회",
    "desc": "관리자 지식 컬렉션 운영 화면 로드 확인",
-   "ms": 248,
+   "ms": 45194,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-113.png"
   },
   {
@@ -614,9 +614,9 @@
    "menu": "로그인 관리",
    "action": "조회",
    "desc": "로그인 관리 화면 로드 확인",
-   "ms": 218,
+   "ms": 45200,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-120.png"
   },
   {
@@ -627,9 +627,9 @@
    "menu": "사용자 토큰",
    "action": "조회",
    "desc": "사용자 토큰 사용량·정책 화면 로드 확인",
-   "ms": 216,
+   "ms": 45196,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-121.png"
   },
   {
@@ -640,9 +640,9 @@
    "menu": "노드 관리",
    "action": "조회",
    "desc": "노드 관리 화면 로드 확인",
-   "ms": 233,
+   "ms": 45200,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-122.png"
   },
   {
@@ -653,9 +653,9 @@
    "menu": "프롬프트 템플릿",
    "action": "조회",
    "desc": "프롬프트 템플릿 관리 화면 로드 확인",
-   "ms": 217,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-123.png"
   },
   {
@@ -666,9 +666,9 @@
    "menu": "응답 품질 평가",
    "action": "조회",
    "desc": "응답 품질 평가 화면 로드 확인",
-   "ms": 216,
+   "ms": 45196,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-124.png"
   },
   {
@@ -679,9 +679,9 @@
    "menu": "Agent 리텐션 분석",
    "action": "조회",
    "desc": "Agent 리텐션 분석 화면 로드 확인",
-   "ms": 217,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-125.png"
   },
   {
@@ -692,9 +692,9 @@
    "menu": "로그 조회",
    "action": "조회",
    "desc": "로그 조회 화면 로드 확인",
-   "ms": 218,
+   "ms": 45198,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-126.png"
   },
   {
@@ -705,9 +705,9 @@
    "menu": "점검 이력 관리",
    "action": "조회",
    "desc": "점검 이력 관리 화면 로드 확인",
-   "ms": 232,
+   "ms": 45197,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-GOV-127.png"
   },
   {
@@ -718,9 +718,9 @@
    "menu": "데이터 감사 로그",
    "action": "조회",
    "desc": "데이터 감사 로그 화면 로드 확인",
-   "ms": 217,
+   "ms": 45199,
    "outcome": "fail",
-   "error": "page.goto: net::ERR_CONNECTION_REFUSED at https://dev-xgen.x2bee.com/admin\nCall log:\n  - navigating to \"https://dev-xgen.x2bee.com/admin\", waiting until \"domcontentloaded\"\n",
+   "error": "케이스 타임아웃 45000ms",
    "shot": "shots/TC-ADM-128.png"
   }
  ]
