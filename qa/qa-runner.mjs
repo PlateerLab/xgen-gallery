@@ -56,31 +56,88 @@ const GRAN = [
   G('TC-MAIN-069','지식관리 · 파일 저장소','지식관리','파일 저장소','파일 목록 조회','조회','load'),
   G('TC-MAIN-077','지식관리 · DB 연동','지식관리','DB 연동','연결 목록 조회','조회','load'),
 ];
-const ADMIN = [
-  ['TC-ADM-101','admin','사용자 / 접근제어','사용자 관리','사용자 계정 목록 조회·관리 화면 로드 확인'],
-  ['TC-ADM-102','admin','사용자 / 접근제어','역할/권한 관리','역할·권한 관리 화면 로드 확인'],
-  ['TC-ADM-103','admin','Agent 운영','Agent 관리','배포 에이전트 운영 목록 조회 확인'],
-  ['TC-ADM-104','admin','Agent 운영','채팅 모니터링','채팅 모니터링 대시보드 로드 확인'],
-  ['TC-ADM-105','admin','Agent 운영','사용자 피드백','사용자 피드백 현황 조회 확인'],
-  ['TC-GOV-106','gov','AI 거버넌스','AI 위험도 평가','AI 위험도 평가 화면 로드 확인'],
-  ['TC-GOV-107','gov','AI 거버넌스','통제 정책 관리','통제 정책 관리 화면 로드 확인'],
-  ['TC-ADM-108','admin','환경 설정','전체 설정','환경 전체 설정 화면 로드 확인'],
-  ['TC-ADM-109','admin','시스템 상태','시스템 모니터링','시스템 상태 모니터링 로드 확인'],
-  ['TC-ADM-110','admin','데이터 관리','데이터베이스','데이터베이스 관리 화면 로드 확인'],
-  ['TC-ADM-111','admin','MCP 관리','MCP 라이브러리','MCP 라이브러리 조회 확인'],
-  ['TC-ADM-112','admin','서비스 운영','공지 게시판','공지 게시판 화면 로드 확인'],
-  ['TC-ADM-113','admin','지식 운영','지식 컬렉션 관리','관리자 지식 컬렉션 운영 화면 로드 확인'],
-  // 세분 ADMIN 조회 확대(카탈로그 섹션명과 정합)
-  ['TC-ADM-120','admin','사용자 / 접근제어','로그인 관리','로그인 관리 화면 로드 확인'],
-  ['TC-ADM-121','admin','Agent 운영','사용자 토큰','사용자 토큰 사용량·정책 화면 로드 확인'],
-  ['TC-ADM-122','admin','Agent 운영','노드 관리','노드 관리 화면 로드 확인'],
-  ['TC-ADM-123','admin','Agent 운영','프롬프트 템플릿','프롬프트 템플릿 관리 화면 로드 확인'],
-  ['TC-ADM-124','admin','Agent 운영','응답 품질 평가','응답 품질 평가 화면 로드 확인'],
-  ['TC-ADM-125','admin','Agent 운영','Agent 리텐션 분석','Agent 리텐션 분석 화면 로드 확인'],
-  ['TC-ADM-126','admin','시스템 상태','로그 조회','로그 조회 화면 로드 확인'],
-  ['TC-GOV-127','gov','AI 거버넌스','점검 이력 관리','점검 이력 관리 화면 로드 확인'],
-  ['TC-ADM-128','admin','데이터 관리','데이터 감사 로그','데이터 감사 로그 화면 로드 확인'],
-].map(a=>({id:a[0],persona:a[1],scope:'ADMIN',category:a[2],menu:a[3],action:'조회',nav:'admin',desc:a[4]}));
+// present2: 화면 진입(+ 캔버스/컬렉션 상세/카드 더보기 컨텍스트) 후 기능 진입점(버튼·컨트롤) 노출 검증(비파괴)
+const P2=(id,cat,parentCat,screen,menu,action,key,ctx)=>({id,persona:'dev',scope:'MAIN',category:cat,parentCat,screen,menu,action,nav:'present2',key,ctx,desc:cat+' · '+menu+' — 진입점/컨트롤 노출 검증'});
+const GRAN2 = [
+  P2('TC-MAIN-007','Agent 제작 · Agent 목록','Agent 제작','Agent 목록','공유','공유','공유','agentmore'),
+  P2('TC-MAIN-008','Agent 제작 · Agent 목록','Agent 제작','Agent 목록','배포','배포·승인','배포','agentmore'),
+  P2('TC-MAIN-013','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','빈 캔버스로 시작','생성','저장','canvas'),
+  P2('TC-MAIN-014','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','노드 추가','캔버스','노드','canvas'),
+  P2('TC-MAIN-015','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','노드 데이터 선택','캔버스','노드','canvas'),
+  P2('TC-MAIN-016','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','노드 포트 연결','캔버스','노드','canvas'),
+  P2('TC-MAIN-017','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','노드 설정','수정','노드','canvas'),
+  P2('TC-MAIN-018','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','노드 삭제','삭제','노드','canvas'),
+  P2('TC-MAIN-019','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','정렬','캔버스','정렬','canvas'),
+  P2('TC-MAIN-020','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','저장','저장','저장','canvas'),
+  P2('TC-MAIN-021','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','복사','복제','복사','canvas'),
+  P2('TC-MAIN-022','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','배포하기','배포·승인','배포','canvas'),
+  P2('TC-MAIN-023','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','에이전트 시작(실행)','실행','시작','canvas'),
+  P2('TC-MAIN-024','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','작업 히스토리','조회','히스토리','canvas'),
+  P2('TC-MAIN-025','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','이름 편집','수정','저장','canvas'),
+  P2('TC-MAIN-026','Agent 제작 · Agent 설계(캔버스)','Agent 제작','Agent 설계','지우기','삭제','지우기','canvas'),
+  P2('TC-MAIN-028','Agent 제작 · Agent 기획','Agent 제작','Agent 기획','기획서 작성/정리','생성','작성','load'),
+  P2('TC-MAIN-029','Agent 제작 · Agent 기획','Agent 제작','Agent 기획','저장','저장','저장','load'),
+  P2('TC-MAIN-031','Agent 제작 · Agent 운영 설정','Agent 제작','Agent 운영 설정','배포 정책 설정','수정','배포','load'),
+  P2('TC-MAIN-032','Agent 제작 · Agent 운영 설정','Agent 제작','Agent 운영 설정','저장','저장','저장','load'),
+  P2('TC-MAIN-034','Agent 제작 · Agent 품질 평가','Agent 제작','Agent 품질 평가','평가 실행','실행','실행','load'),
+  P2('TC-MAIN-036','Agent 제작 · Agent 프롬프트','Agent 제작','Agent 프롬프트','새 프롬프트','생성','새','load'),
+  P2('TC-MAIN-037','Agent 제작 · Agent 프롬프트','Agent 제작','Agent 프롬프트','편집','수정','편집','load'),
+  P2('TC-MAIN-038','Agent 제작 · Agent 프롬프트','Agent 제작','Agent 프롬프트','저장','저장','저장','load'),
+  P2('TC-MAIN-039','Agent 제작 · Agent 프롬프트','Agent 제작','Agent 프롬프트','삭제','삭제','삭제','load'),
+  P2('TC-MAIN-040','Agent 제작 · Agent 프롬프트','Agent 제작','Agent 프롬프트','버전 관리','수정','버전','load'),
+  P2('TC-MAIN-042','도구 연동 · API 도구','도구 연동','API 도구','새 도구 등록','생성','등록','load'),
+  P2('TC-MAIN-043','도구 연동 · API 도구','도구 연동','API 도구','도구 설정','수정','설정','load'),
+  P2('TC-MAIN-044','도구 연동 · API 도구','도구 연동','API 도구','연결 테스트','연결·테스트','테스트','load'),
+  P2('TC-MAIN-045','도구 연동 · API 도구','도구 연동','API 도구','스키마 조회','조회','스키마','load'),
+  P2('TC-MAIN-046','도구 연동 · API 도구','도구 연동','API 도구','도구 삭제','삭제','삭제','load'),
+  P2('TC-MAIN-047','도구 연동 · API 도구','도구 연동','API 도구','에이전트 연결','공유','연결','load'),
+  P2('TC-MAIN-049','도구 연동 · 인증 프로필','도구 연동','인증 프로필','새 프로필 생성','생성','생성','load'),
+  P2('TC-MAIN-050','도구 연동 · 인증 프로필','도구 연동','인증 프로필','시크릿 설정','수정','시크릿','load'),
+  P2('TC-MAIN-051','도구 연동 · 인증 프로필','도구 연동','인증 프로필','연결 검증','연결·테스트','테스트','load'),
+  P2('TC-MAIN-052','도구 연동 · 인증 프로필','도구 연동','인증 프로필','프로필 삭제','삭제','삭제','load'),
+  P2('TC-MAIN-055','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','컬렉션 설정','수정','설정','collection'),
+  P2('TC-MAIN-057','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 업로드','업로드/다운로드','업로드','collection'),
+  P2('TC-MAIN-058','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','폴더 업로드','업로드/다운로드','폴더','collection'),
+  P2('TC-MAIN-059','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 목록 조회','조회','문서','collection'),
+  P2('TC-MAIN-060','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 삭제','삭제','삭제','collection'),
+  P2('TC-MAIN-061','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 미리보기','조회','미리보기','collection'),
+  P2('TC-MAIN-062','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','임베딩 설정','수정','임베딩','collection'),
+  P2('TC-MAIN-063','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','청킹 설정','수정','청킹','collection'),
+  P2('TC-MAIN-070','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','공유 설정','공유','공유','collection'),
+  P2('TC-MAIN-072','지식관리 · 파일 저장소','지식관리','파일 저장소','파일 업로드','업로드/다운로드','업로드','load'),
+  P2('TC-MAIN-073','지식관리 · 파일 저장소','지식관리','파일 저장소','폴더 업로드','업로드/다운로드','폴더','load'),
+  P2('TC-MAIN-074','지식관리 · 파일 저장소','지식관리','파일 저장소','파일 다운로드','업로드/다운로드','다운로드','load'),
+  P2('TC-MAIN-075','지식관리 · 파일 저장소','지식관리','파일 저장소','파일 삭제','삭제','삭제','load'),
+  P2('TC-MAIN-076','지식관리 · 파일 저장소','지식관리','파일 저장소','폴더 생성','생성','폴더','load'),
+  P2('TC-MAIN-077','지식관리 · 파일 저장소','지식관리','파일 저장소','검색','조회','검색','load'),
+  P2('TC-MAIN-078','지식관리 · 파일 저장소','지식관리','파일 저장소','업로드 이력','조회','이력','load'),
+  P2('TC-MAIN-080','지식관리 · DB 연동','지식관리','DB 연동','새 연결 생성','생성','연결','load'),
+  P2('TC-MAIN-081','지식관리 · DB 연동','지식관리','DB 연동','연결 설정','수정','설정','load'),
+  P2('TC-MAIN-082','지식관리 · DB 연동','지식관리','DB 연동','연결 테스트','연결·테스트','테스트','load'),
+  P2('TC-MAIN-083','지식관리 · DB 연동','지식관리','DB 연동','스키마 조회','조회','스키마','load'),
+  P2('TC-MAIN-084','지식관리 · DB 연동','지식관리','DB 연동','연결 삭제','삭제','삭제','load'),
+];
+// ADMIN 조회 스윕 — stg 라이브 관리 사이드바 40개 메뉴 전수(카탈로그 라이브 구조와 정합)
+const ADM_SWEEP = [
+  ['사용자 / 접근제어','사용자 관리'],['사용자 / 접근제어','역할/권한 관리'],['사용자 / 접근제어','로그인 관리'],
+  ['Agent 운영','Agent 관리'],['Agent 운영','채팅 모니터링'],['Agent 운영','사용자 토큰'],['Agent 운영','노드 관리'],
+  ['Agent 운영','프롬프트 템플릿'],['Agent 운영','사용자 피드백'],['Agent 운영','응답 품질 평가'],
+  ['Agent 운영','Agent 리텐션 분석'],['Agent 운영','Agent 개발 기획서'],
+  ['AI 거버넌스','AI 위험도 평가'],['AI 거버넌스','점검 이력 관리'],['AI 거버넌스','AI 서비스 변경 이력'],['AI 거버넌스','통제 정책 관리'],
+  ['환경 설정','전체 설정'],['환경 설정','LLM'],['환경 설정','VLM'],['환경 설정','검색 / 임베딩'],
+  ['환경 설정','오디오'],['환경 설정','가드레일'],['환경 설정','인프라'],['환경 설정','사이드바'],
+  ['시스템 상태','시스템 모니터링'],['시스템 상태','로그 조회'],
+  ['데이터 관리','데이터베이스'],['데이터 관리','DB 연결'],['데이터 관리','배치 작업'],['데이터 관리','데이터 감사 로그'],
+  ['MCP 관리','MCP 라이브러리'],['MCP 관리','MCP 운영/모니터링'],
+  ['서비스 운영','공지 게시판'],['서비스 운영','자주 묻는 질문'],['서비스 운영','1:1 관리자 문의'],['서비스 운영','다운로드 센터'],['서비스 운영','업데이트 로그'],
+  ['지식 운영','지식 컬렉션 관리'],['지식 운영','파일 저장소 관리'],['지식 운영','DB 컬렉션 관리'],
+];
+const ADMIN = ADM_SWEEP.map((a,idx)=>({
+  id:'TC-ADM-'+String(idx+1).padStart(3,'0'),
+  persona: a[0]==='AI 거버넌스' ? 'gov' : 'admin',
+  scope:'ADMIN', category:a[0], menu:a[1], action:'조회', nav:'admin',
+  desc:a[0]+' · '+a[1]+' — 화면 로드·목록 렌더 정상 확인'
+}));
 const LIFECYCLE = [{ id:'LIFECYCLE', persona:'dev', scope:'MAIN', category:'지식관리 · 지식 컬렉션', menu:'lifecycle', action:'생성', nav:'lifecycle', desc:'' }];
 // (a) 시나리오 E2E 자동화 — 카탈로그 시나리오 케이스와 정합
 const SCEN = [
@@ -93,7 +150,7 @@ const SCEN = [
   { id:'SC-001', persona:'dev', scope:'시나리오', category:'에이전트 구축', menu:'B2B SNS 자동화 에이전트(RAG) 구축', action:'시나리오', nav:'scenario-build',
     prompt:'B2B SNS 마케팅 자동화 에이전트를 만들어줘. 지식 컬렉션(RAG) 문서 검색 → LLM 에이전트로 LinkedIn/Facebook B2B 홍보 게시글 초안 작성 → 종료 노드. 각 노드를 연결.', desc:'B2B SNS RAG 에이전트 대화형 구축 E2E' },
 ];
-const CASES = [...COMMON, ...SCEN, ...LIFECYCLE, ...GRAN, ...ADMIN];
+const CASES = [...COMMON, ...SCEN, ...LIFECYCLE, ...GRAN, ...GRAN2, ...ADMIN];
 
 const log = (...a) => console.log('[qa-runner]', ...a);
 const clickByText = (page, txt) => page.evaluate((t) => {
@@ -119,6 +176,23 @@ async function gotoApp(page, app) {
     try { await page.waitForFunction(() => document.querySelectorAll('button').length > 20, { timeout: 15000 }); } catch {}
     await page.waitForTimeout(1200); _curApp = app;
   }
+}
+// 관리 메뉴 진입(스윕 안전): 먼저 메뉴 버튼이 보이면 바로 클릭, 안 보이면 카테고리 펼친 뒤 클릭.
+// (같은 카테고리 연속 메뉴에서 카테고리 재클릭으로 접히는 문제 방지)
+async function adminOpen(page, category, menu) {
+  await gotoApp(page, 'admin');
+  const clickVisible = (t) => page.evaluate((x) => {
+    const b = [...document.querySelectorAll('button,a,[role="button"],[role="menuitem"]')]
+      .find((e) => e.offsetParent && e.textContent.trim() === x);
+    if (b) { b.click(); return true; } return false;
+  }, t);
+  let ok = await clickVisible(menu);
+  if (!ok) {
+    await clickVisible(category); await page.waitForTimeout(600);
+    ok = await clickVisible(menu);
+  }
+  if (!ok) throw new Error('관리 메뉴 없음: ' + menu);
+  await page.waitForTimeout(1600);
 }
 async function pageErr(page) {
   return page.evaluate(() => { const m = document.querySelector('main') || document.body; const t = m.innerText || '';
@@ -236,9 +310,37 @@ function withTimeout(promise, ms, id) {
             if (info.err) { outcome = 'fail'; error = '에러 바운더리 감지'; }
             else if (info.len < 60) { outcome = 'warn'; error = `본문 렌더 미흡(${info.len}chars)`; }
           }
+        } else if (nav === 'present2') {
+          _curApp = ''; await gotoApp(page, 'main');
+          await clickWait(page, cs.parentCat); await page.waitForTimeout(400);
+          if (!(await clickWait(page, cs.screen))) throw new Error('화면 없음: ' + cs.screen);
+          await page.waitForTimeout(2600);
+          if (cs.ctx === 'canvas') {
+            await clickWait(page, '빈 캔버스로 시작', 6000); await page.waitForTimeout(2600);
+          } else if (cs.ctx === 'collection') {
+            await page.evaluate(() => {
+              const cards = [...document.querySelectorAll('main a, main [class*="card"], main [class*="Card"], main [role="button"], main tr')]
+                .filter((e) => e.offsetParent && e.textContent.trim().length > 1);
+              const c = cards.find((e) => !/새 컬렉션|컬렉션 생성|생성|검색|전체|개인|공유|정렬|필터|이름|설명/.test(e.textContent.trim().slice(0, 12)));
+              if (c) c.click();
+            });
+            await page.waitForTimeout(2600);
+          } else if (cs.ctx === 'agentmore') {
+            await page.evaluate(() => {
+              const b = [...document.querySelectorAll('main button')].find((x) => x.offsetParent &&
+                /더보기|메뉴|more|option/i.test((x.textContent + ' ' + (x.getAttribute('aria-label') || '') + ' ' + (x.title || ''))));
+              if (b) b.click();
+            });
+            await page.waitForTimeout(900);
+          }
+          const pinfo = await pageErr(page);
+          if (pinfo.err) { outcome = 'fail'; error = '에러 바운더리 감지'; }
+          else if (!(await hasButton(page, cs.key))) { outcome = 'fail'; error = '진입점/컨트롤 미노출: ' + cs.key; }
         } else {
-          if (nav === 'admin' || nav === 'main') {
-            await gotoApp(page, nav === 'admin' ? 'admin' : 'main');
+          if (nav === 'admin') {
+            await adminOpen(page, category, menu);
+          } else if (nav === 'main') {
+            await gotoApp(page, 'main');
             await clickWait(page, category); await page.waitForTimeout(400);
             if (!(await clickWait(page, menu))) throw new Error('메뉴 버튼 없음: ' + menu);
           } else if (nav === 'teams') { await gotoApp(page, 'main'); if (!(await clickWait(page, menu))) throw new Error('버튼 없음: ' + menu); }
@@ -254,20 +356,30 @@ function withTimeout(promise, ms, id) {
       try { shot = `shots/${id}.png`; await page.screenshot({ path: path.join(OUT, shot) }); } catch {}
     }
     const ms = Date.now() - t0;
+    // 네트워크 끊김/절전 복귀(비정상 지연) — 오탐 방지: 결과 미기록(미실행 유지) 후 중단
+    if (/ERR_INTERNET_DISCONNECTED|ERR_NETWORK|ERR_NAME_NOT_RESOLVED|ERR_CONNECTION|ERR_TIMED_OUT|net::ERR/.test(error) || ms > 120000) {
+      log('네트워크 끊김/비정상 지연 감지 — 실행 중단(부분 결과 보존):', id, ms + 'ms');
+      break;
+    }
     results.push({ id, persona, scope, category, menu, action, desc, ms, outcome, error, shot });
     log(id, outcome, ms + 'ms', error);
   }
   } catch (e) {
     console.error('[qa-runner] RUN ERROR', e && (e.message || e));
   } finally {
-    // 안정화: 부분 결과라도 항상 기록(전체 실패로 기존 결과를 덮어쓰지는 않음)
+    // 안정화+병합: 기존 results.json과 key(scope|category|menu|action)로 병합(부분 실행이 이전 커버리지를 지우지 않음)
     if (results.length) {
-      const payload = { env: ENVV, base: BASE, ranAt: new Date().toISOString(), total: results.length,
-        pass: results.filter((r) => r.outcome === 'pass').length,
-        fail: results.filter((r) => r.outcome === 'fail').length,
-        warn: results.filter((r) => r.outcome === 'warn').length, results };
+      const keyf = (r) => `${r.scope}|${r.category}|${r.menu}|${r.action}`;
+      let prev = [];
+      try { prev = (JSON.parse(fs.readFileSync(path.join(OUT, 'results.json'), 'utf8')).results) || []; } catch {}
+      const map = new Map(); prev.forEach((r) => map.set(keyf(r), r)); results.forEach((r) => map.set(keyf(r), r));
+      const merged = [...map.values()];
+      const payload = { env: ENVV, base: BASE, ranAt: new Date().toISOString(), total: merged.length,
+        pass: merged.filter((r) => r.outcome === 'pass').length,
+        fail: merged.filter((r) => r.outcome === 'fail').length,
+        warn: merged.filter((r) => r.outcome === 'warn').length, results: merged };
       fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify(payload, null, 1), 'utf8');
-      log('DONE', `total ${payload.total} · pass ${payload.pass}/fail ${payload.fail}/warn ${payload.warn}`);
+      log('DONE(merged)', `이번 ${results.length} · 누적 ${payload.total} · pass ${payload.pass}/fail ${payload.fail}/warn ${payload.warn}`);
       if (payload.fail > 0) process.exitCode = 1;
     } else {
       log('결과 없음 — results.json 미갱신(기존 유지)');

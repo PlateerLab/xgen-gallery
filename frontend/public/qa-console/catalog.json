@@ -1,12 +1,12 @@
 {
  "env": "stg",
- "source": "permission-taxonomy.ts (stage)",
- "total": 232,
+ "source": "stg 라이브 관리 사이드바(실측) + MAIN 세분 + 시나리오",
+ "total": 215,
  "byScope": {
   "시나리오": 12,
   "공통": 7,
   "MAIN": 84,
-  "ADMIN": 129
+  "ADMIN": 112
  },
  "cases": [
   {
@@ -78,1296 +78,6 @@
    "desc": "Canvas · Canvas — 조회·목록 렌더 정상 확인",
    "outcome": "미실행",
    "persona": "all"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "사용자 관리",
-   "action": "조회",
-   "id": "TC-ADM-001",
-   "desc": "사용자 / 접근제어 · 사용자 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "사용자 관리",
-   "action": "수정",
-   "id": "TC-ADM-002",
-   "desc": "사용자 / 접근제어 · 사용자 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "사용자 관리",
-   "action": "삭제",
-   "id": "TC-ADM-003",
-   "desc": "사용자 / 접근제어 · 사용자 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "사용자 관리",
-   "action": "일괄",
-   "id": "TC-ADM-004",
-   "desc": "사용자 / 접근제어 · 사용자 관리 — 다건 일괄 작업 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "역할/권한 관리",
-   "action": "조회",
-   "id": "TC-ADM-005",
-   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "역할/권한 관리",
-   "action": "생성",
-   "id": "TC-ADM-006",
-   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "역할/권한 관리",
-   "action": "수정",
-   "id": "TC-ADM-007",
-   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "역할/권한 관리",
-   "action": "삭제",
-   "id": "TC-ADM-008",
-   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "사용자 / 접근제어",
-   "menu": "역할/권한 관리",
-   "action": "저장",
-   "id": "TC-ADM-009",
-   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 관리",
-   "action": "조회",
-   "id": "TC-ADM-010",
-   "desc": "Agent 운영 · Agent 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 관리",
-   "action": "생성",
-   "id": "TC-ADM-011",
-   "desc": "Agent 운영 · Agent 관리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 관리",
-   "action": "수정",
-   "id": "TC-ADM-012",
-   "desc": "Agent 운영 · Agent 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 관리",
-   "action": "삭제",
-   "id": "TC-ADM-013",
-   "desc": "Agent 운영 · Agent 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 관리",
-   "action": "저장",
-   "id": "TC-ADM-014",
-   "desc": "Agent 운영 · Agent 관리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "채팅 모니터링",
-   "action": "조회",
-   "id": "TC-ADM-015",
-   "desc": "Agent 운영 · 채팅 모니터링 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 토큰",
-   "action": "조회",
-   "id": "TC-ADM-016",
-   "desc": "Agent 운영 · 사용자 토큰 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 토큰",
-   "action": "생성",
-   "id": "TC-ADM-017",
-   "desc": "Agent 운영 · 사용자 토큰 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 토큰",
-   "action": "수정",
-   "id": "TC-ADM-018",
-   "desc": "Agent 운영 · 사용자 토큰 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 토큰",
-   "action": "삭제",
-   "id": "TC-ADM-019",
-   "desc": "Agent 운영 · 사용자 토큰 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 토큰",
-   "action": "저장",
-   "id": "TC-ADM-020",
-   "desc": "Agent 운영 · 사용자 토큰 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "노드 관리",
-   "action": "조회",
-   "id": "TC-ADM-021",
-   "desc": "Agent 운영 · 노드 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "프롬프트 템플릿",
-   "action": "조회",
-   "id": "TC-ADM-022",
-   "desc": "Agent 운영 · 프롬프트 템플릿 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "프롬프트 템플릿",
-   "action": "생성",
-   "id": "TC-ADM-023",
-   "desc": "Agent 운영 · 프롬프트 템플릿 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "프롬프트 템플릿",
-   "action": "수정",
-   "id": "TC-ADM-024",
-   "desc": "Agent 운영 · 프롬프트 템플릿 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "프롬프트 템플릿",
-   "action": "삭제",
-   "id": "TC-ADM-025",
-   "desc": "Agent 운영 · 프롬프트 템플릿 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "프롬프트 템플릿",
-   "action": "저장",
-   "id": "TC-ADM-026",
-   "desc": "Agent 운영 · 프롬프트 템플릿 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "사용자 피드백",
-   "action": "조회",
-   "id": "TC-ADM-027",
-   "desc": "Agent 운영 · 사용자 피드백 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "응답 품질 평가",
-   "action": "조회",
-   "id": "TC-ADM-028",
-   "desc": "Agent 운영 · 응답 품질 평가 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "응답 품질 평가",
-   "action": "생성",
-   "id": "TC-ADM-029",
-   "desc": "Agent 운영 · 응답 품질 평가 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "응답 품질 평가",
-   "action": "수정",
-   "id": "TC-ADM-030",
-   "desc": "Agent 운영 · 응답 품질 평가 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "응답 품질 평가",
-   "action": "삭제",
-   "id": "TC-ADM-031",
-   "desc": "Agent 운영 · 응답 품질 평가 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "응답 품질 평가",
-   "action": "저장",
-   "id": "TC-ADM-032",
-   "desc": "Agent 운영 · 응답 품질 평가 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 리텐션 분석",
-   "action": "조회",
-   "id": "TC-ADM-033",
-   "desc": "Agent 운영 · Agent 리텐션 분석 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 리텐션 분석",
-   "action": "생성",
-   "id": "TC-ADM-034",
-   "desc": "Agent 운영 · Agent 리텐션 분석 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 리텐션 분석",
-   "action": "수정",
-   "id": "TC-ADM-035",
-   "desc": "Agent 운영 · Agent 리텐션 분석 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 리텐션 분석",
-   "action": "삭제",
-   "id": "TC-ADM-036",
-   "desc": "Agent 운영 · Agent 리텐션 분석 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 리텐션 분석",
-   "action": "저장",
-   "id": "TC-ADM-037",
-   "desc": "Agent 운영 · Agent 리텐션 분석 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 기획",
-   "action": "조회",
-   "id": "TC-ADM-038",
-   "desc": "Agent 운영 · Agent 기획 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 기획",
-   "action": "생성",
-   "id": "TC-ADM-039",
-   "desc": "Agent 운영 · Agent 기획 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 기획",
-   "action": "수정",
-   "id": "TC-ADM-040",
-   "desc": "Agent 운영 · Agent 기획 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 기획",
-   "action": "삭제",
-   "id": "TC-ADM-041",
-   "desc": "Agent 운영 · Agent 기획 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "Agent 운영",
-   "menu": "Agent 기획",
-   "action": "저장",
-   "id": "TC-ADM-042",
-   "desc": "Agent 운영 · Agent 기획 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "전체 설정",
-   "action": "조회",
-   "id": "TC-ADM-043",
-   "desc": "환경 설정 · 전체 설정 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "전체 설정",
-   "action": "수정",
-   "id": "TC-ADM-044",
-   "desc": "환경 설정 · 전체 설정 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "LLM 모델 카탈로그",
-   "action": "조회",
-   "id": "TC-ADM-045",
-   "desc": "환경 설정 · LLM 모델 카탈로그 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "LLM 모델 카탈로그",
-   "action": "생성",
-   "id": "TC-ADM-046",
-   "desc": "환경 설정 · LLM 모델 카탈로그 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "LLM 모델 카탈로그",
-   "action": "수정",
-   "id": "TC-ADM-047",
-   "desc": "환경 설정 · LLM 모델 카탈로그 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "LLM 모델 카탈로그",
-   "action": "삭제",
-   "id": "TC-ADM-048",
-   "desc": "환경 설정 · LLM 모델 카탈로그 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "환경 설정",
-   "menu": "LLM 모델 카탈로그",
-   "action": "저장",
-   "id": "TC-ADM-049",
-   "desc": "환경 설정 · LLM 모델 카탈로그 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "시스템 상태",
-   "menu": "시스템 모니터링",
-   "action": "조회",
-   "id": "TC-ADM-050",
-   "desc": "시스템 상태 · 시스템 모니터링 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "시스템 상태",
-   "menu": "시스템 조회",
-   "action": "조회",
-   "id": "TC-ADM-051",
-   "desc": "시스템 상태 · 시스템 조회 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "시스템 상태",
-   "menu": "로그 조회",
-   "action": "조회",
-   "id": "TC-ADM-052",
-   "desc": "시스템 상태 · 로그 조회 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "조회",
-   "id": "TC-ADM-053",
-   "desc": "데이터 관리 · 데이터베이스 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "생성",
-   "id": "TC-ADM-054",
-   "desc": "데이터 관리 · 데이터베이스 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "수정",
-   "id": "TC-ADM-055",
-   "desc": "데이터 관리 · 데이터베이스 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "삭제",
-   "id": "TC-ADM-056",
-   "desc": "데이터 관리 · 데이터베이스 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "저장",
-   "id": "TC-ADM-057",
-   "desc": "데이터 관리 · 데이터베이스 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터베이스",
-   "action": "연결·테스트",
-   "id": "TC-ADM-058",
-   "desc": "데이터 관리 · 데이터베이스 — 외부 연동 연결 테스트 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "조회",
-   "id": "TC-ADM-059",
-   "desc": "데이터 관리 · 데이터소스 연결 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "생성",
-   "id": "TC-ADM-060",
-   "desc": "데이터 관리 · 데이터소스 연결 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "수정",
-   "id": "TC-ADM-061",
-   "desc": "데이터 관리 · 데이터소스 연결 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "삭제",
-   "id": "TC-ADM-062",
-   "desc": "데이터 관리 · 데이터소스 연결 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "저장",
-   "id": "TC-ADM-063",
-   "desc": "데이터 관리 · 데이터소스 연결 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터소스 연결",
-   "action": "연결·테스트",
-   "id": "TC-ADM-064",
-   "desc": "데이터 관리 · 데이터소스 연결 — 외부 연동 연결 테스트 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "조회",
-   "id": "TC-ADM-065",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "생성",
-   "id": "TC-ADM-066",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "수정",
-   "id": "TC-ADM-067",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "삭제",
-   "id": "TC-ADM-068",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "저장",
-   "id": "TC-ADM-069",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "스케줄 쿼리",
-   "action": "실행",
-   "id": "TC-ADM-070",
-   "desc": "데이터 관리 · 스케줄 쿼리 — 작업/에이전트 실행 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "조회",
-   "id": "TC-ADM-071",
-   "desc": "데이터 관리 · 배치 작업 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "생성",
-   "id": "TC-ADM-072",
-   "desc": "데이터 관리 · 배치 작업 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "수정",
-   "id": "TC-ADM-073",
-   "desc": "데이터 관리 · 배치 작업 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "삭제",
-   "id": "TC-ADM-074",
-   "desc": "데이터 관리 · 배치 작업 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "저장",
-   "id": "TC-ADM-075",
-   "desc": "데이터 관리 · 배치 작업 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "배치 작업",
-   "action": "실행",
-   "id": "TC-ADM-076",
-   "desc": "데이터 관리 · 배치 작업 — 작업/에이전트 실행 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터 감사 로그",
-   "action": "조회",
-   "id": "TC-ADM-077",
-   "desc": "데이터 관리 · 데이터 감사 로그 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "데이터 관리",
-   "menu": "데이터 감사 로그",
-   "action": "내보내기",
-   "id": "TC-ADM-078",
-   "desc": "데이터 관리 · 데이터 감사 로그 — 데이터 내보내기 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 라이브러리",
-   "action": "조회",
-   "id": "TC-ADM-079",
-   "desc": "MCP 관리 · MCP 라이브러리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 운영",
-   "action": "조회",
-   "id": "TC-ADM-080",
-   "desc": "MCP 관리 · MCP 운영 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 운영",
-   "action": "생성",
-   "id": "TC-ADM-081",
-   "desc": "MCP 관리 · MCP 운영 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 운영",
-   "action": "수정",
-   "id": "TC-ADM-082",
-   "desc": "MCP 관리 · MCP 운영 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 운영",
-   "action": "삭제",
-   "id": "TC-ADM-083",
-   "desc": "MCP 관리 · MCP 운영 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MCP 관리",
-   "menu": "MCP 운영",
-   "action": "저장",
-   "id": "TC-ADM-084",
-   "desc": "MCP 관리 · MCP 운영 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MLOps",
-   "menu": "ML 모델 관리",
-   "action": "조회",
-   "id": "TC-ADM-085",
-   "desc": "MLOps · ML 모델 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "MLOps",
-   "menu": "컴퓨팅 풀 관리",
-   "action": "조회",
-   "id": "TC-ADM-086",
-   "desc": "MLOps · 컴퓨팅 풀 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "AI 위험도 평가",
-   "action": "조회",
-   "id": "TC-ADM-087",
-   "desc": "AI 거버넌스 · AI 위험도 평가 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "AI 위험도 평가",
-   "action": "생성",
-   "id": "TC-ADM-088",
-   "desc": "AI 거버넌스 · AI 위험도 평가 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "AI 위험도 평가",
-   "action": "수정",
-   "id": "TC-ADM-089",
-   "desc": "AI 거버넌스 · AI 위험도 평가 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "AI 위험도 평가",
-   "action": "삭제",
-   "id": "TC-ADM-090",
-   "desc": "AI 거버넌스 · AI 위험도 평가 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "AI 위험도 평가",
-   "action": "저장",
-   "id": "TC-ADM-091",
-   "desc": "AI 거버넌스 · AI 위험도 평가 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "점검 이력 관리",
-   "action": "조회",
-   "id": "TC-ADM-092",
-   "desc": "AI 거버넌스 · 점검 이력 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "점검 이력 관리",
-   "action": "생성",
-   "id": "TC-ADM-093",
-   "desc": "AI 거버넌스 · 점검 이력 관리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "점검 이력 관리",
-   "action": "수정",
-   "id": "TC-ADM-094",
-   "desc": "AI 거버넌스 · 점검 이력 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "점검 이력 관리",
-   "action": "삭제",
-   "id": "TC-ADM-095",
-   "desc": "AI 거버넌스 · 점검 이력 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "점검 이력 관리",
-   "action": "저장",
-   "id": "TC-ADM-096",
-   "desc": "AI 거버넌스 · 점검 이력 관리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "조회",
-   "id": "TC-ADM-097",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "생성",
-   "id": "TC-ADM-098",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "수정",
-   "id": "TC-ADM-099",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "삭제",
-   "id": "TC-ADM-100",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "저장",
-   "id": "TC-ADM-101",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "통제 정책 관리",
-   "action": "전환",
-   "id": "TC-ADM-102",
-   "desc": "AI 거버넌스 · 통제 정책 관리 — 활성/비활성 토글 즉시 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "생성",
-   "id": "TC-ADM-103",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "수정",
-   "id": "TC-ADM-104",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "삭제",
-   "id": "TC-ADM-105",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "저장",
-   "id": "TC-ADM-106",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "검토",
-   "id": "TC-ADM-107",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 검토 흐름 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "AI 거버넌스",
-   "menu": "서비스 변경 이력",
-   "action": "감사",
-   "id": "TC-ADM-108",
-   "desc": "AI 거버넌스 · 서비스 변경 이력 — 감사 이력 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "공지 게시판",
-   "action": "조회",
-   "id": "TC-ADM-109",
-   "desc": "서비스 운영 · 공지 게시판 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "공지 게시판",
-   "action": "생성",
-   "id": "TC-ADM-110",
-   "desc": "서비스 운영 · 공지 게시판 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "공지 게시판",
-   "action": "수정",
-   "id": "TC-ADM-111",
-   "desc": "서비스 운영 · 공지 게시판 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "공지 게시판",
-   "action": "삭제",
-   "id": "TC-ADM-112",
-   "desc": "서비스 운영 · 공지 게시판 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "공지 게시판",
-   "action": "저장",
-   "id": "TC-ADM-113",
-   "desc": "서비스 운영 · 공지 게시판 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "자주 묻는 질문",
-   "action": "조회",
-   "id": "TC-ADM-114",
-   "desc": "서비스 운영 · 자주 묻는 질문 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "자주 묻는 질문",
-   "action": "생성",
-   "id": "TC-ADM-115",
-   "desc": "서비스 운영 · 자주 묻는 질문 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "자주 묻는 질문",
-   "action": "수정",
-   "id": "TC-ADM-116",
-   "desc": "서비스 운영 · 자주 묻는 질문 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "자주 묻는 질문",
-   "action": "삭제",
-   "id": "TC-ADM-117",
-   "desc": "서비스 운영 · 자주 묻는 질문 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "자주 묻는 질문",
-   "action": "저장",
-   "id": "TC-ADM-118",
-   "desc": "서비스 운영 · 자주 묻는 질문 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "1:1 관리자 문의",
-   "action": "조회",
-   "id": "TC-ADM-119",
-   "desc": "서비스 운영 · 1:1 관리자 문의 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "1:1 관리자 문의",
-   "action": "생성",
-   "id": "TC-ADM-120",
-   "desc": "서비스 운영 · 1:1 관리자 문의 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "1:1 관리자 문의",
-   "action": "수정",
-   "id": "TC-ADM-121",
-   "desc": "서비스 운영 · 1:1 관리자 문의 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "1:1 관리자 문의",
-   "action": "삭제",
-   "id": "TC-ADM-122",
-   "desc": "서비스 운영 · 1:1 관리자 문의 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "서비스 운영",
-   "menu": "1:1 관리자 문의",
-   "action": "저장",
-   "id": "TC-ADM-123",
-   "desc": "서비스 운영 · 1:1 관리자 문의 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "조회",
-   "id": "TC-ADM-124",
-   "desc": "지식 운영 · 컬렉션 관리 — 조회·목록 렌더 정상 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "생성",
-   "id": "TC-ADM-125",
-   "desc": "지식 운영 · 컬렉션 관리 — 신규 생성 흐름 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "수정",
-   "id": "TC-ADM-126",
-   "desc": "지식 운영 · 컬렉션 관리 — 기존 항목 수정·반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "삭제",
-   "id": "TC-ADM-127",
-   "desc": "지식 운영 · 컬렉션 관리 — 삭제 동작·복구불가 처리 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "저장",
-   "id": "TC-ADM-128",
-   "desc": "지식 운영 · 컬렉션 관리 — 변경사항 서버 저장 반영 확인",
-   "outcome": "미실행",
-   "persona": "admin"
-  },
-  {
-   "scope": "ADMIN",
-   "category": "지식 운영",
-   "menu": "컬렉션 관리",
-   "action": "업로드/다운로드",
-   "id": "TC-ADM-129",
-   "desc": "지식 운영 · 컬렉션 관리 — 파일 업로드/다운로드 정상 동작 확인",
-   "outcome": "미실행",
-   "persona": "admin"
   },
   {
    "id": "SC-001",
@@ -2328,6 +1038,1126 @@
    "desc": "DB 연결 삭제 확인",
    "outcome": "미실행",
    "persona": "dev"
+  },
+  {
+   "id": "TC-ADM-001",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "사용자 관리",
+   "action": "조회",
+   "desc": "사용자 / 접근제어 · 사용자 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-002",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "사용자 관리",
+   "action": "생성",
+   "desc": "사용자 / 접근제어 · 사용자 관리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-003",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "사용자 관리",
+   "action": "수정",
+   "desc": "사용자 / 접근제어 · 사용자 관리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-004",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "사용자 관리",
+   "action": "삭제",
+   "desc": "사용자 / 접근제어 · 사용자 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-005",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "사용자 관리",
+   "action": "일괄",
+   "desc": "사용자 / 접근제어 · 사용자 관리 — 다건 일괄 작업 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-006",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "역할/권한 관리",
+   "action": "조회",
+   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-007",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "역할/권한 관리",
+   "action": "생성",
+   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-008",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "역할/권한 관리",
+   "action": "수정",
+   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-009",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "역할/권한 관리",
+   "action": "삭제",
+   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-010",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "역할/권한 관리",
+   "action": "저장",
+   "desc": "사용자 / 접근제어 · 역할/권한 관리 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-011",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "로그인 관리",
+   "action": "조회",
+   "desc": "사용자 / 접근제어 · 로그인 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-012",
+   "scope": "ADMIN",
+   "category": "사용자 / 접근제어",
+   "menu": "로그인 관리",
+   "action": "내보내기",
+   "desc": "사용자 / 접근제어 · 로그인 관리 — 데이터 내보내기 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-013",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 관리",
+   "action": "조회",
+   "desc": "Agent 운영 · Agent 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-014",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 관리",
+   "action": "수정",
+   "desc": "Agent 운영 · Agent 관리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-015",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 관리",
+   "action": "삭제",
+   "desc": "Agent 운영 · Agent 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-016",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 관리",
+   "action": "배포·승인",
+   "desc": "Agent 운영 · Agent 관리 — 배포 요청·이중 승인 흐름 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-017",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "채팅 모니터링",
+   "action": "조회",
+   "desc": "Agent 운영 · 채팅 모니터링 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-018",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "사용자 토큰",
+   "action": "조회",
+   "desc": "Agent 운영 · 사용자 토큰 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-019",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "사용자 토큰",
+   "action": "수정",
+   "desc": "Agent 운영 · 사용자 토큰 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-020",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "노드 관리",
+   "action": "조회",
+   "desc": "Agent 운영 · 노드 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-021",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "노드 관리",
+   "action": "생성",
+   "desc": "Agent 운영 · 노드 관리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-022",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "노드 관리",
+   "action": "수정",
+   "desc": "Agent 운영 · 노드 관리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-023",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "노드 관리",
+   "action": "삭제",
+   "desc": "Agent 운영 · 노드 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-024",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "프롬프트 템플릿",
+   "action": "조회",
+   "desc": "Agent 운영 · 프롬프트 템플릿 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-025",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "프롬프트 템플릿",
+   "action": "생성",
+   "desc": "Agent 운영 · 프롬프트 템플릿 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-026",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "프롬프트 템플릿",
+   "action": "수정",
+   "desc": "Agent 운영 · 프롬프트 템플릿 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-027",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "프롬프트 템플릿",
+   "action": "삭제",
+   "desc": "Agent 운영 · 프롬프트 템플릿 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-028",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "프롬프트 템플릿",
+   "action": "저장",
+   "desc": "Agent 운영 · 프롬프트 템플릿 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-029",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "사용자 피드백",
+   "action": "조회",
+   "desc": "Agent 운영 · 사용자 피드백 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-030",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "응답 품질 평가",
+   "action": "조회",
+   "desc": "Agent 운영 · 응답 품질 평가 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-031",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "응답 품질 평가",
+   "action": "실행",
+   "desc": "Agent 운영 · 응답 품질 평가 — 작업/평가 실행 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-032",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 리텐션 분석",
+   "action": "조회",
+   "desc": "Agent 운영 · Agent 리텐션 분석 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-033",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 개발 기획서",
+   "action": "조회",
+   "desc": "Agent 운영 · Agent 개발 기획서 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-034",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 개발 기획서",
+   "action": "생성",
+   "desc": "Agent 운영 · Agent 개발 기획서 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-035",
+   "scope": "ADMIN",
+   "category": "Agent 운영",
+   "menu": "Agent 개발 기획서",
+   "action": "저장",
+   "desc": "Agent 운영 · Agent 개발 기획서 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-036",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "AI 위험도 평가",
+   "action": "조회",
+   "desc": "AI 거버넌스 · AI 위험도 평가 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-037",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "AI 위험도 평가",
+   "action": "실행",
+   "desc": "AI 거버넌스 · AI 위험도 평가 — 작업/평가 실행 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-038",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "점검 이력 관리",
+   "action": "조회",
+   "desc": "AI 거버넌스 · 점검 이력 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-039",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "점검 이력 관리",
+   "action": "생성",
+   "desc": "AI 거버넌스 · 점검 이력 관리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-040",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "AI 서비스 변경 이력",
+   "action": "조회",
+   "desc": "AI 거버넌스 · AI 서비스 변경 이력 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-041",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "AI 서비스 변경 이력",
+   "action": "내보내기",
+   "desc": "AI 거버넌스 · AI 서비스 변경 이력 — 데이터 내보내기 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-042",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "통제 정책 관리",
+   "action": "조회",
+   "desc": "AI 거버넌스 · 통제 정책 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-043",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "통제 정책 관리",
+   "action": "생성",
+   "desc": "AI 거버넌스 · 통제 정책 관리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-044",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "통제 정책 관리",
+   "action": "수정",
+   "desc": "AI 거버넌스 · 통제 정책 관리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-045",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "통제 정책 관리",
+   "action": "삭제",
+   "desc": "AI 거버넌스 · 통제 정책 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-046",
+   "scope": "ADMIN",
+   "category": "AI 거버넌스",
+   "menu": "통제 정책 관리",
+   "action": "전환",
+   "desc": "AI 거버넌스 · 통제 정책 관리 — 활성/비활성 토글 즉시 반영 확인",
+   "outcome": "미실행",
+   "persona": "gov"
+  },
+  {
+   "id": "TC-ADM-047",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "전체 설정",
+   "action": "조회",
+   "desc": "환경 설정 · 전체 설정 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-048",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "전체 설정",
+   "action": "저장",
+   "desc": "환경 설정 · 전체 설정 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-049",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "LLM",
+   "action": "조회",
+   "desc": "환경 설정 · LLM — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-050",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "LLM",
+   "action": "수정",
+   "desc": "환경 설정 · LLM — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-051",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "LLM",
+   "action": "저장",
+   "desc": "환경 설정 · LLM — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-052",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "LLM",
+   "action": "연결·테스트",
+   "desc": "환경 설정 · LLM — 외부 연동 연결 테스트 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-053",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "VLM",
+   "action": "조회",
+   "desc": "환경 설정 · VLM — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-054",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "VLM",
+   "action": "수정",
+   "desc": "환경 설정 · VLM — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-055",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "VLM",
+   "action": "저장",
+   "desc": "환경 설정 · VLM — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-056",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "검색 / 임베딩",
+   "action": "조회",
+   "desc": "환경 설정 · 검색 / 임베딩 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-057",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "검색 / 임베딩",
+   "action": "수정",
+   "desc": "환경 설정 · 검색 / 임베딩 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-058",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "검색 / 임베딩",
+   "action": "저장",
+   "desc": "환경 설정 · 검색 / 임베딩 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-059",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "오디오",
+   "action": "조회",
+   "desc": "환경 설정 · 오디오 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-060",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "오디오",
+   "action": "수정",
+   "desc": "환경 설정 · 오디오 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-061",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "오디오",
+   "action": "저장",
+   "desc": "환경 설정 · 오디오 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-062",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "가드레일",
+   "action": "조회",
+   "desc": "환경 설정 · 가드레일 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-063",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "가드레일",
+   "action": "수정",
+   "desc": "환경 설정 · 가드레일 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-064",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "가드레일",
+   "action": "저장",
+   "desc": "환경 설정 · 가드레일 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-065",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "가드레일",
+   "action": "전환",
+   "desc": "환경 설정 · 가드레일 — 활성/비활성 토글 즉시 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-066",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "인프라",
+   "action": "조회",
+   "desc": "환경 설정 · 인프라 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-067",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "인프라",
+   "action": "수정",
+   "desc": "환경 설정 · 인프라 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-068",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "사이드바",
+   "action": "조회",
+   "desc": "환경 설정 · 사이드바 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-069",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "사이드바",
+   "action": "수정",
+   "desc": "환경 설정 · 사이드바 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-070",
+   "scope": "ADMIN",
+   "category": "환경 설정",
+   "menu": "사이드바",
+   "action": "저장",
+   "desc": "환경 설정 · 사이드바 — 변경사항 서버 저장 반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-071",
+   "scope": "ADMIN",
+   "category": "시스템 상태",
+   "menu": "시스템 모니터링",
+   "action": "조회",
+   "desc": "시스템 상태 · 시스템 모니터링 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-072",
+   "scope": "ADMIN",
+   "category": "시스템 상태",
+   "menu": "로그 조회",
+   "action": "조회",
+   "desc": "시스템 상태 · 로그 조회 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-073",
+   "scope": "ADMIN",
+   "category": "시스템 상태",
+   "menu": "로그 조회",
+   "action": "내보내기",
+   "desc": "시스템 상태 · 로그 조회 — 데이터 내보내기 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-074",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "데이터베이스",
+   "action": "조회",
+   "desc": "데이터 관리 · 데이터베이스 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-075",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "데이터베이스",
+   "action": "연결·테스트",
+   "desc": "데이터 관리 · 데이터베이스 — 외부 연동 연결 테스트 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-076",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "DB 연결",
+   "action": "조회",
+   "desc": "데이터 관리 · DB 연결 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-077",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "DB 연결",
+   "action": "생성",
+   "desc": "데이터 관리 · DB 연결 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-078",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "DB 연결",
+   "action": "수정",
+   "desc": "데이터 관리 · DB 연결 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-079",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "DB 연결",
+   "action": "삭제",
+   "desc": "데이터 관리 · DB 연결 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-080",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "DB 연결",
+   "action": "연결·테스트",
+   "desc": "데이터 관리 · DB 연결 — 외부 연동 연결 테스트 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-081",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "배치 작업",
+   "action": "조회",
+   "desc": "데이터 관리 · 배치 작업 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-082",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "배치 작업",
+   "action": "생성",
+   "desc": "데이터 관리 · 배치 작업 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-083",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "배치 작업",
+   "action": "실행",
+   "desc": "데이터 관리 · 배치 작업 — 작업/평가 실행 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-084",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "배치 작업",
+   "action": "삭제",
+   "desc": "데이터 관리 · 배치 작업 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-085",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "데이터 감사 로그",
+   "action": "조회",
+   "desc": "데이터 관리 · 데이터 감사 로그 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-086",
+   "scope": "ADMIN",
+   "category": "데이터 관리",
+   "menu": "데이터 감사 로그",
+   "action": "내보내기",
+   "desc": "데이터 관리 · 데이터 감사 로그 — 데이터 내보내기 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-087",
+   "scope": "ADMIN",
+   "category": "MCP 관리",
+   "menu": "MCP 라이브러리",
+   "action": "조회",
+   "desc": "MCP 관리 · MCP 라이브러리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-088",
+   "scope": "ADMIN",
+   "category": "MCP 관리",
+   "menu": "MCP 라이브러리",
+   "action": "생성",
+   "desc": "MCP 관리 · MCP 라이브러리 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-089",
+   "scope": "ADMIN",
+   "category": "MCP 관리",
+   "menu": "MCP 라이브러리",
+   "action": "수정",
+   "desc": "MCP 관리 · MCP 라이브러리 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-090",
+   "scope": "ADMIN",
+   "category": "MCP 관리",
+   "menu": "MCP 라이브러리",
+   "action": "삭제",
+   "desc": "MCP 관리 · MCP 라이브러리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-091",
+   "scope": "ADMIN",
+   "category": "MCP 관리",
+   "menu": "MCP 운영/모니터링",
+   "action": "조회",
+   "desc": "MCP 관리 · MCP 운영/모니터링 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-092",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "공지 게시판",
+   "action": "조회",
+   "desc": "서비스 운영 · 공지 게시판 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-093",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "공지 게시판",
+   "action": "생성",
+   "desc": "서비스 운영 · 공지 게시판 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-094",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "공지 게시판",
+   "action": "수정",
+   "desc": "서비스 운영 · 공지 게시판 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-095",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "공지 게시판",
+   "action": "삭제",
+   "desc": "서비스 운영 · 공지 게시판 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-096",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "자주 묻는 질문",
+   "action": "조회",
+   "desc": "서비스 운영 · 자주 묻는 질문 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-097",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "자주 묻는 질문",
+   "action": "생성",
+   "desc": "서비스 운영 · 자주 묻는 질문 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-098",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "자주 묻는 질문",
+   "action": "수정",
+   "desc": "서비스 운영 · 자주 묻는 질문 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-099",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "자주 묻는 질문",
+   "action": "삭제",
+   "desc": "서비스 운영 · 자주 묻는 질문 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-100",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "1:1 관리자 문의",
+   "action": "조회",
+   "desc": "서비스 운영 · 1:1 관리자 문의 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-101",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "1:1 관리자 문의",
+   "action": "수정",
+   "desc": "서비스 운영 · 1:1 관리자 문의 — 기존 항목 수정·반영 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-102",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "다운로드 센터",
+   "action": "조회",
+   "desc": "서비스 운영 · 다운로드 센터 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-103",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "다운로드 센터",
+   "action": "생성",
+   "desc": "서비스 운영 · 다운로드 센터 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-104",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "다운로드 센터",
+   "action": "삭제",
+   "desc": "서비스 운영 · 다운로드 센터 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-105",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "업데이트 로그",
+   "action": "조회",
+   "desc": "서비스 운영 · 업데이트 로그 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-106",
+   "scope": "ADMIN",
+   "category": "서비스 운영",
+   "menu": "업데이트 로그",
+   "action": "생성",
+   "desc": "서비스 운영 · 업데이트 로그 — 신규 생성 흐름 정상 동작 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-107",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "지식 컬렉션 관리",
+   "action": "조회",
+   "desc": "지식 운영 · 지식 컬렉션 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-108",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "지식 컬렉션 관리",
+   "action": "삭제",
+   "desc": "지식 운영 · 지식 컬렉션 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-109",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "파일 저장소 관리",
+   "action": "조회",
+   "desc": "지식 운영 · 파일 저장소 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-110",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "파일 저장소 관리",
+   "action": "삭제",
+   "desc": "지식 운영 · 파일 저장소 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-111",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "DB 컬렉션 관리",
+   "action": "조회",
+   "desc": "지식 운영 · DB 컬렉션 관리 — 화면 로드·목록 렌더 정상 확인",
+   "outcome": "미실행",
+   "persona": "admin"
+  },
+  {
+   "id": "TC-ADM-112",
+   "scope": "ADMIN",
+   "category": "지식 운영",
+   "menu": "DB 컬렉션 관리",
+   "action": "삭제",
+   "desc": "지식 운영 · DB 컬렉션 관리 — 삭제 동작·복구불가 처리 확인",
+   "outcome": "미실행",
+   "persona": "admin"
   }
  ]
 }
