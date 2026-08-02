@@ -1,10 +1,10 @@
 {
- "env": "stg",
- "base": "https://stg-xgen.x2bee.com",
- "ranAt": "2026-08-02T05:12:29.876Z",
+ "env": "dev",
+ "base": "https://dev-xgen.x2bee.com",
+ "ranAt": "2026-08-02T22:05:07.388Z",
  "total": 132,
- "pass": 107,
- "fail": 1,
+ "pass": 96,
+ "fail": 11,
  "warn": 24,
  "results": [
   {
@@ -15,10 +15,10 @@
    "menu": "채팅 시작",
    "action": "조회",
    "desc": "채팅 시작 화면 진입 확인",
-   "ms": 3918,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45214,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-001.png"
   },
   {
    "id": "TC-CMN-003",
@@ -28,10 +28,10 @@
    "menu": "채팅 이력",
    "action": "조회",
    "desc": "채팅 이력 조회 확인",
-   "ms": 2030,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45210,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-003.png"
   },
   {
    "id": "TC-CMN-006",
@@ -41,10 +41,10 @@
    "menu": "Teams",
    "action": "조회",
    "desc": "Teams 진입 확인",
-   "ms": 1613,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 40648,
+   "outcome": "fail",
+   "error": "버튼 없음: Teams",
+   "shot": "shots/TC-CMN-006.png"
   },
   {
    "id": "TC-CMN-004",
@@ -54,10 +54,10 @@
    "menu": "에이전트 실행",
    "action": "실행",
    "desc": "에이전트 실행: 프롬프트→응답 수신 확인",
-   "ms": 6062,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45216,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-CMN-004.png"
   },
   {
    "id": "SC-009",
@@ -67,10 +67,10 @@
    "menu": "에이전트 채팅 대화",
    "action": "시나리오",
    "desc": "채팅 시작→에이전트 선택→프롬프트 전송→응답 수신 E2E",
-   "ms": 6039,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45215,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-009.png"
   },
   {
    "id": "SC-006",
@@ -80,10 +80,10 @@
    "menu": "지식 컬렉션 RAG 구성·질의",
    "action": "시나리오",
    "desc": "지식 컬렉션 생성→검증→정리 RAG 파이프라인 준비 E2E(자동 정리)",
-   "ms": 13753,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45213,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-006.png"
   },
   {
    "id": "SC-003",
@@ -93,10 +93,10 @@
    "menu": "대화로 워크플로우 생성",
    "action": "시나리오",
    "desc": "Agent 설계 대화형 워크플로우 생성 E2E",
-   "ms": 9945,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45217,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-003.png"
   },
   {
    "id": "SC-001",
@@ -106,10 +106,10 @@
    "menu": "B2B SNS 자동화 에이전트(RAG) 구축",
    "action": "시나리오",
    "desc": "B2B SNS RAG 에이전트 대화형 구축 E2E",
-   "ms": 9882,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45213,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/SC-001.png"
   },
   {
    "id": "TC-MAIN-052",
@@ -119,9 +119,9 @@
    "menu": "새 컬렉션 생성",
    "action": "생성",
    "desc": "새 컬렉션 실제 생성(자동 정리 포함) 확인",
-   "ms": 13736,
-   "outcome": "pass",
-   "error": "",
+   "ms": 49827,
+   "outcome": "fail",
+   "error": "지식 컬렉션 화면 없음",
    "shot": ""
   },
   {
@@ -133,7 +133,7 @@
    "action": "삭제",
    "desc": "컬렉션 실제 삭제(정리) 확인",
    "ms": 0,
-   "outcome": "pass",
+   "outcome": "na",
    "error": "",
    "shot": ""
   },
@@ -144,10 +144,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4450,
-   "outcome": "pass",
-   "error": "",
-   "shot": ""
+   "ms": 45219,
+   "outcome": "fail",
+   "error": "케이스 타임아웃 45000ms",
+   "shot": "shots/TC-MAIN-001.png"
   },
   {
    "id": "TC-MAIN-002",
