@@ -12,23 +12,16 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
-import { absoluteUrl } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { getIssues } from "@/lib/newsletter";
 
-export const metadata = {
+export const metadata = pageMetadata({
     title: "뉴스레터",
     description:
         "Plateer Labs 뉴스레터 — Enterprise AI·Agentic AI 연구와 실무 인사이트, 제품 소식과 검증된 적용 사례를 정기적으로 받아보세요.",
-    alternates: { canonical: "/newsletter" },
-    openGraph: {
-        title: "뉴스레터 · Plateer Labs",
-        description:
-            "Enterprise AI 인사이트와 제품 소식을 정기적으로 받아보세요.",
-        type: "website",
-        url: absoluteUrl("/newsletter"),
-    },
-};
+    path: "/newsletter",
+});
 
 const BENEFITS: { icon: LucideIcon; title: string; desc: string }[] = [
     {

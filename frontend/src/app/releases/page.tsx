@@ -6,7 +6,7 @@ import { ReleasesHeader } from "@/components/releases-header";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { RELEASES } from "@/lib/releases";
-import { itemListLd } from "@/lib/structured-data";
+import { itemListLd, breadcrumbLd } from "@/lib/structured-data";
 
 export const metadata = pageMetadata({
     title: "Release notes",
@@ -19,14 +19,21 @@ export default function ReleasesPage() {
     return (
         <>
             <JsonLd
-                data={itemListLd(
-                    "XGEN Platform release notes",
-                    RELEASES.map((r) => ({
-                        name: `${r.version} — ${r.tagline} (${r.date})`,
-                        url: `/releases#${r.version}`,
-                        description: r.summary,
-                    })),
-                )}
+                data={[
+                    itemListLd(
+                        "XGEN Platform release notes",
+                        RELEASES.map((r) => ({
+                            name: `${r.version} — ${r.tagline} (${r.date})`,
+                            url: `/releases#${r.version}`,
+                            description: r.summary,
+                        })),
+                    ),
+                    breadcrumbLd([
+                        { name: "Home", path: "/" },
+                        { name: "Product", path: "/product" },
+                        { name: "Release notes", path: "/releases" },
+                    ]),
+                ]}
             />
             <SiteNav overlay />
             <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">

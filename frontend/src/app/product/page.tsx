@@ -1231,65 +1231,73 @@ export default function ProductPage() {
                 {/* Governance — Enterprise Trust (다크 밴드: 신뢰의 포컬 포인트) */}
                 <section
                     id="governance"
-                    className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden border-t border-white/10 bg-[#0a1220] text-white"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-white/10 bg-[#0a1220] text-white"
                 >
-                    {/* 배경 글로우 — 다크 밴드에 깊이감 */}
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/15 blur-[130px]"
-                    />
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
-                    />
-                    <div className="relative mx-auto max-w-7xl px-6 py-24">
-                        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-                            <div className="flex h-full flex-col">
-                                <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[#7dd3fc]">
-                                    Enterprise Trust
-                                </p>
-                                <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
-                                    신뢰할 수 없는 AI는
-                                    <br />
-                                    기업에서 운영될 수 없습니다
-                                </h2>
-                                <p className="mx-auto mt-5 max-w-md text-center text-[16px] leading-relaxed text-white/65">
-                                    XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을
-                                    추적하고, 위험한 변경은 배포 전에 검증하며, 승인된
-                                    에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제
-                                    산업과 온프레미스 환경에서도 신뢰할 수 있는 거버넌스를
-                                    제공합니다.
-                                </p>
-                                <Link
-                                    href="/security-and-governance"
-                                    className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
-                                >
-                                    보안·거버넌스 아키텍처 자세히 보기
-                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                </Link>
-                                {/* 보안 통제 개념도(동심 방어 링 + 좌우 통제 칩) — 하단 정렬로
-                                    오른쪽 카드 박스 높이에 맞춰 아래를 채운다. */}
-                                <div className="mt-auto hidden pt-10 lg:block">
-                                    <GovernanceArt />
-                                </div>
-                            </div>
-                            <div className="grid gap-4 sm:grid-cols-2">
-                                {GOV.map((g) => (
-                                    <div
-                                        key={g.title}
-                                        className="rounded-2xl border border-white/10 bg-[linear-gradient(155deg,rgba(47,123,255,0.16)_0%,rgba(125,211,252,0.05)_45%,rgba(255,255,255,0.02)_100%)] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/50 hover:bg-[linear-gradient(155deg,rgba(47,123,255,0.22)_0%,rgba(125,211,252,0.07)_45%,rgba(255,255,255,0.03)_100%)]"
+                    {/* 글로우 클리핑(overflow-hidden)은 반드시 이 안쪽 래퍼에 둔다 —
+                        앵커 대상인 <section>에 직접 주면 그 섹션 자체가 스크롤 컨테이너가
+                        되어 브라우저가 scroll-margin-top을 무시하고 섹션을 뷰포트 최상단
+                        (= 고정 헤더 뒤)에 붙인다. 그러면 인덱스에서 '거버넌스'를 눌렀을 때
+                        제목이 헤더에 가린다. */}
+                    <div className="relative overflow-hidden">
+                        {/* 배경 글로우 — 다크 밴드에 깊이감 */}
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/15 blur-[130px]"
+                        />
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                        />
+                        <div className="relative mx-auto max-w-7xl px-6 py-24">
+                            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+                                <div className="flex h-full flex-col">
+                                    <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[#7dd3fc]">
+                                        Enterprise Trust
+                                    </p>
+                                    <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
+                                        신뢰할 수 없는 AI는
+                                        <br />
+                                        기업에서 운영될 수 없습니다
+                                    </h2>
+                                    <p className="mx-auto mt-5 max-w-md text-center text-[16px] leading-relaxed text-white/65">
+                                        XGEN은 누가, 무엇을, 언제 수행했는지 모든
+                                        활동을 추적하고, 위험한 변경은 배포 전에
+                                        검증하며, 승인된 에이전트만 운영 환경에
+                                        배포되도록 설계되었습니다. 규제 산업과
+                                        온프레미스 환경에서도 신뢰할 수 있는
+                                        거버넌스를 제공합니다.
+                                    </p>
+                                    <Link
+                                        href="/security-and-governance"
+                                        className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
                                     >
-                                        <div className="flex items-center gap-2.5">
-                                            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
-                                            <h3 className="text-[15.5px] font-bold tracking-tight text-white">
-                                                {g.title}
-                                            </h3>
-                                        </div>
-                                        <p className="mt-2.5 text-[14px] leading-relaxed text-white/60">
-                                            {g.desc}
-                                        </p>
+                                        보안·거버넌스 아키텍처 자세히 보기
+                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                    </Link>
+                                    {/* 보안 통제 개념도(동심 방어 링 + 좌우 통제 칩) — 하단 정렬로
+                                        오른쪽 카드 박스 높이에 맞춰 아래를 채운다. */}
+                                    <div className="mt-auto hidden pt-10 lg:block">
+                                        <GovernanceArt />
                                     </div>
-                                ))}
+                                </div>
+                                <div className="grid gap-4 sm:grid-cols-2">
+                                    {GOV.map((g) => (
+                                        <div
+                                            key={g.title}
+                                            className="rounded-2xl border border-white/10 bg-[linear-gradient(155deg,rgba(47,123,255,0.16)_0%,rgba(125,211,252,0.05)_45%,rgba(255,255,255,0.02)_100%)] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/50 hover:bg-[linear-gradient(155deg,rgba(47,123,255,0.22)_0%,rgba(125,211,252,0.07)_45%,rgba(255,255,255,0.03)_100%)]"
+                                        >
+                                            <div className="flex items-center gap-2.5">
+                                                <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
+                                                <h3 className="text-[15.5px] font-bold tracking-tight text-white">
+                                                    {g.title}
+                                                </h3>
+                                            </div>
+                                            <p className="mt-2.5 text-[14px] leading-relaxed text-white/60">
+                                                {g.desc}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

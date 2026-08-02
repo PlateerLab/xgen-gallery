@@ -25,21 +25,15 @@ import {
     RiskGaugeArt,
 } from "@/components/security-illustrations";
 import { breadcrumbLd } from "@/lib/structured-data";
-import { SITE, absoluteUrl } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = pageMetadata({
     title: "Security & Governance",
     description:
         "XGEN Agentic AI Platform의 가드레일·통제 정책 — 외부 가드 모델, PII 마스킹, 금칙어 필터, 통합 감사 로그, AI 위험도 등급으로 엔터프라이즈 AI를 안전하게 통제합니다.",
-    alternates: { canonical: "/security-and-governance" },
-    openGraph: {
-        title: "Security & Governance · Plateer Labs",
-        description:
-            "가드레일·통제 정책으로 검증 가능한 Enterprise AI를 운영합니다 — 가드 모델·PII 마스킹·감사 로그·AI 위험도 등급.",
-        type: "website",
-        url: absoluteUrl("/security-and-governance"),
-    },
-};
+    path: "/security-and-governance",
+});
 
 /** 다층 통제의 3가지 축. */
 const CONTROLS: { icon: LucideIcon; en: string; ko: string; desc: string }[] = [

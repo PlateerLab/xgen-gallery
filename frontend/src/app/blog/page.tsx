@@ -7,6 +7,7 @@ import { FeaturedHero } from "@/components/featured-hero";
 import { getAllPosts, type PostMeta } from "@/lib/blog";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import { absoluteUrl } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
 
 /**
  * 상단 키비주얼(캐러셀)에 올릴 글 선정 규칙 — docs/BLOG-WRITING-GUIDE.md 참조.
@@ -37,19 +38,12 @@ function pickHeroPosts(posts: PostMeta[]): PostMeta[] {
     return picked.sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
     title: "Insight",
     description:
         "Plateer Labs Insight — Case Study, Tech Note, 제품 소식 등 Enterprise AI 연구·실무 인사이트를 공유합니다.",
-    alternates: { canonical: "/blog" },
-    openGraph: {
-        title: "Insight · Plateer Labs",
-        description:
-            "Case Study · Tech Note · 제품 소식 — Enterprise AI 인사이트.",
-        type: "website",
-        url: absoluteUrl("/blog"),
-    },
-};
+    path: "/blog",
+});
 
 export default function BlogPage() {
     const posts = getAllPosts();
@@ -86,14 +80,16 @@ export default function BlogPage() {
 
             <section className="border-b border-[var(--color-line)] bg-white">
                 <div className="mx-auto w-full max-w-7xl px-6 pb-12 pt-10 md:pb-16 md:pt-14">
-                    <div className="mb-8 flex items-baseline gap-2.5">
+                    {/* 목록 페이지의 h1 — 기존에 h1이 없어 문서 구조 최상위 제목이 비어 있었다.
+                        보이는 모습은 그대로 두고 의미만 h1으로 올린다. */}
+                    <h1 className="mb-8 flex items-baseline gap-2.5">
                         <span className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#2461d8]">
                             Insight
                         </span>
                         <span className="text-[14px] text-[var(--color-ink-subtle)]">
                             연구와 현장에서 얻은 인사이트
                         </span>
-                    </div>
+                    </h1>
                     <FeaturedHero posts={heroPosts} />
                 </div>
             </section>

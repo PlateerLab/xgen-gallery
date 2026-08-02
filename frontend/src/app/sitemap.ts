@@ -5,6 +5,7 @@ import { NAV_GROUPS } from "@/lib/nav";
 import { getMembersPayload } from "@/lib/members/cache";
 import { getAllPosts } from "@/lib/blog";
 import { getIssues } from "@/lib/newsletter";
+import { SERIES } from "@/lib/series";
 import { getAllCases, INDUSTRIES, getCasesByIndustry, type IndustryKey } from "@/lib/customers";
 
 /**
@@ -25,6 +26,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/technical-consulting`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/enablement`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/security-and-governance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        // 공개 페이지인데 사이트맵에 빠져 있던 라우트 — 색인 대상에 포함한다.
+        { url: `${SITE.url}/architecture`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${SITE.url}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+        { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${SITE.url}/documentation`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${SITE.url}/members`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
@@ -82,6 +87,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
+    // 시리즈 목차 페이지 — 연재글을 묶는 허브라 내부 링크·주제 응집도에 기여한다.
+    const seriesRoutes: MetadataRoute.Sitemap = SERIES.map((s) => ({
+        url: `${SITE.url}/blog/series/${s.key}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.6,
+    }));
+
     const newsletterRoutes: MetadataRoute.Sitemap = getIssues().map((it) => ({
         url: `${SITE.url}/newsletter/${it.slug}`,
         lastModified: new Date(it.date),
@@ -107,6 +120,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...groupRoutes,
         ...toolRoutes,
         ...blogRoutes,
+        ...seriesRoutes,
         ...newsletterRoutes,
         ...memberRoutes,
         ...caseRoutes,

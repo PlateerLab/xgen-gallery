@@ -12,6 +12,18 @@ export function generateStaticParams() {
     return TOOLS.filter((t) => t.id !== "synaptic-memory").map((t) => ({ id: t.id }));
 }
 
+/**
+ * 검색결과에서 잘리지 않도록 단어 경계에서 자른다. 루트 layout의 title template이
+ * ` · Plateer Labs`를 덧붙이므로, title은 그 접미사까지 포함해 60자 안에 들어와야
+ * SERP에서 온전히 보인다(설명은 155자 기준).
+ */
+function clamp(text: string, max: number): string {
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    const at = cut.lastIndexOf(" ");
+    return (at > max * 0.6 ? cut.slice(0, at) : cut).replace(/[\s·—,.]+$/, "");
+}
+
 export async function generateMetadata({
     params,
 }: {
@@ -21,8 +33,14 @@ export async function generateMetadata({
     const tool = TOOLS.find((t) => t.id === id);
     if (!tool) return { title: "Tool not found" };
 
-    const title = `${tool.name} — ${tool.tagline}`;
-    const description = `${tool.description} 설치: ${tool.install} · 언어: ${tool.language} · 오픈소스(MIT). ${SITE.name}.`;
+    // 60자 - " · Plateer Labs"(접미사) = 태그라인까지 쓸 수 있는 여유분.
+    const room = 60 - ` · ${SITE.name}`.length - `${tool.name} — `.length;
+    const tagline = clamp(tool.tagline, Math.max(room, 0));
+    const title = tagline ? `${tool.name} — ${tagline}` : tool.name;
+    const description = clamp(
+        `${tool.description} 설치: ${tool.install} · 언어: ${tool.language} · 오픈소스(MIT).`,
+        155,
+    );
     const path = `/tool/${tool.id}`;
 
     return {

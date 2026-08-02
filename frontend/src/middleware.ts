@@ -29,6 +29,18 @@ const BLOCKED_BOTS = [
     "siteauditbot",
 ];
 
+/**
+ * 레거시 호스트 — 같은 앱이 예전 도메인으로도 서빙되고 있어서, 301 없이 두면
+ * 구글이 동일 콘텐츠를 두 도메인에서 보고 **이미 색인된 예전 도메인을 계속 노출**한다
+ * (canonical만으로는 이전이 확정되지 않는다). Google SEO 가이드의 "사이트 이전 시
+ * 301 리디렉션" 권고에 맞춰 경로·쿼리를 보존한 채 정식 도메인으로 영구 이동시킨다.
+ * 리디렉션이 살아 있어야 Search Console '주소 변경' 도구도 사용할 수 있다.
+ */
+const LEGACY_HOSTS = ["gallery-xgen.x2bee.com"];
+const CANONICAL_ORIGIN = (
+    process.env.NEXT_PUBLIC_SITE_URL || "https://labs.plateer.com"
+).replace(/\/$/, "");
+
 export function middleware(req: NextRequest) {
     const ua = req.headers.get("user-agent")?.toLowerCase() ?? "";
     if (ua && BLOCKED_BOTS.some((bot) => ua.includes(bot))) {
@@ -37,6 +49,25 @@ export function middleware(req: NextRequest) {
             headers: { "x-robots-tag": "noindex, nofollow" },
         });
     }
+
+    // 프록시 뒤에서는 req.nextUrl.host가 내부 호스트일 수 있어 원본 Host 헤더를 본다.
+    const host = (
+        req.headers.get("x-forwarded-host") ||
+        req.headers.get("host") ||
+        ""
+    )
+        .split(",")[0]
+        .trim()
+        .toLowerCase()
+        .replace(/:\d+$/, "");
+    if (LEGACY_HOSTS.includes(host)) {
+        const target = new URL(
+            req.nextUrl.pathname + req.nextUrl.search,
+            CANONICAL_ORIGIN,
+        );
+        return NextResponse.redirect(target, 301);
+    }
+
     return NextResponse.next();
 }
 

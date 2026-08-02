@@ -149,10 +149,13 @@ export default async function BlogPostPage({
 
             <main className="mx-auto max-w-3xl px-6 py-20">
                 {post.cover && (
+                    // 본문 커버는 장식이 아니라 글의 콘텐츠 이미지다 — 이미지 검색·AI 답변이
+                    // 무엇에 대한 그림인지 알 수 있도록 설명 alt를 준다(빈 alt는 목록 카드처럼
+                    // 바로 옆에 같은 제목 텍스트가 있는 경우에만 맞다).
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                         src={post.cover}
-                        alt=""
+                        alt={`${post.title} — 커버 일러스트`}
                         className="mb-12 aspect-[16/9] w-full rounded-2xl border border-[var(--color-line)] object-cover"
                     />
                 )}

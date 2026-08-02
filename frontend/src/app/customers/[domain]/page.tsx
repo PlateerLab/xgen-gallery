@@ -55,12 +55,15 @@ export async function generateMetadata({
         });
     }
     const d = INDUSTRIES[domain];
-    const hasCases = getCasesByIndustry(domain).length > 0;
+    const cases = getCasesByIndustry(domain);
+    const hasCases = cases.length > 0;
     return pageMetadata({
+        // 스니펫으로 쓰일 만큼 구체적으로 — 산업 blurb만 쓰면 40자 안팎이라
+        // 검색결과에서 페이지를 구분할 정보가 부족했다. 사례 수·제품군을 덧붙인다.
         title: `${d.ko} 고객사례`,
         description: hasCases
-            ? `${d.blurb}를 소개합니다.`
-            : `${d.blurb}를 준비 중입니다.`,
+            ? `${d.blurb} ${cases.length}건을 소개합니다. XGEN·AI Code Assistant를 ${d.ko} 현장 업무에 적용해 검증한 도입 배경·구축 범위·성과를 확인하세요.`
+            : `${d.blurb}를 준비 중입니다. Plateer Labs는 ${d.ko} 업무 특성과 규제를 반영한 Enterprise AI를 연구하고 PoC로 실증합니다.`,
         path: `/customers/${domain}`,
         // 사례가 아직 없으면 색인 제외(빈 페이지가 랭킹되지 않게).
         ...(hasCases ? {} : { robots: { index: false, follow: true } }),

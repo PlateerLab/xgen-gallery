@@ -12,21 +12,15 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
-import { SITE, absoluteUrl } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = pageMetadata({
     title: "운영·기술지원",
     description:
         "구축을 넘어 운영까지 — XGEN 온프레미스 환경의 유지보수, 장애 대응, 모니터링, 운영지원(상주·원격)을 제공합니다.",
-    alternates: { canonical: "/support" },
-    openGraph: {
-        title: "운영·기술지원 · Plateer Labs",
-        description:
-            "유지보수·장애처리·모니터링·SLA — 구축 이후 안정적인 운영을 책임집니다.",
-        type: "website",
-        url: absoluteUrl("/support"),
-    },
-};
+    path: "/support",
+});
 
 /** 지원 범위. */
 const SCOPE: { icon: LucideIcon; ko: string; en: string; desc: string }[] = [
