@@ -52,8 +52,8 @@ export default function ResourcesPage() {
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
                         XGEN Enterprise Agentic AI 플랫폼의 핵심 기능, 아키텍처, 구축
-                        방식, 도입 사례를 담은 자료를 제공합니다. 간단한 정보를 입력하면
-                        바로 다운로드할 수 있습니다.
+                        방식, 도입 사례를 담은 자료를 제공합니다. 간단한 정보를 남겨
+                        주시면 담당자가 확인 후 이메일로 보내드립니다.
                     </p>
                 </div>
             </section>
@@ -62,14 +62,14 @@ export default function ResourcesPage() {
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Download
+                            Brochure
                         </p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            소개서 다운로드
+                            소개서 신청
                         </h2>
                         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            원하시는 소개서를 선택하고 간단한 정보를 남기시면 PDF를 바로
-                            받아보실 수 있습니다.
+                            원하시는 소개서를 선택하고 간단한 정보를 남기시면 담당자가
+                            확인 후 입력하신 이메일로 보내드립니다.
                         </p>
 
                         <div className="mt-8">

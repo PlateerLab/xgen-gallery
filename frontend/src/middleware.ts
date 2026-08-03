@@ -41,13 +41,35 @@ const CANONICAL_ORIGIN = (
     process.env.NEXT_PUBLIC_SITE_URL || "https://labs.plateer.com"
 ).replace(/\/$/, "");
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
     const ua = req.headers.get("user-agent")?.toLowerCase() ?? "";
     if (ua && BLOCKED_BOTS.some((bot) => ua.includes(bot))) {
         return new NextResponse("Access denied", {
             status: 403,
             headers: { "x-robots-tag": "noindex, nofollow" },
         });
+    }
+
+    // 소개서 PDF 직접 접근 차단 — 파일은 /public/downloads 에 있지만 정적 서빙보다
+    // 미들웨어가 먼저 도므로 여기서 끊긴다. 전달은 서명을 검증하는
+    // /api/brochure/download 라우트만 담당한다(신청 폼을 거치지 않고 경로만 알면
+    // 받아가던 구멍을 막는다).
+    //
+    // 여기서 서명까지 검증하지 않는 이유: 미들웨어는 Edge 런타임이라 process.env 가
+    // 빌드 시점에 인라인되는데, 운영은 .env 를 컨테이너 런타임에만 주입한다
+    // → 시크릿이 undefined 가 되어 정상 링크까지 403 이 된다. 경로 규칙만 두면
+    // 환경변수에 의존하지 않아 그런 실패가 없다.
+    if (req.nextUrl.pathname.startsWith("/downloads/")) {
+        return new NextResponse(
+            "소개서는 labs.plateer.com/resources 에서 신청해 주세요.",
+            {
+                status: 403,
+                headers: {
+                    "content-type": "text/plain; charset=utf-8",
+                    "x-robots-tag": "noindex, nofollow",
+                },
+            },
+        );
     }
 
     // 프록시 뒤에서는 req.nextUrl.host가 내부 호스트일 수 있어 원본 Host 헤더를 본다.

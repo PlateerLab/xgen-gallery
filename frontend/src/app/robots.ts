@@ -59,7 +59,9 @@ export const BLOCKED_BOTS = [
  * 검색·AI 봇 규칙 양쪽에 동일하게 적용한다(named 규칙만 읽는 봇이 있어서).
  * robots.txt를 무시하는 봇 대비로 next.config.ts에서 X-Robots-Tag도 함께 내려준다.
  */
-const PRIVATE_PATHS = ["/admin/", "/qa-console/"];
+// /downloads/ 는 소개서 PDF — 서명 링크로만 열리므로(middleware) 크롤러가 긁어도
+// 403만 받는다. 크롤 예산을 낭비하지 않도록 애초에 막아둔다.
+const PRIVATE_PATHS = ["/admin/", "/qa-console/", "/downloads/"];
 
 export default function robots(): MetadataRoute.Robots {
     return {

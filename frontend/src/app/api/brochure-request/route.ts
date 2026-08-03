@@ -1,6 +1,9 @@
 import { NextResponse, after } from "next/server";
 import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
-import { sendMail, brochureMail, brochureInternalMail } from "@/lib/mailer";
+// brochureMail(요청자 자동 발송)은 담당자 수동 발송으로 전환하며 호출을 뺐다.
+// 되돌릴 때 다시 import 하면 된다 — lib/mailer.ts에 그대로 남아 있다.
+import { sendMail, brochureInternalMail } from "@/lib/mailer";
+import { signDownloadPath } from "@/lib/brochure-link";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -83,10 +86,16 @@ export async function POST(req: Request) {
         source: "labs-site/resources",
     };
 
-    // 다운로드가 바로 시작되도록 응답 먼저 — 시트 적재(웹훅) + 이메일(앱 O365 SMTP·발신 xgen)은 백그라운드.
+    // 접수 응답 먼저 — 시트 적재(웹훅) + 담당자 알림(앱 O365 SMTP·발신 xgen)은 백그라운드.
     const webhook =
         process.env.BROCHURE_WEBHOOK_URL || process.env.DEMO_WEBHOOK_URL;
-    const info = { name: brochure.name, file: brochure.file };
+    const info = {
+        name: brochure.name,
+        file: brochure.file,
+        // 서명 링크는 담당자 알림 메일에만 들어간다. 이 응답에는 넣지 않는다 —
+        // 폼 제출자에게 바로 주면 "담당자 확인 후 발송"이 무의미해진다.
+        signedPath: await signDownloadPath(brochure.asset || DEFAULT_BROCHURE),
+    };
     after(async () => {
         const jobs: Promise<unknown>[] = [];
         if (webhook) {
@@ -102,10 +111,12 @@ export async function POST(req: Request) {
         } else {
             console.log("[brochure-request] received:", JSON.stringify(record));
         }
-        jobs.push(sendMail(brochureMail(record, info))); // 요청자 다운로드 링크
+        // 요청자 자동 발송(brochureMail)은 중단 — 담당자가 내부 알림을 확인한 뒤
+        // 직접 보낸다(요청). 내부 알림에 프리필 mailto 버튼이 들어 있다.
         jobs.push(sendMail(brochureInternalMail(record, info))); // 내부 접수 알림
         await Promise.allSettled(jobs);
     });
 
-    return NextResponse.json({ ok: true, downloadUrl: brochure.file });
+    // downloadUrl은 더 이상 주지 않는다 — 소개서는 담당자가 확인 후 메일로 보낸다.
+    return NextResponse.json({ ok: true });
 }

@@ -131,7 +131,7 @@ export function ResourcesBrochures() {
                     </ul>
                     <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line)] pt-4 text-[13.5px] text-[var(--color-ink-subtle)]">
                         <Check className="h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                        신청 즉시 PDF 다운로드
+                        신청 후 이메일로 PDF 발송
                     </div>
                 </div>
 
@@ -148,7 +148,7 @@ export function ResourcesBrochures() {
                             {active.name} 소개서는 준비 중입니다
                         </h3>
                         <p className="mt-2 max-w-xs text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                            곧 공개되면 이 자리에서 바로 신청·다운로드하실 수 있습니다.
+                            곧 공개되면 이 자리에서 바로 신청하실 수 있습니다.
                         </p>
                     </div>
                 )}

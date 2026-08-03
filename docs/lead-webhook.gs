@@ -20,6 +20,11 @@ const FROM_NAME = "Plateer Labs";
 
 // 브로셔 종류 — 요청의 asset 값 → { 표시명, 다운로드 PDF }.
 // 새 종류가 생기면 여기 한 줄만 추가 + 해당 PDF를 /public/downloads 에 올리면 된다.
+// ⚠️ 아래 /downloads/*.pdf 주소는 이제 **403**이다. 소개서 무단 다운로드를 막으려고
+//    직접 접근을 차단하고, 서명·만료가 붙은 /api/brochure/download 링크로만 내려준다.
+//    이 스크립트에서 메일 발송을 되살리려면 PDF를 첨부하거나, 앱이 만든 서명 링크를
+//    받아 쓰도록 고쳐야 한다(서명 키가 앱에 있어 Apps Script 혼자서는 못 만든다).
+//    현재 소개서 메일은 앱이 담당자에게만 보내고, 담당자가 확인 후 전달한다.
 var BROCHURE_TYPES = {
   "xgen-brochure":           { name: "XGEN",              pdf: "https://labs.plateer.com/downloads/xgen-brochure.pdf" },
   "code-assistant-brochure": { name: "AI Code Assistant", pdf: "https://labs.plateer.com/downloads/code-assistant-brochure.pdf" }

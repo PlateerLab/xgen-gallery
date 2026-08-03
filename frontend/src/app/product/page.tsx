@@ -1489,7 +1489,7 @@ export default function ProductPage() {
                                 className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
                                 <Download className="h-4 w-4" />
-                                XGEN 소개서 다운로드
+                                XGEN 소개서 신청
                             </Link>
                         </div>
                     </div>

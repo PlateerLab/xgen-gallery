@@ -1,19 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Download, FileText, Loader2 } from "lucide-react";
+import { Check, Send, FileText, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { cn } from "@/lib/cn";
 import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
 
 /**
- * XGEN 소개서 다운로드 리드 폼(게이팅). 제출 → /api/brochure-request 검증·수집 →
- * 성공 시 소개서 PDF 다운로드를 노출하고 자동 트리거한다. 필드·동의·프리미티브는
- * demo-form 과 같은 시각 언어를 따르되, 자료실 전용으로 자족 구현했다.
+ * XGEN 소개서 신청 리드 폼(게이팅). 제출 → /api/brochure-request 검증·수집 →
+ * 담당자에게 접수 알림이 가고, **담당자가 확인한 뒤 요청자에게 직접 메일로 보낸다**(요청).
+ * 예전에는 제출 즉시 PDF를 자동 다운로드시켰지만, 누가 받아 가는지 통제할 수 없어
+ * 화면 다운로드를 없앴다. 되돌리려면 성공 화면에 다운로드 버튼을 되살리고
+ * route.ts에서 brochureMail 자동 발송을 복구하면 된다.
+ * 필드·동의·프리미티브는 demo-form 과 같은 시각 언어를 따른다.
  */
 const COPY = {
     ko: {
-        lead: "아래 정보를 남겨 주시면 XGEN 소개서를 바로 받아보실 수 있습니다",
+        lead: "아래 정보를 남겨 주시면 XGEN 소개서를 이메일로 보내드립니다",
         email: "회사 이메일",
         name: "성함",
         company: "회사",
@@ -33,19 +36,17 @@ const COPY = {
         agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
         agreeMarketing: "[선택] 마케팅 정보 수신 동의",
-        submit: "소개서 받기",
+        submit: "소개서 신청하기",
         submitting: "전송 중…",
-        successTitle: "소개서가 준비되었습니다",
-        successBody: "다운로드가 자동으로 시작됩니다. 시작되지 않으면 아래 버튼을 눌러주세요",
-        download: "XGEN 소개서 다운로드 (PDF)",
-        again: "다시 받기",
+        successTitle: "소개서 신청이 접수되었습니다",
+        successBody: "담당자가 확인 후 입력하신 이메일로 소개서를 보내드립니다. 영업일 기준 1~2일 내에 받아보실 수 있습니다",
         errRequired: "필수 항목입니다.",
         errEmail: "올바른 이메일 형식이 아닙니다.",
         errConsent: "필수 동의 항목입니다.",
         errSubmit: "전송에 실패했습니다. 잠시 후 다시 시도해주세요.",
     },
     en: {
-        lead: "Leave your details below and get the XGEN brochure right away",
+        lead: "Leave your details below and we will email you the XGEN brochure",
         email: "Work email",
         name: "Full name",
         company: "Company",
@@ -66,12 +67,10 @@ const COPY = {
         agreeCollect:
             "[Required] I consent to the collection and use of personal information.",
         agreeMarketing: "[Optional] I agree to receive marketing communications.",
-        submit: "Get the brochure",
+        submit: "Request the brochure",
         submitting: "Submitting…",
-        successTitle: "Your brochure is ready",
-        successBody: "The download starts automatically. If it doesn't, use the button below",
-        download: "Download XGEN brochure (PDF)",
-        again: "Get it again",
+        successTitle: "Your request has been received",
+        successBody: "Our team will review it and email the brochure to the address you provided, usually within 1-2 business days",
         errRequired: "This field is required.",
         errEmail: "Please enter a valid email address.",
         errConsent: "Consent is required.",
@@ -117,31 +116,16 @@ const REQUIRED_TEXT = [
 
 const REQUIRED_CONSENTS = ["agreePrivacyPolicy", "agreePrivacyCollect"] as const;
 
-/** 다운로드를 프로그램적으로 트리거 — 새 탭 대신 파일 저장. */
-function triggerDownload(url: string) {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-}
-
 export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
     const { locale } = useI18n();
     const c = COPY[locale === "en" ? "en" : "ko"];
-    // 종류 구분자(asset) → 이 폼이 받을 소개서(표시명·다운로드 PDF).
+    // 종류 구분자(asset) → 이 폼이 신청받는 소개서(표시명).
     const brochure = resolveBrochure(asset);
-    const downloadLabel =
-        locale === "en"
-            ? `Download ${brochure.name} brochure (PDF)`
-            : `${brochure.name} 소개서 다운로드 (PDF)`;
 
     const [fields, setFields] = useState<Fields>(EMPTY);
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
     const [submitError, setSubmitError] = useState<string | null>(null);
-    const [downloadUrl, setDownloadUrl] = useState<string>(brochure.file);
 
     const set = (k: keyof Fields, v: string | boolean) =>
         setFields((f) => ({ ...f, [k]: v }));
@@ -172,11 +156,8 @@ export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
                 body: JSON.stringify({ ...fields, asset }),
             });
             if (!res.ok) throw new Error(String(res.status));
-            const data = (await res.json()) as { downloadUrl?: string };
-            const url = data.downloadUrl || brochure.file;
-            setDownloadUrl(url);
+            // 접수만 확인한다 — 소개서는 담당자가 확인 후 메일로 보낸다.
             setStatus("done");
-            triggerDownload(url);
         } catch {
             setStatus("idle");
             setSubmitError(c.errSubmit);
@@ -200,27 +181,6 @@ export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
                     <p className="mx-auto mt-2.5 max-w-md text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                         {c.successBody}
                     </p>
-                    <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                        <a
-                            href={downloadUrl}
-                            download
-                            className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
-                        >
-                            <Download className="h-4 w-4" />
-                            {downloadLabel}
-                        </a>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setFields(EMPTY);
-                                setErrors({});
-                                setStatus("idle");
-                            }}
-                            className="inline-flex items-center justify-center rounded-full border border-[var(--color-line-strong)] px-5 py-2.5 text-[15px] font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface-alt)]"
-                        >
-                            {c.again}
-                        </button>
-                    </div>
                 </div>
             </div>
         );
@@ -328,7 +288,7 @@ export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
                     </>
                 ) : (
                     <>
-                        <Download className="h-4 w-4" />
+                        <Send className="h-4 w-4" />
                         {c.submit}
                     </>
                 )}

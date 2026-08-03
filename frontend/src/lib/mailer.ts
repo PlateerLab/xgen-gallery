@@ -29,9 +29,10 @@ const EXTRA_INTERNAL_TO = [
 const CONTACT_INTERNAL_TO =
     process.env.MAIL_CONTACT_TO ||
     ["chat2plex@gmail.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
+// 소개서는 담당자 확인 후 수동 발송으로 전환 중이라, 검증이 끝날 때까지 swan 한 명에게만
+// 보낸다. 테스트가 끝나면 xgen + EXTRA_INTERNAL_TO를 다시 합친다.
 const BROCHURE_INTERNAL_TO =
-    process.env.MAIL_BROCHURE_TO ||
-    ["swan@plateer.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
+    process.env.MAIL_BROCHURE_TO || "swan@plateer.com";
 
 const SITE = "https://labs.plateer.com";
 
@@ -175,7 +176,14 @@ export interface BrochureLead extends ContactLead {
 }
 export interface BrochureInfo {
     name: string;
+    /** /public 기준 PDF 경로 — 서명 없이는 미들웨어가 막는다. */
     file: string;
+    /**
+     * 서명·만료가 붙은 다운로드 경로. 라우트에서 signDownloadPath()로 만들어 넘긴다.
+     * 시크릿 미설정 등으로 만들지 못하면 null — 이 경우 메일에 링크를 넣지 않고
+     * 담당자가 파일을 직접 첨부하도록 안내한다.
+     */
+    signedPath?: string | null;
 }
 
 /** 요청자에게 소개서 다운로드 링크 메일. */
@@ -264,24 +272,91 @@ export function contentNotifyMail(
     return { to, subject, text, html };
 }
 
-/** 내부 팀 알림(소개서). */
+/**
+ * 내부 팀 알림(소개서) — 접수 사실을 알리고, 담당자가 **확인 후 직접** 요청자에게
+ * 소개서를 보내도록 만든다. 요청자에게 자동 발송하던 brochureMail은 더 이상
+ * 호출하지 않으므로(요청), 이 메일이 유일한 전달 경로다.
+ *
+ * '요청자에게 보내기' 버튼은 mailto 링크다 — 담당자 메일 클라이언트에 수신자·제목·
+ * 본문(소개서 링크 포함)이 채워진 상태로 열려, 내용을 확인·수정한 뒤 보내면 된다.
+ * 별도 어드민 화면이나 승인 API 없이 동작해 운영 부담이 없다.
+ */
 export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
+    const to = String(d.email || "").trim();
+    const name = d.name || "고객";
+    // 서명 링크가 없으면(시크릿 미설정) 링크를 넣지 않는다 — 어차피 403이 나서
+    // 요청자만 헛걸음한다. 그 경우 담당자가 파일을 직접 첨부하도록 안내한다.
+    const pdf = b.signedPath ? SITE + b.signedPath : null;
+    const replySubject = `[Plateer Labs] 요청하신 ${b.name} 소개서를 보내드립니다`;
+    const replyBody = [
+        `${name}님, 안녕하세요.`,
+        "",
+        `Plateer Labs ${b.name}에 관심 가져 주셔서 감사합니다.`,
+        ...(pdf
+            ? [
+                  `요청하신 ${b.name} 소개서는 아래 링크에서 받으실 수 있습니다.`,
+                  "",
+                  pdf,
+                  "",
+                  "(링크는 발송일로부터 30일간 유효합니다)",
+              ]
+            : [`요청하신 ${b.name} 소개서를 첨부해 드립니다.`]),
+        "",
+        "도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신해 주세요.",
+        "",
+        "감사합니다.",
+        "Plateer Labs 드림",
+    ].join("\n");
+    const mailto =
+        `mailto:${encodeURIComponent(to)}` +
+        `?subject=${encodeURIComponent(replySubject)}` +
+        `&body=${encodeURIComponent(replyBody)}`;
+
+    const rows: [string, string][] = [
+        ["소개서", b.name],
+        ["성함", d.name || ""],
+        ["이메일", to],
+        ["연락처", d.phone || ""],
+        ["회사", d.company || ""],
+        ["부서", d.department || ""],
+        ["직급", d.jobTitle || ""],
+        ["방문경로", d.referralPath || ""],
+        ["마케팅 수신 동의", d.agreeMarketing ? "Y" : "N"],
+    ];
+
     return {
         to: BROCHURE_INTERNAL_TO,
-        replyTo: String(d.email || "").trim() || FROM_ADDR,
+        replyTo: to || FROM_ADDR,
         subject: `[소개서 신청/${b.name}] ${d.name || ""} (${d.company || ""})`,
         text: [
-            `• 소개서: ${b.name}`,
-            `• 성함: ${d.name || ""}`,
-            `• 이메일: ${d.email || ""}`,
-            `• 연락처: ${d.phone || ""}`,
-            `• 회사: ${d.company || ""}`,
-            `• 부서: ${d.department || ""}`,
-            `• 직급: ${d.jobTitle || ""}`,
-            `• 방문경로: ${d.referralPath || ""}`,
-            `• 마케팅 수신 동의: ${d.agreeMarketing ? "Y" : "N"}`,
+            "소개서 신청이 접수되었습니다. 요청자에게는 아직 발송되지 않았습니다.",
+            "확인 후 아래 내용으로 직접 보내주세요.",
+            "",
+            ...rows.map(([k, v]) => `• ${k}: ${v}`),
             "",
             `접수 시각(KST): ${seoulTime(d.receivedAt)}`,
+            "",
+            "── 보낼 내용 ──",
+            `받는사람: ${to}`,
+            `제목: ${replySubject}`,
+            "",
+            replyBody,
         ].join("\n"),
+        html: wrap(
+            `<p style="margin:0 0 4px"><b>소개서 신청이 접수되었습니다.</b></p>` +
+                `<p style="margin:0 0 18px;color:#b45309">요청자에게는 아직 발송되지 않았습니다 — 확인 후 아래 버튼으로 보내주세요.</p>` +
+                `<table style="border-collapse:collapse;font-size:14.5px">` +
+                rows
+                    .map(
+                        ([k, v]) =>
+                            `<tr><td style="padding:3px 14px 3px 0;color:#5b6472;white-space:nowrap">${esc(k)}</td>` +
+                            `<td style="padding:3px 0;color:#1a2233">${esc(v)}</td></tr>`,
+                    )
+                    .join("") +
+                `</table>` +
+                `<p style="margin:22px 0"><a href="${mailto}" style="display:inline-block;background:#2f7bff;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">요청자에게 소개서 보내기</a></p>` +
+                `<p style="color:#5b6472;font-size:13.5px">버튼이 열리지 않으면 ${esc(to)} 로 직접 보내주세요.${pdf ? ` 소개서 링크(30일 유효): ${pdf}` : " 소개서 링크를 만들지 못했으니 PDF를 첨부해 주세요."}</p>` +
+                `<p style="color:#8b93a4;font-size:12.5px">접수 시각(KST): ${esc(seoulTime(d.receivedAt))}</p>`,
+        ),
     };
 }
