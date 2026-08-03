@@ -29,10 +29,9 @@ const EXTRA_INTERNAL_TO = [
 const CONTACT_INTERNAL_TO =
     process.env.MAIL_CONTACT_TO ||
     ["chat2plex@gmail.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
-// 소개서는 담당자 확인 후 수동 발송으로 전환 중이라, 검증이 끝날 때까지 swan 한 명에게만
-// 보낸다. 테스트가 끝나면 xgen + EXTRA_INTERNAL_TO를 다시 합친다.
 const BROCHURE_INTERNAL_TO =
-    process.env.MAIL_BROCHURE_TO || "swan@plateer.com";
+    process.env.MAIL_BROCHURE_TO ||
+    ["swan@plateer.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
 
 const SITE = "https://labs.plateer.com";
 
