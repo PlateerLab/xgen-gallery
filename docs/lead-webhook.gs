@@ -2,10 +2,14 @@
 // Code.gs 전체를 이 내용으로 교체 → 배포 관리 > 편집 > 새 버전 배포.
 // (권한: SpreadsheetApp + MailApp — 기존과 동일, 추가 승인/차단 없음)
 
+// ⚠️ 평소 이 메일들은 앱(mailer.ts, O365 SMTP)이 보낸다 — 아래 상수는 앱 장애 시
+//    롤백(주석 해제)용이므로 수신자를 바꿀 때 frontend/src/lib/mailer.ts와 함께 고친다.
+// 상담·소개서 양쪽에 공통으로 받는 담당자.
+const EXTRA_INTERNAL_TO = "shinss@plateer.com, yklee@plateer.com, ndh6913@plateer.com, woomun_jung@plateer.com";
 const CONTACT_TO  = "chat2plex@gmail.com";
-const CONTACT_BCC = "swan@plateer.com,chat2plex@gmail.com";
-// 소개서 내부 접수 알림 수신자 — swan + xgen 둘 다.
-const BROCHURE_TO = "swan@plateer.com, xgen@plateer.com";
+const CONTACT_BCC = "swan@plateer.com, chat2plex@gmail.com, " + EXTRA_INTERNAL_TO;
+// 소개서 내부 접수 알림 수신자 — swan + xgen + 공통 담당자.
+const BROCHURE_TO = "swan@plateer.com, xgen@plateer.com, " + EXTRA_INTERNAL_TO;
 
 // 브랜드 주소(답장 주소). ⚠️ plateer.com은 Microsoft365라 xgen@plateer.com은 O365 SMTP
 //   별칭이고, Apps Script(MailApp)는 SMTP 별칭을 from으로 못 쓴다(구조적 한계 → 실제 발신은

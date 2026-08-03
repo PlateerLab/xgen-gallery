@@ -16,11 +16,22 @@ const USER = process.env.SMTP_USER || "xgen@plateer.com";
 const PASS = process.env.SMTP_PASS || ""; // 시크릿 — 이것만 설정하면 됨
 const FROM_ADDR = process.env.MAIL_FROM || USER || "xgen@plateer.com";
 const FROM_NAME = "Plateer Labs";
-/** 내부 알림 수신처 — 상담/소개서 각각(둘 다 xgen 포함). env로 오버라이드 가능. */
+/**
+ * 내부 알림 수신처 — 상담/소개서 각각(둘 다 xgen 포함). env로 오버라이드 가능.
+ * 상담·소개서 양쪽에 공통으로 받는 담당자는 EXTRA_INTERNAL_TO에 한 줄만 넣으면 된다.
+ */
+const EXTRA_INTERNAL_TO = [
+    "shinss@plateer.com",
+    "yklee@plateer.com",
+    "ndh6913@plateer.com",
+    "woomun_jung@plateer.com",
+];
 const CONTACT_INTERNAL_TO =
-    process.env.MAIL_CONTACT_TO || "chat2plex@gmail.com, xgen@plateer.com";
+    process.env.MAIL_CONTACT_TO ||
+    ["chat2plex@gmail.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
 const BROCHURE_INTERNAL_TO =
-    process.env.MAIL_BROCHURE_TO || "swan@plateer.com, xgen@plateer.com";
+    process.env.MAIL_BROCHURE_TO ||
+    ["swan@plateer.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
 
 const SITE = "https://labs.plateer.com";
 
