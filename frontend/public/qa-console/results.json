@@ -1,11 +1,11 @@
 {
- "env": "dev",
- "base": "https://dev-xgen.x2bee.com",
- "ranAt": "2026-08-02T22:05:07.388Z",
+ "env": "stg",
+ "base": "https://stg-xgen.x2bee.com",
+ "ranAt": "2026-08-03T07:09:24.049Z",
  "total": 132,
- "pass": 96,
- "fail": 11,
- "warn": 24,
+ "pass": 108,
+ "fail": 1,
+ "warn": 23,
  "results": [
   {
    "id": "TC-CMN-001",
@@ -15,10 +15,10 @@
    "menu": "채팅 시작",
    "action": "조회",
    "desc": "채팅 시작 화면 진입 확인",
-   "ms": 45214,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/TC-CMN-001.png"
+   "ms": 4689,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-CMN-003",
@@ -28,10 +28,10 @@
    "menu": "채팅 이력",
    "action": "조회",
    "desc": "채팅 이력 조회 확인",
-   "ms": 45210,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/TC-CMN-003.png"
+   "ms": 2029,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-CMN-006",
@@ -41,10 +41,10 @@
    "menu": "Teams",
    "action": "조회",
    "desc": "Teams 진입 확인",
-   "ms": 40648,
-   "outcome": "fail",
-   "error": "버튼 없음: Teams",
-   "shot": "shots/TC-CMN-006.png"
+   "ms": 1609,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-CMN-004",
@@ -54,10 +54,10 @@
    "menu": "에이전트 실행",
    "action": "실행",
    "desc": "에이전트 실행: 프롬프트→응답 수신 확인",
-   "ms": 45216,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/TC-CMN-004.png"
+   "ms": 8065,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "SC-009",
@@ -67,10 +67,10 @@
    "menu": "에이전트 채팅 대화",
    "action": "시나리오",
    "desc": "채팅 시작→에이전트 선택→프롬프트 전송→응답 수신 E2E",
-   "ms": 45215,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/SC-009.png"
+   "ms": 12064,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "SC-006",
@@ -80,10 +80,10 @@
    "menu": "지식 컬렉션 RAG 구성·질의",
    "action": "시나리오",
    "desc": "지식 컬렉션 생성→검증→정리 RAG 파이프라인 준비 E2E(자동 정리)",
-   "ms": 45213,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/SC-006.png"
+   "ms": 24056,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "SC-003",
@@ -93,10 +93,10 @@
    "menu": "대화로 워크플로우 생성",
    "action": "시나리오",
    "desc": "Agent 설계 대화형 워크플로우 생성 E2E",
-   "ms": 45217,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/SC-003.png"
+   "ms": 9943,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "SC-001",
@@ -106,10 +106,10 @@
    "menu": "B2B SNS 자동화 에이전트(RAG) 구축",
    "action": "시나리오",
    "desc": "B2B SNS RAG 에이전트 대화형 구축 E2E",
-   "ms": 45213,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/SC-001.png"
+   "ms": 9899,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-MAIN-052",
@@ -118,10 +118,10 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "새 컬렉션 생성",
    "action": "생성",
-   "desc": "새 컬렉션 실제 생성(자동 정리 포함) 확인",
-   "ms": 49827,
-   "outcome": "fail",
-   "error": "지식 컬렉션 화면 없음",
+   "desc": "[기능E2E] 새 컬렉션 실제 생성→목록 반영 확인",
+   "ms": 24109,
+   "outcome": "pass",
+   "error": "",
    "shot": ""
   },
   {
@@ -131,9 +131,9 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "컬렉션 삭제",
    "action": "삭제",
-   "desc": "컬렉션 실제 삭제(정리) 확인",
+   "desc": "[기능E2E] 카드 삭제→목록에서 제거 확인(정리)",
    "ms": 0,
-   "outcome": "na",
+   "outcome": "pass",
    "error": "",
    "shot": ""
   },
@@ -144,10 +144,10 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 45219,
-   "outcome": "fail",
-   "error": "케이스 타임아웃 45000ms",
-   "shot": "shots/TC-MAIN-001.png"
+   "ms": 4406,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-MAIN-002",
@@ -156,7 +156,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "새 에이전트 생성",
    "action": "생성",
-   "ms": 4397,
+   "ms": 4379,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -168,7 +168,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "편집",
    "action": "수정",
-   "ms": 4460,
+   "ms": 4422,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -180,7 +180,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "복제",
    "action": "복제",
-   "ms": 4403,
+   "ms": 4435,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -192,7 +192,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "실행",
    "action": "실행",
-   "ms": 4437,
+   "ms": 4466,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -204,7 +204,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "삭제",
    "action": "삭제",
-   "ms": 4432,
+   "ms": 4382,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -216,7 +216,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 4432,
+   "ms": 4422,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -228,7 +228,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "검색",
    "action": "조회",
-   "ms": 4436,
+   "ms": 4402,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -240,7 +240,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "보관함 조회",
    "action": "조회",
-   "ms": 4405,
+   "ms": 4418,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -252,7 +252,7 @@
    "category": "Agent 제작 · Agent 목록",
    "menu": "템플릿 조회",
    "action": "조회",
-   "ms": 4415,
+   "ms": 4506,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -264,7 +264,7 @@
    "category": "Agent 제작 · Agent 기획",
    "menu": "기획서 조회",
    "action": "조회",
-   "ms": 4438,
+   "ms": 4416,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -276,7 +276,7 @@
    "category": "Agent 제작 · Agent 운영 설정",
    "menu": "운영 설정 조회",
    "action": "조회",
-   "ms": 4411,
+   "ms": 4367,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -289,7 +289,7 @@
    "menu": "로그인 관리",
    "action": "조회",
    "desc": "사용자 / 접근제어 · 로그인 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3221,
+   "ms": 3232,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -302,7 +302,7 @@
    "menu": "Agent 관리",
    "action": "조회",
    "desc": "Agent 운영 · Agent 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3234,
+   "ms": 3223,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -315,7 +315,7 @@
    "menu": "채팅 모니터링",
    "action": "조회",
    "desc": "Agent 운영 · 채팅 모니터링 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3288,
+   "ms": 3307,
    "outcome": "fail",
    "error": "에러 바운더리 감지",
    "shot": "shots/TC-ADM-005.png"
@@ -328,7 +328,7 @@
    "menu": "사용자 토큰",
    "action": "조회",
    "desc": "Agent 운영 · 사용자 토큰 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3227,
+   "ms": 3241,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -341,7 +341,7 @@
    "menu": "노드 관리",
    "action": "조회",
    "desc": "Agent 운영 · 노드 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3217,
+   "ms": 3227,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -354,7 +354,7 @@
    "menu": "프롬프트 템플릿",
    "action": "조회",
    "desc": "Agent 운영 · 프롬프트 템플릿 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3242,
+   "ms": 3228,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -367,7 +367,7 @@
    "menu": "사용자 피드백",
    "action": "조회",
    "desc": "Agent 운영 · 사용자 피드백 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3224,
+   "ms": 3222,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -380,7 +380,7 @@
    "menu": "응답 품질 평가",
    "action": "조회",
    "desc": "Agent 운영 · 응답 품질 평가 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3225,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -393,7 +393,7 @@
    "menu": "Agent 리텐션 분석",
    "action": "조회",
    "desc": "Agent 운영 · Agent 리텐션 분석 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3224,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -406,7 +406,7 @@
    "menu": "Agent 개발 기획서",
    "action": "조회",
    "desc": "Agent 운영 · Agent 개발 기획서 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3234,
+   "ms": 3239,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -419,7 +419,7 @@
    "menu": "AI 위험도 평가",
    "action": "조회",
    "desc": "AI 거버넌스 · AI 위험도 평가 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3243,
+   "ms": 3240,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -432,7 +432,7 @@
    "menu": "점검 이력 관리",
    "action": "조회",
    "desc": "AI 거버넌스 · 점검 이력 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3216,
+   "ms": 3235,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -445,7 +445,7 @@
    "menu": "AI 서비스 변경 이력",
    "action": "조회",
    "desc": "AI 거버넌스 · AI 서비스 변경 이력 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3239,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -458,7 +458,7 @@
    "menu": "통제 정책 관리",
    "action": "조회",
    "desc": "AI 거버넌스 · 통제 정책 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3234,
+   "ms": 3242,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -471,7 +471,7 @@
    "menu": "전체 설정",
    "action": "조회",
    "desc": "환경 설정 · 전체 설정 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3220,
+   "ms": 3225,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -484,7 +484,7 @@
    "menu": "LLM",
    "action": "조회",
    "desc": "환경 설정 · LLM — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3215,
+   "ms": 3236,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -497,7 +497,7 @@
    "menu": "VLM",
    "action": "조회",
    "desc": "환경 설정 · VLM — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3217,
+   "ms": 3228,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -510,7 +510,7 @@
    "menu": "검색 / 임베딩",
    "action": "조회",
    "desc": "환경 설정 · 검색 / 임베딩 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3215,
+   "ms": 3214,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -523,7 +523,7 @@
    "menu": "오디오",
    "action": "조회",
    "desc": "환경 설정 · 오디오 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3218,
+   "ms": 3238,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -536,7 +536,7 @@
    "menu": "가드레일",
    "action": "조회",
    "desc": "환경 설정 · 가드레일 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3213,
+   "ms": 3216,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -549,7 +549,7 @@
    "menu": "인프라",
    "action": "조회",
    "desc": "환경 설정 · 인프라 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3225,
+   "ms": 3230,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -562,7 +562,7 @@
    "menu": "사이드바",
    "action": "조회",
    "desc": "환경 설정 · 사이드바 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3238,
+   "ms": 3223,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -575,7 +575,7 @@
    "menu": "시스템 모니터링",
    "action": "조회",
    "desc": "시스템 상태 · 시스템 모니터링 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3219,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -588,7 +588,7 @@
    "menu": "로그 조회",
    "action": "조회",
    "desc": "시스템 상태 · 로그 조회 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3220,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -601,7 +601,7 @@
    "menu": "데이터베이스",
    "action": "조회",
    "desc": "데이터 관리 · 데이터베이스 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3235,
+   "ms": 3230,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -614,7 +614,7 @@
    "menu": "DB 연결",
    "action": "조회",
    "desc": "데이터 관리 · DB 연결 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3233,
+   "ms": 3232,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -627,7 +627,7 @@
    "menu": "배치 작업",
    "action": "조회",
    "desc": "데이터 관리 · 배치 작업 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3234,
+   "ms": 3230,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -640,7 +640,7 @@
    "menu": "데이터 감사 로그",
    "action": "조회",
    "desc": "데이터 관리 · 데이터 감사 로그 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3236,
+   "ms": 3230,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -653,7 +653,7 @@
    "menu": "MCP 라이브러리",
    "action": "조회",
    "desc": "MCP 관리 · MCP 라이브러리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3231,
+   "ms": 3233,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -666,7 +666,7 @@
    "menu": "MCP 운영/모니터링",
    "action": "조회",
    "desc": "MCP 관리 · MCP 운영/모니터링 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3229,
+   "ms": 3237,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -679,7 +679,7 @@
    "menu": "공지 게시판",
    "action": "조회",
    "desc": "서비스 운영 · 공지 게시판 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3246,
+   "ms": 3238,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -692,7 +692,7 @@
    "menu": "자주 묻는 질문",
    "action": "조회",
    "desc": "서비스 운영 · 자주 묻는 질문 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3232,
+   "ms": 3226,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -705,7 +705,7 @@
    "menu": "1:1 관리자 문의",
    "action": "조회",
    "desc": "서비스 운영 · 1:1 관리자 문의 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3237,
+   "ms": 3230,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -718,7 +718,7 @@
    "menu": "다운로드 센터",
    "action": "조회",
    "desc": "서비스 운영 · 다운로드 센터 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3235,
+   "ms": 3231,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -731,7 +731,7 @@
    "menu": "업데이트 로그",
    "action": "조회",
    "desc": "서비스 운영 · 업데이트 로그 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3248,
+   "ms": 3247,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -744,7 +744,7 @@
    "menu": "지식 컬렉션 관리",
    "action": "조회",
    "desc": "지식 운영 · 지식 컬렉션 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3243,
+   "ms": 3224,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -757,7 +757,7 @@
    "menu": "파일 저장소 관리",
    "action": "조회",
    "desc": "지식 운영 · 파일 저장소 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3251,
+   "ms": 3239,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -770,7 +770,7 @@
    "menu": "DB 컬렉션 관리",
    "action": "조회",
    "desc": "지식 운영 · DB 컬렉션 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3230,
+   "ms": 3216,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -782,7 +782,7 @@
    "category": "Agent 제작 · Agent 품질 평가",
    "menu": "평가 지표 조회",
    "action": "조회",
-   "ms": 4417,
+   "ms": 4440,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -794,7 +794,7 @@
    "category": "Agent 제작 · Agent 프롬프트",
    "menu": "프롬프트 목록 조회",
    "action": "조회",
-   "ms": 4435,
+   "ms": 4385,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -806,7 +806,7 @@
    "category": "도구 연동 · API 도구",
    "menu": "도구 목록 조회",
    "action": "조회",
-   "ms": 4432,
+   "ms": 4410,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -818,7 +818,7 @@
    "category": "도구 연동 · 인증 프로필",
    "menu": "프로필 목록 조회",
    "action": "조회",
-   "ms": 4381,
+   "ms": 4373,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -830,7 +830,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "컬렉션 목록 조회",
    "action": "조회",
-   "ms": 4401,
+   "ms": 4415,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -842,7 +842,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "검색 질의",
    "action": "조회",
-   "ms": 4398,
+   "ms": 4393,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -854,7 +854,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "다중 선택(일괄)",
    "action": "일괄",
-   "ms": 4419,
+   "ms": 4459,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -866,7 +866,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "업로드 이력 조회",
    "action": "조회",
-   "ms": 4416,
+   "ms": 4409,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -878,7 +878,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "용어사전 관리",
    "action": "수정",
-   "ms": 4385,
+   "ms": 4401,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -890,7 +890,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "온톨로지 구성",
    "action": "수정",
-   "ms": 4431,
+   "ms": 4460,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -902,7 +902,7 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "휴지통 복원",
    "action": "전환",
-   "ms": 4434,
+   "ms": 4404,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -914,7 +914,7 @@
    "category": "지식관리 · 파일 저장소",
    "menu": "파일 목록 조회",
    "action": "조회",
-   "ms": 4412,
+   "ms": 4456,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -926,7 +926,7 @@
    "category": "지식관리 · DB 연동",
    "menu": "연결 목록 조회",
    "action": "조회",
-   "ms": 4420,
+   "ms": 4465,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -939,7 +939,7 @@
    "menu": "공유",
    "action": "공유",
    "desc": "Agent 제작 · Agent 목록 · 공유 — 진입점/컨트롤 노출 검증",
-   "ms": 5318,
+   "ms": 5291,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -952,7 +952,7 @@
    "menu": "배포",
    "action": "배포·승인",
    "desc": "Agent 제작 · Agent 목록 · 배포 — 진입점/컨트롤 노출 검증",
-   "ms": 5368,
+   "ms": 5357,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-008.png"
@@ -965,7 +965,7 @@
    "menu": "빈 캔버스로 시작",
    "action": "생성",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 빈 캔버스로 시작 — 진입점/컨트롤 노출 검증",
-   "ms": 7162,
+   "ms": 6979,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -978,7 +978,7 @@
    "menu": "노드 추가",
    "action": "캔버스",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 노드 추가 — 진입점/컨트롤 노출 검증",
-   "ms": 7014,
+   "ms": 7010,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -991,7 +991,7 @@
    "menu": "노드 데이터 선택",
    "action": "캔버스",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 노드 데이터 선택 — 진입점/컨트롤 노출 검증",
-   "ms": 7065,
+   "ms": 7010,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1004,7 +1004,7 @@
    "menu": "노드 포트 연결",
    "action": "캔버스",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 노드 포트 연결 — 진입점/컨트롤 노출 검증",
-   "ms": 7011,
+   "ms": 7001,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1017,7 +1017,7 @@
    "menu": "노드 설정",
    "action": "수정",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 노드 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 7042,
+   "ms": 6989,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1030,7 +1030,7 @@
    "menu": "노드 삭제",
    "action": "삭제",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 노드 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 7036,
+   "ms": 6988,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1043,7 +1043,7 @@
    "menu": "정렬",
    "action": "캔버스",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 정렬 — 진입점/컨트롤 노출 검증",
-   "ms": 7003,
+   "ms": 7080,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1056,7 +1056,7 @@
    "menu": "저장",
    "action": "저장",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 저장 — 진입점/컨트롤 노출 검증",
-   "ms": 7048,
+   "ms": 6981,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1069,7 +1069,7 @@
    "menu": "복사",
    "action": "복제",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 복사 — 진입점/컨트롤 노출 검증",
-   "ms": 7013,
+   "ms": 7014,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1082,7 +1082,7 @@
    "menu": "배포하기",
    "action": "배포·승인",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 배포하기 — 진입점/컨트롤 노출 검증",
-   "ms": 7001,
+   "ms": 7045,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1095,7 +1095,7 @@
    "menu": "에이전트 시작(실행)",
    "action": "실행",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 에이전트 시작(실행) — 진입점/컨트롤 노출 검증",
-   "ms": 7044,
+   "ms": 7001,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1108,7 +1108,7 @@
    "menu": "작업 히스토리",
    "action": "조회",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 작업 히스토리 — 진입점/컨트롤 노출 검증",
-   "ms": 7008,
+   "ms": 7101,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1121,7 +1121,7 @@
    "menu": "이름 편집",
    "action": "수정",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 이름 편집 — 진입점/컨트롤 노출 검증",
-   "ms": 7026,
+   "ms": 7070,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1134,7 +1134,7 @@
    "menu": "지우기",
    "action": "삭제",
    "desc": "Agent 제작 · Agent 설계(캔버스) · 지우기 — 진입점/컨트롤 노출 검증",
-   "ms": 7007,
+   "ms": 6978,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1147,7 +1147,7 @@
    "menu": "기획서 작성/정리",
    "action": "생성",
    "desc": "Agent 제작 · Agent 기획 · 기획서 작성/정리 — 진입점/컨트롤 노출 검증",
-   "ms": 4448,
+   "ms": 4562,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-028.png"
@@ -1160,7 +1160,7 @@
    "menu": "저장",
    "action": "저장",
    "desc": "Agent 제작 · Agent 기획 · 저장 — 진입점/컨트롤 노출 검증",
-   "ms": 4393,
+   "ms": 4381,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1173,7 +1173,7 @@
    "menu": "배포 정책 설정",
    "action": "수정",
    "desc": "Agent 제작 · Agent 운영 설정 · 배포 정책 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 4426,
+   "ms": 4424,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-031.png"
@@ -1186,7 +1186,7 @@
    "menu": "저장",
    "action": "저장",
    "desc": "Agent 제작 · Agent 운영 설정 · 저장 — 진입점/컨트롤 노출 검증",
-   "ms": 4390,
+   "ms": 4376,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1199,7 +1199,7 @@
    "menu": "평가 실행",
    "action": "실행",
    "desc": "Agent 제작 · Agent 품질 평가 · 평가 실행 — 진입점/컨트롤 노출 검증",
-   "ms": 4401,
+   "ms": 4374,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1212,7 +1212,7 @@
    "menu": "새 프롬프트",
    "action": "생성",
    "desc": "Agent 제작 · Agent 프롬프트 · 새 프롬프트 — 진입점/컨트롤 노출 검증",
-   "ms": 4420,
+   "ms": 4380,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1225,7 +1225,7 @@
    "menu": "편집",
    "action": "수정",
    "desc": "Agent 제작 · Agent 프롬프트 · 편집 — 진입점/컨트롤 노출 검증",
-   "ms": 4470,
+   "ms": 4543,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-037.png"
@@ -1251,7 +1251,7 @@
    "menu": "삭제",
    "action": "삭제",
    "desc": "Agent 제작 · Agent 프롬프트 · 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 4438,
+   "ms": 4437,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-039.png"
@@ -1264,7 +1264,7 @@
    "menu": "버전 관리",
    "action": "수정",
    "desc": "Agent 제작 · Agent 프롬프트 · 버전 관리 — 진입점/컨트롤 노출 검증",
-   "ms": 4447,
+   "ms": 4457,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-040.png"
@@ -1277,7 +1277,7 @@
    "menu": "새 도구 등록",
    "action": "생성",
    "desc": "도구 연동 · API 도구 · 새 도구 등록 — 진입점/컨트롤 노출 검증",
-   "ms": 4460,
+   "ms": 4463,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-042.png"
@@ -1290,7 +1290,7 @@
    "menu": "도구 설정",
    "action": "수정",
    "desc": "도구 연동 · API 도구 · 도구 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 4440,
+   "ms": 4398,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1303,7 +1303,7 @@
    "menu": "연결 테스트",
    "action": "연결·테스트",
    "desc": "도구 연동 · API 도구 · 연결 테스트 — 진입점/컨트롤 노출 검증",
-   "ms": 4490,
+   "ms": 4376,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1316,7 +1316,7 @@
    "menu": "스키마 조회",
    "action": "조회",
    "desc": "도구 연동 · API 도구 · 스키마 조회 — 진입점/컨트롤 노출 검증",
-   "ms": 4609,
+   "ms": 4454,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-045.png"
@@ -1329,7 +1329,7 @@
    "menu": "도구 삭제",
    "action": "삭제",
    "desc": "도구 연동 · API 도구 · 도구 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 4661,
+   "ms": 4441,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-046.png"
@@ -1342,7 +1342,7 @@
    "menu": "에이전트 연결",
    "action": "공유",
    "desc": "도구 연동 · API 도구 · 에이전트 연결 — 진입점/컨트롤 노출 검증",
-   "ms": 4588,
+   "ms": 4508,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-047.png"
@@ -1355,7 +1355,7 @@
    "menu": "새 프로필 생성",
    "action": "생성",
    "desc": "도구 연동 · 인증 프로필 · 새 프로필 생성 — 진입점/컨트롤 노출 검증",
-   "ms": 4516,
+   "ms": 4425,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-049.png"
@@ -1368,7 +1368,7 @@
    "menu": "시크릿 설정",
    "action": "수정",
    "desc": "도구 연동 · 인증 프로필 · 시크릿 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 4542,
+   "ms": 4444,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-050.png"
@@ -1381,7 +1381,7 @@
    "menu": "연결 검증",
    "action": "연결·테스트",
    "desc": "도구 연동 · 인증 프로필 · 연결 검증 — 진입점/컨트롤 노출 검증",
-   "ms": 4551,
+   "ms": 4486,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-051.png"
@@ -1394,7 +1394,7 @@
    "menu": "프로필 삭제",
    "action": "삭제",
    "desc": "도구 연동 · 인증 프로필 · 프로필 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 4531,
+   "ms": 4450,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-052.png"
@@ -1407,7 +1407,7 @@
    "menu": "컬렉션 설정",
    "action": "수정",
    "desc": "지식관리 · 지식 컬렉션 · 컬렉션 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 7055,
+   "ms": 6997,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1419,8 +1419,8 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "문서 업로드",
    "action": "업로드/다운로드",
-   "desc": "지식관리 · 지식 컬렉션 · 문서 업로드 — 진입점/컨트롤 노출 검증",
-   "ms": 7038,
+   "desc": "[기능E2E] 실파일 업로드→문서목록 반영 확인",
+   "ms": 0,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1433,7 +1433,7 @@
    "menu": "폴더 업로드",
    "action": "업로드/다운로드",
    "desc": "지식관리 · 지식 컬렉션 · 폴더 업로드 — 진입점/컨트롤 노출 검증",
-   "ms": 7200,
+   "ms": 7169,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-058.png"
@@ -1445,11 +1445,11 @@
    "category": "지식관리 · 지식 컬렉션",
    "menu": "문서 목록 조회",
    "action": "조회",
-   "desc": "지식관리 · 지식 컬렉션 · 문서 목록 조회 — 진입점/컨트롤 노출 검증",
-   "ms": 7194,
-   "outcome": "warn",
-   "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
-   "shot": "shots/TC-MAIN-059.png"
+   "desc": "[기능E2E] 업로드 문서가 목록에 표시되는지 확인",
+   "ms": 0,
+   "outcome": "pass",
+   "error": "",
+   "shot": ""
   },
   {
    "id": "TC-MAIN-060",
@@ -1459,7 +1459,7 @@
    "menu": "문서 삭제",
    "action": "삭제",
    "desc": "지식관리 · 지식 컬렉션 · 문서 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 7083,
+   "ms": 6969,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1472,7 +1472,7 @@
    "menu": "문서 미리보기",
    "action": "조회",
    "desc": "지식관리 · 지식 컬렉션 · 문서 미리보기 — 진입점/컨트롤 노출 검증",
-   "ms": 7164,
+   "ms": 7063,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-061.png"
@@ -1485,7 +1485,7 @@
    "menu": "임베딩 설정",
    "action": "수정",
    "desc": "지식관리 · 지식 컬렉션 · 임베딩 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 7132,
+   "ms": 7042,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-062.png"
@@ -1498,7 +1498,7 @@
    "menu": "청킹 설정",
    "action": "수정",
    "desc": "지식관리 · 지식 컬렉션 · 청킹 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 7113,
+   "ms": 7022,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-063.png"
@@ -1511,7 +1511,7 @@
    "menu": "공유 설정",
    "action": "공유",
    "desc": "지식관리 · 지식 컬렉션 · 공유 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 7029,
+   "ms": 7057,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1524,7 +1524,7 @@
    "menu": "파일 업로드",
    "action": "업로드/다운로드",
    "desc": "지식관리 · 파일 저장소 · 파일 업로드 — 진입점/컨트롤 노출 검증",
-   "ms": 4409,
+   "ms": 4397,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1537,7 +1537,7 @@
    "menu": "폴더 업로드",
    "action": "업로드/다운로드",
    "desc": "지식관리 · 파일 저장소 · 폴더 업로드 — 진입점/컨트롤 노출 검증",
-   "ms": 4463,
+   "ms": 4413,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-073.png"
@@ -1550,7 +1550,7 @@
    "menu": "파일 다운로드",
    "action": "업로드/다운로드",
    "desc": "지식관리 · 파일 저장소 · 파일 다운로드 — 진입점/컨트롤 노출 검증",
-   "ms": 4437,
+   "ms": 4394,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1563,7 +1563,7 @@
    "menu": "파일 삭제",
    "action": "삭제",
    "desc": "지식관리 · 파일 저장소 · 파일 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 4400,
+   "ms": 4386,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1576,7 +1576,7 @@
    "menu": "폴더 생성",
    "action": "생성",
    "desc": "지식관리 · 파일 저장소 · 폴더 생성 — 진입점/컨트롤 노출 검증",
-   "ms": 4465,
+   "ms": 4418,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-076.png"
@@ -1589,7 +1589,7 @@
    "menu": "검색",
    "action": "조회",
    "desc": "지식관리 · 파일 저장소 · 검색 — 진입점/컨트롤 노출 검증",
-   "ms": 4435,
+   "ms": 4392,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1602,7 +1602,7 @@
    "menu": "업로드 이력",
    "action": "조회",
    "desc": "지식관리 · 파일 저장소 · 업로드 이력 — 진입점/컨트롤 노출 검증",
-   "ms": 4399,
+   "ms": 4374,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1615,7 +1615,7 @@
    "menu": "새 연결 생성",
    "action": "생성",
    "desc": "지식관리 · DB 연동 · 새 연결 생성 — 진입점/컨트롤 노출 검증",
-   "ms": 4417,
+   "ms": 4398,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1628,7 +1628,7 @@
    "menu": "연결 설정",
    "action": "수정",
    "desc": "지식관리 · DB 연동 · 연결 설정 — 진입점/컨트롤 노출 검증",
-   "ms": 4415,
+   "ms": 4394,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1641,7 +1641,7 @@
    "menu": "연결 테스트",
    "action": "연결·테스트",
    "desc": "지식관리 · DB 연동 · 연결 테스트 — 진입점/컨트롤 노출 검증",
-   "ms": 4456,
+   "ms": 4437,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-082.png"
@@ -1654,7 +1654,7 @@
    "menu": "스키마 조회",
    "action": "조회",
    "desc": "지식관리 · DB 연동 · 스키마 조회 — 진입점/컨트롤 노출 검증",
-   "ms": 4449,
+   "ms": 4477,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-083.png"
@@ -1667,7 +1667,7 @@
    "menu": "연결 삭제",
    "action": "삭제",
    "desc": "지식관리 · DB 연동 · 연결 삭제 — 진입점/컨트롤 노출 검증",
-   "ms": 4434,
+   "ms": 4429,
    "outcome": "warn",
    "error": "진입점 미확인(항목 선택·상세 진입 필요) — 심층 재검증 대상",
    "shot": "shots/TC-MAIN-084.png"
@@ -1680,7 +1680,7 @@
    "menu": "사용자 관리",
    "action": "조회",
    "desc": "사용자 / 접근제어 · 사용자 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 5821,
+   "ms": 5290,
    "outcome": "pass",
    "error": "",
    "shot": ""
@@ -1693,7 +1693,7 @@
    "menu": "역할/권한 관리",
    "action": "조회",
    "desc": "사용자 / 접근제어 · 역할/권한 관리 — 화면 로드·목록 렌더 정상 확인",
-   "ms": 3235,
+   "ms": 3229,
    "outcome": "pass",
    "error": "",
    "shot": ""

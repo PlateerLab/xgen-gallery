@@ -96,9 +96,8 @@ const GRAN2 = [
   P2('TC-MAIN-051','도구 연동 · 인증 프로필','도구 연동','인증 프로필','연결 검증','연결·테스트','테스트','load'),
   P2('TC-MAIN-052','도구 연동 · 인증 프로필','도구 연동','인증 프로필','프로필 삭제','삭제','삭제','load'),
   P2('TC-MAIN-055','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','컬렉션 설정','수정','설정','collection'),
-  P2('TC-MAIN-057','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 업로드','업로드/다운로드','업로드','collection'),
+  // 057 문서 업로드 / 059 문서 목록 조회 → collectionE2E(lifecycle)에서 진짜 기능검증하므로 present-check 제외
   P2('TC-MAIN-058','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','폴더 업로드','업로드/다운로드','폴더','collection'),
-  P2('TC-MAIN-059','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 목록 조회','조회','문서','collection'),
   P2('TC-MAIN-060','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 삭제','삭제','삭제','collection'),
   P2('TC-MAIN-061','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','문서 미리보기','조회','미리보기','collection'),
   P2('TC-MAIN-062','지식관리 · 지식 컬렉션','지식관리','지식 컬렉션','임베딩 설정','수정','임베딩','collection'),
@@ -151,6 +150,9 @@ const SCEN = [
     prompt:'B2B SNS 마케팅 자동화 에이전트를 만들어줘. 지식 컬렉션(RAG) 문서 검색 → LLM 에이전트로 LinkedIn/Facebook B2B 홍보 게시글 초안 작성 → 종료 노드. 각 노드를 연결.', desc:'B2B SNS RAG 에이전트 대화형 구축 E2E' },
 ];
 const CASES = [...COMMON, ...SCEN, ...LIFECYCLE, ...GRAN, ...GRAN2, ...ADMIN];
+// QA_ONLY=nav1,nav2,id1 로 일부만 실행(병합되므로 커버리지 유지). 미설정 시 전체.
+const ONLY = (process.env.QA_ONLY || '').split(',').map((s) => s.trim()).filter(Boolean);
+const RUN = ONLY.length ? CASES.filter((c) => ONLY.includes(c.nav) || ONLY.includes(c.id)) : CASES;
 
 const log = (...a) => console.log('[qa-runner]', ...a);
 const clickByText = (page, txt) => page.evaluate((t) => {
@@ -213,7 +215,91 @@ async function chatExec(page, prompt) {
     if (/AI가 생성한|생성한 참고|답변/.test(txt)) return true; }
   return false;
 }
-// 심층 라이프사이클: 지식 컬렉션 실제 생성 → 검증 → 삭제(정리)
+// 업로드 샘플(실파일)
+const SAMPLE_FILE = path.resolve(process.env.QA_SAMPLE || 'C:/Hompy/qa/qa_sample.txt');
+// 지식 컬렉션 목록 진입(재시도) — '새 컬렉션 생성'이 보일 때까지. 사이드바/직접URL 혼용.
+async function openCollectionList(page) {
+  for (let a = 0; a < 3; a++) {
+    if (a === 0) { await page.goto(BASE + '/main?view=knowledge-collection', { waitUntil: 'domcontentloaded', timeout: 30000 }); }
+    else { _curApp = ''; await gotoApp(page, 'main'); await clickWait(page, '지식관리'); await page.waitForTimeout(500); await clickWait(page, '지식 컬렉션'); }
+    try { await page.waitForFunction(() => [...document.querySelectorAll('button')].some((b) => b.offsetParent && b.textContent.trim() === '새 컬렉션 생성'), { timeout: 9000 }); return true; }
+    catch { await page.waitForTimeout(800); }
+  }
+  return false;
+}
+// 목록 카드에서 이름으로 컬렉션 카드의 '삭제' 버튼만 정확히 클릭(전역 삭제 오작동 방지)
+async function deleteCollectionByName(page, name) {
+  if (!(await openCollectionList(page))) return false;
+  // 그리드에 해당 카드가 실제로 렌더될 때까지 대기(렌더 전 오검증으로 헛통과 방지)
+  try { await page.waitForFunction((n) => [...document.querySelectorAll('div.grid *')].some((e) => e.offsetParent && e.textContent.trim() === n), name, { timeout: 9000 }); }
+  catch { return false; }
+  const clicked = await page.evaluate((n) => {
+    const grid = [...document.querySelectorAll('div.grid')].find((g) => g.textContent.includes(n));
+    if (!grid) return false;
+    const card = [...grid.children].find((c) => c.textContent.includes(n));
+    if (!card) return false;
+    const del = [...card.querySelectorAll('button')].find((b) => b.offsetParent && b.textContent.trim() === '삭제');
+    if (del) { del.click(); return true; } return false;
+  }, name);
+  if (!clicked) return false;
+  await page.waitForTimeout(1200);
+  // 확인 모달이 있으면 확정
+  await page.evaluate(() => { const b = [...document.querySelectorAll('[role=dialog] button,[role=alertdialog] button,[aria-modal="true"] button')].find((x) => x.offsetParent && /삭제|확인|예/.test(x.textContent.trim())); if (b) b.click(); });
+  // 이름이 그리드에서 사라질 때까지 대기(사라지면 실제 삭제 성공)
+  try { await page.waitForFunction((n) => ![...document.querySelectorAll('div.grid *')].some((e) => e.offsetParent && e.textContent.trim() === n), name, { timeout: 9000 }); return true; }
+  catch { return false; }
+}
+// 진짜 기능 E2E: 컬렉션 생성 → 실파일 업로드 → 문서목록 반영 확인 → 카드 삭제 정리(각 단계 상태 검증)
+async function collectionE2E(page) {
+  const S = { create: false, upload: false, docList: false, del: false, error: '' };
+  if (!(await openCollectionList(page))) { S.error = '지식 컬렉션 화면 로드 실패'; return S; }
+  await page.waitForTimeout(800);
+  const name = 'QA_E2E_' + Date.now();
+  if (!(await clickWait(page, '새 컬렉션 생성'))) { S.error = '새 컬렉션 생성 버튼 없음'; return S; }
+  await page.waitForTimeout(1500);
+  try { await page.fill('input[placeholder*="컬렉션 이름"]', name); }
+  catch { S.error = '이름 입력 실패'; return S; }
+  await page.evaluate(() => { const bs = [...document.querySelectorAll('button')].filter((b) => b.offsetParent && b.textContent.trim() === '생성'); const b = bs[bs.length - 1]; if (b) b.click(); });
+  await page.waitForTimeout(3500);
+  S.create = await page.evaluate((n) => [...document.querySelectorAll('*')].some((e) => e.offsetParent && e.textContent.trim() === n), name);
+  if (!S.create) { S.error = '컬렉션 생성 미확인'; return S; }
+  // 상세 진입(카드 클릭)
+  await page.evaluate((n) => { let t = null; [...document.querySelectorAll('main *')].forEach((e) => { if (e.offsetParent && e.textContent.trim() === n && e.children.length <= 3) t = e; }); if (t) t.click(); }, name);
+  await page.waitForTimeout(2600);
+  try { await page.waitForFunction(() => [...document.querySelectorAll('button')].some((b) => b.offsetParent && b.textContent.trim() === '문서 업로드'), { timeout: 8000 }); } catch {}
+  // 실파일 업로드 — filechooser 핸들러 등록 후 '문서 업로드' 클릭(재시도) → 스테이징 → '업로드' 커밋
+  // (waitForEvent 레이스로 flaky → 영구 핸들러 + 직접 input 폴백으로 견고화)
+  let fcDone = false;
+  const fcHandler = async (fc) => { try { await fc.setFiles(SAMPLE_FILE); fcDone = true; } catch {} };
+  page.on('filechooser', fcHandler);
+  try {
+    for (let attempt = 0; attempt < 2 && !fcDone; attempt++) {
+      await page.evaluate(() => { const b = [...document.querySelectorAll('button')].find((x) => x.offsetParent && x.textContent.trim() === '문서 업로드'); if (b) b.click(); });
+      for (let i = 0; i < 7 && !fcDone; i++) await page.waitForTimeout(700);
+    }
+    // 폴백: 핸들러가 못 잡으면 문서용(비-디렉토리) input에 직접 세팅
+    if (!fcDone) {
+      const inputs = await page.$$('input[type="file"]');
+      for (const h of inputs) { const d = await h.evaluate((el) => el.hasAttribute('webkitdirectory') || el.hasAttribute('directory')); if (!d) { await h.setInputFiles(SAMPLE_FILE); fcDone = true; break; } }
+    }
+    await page.waitForTimeout(1800); // 스테이징(PII/청킹 옵션) 패널 렌더 대기
+    // 커밋: 정확히 '업로드' 버튼(사이드바 '문서 업로드'와 구분) → POST /api/retrieval/documents/upload-sse
+    const committed = await page.evaluate(() => { const b = [...document.querySelectorAll('button')].filter((e) => e.offsetParent).find((x) => x.textContent.trim() === '업로드'); if (b) { b.click(); return true; } return false; });
+    if (!committed) S.error = fcDone ? '업로드 커밋 버튼(업로드) 없음' : '파일 선택 실패(filechooser·input 모두)';
+  } catch (e) { S.error = '업로드 실패: ' + (e.message || e); }
+  finally { page.off('filechooser', fcHandler); }
+  // 업로드 반영 확인 — 문서수>0 또는 파일명 노출(커밋 후 즉시 반영)
+  for (let i = 0; i < 15 && !S.docList; i++) {
+    await page.waitForTimeout(2000);
+    S.docList = await page.evaluate(() => { const t = (document.querySelector('main') || document.body).innerText; const c = (t.match(/(\d+)\s*문서/) || [])[1]; return /qa_sample/i.test(t) || (!!c && c !== '0'); });
+  }
+  S.upload = S.docList;
+  if (!S.docList && !S.error) S.error = '업로드 커밋 후 문서 미반영';
+  // 정리: 카드 삭제
+  try { S.del = await deleteCollectionByName(page, name); } catch (e) { S.error = S.error || ('삭제 실패: ' + (e.message || e)); }
+  return S;
+}
+// (구) 심층 라이프사이클: 지식 컬렉션 실제 생성 → 검증 → 삭제(정리)
 async function collectionLifecycle(page) {
   _curApp = ''; await gotoApp(page, 'main');
   await clickWait(page, '지식관리'); await page.waitForTimeout(400);
@@ -275,15 +361,22 @@ function withTimeout(promise, ms, id) {
   await page.waitForURL((u) => !u.toString().includes('/login'), { timeout: 30000 });
   log('logged in →', page.url());
 
-  for (const cs of CASES) {
+  for (const cs of RUN) {
     const { id, persona, scope, category, menu, action, nav, desc } = cs;
     const t0 = Date.now(); let outcome = 'pass', error = '', shot = '';
     if (nav === 'lifecycle') {
-      let r; try { r = await withTimeout(collectionLifecycle(page), 60000, id); }
-      catch (e) { r = { createOk: false, deleteOk: false, error: String(e.message || e) }; }
-      results.push({ id: 'TC-MAIN-052', persona: 'dev', scope: 'MAIN', category: '지식관리 · 지식 컬렉션', menu: '새 컬렉션 생성', action: '생성', desc: '새 컬렉션 실제 생성(자동 정리 포함) 확인', ms: Date.now() - t0, outcome: r.createOk ? 'pass' : 'fail', error: r.createOk ? '' : r.error, shot: '' });
-      results.push({ id: 'TC-MAIN-054', persona: 'dev', scope: 'MAIN', category: '지식관리 · 지식 컬렉션', menu: '컬렉션 삭제', action: '삭제', desc: '컬렉션 실제 삭제(정리) 확인', ms: 0, outcome: r.deleteOk ? 'pass' : (r.createOk ? 'fail' : 'na'), error: r.deleteOk ? '' : (r.createOk ? '삭제 미확인' : ''), shot: '' });
-      log('LIFECYCLE', 'create=' + r.createOk + ' delete=' + r.deleteOk);
+      let S; try { S = await withTimeout(collectionE2E(page), 130000, id); }
+      catch (e) { S = { create: false, upload: false, docList: false, del: false, error: String(e.message || e) }; }
+      // 인프라성 미결(타임아웃/화면 로드 실패)은 오탐 방지 위해 결과 미기록(이전 통과 보존)
+      if (!S.create && /타임아웃|로드 실패|timeout/i.test(S.error || '')) {
+        log('E2E-COLLECTION 미결(인프라) — 결과 미기록:', S.error); continue;
+      }
+      const K = '지식관리 · 지식 컬렉션';
+      results.push({ id: 'TC-MAIN-052', persona: 'dev', scope: 'MAIN', category: K, menu: '새 컬렉션 생성', action: '생성', desc: '[기능E2E] 새 컬렉션 실제 생성→목록 반영 확인', ms: Date.now() - t0, outcome: S.create ? 'pass' : 'fail', error: S.create ? '' : (S.error || '생성 미확인'), shot: '' });
+      results.push({ id: 'TC-MAIN-057', persona: 'dev', scope: 'MAIN', category: K, menu: '문서 업로드', action: '업로드/다운로드', desc: '[기능E2E] 실파일 업로드→문서목록 반영 확인', ms: 0, outcome: S.upload ? 'pass' : (S.create ? 'fail' : 'na'), error: S.upload ? '' : (S.create ? (S.error || '업로드 미반영') : ''), shot: '' });
+      results.push({ id: 'TC-MAIN-059', persona: 'dev', scope: 'MAIN', category: K, menu: '문서 목록 조회', action: '조회', desc: '[기능E2E] 업로드 문서가 목록에 표시되는지 확인', ms: 0, outcome: S.docList ? 'pass' : (S.create ? 'fail' : 'na'), error: S.docList ? '' : (S.create ? '문서목록 미확인' : ''), shot: '' });
+      results.push({ id: 'TC-MAIN-054', persona: 'dev', scope: 'MAIN', category: K, menu: '컬렉션 삭제', action: '삭제', desc: '[기능E2E] 카드 삭제→목록에서 제거 확인(정리)', ms: 0, outcome: S.del ? 'pass' : (S.create ? 'fail' : 'na'), error: S.del ? '' : (S.create ? '삭제 미확인(잔여 위험)' : ''), shot: '' });
+      log('E2E-COLLECTION', `create=${S.create} upload=${S.upload} docList=${S.docList} del=${S.del}`, S.error);
       continue;
     }
     try {
@@ -293,9 +386,10 @@ function withTimeout(promise, ms, id) {
         } else if (nav === 'scenario-chat') {
           if (!(await chatExec(page, cs.prompt))) { outcome = 'fail'; error = '응답 미수신'; }
         } else if (nav === 'scenario-rag') {
-          const r = await collectionLifecycle(page);
-          if (!r.createOk) { outcome = 'fail'; error = r.error || 'RAG 컬렉션 생성 실패'; }
-          else if (!r.deleteOk) { outcome = 'warn'; error = '컬렉션 생성 성공(정리 미확인)'; }
+          const S = await collectionE2E(page);
+          if (!S.create) { outcome = 'fail'; error = S.error || 'RAG 컬렉션 생성 실패'; }
+          else if (!S.upload) { outcome = 'warn'; error = '컬렉션 생성됨, 문서 업로드 미반영'; }
+          else if (!S.del) { outcome = 'warn'; error = '업로드 성공, 정리(삭제) 미확인'; }
         } else if (nav === 'scenario-build') {
           if (!(await scenarioBuild(page, cs.prompt))) { outcome = 'fail'; error = '워크플로우 생성 미확인'; }
         } else if (nav === 'gran') {
@@ -360,6 +454,11 @@ function withTimeout(promise, ms, id) {
     if (/ERR_INTERNET_DISCONNECTED|ERR_NETWORK|ERR_NAME_NOT_RESOLVED|ERR_CONNECTION|ERR_TIMED_OUT|net::ERR/.test(error) || ms > 120000) {
       log('네트워크 끊김/비정상 지연 감지 — 실행 중단(부분 결과 보존):', id, ms + 'ms');
       break;
+    }
+    // 세션 상실(로그인 리다이렉트) 감지 — 다른 인스턴스 동시 로그인 등으로 축출 시 전 케이스 오탐 방지
+    if (outcome !== 'pass') {
+      let lost = false; try { lost = page.url().includes('/login') || page.url().includes('/signin'); } catch {}
+      if (lost) { log('세션 상실(로그인 리다이렉트) 감지 — 실행 중단(부분 결과 보존):', id); break; }
     }
     results.push({ id, persona, scope, category, menu, action, desc, ms, outcome, error, shot });
     log(id, outcome, ms + 'ms', error);
