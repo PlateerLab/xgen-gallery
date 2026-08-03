@@ -151,6 +151,18 @@ export const TOOLS: Tool[] = [
         hasDemo: true,
         language: "Python",
     },
+    {
+        id: "xgen-sdk",
+        repo: "xgen-sdk",
+        name: "XGen SDK",
+        tagline: "Batteries-included Python toolkit for backend infrastructure",
+        description:
+            "A curated Python toolkit of reusable backend building blocks — DB pooling, config, storage, ABAC auth, quota, and a LangChain-free agent harness — consolidated into one canonical package.",
+        category: "utility",
+        install: "pip install xgen-sdk",
+        hasDemo: false,
+        language: "Python",
+    },
 ];
 
 export const CATEGORIES: { id: ToolCategory | "all"; label: string }[] = [
