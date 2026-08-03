@@ -378,7 +378,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
-                    {/* members 아이콘 + 언어 전환 유지(github 아이콘 제거 — 요청). desktop only */}
+                    {/* members 아이콘(github 아이콘 제거 — 요청). desktop only */}
                     <div className="hidden items-center gap-3 lg:flex">
                         <Link
                             href="/members"
@@ -392,7 +392,10 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                         >
                             <Users className="h-5 w-5" />
                         </Link>
-                        <LanguageToggle light={light} />
+                        {/* 언어 전환(KO/EN) — 임시 숨김 (요청). false && 로 비활성화.
+                            쿠키 기반 전환이라 URL이 하나뿐이고 영문이 별도 색인되지 않는 상태다.
+                            다시 노출한다면 /en 경로 분리와 함께 검토한다. */}
+                        {false && <LanguageToggle light={light} />}
                     </div>
 
                     {/* primary CTA — 임시 숨김 (요청: 검색바 확장). false && 로 비활성화. */}
