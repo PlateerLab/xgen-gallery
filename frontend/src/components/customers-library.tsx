@@ -18,6 +18,7 @@ import {
     type ProductKey,
     type IndustryKey,
 } from "@/lib/customers";
+import { CaseVisual, hasCaseVisual } from "@/components/case-visual";
 
 /**
  * 고객사례 라이브러리 — LG CNS 고객 스토리형 레이아웃(대표 사례 스포트라이트 + 필터 +
@@ -49,14 +50,21 @@ function Thumb({
         <div
             className={`relative flex flex-col justify-end overflow-hidden rounded-2xl text-white ${className ?? ""}`}
         >
-            <div
-                aria-hidden
-                className="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_0%,#255ad0_0%,#173a86_45%,#0b1224_100%)]"
-            />
-            <Icon
-                aria-hidden
-                className={`absolute -right-5 -top-5 text-white/[0.08] ${iconSize}`}
-            />
+            {/* 사례 전용 비주얼이 있으면 그것을, 없으면 기본 그라디언트 썸네일을 쓴다. */}
+            {hasCaseVisual(c.slug) ? (
+                <CaseVisual slug={c.slug} className="absolute inset-0" />
+            ) : (
+                <>
+                    <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_0%,#255ad0_0%,#173a86_45%,#0b1224_100%)]"
+                    />
+                    <Icon
+                        aria-hidden
+                        className={`absolute -right-5 -top-5 text-white/[0.08] ${iconSize}`}
+                    />
+                </>
+            )}
             {/* 고객 뱃지 */}
             <span className="absolute right-4 top-4 inline-flex items-center rounded-md bg-white/15 px-2.5 py-1 text-[12px] font-semibold backdrop-blur-sm">
                 {c.customer}

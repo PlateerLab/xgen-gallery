@@ -7,6 +7,7 @@ import {
     type CaseStudy,
 } from "@/lib/customers";
 import { IndustryVisual } from "@/components/industry-visual";
+import { CaseVisual, hasCaseVisual } from "@/components/case-visual";
 
 /**
  * 최근 대표 고객 사례를 이미지 카드로 보여주는 키비주얼(라벨 없는 카드 본체).
@@ -21,11 +22,18 @@ export function FeaturedCaseCard({ item }: { item: CaseStudy }) {
     const body = (
         <>
             <div className="relative aspect-[16/10] overflow-hidden">
-                {/* 산업 상징 비주얼 */}
-                <IndustryVisual
-                    industry={item.industry}
-                    className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
-                />
+                {/* 사례 전용 비주얼(있으면) → 없으면 산업 상징 비주얼 */}
+                {hasCaseVisual(item.slug) ? (
+                    <CaseVisual
+                        slug={item.slug}
+                        className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
+                    />
+                ) : (
+                    <IndustryVisual
+                        industry={item.industry}
+                        className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
+                    />
+                )}
                 {/* 하단 가독성 그라디언트 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813] via-[#050813]/60 to-[#050813]/10" />
 
