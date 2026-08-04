@@ -7,12 +7,14 @@ import type { IndustryKey } from "@/lib/customers";
  * 외부 이미지 없이 CSP-safe, 어떤 사례든 산업만으로 일관된 비주얼을 얻는다.
  */
 
-// B2B 블루/인디고/시안/바이올렛 계열 3색 그라디언트(초록 배제·생동감 유지)
+// 브랜드 팔레트(시안 #00acee → 블루 #185aea → 딥네이비 #0b1224) 안에서만 고른다.
+// 인디고·바이올렛은 사이트 어디에도 쓰지 않는 색이라 배제하고, 산업 구분은 색상(hue)
+// 점프 대신 밝은 쪽 끝(시안의 온도)과 모티프로 준다.
 const GRAD: Record<IndustryKey, [string, string, string]> = {
-    finance: ["#38bdf8", "#3b82f6", "#4f46e5"],
-    commerce: ["#818cf8", "#6366f1", "#8b5cf6"],
-    public: ["#38bdf8", "#2563eb", "#4338ca"],
-    "it-services": ["#22d3ee", "#3b82f6", "#4f46e5"],
+    finance: ["#00acee", "#1f5fd0", "#0d1b45"],
+    commerce: ["#58c6ef", "#2f7bff", "#131f4e"],
+    public: ["#24a3e0", "#1a4bb2", "#0a1436"],
+    "it-services": ["#00cfd8", "#1976d6", "#0b1a3e"],
 };
 
 /**
@@ -82,34 +84,34 @@ function Motif({ industry }: { industry: IndustryKey }) {
             return (
                 <g>
                     {/* 차양 */}
-                    <rect x="118" y="60" width="164" height="14" rx="3" fill="#efeaff" />
+                    <rect x="118" y="60" width="164" height="14" rx="3" fill="#eaf4ff" />
                     <path
                         d="M118 74 h164 l-14 20 h-136 z"
-                        fill="#e5ddff"
+                        fill="#d8ebff"
                     />
-                    <g fill="#c9b8ff">
+                    <g fill="#9fd4f5">
                         {[130, 164, 198, 232, 266].map((x) => (
                             <path key={x} d={`M${x} 74 l-8 20 h16 z`} />
                         ))}
                     </g>
                     {/* 배경 박스 */}
-                    <rect x="248" y="120" width="42" height="40" rx="3" fill="#dcd2f7" opacity="0.7" />
-                    <rect x="110" y="122" width="40" height="38" rx="3" fill="#dcd2f7" opacity="0.7" />
+                    <rect x="248" y="120" width="42" height="40" rx="3" fill="#cfe4f8" opacity="0.7" />
+                    <rect x="110" y="122" width="40" height="38" rx="3" fill="#cfe4f8" opacity="0.7" />
                     {/* 쇼핑백 */}
-                    <g fill="#f4f0ff">
+                    <g fill="#f0f8ff">
                         <path d="M160 108 h52 v54 a4 4 0 0 1 -4 4 h-44 a4 4 0 0 1 -4 -4 z" />
                     </g>
                     <path
                         d="M172 108 v-7 a14 14 0 0 1 28 0 v7"
                         fill="none"
-                        stroke="#c9b8ff"
+                        stroke="#9fd4f5"
                         strokeWidth="4"
                         strokeLinecap="round"
                     />
                     {/* 가격 태그 */}
                     <g transform="translate(224 118) rotate(12)">
-                        <path d="M0 0 h26 l12 14 -20 20 -18 -18 z" fill="#a78bfa" />
-                        <circle cx="9" cy="9" r="3.4" fill="#efeaff" />
+                        <path d="M0 0 h26 l12 14 -20 20 -18 -18 z" fill="#2f9fe0" />
+                        <circle cx="9" cy="9" r="3.4" fill="#eaf4ff" />
                     </g>
                 </g>
             );
