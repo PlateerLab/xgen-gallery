@@ -375,6 +375,23 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                 </nav>
 
                 <div className="ml-auto flex items-center justify-end gap-3">
+                    {/* XGEN 제품 사이트 아웃링크 — 검색바 왼쪽. 우리 소유 도메인이라
+                        referrer를 남겨(rel에 noreferrer 미포함) 유입이 GA4에서
+                        Direct가 아니라 labs 레퍼럴로 잡히게 한다. */}
+                    <a
+                        href="https://www.xgen.im/"
+                        target="_blank"
+                        rel="noopener"
+                        className={cn(
+                            "hidden items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[14px] font-semibold transition lg:inline-flex",
+                            light
+                                ? "border-white/25 text-white/90 hover:border-white/60 hover:text-white"
+                                : "border-[var(--color-line-strong)] text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                        )}
+                    >
+                        XGEN 제품보기
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
                     <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>

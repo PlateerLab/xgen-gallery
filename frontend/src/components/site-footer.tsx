@@ -30,8 +30,31 @@ export function SiteFooter() {
     const [demoPlaying, setDemoPlaying] = useState(false);
     // 페이지마다 다른 패턴이 나오도록 경로 기반으로 변형을 고른다(충돌 방지 맵).
     const ctaVariant = variantForPath(pathname);
-    // Explore 목록 — 좌 3개(Research·Technology·Applied AI) / 우 3개(Resources·Insights·Product).
-    const exploreGroups = NAV_GROUPS.filter((g) => !g.hidden);
+    // Explore 목록 — 좌우 두 열로 나눠 렌더(아래 slice 기준).
+    const exploreLinks: {
+        key: string;
+        label: string;
+        href: string;
+        /** 새 탭 + 아웃링크 화살표 */
+        external?: boolean;
+        /** 우리 소유 도메인이면 referrer를 남긴다(유입 분석용) */
+        sameOwner?: boolean;
+    }[] = [
+        ...NAV_GROUPS.filter((g) => !g.hidden).map((g) => ({
+            key: g.key,
+            label: g.label,
+            href: g.external ?? g.route ?? `/${g.key}`,
+            external: !!g.external,
+        })),
+        // XGEN 제품 사이트 — 푸터에서만 노출(요청). GNB에도 넣으려면 NAV_GROUPS에 추가한다.
+        {
+            key: "xgen-site",
+            label: "XGEN",
+            href: "https://www.xgen.im/",
+            external: true,
+            sameOwner: true,
+        },
+    ];
     // 저작권 끝 연도는 현재 연도로 자동 갱신 (2027년이면 2023–2027).
     const year = new Date().getFullYear();
 
@@ -179,29 +202,35 @@ export function SiteFooter() {
                         </p>
                         <div className="mt-2.5 grid grid-cols-2 gap-x-6">
                             {[
-                                exploreGroups.slice(0, 3),
-                                exploreGroups.slice(3),
+                                exploreLinks.slice(0, 3),
+                                exploreLinks.slice(3),
                             ].map((col, ci) => (
                                 <div key={ci} className="flex flex-col gap-2.5">
-                                    {col.map((g) =>
-                                        g.external ? (
+                                    {col.map((l) =>
+                                        l.external ? (
                                             <a
-                                                key={g.key}
-                                                href={g.external}
+                                                key={l.key}
+                                                href={l.href}
                                                 target="_blank"
-                                                rel="noopener noreferrer"
+                                                // 우리 소유 사이트에는 referrer를 남겨 유입 분석이 되게 한다
+                                                // (noreferrer를 붙이면 GA4에서 Direct로 잡힌다).
+                                                rel={
+                                                    l.sameOwner
+                                                        ? "noopener"
+                                                        : "noopener noreferrer"
+                                                }
                                                 className="inline-flex items-center gap-1 text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                             >
-                                                {g.label}
+                                                {l.label}
                                                 <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-subtle)]" />
                                             </a>
                                         ) : (
                                             <Link
-                                                key={g.key}
-                                                href={g.route ?? `/${g.key}`}
+                                                key={l.key}
+                                                href={l.href}
                                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                             >
-                                                {g.label}
+                                                {l.label}
                                             </Link>
                                         ),
                                     )}
