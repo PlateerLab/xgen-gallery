@@ -20,6 +20,7 @@ import { faqPageLd } from "@/lib/structured-data";
 import { dict } from "@/lib/i18n";
 import { getAllPosts } from "@/lib/blog";
 import { getIssues } from "@/lib/newsletter";
+import { getAllCases, caseLinkEnabled } from "@/lib/customers";
 
 export default function Home() {
     // 히어로 하단 오버레이용 데이터(서버에서 읽어 클라이언트 Hero로 전달).
@@ -38,6 +39,11 @@ export default function Home() {
     const latestIssue = iss
         ? { slug: iss.slug, title: iss.title, vol: iss.vol, date: iss.date }
         : null;
+    // 최근 고객사례 — 상세본이 공개된(링크 가능한) 사례 중 가장 최신 1건.
+    // 헤드라인(title)이 아니라 한 줄 요약(summary)을 넘긴다 — 히어로 스트립은 폭을
+    // 넉넉히 주고 말줄임으로 끊는 자리라, 짧은 헤드라인보다 요약이 더 많이 읽힌다.
+    const kase = getAllCases().find((c) => caseLinkEnabled(c.slug));
+    const latestCase = kase ? { slug: kase.slug, text: kase.summary } : null;
 
     return (
         <>
@@ -48,6 +54,7 @@ export default function Home() {
                     productNews={productNews}
                     techPosts={techPosts}
                     latestIssue={latestIssue}
+                    latestCase={latestCase}
                 />
                 <CustomerStrip />
                 <HomeTrialBanner />

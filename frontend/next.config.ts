@@ -43,6 +43,13 @@ const nextConfig: NextConfig = {
             // 중복/스크래치 페이지 정리 — 단일 정식 경로로 영구 리다이렉트.
             { source: '/products', destination: '/product', permanent: true },
             { source: '/research-areas2', destination: '/research', permanent: true },
+            // 고객 검토용 히든 프리뷰 → 정식 공개본(고객 컨펌 완료). 검토 단계에서
+            // 고객사에 공유했던 URL이라 끊지 않고 정식 경로로 넘긴다.
+            {
+                source: '/preview/jeju-genai-9b7f2e4a',
+                destination: '/customers/case/jeju-bank-genai-platform',
+                permanent: true,
+            },
         ];
     },
     async rewrites() {

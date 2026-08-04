@@ -4,6 +4,7 @@ import { ArrowRight, ArrowLeft, Quote } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
+import { JejuBankCaseBody } from "@/components/case-jeju-bank";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -45,6 +46,15 @@ export async function generateMetadata({
         path: `/customers/case/${c.slug}`,
     });
 }
+
+/**
+ * 전용 레이아웃을 쓰는 사례. 공개 레퍼런스라 서사를 길게 실을 수 있는 사례만
+ * 여기에 등록하고, 나머지는 아래 기본 템플릿으로 렌더한다. 메타데이터·JSON-LD·
+ * 사이트맵은 어느 쪽이든 lib/customers.ts 하나에서 나온다.
+ */
+const CUSTOM_BODIES: Record<string, () => React.ReactElement> = {
+    "jeju-bank-genai-platform": JejuBankCaseBody,
+};
 
 /** Article JSON-LD — 사례를 인용 가능한 콘텐츠 단위로 노출. */
 function caseArticleLd(c: CaseStudy) {
@@ -88,6 +98,18 @@ export default async function CaseStudyPage({
             { name: c.title, path: `/customers/case/${c.slug}` },
         ]),
     ];
+
+    const CustomBody = CUSTOM_BODIES[c.slug];
+    if (CustomBody) {
+        return (
+            <>
+                <SiteNav />
+                <JsonLd data={ld} />
+                <CustomBody />
+                <SiteFooter />
+            </>
+        );
+    }
 
     return (
         <>

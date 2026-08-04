@@ -204,16 +204,20 @@ function SecuritySlide() {
 
 type HeroPost = { slug: string; title: string; category: string; date: string };
 type HeroIssue = { slug: string; title: string; vol: number; date: string };
+type HeroCase = { slug: string; text: string };
 
 export function Hero({
     productNews,
     techPosts = [],
     latestIssue,
+    latestCase,
 }: {
     productNews?: HeroPost | null;
     /** 최근 Tech Note 후보(최신순, 최대 5개) — 이 중 하나를 무작위 노출한다. */
     techPosts?: HeroPost[];
     latestIssue?: HeroIssue | null;
+    /** 가장 최근 고객사례 — 상세(/customers/case/*)로 바로 랜딩. */
+    latestCase?: HeroCase | null;
 }) {
     const [active, setActive] = useState(0);
 
@@ -351,9 +355,28 @@ export function Hero({
             </div>
 
             {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
-            {(productNews || latestPost || latestIssue) && (
+            {(productNews || latestPost || latestIssue || latestCase) && (
                 <div aria-label="최근 소식" className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
-                    <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-1 rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md sm:grid-cols-3">
+                    <div className="mx-auto max-w-6xl rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                        {/* 최근 고객 사례 — 한 줄을 통째로 써서 제목이 잘리지 않게 한다.
+                            아래 3단(제품 소식·뉴스레터·Tech Note)과 구분선으로 분리. */}
+                        {latestCase && (
+                            <Link
+                                href={`/customers/case/${latestCase.slug}`}
+                                className="group flex items-center justify-center gap-3 border-b border-white/10 py-3"
+                            >
+                                <span className="flex-none rounded-full bg-emerald-400/15 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-emerald-300">
+                                    최근 고객 사례
+                                </span>
+                                {/* 폭을 400px로 묶어 아래 3단 항목의 약 두 배 길이로
+                                    보여주고, 넘치는 뒤쪽은 말줄임 처리한다. */}
+                                <p className="min-w-0 max-w-[400px] truncate text-[14px] font-semibold text-white group-hover:underline">
+                                    {latestCase.text}
+                                </p>
+                                <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
+                            </Link>
+                        )}
+                    <div className="grid gap-x-8 gap-y-1 sm:grid-cols-3">
                         {productNews && (
                             <Link
                                 href={`/blog/${productNews.slug}`}
@@ -383,9 +406,11 @@ export function Hero({
                             </Link>
                         )}
                         {latestPost && (
+                            // 모바일은 세로로 쌓여 히어로 CTA를 가리므로, 고객사례 줄이
+                            // 추가된 만큼 무작위 노출인 Tech Note를 sm 미만에서 감춘다.
                             <Link
                                 href={`/blog/${latestPost.slug}`}
-                                className="group flex items-center justify-center gap-3 py-3"
+                                className="group hidden items-center justify-center gap-3 py-3 sm:flex"
                             >
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
                                     {latestPost.category}
@@ -396,6 +421,7 @@ export function Hero({
                                 <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
                         )}
+                        </div>
                     </div>
                 </div>
             )}

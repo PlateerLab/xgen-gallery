@@ -21,10 +21,10 @@
 
 /**
  * 개별 사례가 목록/슬라이더에서 상세(/customers/case/*)로 링크되는지 여부.
- * 제주은행은 공개 상세본이 검토 중(히든 프리뷰)이라 링크를 비활성화하고,
- * 그 외 사례는 링크를 활성화한다. (상세 라우트 자체는 모든 사례에 대해 살아 있음)
+ * 고객 검토가 끝나지 않은 사례를 여기 넣으면 카드가 링크 없이 렌더된다.
+ * (2026-08-04: 제주은행 사례 고객 컨펌 완료 → 잠금 해제, 현재 비어 있음)
  */
-const CASE_LINK_DISABLED_SLUGS = new Set(["jeju-bank-genai-platform"]);
+const CASE_LINK_DISABLED_SLUGS = new Set<string>([]);
 
 export function caseLinkEnabled(slug: string): boolean {
     return !CASE_LINK_DISABLED_SLUGS.has(slug);
