@@ -2,14 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-    ShoppingCart,
-    Banknote,
-    Landmark,
-    Server,
-    ArrowUpRight,
-    type LucideIcon,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import {
     PRODUCTS,
     INDUSTRIES,
@@ -18,7 +11,7 @@ import {
     type ProductKey,
     type IndustryKey,
 } from "@/lib/customers";
-import { CaseVisual, hasCaseVisual } from "@/components/case-visual";
+import { IndustryVisual } from "@/components/industry-visual";
 
 /**
  * 고객사례 라이브러리 — LG CNS 고객 스토리형 레이아웃(대표 사례 스포트라이트 + 필터 +
@@ -26,45 +19,30 @@ import { CaseVisual, hasCaseVisual } from "@/components/case-visual";
  * 리스트의 모든 행은 항상 DOM에 렌더하고 필터는 CSS(hidden)로만 토글한다 →
  * 크롤러/AI가 전체 사례를 초기 HTML에서 읽을 수 있어 SEO·GEO에 안전하다.
  */
-const INDUSTRY_ICON: Record<IndustryKey, LucideIcon> = {
-    commerce: ShoppingCart,
-    finance: Banknote,
-    public: Landmark,
-    "it-services": Server,
-};
-
-/** 사진 대체 — 브랜드 딥블루 그라디언트 썸네일(산업 아이콘 워터마크 + 고객 뱃지). */
+/**
+ * 사진 대체 썸네일 — 대표 사례 키비주얼(FeaturedCaseCard)과 같은 산업 상징 SVG를 쓴다.
+ * 지역·고객사 고유 모티프는 쓰지 않는다(고객사가 지역색으로 읽히길 원하지 않는 경우가
+ * 있어, 사례별 특수 비주얼 대신 산업 단위로 통일).
+ */
 function Thumb({
     c,
     className,
-    iconSize,
     children,
 }: {
     c: CaseStudy;
     className?: string;
-    iconSize: string;
     children?: React.ReactNode;
 }) {
-    const Icon = INDUSTRY_ICON[c.industry];
     return (
         <div
             className={`relative flex flex-col justify-end overflow-hidden rounded-2xl text-white ${className ?? ""}`}
         >
-            {/* 사례 전용 비주얼이 있으면 그것을, 없으면 기본 그라디언트 썸네일을 쓴다. */}
-            {hasCaseVisual(c.slug) ? (
-                <CaseVisual slug={c.slug} className="absolute inset-0" />
-            ) : (
-                <>
-                    <div
-                        aria-hidden
-                        className="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_0%,#255ad0_0%,#173a86_45%,#0b1224_100%)]"
-                    />
-                    <Icon
-                        aria-hidden
-                        className={`absolute -right-5 -top-5 text-white/[0.08] ${iconSize}`}
-                    />
-                </>
-            )}
+            <IndustryVisual industry={c.industry} className="absolute inset-0" />
+            {/* 뱃지 가독성용 스크림 — 산업 비주얼이 밝아 상단만 살짝 눌러준다 */}
+            <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/35 to-transparent"
+            />
             {/* 고객 뱃지 */}
             <span className="absolute right-4 top-4 inline-flex items-center rounded-md bg-white/15 px-2.5 py-1 text-[12px] font-semibold backdrop-blur-sm">
                 {c.customer}
@@ -108,7 +86,7 @@ function CaseRow({ c }: { c: CaseStudy }) {
     const linkable = caseLinkEnabled(c.slug);
     const inner = (
         <>
-            <Thumb c={c} iconSize="h-28 w-28" className="min-h-[172px] p-5" />
+            <Thumb c={c} className="min-h-[172px] p-5" />
             <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                     {c.products.map((p) => (
