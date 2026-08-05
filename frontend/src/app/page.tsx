@@ -25,10 +25,17 @@ import { getAllCases, caseLinkEnabled } from "@/lib/customers";
 export default function Home() {
     // 히어로 하단 오버레이용 데이터(서버에서 읽어 클라이언트 Hero로 전달).
     const posts = getAllPosts();
-    const news = posts.find((p) => p.category === "제품 소식");
-    const productNews = news
-        ? { slug: news.slug, title: news.title, category: news.category, date: news.date }
-        : null;
+    // 제품 소식 최신 2건 — 1번째는 스트립 윗줄 대표 자리, 2번째는 아래 3단의 제품 소식
+    // 칸으로 보낸다(같은 글이 한 화면에 두 번 걸리지 않게).
+    const newsPosts = posts.filter((p) => p.category === "제품 소식");
+    const toHeroPost = (p: (typeof posts)[number]) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category,
+        date: p.date,
+    });
+    const featuredPost = newsPosts[0] ? toHeroPost(newsPosts[0]) : null;
+    const productNews = newsPosts[1] ? toHeroPost(newsPosts[1]) : null;
     // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나.
     // 최신 5개를 넘겨 Hero가 방문마다 그중 하나를 무작위로 노출한다.
     const techPosts = posts
@@ -51,6 +58,7 @@ export default function Home() {
             <SiteNav overlay />
             <main>
                 <Hero
+                    featuredPost={featuredPost}
                     productNews={productNews}
                     techPosts={techPosts}
                     latestIssue={latestIssue}
