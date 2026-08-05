@@ -370,9 +370,12 @@ export function Hero({
                                 {featuredPost && (
                                     // min-w-0 필수 — 그리드 항목은 기본 min-width:auto라
                                     // 안쪽 flex의 min-content 폭만큼 벌어져 카드를 뚫는다.
+                                    // justify-start — 윗줄은 2단, 아랫줄은 3단이라 열 너비가
+                                    // 달라서 가운데 정렬하면 두 '제품 소식' 배지의 x가
+                                    // 어긋난다. 첫 열끼리는 왼쪽 기준으로 붙여 맞춘다.
                                     <Link
                                         href={`/blog/${featuredPost.slug}`}
-                                        className="group flex min-w-0 items-center justify-center gap-3 py-3"
+                                        className="group flex min-w-0 items-center justify-start gap-3 py-3"
                                     >
                                         <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                             {featuredPost.category}
@@ -404,9 +407,10 @@ export function Hero({
                         {productNews && (
                             // 모바일은 세로로 쌓여 히어로 CTA를 가리므로, 윗줄에 대표 글이
                             // 선 만큼 그 다음 제품 소식은 sm 미만에서 감춘다.
+                            // justify-start — 윗줄 첫 열의 '제품 소식'과 x를 맞춘다.
                             <Link
                                 href={`/blog/${productNews.slug}`}
-                                className="group hidden min-w-0 items-center justify-center gap-3 py-3 sm:flex"
+                                className="group hidden min-w-0 items-center justify-start gap-3 py-3 sm:flex"
                             >
                                 <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
                                     {productNews.category}
