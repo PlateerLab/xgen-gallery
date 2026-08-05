@@ -1,6 +1,6 @@
 ---
-title: "GS 인증으로 검증된 XGEN, Enterprise AI Platform의 핵심 기능을 소개합니다"
-description: "TTA GS 인증 시험을 통해 검증된 XGEN Agentic AI Platform의 핵심 기능을 소개합니다. AI Agent 개발, 시스템 연동, GraphRAG 기반 지식 관리, AI 거버넌스 등 Enterprise AI 플랫폼의 주요 기능이 국제표준 기준의 품질 시험을 통과했습니다."
+title: "GS 인증으로 검증된 XGEN, Enterprise AI 핵심 기능"
+description: "TTA GS 인증 시험을 통해 검증된 XGEN Agentic AI Platform의 핵심 기능을 소개합니다. AI Agent 개발, 시스템 연동, GraphRAG 기반 지식 관리, AI 거버넌스 등 주요 기능이 국제표준 품질 시험을 통과했습니다."
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg
 author: "Plateer Labs"
@@ -154,4 +154,4 @@ AI를 안전하게 운영하고, 기존 시스템과 연결하며, 조직 전체
 
 이번 GS 인증은 XGEN이 이러한 Enterprise AI 플랫폼으로서 요구되는 기능과 품질을 객관적으로 검증받았다는 의미를 갖습니다.
 
-지금 이 순간에도 플래티어 랩스는 80개가 넘는 Workflow Node 개발부터 시스템 연동, 지식 관리, AI 거버넌스까지 [Enterprise AI 구축과 운영](/product)에 필요한 기능을 지속적으로 고도화하고 있습니다
+지금 이 순간에도 플래티어 랩스는 80개가 넘는 Agent Node 개발부터 시스템 연동, 지식 관리, AI 거버넌스까지 [Enterprise AI 구축과 운영](/product)에 필요한 기능을 지속적으로 고도화하고 있습니다
