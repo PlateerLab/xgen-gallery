@@ -9,6 +9,8 @@ tags: ["XGEN", "Agentic AI", "GS인증", "GraphRAG", "AI 거버넌스", "Enterpr
 draft: false
 ---
 
+**XGEN Agentic AI Platform**은 AI Agent 개발부터 시스템 연동, GraphRAG 기반 지식 관리, AI 거버넌스까지 Enterprise AI 플랫폼의 핵심 기능을 갖춘 제품이며, 공인시험기관 TTA의 GS 인증 시험에서 국제표준(ISO/IEC 25023, ISO/IEC 25051) 기준의 품질 시험을 통과했습니다.
+
 [지난 글](/blog/gs-certification-grade1)에서는 XGEN Agentic AI Platform이 GS(Good Software) 인증 1등급을 획득하기까지의 과정과, [시험 과정에서 발견된 개선 사항을 어떻게 해결했는지](/blog/series/gs-cert) 소개했습니다.
 
 이번에는 조금 다른 이야기를 해보려 합니다.
