@@ -323,7 +323,11 @@ export function Hero({
                 )}
             </div>
 
-            <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-72">
+            {/* pt는 창 높이에 따라 줄인다 — 고정 pt-72(288px)면 노트북처럼 낮은 창에서
+                안쪽 콘텐츠가 100vh를 넘어 섹션이 늘어나고, 하단에 absolute로 붙인
+                헤드라인 스트립이 화면 밖으로 밀려 아예 안 보였다.
+                pb는 그 스트립(2줄 기준 약 110px) 자리를 미리 비워 둔다. */}
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-28 pt-[clamp(96px,18vh,288px)]">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
