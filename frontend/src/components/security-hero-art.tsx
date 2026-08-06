@@ -6,21 +6,36 @@
 const SHIELD =
     "M220 122 l46 18 v34 c0 34 -22 58 -46 70 c-24 -12 -46 -36 -46 -70 v-34 z";
 
-const CHIPS: { x: number; y: number; label: string; delay: string }[] = [
-    { x: 26, y: 52, label: "가드 모델", delay: "0s" },
-    { x: 300, y: 44, label: "PII 마스킹", delay: "0.9s" },
-    { x: 26, y: 268, label: "감사 로그", delay: "1.8s" },
-    { x: 300, y: 286, label: "위험도 등급", delay: "1.35s" },
+import type { Locale } from "@/lib/i18n";
+
+/** 칩 라벨·대체 텍스트 — SVG 안쪽 글자도 페이지 언어를 따라가야 한다. */
+const T: Record<Locale, { chips: string[]; aria: string }> = {
+    ko: {
+        chips: ["가드 모델", "PII 마스킹", "감사 로그", "위험도 등급"],
+        aria: "AI 가드레일 — 가드 모델·PII 마스킹·감사 로그·위험도 등급 통제가 방패로 요청을 검증하는 보안·거버넌스 개념 애니메이션",
+    },
+    en: {
+        chips: ["Guard model", "PII masking", "Audit log", "Risk grading"],
+        aria: "AI guardrails — a conceptual animation of guard models, PII masking, audit logs, and risk grading verifying a request behind a shield",
+    },
+};
+
+const CHIPS: { x: number; y: number; delay: string }[] = [
+    { x: 26, y: 52, delay: "0s" },
+    { x: 300, y: 44, delay: "0.9s" },
+    { x: 26, y: 268, delay: "1.8s" },
+    { x: 300, y: 286, delay: "1.35s" },
 ];
 
-export function SecurityHeroArt() {
+export function SecurityHeroArt({ locale = "ko" }: { locale?: Locale }) {
+    const labels = T[locale].chips;
     return (
         <div className="relative mx-auto w-full max-w-[440px]">
             <svg
                 viewBox="0 0 440 360"
                 className="block h-auto w-full"
                 role="img"
-                aria-label="AI 가드레일 — 가드 모델·PII 마스킹·감사 로그·위험도 등급 통제가 방패로 요청을 검증하는 보안·거버넌스 개념 애니메이션"
+                aria-label={T[locale].aria}
                 fontFamily="Pretendard, system-ui, sans-serif"
             >
                 <defs>
@@ -90,11 +105,11 @@ export function SecurityHeroArt() {
                 </circle>
 
                 {/* 칩 → 방패 커넥터 + 흐르는 요청 토큰 */}
-                {CHIPS.map((c) => {
+                {CHIPS.map((c, ci) => {
                     const from = `${c.x + 48} ${c.y + 13}`;
                     const to = "220 178";
                     return (
-                        <g key={`link-${c.label}`}>
+                        <g key={`link-${ci}`}>
                             <line
                                 x1={c.x + 48}
                                 y1={c.y + 13}
@@ -171,8 +186,8 @@ export function SecurityHeroArt() {
                 </path>
 
                 {/* 통제 칩 4종 */}
-                {CHIPS.map((c) => (
-                    <g key={`chip-${c.label}`}>
+                {CHIPS.map((c, ci) => (
+                    <g key={`chip-${ci}`}>
                         <rect
                             x={c.x}
                             y={c.y}
@@ -198,7 +213,7 @@ export function SecurityHeroArt() {
                             fontWeight="700"
                             fill="#e6f6ff"
                         >
-                            {c.label}
+                            {labels[ci]}
                         </text>
                     </g>
                 ))}
