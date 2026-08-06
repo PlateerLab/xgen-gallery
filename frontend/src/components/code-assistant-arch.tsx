@@ -11,6 +11,7 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 코드 어시스턴트 아키텍처 (공개-안전 버전).
@@ -30,37 +31,82 @@ type Step = {
     db: { icon: LucideIcon; name: string; tag: string; note?: string };
 };
 
-const STEPS: Step[] = [
+/** 스텝 아이콘·DB 태그는 두 언어 공통, 표시 문구만 번역한다. */
+const STEP_ICONS: LucideIcon[] = [Boxes, Search, Sparkles];
+const DB_ICONS: LucideIcon[] = [Database, Database, Network];
+const DB_TAGS = ["Qdrant", "BM25", "PostgreSQL"];
+
+const T: Record<
+    Locale,
     {
-        n: 1,
-        icon: Boxes,
-        title: "인덱싱 파이프라인",
-        sub: "배치",
-        points: ["소스 코드 수집 · 전처리", "인덱싱 · 임베딩"],
-        db: { icon: Database, name: "Vector DB", tag: "Qdrant" },
+        steps: { title: string; sub: string; points: string[]; dbName: string; dbNote?: string }[];
+        userTitle: string;
+        userSub: string;
+        apiTitle: string;
+        apiSub: string;
+        resultTitle: string;
+        resultSub: string;
+    }
+> = {
+    ko: {
+        steps: [
+            {
+                title: "인덱싱 파이프라인",
+                sub: "배치",
+                points: ["소스 코드 수집 · 전처리", "인덱싱 · 임베딩"],
+                dbName: "Vector DB",
+            },
+            {
+                title: "하이브리드 검색",
+                sub: "키워드 + 벡터",
+                points: ["키워드 검색 (BM25)", "벡터 유사도 검색"],
+                dbName: "키워드 인덱스",
+            },
+            {
+                title: "AI 재정렬 · 답변",
+                sub: "Re-rank + LLM",
+                points: ["AI 재정렬 (Re-rank)", "LLM 답변 생성"],
+                dbName: "코드 그래프 DB",
+                dbNote: "호출 / 의존 관계",
+            },
+        ],
+        userTitle: "사용자 (개발자)",
+        userSub: "자연어 질문 / 코드 검색 요청",
+        apiTitle: "API 서버",
+        apiSub: "Async 처리",
+        resultTitle: "통합 결과 제공",
+        resultSub: "관련 코드 + 호출 / 의존 흐름 + AI 답변",
     },
-    {
-        n: 2,
-        icon: Search,
-        title: "하이브리드 검색",
-        sub: "키워드 + 벡터",
-        points: ["키워드 검색 (BM25)", "벡터 유사도 검색"],
-        db: { icon: Database, name: "키워드 인덱스", tag: "BM25" },
+    en: {
+        steps: [
+            {
+                title: "Indexing pipeline",
+                sub: "Batch",
+                points: ["Source collection and preprocessing", "Indexing and embedding"],
+                dbName: "Vector DB",
+            },
+            {
+                title: "Hybrid search",
+                sub: "Keyword + vector",
+                points: ["Keyword search (BM25)", "Vector similarity search"],
+                dbName: "Keyword index",
+            },
+            {
+                title: "AI rerank and answer",
+                sub: "Re-rank + LLM",
+                points: ["AI reranking", "LLM answer generation"],
+                dbName: "Code graph DB",
+                dbNote: "Call and dependency relationships",
+            },
+        ],
+        userTitle: "User (developer)",
+        userSub: "Natural-language question or code search",
+        apiTitle: "API server",
+        apiSub: "Async processing",
+        resultTitle: "Combined result",
+        resultSub: "Relevant code, call and dependency flow, and an AI answer",
     },
-    {
-        n: 3,
-        icon: Sparkles,
-        title: "AI 재정렬 · 답변",
-        sub: "Re-rank + LLM",
-        points: ["AI 재정렬 (Re-rank)", "LLM 답변 생성"],
-        db: {
-            icon: Network,
-            name: "코드 그래프 DB",
-            tag: "PostgreSQL",
-            note: "호출 / 의존 관계",
-        },
-    },
-];
+};
 
 function VLine({ h = "h-5" }: { h?: string }) {
     return <div className={cn("mx-auto w-px", h)} style={{ background: LINE }} />;
@@ -180,17 +226,35 @@ function DbCard({ db }: { db: Step["db"] }) {
     );
 }
 
-export function CodeAssistantArchitecture() {
+export function CodeAssistantArchitecture({
+    locale = "ko",
+}: {
+    locale?: Locale;
+}) {
+    const t = T[locale];
+    const STEPS: Step[] = t.steps.map((st, i) => ({
+        n: i + 1,
+        icon: STEP_ICONS[i],
+        title: st.title,
+        sub: st.sub,
+        points: st.points,
+        db: {
+            icon: DB_ICONS[i],
+            name: st.dbName,
+            tag: DB_TAGS[i],
+            ...(st.dbNote ? { note: st.dbNote } : {}),
+        },
+    }));
     return (
         <div className="overflow-x-auto">
             <div className="mx-auto min-w-[760px] max-w-4xl">
                 <IoNode
                     icon={User}
-                    title="사용자 (개발자)"
-                    sub="자연어 질문 / 코드 검색 요청"
+                    title={t.userTitle}
+                    sub={t.userSub}
                 />
                 <Arrow />
-                <IoNode icon={Server} title="API 서버" sub="Async 처리" />
+                <IoNode icon={Server} title={t.apiTitle} sub={t.apiSub} />
                 <Bracket dir="down" />
                 <div className="grid grid-cols-3 gap-5">
                     {STEPS.map((s) => (
@@ -204,8 +268,8 @@ export function CodeAssistantArchitecture() {
                 <Bracket dir="up" />
                 <IoNode
                     icon={Code2}
-                    title="통합 결과 제공"
-                    sub="관련 코드 + 호출 / 의존 흐름 + AI 답변"
+                    title={t.resultTitle}
+                    sub={t.resultSub}
                 />
             </div>
         </div>

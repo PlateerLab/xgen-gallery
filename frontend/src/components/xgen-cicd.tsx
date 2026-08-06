@@ -11,6 +11,7 @@ import {
     ChevronRight,
     type LucideIcon,
 } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * XGEN GitOps CI/CD 파이프라인 (공개-안전 버전).
@@ -18,38 +19,56 @@ import {
  * 내부 GitLab·ECR 주소, 자격증명, 고객사 프로젝트명은 포함하지 않는다.
  */
 
-const STAGES: { icon: LucideIcon; t: string; s: string }[] = [
-    { icon: GitBranch, t: "Source", s: "브랜치 · MR" },
-    { icon: Hammer, t: "CI Build", s: "BuildKit 멀티스테이지 이미지" },
-    { icon: Package, t: "Registry", s: "컨테이너 이미지 저장" },
-    { icon: RefreshCw, t: "GitOps Sync", s: "ArgoCD 수동 sync" },
-    { icon: Server, t: "Cluster", s: "k3s · 앱/인프라 네임스페이스" },
-];
+/** 파이프라인 단계 이름(Source·CI Build…)은 고유 표기라 두 언어 공통, 설명만 번역. */
+const STAGE_ICONS: LucideIcon[] = [GitBranch, Hammer, Package, RefreshCw, Server];
+const STAGE_NAMES = ["Source", "CI Build", "Registry", "GitOps Sync", "Cluster"];
+const PRINCIPLE_ICONS: LucideIcon[] = [GitMerge, ShieldCheck, Lock, Activity];
 
-const PRINCIPLES: { icon: LucideIcon; t: string; s: string }[] = [
-    {
-        icon: GitMerge,
-        t: "GitOps · 선언형",
-        s: "Git이 단일 진실 공급원 — 매니페스트로 클러스터 상태를 정의하고 동기화",
+const T: Record<Locale, { stages: string[]; principles: [string, string][] }> = {
+    ko: {
+        stages: [
+            "브랜치 · MR",
+            "BuildKit 멀티스테이지 이미지",
+            "컨테이너 이미지 저장",
+            "ArgoCD 수동 sync",
+            "k3s · 앱/인프라 네임스페이스",
+        ],
+        principles: [
+            ["GitOps · 선언형", "Git이 단일 진실 공급원 — 매니페스트로 클러스터 상태를 정의하고 동기화"],
+            ["통제된 릴리스", "브랜치 + MR 필수(main 직접 push 금지) · 수동 sync로 배포 시점 통제"],
+            ["온프레미스 · 폐쇄망", "이미지 export/import로 에어갭 이전 · 사이트별 환경 분리(dev/stg/prd)"],
+            ["관측성", "Prometheus · Grafana로 배포 후 상태 · 로그 · 트레이스 모니터링"],
+        ],
     },
-    {
-        icon: ShieldCheck,
-        t: "통제된 릴리스",
-        s: "브랜치 + MR 필수(main 직접 push 금지) · 수동 sync로 배포 시점 통제",
+    en: {
+        stages: [
+            "Branch and merge request",
+            "BuildKit multi-stage image",
+            "Container image storage",
+            "Manual ArgoCD sync",
+            "k3s · app and infra namespaces",
+        ],
+        principles: [
+            ["GitOps and declarative", "Git is the single source of truth — manifests define the cluster state and sync it"],
+            ["Controlled releases", "Branch plus merge request required (no direct push to main), with manual sync controlling when a deploy lands"],
+            ["On-premise and air-gapped", "Image export/import moves builds across the air gap, with per-site environment separation (dev/stg/prd)"],
+            ["Observability", "Prometheus and Grafana monitor state, logs, and traces after deployment"],
+        ],
     },
-    {
-        icon: Lock,
-        t: "온프레미스 · 폐쇄망",
-        s: "이미지 export/import로 에어갭 이전 · 사이트별 환경 분리(dev/stg/prd)",
-    },
-    {
-        icon: Activity,
-        t: "관측성",
-        s: "Prometheus · Grafana로 배포 후 상태 · 로그 · 트레이스 모니터링",
-    },
-];
+};
 
-export function XgenCicd() {
+export function XgenCicd({ locale = "ko" }: { locale?: Locale }) {
+    const t = T[locale];
+    const STAGES = STAGE_NAMES.map((name, i) => ({
+        icon: STAGE_ICONS[i],
+        t: name,
+        s: t.stages[i],
+    }));
+    const PRINCIPLES = t.principles.map(([title, desc], i) => ({
+        icon: PRINCIPLE_ICONS[i],
+        t: title,
+        s: desc,
+    }));
     return (
         <div>
             {/* 파이프라인 흐름 */}

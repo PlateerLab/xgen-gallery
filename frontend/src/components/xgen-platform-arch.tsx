@@ -34,6 +34,7 @@ import {
     BadgeCheck,
     type LucideIcon,
 } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * XGEN 2.0 플랫폼 아키텍처 맵.
@@ -45,75 +46,175 @@ import {
 
 type Item = { icon: LucideIcon; t: string; s?: string };
 
-const ACCESS = [
-    "사용자 모드 (Chat/Assist)",
-    "관리자 모드 (Admin)",
-    "Portal / 대시보드",
-    "Open-API · SDK",
-    "SSO 연동",
-];
-
-const DOMAIN: Item[] = [
-    { icon: Landmark, t: "금융", s: "은행 · 캐피탈 · 여신" },
-    { icon: Building2, t: "공공", s: "공공기관" },
-    { icon: ShoppingCart, t: "이커머스", s: "홈쇼핑 · 리테일" },
-    { icon: MonitorPlay, t: "서비스", s: "미디어 · 콘텐츠" },
-    { icon: Boxes, t: "기타", s: "Private LLM" },
-];
-
-const AGENT: Item[] = [
-    { icon: Workflow, t: "Workflow Canvas", s: "Low/No-code Agent 설계 · 60+ 노드 · 커스텀 노드" },
-    { icon: Bot, t: "업무 에이전트", s: "상담 · 문서 처리 · 승인 등 업무 단위 에이전트" },
-    { icon: Wrench, t: "MCP Station", s: "사내 도구 · API tool-call 연계 · 다중 도구 조합" },
-    { icon: Network, t: "Multi-Agent Orchestration", s: "Planner → Agent 라우팅 · 단계별 기능 확장" },
-];
-
-const CORE: Item[] = [
-    { icon: Rocket, t: "AI Service Generator", s: "서비스 생성 · 배포 · 버전 관리" },
-    { icon: Settings, t: "서비스 설정", s: "Ondemand GPU · LLM/ML · VectorDB 연결" },
-    { icon: Activity, t: "LLMOps (Generative)", s: "모델 훈련 · 모니터링 · 평가 · Model Switch & Repo" },
-    { icon: LineChart, t: "MLOps (Predictive)", s: "ML 추론 · 학습 · DataOps · Repository (Add-on)" },
-    { icon: Split, t: "Model Router", s: "Multi-LLM 라우팅 · 비용 · 성능 최적화" },
-];
-
+/** RAG 검색 기법 칩 — 고유 표기라 두 언어 공통. */
 const RAG_CHIPS = ["Dense", "Sparse (SPLADE)", "Reranker", "Late Chunking", "Vision / OCR"];
-const RAG_SIDE: Item[] = [
-    { icon: Database, t: "Qdrant Vector DB", s: "Dense + Sparse 하이브리드 인덱스" },
-    { icon: FileSearch, t: "Embedding · Parsing", s: "문서 파싱 · OCR · 벡터화 파이프라인" },
-];
 
-const FOUNDATION: Item[] = [
-    { icon: Brain, t: "오픈소스 LLM", s: "오픈 모델 · Private · Vertical LLM" },
-    { icon: Wand2, t: "Fine-Tuning", s: "SFT / DPO · 도메인 특화 학습" },
-    { icon: Boxes, t: "멀티모델 확장", s: "Model Router 연계 · Vision · 임베딩 모델" },
-];
+const DOMAIN_ICONS: LucideIcon[] = [Landmark, Building2, ShoppingCart, MonitorPlay, Boxes];
+const AGENT_ICONS: LucideIcon[] = [Workflow, Bot, Wrench, Network];
+const CORE_ICONS: LucideIcon[] = [Rocket, Settings, Activity, LineChart, Split];
+const RAG_SIDE_ICONS: LucideIcon[] = [Database, FileSearch];
+const FOUNDATION_ICONS: LucideIcon[] = [Brain, Wand2, Boxes];
+const INFRA_ICONS: LucideIcon[] = [Container, GitBranch, Database, HardDrive, Server, Gauge];
+const GOVERNANCE_ICONS: LucideIcon[] = [ShieldAlert, KeyRound, ScrollText, EyeOff, Power, BadgeCheck];
+const LAYER_ICONS: LucideIcon[] = [Building2, Bot, Cpu, BookOpen, Brain, Server];
 
-const INFRA: Item[] = [
-    { icon: Container, t: "k3s HA", s: "Kubernetes 고가용성" },
-    { icon: GitBranch, t: "ArgoCD", s: "GitOps · 무중단 배포" },
-    { icon: Database, t: "Qdrant", s: "Vector Database" },
-    { icon: HardDrive, t: "MinIO", s: "Object Storage" },
-    { icon: Server, t: "On-Premise", s: "GPU · 컨테이너" },
-    { icon: Gauge, t: "Monitoring", s: "자원 · 성능 · Alert" },
-];
+interface PlatformData {
+    access: string[];
+    domain: [string, string][];
+    agent: [string, string][];
+    core: [string, string][];
+    ragSide: [string, string][];
+    foundation: [string, string][];
+    infra: [string, string][];
+    governance: [string, string][];
+    layers: [string, string][];
+    ragFlow: string;
+    govTitle: string;
+    govSub: string;
+    refTitle: string;
+    refBody: string;
+    refNote: string;
+}
 
-const GOVERNANCE: Item[] = [
-    { icon: ShieldAlert, t: "Guardrail", s: "프롬프트 인젝션 · 유해 · 기밀 차단" },
-    { icon: KeyRound, t: "RBAC / ABAC", s: "역할 · 속성 기반 접근제어 · MFA" },
-    { icon: ScrollText, t: "Audit Log", s: "전 구간 감사로그 · 반출 추적" },
-    { icon: EyeOff, t: "PII 비식별화", s: "개인 · 금융정보 마스킹 · 가명처리" },
-    { icon: Power, t: "Kill Switch", s: "사전 · 사후 결재 + 자동 알림" },
-    { icon: BadgeCheck, t: "Compliance", s: "정책 템플릿 · Harmbench 검증" },
-];
+const D: Record<Locale, PlatformData> = {
+    ko: {
+        access: [
+            "사용자 모드 (Chat/Assist)",
+            "관리자 모드 (Admin)",
+            "Portal / 대시보드",
+            "Open-API · SDK",
+            "SSO 연동",
+        ],
+        domain: [
+            ["금융", "은행 · 캐피탈 · 여신"],
+            ["공공", "공공기관"],
+            ["이커머스", "홈쇼핑 · 리테일"],
+            ["서비스", "미디어 · 콘텐츠"],
+            ["기타", "Private LLM"],
+        ],
+        agent: [
+            ["Workflow Canvas", "Low/No-code Agent 설계 · 60+ 노드 · 커스텀 노드"],
+            ["업무 에이전트", "상담 · 문서 처리 · 승인 등 업무 단위 에이전트"],
+            ["MCP Station", "사내 도구 · API tool-call 연계 · 다중 도구 조합"],
+            ["Multi-Agent Orchestration", "Planner → Agent 라우팅 · 단계별 기능 확장"],
+        ],
+        core: [
+            ["AI Service Generator", "서비스 생성 · 배포 · 버전 관리"],
+            ["서비스 설정", "Ondemand GPU · LLM/ML · VectorDB 연결"],
+            ["LLMOps (Generative)", "모델 훈련 · 모니터링 · 평가 · Model Switch & Repo"],
+            ["MLOps (Predictive)", "ML 추론 · 학습 · DataOps · Repository (Add-on)"],
+            ["Model Router", "Multi-LLM 라우팅 · 비용 · 성능 최적화"],
+        ],
+        ragSide: [
+            ["Qdrant Vector DB", "Dense + Sparse 하이브리드 인덱스"],
+            ["Embedding · Parsing", "문서 파싱 · OCR · 벡터화 파이프라인"],
+        ],
+        foundation: [
+            ["오픈소스 LLM", "오픈 모델 · Private · Vertical LLM"],
+            ["Fine-Tuning", "SFT / DPO · 도메인 특화 학습"],
+            ["멀티모델 확장", "Model Router 연계 · Vision · 임베딩 모델"],
+        ],
+        infra: [
+            ["k3s HA", "Kubernetes 고가용성"],
+            ["ArgoCD", "GitOps · 무중단 배포"],
+            ["Qdrant", "Vector Database"],
+            ["MinIO", "Object Storage"],
+            ["On-Premise", "GPU · 컨테이너"],
+            ["Monitoring", "자원 · 성능 · Alert"],
+        ],
+        governance: [
+            ["Guardrail", "프롬프트 인젝션 · 유해 · 기밀 차단"],
+            ["RBAC / ABAC", "역할 · 속성 기반 접근제어 · MFA"],
+            ["Audit Log", "전 구간 감사로그 · 반출 추적"],
+            ["PII 비식별화", "개인 · 금융정보 마스킹 · 가명처리"],
+            ["Kill Switch", "사전 · 사후 결재 + 자동 알림"],
+            ["Compliance", "정책 템플릿 · Harmbench 검증"],
+        ],
+        layers: [
+            ["도메인 · 채널", "Vertical Domain"],
+            ["에이전트 · 응용", "Agent & Application"],
+            ["AI Platform 코어", "Platform Core"],
+            ["RAG · 지식", "Retrieval-Augmented"],
+            ["파운데이션 모델", "Foundation Model"],
+            ["인프라", "Infrastructure"],
+        ],
+        ragFlow: "문서 파싱 → 임베딩 → 하이브리드 검색 → Rerank → Context 주입",
+        govTitle: "거버넌스 & 보안",
+        govSub: "전 계층 크로스커팅 통제",
+        refTitle: "레퍼런스 구축",
+        refBody: "금융 J은행 · I캐피탈 · 이커머스 L홈쇼핑 · 미디어 I사 · 공공기관 · 엔터프라이즈",
+        refNote: "On-Premise · Air-gap 대응",
+    },
+    en: {
+        access: [
+            "User mode (Chat/Assist)",
+            "Admin mode",
+            "Portal / dashboard",
+            "Open-API · SDK",
+            "SSO integration",
+        ],
+        domain: [
+            ["Finance", "Banking · capital · lending"],
+            ["Public sector", "Government agencies"],
+            ["E-commerce", "Home shopping · retail"],
+            ["Services", "Media · content"],
+            ["Other", "Private LLM"],
+        ],
+        agent: [
+            ["Workflow Canvas", "Low/no-code agent design · 60+ nodes · custom nodes"],
+            ["Business agents", "Agents scoped to a task — support, document handling, approvals"],
+            ["MCP Station", "Internal tools and API tool-calls, combined across multiple tools"],
+            ["Multi-Agent Orchestration", "Planner → agent routing, extended stage by stage"],
+        ],
+        core: [
+            ["AI Service Generator", "Service creation, deployment, and version management"],
+            ["Service configuration", "On-demand GPU · LLM/ML · vector DB connections"],
+            ["LLMOps (Generative)", "Model training, monitoring, evaluation, model switch and repo"],
+            ["MLOps (Predictive)", "ML inference, training, DataOps, repository (add-on)"],
+            ["Model Router", "Multi-LLM routing optimized for cost and performance"],
+        ],
+        ragSide: [
+            ["Qdrant Vector DB", "Dense + sparse hybrid index"],
+            ["Embedding · Parsing", "Document parsing, OCR, and vectorization pipeline"],
+        ],
+        foundation: [
+            ["Open-source LLMs", "Open models · private · vertical LLMs"],
+            ["Fine-tuning", "SFT / DPO · domain-specific training"],
+            ["Multi-model extension", "Model Router integration · vision · embedding models"],
+        ],
+        infra: [
+            ["k3s HA", "Kubernetes high availability"],
+            ["ArgoCD", "GitOps · zero-downtime deployment"],
+            ["Qdrant", "Vector Database"],
+            ["MinIO", "Object Storage"],
+            ["On-Premise", "GPU · containers"],
+            ["Monitoring", "Resources · performance · alerts"],
+        ],
+        governance: [
+            ["Guardrail", "Blocks prompt injection, harmful content, and confidential leaks"],
+            ["RBAC / ABAC", "Role- and attribute-based access control with MFA"],
+            ["Audit Log", "End-to-end audit logging with export tracking"],
+            ["PII de-identification", "Masking and pseudonymization of personal and financial data"],
+            ["Kill Switch", "Pre- and post-approval with automatic alerting"],
+            ["Compliance", "Policy templates · Harmbench validation"],
+        ],
+        layers: [
+            ["Vertical Domain", "Domain and channel"],
+            ["Agent & Application", "Agents and applications"],
+            ["Platform Core", "AI platform core"],
+            ["Retrieval-Augmented", "RAG and knowledge"],
+            ["Foundation Model", "Foundation models"],
+            ["Infrastructure", "Infrastructure"],
+        ],
+        ragFlow: "Document parsing → embedding → hybrid retrieval → rerank → context injection",
+        govTitle: "Governance & security",
+        govSub: "Cross-cutting control across every layer",
+        refTitle: "Reference deployments",
+        refBody: "Finance (bank J, capital I) · e-commerce (home shopping L) · media (company I) · public agencies · enterprise",
+        refNote: "On-premise and air-gap ready",
+    },
+};
 
-const LAYERS: { icon: LucideIcon; ko: string; en: string }[] = [
-    { icon: Building2, ko: "도메인 · 채널", en: "Vertical Domain" },
-    { icon: Bot, ko: "에이전트 · 응용", en: "Agent & Application" },
-    { icon: Cpu, ko: "AI Platform 코어", en: "Platform Core" },
-    { icon: BookOpen, ko: "RAG · 지식", en: "Retrieval-Augmented" },
-    { icon: Brain, ko: "파운데이션 모델", en: "Foundation Model" },
-    { icon: Server, ko: "인프라", en: "Infrastructure" },
-];
 
 /** 좌측 계층 라벨 (Hover 배경 + Primary 아이콘). */
 function LayerLabel({ icon: Icon, ko, en }: { icon: LucideIcon; ko: string; en: string }) {
@@ -169,7 +270,27 @@ function LayerRow({
     );
 }
 
-export function XgenPlatformArchitecture() {
+export function XgenPlatformArchitecture({
+    locale = "ko",
+}: {
+    locale?: Locale;
+}) {
+    const d = D[locale];
+    const toItems = (rows: [string, string][], icons: LucideIcon[]): Item[] =>
+        rows.map(([t, sub], i) => ({ icon: icons[i], t, s: sub }));
+    const ACCESS = d.access;
+    const DOMAIN = toItems(d.domain, DOMAIN_ICONS);
+    const AGENT = toItems(d.agent, AGENT_ICONS);
+    const CORE = toItems(d.core, CORE_ICONS);
+    const RAG_SIDE = toItems(d.ragSide, RAG_SIDE_ICONS);
+    const FOUNDATION = toItems(d.foundation, FOUNDATION_ICONS);
+    const INFRA = toItems(d.infra, INFRA_ICONS);
+    const GOVERNANCE = toItems(d.governance, GOVERNANCE_ICONS);
+    const LAYERS = d.layers.map(([ko, en], i) => ({
+        icon: LAYER_ICONS[i],
+        ko,
+        en,
+    }));
     return (
         <div className="overflow-x-auto">
             <div className="min-w-[1000px] space-y-3">
@@ -230,7 +351,7 @@ export function XgenPlatformArchitecture() {
                                 ))}
                             </div>
                             <p className="mt-2 text-[12.5px] font-medium text-[#6B7280]">
-                                문서 파싱 → 임베딩 → 하이브리드 검색 → Rerank → Context 주입
+                                {d.ragFlow}
                             </p>
                             <div className="mt-2 grid grid-cols-2 gap-2">
                                 {RAG_SIDE.map((r) => (
@@ -261,11 +382,11 @@ export function XgenPlatformArchitecture() {
                         <div className="flex items-center gap-2">
                             <ShieldCheck className="h-4 w-4 text-[#2563EB]" />
                             <span className="text-[15px] font-bold text-[#111827]">
-                                거버넌스 &amp; 보안
+                                {d.govTitle}
                             </span>
                         </div>
                         <p className="mt-0.5 text-[11.5px] text-[#6B7280]">
-                            전 계층 크로스커팅 통제
+                            {d.govSub}
                         </p>
                         <div className="mt-3 space-y-2">
                             {GOVERNANCE.map((g) => (
@@ -293,15 +414,15 @@ export function XgenPlatformArchitecture() {
                     <div className="flex flex-wrap items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 text-[14px] font-bold text-[#111827]">
                             <BadgeCheck className="h-4 w-4 text-[#2563EB]" />
-                            레퍼런스 구축
+                            {d.refTitle}
                         </span>
                         <span className="text-[13.5px] font-semibold text-[#111827]">
-                            금융 J은행 · I캐피탈 · 이커머스 L홈쇼핑 · 미디어 I사 · 공공기관 · 엔터프라이즈
+                            {d.refBody}
                         </span>
                     </div>
                     <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#2563EB]">
                         <Server className="h-3.5 w-3.5" />
-                        On-Premise · Air-gap 대응
+                        {d.refNote}
                     </span>
                 </div>
             </div>
