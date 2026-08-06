@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Customer cases",
     description:
-        "Customer cases where Plateer Labs Enterprise AI — XGEN, AI Code Assistant, and more — was built and operated in finance, commerce, public sector, and IT and manufacturing, organized by product and industry.",
+        "Where XGEN and AI Code Assistant were built and operated — finance, commerce, public sector, IT and manufacturing. Browse by product or industry.",
     path: "/customers",
     locale: "en",
 });

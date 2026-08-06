@@ -50,7 +50,7 @@ export const SERIES: SeriesDef[] = [
         subtitleEn:
             "Three weeks of reading 80 defect reports and rebuilding the code, the errors, and the manual",
         descriptionEn:
-            "Part by part, how we read the 80 defects raised in GS certification testing and what we changed. From relearning what a defect even is, through moving password hashing to argon2id, handling errors honestly, making configuration visible, and finally treating the manual as part of the product in a move to a wiki.",
+            "How we read the 80 defects raised in GS certification testing and what we changed — from relearning what a defect is, to treating the manual as product.",
         cover: "/blog/series-gs-cert.svg",
         match: /^gs-cert-journey-/,
         order: /^gs-cert-journey-(\d+)-/,
@@ -67,7 +67,7 @@ export const SERIES: SeriesDef[] = [
         subtitleEn:
             "Designing the execution environment an AI agent works in, from the ground up",
         descriptionEn:
-            "Part by part, how we designed the harness — the execution layer that owns validation, retry, and termination outside the generative model. From splitting the validation loop into states, through separating the engine core from the product integration layer.",
+            "How we designed the harness — the execution layer owning validation, retry, and termination outside the generative model, part by part.",
         cover: "/blog/series-harness.svg",
         match: /^harness-journey-/,
         order: /^harness-journey-(\d+)-/,
@@ -84,7 +84,7 @@ export const SERIES: SeriesDef[] = [
         subtitleEn:
             "Starting from the questions, building a knowledge graph, then working on quality and search",
         descriptionEn:
-            "Part by part, how we started from competency questions to build a knowledge graph, measured its quality, and refined search and the evidence UX. From the quality problems a triple count could never reveal, through CSV cleanup and adaptive extraction fitted to model limits.",
+            "How we built a knowledge graph from competency questions, measured its quality, and refined search and the evidence UX, part by part.",
         cover: "/blog/series-ontology.svg",
         match: /^ontology-journey-/,
         order: /^ontology-journey-(\d+)-/,

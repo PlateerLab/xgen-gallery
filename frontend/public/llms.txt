@@ -44,6 +44,17 @@ GitHub: https://github.com/PlateerLab
 - [Releases](https://labs.plateer.com/releases): XGEN platform release notes and changelog.
 - [About](https://labs.plateer.com/about): Mission, the research-to-product pipeline, certifications, and history.
 
+## Languages
+
+The site is served in Korean at the root and in English under `/en`. Every page
+below has an English counterpart at the same path with an `/en` prefix, declared
+with hreflang (`ko`, `en`, `x-default`). Korean is the default.
+
+- [English home](https://labs.plateer.com/en) — the English entry point
+- [English blog](https://labs.plateer.com/en/blog) — all 38 posts are translated; `/blog/<slug>` maps 1:1 to `/en/blog/<slug>`
+- Example: `https://labs.plateer.com/product` ⇄ `https://labs.plateer.com/en/product`
+- Publications on `/research` keep their original Korean bibliographic records (title, authors, venue) in both languages, as citations.
+
 ## About
 
 - Identity: an AI research lab that proves its research through open-source and products.

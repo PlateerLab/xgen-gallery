@@ -1,6 +1,6 @@
 ---
 title: "If changing the setting changes nothing, that is a defect (Part 4)"
-description: "Most of the 36 items in the third GS certification report were agent node options. Here is the work of repairing broken options, making invisible ones observable, and sweeping every numeric parameter."
+description: "Most of the 36 defects in the third GS certification report were node options. Repairing the broken ones and making the invisible ones observable."
 date: "2026-06-09"
 cover: /blog/gs-cert-journey-4-observable-options.svg
 author: "유지수"

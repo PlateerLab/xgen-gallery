@@ -1,7 +1,7 @@
 ---
 title: "The search redesign that started with an A/B measuring an empty graph (Part 6)"
 cover: "/blog/ontology-journey-6-search-redesign.svg"
-description: "Verify first that the graph was actually called, then replace the ReAct loop with parallel retrieval and a single synthesis, based on contribution by question type."
+description: "Verify first that the graph was actually called, then replace the ReAct loop with parallel retrieval and a single synthesis, by contribution per question type."
 date: "2026-06-08"
 author: "김진수"
 authorGithub: "jinsoo96"

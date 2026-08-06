@@ -1,6 +1,6 @@
 ---
 title: "Public agency K — an actionable AI chatbot that handles procurement itself"
-description: "Suppliers were confused by repeated answers to the same questions and by answers that varied between staff. A PoC at public agency K validated an actionable AI support chatbot that does not stop at lookups — it ties into SRM and completes the request."
+description: "Suppliers wanted their requests finished, not explained. Public agency K validated an actionable AI chatbot that ties into SRM and completes the work."
 date: "2026-06-11"
 author: "Plateer Labs"
 category: "Case Study"

@@ -1,6 +1,6 @@
 ---
 title: "Home-shopping retailer L — an insight reporter that writes the market report itself"
-description: "Retail and e-commerce trends move daily, but the market report was still written by hand. Home-shopping retailer L built an automated insight reporter on XGEN that analyzes internal and external data together and generates the report on its own."
+description: "Retail trends moved daily while the market report was written by hand. Home-shopping retailer L built an insight reporter that generates it automatically."
 date: "2026-05-27"
 author: "Plateer Labs"
 category: "Case Study"

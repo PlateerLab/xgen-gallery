@@ -1,6 +1,6 @@
 ---
 title: "Why we turned the user manual into a solution guide wiki"
-description: "Generating a web wiki, Word, Korean, and English documents from a single Markdown source — how we started operating the manual like a product, and why we abandoned the old document system for a wiki."
+description: "Generating a web wiki, Word, Korean, and English documents from one Markdown source — and why we now operate the manual like a product."
 date: "2026-07-16"
 cover: /blog/sooanc-manual-to-wiki.svg
 author: "sooanc"

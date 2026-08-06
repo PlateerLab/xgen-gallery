@@ -1,6 +1,6 @@
 ---
 title: "Inside GS-certified XGEN: the capabilities that matter for Enterprise AI"
-description: "The XGEN Agentic AI Platform passed GS certification testing at TTA against the international standards ISO/IEC 25023 and ISO/IEC 25051. Here is what the testing actually covered — agent development, system integration, GraphRAG knowledge management, and AI governance."
+description: "The XGEN Agentic AI Platform passed GS certification testing at TTA against ISO/IEC 25023 and 25051. Here is what the testing actually covered."
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg
 author: "Plateer Labs"

@@ -183,7 +183,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         slug: "jeju-bank-genai-platform",
         title: "제주은행과 사내 생성형 AI 플랫폼을 구축하고 운영으로 안착시키다",
         titleEn:
-            "Building an internal generative-AI platform with Jeju Bank, and settling it into operation",
+            "Jeju Bank's internal generative-AI platform",
         customer: "제주은행",
         customerEn: "Jeju Bank",
         customerAnonymous: false,
@@ -219,7 +219,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         slug: "retail-genai-retention",
         title: "생성형 AI로 고객 리텐션과 심의 업무를 지원하다",
         titleEn:
-            "Supporting customer retention and review work with generative AI",
+            "Generative AI for retention and review work",
         customer: "국내 대형 홈쇼핑사",
         customerEn: "A large home-shopping retailer",
         customerAnonymous: true,
@@ -228,7 +228,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         summary:
             "대형 홈쇼핑사와 생성형 AI 기반 리텐션(win-back)·심의 지원 애플리케이션을 구축하고, 2차년도 사업으로 확대한 커머스 사례",
         summaryEn:
-            "A commerce engagement with a large home-shopping retailer: generative-AI applications for win-back retention and broadcast review, extended into a second-year program",
+            "A commerce engagement with a large home-shopping retailer: generative AI for win-back retention and broadcast review, extended into a second year",
         challenge:
             "이탈 고객 재유입과 방송 심의 등 반복 업무에 생성형 AI를 적용하되, 기존 사내 시스템과 자연스럽게 연동돼야 했다.",
         challengeEn:
@@ -255,7 +255,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         slug: "semiconductor-code-assistant",
         title: "사내 개발 환경에 맞춘 AI Code Assistant를 전사로 확산하다",
         titleEn:
-            "Rolling out an AI Code Assistant fitted to an internal development environment",
+            "AI Code Assistant, rolled out company-wide",
         customer: "국내 반도체 제조 대기업",
         customerEn: "A large semiconductor manufacturer",
         customerAnonymous: true,
@@ -264,7 +264,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         summary:
             "반도체 제조 대기업의 사내 개발 환경에 AI Code Assistant를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
         summaryEn:
-            "An AI Code Assistant introduced into a semiconductor manufacturer's internal development environment, connected to a local LLM with improved Korean answer quality, then rolled out company-wide",
+            "An AI Code Assistant in a semiconductor manufacturer's internal development environment, connected to a local LLM and rolled out company-wide",
         challenge:
             "외부 코드 어시스턴트는 보안상 사용이 어려웠고, 사내 환경에서 한글 기술 질의에 대한 답변 품질을 끌어올려야 했다.",
         challengeEn:
@@ -291,7 +291,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         slug: "defense-code-assistant",
         title: "폐쇄망 개발 환경에 XGEN 기반 AI Code Assistant를 구축하다",
         titleEn:
-            "An XGEN-based AI Code Assistant inside an air-gapped development environment",
+            "AI Code Assistant in an air-gapped network",
         customer: "국내 방산·시스템 기업",
         customerEn: "A defense and systems company",
         customerAnonymous: true,
@@ -321,7 +321,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         slug: "public-procurement-search",
         title: "대규모 조달 검색 시스템을 AI로 고도화하다",
         titleEn:
-            "Modernizing a large-scale procurement search system with AI",
+            "Large-scale procurement search, rebuilt on AI",
         customer: "국내 공제회",
         customerEn: "A public mutual-aid association",
         customerAnonymous: true,
@@ -330,7 +330,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         summary:
             "공제회의 대규모 조달(구매) 검색 시스템을 AI 검색으로 재구축해 고도화하고 상주 운영으로 안정화한 공공 사례",
         summaryEn:
-            "A public-sector engagement rebuilding a mutual-aid association's large-scale procurement search on AI search, then stabilizing it through on-site operations",
+            "A public-sector engagement rebuilding a mutual-aid association's procurement search on AI, then stabilizing it through on-site operations",
         challenge:
             "방대한 조달 데이터에서 정확한 검색 결과를 제공하도록 검색 영역을 고도화해야 했다.",
         challengeEn:

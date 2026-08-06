@@ -1,7 +1,7 @@
 ---
 title: "Why ten CSV classes became four (Part 8)"
 cover: "/blog/ontology-journey-8-structured-incremental.svg"
-description: "Persisting generation provenance so post-processing cannot rewrite a structured schema, and computing document reprocessing scope from the chunk set of the last completed build."
+description: "Persisting generation provenance so post-processing cannot rewrite a structured schema, and computing reprocessing scope from the last completed build."
 date: "2026-06-24"
 author: "김진수"
 authorGithub: "jinsoo96"

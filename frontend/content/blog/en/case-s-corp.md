@@ -1,6 +1,6 @@
 ---
 title: "Company S — a multimodal RAG Editor that reads documents, images, and tables"
-description: "Uneven understanding of the solution and repeated questions were slowing projects at IT services firm S. A dedicated AI chatbot trained on company data, plus a multimodal RAG Editor built on XGEN, automated roughly 90% of recurring inquiries."
+description: "Uneven understanding and repeated questions were slowing projects at IT firm S. A dedicated chatbot and multimodal RAG Editor automated roughly 90% of them."
 date: "2026-06-18"
 author: "Plateer Labs"
 category: "Case Study"

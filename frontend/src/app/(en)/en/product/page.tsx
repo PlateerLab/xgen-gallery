@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "XGEN — Enterprise Agentic AI Platform",
     description:
-        "XGEN is an on-premise Enterprise AI platform for designing, deploying, and governing Agentic AI services on the LLMs and infrastructure you choose. Build agents without code on an agentflow canvas with knowledge (RAG), tools (MCP), and governance, and run them safely.",
+        "An on-premise platform for designing, deploying, and governing Agentic AI on the LLMs you choose — no-code agentflow canvas, RAG, MCP tools, governance.",
     path: "/product",
     locale: "en",
 });

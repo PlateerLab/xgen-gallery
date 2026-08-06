@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Technology",
     description:
-        "From the Ontology and Harness engines to the AgenticOps and GraphRAG frameworks and a standalone MCP runtime — the XGEN technology behind operability, independence, connectivity, and extensibility.",
+        "The Ontology and Harness engines, AgenticOps and GraphRAG frameworks, and a standalone MCP runtime — the technology behind how XGEN operates.",
     path: "/technology",
     locale: "en",
 });

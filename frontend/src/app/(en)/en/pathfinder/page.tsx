@@ -2,9 +2,9 @@ import { PathFinderPageContent } from "@/components/pages/pathfinder-page";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-    title: "PathFinder — turn web systems into AI Agent Tools",
+    title: "PathFinder — web systems as Agent Tools",
     description:
-        "PathFinder is XGEN technology that connects systems and APIs into Agent Tools an AI agent can use, without code. Sign-in, connection, testing, and registration are automated in the browser.",
+        "XGEN technology that turns existing systems and APIs into Agent Tools without code — sign-in, wiring, testing, and registration run in the browser.",
     path: "/pathfinder",
     locale: "en",
 });

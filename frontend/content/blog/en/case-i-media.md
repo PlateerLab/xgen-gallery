@@ -1,6 +1,6 @@
 ---
 title: "Company I — search, support, and code improvement solved with one AI"
-description: "An e-commerce and media company solved missed search results, a rising support load, and slow code improvement at once, with AI search, support analysis, and a code assistant. After launch, revenue and traffic rose roughly 20% month over month."
+description: "An e-commerce company tied missed search results, a rising support load, and slow code improvement into one AI system — revenue and traffic rose about 20%."
 date: "2026-05-20"
 author: "Plateer Labs"
 category: "Case Study"

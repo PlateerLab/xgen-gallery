@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Applied AI by Industry",
     description:
-        "Enterprise AI adapted to the workflows and regulations of finance, public sector, commerce, and IT services — researched at Plateer Labs and validated through real PoCs.",
+        "Enterprise AI fitted to the workflows and regulations of finance, public sector, commerce, and IT services — validated through real PoCs.",
     path: "/solutions",
     locale: "en",
 });

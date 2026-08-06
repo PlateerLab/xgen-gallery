@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Technical Consulting",
     description:
-        "Enterprise AI consulting validated in research and proven in PoC — we design the whole path with you, from AI strategy and architecture through PoC validation and AI governance.",
+        "Enterprise AI consulting grounded in research and proven in PoC — AI strategy, architecture, PoC validation, and governance, designed with you.",
     path: "/technical-consulting",
     locale: "en",
 });

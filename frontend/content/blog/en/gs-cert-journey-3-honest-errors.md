@@ -1,6 +1,6 @@
 ---
 title: "Rebuilding error handling so failure says it failed (Part 3)"
-description: "GS certification flagged a defect where a success message and an error log appeared on the same screen. Here is how we rebuilt error handling — required-field validation, specific error text, and shutting down silent failures."
+description: "GS certification flagged a success message and an error log on one screen. Rebuilding error handling: field validation, specific text, no silent failures."
 date: "2026-05-30"
 cover: /blog/gs-cert-journey-3-honest-errors.svg
 author: "유지수"

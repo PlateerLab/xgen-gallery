@@ -1,6 +1,6 @@
 ---
 title: "Bank J — a finance-specific AI chatbot that shows its sources"
-description: "Bank J wanted more than an FAQ bot: an AI tied into internal systems that cites the basis for every answer. A PoC building RAG and a specialized sLLM reached a high accuracy rate and proved the bank could build finance-specific AI on its own terms."
+description: "Bank J wanted more than an FAQ bot: an AI wired into internal systems that cites its basis. A PoC with RAG and a bank-specific sLLM proved it out."
 date: "2026-06-03"
 author: "Plateer Labs"
 category: "Case Study"

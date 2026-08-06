@@ -1,6 +1,6 @@
 ---
 title: "Company P — an internal HR chatbot that answers before you ask"
-description: "Repetitive HR questions piled onto the HR team, and policy changes did not reach the company in time, leaving an information gap. Company P built a RAG chatbot on XGEN, grounded in internal HR documents, for 24/7 automatic answers."
+description: "Repetitive HR questions piled up and policy changes did not reach people in time. Company P built a RAG chatbot on internal HR documents, answering 24/7."
 date: "2026-06-25"
 author: "Plateer Labs"
 category: "Case Study"
