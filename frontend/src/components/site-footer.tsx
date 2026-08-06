@@ -267,6 +267,13 @@ export function SiteFooter() {
                                     </Link>
                                 ),
                             )}
+                            {/* Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청) */}
+                            <Link
+                                href="/members"
+                                className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+                            >
+                                Lab Members
+                            </Link>
                             <Link
                                 href="/newsletter"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"

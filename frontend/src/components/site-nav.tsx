@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, Menu, X, Users } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { LanguageToggle } from "@/components/language-toggle";
 import { SiteSearch } from "@/components/site-search";
@@ -395,25 +395,11 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                     <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
-                    {/* members 아이콘(github 아이콘 제거 — 요청). desktop only */}
-                    <div className="hidden items-center gap-3 lg:flex">
-                        <Link
-                            href="/members"
-                            aria-label="Members"
-                            className={cn(
-                                "inline-flex transition",
-                                light
-                                    ? "text-white/80 hover:text-white"
-                                    : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
-                            )}
-                        >
-                            <Users className="h-5 w-5" />
-                        </Link>
-                        {/* 언어 전환(KO/EN) — 임시 숨김 (요청). false && 로 비활성화.
-                            쿠키 기반 전환이라 URL이 하나뿐이고 영문이 별도 색인되지 않는 상태다.
-                            다시 노출한다면 /en 경로 분리와 함께 검토한다. */}
-                        {false && <LanguageToggle light={light} />}
-                    </div>
+                    {/* members 아이콘은 검색바 뒤에서 제거 — 푸터 About으로 이동(요청).
+                        언어 전환(KO/EN)은 다시 노출(요청). 쿠키 기반 전환이라 URL이
+                        하나뿐이고 영문은 별도 색인되지 않는다 — 색인까지 필요해지면
+                        /en 경로 분리를 함께 검토한다. desktop only. */}
+                    <LanguageToggle light={light} className="hidden lg:inline-flex" />
 
                     {/* primary CTA — 임시 숨김 (요청: 검색바 확장). false && 로 비활성화. */}
                     {false && (
