@@ -13,8 +13,30 @@ import {
     Clock,
 } from "lucide-react";
 import { BrochureForm } from "@/components/brochure-form";
+import { useI18n } from "@/components/i18n-provider";
 import { allBrochures } from "@/lib/brochures";
 import { cn } from "@/lib/cn";
+
+const UI = {
+    ko: {
+        cardTitle: (n: string) => `${n} 소개서`,
+        pending: "준비 중",
+        selected: "선택됨",
+        contentsTitle: "소개서에 담긴 내용",
+        delivery: "신청 후 이메일로 PDF 발송",
+        pendingTitle: (n: string) => `${n} 소개서는 준비 중입니다`,
+        pendingDesc: "곧 공개되면 이 자리에서 바로 신청하실 수 있습니다.",
+    },
+    en: {
+        cardTitle: (n: string) => `${n} brochure`,
+        pending: "Coming soon",
+        selected: "Selected",
+        contentsTitle: "What's inside",
+        delivery: "The PDF is emailed to you after you request it",
+        pendingTitle: (n: string) => `The ${n} brochure is being prepared`,
+        pendingDesc: "Once it is published you will be able to request it right here.",
+    },
+} as const;
 
 /**
  * 자료실 소개서 — 종류를 카드로 나열하고, 선택한 소개서의 미리보기 + 다운로드 폼을 보여준다.
@@ -25,6 +47,9 @@ import { cn } from "@/lib/cn";
 const CONTENT_ICONS = [Layers, Workflow, Database, Cable, ShieldCheck, Rocket];
 
 export function ResourcesBrochures() {
+    const { locale } = useI18n();
+    const ui = UI[locale];
+    const isEn = locale === "en";
     const items = allBrochures(); // 카드 자리(준비 중 포함)
     const firstReady = items.find((b) => b.published);
     // 선택은 준비 중 카드도 가능(내용 미리보기용). 기본값은 공개된 첫 소개서.
@@ -80,22 +105,22 @@ export function ResourcesBrochures() {
                                             : "text-[var(--color-ink-subtle)]",
                                     )}
                                 >
-                                    {b.tagline}
+                                    {(isEn && b.taglineEn) || b.tagline}
                                 </p>
                                 <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                    {b.name} 소개서
+                                    {ui.cardTitle(b.name)}
                                 </h3>
                                 <p className="mt-1 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {b.summary}
+                                    {(isEn && b.summaryEn) || b.summary}
                                 </p>
                             </div>
                             {!ready ? (
                                 <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[var(--color-line-strong)] px-2 py-0.5 text-[11px] font-bold text-white">
-                                    <Clock className="h-3 w-3" /> 준비 중
+                                    <Clock className="h-3 w-3" /> {ui.pending}
                                 </span>
                             ) : selected ? (
                                 <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[#2f7bff] px-2 py-0.5 text-[11px] font-bold text-white">
-                                    <Check className="h-3 w-3" /> 선택됨
+                                    <Check className="h-3 w-3" /> {ui.selected}
                                 </span>
                             ) : null}
                         </button>
@@ -107,7 +132,7 @@ export function ResourcesBrochures() {
             <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-stretch">
                 <div className="flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
                     <p className="text-[14px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
-                        소개서에 담긴 내용
+                        {ui.contentsTitle}
                     </p>
                     <ul className="mt-4 space-y-4">
                         {active.contents.map((cc, i) => {
@@ -119,10 +144,10 @@ export function ResourcesBrochures() {
                                     </span>
                                     <div>
                                         <p className="text-[15.5px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {cc.title}
+                                            {(isEn && cc.titleEn) || cc.title}
                                         </p>
                                         <p className="mt-0.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {cc.desc}
+                                            {(isEn && cc.descEn) || cc.desc}
                                         </p>
                                     </div>
                                 </li>
@@ -131,7 +156,7 @@ export function ResourcesBrochures() {
                     </ul>
                     <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line)] pt-4 text-[13.5px] text-[var(--color-ink-subtle)]">
                         <Check className="h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                        신청 후 이메일로 PDF 발송
+                        {ui.delivery}
                     </div>
                 </div>
 
@@ -145,10 +170,10 @@ export function ResourcesBrochures() {
                             <Clock className="h-7 w-7" />
                         </span>
                         <h3 className="mt-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
-                            {active.name} 소개서는 준비 중입니다
+                            {ui.pendingTitle(active.name)}
                         </h3>
                         <p className="mt-2 max-w-xs text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                            곧 공개되면 이 자리에서 바로 신청하실 수 있습니다.
+                            {ui.pendingDesc}
                         </p>
                     </div>
                 )}

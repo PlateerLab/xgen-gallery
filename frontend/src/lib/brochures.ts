@@ -12,6 +12,9 @@
 export interface BrochureContent {
     title: string;
     desc: string;
+    /** 영문판 표기 — `/en/resources`에서 사용(없으면 한국어로 폴백). */
+    titleEn?: string;
+    descEn?: string;
 }
 
 export interface Brochure {
@@ -23,8 +26,12 @@ export interface Brochure {
     file: string;
     /** 카드 부제 */
     tagline: string;
+    /** 영문 카드 부제 — 없으면 tagline 그대로(대개 영문 고유 표기라 공통). */
+    taglineEn?: string;
     /** 카드 요약 설명 */
     summary: string;
+    /** 영문 카드 요약 — `/en/resources`에서 사용. */
+    summaryEn?: string;
     /** 소개서에 담긴 내용 — 신청 전 미리보기(리드 전환용) */
     contents: BrochureContent[];
     /** 자료실 노출 여부(PDF가 준비된 소개서만 true) */
@@ -39,30 +46,44 @@ export const BROCHURES = {
         tagline: "Enterprise Agentic AI Platform",
         summary:
             "XGEN이 무엇을 하고 어떻게 도입되는지 한눈에 정리한 제품 소개서입니다.",
+        summaryEn:
+            "A product brochure covering what XGEN does and how a rollout actually works.",
         contents: [
             {
                 title: "플랫폼 개요",
+                titleEn: "Platform overview",
                 desc: "학습·생성·배포·모니터링을 아우르는 All-in-one Agentic AI 플랫폼 구성과 도입 방식",
+                descEn: "An all-in-one Agentic AI platform spanning training, generation, deployment, and monitoring — and how it gets adopted",
             },
             {
                 title: "에이전트 설계 · Agentflow",
+                titleEn: "Agent design and Agentflow",
                 desc: "노드 캔버스에서 코딩 없이 LLM 호출·도구 실행·분기를 조합하고 멀티 에이전트를 구성",
+                descEn: "Compose LLM calls, tool execution, and branching on a node canvas without code, and build multi-agent setups",
             },
             {
                 title: "지식 · RAG",
+                titleEn: "Knowledge and RAG",
                 desc: "하이브리드 검색·리랭커·온톨로지 그래프·인용 응답으로 출처가 분명한 답변 생성",
+                descEn: "Hybrid retrieval, rerankers, ontology graphs, and cited responses, so answers come with a clear source",
             },
             {
                 title: "도구 · MCP 연동",
+                titleEn: "Tools and MCP integration",
                 desc: "MCP 표준과 API 도구로 사내 시스템·DB·산출물을 에이전트에 안전하게 연결",
+                descEn: "Connect internal systems, databases, and artifacts to agents safely through the MCP standard and API tools",
             },
             {
                 title: "보안 · 거버넌스",
+                titleEn: "Security and governance",
                 desc: "온프레미스·망분리, RBAC·ABAC, PII 마스킹, 이중 승인·감사 로그, 제로 트레이닝",
+                descEn: "On-premise and network-separated deployment, RBAC/ABAC, PII masking, dual approval, audit logs, and zero training on your data",
             },
             {
                 title: "배포 · 운영과 도입 사례",
+                titleEn: "Deployment, operations, and case studies",
                 desc: "멀티 LLM 오케스트레이션·GitOps 배포·대시보드 모니터링과 산업별 적용 사례",
+                descEn: "Multi-LLM orchestration, GitOps deployment, dashboard monitoring, and applications by industry",
             },
         ],
         published: true,
@@ -72,28 +93,41 @@ export const BROCHURES = {
         name: "AI Code Assistant",
         file: "/downloads/code-assistant-brochure.pdf",
         tagline: "사내 코드베이스를 이해하는 AI 코드 어시스턴트",
+        taglineEn: "An AI coding assistant that understands your codebase",
         summary:
             "사내 코드·API·스키마를 학습해 프로젝트 맥락에서 코드 수준으로 답하는 어시스턴트 소개서입니다.",
+        summaryEn:
+            "A brochure on the assistant that learns your code, APIs, and schemas, then answers at code level in your project's context.",
         contents: [
             {
                 title: "제품 개요",
+                titleEn: "Product overview",
                 desc: "사내 코드·API·스키마·산출물을 학습해 프로젝트 맥락에서 답하는 온프레미스 코드 어시스턴트",
+                descEn: "An on-premise coding assistant that learns your code, APIs, schemas, and artifacts, then answers in your project's context",
             },
             {
                 title: "코드 이해 · 검색",
+                titleEn: "Code understanding and search",
                 desc: "AST 기반 코드 이해와 BM25+벡터+리랭크 하이브리드 검색으로 우리 프로젝트에 맞는 답변",
+                descEn: "AST-based code comprehension plus BM25 + vector + rerank hybrid search, tuned to your own project",
             },
             {
                 title: "IDE · 저장소 연동",
+                titleEn: "IDE and repository integration",
                 desc: "VS Code 확장과 GitLab 증분 인덱싱으로 실제 개발 환경에 밀착",
+                descEn: "A VS Code extension and incremental GitLab indexing that sit close to how you actually develop",
             },
             {
                 title: "보안 · 온프레미스",
+                titleEn: "Security and on-premise",
                 desc: "폐쇄망 대응과 소스코드 외부 유출 원천 차단, 접근 통제·감사 로그",
+                descEn: "Air-gapped operation that structurally prevents source code from leaving, with access control and audit logs",
             },
             {
                 title: "도입 효과",
+                titleEn: "Impact",
                 desc: "신규 개발자 온보딩 가속과 유지보수 생산성 향상 시나리오",
+                descEn: "Scenarios for faster onboarding of new developers and improved maintenance productivity",
             },
         ],
         // PDF 준비되면 true 로 변경(코드는 이미 종류 구분 지원).
