@@ -12,9 +12,64 @@ import {
     X,
 } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
+import { categoryLabel } from "@/lib/blog-categories";
+import { localeHref } from "@/lib/locale-path";
+import { useI18n } from "@/components/i18n-provider";
+import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
-import { groupSeries, seriesOf } from "@/lib/series";
+import { groupSeries, seriesCopy, seriesOf } from "@/lib/series";
 import { ViewCount } from "@/components/view-count";
+
+/** 목록 화면 문구. 카테고리 값은 lib/blog.ts 가 한국어로 정규화해 두므로 여기선 라벨만 바꾼다. */
+const COPY: Record<
+    Locale,
+    {
+        all: string;
+        popular: string;
+        authorPosts: (n: number) => string;
+        seeAll: string;
+        contributors: string;
+        clear: string;
+        empty: string;
+        seriesTitle: string;
+        seriesCount: (n: number) => string;
+        allArticles: string;
+        nothing: string;
+        prev: string;
+        next: string;
+    }
+> = {
+    ko: {
+        all: "전체",
+        popular: "인기 있는 글",
+        authorPosts: (n) => `님의 글 ${n}건`,
+        seeAll: "전체 글 보기",
+        contributors: "기고자",
+        clear: "전체",
+        empty: "해당 카테고리의 글을 준비 중입니다",
+        seriesTitle: "아티클 시리즈",
+        seriesCount: (n) => `아티클 ${n}개`,
+        allArticles: "전체 아티클",
+        nothing: "표시할 글이 없습니다",
+        prev: "이전",
+        next: "다음",
+    },
+    en: {
+        all: "All",
+        popular: "Most read",
+        authorPosts: (n) => ` — ${n} ${n === 1 ? "post" : "posts"}`,
+        seeAll: "See all posts",
+        contributors: "Contributors",
+        clear: "All",
+        empty: "Posts in this category are on the way",
+        seriesTitle: "Article series",
+        seriesCount: (n) => `${n} ${n === 1 ? "article" : "articles"}`,
+        allArticles: "All articles",
+        nothing: "Nothing to show",
+        prev: "Previous",
+        next: "Next",
+    },
+};
 
 const ALL = "전체";
 const TABS = [ALL, "제품 소식", "Tech Note", "Case Study"] as const;
@@ -126,6 +181,8 @@ function AuthorRow({ post }: { post: PostMeta }) {
 const POPULAR_COUNT = 9;
 
 function PopularList({ posts }: { posts: PostMeta[] }) {
+    const { locale } = useI18n();
+    const t = COPY[locale];
     const base = useMemo(() => posts.slice(0, POPULAR_COUNT), [posts]);
     const [ranked, setRanked] = useState<PostMeta[]>(base);
 
@@ -161,12 +218,12 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-5">
             <div className="flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
                 <Flame className="h-3.5 w-3.5 text-[#ff7a3d]" />
-                인기 있는 글
+                {t.popular}
             </div>
             <ol className="mt-4 space-y-4">
                 {ranked.map((p, i) => (
                     <li key={p.slug}>
-                        <Link href={`/blog/${p.slug}`} className="group flex gap-3">
+                        <Link href={localeHref(locale, `/blog/${p.slug}`)} className="group flex gap-3">
                             <span className="w-5 flex-none text-[19px] font-black leading-none text-[#c7d3ee] group-hover:text-[#2f7bff]">
                                 {i + 1}
                             </span>
@@ -193,6 +250,9 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
 }
 
 export function BlogList({ posts }: { posts: PostMeta[] }) {
+    const { locale } = useI18n();
+    const t = COPY[locale];
+    const en = locale === "en";
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -292,42 +352,42 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                         <span className="font-bold text-[var(--color-ink)]">
                             {activeAuthor}
                         </span>{" "}
-                        님의 글 {scoped.length}건
+                        {t.authorPosts(scoped.length)}
                     </p>
                     <button
                         type="button"
                         onClick={() => pushParams(KEY_BY_CATEGORY[active], activeTag, null)}
                         className="text-[14px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                     >
-                        전체 글 보기
+                        {t.seeAll}
                     </button>
                 </div>
             )}
 
             {/* 카테고리 탭 */}
             <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
-                {TABS.map((t) => {
+                {TABS.map((tab) => {
                     const count =
-                        t === ALL
+                        tab === ALL
                             ? scoped.length
-                            : scoped.filter((p) => p.category === t).length;
+                            : scoped.filter((p) => p.category === tab).length;
                     return (
                         <button
-                            key={t}
+                            key={tab}
                             type="button"
-                            onClick={() => selectTab(t)}
+                            onClick={() => selectTab(tab)}
                             className={cn(
                                 "flex-none rounded-full px-4 py-2 text-[15px] font-semibold transition",
-                                active === t
+                                active === tab
                                     ? "bg-[var(--color-ink)] text-white shadow-sm"
                                     : "bg-[var(--color-surface-alt)] text-[var(--color-ink-muted)] hover:bg-[#e8edf6] hover:text-[var(--color-ink)]",
                             )}
                         >
-                            {t}
+                            {tab === ALL ? t.all : categoryLabel(tab, locale)}
                             <span
                                 className={cn(
                                     "ml-1.5 text-[13px] tabular-nums",
-                                    active === t
+                                    active === tab
                                         ? "text-white/60"
                                         : "text-[var(--color-ink-subtle)]",
                                 )}
@@ -344,7 +404,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                 <div className="mt-5 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)]/60 p-4">
                     <div className="mb-3 flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-wider text-[var(--color-ink-subtle)]">
                         <PenLine className="h-3.5 w-3.5" />
-                        기고자
+                        {t.contributors}
                         {activeAuthor && (
                             <button
                                 type="button"
@@ -352,7 +412,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                 className="ml-1 inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[11.5px] font-semibold normal-case tracking-normal text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
                             >
                                 <X className="h-3 w-3" />
-                                전체
+                                {t.clear}
                             </button>
                         )}
                     </div>
@@ -426,7 +486,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
             {filtered.length === 0 ? (
                 <div className="mt-10 rounded-2xl border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] p-12 text-center">
                     <p className="text-[16px] text-[var(--color-ink-muted)]">
-                        해당 카테고리의 글을 준비 중입니다
+                        {t.empty}
                     </p>
                 </div>
             ) : (
@@ -436,13 +496,13 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                         <section className="mb-14">
                             <h2 className="mb-5 flex items-center gap-2 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
                                 <Layers className="h-5 w-5 text-[#4f46e5]" />
-                                아티클 시리즈
+                                {t.seriesTitle}
                             </h2>
                             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                 {seriesList.map((g) => (
                                     <Link
                                         key={g.def.key}
-                                        href={`/blog/series/${g.def.key}`}
+                                        href={localeHref(locale, `/blog/series/${g.def.key}`)}
                                         className="group flex flex-col rounded-2xl bg-[var(--color-surface-alt)] p-3 transition hover:bg-[#eef2f9] hover:shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)]"
                                     >
                                         <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
@@ -455,13 +515,13 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                             />
                                         </div>
                                         <h3 className="mt-4 line-clamp-2 px-1 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                            {g.def.title}
+                                            {seriesCopy(g.def, en).title}
                                         </h3>
                                         <p className="mt-1.5 line-clamp-2 px-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {g.def.subtitle}
+                                            {seriesCopy(g.def, en).subtitle}
                                         </p>
                                         <span className="mt-4 mb-1 ml-1 inline-flex w-fit items-center rounded-full bg-white px-3 py-1 text-[12.5px] font-semibold text-[var(--color-ink-muted)] ring-1 ring-[var(--color-line)]">
-                                            아티클 {g.posts.length}개
+                                            {t.seriesCount(g.posts.length)}
                                         </span>
                                     </Link>
                                 ))}
@@ -473,7 +533,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
                         <div>
                             <h2 className="mb-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
-                                전체 아티클
+                                {t.allArticles}
                             </h2>
 
                             {/* 단독 글 목록(페이징) */}
@@ -482,7 +542,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                     {pagePosts.map((p) => (
                                         <Link
                                             key={p.slug}
-                                            href={`/blog/${p.slug}`}
+                                            href={localeHref(locale, `/blog/${p.slug}`)}
                                             className="group flex gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-3 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-20px_rgba(20,40,80,0.28)]"
                                         >
                                             <div className="relative aspect-[4/3] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[176px]">
@@ -494,7 +554,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                             <div className="flex min-w-0 flex-1 flex-col py-1">
                                                 <div className="flex flex-wrap items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                                                     <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
-                                                        {p.category}
+                                                        {categoryLabel(p.category, locale)}
                                                     </span>
                                                     {seriesOf(p.slug) && (
                                                         <span className="rounded-full bg-[#0d9488]/10 px-2 py-0.5 font-semibold text-[#0f766e]">
@@ -520,7 +580,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                 </div>
                             ) : (
                                 <p className="text-[15px] text-[var(--color-ink-muted)]">
-                                    표시할 글이 없습니다
+                                    {t.nothing}
                                 </p>
                             )}
 
@@ -529,7 +589,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                 <div className="mt-8 flex items-center justify-center gap-1.5">
                                     <button
                                         type="button"
-                                        aria-label="이전"
+                                        aria-label={t.prev}
                                         disabled={safePage === 1}
                                         onClick={() => setPage(safePage - 1)}
                                         className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
@@ -555,7 +615,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                     )}
                                     <button
                                         type="button"
-                                        aria-label="다음"
+                                        aria-label={t.next}
                                         disabled={safePage === totalPages}
                                         onClick={() => setPage(safePage + 1)}
                                         className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"

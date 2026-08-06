@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getAllPosts } from "@/lib/blog";
+import { categoryLabel, getAllPosts } from "@/lib/blog";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — Insight 미리보기. 최신 제품 소식을 대표 카드로 자동 노출하고, 그 뒤로 최근
@@ -9,12 +11,33 @@ import { getAllPosts } from "@/lib/blog";
  */
 const EXCLUDE_SLUG = "gs-certification-grade1";
 
+const COPY: Record<
+    Locale,
+    { headA: string; headB: string; read: string; latest: string; seeAll: string }
+> = {
+    ko: {
+        headA: "연구와 현장에서 얻은",
+        headB: "인사이트",
+        read: "읽어보기",
+        latest: "/ 최신 Tech Note",
+        seeAll: "블로그 전체 보기",
+    },
+    en: {
+        headA: "Insight from our research",
+        headB: "and the field",
+        read: "Read the post",
+        latest: "/ Latest tech notes",
+        seeAll: "See the whole blog",
+    },
+};
+
 function fmt(date: string) {
     return date.replaceAll("-", ".");
 }
 
-export function HomeInsights() {
-    const all = getAllPosts().filter((p) => p.slug !== EXCLUDE_SLUG);
+export function HomeInsights({ locale = "ko" }: { locale?: Locale }) {
+    const t = COPY[locale];
+    const all = getAllPosts(locale).filter((p) => p.slug !== EXCLUDE_SLUG);
     // 대표 카드 = 최신 제품 소식(없으면 최신 글).
     const pinned = all.find((p) => p.category === "제품 소식") ?? all[0];
     // 대표 아래에 노출할 최신 Tech Note.
@@ -31,9 +54,9 @@ export function HomeInsights() {
                         / Insight
                     </p>
                     <h2 className="mt-3 mx-auto max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl">
-                        연구와 현장에서 얻은{" "}
+                        {t.headA}{" "}
                         <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
-                            인사이트
+                            {t.headB}
                         </span>
                     </h2>
                 </div>
@@ -41,12 +64,12 @@ export function HomeInsights() {
                 {/* 고정: 제품 소식 — GS 인증 (상단 대표 카드) */}
                 {pinned && (
                     <Link
-                        href={`/blog/${pinned.slug}`}
+                        href={localeHref(locale, `/blog/${pinned.slug}`)}
                         className="group mt-12 block overflow-hidden rounded-2xl border border-[#bcd0f5] bg-gradient-to-br from-[#eef4ff] to-white p-7 text-center transition hover:border-[#2f7bff] hover:shadow-[0_18px_44px_-20px_rgba(40,80,180,0.3)] md:p-9"
                     >
                         <div className="flex items-center justify-center gap-2">
                             <span className="rounded-full bg-[#2f7bff] px-2.5 py-1 text-[12px] font-bold text-white">
-                                {pinned.category}
+                                {categoryLabel(pinned.category, locale)}
                             </span>
                             <span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">
                                 {fmt(pinned.date)}
@@ -59,7 +82,7 @@ export function HomeInsights() {
                             {pinned.description}
                         </p>
                         <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition group-hover:gap-2.5">
-                            읽어보기
+                            {t.read}
                             <ArrowRight className="h-4 w-4" />
                         </span>
                     </Link>
@@ -69,18 +92,18 @@ export function HomeInsights() {
                 {techNotes.length > 0 && (
                     <>
                         <p className="mt-10 text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            / 최신 Tech Note
+                            {t.latest}
                         </p>
                         <div className="mt-4 grid gap-4 md:grid-cols-3">
                             {techNotes.map((p) => (
                                 <Link
                                     key={p.slug}
-                                    href={`/blog/${p.slug}`}
+                                    href={localeHref(locale, `/blog/${p.slug}`)}
                                     className="group flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center transition hover:-translate-y-0.5 hover:border-[var(--color-ink)]"
                                 >
                                     <div className="flex items-center justify-center gap-2">
                                         <span className="rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 font-mono text-[11.5px] text-[#2461d8]">
-                                            {p.category}
+                                            {categoryLabel(p.category, locale)}
                                         </span>
                                         <span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">
                                             {fmt(p.date)}
@@ -93,7 +116,7 @@ export function HomeInsights() {
                                         {p.description}
                                     </p>
                                     <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium text-[var(--color-ink)] transition group-hover:gap-2">
-                                        읽어보기
+                                        {t.read}
                                         <ArrowRight className="h-3 w-3" />
                                     </span>
                                 </Link>
@@ -105,10 +128,10 @@ export function HomeInsights() {
                 {/* 블로그 전체 보기 — 하단 우측 */}
                 <div className="mt-10 flex justify-end">
                     <Link
-                        href="/blog"
+                        href={localeHref(locale, "/blog")}
                         className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                     >
-                        블로그 전체 보기
+                        {t.seeAll}
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </Link>
                 </div>

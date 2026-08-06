@@ -42,10 +42,17 @@ export const EN_ROUTES: readonly string[] = [
     "/poc-projects",
     "/research",
     "/library-gallery",
+    "/blog",
 ];
 
 /** 하위 경로까지 영문판이 있는 동적 라우트(개별 글은 slug 단위로 별도 확인). */
-const EN_DYNAMIC_PREFIXES: readonly string[] = ["/customers/case/", "/customers/"];
+const EN_DYNAMIC_PREFIXES: readonly string[] = [
+    "/customers/case/",
+    "/customers/",
+    // 블로그는 38편 전편이 content/blog/en 에 있어 slug 단위로 1:1 대응한다.
+    "/blog/series/",
+    "/blog/",
+];
 
 /** `/en/about` → `"en"`, `/about` → `"ko"`. */
 export function localeFromPath(pathname: string): Locale {

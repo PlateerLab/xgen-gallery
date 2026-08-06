@@ -27,22 +27,22 @@ import { getAllCases, caseLinkEnabled } from "@/lib/customers";
  * 홈 — 한국어(`/`)와 영어(`/en`)가 공유하는 본문.
  *
  * 히어로 뉴스 스트립은 블로그·뉴스레터·고객사례에서 제목을 끌어온다. 영어판에서는
- * 영문 제목(`titleEn`/`summaryEn`)이 실제로 있는 항목만 노출한다 — 한국어 제목이
- * 영문 페이지에 섞이면 페이지 언어 신호가 흐려지고 방문자도 읽지 못한다.
- * Insight 섹션은 본문 요약까지 통째로 한국어라 영어판에서는 아직 생략한다.
+ * 블로그는 로케일별 원문(content/blog 또는 content/blog/en)에서 읽는다.
+ * 뉴스레터·고객사례처럼 영문 필드가 선택적인 소스는 값이 있는 항목만 노출한다 —
+ * 한국어 제목이 영문 페이지에 섞이면 페이지 언어 신호가 흐려지고 방문자도 읽지 못한다.
  */
 export function HomePageContent({ locale }: { locale: Locale }) {
     const isKo = locale === "ko";
 
-    const posts = getAllPosts();
-    // 영문판에서는 titleEn 이 있는 글만 스트립에 세운다.
-    const usable = posts.filter((p) => isKo || p.titleEn);
+    // 로케일별 원문을 읽으므로 스트립에 세울 때 별도 필터가 필요 없다.
+    const posts = getAllPosts(locale);
+    const usable = posts;
     // 제품 소식 최신 2건 — 1번째는 스트립 윗줄 대표 자리, 2번째는 아래 3단의 제품 소식
     // 칸으로 보낸다(같은 글이 한 화면에 두 번 걸리지 않게).
     const newsPosts = usable.filter((p) => p.category === "제품 소식");
     const toHeroPost = (p: (typeof posts)[number]) => ({
         slug: p.slug,
-        title: (isKo ? p.title : p.titleEn) ?? p.title,
+        title: p.title,
         category: p.category,
         date: p.date,
     });
@@ -108,12 +108,9 @@ export function HomePageContent({ locale }: { locale: Locale }) {
                 <Reveal>
                     <HomeExperience locale={locale} />
                 </Reveal>
-                {/* Insight는 카드 본문까지 한국어 요약을 쓰므로 영어판에서는 생략 */}
-                {isKo && (
-                    <Reveal>
-                        <HomeInsights />
-                    </Reveal>
-                )}
+                <Reveal>
+                    <HomeInsights locale={locale} />
+                </Reveal>
                 <Reveal>
                     <HomeResources locale={locale} />
                 </Reveal>

@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import type { Locale } from "@/lib/i18n";
+import { CATEGORY_CANONICAL } from "@/lib/blog-categories";
 
 /**
  * 파일베이스 블로그 — `content/blog/*.md`의 마크다운 + YAML 프론트매터를 빌드 시점에
@@ -10,8 +11,12 @@ import type { Locale } from "@/lib/i18n";
  * SEO·GEO: 정적 HTML이라 AI 크롤러가 JS 없이 본문을 그대로 읽는다.
  */
 /** 블로그 카테고리 — '전체'는 필터용 가상 값(글에는 부여하지 않음). */
-export const BLOG_CATEGORIES = ["Case Study", "Tech Note", "제품 소식"] as const;
-export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
+export {
+    BLOG_CATEGORIES,
+    CATEGORY_LABEL,
+    categoryLabel,
+    type BlogCategory,
+} from "@/lib/blog-categories";
 
 export interface PostMeta {
     slug: string;
@@ -109,7 +114,10 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
             : undefined,
         editor: data.editor ? String(data.editor) : undefined,
         kicker: data.kicker ? String(data.kicker) : undefined,
-        category: String(data.category ?? "Tech Note"),
+        category: (() => {
+            const raw = String(data.category ?? "Tech Note");
+            return CATEGORY_CANONICAL[raw] ?? raw;
+        })(),
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         cover: data.cover ? String(data.cover) : undefined,
         draft: Boolean(data.draft),

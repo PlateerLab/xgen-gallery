@@ -18,28 +18,28 @@ export async function generateMetadata({
     const def = SERIES.find((s) => s.key === key);
     if (!def) return {};
     return {
-        title: `${def.title} · 시리즈`,
-        description: def.description,
+        title: `${def.titleEn} · Series`,
+        description: def.descriptionEn,
         alternates: {
-            canonical: `/blog/series/${def.key}`,
+            canonical: `/en/blog/series/${def.key}`,
             languages: languageAlternates(`/blog/series/${def.key}`),
         },
         openGraph: {
-            title: `${def.title} · Plateer Labs`,
-            description: def.description,
+            title: `${def.titleEn} · Plateer Labs`,
+            description: def.descriptionEn,
             type: "website",
-            locale: "ko_KR",
-            alternateLocale: ["en_US"],
-            url: absoluteUrl(`/blog/series/${def.key}`),
+            locale: "en_US",
+            alternateLocale: ["ko_KR"],
+            url: absoluteUrl(`/en/blog/series/${def.key}`),
             images: [absoluteUrl(def.cover)],
         },
     };
 }
 
-export default async function SeriesPage({
+export default async function SeriesPageEn({
     params,
 }: {
     params: Promise<{ key: string }>;
 }) {
-    return <SeriesPageContent params={params} locale="ko" />;
+    return <SeriesPageContent params={params} locale="en" />;
 }

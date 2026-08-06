@@ -130,7 +130,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // 영문판(/en/*) — 실제로 번역된 경로만 색인 대상에 넣는다(EN_ROUTES가 기준).
     // 없는 URL을 사이트맵에 넣으면 Search Console에서 404 오류로 잡힌다.
-    const englishRoutes: MetadataRoute.Sitemap = EN_ROUTES.map((path) => ({
+    const enBlogPaths = getAllPosts("en").map((p) => `/blog/${p.slug}`);
+    const enSeriesPaths = SERIES.map((d) => `/blog/series/${d.key}`);
+    const englishRoutes: MetadataRoute.Sitemap = [
+        ...EN_ROUTES,
+        ...enBlogPaths,
+        ...enSeriesPaths,
+    ].map((path) => ({
         url: `${SITE.url}${localePath("en", path)}`,
         lastModified: now,
         changeFrequency: "weekly",
