@@ -14,28 +14,31 @@ export async function generateMetadata({
     const { domain } = await params;
     if (!isIndustry(domain)) {
         return pageMetadata({
-            title: "고객사례",
-            description: "산업별 XGEN·Polar 고객사례",
+            title: "Customer cases",
+            description: "XGEN and Polar customer cases by industry",
             path: "/customers",
+            locale: "en",
         });
     }
     const d = INDUSTRIES[domain];
     const cases = getCasesByIndustry(domain);
     const hasCases = cases.length > 0;
+    const blurb = d.blurbEn ?? d.blurb;
     return pageMetadata({
-        title: `${d.ko} 고객사례`,
+        title: `${d.en} customer cases`,
         description: hasCases
-            ? `${d.blurb} ${cases.length}건을 소개합니다. XGEN·AI Code Assistant를 ${d.ko} 현장 업무에 적용해 검증한 도입 배경·구축 범위·성과를 확인하세요.`
-            : `${d.blurb}를 준비 중입니다. Plateer Labs는 ${d.ko} 업무 특성과 규제를 반영한 Enterprise AI를 연구하고 PoC로 실증합니다.`,
+            ? `${blurb} — ${cases.length} case${cases.length > 1 ? "s" : ""}. See the background, the scope delivered, and the outcome of applying XGEN and AI Code Assistant to ${d.en.toLowerCase()} work.`
+            : `${blurb} — in preparation. Plateer Labs researches Enterprise AI shaped to the workflows and regulations of ${d.en.toLowerCase()}, and proves it through PoCs.`,
         path: `/customers/${domain}`,
+        locale: "en",
         ...(hasCases ? {} : { robots: { index: false, follow: true } }),
     });
 }
 
-export default async function IndustryPage({
+export default async function IndustryPageEn({
     params,
 }: {
     params: Promise<{ domain: string }>;
 }) {
-    return <IndustryPageContent params={params} locale="ko" />;
+    return <IndustryPageContent params={params} locale="en" />;
 }

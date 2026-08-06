@@ -15,22 +15,24 @@ export async function generateMetadata({
     const c = getCaseBySlug(slug);
     if (!c) {
         return pageMetadata({
-            title: "고객사례",
-            description: "XGEN·Polar 고객사례",
+            title: "Customer cases",
+            description: "XGEN and Polar customer cases",
             path: "/customers",
+            locale: "en",
         });
     }
     return pageMetadata({
-        title: c.title,
-        description: c.summary,
+        title: c.titleEn ?? c.title,
+        description: c.summaryEn ?? c.summary,
         path: `/customers/case/${c.slug}`,
+        locale: "en",
     });
 }
 
-export default async function CaseDetailPage({
+export default async function CaseDetailPageEn({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    return <CaseDetailPageContent params={params} locale="ko" />;
+    return <CaseDetailPageContent params={params} locale="en" />;
 }

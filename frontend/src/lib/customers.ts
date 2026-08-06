@@ -61,6 +61,8 @@ export interface IndustryMeta {
     ko: string;
     en: string;
     blurb: string;
+    /** 영문 소개 — `/en` 산업 페이지에서 쓴다. */
+    blurbEn?: string;
 }
 
 export interface CaseMetric {
@@ -147,24 +149,28 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
         ko: "커머스",
         en: "Commerce",
         blurb: "상품 검색·추천·CS 자동화 등 커머스 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to commerce work — product search, recommendation, and automated customer service",
     },
     finance: {
         key: "finance",
         ko: "금융",
         en: "Finance",
         blurb: "생성형 AI 플랫폼·문서 검토·검색 고도화 등 금융 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to financial work — generative-AI platforms, document review, and search modernization",
     },
     public: {
         key: "public",
         ko: "공공",
         en: "Public Sector",
         blurb: "조달·검색·민원 등 공공 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to public-sector work — procurement, search, and citizen services",
     },
     "it-services": {
         key: "it-services",
         ko: "IT·제조",
         en: "IT & Manufacturing",
         blurb: "AI Code Assistant·기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to development and engineering — AI Code Assistant and technical documentation",
     },
 };
 

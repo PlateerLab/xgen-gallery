@@ -41,7 +41,7 @@ export const EN_ROUTES: readonly string[] = [
 ];
 
 /** 하위 경로까지 영문판이 있는 동적 라우트(개별 글은 slug 단위로 별도 확인). */
-const EN_DYNAMIC_PREFIXES: readonly string[] = [];
+const EN_DYNAMIC_PREFIXES: readonly string[] = ["/customers/case/", "/customers/"];
 
 /** `/en/about` → `"en"`, `/about` → `"ko"`. */
 export function localeFromPath(pathname: string): Locale {
