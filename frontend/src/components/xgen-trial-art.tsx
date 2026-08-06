@@ -3,16 +3,44 @@
  * 사진/실제 스크린샷 없이도 "노코드 에이전트 빌더"의 제품 감각을 전달하는 목업과
  * 연동→설계→운영 3단계 플로우 아이콘을 브랜드 블루로 그린다.
  */
+import type { Locale } from "@/lib/i18n";
+
+/** 캔버스 노드 라벨 — SVG 안쪽 글자도 페이지 언어를 따라간다. */
+const T: Record<Locale, { aria: string; data: string; agent: string; tools: string; knowledge: string; run: string }> = {
+    ko: {
+        aria: "XGEN 노코드 Agent Builder 화면 예시",
+        data: "데이터",
+        agent: "에이전트",
+        tools: "도구·MCP",
+        knowledge: "지식(RAG)",
+        run: "실행",
+    },
+    en: {
+        aria: "Example of the XGEN no-code Agent Builder screen",
+        data: "Data",
+        agent: "Agent",
+        tools: "Tools · MCP",
+        knowledge: "Knowledge (RAG)",
+        run: "Run",
+    },
+};
 
 /** 히어로 제품 목업 — 노코드 Agent Builder 캔버스(다크 히어로 위에 뜨는 라이트 윈도우). */
-export function AgentBuilderMockup({ className }: { className?: string }) {
+export function AgentBuilderMockup({
+    className,
+    locale = "ko",
+}: {
+    className?: string;
+    locale?: Locale;
+}) {
+    const L = T[locale];
     return (
         <svg
             className={className}
             viewBox="0 0 460 340"
             fill="none"
             role="img"
-            aria-label="XGEN 노코드 Agent Builder 화면 예시"
+            aria-label={L.aria}
             xmlns="http://www.w3.org/2000/svg"
         >
             <defs>
@@ -60,7 +88,7 @@ export function AgentBuilderMockup({ className }: { className?: string }) {
                 <rect x="132" y="102" width="20" height="4" rx="2" fill="#9db8f2" />
                 <rect x="132" y="111" width="28" height="4" rx="2" fill="#dbe4f5" />
                 <rect x="132" y="119" width="16" height="4" rx="2" fill="#dbe4f5" />
-                <text x="146" y="146" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">데이터</text>
+                <text x="146" y="146" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">{L.data}</text>
             </g>
 
             {/* 에이전트(중앙, 그라디언트) */}
@@ -68,7 +96,7 @@ export function AgentBuilderMockup({ className }: { className?: string }) {
                 <rect x="210" y="86" width="86" height="48" rx="12" fill="url(#tb-grad)" />
                 <path d="M241 98 l12 6 v12 l-12 6 -12 -6 v-12 Z" fill="none" stroke="#fff" strokeWidth="2" strokeLinejoin="round" />
                 <path d="M253 104 v12 M253 110 l12 -6 M253 110 l-12 -6" stroke="#fff" strokeWidth="1.6" opacity="0.85" strokeLinecap="round" />
-                <text x="253" y="150" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#2f3aa0">에이전트</text>
+                <text x="253" y="150" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#2f3aa0">{L.agent}</text>
             </g>
 
             {/* 도구 노드 */}
@@ -76,21 +104,21 @@ export function AgentBuilderMockup({ className }: { className?: string }) {
                 <rect x="336" y="90" width="52" height="40" rx="10" fill="#ffffff" stroke="#cdd9f7" strokeWidth="1.5" />
                 <circle cx="362" cy="110" r="10" fill="none" stroke="#7c9cf0" strokeWidth="2" />
                 <path d="M362 104 v12 M356 110 h12" stroke="#7c9cf0" strokeWidth="2" strokeLinecap="round" />
-                <text x="362" y="146" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">도구·MCP</text>
+                <text x="362" y="146" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">{L.tools}</text>
             </g>
 
             {/* 지식(RAG) 노드 */}
             <g>
                 <rect x="120" y="166" width="90" height="40" rx="10" fill="#ffffff" stroke="#cdd9f7" strokeWidth="1.5" />
                 <path d="M136 176 h18 v20 h-18 z M136 186 h18" stroke="#9db8f2" strokeWidth="1.6" fill="none" />
-                <text x="176" y="191" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">지식(RAG)</text>
+                <text x="176" y="191" textAnchor="middle" fontSize="9" fontWeight="700" fill="#5a6478">{L.knowledge}</text>
             </g>
 
             {/* 실행/응답 노드 */}
             <g>
                 <rect x="336" y="180" width="52" height="40" rx="10" fill="#eafaf1" stroke="#b6e6cd" strokeWidth="1.5" />
                 <path d="M356 200 l5 5 8 -9" stroke="#16a34a" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                <text x="362" y="236" textAnchor="middle" fontSize="9" fontWeight="700" fill="#0f9d6f">실행</text>
+                <text x="362" y="236" textAnchor="middle" fontSize="9" fontWeight="700" fill="#0f9d6f">{L.run}</text>
             </g>
 
             {/* 하단 프리뷰(채팅) 바 */}
