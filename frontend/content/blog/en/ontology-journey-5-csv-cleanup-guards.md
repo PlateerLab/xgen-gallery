@@ -1,5 +1,6 @@
 ---
 title: "Shrinking CSV rows while keeping legitimate classes (Part 5)"
+titleSeo: "Shrink CSV rows, keep classes (Part 5)"
 cover: "/blog/ontology-journey-5-csv-cleanup-guards.svg"
 description: "Separating fact-table row omission from orphan-class detection and deletion, so optimizing for size does not turn into loss of meaning."
 date: "2026-05-30"

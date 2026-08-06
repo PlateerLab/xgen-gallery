@@ -1,5 +1,6 @@
 ---
 title: "Inside GS-certified XGEN: the capabilities that matter for Enterprise AI"
+titleSeo: "Inside GS-certified XGEN: what it does"
 description: "The XGEN Agentic AI Platform passed GS certification testing at TTA against ISO/IEC 25023 and 25051. Here is what the testing actually covered."
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg

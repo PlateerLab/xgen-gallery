@@ -1,5 +1,6 @@
 ---
 title: "Rebuilding error handling so failure says it failed (Part 3)"
+titleSeo: "Making failure say it failed (Part 3)"
 description: "GS certification flagged a success message and an error log on one screen. Rebuilding error handling: field validation, specific text, no silent failures."
 date: "2026-05-30"
 cover: /blog/gs-cert-journey-3-honest-errors.svg

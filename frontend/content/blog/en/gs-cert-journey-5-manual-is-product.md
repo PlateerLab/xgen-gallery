@@ -1,5 +1,6 @@
 ---
 title: "The manual was part of the product: what three weeks of GS certification left behind (Part 5)"
+titleSeo: "The manual is product too (Part 5)"
 description: "Much of the 30 usability defects in GS certification were documentation, not code. Moving the PDF manual to an MkDocs wiki, and fixing Korean IME input."
 date: "2026-06-16"
 cover: /blog/gs-cert-journey-5-manual-is-product.svg

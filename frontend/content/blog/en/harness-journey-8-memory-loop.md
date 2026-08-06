@@ -1,5 +1,6 @@
 ---
 title: "Scoping and prioritizing memory between runs (Part 8)"
+titleSeo: "Memory scope between runs (Part 8)"
 description: "Separating one run's working notes from the lessons worth keeping, and handling conflicts across session, workflow, user, and platform scopes."
 date: "2026-06-22"
 cover: /blog/harness-journey-8-memory-loop.svg

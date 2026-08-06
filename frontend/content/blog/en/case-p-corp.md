@@ -1,5 +1,6 @@
 ---
 title: "Company P — an internal HR chatbot that answers before you ask"
+titleSeo: "An HR chatbot that answers before you ask"
 description: "Repetitive HR questions piled up and policy changes did not reach people in time. Company P built a RAG chatbot on internal HR documents, answering 24/7."
 date: "2026-06-25"
 author: "Plateer Labs"

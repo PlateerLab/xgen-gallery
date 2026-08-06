@@ -1,5 +1,6 @@
 ---
 title: "Company S — a multimodal RAG Editor that reads documents, images, and tables"
+titleSeo: "Multimodal RAG over docs, images, tables"
 description: "Uneven understanding and repeated questions were slowing projects at IT firm S. A dedicated chatbot and multimodal RAG Editor automated roughly 90% of them."
 date: "2026-06-18"
 author: "Plateer Labs"

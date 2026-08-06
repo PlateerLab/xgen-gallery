@@ -1,5 +1,6 @@
 ---
 title: "Why retry and termination conditions are separate (Part 5)"
+titleSeo: "Retry vs termination (Part 5)"
 description: "Separating the meanings of transport recovery, progress through a tool, and quality rewriting, and making a terminal tool end exactly the current round."
 date: "2026-05-26"
 cover: /blog/harness-journey-5-retry-termination.svg

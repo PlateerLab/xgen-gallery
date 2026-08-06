@@ -1,5 +1,6 @@
 ---
 title: "A triple count told us nothing about knowledge graph quality (Part 4)"
+titleSeo: "Triple counts tell you little (Part 4)"
 cover: "/blog/ontology-journey-4-quality-baseline.svg"
 description: "Separating volume, structural integrity, provenance, retrieval, and answers, to measure at which boundary graph quality actually changes."
 date: "2026-05-21"

@@ -1,5 +1,6 @@
 ---
 title: "Why we took the questions out of the ontology build (Part 1)"
+titleSeo: "Questions out of the build (Part 1)"
 cover: "/blog/ontology-journey-1-cq-to-document.svg"
 description: "Questions stay in evaluation, and the source documents decide what knowledge gets discovered. Redividing responsibility in the build pipeline."
 date: "2026-04-24"

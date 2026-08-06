@@ -1,5 +1,6 @@
 ---
 title: "Adapting extraction batch size to the model's limits (Part 9)"
+titleSeo: "Batches that fit the model (Part 9)"
 cover: "/blog/ontology-journey-9-adaptive-extraction.svg"
 description: "Computing the context and output budgets together, then splitting and reprocessing only the batches that timed out or came back as truncated JSON."
 date: "2026-06-30"

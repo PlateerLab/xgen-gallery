@@ -1,5 +1,6 @@
 ---
 title: "Company I — search, support, and code improvement solved with one AI"
+titleSeo: "Search, support, and code, solved as one"
 description: "An e-commerce company tied missed search results, a rising support load, and slow code improvement into one AI system — revenue and traffic rose about 20%."
 date: "2026-05-20"
 author: "Plateer Labs"

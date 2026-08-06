@@ -1,5 +1,6 @@
 ---
 title: "PathFinder — legacy systems as agent tools, without code"
+titleSeo: "PathFinder — legacy as agent tools"
 description: "Login, API wiring, tool registration, testing — not a line of code. PathFinder turns dormant legacy APIs into tools an agent can use."
 date: "2026-06-08"
 cover: /blog/product-pathfinder.svg

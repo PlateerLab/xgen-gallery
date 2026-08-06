@@ -19,7 +19,8 @@ export async function generateMetadata({
     if (!post) return {};
     const url = absoluteUrl(`/en/blog/${post.slug}`);
     return {
-        title: post.title,
+        // <title>은 짧은 SEO 제목이 있으면 그쪽을 쓰고, 화면 h1과 OG 제목은 원 헤드라인을 유지한다.
+        title: post.titleSeo ?? post.title,
         description: post.description,
         alternates: {
             canonical: `/en/blog/${post.slug}`,

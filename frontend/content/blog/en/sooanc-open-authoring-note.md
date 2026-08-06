@@ -1,5 +1,6 @@
 ---
 title: "Setting up a blog authoring workflow developers will actually use"
+titleSeo: "A blog workflow developers will use"
 description: "Letting developers publish from their own GitHub account without opening the main repository — lowering the cost of participation with Open Authoring."
 date: "2026-07-14"
 cover: /blog/sooanc-open-authoring-note.svg

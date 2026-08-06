@@ -1,5 +1,6 @@
 ---
 title: "Highlighting only the graph nodes the answer mentions (Part 7)"
+titleSeo: "Highlight only what was cited (Part 7)"
 cover: "/blog/ontology-journey-7-evidence-ux.svg"
 description: "Removing keyword partial matches and neighbour inflation, so only candidate labels that appear in the answer text are highlighted in the 2D and 3D views."
 date: "2026-06-16"

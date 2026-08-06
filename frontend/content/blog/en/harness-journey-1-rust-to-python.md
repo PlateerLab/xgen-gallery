@@ -1,5 +1,6 @@
 ---
 title: "Why we split the validation loop into execution states (Part 1)"
+titleSeo: "The validation loop as states (Part 1)"
 description: Designing generation, validation, tool execution, and retry as explicit states and transitions instead of hiding them inside one loop.
 date: "2026-04-20"
 cover: /blog/harness-journey-1-rust-to-python.svg

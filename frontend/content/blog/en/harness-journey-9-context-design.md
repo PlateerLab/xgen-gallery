@@ -1,5 +1,6 @@
 ---
 title: "Designing tool exposure and output delivery as execution context (Part 9)"
+titleSeo: "Tool exposure as context (Part 9)"
 description: "Exposing connected tools search-first, and separating what the model is told about an output destination from who owns actually delivering to it."
 date: "2026-07-01"
 cover: /blog/harness-journey-9-context-design.svg

@@ -1,5 +1,6 @@
 ---
 title: "If changing the setting changes nothing, that is a defect (Part 4)"
+titleSeo: "An option you cannot see (Part 4)"
 description: "Most of the 36 defects in the third GS certification report were node options. Repairing the broken ones and making the invisible ones observable."
 date: "2026-06-09"
 cover: /blog/gs-cert-journey-4-observable-options.svg

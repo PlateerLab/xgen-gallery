@@ -1,5 +1,6 @@
 ---
 title: "Why we turned the user manual into a solution guide wiki"
+titleSeo: "From user manual to solution wiki"
 description: "Generating a web wiki, Word, Korean, and English documents from one Markdown source — and why we now operate the manual like a product."
 date: "2026-07-16"
 cover: /blog/sooanc-manual-to-wiki.svg

@@ -1,5 +1,6 @@
 ---
 title: "Searching configuration candidates with judgement scores (Part 6)"
+titleSeo: "Config search by judge score (Part 6)"
 description: "Changing one item at a time behind promotion thresholds and execution caps — including an honest look at the limits of the current validation-set separation."
 date: "2026-06-04"
 cover: /blog/harness-journey-6-self-forging.svg

@@ -1,5 +1,6 @@
 ---
 title: "Replacing password hashing with argon2id on a live system (Part 2)"
+titleSeo: "argon2id on a live system (Part 2)"
 description: "A GS certification security defect meant replacing unsalted SHA-256 password storage with argon2id — on a live system, without interrupting login."
 date: "2026-05-20"
 cover: /blog/gs-cert-journey-2-password-argon2id.svg

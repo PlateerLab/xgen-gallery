@@ -1,5 +1,6 @@
 ---
 title: "Safely replacing a graph with the results of a SELECT (Part 10)"
+titleSeo: "A SELECT into a graph, safely (Part 10)"
 cover: "/blog/ontology-journey-10-rdb-ingest.svg"
 description: "Using the database's types and primary keys as graph identity, and protecting full and incremental ingestion with RDF staging swaps and a composite cursor."
 date: "2026-07-06"

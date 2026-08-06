@@ -1,5 +1,6 @@
 ---
 title: "Why multi-turn GraphRAG was needed, and where it fell short (Part 2)"
+titleSeo: "Multi-turn GraphRAG limits (Part 2)"
 cover: "/blog/ontology-journey-2-react-graph.svg"
 description: "For questions a single lookup cannot answer, graph traversal, source search, and structured queries are tied into one constrained tool loop."
 date: "2026-05-03"

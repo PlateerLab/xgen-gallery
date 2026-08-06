@@ -1,5 +1,6 @@
 ---
 title: "Exporting a fixed execution contract as a single MCP tool (Part 3)"
+titleSeo: "One agent run as an MCP tool (Part 3)"
 description: "The harness has a fixed control skeleton, unlike a canvas graph. How we compiled it into one tool contract that can be installed and called from outside."
 date: "2026-05-08"
 cover: /blog/harness-journey-3-compile-wheel-mcp.svg

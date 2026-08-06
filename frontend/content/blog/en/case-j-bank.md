@@ -1,5 +1,6 @@
 ---
 title: "Bank J — a finance-specific AI chatbot that shows its sources"
+titleSeo: "A finance AI chatbot that cites sources"
 description: "Bank J wanted more than an FAQ bot: an AI wired into internal systems that cites its basis. A PoC with RAG and a bank-specific sLLM proved it out."
 date: "2026-06-03"
 author: "Plateer Labs"

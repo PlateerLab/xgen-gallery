@@ -1,5 +1,6 @@
 ---
 title: "Public agency K — an actionable AI chatbot that handles procurement itself"
+titleSeo: "An AI chatbot that does the procurement"
 description: "Suppliers wanted their requests finished, not explained. Public agency K validated an actionable AI chatbot that ties into SRM and completes the work."
 date: "2026-06-11"
 author: "Plateer Labs"
