@@ -10,6 +10,52 @@ import { useI18n } from "@/components/i18n-provider";
 
 const SLIDE_DURATION = 7000;
 
+/**
+ * 히어로·데모 일러스트 안의 문구. 도구 자체의 이름·카테고리는 lib/tools.ts 가
+ * 영문으로 들고 있고, 여기서는 화면 카피와 예시 데이터만 로케일에 맞춘다.
+ */
+const COPY = {
+    ko: {
+        lead: "XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나, 모든 도구를 지금 여기 브라우저에서 체험하세요.",
+        prev: "이전",
+        next: "다음",
+        googer: [
+            ["Machine Learning with Python — scikit-learn", "분류, 회귀, 클러스터링 예제 포함."],
+            ["TensorFlow 튜토리얼 — 초보자를 위한 ML", "딥러닝 기본부터 응용까지."],
+            ["PyTorch 공식 튜토리얼", "기초부터 고급 주제까지."],
+        ],
+        docInstruction: "제목을 \u20182026 사업계획\u2019으로 바꾸고 첫 문단을 굵게",
+        omnifuse: [
+            ["환불 정책 — 배송 지연 시 전액 환불", "0.88"],
+            ["배송 지연 보상 규정", "0.71"],
+            ["문의 유형 — 지연/환불", "0.64"],
+        ],
+    },
+    en: {
+        lead: "The open-source libraries behind XGEN. Install them with pip, or try every tool right here in your browser.",
+        prev: "Previous",
+        next: "Next",
+        googer: [
+            [
+                "Machine Learning with Python — scikit-learn",
+                "Classification, regression, and clustering examples included.",
+            ],
+            [
+                "TensorFlow tutorials — ML for beginners",
+                "From deep-learning basics through to applications.",
+            ],
+            ["PyTorch official tutorials", "From the basics to advanced topics."],
+        ],
+        docInstruction:
+            "Change the title to \u20182026 Business Plan\u2019 and set the first paragraph in bold",
+        omnifuse: [
+            ["Refund policy — full refund when delivery is delayed", "0.88"],
+            ["Delivery-delay compensation rules", "0.71"],
+            ["Inquiry type — delay / refund", "0.64"],
+        ],
+    },
+} as const;
+
 // 키비주얼 = '가장 최신 라이브러리'를 첫 슬라이드로, 이어서 카테고리별 최신 1개씩(다양성).
 // 최신 판별: addedAt(있으면 날짜) 우선, 없으면 TOOLS 배열 순서(뒤일수록 최신)로 폴백.
 // → 새 라이브러리를 배열 끝에 추가하거나 addedAt을 지정하면 자동으로 맨 앞에 노출된다.
@@ -57,7 +103,8 @@ function isRecent(tool: Tool, now: number): boolean {
  * 우: 카테고리별 '가장 최근 추가된' 라이브러리의 밝은 일러스트 카드.
  */
 export function LivePreview() {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
+    const c = COPY[locale];
     const featured = useMemo(featuredTools, []);
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
@@ -98,8 +145,7 @@ export function LivePreview() {
                     Library Gallery
                 </h1>
                 <p className="mt-5 max-w-md text-[17px] leading-relaxed text-white/65">
-                    XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나, 모든
-                    도구를 지금 여기 브라우저에서 체험하세요.
+                    {c.lead}
                 </p>
 
                 {/* 키 메시지 아래: 현재 슬라이드 캡션 */}
@@ -135,7 +181,7 @@ export function LivePreview() {
                     <div className="mt-4 flex items-center gap-3">
                         <button
                             type="button"
-                            aria-label="이전"
+                            aria-label={c.prev}
                             onClick={() => go(cur - 1)}
                             className={arrowCls}
                         >
@@ -143,7 +189,7 @@ export function LivePreview() {
                         </button>
                         <button
                             type="button"
-                            aria-label="다음"
+                            aria-label={c.next}
                             onClick={() => go(cur + 1)}
                             className={arrowCls}
                         >
@@ -555,20 +601,8 @@ function SynapticViz() {
 
 /* ── Googer: search bar → results fade in ─────────────────────────────── */
 function GoogerViz() {
-    const results = [
-        {
-            title: "Machine Learning with Python — scikit-learn",
-            body: "분류, 회귀, 클러스터링 예제 포함.",
-        },
-        {
-            title: "TensorFlow 튜토리얼 — 초보자를 위한 ML",
-            body: "딥러닝 기본부터 응용까지.",
-        },
-        {
-            title: "PyTorch 공식 튜토리얼",
-            body: "기초부터 고급 주제까지.",
-        },
-    ];
+    const { locale } = useI18n();
+    const results = COPY[locale].googer.map(([title, body]) => ({ title, body }));
     return (
         <div className="space-y-2.5">
             <motion.div
@@ -602,6 +636,7 @@ function GoogerViz() {
 
 /* ── Document Adapter: natural-language edit → DOCX/PPTX/HWPX ──────────── */
 function DocumentAdapterViz() {
+    const { locale } = useI18n();
     const formats = [
         { label: "DOCX", delay: 0.5 },
         { label: "PPTX", delay: 0.7 },
@@ -617,8 +652,7 @@ function DocumentAdapterViz() {
                     instruction
                 </span>
                 <p className="mt-1 text-[13px] text-[var(--color-ink)]">
-                    &quot;제목을 &lsquo;2026 사업계획&rsquo;으로 바꾸고 첫 문단을
-                    굵게&quot;
+                    &quot;{COPY[locale].docInstruction}&quot;
                 </p>
             </motion.div>
             <motion.div
@@ -672,17 +706,14 @@ function DocumentAdapterViz() {
 
 /* ── OmniFuse: vector + graph → fused ranking ─────────────────────────── */
 function OmniFuseViz() {
+    const { locale } = useI18n();
     const nodes: [number, number][] = [
         [20, 30],
         [60, 12],
         [60, 48],
         [100, 30],
     ];
-    const results: [string, string][] = [
-        ["환불 정책 — 배송 지연 시 전액 환불", "0.88"],
-        ["배송 지연 보상 규정", "0.71"],
-        ["문의 유형 — 지연/환불", "0.64"],
-    ];
+    const results: readonly (readonly [string, string])[] = COPY[locale].omnifuse;
     return (
         <div className="space-y-3.5">
             <div className="grid grid-cols-2 gap-3">

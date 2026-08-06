@@ -16,6 +16,23 @@ export type PubType =
     | "도서";
 export type PubGrade = "SCIE" | "SCOPUS" | "KCI";
 
+/**
+ * 게재 유형의 영문 라벨. 논문 제목·저자·게재처는 인용 정보라 원문(한국어)을
+ * 그대로 두고, 분류 라벨만 영문 화면에서 바꿔 단다.
+ */
+export const PUB_TYPE_EN: Record<PubType, string> = {
+    "국제 논문지": "International journal",
+    "국내 논문지": "Domestic journal",
+    "국제 학술대회": "International conference",
+    "국내 학술대회": "Domestic conference",
+    "도서": "Book",
+};
+
+/** 수상 라벨의 영문 표기. 목록에 없으면 원문을 그대로 쓴다. */
+export const PUB_AWARD_EN: Record<string, string> = {
+    "우수 논문상": "Best Paper Award",
+};
+
 export interface Publication {
     title: string;
     authors: string;

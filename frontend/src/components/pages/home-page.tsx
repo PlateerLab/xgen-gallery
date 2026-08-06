@@ -79,7 +79,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
                     latestIssue={latestIssue}
                     latestCase={latestCase}
                 />
-                <CustomerStrip />
+                <CustomerStrip locale={locale} />
                 <HomeTrialBanner locale={locale} />
                 <Reveal>
                     <HomePositioning locale={locale} />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PlayCircle, Clapperboard, CalendarDays } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 실증 데모(Proof in Action) — XGEN 기능이 실제로 동작하는 모습을 영상으로 보여준다.
@@ -17,16 +18,52 @@ export type Chapter = {
     time: string; // 표시용 타임스탬프 "MM:SS"
     sec: number; // 시작 초 — 클릭 시 해당 지점부터 재생
     label: string; // 챕터 제목
+    labelEn?: string; // 영문 챕터 제목
     desc?: string; // 챕터 설명(있으면 제목 아래 본문으로 노출)
+    descEn?: string; // 영문 챕터 설명
 };
 
 export type Demo = {
     id: string; // 유튜브 videoId
     title: string;
+    /** 영문 제목 — 원본 영상은 한국어지만 `/en` 화면에서는 영문 제목을 노출한다. */
+    titleEn?: string;
     desc: string;
+    descEn?: string;
     uploadDate?: string; // YYYY-MM-DD
     featured?: boolean; // 대표 영상 — 키 비주얼(ProofHero)로 노출
     chapters?: Chapter[]; // 챕터(타임스탬프) — 클릭하면 해당 지점부터 재생
+};
+
+/** 화면에 쓸 제목·설명을 로케일에 맞춰 고른다(영문이 없으면 한국어로 폴백). */
+export const demoTitle = (d: Demo, en: boolean) => (en && d.titleEn) || d.title;
+export const demoDesc = (d: Demo, en: boolean) => (en && d.descEn) || d.desc;
+
+/** 실증 데모 화면 공통 문구. */
+const COPY: Record<
+    Locale,
+    {
+        pending: string;
+        play: (title: string) => string;
+        thumb: (title: string) => string;
+        uploaded: (date: string) => string;
+        moreTitle: string;
+    }
+> = {
+    ko: {
+        pending: "영상 준비중",
+        play: (title) => `${title} 영상 재생`,
+        thumb: (title) => `${title} 썸네일`,
+        uploaded: (date) => `${date} 업로드`,
+        moreTitle: "데모 영상 더보기",
+    },
+    en: {
+        pending: "Video coming soon",
+        play: (title) => `Play ${title}`,
+        thumb: (title) => `${title} thumbnail`,
+        uploaded: (date) => `Uploaded ${date}`,
+        moreTitle: "More demo videos",
+    },
 };
 
 export const DEMOS: Demo[] = [
@@ -34,7 +71,11 @@ export const DEMOS: Demo[] = [
         id: "4RiH3ThyIg0",
         // 제목·설명은 유튜브 원본과 동일하게 유지한다.
         title: "XGEN 플랫폼 실증 데모 — 문서 업로드부터 AI 에이전트·품질검증까지 (5분)",
+        titleEn:
+            "XGEN platform demo — from document upload to AI agents and quality evaluation (5 min)",
         desc: "XGEN 온톨로지 엔진으로 정책문서 11종을 지식그래프로 만들고, 시맨틱 검색·전표 심사 에이전트·노코드 챗봇·LLM Judge 품질평가까지 한 번에 시연합니다. 코딩 없이 90초 만에 에이전트를 생성하고 조립합니다",
+        descEn:
+            "Eleven policy documents become a knowledge graph through the XGEN ontology engine, and semantic search, a voucher-review agent, a no-code chatbot, and LLM-Judge quality scoring all run end to end. An agent is built and assembled in about 90 seconds, without writing code",
         uploadDate: "2026-07-13",
         featured: true,
         chapters: [
@@ -42,37 +83,55 @@ export const DEMOS: Demo[] = [
                 time: "00:00",
                 sec: 0,
                 label: "지식그래프 구축",
+                labelEn: "Building the knowledge graph",
                 desc: "AI 지식 저장소에 로그인한 뒤 x2bee_서비스정책 컬렉션을 생성하고 정책 문서 11종을 업로드합니다. 온톨로지를 자동 생성하여 지식그래프를 구축하고, 총 19,471개의 트리플과 209개의 클래스가 생성되는 과정을 확인합니다.",
+                descEn:
+                    "Sign in to the AI knowledge repository, create the x2bee_service-policy collection, and upload eleven policy documents. The ontology is generated automatically to build the knowledge graph — 19,471 triples and 209 classes in total.",
             },
             {
                 time: "01:01",
                 sec: 61,
                 label: "시맨틱 검색",
+                labelEn: "Semantic search",
                 desc: "자연어 질문을 입력하면 지식그래프를 기반으로 의미를 이해하여 검색을 수행합니다. 약 200개의 근거 트리플을 바탕으로 출처가 포함된 구조화된 답변을 생성합니다.",
+                descEn:
+                    "A natural-language question is answered by reading meaning off the knowledge graph. Around 200 supporting triples produce a structured answer with its sources attached.",
             },
             {
                 time: "01:17",
                 sec: 77,
                 label: "전표 심사 AI Agent",
+                labelEn: "Voucher-review AI agent",
                 desc: "증빙 문서 컬렉션을 생성하고 색인한 뒤, 캔버스에서 전표 심사 AI Agent를 조립합니다. 이미지 형태의 증빙 문서를 OCR로 분석하여 필요한 정보를 자동 추출하고, 결재 공문번호 등 핵심 항목을 검증하는 과정을 시연합니다.",
+                descEn:
+                    "A collection of supporting documents is created and indexed, then a voucher-review agent is assembled on the canvas. Image-based documents are read with OCR, the required fields are extracted automatically, and key items such as the approval document number are verified.",
             },
             {
                 time: "02:47",
                 sec: 167,
                 label: "대화형 AI 챗봇",
+                labelEn: "Conversational AI chatbot",
                 desc: "캔버스에서 노드를 조립해 지식그래프와 연결된 AI 챗봇을 생성합니다. 코딩 없이 약 90초 만에 챗봇을 구성하고, 정책 문서를 근거로 답변하는 과정을 확인할 수 있습니다.",
+                descEn:
+                    "Nodes are assembled on the canvas to create a chatbot wired to the knowledge graph. It takes about 90 seconds and no code, and every answer is grounded in the policy documents.",
             },
             {
                 time: "03:34",
                 sec: 214,
                 label: "AI 품질 평가 (LLM Judge)",
+                labelEn: "AI quality evaluation (LLM Judge)",
                 desc: "테스트셋을 업로드한 후 여러 Agent를 일괄 실행하고, LLM Judge가 문항별로 자동 채점합니다. 92~100점의 평가 결과와 함께 AI 품질을 정량적으로 검증하는 과정을 소개합니다.",
+                descEn:
+                    "A test set is uploaded, several agents are run as a batch, and an LLM Judge scores each item automatically. Scores of 92 to 100 show how AI quality is verified quantitatively.",
             },
             {
                 time: "04:07",
                 sec: 247,
                 label: "XGEN Pathfinder",
+                labelEn: "XGEN Pathfinder",
                 desc: "레거시 시스템에 로그인한 후 브라우저 플러그인을 통해 API를 자동 수집합니다. 자연어 한 줄만 입력하면 적절한 도구를 자동 선택하고 실제 API를 호출하여 업무를 수행하는 과정을 시연합니다.",
+                descEn:
+                    "After signing in to a legacy system, a browser plug-in collects its APIs automatically. A single line of natural language picks the right tool and calls the real API to carry the task out.",
             },
         ],
     },
@@ -80,24 +139,35 @@ export const DEMOS: Demo[] = [
         // 제목은 유튜브 원본과 동일하게 유지한다.
         id: "BuGB7F89cTc",
         title: "XGEN Agent 작업실 전체 기능 시연 | 에이전트 제작부터 RAG·도구연동·품질평가·협업까지",
+        titleEn:
+            "XGEN Agent Workshop, end to end | building agents, RAG, tool integration, quality evaluation, collaboration",
         desc: "XGEN Agent 작업실에서 에이전트 제작부터 RAG·도구 연동·품질 평가·협업까지 전체 기능을 실제 화면으로 시연합니다.",
+        descEn:
+            "A full walkthrough of XGEN Agent Workshop on the real product screen — building agents, RAG, tool integration, quality evaluation, and collaboration.",
     },
     {
         id: "4T7tT2nTXfw",
         title: "XGEN PathFinder BUILD",
         desc: "PathFinder는 기존 웹 시스템을 AI가 이해하고 사용할 수 있는 Agent Tool로 연결하는 브라우저 자동화 기술입니다.",
+        descEn:
+            "PathFinder is browser-automation technology that turns existing web systems into Agent Tools an AI can understand and operate.",
         uploadDate: "2026-07-03",
     },
     {
         id: "StxOW5PbC8w",
         title: "XGEN FloUI experience",
         desc: "FLOUI(Flow UI)는 사용자의 질문과 업무 흐름에 따라 화면이 스스로 구성되는 AI 기반 Adaptive UI 기술입니다.",
+        descEn:
+            "FLOUI (Flow UI) is AI-driven adaptive UI: the screen composes itself around the user's question and the flow of the work.",
         uploadDate: "2026-07-02",
     },
     {
         id: "dGEvX07WXKM",
         title: "AI Code Assistant 실증 데모",
+        titleEn: "AI Code Assistant demo",
         desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트를 실제 화면으로 시연합니다.",
+        descEn:
+            "An enterprise code assistant that learns in-house code, APIs, DB schemas, and deliverables, and answers at code level in the context of the project — shown on the real product screen.",
     },
 ];
 
@@ -111,13 +181,17 @@ export function YouTubeFacade({
     start,
     onPlay,
     fill,
+    locale = "ko",
 }: {
     demo: Demo;
     loaded: boolean;
     start: number;
     onPlay: (sec: number) => void;
     fill?: boolean; // true면 카드 높이를 채우도록 썸네일을 늘린다(우측 스택 정렬용)
+    locale?: Locale;
 }) {
+    const t = COPY[locale];
+    const title = demoTitle(demo, locale === "en");
     // fill 모드: aspect-video 대신 부모 높이를 채워 캡션 아래 여백을 없앤다.
     const mediaClass = fill
         ? "h-full min-h-[240px] w-full flex-1"
@@ -129,7 +203,7 @@ export function YouTubeFacade({
                 className={`flex ${mediaClass} flex-col items-center justify-center gap-2 bg-[var(--color-surface-alt)] text-[var(--color-ink-subtle)]`}
             >
                 <Clapperboard className="h-7 w-7" />
-                <span className="text-[13px] font-semibold">영상 준비중</span>
+                <span className="text-[13px] font-semibold">{t.pending}</span>
             </div>
         );
     }
@@ -141,7 +215,7 @@ export function YouTubeFacade({
                 src={`https://www.youtube-nocookie.com/embed/${demo.id}?autoplay=1&rel=0${
                     start ? `&start=${start}` : ""
                 }`}
-                title={demo.title}
+                title={title}
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -153,7 +227,7 @@ export function YouTubeFacade({
         <button
             type="button"
             onClick={() => onPlay(0)}
-            aria-label={`${demo.title} 영상 재생`}
+            aria-label={t.play(title)}
             className={`group relative flex ${mediaClass} items-center justify-center overflow-hidden bg-black`}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -161,7 +235,7 @@ export function YouTubeFacade({
                 src={`https://i.ytimg.com/vi/${demo.id}/${
                     demo.featured ? "maxresdefault" : "hqdefault"
                 }.jpg`}
-                alt={`${demo.title} 썸네일`}
+                alt={t.thumb(title)}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover brightness-[1.22] saturate-[1.05] transition group-hover:scale-[1.02]"
             />
@@ -180,10 +254,12 @@ function ChapterList({
     chapters,
     onSeek,
     columns,
+    en,
 }: {
     chapters: Chapter[];
     onSeek: (sec: number) => void;
     columns?: boolean;
+    en: boolean;
 }) {
     return (
         <ul
@@ -203,12 +279,12 @@ function ChapterList({
                                 {c.time}
                             </span>
                             <span className="text-[14.5px] font-semibold leading-snug text-[var(--color-ink)]">
-                                {c.label}
+                                {(en && c.labelEn) || c.label}
                             </span>
                         </span>
                         {c.desc && (
                             <span className="text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {c.desc}
+                                {(en && c.descEn) || c.desc}
                             </span>
                         )}
                     </button>
@@ -218,10 +294,12 @@ function ChapterList({
     );
 }
 
-function DemoCard({ demo }: { demo: Demo }) {
+function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
     // 재생 상태를 카드 단위로 올려, 챕터 클릭 시 해당 지점부터 재생되게 한다.
     const [player, setPlayer] = useState({ loaded: false, start: 0 });
     const play = (sec: number) => setPlayer({ loaded: true, start: sec });
+    const t = COPY[locale];
+    const en = locale === "en";
 
     return (
         <figure className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
@@ -231,36 +309,42 @@ function DemoCard({ demo }: { demo: Demo }) {
                 start={player.start}
                 onPlay={play}
                 fill
+                locale={locale}
             />
             <figcaption className="p-5">
                 <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                    {demo.title}
+                    {demoTitle(demo, en)}
                 </h2>
                 {demo.uploadDate && (
                     <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
                         <CalendarDays className="h-3.5 w-3.5" />
                         <time dateTime={demo.uploadDate}>
-                            {demo.uploadDate.replaceAll("-", ".")} 업로드
+                            {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
                         </time>
                     </p>
                 )}
                 <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {demo.desc}
+                    {demoDesc(demo, en)}
                 </p>
                 {demo.chapters && demo.chapters.length > 0 && (
-                    <ChapterList chapters={demo.chapters} onSeek={play} />
+                    <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
                 )}
             </figcaption>
         </figure>
     );
 }
 
-export function PocDemos() {
+export function PocDemos({ locale = "ko" }: { locale?: Locale }) {
+    const t = COPY[locale];
+    const en = locale === "en";
+    // 구조화 데이터는 화면에 보이는 문구와 일치해야 하므로 로케일을 따른다.
+    // 영상 자체는 한국어 음성이라 inLanguage 는 ko 로 고정한다.
     const jsonLd = DEMOS.filter((d) => d.id).map((d) => ({
         "@context": "https://schema.org",
         "@type": "VideoObject",
-        name: d.title,
-        description: d.desc,
+        name: demoTitle(d, en),
+        description: demoDesc(d, en),
+        inLanguage: "ko",
         // uploadDate는 있을 때만 포함(정확한 값이 없으면 생략 — 부정확한 날짜보다 안전)
         ...(d.uploadDate ? { uploadDate: d.uploadDate } : {}),
         thumbnailUrl: [`https://i.ytimg.com/vi/${d.id}/hqdefault.jpg`],
@@ -281,12 +365,12 @@ export function PocDemos() {
                             / More demos
                         </p>
                         <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-                            데모 영상 더보기
+                            {t.moreTitle}
                         </h2>
                     </div>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {rest.map((d) => (
-                            <DemoCard key={d.title} demo={d} />
+                            <DemoCard key={d.title} demo={d} locale={locale} />
                         ))}
                     </div>
                 </>

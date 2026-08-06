@@ -81,7 +81,19 @@ const COPY: Record<
 };
 
 /** 카드 상단 일러스트 — 사이트 일러스트 톤(브랜드 블루, 기하학적). */
-function ExperienceArt({ kind }: { kind: ArtKind }) {
+const ART_ARIA: Record<Locale, Record<ArtKind, string>> = {
+    ko: {
+        x2bee: "브라우저에서 동작하는 커머스 AI",
+        xgen: "에이전트를 오케스트레이션하는 Agentic 플랫폼",
+    },
+    en: {
+        x2bee: "Commerce AI running in the browser",
+        xgen: "An Agentic platform orchestrating agents",
+    },
+};
+
+function ExperienceArt({ kind, locale }: { kind: ArtKind; locale: Locale }) {
+    const aria = ART_ARIA[locale];
     if (kind === "x2bee") {
         // 브라우저 창 안의 AI 채팅 + 상품 카드 — "브라우저에서 바로 쓰는 커머스 AI"
         return (
@@ -90,7 +102,7 @@ function ExperienceArt({ kind }: { kind: ArtKind }) {
                 fill="none"
                 className="h-full w-full"
                 role="img"
-                aria-label="브라우저에서 동작하는 커머스 AI"
+                aria-label={aria.x2bee}
             >
                 <defs>
                     <linearGradient id="exp-x2bee" x1="0" y1="0" x2="1" y2="1">
@@ -140,7 +152,7 @@ function ExperienceArt({ kind }: { kind: ArtKind }) {
             fill="none"
             className="h-full w-full"
             role="img"
-            aria-label="에이전트를 오케스트레이션하는 Agentic 플랫폼"
+            aria-label={aria.xgen}
         >
             <defs>
                 <linearGradient id="exp-xgen" x1="0" y1="0" x2="1" y2="1">
@@ -204,7 +216,7 @@ export function HomeExperience({ locale = "ko" }: { locale?: Locale }) {
                             <>
                                 {/* 일러스트 배너 */}
                                 <div className="relative h-44 bg-gradient-to-br from-[#eef4fc] via-[#eaf5ff] to-[#e4f3ff] px-6 py-4">
-                                    <ExperienceArt kind={it.kind} />
+                                    <ExperienceArt kind={it.kind} locale={locale} />
                                     <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full border border-[#cfe0f7] bg-white/80 px-2.5 py-1 text-[12px] font-semibold text-[#1f6fd0] backdrop-blur-sm">
                                         {it.external ? t.newTab : t.free}
                                         <ArrowUpRight className="h-3 w-3" />

@@ -22,6 +22,8 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 const NAV = [
     { id: "challenges", label: "우리가 연구하는 핵심 과제" },
@@ -199,6 +201,130 @@ const METHODOLOGY = [
     "Coverage Analysis",
     "Response Performance Benchmark",
 ];
+
+
+/**
+ * 영문 연구 콘텐츠. 한국어 원문(NAV·CHALLENGES·FIELDS·CASES)은 위에 그대로 두고
+ * 영문만 여기에 모아, 옮겨 적다가 한국어를 훼손할 위험을 없앤다.
+ */
+const EN = {
+    nav: [
+        "Core problems we research",
+        "Core research areas",
+        "Research in production",
+        "Methodology for verifiable AI",
+        "Publications by our members",
+    ],
+    challenges: [
+        {
+            title: "AI you can trust",
+            body: [
+                "Answers come from the knowledge and data the enterprise already holds, not from what the model invents.",
+                "Every response is grounded in documents, regulations, operating guidelines, and an ontology-based knowledge model. Where there is no basis for an answer, the system says plainly that it cannot judge.",
+                "That keeps hallucination to a minimum and makes the AI explainable.",
+            ],
+        },
+        {
+            title: "Enterprise data sovereignty",
+            body: [
+                "AI has to run on top of the enterprise's own data.",
+                "Plateer Labs researches an on-premise-first architecture that runs AI inside the customer's own infrastructure, with no dependence on a particular cloud.",
+                "The same operating model applies in the network-separated environments found in finance, the public sector, and manufacturing.",
+            ],
+        },
+        {
+            title: "AI that composes and extends",
+            body: [
+                "No two enterprises work the same way.",
+                "We research a composable AI architecture that modularizes agents, workflows, knowledge, and tools so they can be recombined for the task at hand.",
+                "The result is a flexible AI environment that is not locked to one vendor or one model.",
+            ],
+        },
+    ],
+    fields: [
+        {
+            desc: "A runtime where several AI agents collaborate to carry out complex work.",
+            tags: [
+                "Planner-driven planning",
+                "Multi-agent collaboration",
+                "Tool calling",
+                "Workflow orchestration",
+                "Human-in-the-loop",
+            ],
+            note: "The goal is doing the work, not just answering the question.",
+        },
+        {
+            desc: "A knowledge engine that produces accurate answers from the enterprise's own documents and data.",
+            tags: [
+                "Hybrid retrieval",
+                "Multimodal document understanding",
+                "Structured table understanding",
+                "Metadata-based access control",
+                "Grounded generation",
+            ],
+            note: "We are building next-generation RAG that reads documents, images, tables, and scans as one.",
+        },
+        {
+            desc: "The core research area at Plateer Labs. Past plain search, we research ontology-based AI that understands the relationships and context between enterprise data.",
+            tags: [
+                "Structuring organizational knowledge",
+                "Relationship-based traversal",
+                "Root-cause analysis",
+                "Impact analysis",
+                "Multi-hop reasoning",
+            ],
+            note: "It underpins a Graph RAG environment that reasons over relationships and context.",
+        },
+        {
+            desc: "An enterprise should not be locked to one model. We research a model-agnostic structure that lets you choose among LLMs by purpose, cost, and accuracy.",
+            tags: ["Claude", "GPT", "Gemini", "Private LLM"],
+            note: "Several models run together under a single operating scheme.",
+        },
+        {
+            desc: "Technology that connects AI to the systems already running inside the enterprise.",
+            tags: [
+                "ERP",
+                "Groupware",
+                "Databases",
+                "Document systems",
+                "Line-of-business systems",
+            ],
+            note: "Internal systems and AI are linked safely, so the work actually gets automated.",
+        },
+        {
+            desc: "Security and control decide whether AI can be adopted at all. We research a governance framework that meets the requirements of financial institutions and public agencies.",
+            tags: [
+                "Context Isolation",
+                "Prompt Firewall",
+                "Personal-data protection",
+                "Audit trail",
+                "Policy-based agent control",
+                "Risk assessment",
+                "Human approval",
+            ],
+        },
+    ],
+    cases: [
+        "The core XGEN AI engines that handle ingestion, retrieval, and reasoning",
+        "Application frameworks that compose agents, workflows, and knowledge",
+        "The execution runtime that keeps AI running reliably in enterprise environments",
+        "The open-source libraries behind XGEN — pip install, try it in the browser",
+    ],
+    headerLead:
+        "Public agencies and large enterprises have to account for data sovereignty, security, audit trails, organizational governance, and operational stability — and AI has to move past experiment and into the actual work process",
+    headerTitle:
+        "Plateer Labs researches Agentic AI technology and an operating model built for enterprise environments, to answer exactly those demands",
+    headerSub:
+        "Our aim goes past simply using an LLM: an Enterprise AI Runtime where knowledge, reasoning, execution, and operations connect as one system",
+    casesLead: "Research results become product, inside the XGEN technology stack",
+    methodLead:
+        "Plateer Labs runs a reproducible validation regime, not a demo",
+    methodNote: "Every research result is evaluated against quantitative measures",
+    papersTitle: "Core AI technology with academic validation",
+    papersLead:
+        "We publish and validate our research continually, to raise both the reliability and the practicality of Enterprise AI",
+    papersPending: "Papers by our members are being linked shortly",
+};
 
 /** Highlights the section currently in view for the sticky index. */
 function useScrollSpy(ids: string[]) {
@@ -394,8 +520,18 @@ function ChallengeArt({ kind, className }: { kind: ArtKind; className?: string }
     );
 }
 
-export function ResearchContent() {
+export function ResearchContent({ locale = "ko" }: { locale?: Locale }) {
     const active = useScrollSpy(NAV.map((n) => n.id));
+    const en = locale === "en";
+    // 아이콘·kind·href 등 비언어 데이터는 한국어 원본을 그대로 쓰고 문구만 갈아끼운다.
+    const nav = en ? NAV.map((n, i) => ({ ...n, label: EN.nav[i] })) : NAV;
+    const challenges = en
+        ? CHALLENGES.map((c, i) => ({ ...c, ...EN.challenges[i] }))
+        : CHALLENGES;
+    const fields = en ? FIELDS.map((f, i) => ({ ...f, ...EN.fields[i] })) : FIELDS;
+    const cases = en
+        ? CASES.map((c, i) => ({ ...c, desc: EN.cases[i] }))
+        : CASES;
 
     return (
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_240px]">
@@ -403,27 +539,35 @@ export function ResearchContent() {
                 {/* 콘텐츠 헤드라인 — 키비주얼에서 분리한 연구 메시지 */}
                 <header className="mx-auto max-w-3xl border-b border-[var(--color-line)] pb-12 text-center">
                     <p className="text-[16px] leading-relaxed text-[var(--color-ink-subtle)]">
-                        공공기관과 대기업은 데이터 주권, 보안, 감사 추적, 조직
-                        거버넌스, 운영 안정성까지 고려해야 하며,
-                        <br />
-                        AI는 단순한 실험을 넘어 실제 업무 프로세스에 통합되어야 합니다
+                        {en ? (
+                            EN.headerLead
+                        ) : (
+                            <>
+                                공공기관과 대기업은 데이터 주권, 보안, 감사 추적, 조직
+                                거버넌스, 운영 안정성까지 고려해야 하며,
+                                <br />
+                                AI는 단순한 실험을 넘어 실제 업무 프로세스에 통합되어야
+                                합니다
+                            </>
+                        )}
                     </p>
                     <h2 className="mt-5 text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[28px] md:leading-snug">
-                        Plateer Labs는 이러한 요구에 대응하기 위해 기업 환경에
-                        최적화된 Agentic AI 기술과 운영 체계를 연구합니다
+                        {en
+                            ? EN.headerTitle
+                            : "Plateer Labs는 이러한 요구에 대응하기 위해 기업 환경에 최적화된 Agentic AI 기술과 운영 체계를 연구합니다"}
                     </h2>
                     <p className="mt-4 text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                        우리는 단순한 LLM 활용을 넘어, 지식·추론·실행·운영이 하나의
-                        체계로 연결되는 Enterprise AI Runtime을 구축하는 것을
-                        목표로 합니다
+                        {en
+                            ? EN.headerSub
+                            : "우리는 단순한 LLM 활용을 넘어, 지식·추론·실행·운영이 하나의 체계로 연결되는 Enterprise AI Runtime을 구축하는 것을 목표로 합니다"}
                     </p>
                 </header>
 
                 {/* 1. 우리가 연구하는 핵심 과제 */}
                 <section id="challenges" className="scroll-mt-28">
-                    <SectionHeading>우리가 연구하는 핵심 과제</SectionHeading>
+                    <SectionHeading>{nav[0].label}</SectionHeading>
                     <div className="mt-7 space-y-6">
-                        {CHALLENGES.map((c, i) => (
+                        {challenges.map((c, i) => (
                             <div
                                 key={c.title}
                                 className="grid items-center gap-6 rounded-2xl border border-[var(--color-line)] bg-white p-6 md:grid-cols-2 md:gap-8 md:p-8"
@@ -452,9 +596,9 @@ export function ResearchContent() {
 
                 {/* 2. 핵심 연구 분야 — 컴팩트 2열 그리드(상단 컬러 액센트) */}
                 <section id="fields" className="scroll-mt-28">
-                    <SectionHeading>핵심 연구 분야</SectionHeading>
+                    <SectionHeading>{nav[1].label}</SectionHeading>
                     <div className="mt-7 grid gap-5 md:grid-cols-2">
-                        {FIELDS.map((f) => (
+                        {fields.map((f) => (
                             <div
                                 key={f.title}
                                 className="flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center shadow-[0_1px_2px_rgba(20,40,80,0.04)] transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)] md:p-7"
@@ -488,15 +632,15 @@ export function ResearchContent() {
 
                 {/* 3. 실증 연구 사례 */}
                 <section id="cases" className="scroll-mt-28">
-                    <SectionHeading>실증 연구 사례</SectionHeading>
+                    <SectionHeading>{nav[2].label}</SectionHeading>
                     <p className="mx-auto mt-3 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                        연구 성과는 XGEN의 기술 스택으로 제품화됩니다
+                        {en ? EN.casesLead : "연구 성과는 XGEN의 기술 스택으로 제품화됩니다"}
                     </p>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                        {CASES.map((c) => (
+                        {cases.map((c) => (
                             <Link
                                 key={c.title}
-                                href={c.href}
+                                href={localeHref(locale, c.href)}
                                 className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[var(--color-line-strong)] hover:shadow-sm"
                             >
                                 <div className="flex items-center justify-between gap-3">
@@ -518,10 +662,11 @@ export function ResearchContent() {
 
                 {/* 4. 검증 가능한 AI를 위한 연구 방법론 */}
                 <section id="methodology" className="scroll-mt-28">
-                    <SectionHeading>검증 가능한 AI를 위한 연구 방법론</SectionHeading>
+                    <SectionHeading>{nav[3].label}</SectionHeading>
                     <p className="mx-auto mt-3 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                        Plateer Labs는 단순 데모가 아닌 재현 가능한 검증 체계를
-                        운영합니다
+                        {en
+                            ? EN.methodLead
+                            : "Plateer Labs는 단순 데모가 아닌 재현 가능한 검증 체계를 운영합니다"}
                     </p>
                     <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 text-center">
                         <div className="flex items-center justify-center gap-3">
@@ -532,7 +677,9 @@ export function ResearchContent() {
                         </div>
                         <Chips items={METHODOLOGY} />
                         <p className="mt-5 border-t border-[var(--color-line)] pt-4 text-[16px] font-medium leading-relaxed text-[var(--color-ink)]">
-                            모든 연구 결과는 정량적 지표를 기반으로 평가됩니다
+                            {en
+                                ? EN.methodNote
+                                : "모든 연구 결과는 정량적 지표를 기반으로 평가됩니다"}
                         </p>
                     </div>
                 </section>
@@ -545,7 +692,7 @@ export function ResearchContent() {
                     style={{ top: "calc(var(--nav-h, 84px) + 74px)" }}
                     className="sticky border-l border-[var(--color-line)]"
                 >
-                    {NAV.map((n) => (
+                    {nav.map((n) => (
                         <a
                             key={n.id}
                             href={`#${n.id}`}
@@ -569,24 +716,26 @@ export function ResearchContent() {
  * Papers 섹션 콘텐츠 — 연구 그룹 one-page의 `/research#papers` 섹션에 주입된다.
  * 섹션 제목("Papers")은 GroupPage의 Section이 렌더하므로 여기서는 카드만 반환한다.
  */
-export function PapersContent() {
+export function PapersContent({ locale = "ko" }: { locale?: Locale }) {
+    const en = locale === "en";
     return (
         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-7 md:p-8">
             <div className="flex items-center gap-3">
                 <IconBadge icon={GraduationCap} />
                 <h4 className="text-xl font-bold tracking-tight text-[var(--color-ink)]">
-                    학술적 검증을 거친 AI 핵심 기술
+                    {en ? EN.papersTitle : "학술적 검증을 거친 AI 핵심 기술"}
                 </h4>
             </div>
             <p className="mt-4 max-w-2xl text-[16.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                Enterprise AI의 신뢰성과 실용성을 높이기 위해 연구 성과를
-                지속적으로 발표하고 검증합니다
+                {en
+                    ? EN.papersLead
+                    : "Enterprise AI의 신뢰성과 실용성을 높이기 위해 연구 성과를 지속적으로 발표하고 검증합니다"}
             </p>
 
             {/* 구성원 논문 연결 영역 — 추후 게재 */}
             <div className="mt-6 rounded-xl border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] p-8 text-center">
                 <p className="text-[16px] text-[var(--color-ink-muted)]">
-                    구성원들의 논문이 곧 연결됩니다
+                    {en ? EN.papersPending : "구성원들의 논문이 곧 연결됩니다"}
                 </p>
             </div>
         </div>

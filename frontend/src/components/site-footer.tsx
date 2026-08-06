@@ -168,7 +168,11 @@ export function SiteFooter() {
                                         <button
                                             type="button"
                                             onClick={() => setDemoPlaying(true)}
-                                            aria-label={`${demo.title} 재생`}
+                                            aria-label={
+                                                locale === "en"
+                                                    ? `Play ${demo.title}`
+                                                    : `${demo.title} 재생`
+                                            }
                                             className="group relative block aspect-video w-full overflow-hidden"
                                         >
                                             {/* eslint-disable-next-line @next/next/no-img-element */}

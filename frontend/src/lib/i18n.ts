@@ -144,7 +144,7 @@ export interface Dict {
         titleB: string;
     };
     categories: { all: string; ingestion: string; knowledge: string; agent: string };
-    toolCard: { liveDemo: string; openDemo: string };
+    toolCard: { liveDemo: string; openDemo: string; openRepo: string };
     usecases: {
         eyebrow: string;
         titleA: string;
@@ -290,7 +290,11 @@ export const dict: Record<Locale, Dict> = {
             knowledge: "지식",
             agent: "에이전트",
         },
-        toolCard: { liveDemo: "라이브 데모", openDemo: "데모 열기" },
+        toolCard: {
+            liveDemo: "라이브 데모",
+            openDemo: "데모 열기",
+            openRepo: "GitHub 저장소 열기",
+        },
         usecases: {
             eyebrow: "/ 이 블록들로 만들기",
             titleA: "조합을 넘어,",
@@ -382,7 +386,11 @@ export const dict: Record<Locale, Dict> = {
             knowledge: "Knowledge",
             agent: "Agent",
         },
-        toolCard: { liveDemo: "live demo", openDemo: "Open demo" },
+        toolCard: {
+            liveDemo: "live demo",
+            openDemo: "Open demo",
+            openRepo: "Open the GitHub repository",
+        },
         usecases: {
             eyebrow: "/ build with these blocks",
             titleA: "Compose them into",

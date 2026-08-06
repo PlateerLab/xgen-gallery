@@ -60,7 +60,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
                     href={`https://github.com/PlateerLab/${tool.repo}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub 저장소 열기"
+                    aria-label={t.toolCard.openRepo}
                     className="flex-none rounded-md p-1 text-[var(--color-ink-subtle)] transition hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-ink)]"
                 >
                     <ArrowUpRight className="h-4 w-4" />

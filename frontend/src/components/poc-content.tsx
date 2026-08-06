@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * PoC 실증 사례 — 고객 현장의 문제에서 출발해 XGEN 기술로 검증한 4가지 해결.
@@ -19,6 +20,125 @@ interface Case {
     company: string;
     outcomes: string[];
 }
+
+/**
+ * 영문 사례 문구 — 고객사는 한국어와 동일하게 익명(M사 → Company M)으로 유지한다.
+ * 한국어 원문은 CASES 에 그대로 두고, 영문만 여기에 모은다.
+ */
+const CASES_EN: Record<
+    string,
+    {
+        category: string;
+        headline: string;
+        body: string;
+        quote: string;
+        company: string;
+        outcomes: string[];
+    }
+> = {
+    ontology: {
+        category: "Knowledge reasoning",
+        headline: "Answers that thinned out as documents piled up, reconnected by relationship",
+        body: "One customer held survey, performance, evaluation, and audience-response data — and still felt that important information was missing from the AI's answers. The data sat in separate places, so cause and relationship could not be explained. XGEN's ontology goes past similarity-based top-K lookup to traverse meaning and relationships, answering not just what exists but why it is so and what it connects to.",
+        quote: "The answer isn't wrong, but it feels like something important is missing",
+        company: "Company M",
+        outcomes: ["Relationship-based fact search", "Cause and context reasoning"],
+    },
+    mcp: {
+        category: "Agent portability",
+        headline: "Build the agent once, run it inside the internal network",
+        body: "Reusing an agent built on the external network with n8n, Dify, XGEN, or Claude meant rebuilding it for a different platform inside — operating experience was lost and cost was paid twice. MCP App wraps an agent as a standard package that ports between environments, so support, review, and reporting agents run inside the internal network as they are.",
+        quote: "We want to reuse the agents we built outside on our internal network",
+        company: "Company J",
+        outcomes: ["Build once, run anywhere", "Agent reuse across environments"],
+    },
+    pathfinder: {
+        category: "No-code integration",
+        headline: "From login to tool registration, without a developer",
+        body: "API documentation alone made integrations hard to implement, and the screens were not free to arrange, so even a small idea kept needing development capacity. Ideas stayed in the planner's head. PathFinder connects login, API wiring, tool registration, and testing without a line of code, so the business side turns its own ideas into working tools.",
+        quote: "In the end we couldn't move forward without a developer",
+        company: "Company I",
+        outcomes: ["No-code integration", "Business-led tool building"],
+    },
+    floui: {
+        category: "Question-to-UI",
+        headline: "Ask the question, and the analysis screen appears",
+        body: "Looking at order, return, and purchasing data from several angles meant requesting a report or commissioning a separate analysis every time — and in a meeting or a planning session there was no way to test a hypothesis on the spot. FloUI turns the question itself into the analysis screen (question-to-UI), so several angles can be explored and checked immediately.",
+        quote: "Every time, we have to request a report or commission a separate analysis",
+        company: "Company L",
+        outcomes: ["Free analysis from several angles", "Hypotheses tested on the spot"],
+    },
+    "mcp-tool": {
+        category: "Review-workflow automation",
+        headline: "Product review that cross-checks many documents, handled by one MCP Tool",
+        body: "Putting a fashion product on air and on sale meant a person manually cross-checking the product specification, test report, care label, import declaration, OEM contract, and more to judge whether it complied. We turned that review workflow into an MCP Tool: extracting functional claims, checking them against the test report, cross-verifying care label and country of origin, and issuing a combined QA verdict — cleared for sale, needs correction, or not broadcastable — wired straight back into the system.",
+        quote: "Before a product goes on air, someone has to check by hand that the documents agree with each other",
+        company: "Company L",
+        outcomes: ["Automated document cross-verification", "Automatic sale-compliance verdict"],
+    },
+};
+
+/** 일러스트 안의 라벨·대체텍스트. SVG 안 텍스트도 언어 신호라 함께 번역한다. */
+const ART: Record<Locale, Record<string, string>> = {
+    ko: {
+        ontAlt: "흩어진 데이터가 관계 그래프로 연결되는 모습",
+        ontApart: "각자 따로",
+        ontHub: "관계",
+        ontCaption: "의미·관계 탐색",
+        mcpAlt: "외부망 Agent가 MCP 패키지로 내부망에 이식되는 모습",
+        mcpOuter: "외부망",
+        mcpInner: "내부망",
+        mcpCaption: "한 번 만들어 그대로 재사용",
+        pfAlt: "로그인부터 도구 등록, 테스트까지 코드 없는 플로우",
+        pfLogin: "로그인",
+        pfApi: "API 연결",
+        pfTool: "도구 등록",
+        pfTest: "테스트",
+        mtAlt: "여러 제출 문서를 교차 검증해 MCP Tool로 전환하고 판매 적합성을 판정하는 모습",
+        mtDocs: "제출 문서",
+        mtQa: "QA 교차 검증",
+        mtOk: "판매 가능",
+        mtFix: "수정 필요",
+        mtNo: "방송 불가",
+        floAlt: "질문이 분석 대시보드로 변환되는 모습",
+        floCaption: "질문이 곧 분석 화면으로",
+    },
+    en: {
+        ontAlt: "Scattered data being connected into a relationship graph",
+        ontApart: "Kept apart",
+        ontHub: "Relations",
+        ontCaption: "Traversing meaning and relations",
+        mcpAlt: "An external-network agent ported into the internal network as an MCP package",
+        mcpOuter: "External",
+        mcpInner: "Internal",
+        mcpCaption: "Build once, reuse as is",
+        pfAlt: "A no-code flow from login through tool registration and testing",
+        pfLogin: "Sign in",
+        pfApi: "Connect API",
+        pfTool: "Register tool",
+        pfTest: "Test",
+        mtAlt: "Submitted documents cross-verified, turned into an MCP Tool, and judged for sale compliance",
+        mtDocs: "Submitted docs",
+        mtQa: "QA cross-check",
+        mtOk: "Cleared",
+        mtFix: "Needs fix",
+        mtNo: "Not for air",
+        floAlt: "A question turning into an analysis dashboard",
+        floCaption: "The question becomes the screen",
+    },
+};
+
+/** 화면 공통 문구. */
+const COPY: Record<Locale, { intro: string }> = {
+    ko: {
+        intro:
+            "엔터프라이즈 AI는 데모에서 끝나지 않습니다. Plateer Labs는 고객 현장의 실제 문제에서 출발해, 함께 연구한 기술로 검증 가능한 해결을 만듭니다",
+    },
+    en: {
+        intro:
+            "Enterprise AI does not end at the demo. Plateer Labs starts from a real problem on the customer's floor and builds a solution that can be verified, using technology researched together",
+    },
+};
 
 const CASES: Case[] = [
     {
@@ -74,13 +194,14 @@ const CASES: Case[] = [
 ];
 
 /* ── 사례별 인라인 SVG 일러스트 ─────────────────────────────── */
-function CaseArt({ id }: { id: string }) {
+function CaseArt({ id, locale }: { id: string; locale: Locale }) {
+    const a = ART[locale];
     const wrap =
         "aspect-[4/3] w-full rounded-2xl border border-[var(--color-line)] bg-gradient-to-br from-[#f5f8ff] to-[#eef2fb]";
 
     if (id === "ontology") {
         return (
-            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label="흩어진 데이터가 관계 그래프로 연결되는 모습">
+            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label={a.ontAlt}>
                 <defs>
                     <linearGradient id="ont-hub" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
@@ -95,7 +216,7 @@ function CaseArt({ id }: { id: string }) {
                 ].map(([x, y], i) => (
                     <circle key={i} cx={x} cy={y} r="16" fill="#ffffff" stroke="#c4ccdb" strokeWidth="1.5" strokeDasharray="3 3" />
                 ))}
-                <text x="78" y="305" textAnchor="middle" fontSize="12" fill="#8b93a4">각자 따로</text>
+                <text x="78" y="305" textAnchor="middle" fontSize="12" fill="#8b93a4">{a.ontApart}</text>
 
                 {/* 연결된(오른쪽) 관계 그래프 */}
                 <g stroke="#9bb8f0" strokeWidth="2">
@@ -114,8 +235,8 @@ function CaseArt({ id }: { id: string }) {
                     <circle key={i} cx={x} cy={y} r="13" fill="#ffffff" stroke="#2f7bff" strokeWidth="2" />
                 ))}
                 <circle cx="300" cy="120" r="24" fill="url(#ont-hub)" />
-                <text x="300" y="125" textAnchor="middle" fontSize="13" fontWeight="700" fill="#fff">관계</text>
-                <text x="300" y="305" textAnchor="middle" fontSize="12" fill="#5a6478">의미·관계 탐색</text>
+                <text x="300" y="125" textAnchor="middle" fontSize="13" fontWeight="700" fill="#fff">{a.ontHub}</text>
+                <text x="300" y="305" textAnchor="middle" fontSize="12" fill="#5a6478">{a.ontCaption}</text>
             </svg>
         );
     }
@@ -135,15 +256,15 @@ function CaseArt({ id }: { id: string }) {
             </g>
         );
         return (
-            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label="외부망 Agent가 MCP 패키지로 내부망에 이식되는 모습">
+            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label={a.mcpAlt}>
                 <defs>
                     <linearGradient id="mcp-box" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
                         <stop offset="1" stopColor="#7c5cff" />
                     </linearGradient>
                 </defs>
-                {panel(20, "외부망")}
-                {panel(300, "내부망")}
+                {panel(20, a.mcpOuter)}
+                {panel(300, a.mcpInner)}
                 {/* 이동 화살표 */}
                 <line x1="148" y1="160" x2="292" y2="160" stroke="#9bb8f0" strokeWidth="2" strokeDasharray="5 5" />
                 <path d="M286 153 l10 7 -10 7" fill="none" stroke="#2f7bff" strokeWidth="2.5" />
@@ -154,15 +275,15 @@ function CaseArt({ id }: { id: string }) {
                     <line x1="220" y1="138" x2="220" y2="194" stroke="#fff" strokeWidth="1.5" opacity="0.7" />
                 </g>
                 <text x="220" y="216" textAnchor="middle" fontSize="13" fontWeight="700" fill="#2f3aa0">MCP App</text>
-                <text x="220" y="234" textAnchor="middle" fontSize="11" fill="#5a6478">한 번 만들어 그대로 재사용</text>
+                <text x="220" y="234" textAnchor="middle" fontSize="11" fill="#5a6478">{a.mcpCaption}</text>
             </svg>
         );
     }
 
     if (id === "pathfinder") {
-        const steps = ["로그인", "API 연결", "도구 등록", "테스트"];
+        const steps = [a.pfLogin, a.pfApi, a.pfTool, a.pfTest];
         return (
-            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label="로그인부터 도구 등록, 테스트까지 코드 없는 플로우">
+            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label={a.pfAlt}>
                 <defs>
                     <linearGradient id="pf-step" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
@@ -192,7 +313,7 @@ function CaseArt({ id }: { id: string }) {
 
     if (id === "mcp-tool") {
         return (
-            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label="여러 제출 문서를 교차 검증해 MCP Tool로 전환하고 판매 적합성을 판정하는 모습">
+            <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label={a.mtAlt}>
                 <defs>
                     <linearGradient id="mt-grad" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0" stopColor="#2f7bff" />
@@ -219,7 +340,7 @@ function CaseArt({ id }: { id: string }) {
                     <rect x="12" y="30" width="36" height="5" rx="2.5" fill="#dbe3f3" />
                     <rect x="12" y="44" width="24" height="5" rx="2.5" fill="#dbe3f3" />
                 </g>
-                <text x="86" y="192" textAnchor="middle" fontSize="12" fill="#5a6478">제출 문서</text>
+                <text x="86" y="192" textAnchor="middle" fontSize="12" fill="#5a6478">{a.mtDocs}</text>
 
                 {/* arrow */}
                 <line x1="150" y1="126" x2="186" y2="126" stroke="#9bb8f0" strokeWidth="2" strokeDasharray="5 5" />
@@ -228,7 +349,7 @@ function CaseArt({ id }: { id: string }) {
                 {/* QA 교차 검증 — shield */}
                 <path d="M232 88 l34 12 v26 c0 22 -16 34 -34 42 c-18 -8 -34 -20 -34 -42 v-26 z" fill="url(#mt-grad)" />
                 <path d="M218 126 l9 9 18 -18" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <text x="232" y="192" textAnchor="middle" fontSize="12" fill="#5a6478">QA 교차 검증</text>
+                <text x="232" y="192" textAnchor="middle" fontSize="12" fill="#5a6478">{a.mtQa}</text>
 
                 {/* arrow */}
                 <line x1="286" y1="126" x2="322" y2="126" stroke="#9bb8f0" strokeWidth="2" strokeDasharray="5 5" />
@@ -245,19 +366,19 @@ function CaseArt({ id }: { id: string }) {
                         <rect width="118" height="34" rx="17" fill="#eafaf1" stroke="#b6e6cd" />
                         <circle cx="22" cy="17" r="8" fill="#16a34a" />
                         <path d="M18 17 l3 3 6 -6" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <text x="38" y="21" fill="#0f9d6f">판매 가능</text>
+                        <text x="38" y="21" fill="#0f9d6f">{a.mtOk}</text>
                     </g>
                     <g transform="translate(162 240)">
                         <rect width="114" height="34" rx="17" fill="#fff7e6" stroke="#f3dca0" />
                         <circle cx="22" cy="17" r="8" fill="#f59e0b" />
                         <text x="22" y="22" textAnchor="middle" fontSize="13" fontWeight="800" fill="#fff">!</text>
-                        <text x="38" y="21" fill="#b9810f">수정 필요</text>
+                        <text x="38" y="21" fill="#b9810f">{a.mtFix}</text>
                     </g>
                     <g transform="translate(286 240)">
                         <rect width="114" height="34" rx="17" fill="#fdf0f1" stroke="#f3c2c8" />
                         <circle cx="22" cy="17" r="8" fill="#e11d48" />
                         <path d="M18 13 l8 8 M26 13 l-8 8" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                        <text x="38" y="21" fill="#d61f47">방송 불가</text>
+                        <text x="38" y="21" fill="#d61f47">{a.mtNo}</text>
                     </g>
                 </g>
             </svg>
@@ -266,7 +387,7 @@ function CaseArt({ id }: { id: string }) {
 
     // floui — question → dashboard
     return (
-        <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label="질문이 분석 대시보드로 변환되는 모습">
+        <svg viewBox="0 0 440 330" className={wrap} role="img" aria-label={a.floAlt}>
             <defs>
                 <linearGradient id="flo-q" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0" stopColor="#2f7bff" />
@@ -298,7 +419,7 @@ function CaseArt({ id }: { id: string }) {
                 <circle cx="350" cy="160" r="34" fill="none" stroke="#e2e8f4" strokeWidth="14" />
                 <circle cx="350" cy="160" r="34" fill="none" stroke="#7c5cff" strokeWidth="14" strokeDasharray="120 214" strokeLinecap="round" transform="rotate(-90 350 160)" />
             </g>
-            <text x="300" y="296" textAnchor="middle" fontSize="12" fill="#5a6478">질문이 곧 분석 화면으로</text>
+            <text x="300" y="296" textAnchor="middle" fontSize="12" fill="#5a6478">{a.floCaption}</text>
         </svg>
     );
 }
@@ -327,21 +448,25 @@ function useScrollSpy(ids: string[]) {
     return active;
 }
 
-export function PocContent() {
+export function PocContent({ locale = "ko" }: { locale?: Locale }) {
     const active = useScrollSpy(CASES.map((c) => c.id));
+    const t = COPY[locale];
+    const en = locale === "en";
+    // 영문일 때는 CASES_EN 의 문구로 갈아끼운다(카테고리·헤드라인·본문·인용·성과).
+    const cases = en
+        ? CASES.map((c) => ({ ...c, ...CASES_EN[c.id] }))
+        : CASES;
 
     return (
         <div className="grid gap-12 lg:grid-cols-[1fr_220px]">
             <div className="min-w-0">
                 {/* 도입 — 웹 톤의 한 문단 */}
                 <p className="max-w-2xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
-                    엔터프라이즈 AI는 데모에서 끝나지 않습니다. Plateer Labs는
-                    고객 현장의 실제 문제에서 출발해, 함께 연구한 기술로 검증 가능한
-                    해결을 만듭니다
+                    {t.intro}
                 </p>
 
                 <div className="mt-4">
-                    {CASES.map((c, i) => (
+                    {cases.map((c, i) => (
                         <article
                             key={c.id}
                             id={c.id}
@@ -350,7 +475,7 @@ export function PocContent() {
                             <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
                                 {/* 일러스트 — 짝수 사례는 반대쪽으로 교차 배치 */}
                                 <div className={cn(i % 2 === 1 && "md:order-2")}>
-                                    <CaseArt id={c.id} />
+                                    <CaseArt id={c.id} locale={locale} />
                                 </div>
 
                                 {/* 카피 */}
@@ -404,7 +529,7 @@ export function PocContent() {
             {/* sticky scroll-spy index (right) */}
             <aside className="hidden lg:block">
                 <nav className="sticky top-28 border-l border-[var(--color-line)]">
-                    {CASES.map((c) => (
+                    {cases.map((c) => (
                         <a
                             key={c.id}
                             href={`#${c.id}`}

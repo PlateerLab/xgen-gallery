@@ -5,7 +5,15 @@ import Link from "next/link";
 import { ExternalLink, Award } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { PublicationsIllustration } from "@/components/publications-illustration";
-import { PUBLICATIONS, PUB_MEMBERS, type Publication } from "@/lib/publications";
+import {
+    PUBLICATIONS,
+    PUB_MEMBERS,
+    PUB_TYPE_EN,
+    PUB_AWARD_EN,
+    type Publication,
+} from "@/lib/publications";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * Publications 섹션 콘텐츠 — /research#publications 에 주입된다.
@@ -13,13 +21,70 @@ import { PUBLICATIONS, PUB_MEMBERS, type Publication } from "@/lib/publications"
  * 구성원 논문을 카테고리(코어 연구 / 기타·응용 ML)로 나눠 노출하고, 각 항목은
  * 멤버 프로필(/members/<login>)로 연결한다.
  */
+/**
+ * 화면 문구만 로케일을 따른다 — 논문 제목·저자·게재처는 인용 정보라 원문 그대로 둔다.
+ */
+const COPY: Record<
+    Locale,
+    {
+        heading: string;
+        lead: string;
+        tabsAria: string;
+        sourceAria: string;
+        tabs: { label: string; sub: string }[];
+    }
+> = {
+    ko: {
+        heading: "구성원들의 연구 성과",
+        lead: "Plateer Labs 구성원들이 학회·저널에 발표한 논문입니다. 자연어처리, 딥러닝, 그래프·추천, 분산학습 등 Enterprise AI와 맞닿은 연구가 제품의 기술적 토대가 됩니다",
+        tabsAria: "연구 카테고리",
+        sourceAria: "원문 보기",
+        tabs: [
+            {
+                label: "AI · 머신러닝 연구",
+                sub: "Enterprise/Agentic AI와 맞닿은 NLP·딥러닝·그래프·추천·분산학습 연구",
+            },
+            {
+                label: "기타 · 머신러닝 응용",
+                sub: "데이터사이언스 기반의 응용 머신러닝 연구(금융·HR·헬스 등)",
+            },
+            {
+                label: "저서 · 감수",
+                sub: "구성원이 저술·감수·번역에 참여한 도서",
+            },
+        ],
+    },
+    en: {
+        heading: "Publications by our members",
+        lead: "Papers our members have presented at conferences and in journals. Research in natural-language processing, deep learning, graphs and recommendation, and distributed training — the areas that meet Enterprise AI — forms the technical base of the product",
+        tabsAria: "Research categories",
+        sourceAria: "View the original",
+        tabs: [
+            {
+                label: "AI and machine learning",
+                sub: "NLP, deep learning, graph, recommendation, and distributed-training research that meets Enterprise and Agentic AI",
+            },
+            {
+                label: "Applied machine learning",
+                sub: "Applied machine-learning research grounded in data science — finance, HR, healthcare, and more",
+            },
+            {
+                label: "Books and editorial review",
+                sub: "Books our members wrote, reviewed, or translated",
+            },
+        ],
+    },
+};
+
 const GRADE_STYLE: Record<string, string> = {
     SCIE: "border-[#bfe0d6] bg-[#effaf6] text-[#0b7d62]",
     SCOPUS: "border-[#cdd9f7] bg-[#eef3ff] text-[#2461d8]",
     KCI: "border-[var(--color-line)] bg-[var(--color-surface-alt)] text-[var(--color-ink-subtle)]",
 };
 
-function PublicationRow({ p }: { p: Publication }) {
+function PublicationRow({ p, locale }: { p: Publication; locale: Locale }) {
+    const t = COPY[locale];
+    const en = locale === "en";
     return (
         <li className="py-5">
             <div className="flex items-start justify-between gap-4">
@@ -27,7 +92,7 @@ function PublicationRow({ p }: { p: Publication }) {
                     {/* 메타 뱃지 */}
                     <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
                         <span className="inline-flex items-center rounded-full border border-[var(--color-line)] bg-white px-2.5 py-0.5 text-[12.5px] font-semibold text-[var(--color-ink-muted)]">
-                            {p.type}
+                            {en ? PUB_TYPE_EN[p.type] : p.type}
                         </span>
                         {p.grade && (
                             <span
@@ -39,7 +104,7 @@ function PublicationRow({ p }: { p: Publication }) {
                         {p.award && (
                             <span className="inline-flex items-center gap-1 rounded-full border border-[#f4d9a6] bg-[#fef6e7] px-2.5 py-0.5 text-[12.5px] font-bold text-[#b45309]">
                                 <Award className="h-3 w-3" />
-                                {p.award}
+                                {en ? (PUB_AWARD_EN[p.award] ?? p.award) : p.award}
                             </span>
                         )}
                         <span className="font-mono text-[12.5px] text-[var(--color-ink-subtle)]">
@@ -73,7 +138,7 @@ function PublicationRow({ p }: { p: Publication }) {
                         {p.memberLogins.map((login) => (
                             <Link
                                 key={login}
-                                href={`/members/${login}`}
+                                href={localeHref(locale, `/members/${login}`)}
                                 className="inline-flex items-center gap-1 rounded-full border border-[#cfe0ff] bg-[#f3f7ff] px-2.5 py-0.5 text-[13px] font-semibold text-[#2461d8] transition hover:border-[#2f7bff]"
                             >
                                 {PUB_MEMBERS[login] ?? login}
@@ -87,7 +152,7 @@ function PublicationRow({ p }: { p: Publication }) {
                         href={p.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="원문 보기"
+                        aria-label={t.sourceAria}
                         className="mt-1 shrink-0 text-[var(--color-ink-subtle)] transition hover:text-[#2461d8]"
                     >
                         <ExternalLink className="h-4 w-4" />
@@ -101,9 +166,11 @@ function PublicationRow({ p }: { p: Publication }) {
 function CategoryBlock({
     sub,
     items,
+    locale,
 }: {
     sub: string;
     items: Publication[];
+    locale: Locale;
 }) {
     if (items.length === 0) return null;
     const sorted = [...items].sort((a, b) => b.year - a.year);
@@ -114,38 +181,24 @@ function CategoryBlock({
             </p>
             <ul className="mx-auto mt-4 w-full max-w-3xl divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white px-6">
                 {sorted.map((p, i) => (
-                    <PublicationRow key={`${p.title}-${i}`} p={p} />
+                    <PublicationRow key={`${p.title}-${i}`} p={p} locale={locale} />
                 ))}
             </ul>
         </div>
     );
 }
 
-export function PublicationsContent() {
+export function PublicationsContent({ locale = "ko" }: { locale?: Locale }) {
+    const t = COPY[locale];
     const core = PUBLICATIONS.filter((p) => p.category === "core");
     const applied = PUBLICATIONS.filter((p) => p.category === "applied");
     const books = PUBLICATIONS.filter((p) => p.category === "book");
 
     const TABS = [
-        {
-            key: "core" as const,
-            label: "AI · 머신러닝 연구",
-            sub: "Enterprise/Agentic AI와 맞닿은 NLP·딥러닝·그래프·추천·분산학습 연구",
-            items: core,
-        },
-        {
-            key: "applied" as const,
-            label: "기타 · 머신러닝 응용",
-            sub: "데이터사이언스 기반의 응용 머신러닝 연구(금융·HR·헬스 등)",
-            items: applied,
-        },
-        {
-            key: "book" as const,
-            label: "저서 · 감수",
-            sub: "구성원이 저술·감수·번역에 참여한 도서",
-            items: books,
-        },
-    ].filter((t) => t.items.length > 0);
+        { key: "core" as const, ...t.tabs[0], items: core },
+        { key: "applied" as const, ...t.tabs[1], items: applied },
+        { key: "book" as const, ...t.tabs[2], items: books },
+    ].filter((tab) => tab.items.length > 0);
     const [active, setActive] = useState<"core" | "applied" | "book">("core");
 
     const scholarLd = PUBLICATIONS.map((p) =>
@@ -184,39 +237,40 @@ export function PublicationsContent() {
             <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-8">
                 <div className="min-w-0 order-2 text-center md:order-1 md:max-w-xl">
                     <h4 className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
-                        구성원들의 연구 성과
+                        {t.heading}
                     </h4>
                     <p className="mx-auto mt-4 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                        Plateer Labs 구성원들이 학회·저널에 발표한 논문입니다. 자연어처리,
-                        딥러닝, 그래프·추천, 분산학습 등 Enterprise AI와 맞닿은 연구가
-                        제품의 기술적 토대가 됩니다
+                        {t.lead}
                     </p>
                 </div>
-                <PublicationsIllustration className="order-1 w-56 shrink-0 md:order-2 md:w-64" />
+                <PublicationsIllustration
+                    locale={locale}
+                    className="order-1 w-56 shrink-0 md:order-2 md:w-64"
+                />
             </div>
 
             {/* 카테고리 인덱스 탭 */}
             <div
                 role="tablist"
-                aria-label="연구 카테고리"
+                aria-label={t.tabsAria}
                 className="flex flex-wrap justify-center gap-2 border-b border-[var(--color-line)]"
             >
-                {TABS.map((t) => {
-                    const isActive = active === t.key;
+                {TABS.map((tab) => {
+                    const isActive = active === tab.key;
                     return (
                         <button
-                            key={t.key}
+                            key={tab.key}
                             type="button"
                             role="tab"
                             aria-selected={isActive}
-                            onClick={() => setActive(t.key)}
+                            onClick={() => setActive(tab.key)}
                             className={`-mb-px inline-flex items-center gap-2 rounded-t-lg border-b-2 px-4 py-2.5 text-[15px] font-semibold tracking-tight transition ${
                                 isActive
                                     ? "border-[#2f7bff] text-[var(--color-ink)]"
                                     : "border-transparent text-[var(--color-ink-subtle)] hover:text-[var(--color-ink-muted)]"
                             }`}
                         >
-                            {t.label}
+                            {tab.label}
                             <span
                                 className={`inline-flex min-w-[1.5rem] justify-center rounded-full px-1.5 py-0.5 font-mono text-[12px] ${
                                     isActive
@@ -224,7 +278,7 @@ export function PublicationsContent() {
                                         : "bg-[var(--color-surface-alt)] text-[var(--color-ink-subtle)]"
                                 }`}
                             >
-                                {t.items.length}
+                                {tab.items.length}
                             </span>
                         </button>
                     );
@@ -232,9 +286,9 @@ export function PublicationsContent() {
             </div>
 
             {/* 두 카테고리는 모두 렌더(SEO)하되, 비활성 탭은 hidden */}
-            {TABS.map((t) => (
-                <div key={t.key} hidden={active !== t.key}>
-                    <CategoryBlock sub={t.sub} items={t.items} />
+            {TABS.map((tab) => (
+                <div key={tab.key} hidden={active !== tab.key}>
+                    <CategoryBlock sub={tab.sub} items={tab.items} locale={locale} />
                 </div>
             ))}
         </div>

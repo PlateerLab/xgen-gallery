@@ -2,15 +2,16 @@ import { ProofInActionPageContent } from "@/components/pages/proof-in-action-pag
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-    title: "실증 데모 — Proof in Action",
+    title: "Proof in Action — demo videos",
     description:
-        "백마디 말보다 실행으로 — XGEN Agentic AI 플랫폼의 핵심 기능이 실제로 실행되는 모습을 영상으로 확인하는 실증 데모.",
+        "Less telling, more running — demo videos showing the core capabilities of the XGEN Agentic AI platform working on the real product.",
     path: "/proof-in-action",
+    locale: "en",
     // 대표 영상(XGEN 실증 데모) 썸네일을 링크 미리보기 이미지로 사용.
     image: "https://i.ytimg.com/vi/4RiH3ThyIg0/maxresdefault.jpg",
     imageDims: { width: 1280, height: 720 },
 });
 
-export default function ProofInActionPage() {
-    return <ProofInActionPageContent locale="ko" />;
+export default function ProofInActionPageEn() {
+    return <ProofInActionPageContent locale="en" />;
 }

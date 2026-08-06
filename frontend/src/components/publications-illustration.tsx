@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n";
+
 /**
  * PublicationsIllustration — /research#publications 인트로용 일러스트.
  * 구성원들이 발표한 "논문(페이퍼)"을 형상화한다. 여러 장의 페이퍼가 겹쳐
@@ -5,14 +7,24 @@
  * 연구 그래프(막대·꺾은선)를 배치했다. 브랜드 그라디언트(#2f7bff→#7c5cff)를 사용.
  * 순수 SVG(외부 의존 없음), 다크/라이트 모두 어색하지 않은 채도로 구성.
  */
-export function PublicationsIllustration({ className }: { className?: string }) {
+export function PublicationsIllustration({
+    className,
+    locale = "ko",
+}: {
+    className?: string;
+    locale?: Locale;
+}) {
     return (
         <svg
             className={className}
             viewBox="0 0 320 240"
             fill="none"
             role="img"
-            aria-label="구성원들이 학회·저널에 발표한 논문을 형상화한 일러스트"
+            aria-label={
+                locale === "en"
+                    ? "An illustration of papers our members have presented at conferences and in journals"
+                    : "구성원들이 학회·저널에 발표한 논문을 형상화한 일러스트"
+            }
             xmlns="http://www.w3.org/2000/svg"
         >
             <defs>
