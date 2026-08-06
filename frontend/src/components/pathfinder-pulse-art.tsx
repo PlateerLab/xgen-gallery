@@ -3,23 +3,40 @@
  * 경로를 "탐색(pathfinding)"하며 AI Agent로 연결되는 흐름을 인라인 SVG로 표현한다.
  * JS 없이 CSS 애니메이션으로만 동작(SSR·성능·GEO 안전) + prefers-reduced-motion 존중.
  */
+import type { Locale } from "@/lib/i18n";
+
+/** 흐름 노드 라벨 — SVG 안쪽 글자도 페이지 언어를 따라간다. */
+const T: Record<Locale, { steps: string[]; legacy: string; aria: string }> = {
+    ko: {
+        steps: ["로그인", "API 연결", "도구 등록", "테스트"],
+        legacy: "레거시 시스템",
+        aria: "레거시 시스템에서 로그인·API 연결·도구 등록·테스트 경로를 거쳐 AI 에이전트로 연결되는 패스파인더 흐름",
+    },
+    en: {
+        steps: ["Sign in", "Connect API", "Register tool", "Test"],
+        legacy: "Legacy system",
+        aria: "The PathFinder flow — from a legacy system through sign-in, API connection, tool registration, and testing to an AI agent",
+    },
+};
+
 const ROUTE =
     "M132 116 C 172 116 178 74 210 74 C 244 74 252 150 286 150 C 320 150 330 74 362 74 C 396 74 404 132 434 132 C 456 132 462 116 470 116";
 
-const STEPS: { x: number; y: number; label: string }[] = [
-    { x: 210, y: 74, label: "로그인" },
-    { x: 286, y: 150, label: "API 연결" },
-    { x: 362, y: 74, label: "도구 등록" },
-    { x: 434, y: 132, label: "테스트" },
+const STEPS: { x: number; y: number; key: number }[] = [
+    { x: 210, y: 74, key: 0 },
+    { x: 286, y: 150, key: 1 },
+    { x: 362, y: 74, key: 2 },
+    { x: 434, y: 132, key: 3 },
 ];
 
-export function PathfinderPulseArt() {
+export function PathfinderPulseArt({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
     return (
         <svg
             viewBox="0 0 560 220"
             className="pf-art h-auto w-full"
             role="img"
-            aria-label="레거시 시스템에서 로그인·API 연결·도구 등록·테스트 경로를 거쳐 AI 에이전트로 연결되는 패스파인더 흐름"
+            aria-label={L.aria}
         >
             <defs>
                 <linearGradient id="pf-line" x1="0" y1="0" x2="1" y2="0">
@@ -74,7 +91,7 @@ export function PathfinderPulseArt() {
                 {/* API 감지 스캔 링 */}
                 <circle className="pf-scan" cx="79" cy="113" r="20" fill="none" stroke="#2f7bff" strokeWidth="2" />
             </g>
-            <text x="79" y="176" textAnchor="middle" fontSize="12.5" fontWeight="700" fill="#5a6478">레거시 시스템</text>
+            <text x="79" y="176" textAnchor="middle" fontSize="12.5" fontWeight="700" fill="#5a6478">{L.legacy}</text>
 
             {/* 경로 */}
             <path className="pf-route" d={ROUTE} />
@@ -82,7 +99,7 @@ export function PathfinderPulseArt() {
 
             {/* 경유 노드 */}
             {STEPS.map((s, i) => (
-                <g key={s.label}>
+                <g key={s.key}>
                     <circle className="pf-step-glow" cx={s.x} cy={s.y} r="14" fill="url(#pf-line)" opacity="0.28" />
                     <circle cx={s.x} cy={s.y} r="9" fill="#ffffff" stroke="url(#pf-line)" strokeWidth="2.5" />
                     <text x={s.x} y={s.y + 3.5} textAnchor="middle" fontSize="9.5" fontWeight="800" fill="#2461d8">{i + 1}</text>
@@ -94,7 +111,7 @@ export function PathfinderPulseArt() {
                         fontWeight="600"
                         fill="#5a6478"
                     >
-                        {s.label}
+                        {L.steps[s.key]}
                     </text>
                 </g>
             ))}
