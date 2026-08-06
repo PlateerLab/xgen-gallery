@@ -20,6 +20,251 @@ import {
  * 각 하위 주제는 GNB 딥링크(#ontology, #harness, #mcp-apps …)와 맞물리도록 id를 갖는다.
  */
 
+
+import type { Locale } from "@/lib/i18n";
+
+/**
+ * 표시 문자열 사전 — 다이어그램의 노드·캡션 라벨까지 모두 여기에 모은다.
+ * `/technology`(ko)와 `/en/technology`(en)가 같은 컴포넌트를 공유하기 때문에,
+ * SVG 안쪽 텍스트도 로케일을 따라가야 영문 페이지에 한글이 남지 않는다.
+ */
+const T: Record<Locale, {
+    graphNodes: Record<string, string>;
+    graphEdges: string[];
+    graphCaptionA: string;
+    graphCaptionB: string;
+    graphCaptionC: string;
+    graphAria: string;
+    harnessSteps: string[];
+    harnessLoop: string;
+    enginesLead: string;
+    ontologyPillar: string;
+    ontologyTitle: string;
+    ontologyDesc: string;
+    ontologyRows: [string, string, string][];
+    ontologyQuote: string;
+    harnessPillar: string;
+    harnessTitle: string;
+    harnessDesc: string;
+    harnessLayers: [string, string][];
+    harnessBullets: string[];
+    wrapperHead: string;
+    wrapperBadge: string;
+    wrapperSub: string;
+    wrapperStore: string;
+    wrapperOutput: string;
+    wrapperNote: string;
+    compilerHead: string;
+    compilerBadge: string;
+    compilerSub: string;
+    compilerInline: string;
+    compilerOutput: string;
+    compilerNote: string;
+    sdkSteps: { title: string; caption: string; items: [string, string][] }[];
+    frameworksLead: string;
+    frameworks: [string, string][];
+    runtimeLead: string;
+    mcpAppsTitle: string;
+    mcpAppsDesc: string;
+    sdkTitle: string;
+    sdkDesc: string;
+    apiTitle: string;
+    apiDesc: string;
+    pillarOperation: string;
+    pillarIndependence: string;
+    pillarConnectivity: string;
+    clients: string[];
+}> = {
+    ko: {
+        graphNodes: {
+            q: "질문", order: "주문", item: "상품", review: "리뷰", rating: "평점",
+            fact: "근거", search: "검색", tag: "태그", promo: "프로모션",
+            coupon: "쿠폰", recommend: "추천", view: "조회", stock: "재고",
+            related: "연관", option: "옵션", supplier: "공급사", cust: "고객",
+            cart: "장바구니", wish: "찜", price: "가격", seller: "판매자",
+            brand: "브랜드", grade: "등급", pay: "결제", cat: "카테고리",
+            return: "반품", ship: "배송", inquiry: "문의",
+        },
+        graphEdges: ["질의", "포함", "리뷰", "평점", "도출"],
+        graphCaptionA: "유사도가 아닌",
+        graphCaptionB: "관계 그래프 탐색",
+        graphCaptionC: "근거 경로 도달",
+        graphAria: "질문에서 출발해 상품·리뷰·평점 등 다양한 데이터 엔티티 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프",
+        harnessSteps: ["요청 수신", "테스트 계획", "스크립트 실행", "결과 검증", "리포트 생성"],
+        harnessLoop: "피드백 루프 기반 지속 개선 — 점수 미달 시 재시도로 환각·오류 차단",
+        enginesLead: "XGEN 엔진은 AI가 ‘닮은 문장’이 아니라 ‘맞는 사실’을 따라가게 하고(Ontology), 그 실행 과정 전체를 통제합니다(Harness). 정확한 지식 맥락과 검증된 실행 환경이 신뢰할 수 있는 결과를 만듭니다.",
+        ontologyPillar: "운영",
+        ontologyTitle: "Ontology — 관계로 ‘맞는 사실’을 따라가는 지식 엔진",
+        ontologyDesc: "벡터 기반 검색은 유사도가 높은 단편을 찾는 데 그칩니다. XGEN Ontology RAG는 데이터 사이의 관계를 따라가며 ‘무엇이 있는가’가 아니라 ‘왜 그런가, 무엇과 연결되는가’까지 추적합니다. 문서 검색을 넘어 하나의 지식 그래프로 동작합니다.",
+        ontologyRows: [
+            ["검색 방식", "Pinned Top-K (고정)", "Dynamic Top-k (적응형)"],
+            ["탐색", "유사도 기반 단편 검색", "관계 기반 사실 탐색"],
+            ["출처", "출처 추적이 약함", "복잡 질문 → 근거 경로 추적"],
+            ["저장소", "Vector DB · 차원 기반", "Graph DB · 사실 관계 기반"],
+        ],
+        ontologyQuote: "벡터는 ‘닮은 문장’을 찾고, 온톨로지는 ‘맞는 사실’을 따라갑니다",
+        harnessPillar: "운영",
+        harnessTitle: "Harness — AI가 일하는 환경 전체를 설계하는 기술",
+        harnessDesc: "AI를 움직이는 것은 모델이 아니라 환경입니다. Harness Engineering은 지시(Prompt)와 맥락(Context)을 넘어, LLM이 실제로 일하는 환경 전체를 통제해 신뢰할 수 있는 실행을 보장합니다.",
+        harnessLayers: [
+            ["Prompt Engineering", "LLM에게 무엇을 하라고 지시하는 문장을 정교하게 설계"],
+            ["Context Engineering", "LLM이 답할 때 무엇을 참고하고 어떤 도구를 쓸지 맥락을 설계"],
+            ["Harness Engineering", "지시·맥락·행동·검증까지, 일하는 환경 전체를 통제"],
+        ],
+        harnessBullets: [
+            "일관성 — 9 Stage / 3 Phase 고정 파이프라인",
+            "토큰 효율 — Cascade 압축 · Progressive Disclosure로 컨텍스트 낭비 방지",
+            "LangChain 코어에 의존하지 않고 메시지 한 토막까지 통제",
+        ],
+        wrapperHead: "엔진이 플랫폼 안에 남아있음",
+        wrapperBadge: "Wrapper 방식",
+        wrapperSub: "MCP 핸드프린트를 ‘감싸는 구조’",
+        wrapperStore: "플랫폼 DB 안에 저장",
+        wrapperOutput: "플랫폼 종속 MCP 서버",
+        wrapperNote: "엔진을 내부에 상시 구동하고 MCP로 겉면만 래핑",
+        compilerHead: "실행 로직을 독립 자산으로 전환",
+        compilerBadge: "Compiler 방식",
+        compilerSub: "표준 프로세스 코드로 내재화",
+        compilerInline: "코드 내재",
+        compilerOutput: "독립 MCP 서버 패키지",
+        compilerNote: "SDK를 통해 워크플로우와 보안 정책 자체를 표준 프로세스 코드로 내재화하여 내보냄",
+        sdkSteps: [
+            {
+                title: "XGEN 엔진",
+                caption: "RAG · 워크플로우 · LLMOps 전체를 단 하나의 SDK API로 제공",
+                items: [["RAG", "지식 검색"], ["Workflow", "워크플로우 엔진"], ["Session", "세션 관리"], ["LLMOps", "운영 · 모니터링"]],
+            },
+            {
+                title: "SDK 내보내기",
+                caption: "표준 Python / Node 코드로 두 SDK를 조합",
+                items: [["표준 코드", "SDK 조합"], ["워크플로우 · 정책", "자산화"], ["배포 패키지", "실행 패키지 생성"]],
+            },
+            {
+                title: "독립 MCP 서버",
+                caption: "원하는 모든 환경에 단독 배포 가능",
+                items: [["컨테이너", ""], ["서버리스", ""], ["엣지", ""]],
+            },
+            {
+                title: "MCP 클라이언트",
+                caption: "어디서나 연결, 어떤 클라이언트도 가능",
+                items: [["Internal AI", "사내 시스템"], ["Custom App", "자체 앱"], ["Any Client", "MCP 호환"]],
+            },
+        ],
+        frameworksLead: "엔진을 업무로 잇는 프레임워크입니다. 운영 지능부터 그래프·하이브리드 검색, 맥락 설계까지 — 목적에 맞게 조합해 실제 업무를 수행합니다.",
+        frameworks: [
+            ["운영 지능", "Ontology와 Harness를 하나로 묶어, 정확한 지식 맥락과 검증된 실행 환경으로 신뢰할 수 있는 결과를 보장하는 운영 지능 계층입니다."],
+            ["지식 그래프 검색", "닮은 문장이 아닌 문서 기반 관계를 탐색해 넓은 범주에서 정답을 찾습니다. 문서 검색을 넘어 하나의 지식 그래프로 추론합니다."],
+            ["벡터 + 그래프", "벡터(유사도)와 그래프(관계)를 결합해 정밀도와 탐색 범위를 동시에 확보하는 하이브리드 검색입니다."],
+            ["맥락 설계", "LLM이 답할 때 무엇을 참고하고 어떤 도구를 사용할지 — 맥락(context) 자체를 설계하는 기술입니다."],
+        ],
+        runtimeLead: "XGEN 엔진은 코드를 내보내 어디서나 실행됩니다. 플랫폼에 종속되는 서버가 아니라, 표준 생태계(PyPI·npm) 위에서 어디서나 수정·실행·연결되는 독립 MCP 서버입니다.",
+        mcpAppsTitle: "MCP Apps — 감싸지(Wrapper) 않고, 코드로 담아(Compiler)냅니다",
+        mcpAppsDesc: "대부분의 플랫폼은 엔진을 내부에 상시 구동하고 MCP로 겉면만 감쌉니다. XGEN은 SDK로 워크플로우와 보안 정책 자체를 표준 프로세스 코드로 내재화해 ‘독립 MCP 서버 패키지’로 내보냅니다 — 한 번 만들고 어디서나 실행합니다.",
+        sdkTitle: "Runtime SDK — 엔진 전체를 단 하나의 SDK API로",
+        sdkDesc: "RAG · 워크플로우 · 세션 · LLMOps 전체를 표준 Python / Node 코드로 조합합니다. 워크플로우와 정책을 자산화해 배포 가능한 실행 패키지로 만듭니다.",
+        apiTitle: "Runtime API — 어디서나 배포하고, 어떤 클라이언트와도 연결",
+        apiDesc: "컨테이너 · 서버리스 · 엣지까지 원하는 모든 환경에 단독 배포할 수 있습니다. 표준 MCP 인터페이스로 어떤 클라이언트와도 연결됩니다.",
+        pillarOperation: "운영",
+        pillarIndependence: "독립",
+        pillarConnectivity: "연결",
+        clients: ["Claude", "Cursor", "내부 시스템(Internal AI)", "자체 앱(Custom App)", "MCP 호환 클라이언트"],
+    },
+    en: {
+        graphNodes: {
+            q: "Question", order: "Order", item: "Product", review: "Review", rating: "Rating",
+            fact: "Evidence", search: "Search", tag: "Tag", promo: "Promotion",
+            coupon: "Coupon", recommend: "Recommend", view: "View", stock: "Stock",
+            related: "Related", option: "Option", supplier: "Supplier", cust: "Customer",
+            cart: "Cart", wish: "Wishlist", price: "Price", seller: "Seller",
+            brand: "Brand", grade: "Tier", pay: "Payment", cat: "Category",
+            return: "Return", ship: "Shipping", inquiry: "Inquiry",
+        },
+        graphEdges: ["queries", "contains", "reviewed by", "rated", "yields"],
+        graphCaptionA: "Not similarity —",
+        graphCaptionB: "relationship traversal",
+        graphCaptionC: "Evidence path reached",
+        graphAria: "A knowledge graph traversing multi-hop relationships from a question through products, reviews, and ratings to arrive at evidence",
+        harnessSteps: ["Receive request", "Plan the test", "Run the script", "Verify results", "Generate report"],
+        harnessLoop: "A feedback loop that keeps improving — below-threshold scores trigger a retry, blocking hallucination and error",
+        enginesLead: "The XGEN engines make the AI follow the correct fact rather than the similar sentence (Ontology), and govern the whole execution around it (Harness). Precise knowledge context plus a verified execution environment is what makes a result you can rely on.",
+        ontologyPillar: "Operation",
+        ontologyTitle: "Ontology — a knowledge engine that follows relationships to the right fact",
+        ontologyDesc: "Vector search stops at finding fragments that look similar. XGEN Ontology RAG follows the relationships between your data, tracing not just what exists but why it is so and what it connects to. It behaves as a knowledge graph rather than a document search.",
+        ontologyRows: [
+            ["Retrieval", "Pinned Top-K (fixed)", "Dynamic Top-k (adaptive)"],
+            ["Traversal", "Similarity-based fragments", "Relationship-based facts"],
+            ["Provenance", "Weak source tracking", "Complex question → traceable evidence path"],
+            ["Storage", "Vector DB · dimensional", "Graph DB · factual relationships"],
+        ],
+        ontologyQuote: "A vector finds the sentence that looks right; an ontology follows the fact that is right",
+        harnessPillar: "Operation",
+        harnessTitle: "Harness — engineering the entire environment the AI works in",
+        harnessDesc: "What moves an AI is not the model but its environment. Harness Engineering goes past prompt and context to govern the whole environment the LLM actually works in, so execution stays dependable.",
+        harnessLayers: [
+            ["Prompt Engineering", "Carefully designing the sentences that tell the LLM what to do"],
+            ["Context Engineering", "Designing what the LLM consults and which tools it reaches for when answering"],
+            ["Harness Engineering", "Governing the whole working environment — instruction, context, action, and verification"],
+        ],
+        harnessBullets: [
+            "Consistency — a fixed 9-stage / 3-phase pipeline",
+            "Token efficiency — cascade compression and progressive disclosure keep context from being wasted",
+            "Control down to a single message fragment, without depending on the LangChain core",
+        ],
+        wrapperHead: "The engine stays inside the platform",
+        wrapperBadge: "Wrapper approach",
+        wrapperSub: "A structure that wraps the MCP surface",
+        wrapperStore: "Stored inside the platform DB",
+        wrapperOutput: "Platform-bound MCP server",
+        wrapperNote: "The engine runs always-on inside, with MCP wrapped around the outside",
+        compilerHead: "Execution logic becomes an independent asset",
+        compilerBadge: "Compiler approach",
+        compilerSub: "Compiled into standard process code",
+        compilerInline: "compiled in",
+        compilerOutput: "Standalone MCP server package",
+        compilerNote: "The SDK compiles the workflow and the security policy themselves into standard process code and exports them",
+        sdkSteps: [
+            {
+                title: "XGEN engine",
+                caption: "RAG, workflow, and LLMOps behind a single SDK API",
+                items: [["RAG", "Knowledge retrieval"], ["Workflow", "Workflow engine"], ["Session", "Session management"], ["LLMOps", "Operations and monitoring"]],
+            },
+            {
+                title: "SDK export",
+                caption: "Compose the two SDKs in standard Python or Node code",
+                items: [["Standard code", "SDK composition"], ["Workflow and policy", "Turned into assets"], ["Deployment package", "Runnable package built"]],
+            },
+            {
+                title: "Standalone MCP server",
+                caption: "Deploy on its own into any environment you want",
+                items: [["Container", ""], ["Serverless", ""], ["Edge", ""]],
+            },
+            {
+                title: "MCP client",
+                caption: "Connect from anywhere, to any client",
+                items: [["Internal AI", "In-house systems"], ["Custom App", "Your own app"], ["Any Client", "MCP compatible"]],
+            },
+        ],
+        frameworksLead: "The frameworks that connect the engines to actual work — operational intelligence, graph and hybrid retrieval, and context design, combined to fit the job.",
+        frameworks: [
+            ["Operational intelligence", "The layer that binds Ontology and Harness together, so precise knowledge context and a verified execution environment produce a result you can trust."],
+            ["Knowledge graph retrieval", "Traverses document-level relationships instead of similar sentences, finding the answer across a wider field. It reasons as a knowledge graph, not a document search."],
+            ["Vector + graph", "Hybrid retrieval that combines vector similarity with graph relationships, holding precision and breadth at the same time."],
+            ["Context design", "Designing the context itself — what the LLM consults and which tools it uses when it answers."],
+        ],
+        runtimeLead: "The XGEN engine exports code and runs anywhere. Not a server locked to a platform, but a standalone MCP server you can modify, run, and connect on top of standard ecosystems (PyPI, npm).",
+        mcpAppsTitle: "MCP Apps — not a wrapper, a compiler",
+        mcpAppsDesc: "Most platforms keep the engine running inside and wrap only its surface in MCP. XGEN uses the SDK to compile the workflow and the security policy themselves into standard process code, exported as a standalone MCP server package — build once, run anywhere.",
+        sdkTitle: "Runtime SDK — the whole engine behind one SDK API",
+        sdkDesc: "Compose RAG, workflow, session, and LLMOps in standard Python or Node code. Workflows and policies become assets, packaged into something you can deploy.",
+        apiTitle: "Runtime API — deploy anywhere, connect to any client",
+        apiDesc: "Deploy standalone into containers, serverless, or the edge — whatever environment you want. The standard MCP interface connects to any client.",
+        pillarOperation: "Operation",
+        pillarIndependence: "Independence",
+        pillarConnectivity: "Connectivity",
+        clients: ["Claude", "Cursor", "Internal systems", "Custom apps", "Any MCP-compatible client"],
+    },
+};
+
 function Lead({ children }: { children: ReactNode }) {
     return (
         <p className="mx-auto max-w-3xl text-center text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -68,41 +313,42 @@ function Quote({ children }: { children: ReactNode }) {
 /* ── 네이티브 다이어그램 ─────────────────────────────────────── */
 
 /** Ontology — 관계를 따라가는 지식 그래프 (인라인 SVG). */
-function OntologyGraph() {
+function OntologyGraph({ locale }: { locale: Locale }) {
+    const L = T[locale];
     const nodes: Record<string, [number, number, string]> = {
         // 추론 스파인(굵은 근거 경로)
-        q: [70, 300, "질문"],
-        order: [235, 190, "주문"],
-        item: [470, 300, "상품"],
-        review: [700, 190, "리뷰"],
-        rating: [865, 300, "평점"],
-        fact: [975, 300, "근거"],
+        q: [70, 300, L.graphNodes.q],
+        order: [235, 190, L.graphNodes.order],
+        item: [470, 300, L.graphNodes.item],
+        review: [700, 190, L.graphNodes.review],
+        rating: [865, 300, L.graphNodes.rating],
+        fact: [975, 300, L.graphNodes.fact],
         // 상단 밴드
-        search: [165, 78, "검색"],
-        tag: [360, 70, "태그"],
-        promo: [525, 70, "프로모션"],
-        coupon: [690, 70, "쿠폰"],
-        recommend: [850, 78, "추천"],
+        search: [165, 78, L.graphNodes.search],
+        tag: [360, 70, L.graphNodes.tag],
+        promo: [525, 70, L.graphNodes.promo],
+        coupon: [690, 70, L.graphNodes.coupon],
+        recommend: [850, 78, L.graphNodes.recommend],
         // 상단-중간 밴드
-        view: [70, 175, "조회"],
-        stock: [430, 160, "재고"],
-        related: [565, 175, "연관"],
-        option: [800, 178, "옵션"],
-        supplier: [925, 178, "공급사"],
+        view: [70, 175, L.graphNodes.view],
+        stock: [430, 160, L.graphNodes.stock],
+        related: [565, 175, L.graphNodes.related],
+        option: [800, 178, L.graphNodes.option],
+        supplier: [925, 178, L.graphNodes.supplier],
         // 하단-중간 밴드
-        cust: [155, 405, "고객"],
-        cart: [320, 420, "장바구니"],
-        wish: [430, 420, "찜"],
-        price: [560, 415, "가격"],
-        seller: [720, 420, "판매자"],
-        brand: [865, 415, "브랜드"],
+        cust: [155, 405, L.graphNodes.cust],
+        cart: [320, 420, L.graphNodes.cart],
+        wish: [430, 420, L.graphNodes.wish],
+        price: [560, 415, L.graphNodes.price],
+        seller: [720, 420, L.graphNodes.seller],
+        brand: [865, 415, L.graphNodes.brand],
         // 하단 밴드
-        grade: [90, 460, "등급"],
-        pay: [250, 525, "결제"],
-        cat: [440, 530, "카테고리"],
-        return: [620, 525, "반품"],
-        ship: [800, 525, "배송"],
-        inquiry: [965, 460, "문의"],
+        grade: [90, 460, L.graphNodes.grade],
+        pay: [250, 525, L.graphNodes.pay],
+        cat: [440, 530, L.graphNodes.cat],
+        return: [620, 525, L.graphNodes.return],
+        ship: [800, 525, L.graphNodes.ship],
+        inquiry: [965, 460, L.graphNodes.inquiry],
     };
     // 관계형 간선 — 근거 경로 위의 핵심 관계 외에도 교차 관계를 촘촘히 둬 온톨로지 웹을 만든다.
     const edges: [string, string][] = [
@@ -191,7 +437,7 @@ function OntologyGraph() {
 
     return (
         <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-4">
-            <svg viewBox="0 0 1040 600" className="w-full" role="img" aria-label="질문에서 출발해 상품·리뷰·평점 등 다양한 데이터 엔티티 간 관계를 다중 홉으로 따라가 근거에 도달하는 지식 그래프">
+            <svg viewBox="0 0 1040 600" className="w-full" role="img" aria-label={L.graphAria}>
                 <defs>
                     {/* 구체(orb) 방사형 그라데이션 — 좌상단 하이라이트 → 하단 음영으로 입체감 */}
                     <radialGradient id="orb-white" cx="0.35" cy="0.28" r="0.95">
@@ -235,11 +481,11 @@ function OntologyGraph() {
                 {/* 경로 위 핵심 관계 라벨(할로로 선 위에서도 읽히게) */}
                 {(
                     [
-                        [144, 238, "질의"],
-                        [352, 236, "포함"],
-                        [592, 236, "리뷰"],
-                        [790, 236, "평점"],
-                        [920, 286, "도출"],
+                        [144, 238, L.graphEdges[0]],
+                        [352, 236, L.graphEdges[1]],
+                        [592, 236, L.graphEdges[2]],
+                        [790, 236, L.graphEdges[3]],
+                        [920, 286, L.graphEdges[4]],
                     ] as [number, number, string][]
                 ).map(([x, y, txt]) => (
                     <text key={txt} x={x} y={y} textAnchor="middle" fontSize="10.5" fontWeight="600" fill="#3f5fb0" stroke="#f3f5fa" strokeWidth="3.5" paintOrder="stroke">
@@ -345,22 +591,23 @@ function OntologyGraph() {
                     );
                 })}
                 {/* captions */}
-                <text x="70" y="352" textAnchor="middle" fontSize="12" fill="#5a6478">유사도가 아닌</text>
-                <text x="70" y="368" textAnchor="middle" fontSize="12" fill="#5a6478">관계 그래프 탐색</text>
-                <text x="975" y="352" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">근거 경로 도달</text>
+                <text x="70" y="352" textAnchor="middle" fontSize="12" fill="#5a6478">{L.graphCaptionA}</text>
+                <text x="70" y="368" textAnchor="middle" fontSize="12" fill="#5a6478">{L.graphCaptionB}</text>
+                <text x="975" y="352" textAnchor="middle" fontSize="12" fontWeight="600" fill="#0f9d6f">{L.graphCaptionC}</text>
             </svg>
         </div>
     );
 }
 
 /** Harness — 9 Stage / 3 Phase의 핵심 실행 파이프라인 (HTML). */
-function HarnessPipeline() {
+function HarnessPipeline({ locale }: { locale: Locale }) {
+    const L = T[locale];
     const steps: [string, string, string][] = [
-        ["01", "Trigger", "요청 수신"],
-        ["02", "Plan", "테스트 계획"],
-        ["03", "Execute", "스크립트 실행"],
-        ["04", "Verify", "결과 검증"],
-        ["05", "Report", "리포트 생성"],
+        ["01", "Trigger", L.harnessSteps[0]],
+        ["02", "Plan", L.harnessSteps[1]],
+        ["03", "Execute", L.harnessSteps[2]],
+        ["04", "Verify", L.harnessSteps[3]],
+        ["05", "Report", L.harnessSteps[4]],
     ];
     return (
         <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-5">
@@ -382,27 +629,28 @@ function HarnessPipeline() {
             </div>
             <p className="mx-auto mt-3 flex w-fit items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[13px] font-medium text-[var(--color-ink-muted)]">
                 <RotateCw className="h-3.5 w-3.5 text-[#2f7bff]" />
-                피드백 루프 기반 지속 개선 — 점수 미달 시 재시도로 환각·오류 차단
+                {L.harnessLoop}
             </p>
         </div>
     );
 }
 
 /** MCP Apps — Wrapper(감싸기) vs Compiler(코드 내재) 비교 다이어그램 (HTML). */
-function WrapperCompilerDiagram() {
+function WrapperCompilerDiagram({ locale }: { locale: Locale }) {
+    const L = T[locale];
     return (
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {/* Wrapper — 엔진이 플랫폼 안에 남음 */}
             <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
                 <h4 className="text-[16px] font-bold text-[var(--color-ink)]">
-                    엔진이 플랫폼 안에 남아있음
+                    {L.wrapperHead}
                 </h4>
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                     <span className="rounded-md bg-[#e5e7eb] px-2.5 py-1 text-[13px] font-bold text-[#4b5563]">
-                        Wrapper 방식
+                        {L.wrapperBadge}
                     </span>
                     <span className="text-[13px] text-[var(--color-ink-muted)]">
-                        MCP 핸드프린트를 ‘감싸는 구조’
+                        {L.wrapperSub}
                     </span>
                 </div>
                 <div className="mt-4 flex items-center gap-2.5">
@@ -421,7 +669,7 @@ function WrapperCompilerDiagram() {
                                         Workflow JSON
                                     </p>
                                     <p className="text-[11.5px] text-[var(--color-ink-subtle)]">
-                                        플랫폼 DB 안에 저장
+                                        {L.wrapperStore}
                                     </p>
                                 </div>
                             </div>
@@ -433,7 +681,7 @@ function WrapperCompilerDiagram() {
                             Output
                         </p>
                         <p className="mt-1 text-[13px] font-bold leading-snug text-[var(--color-ink)]">
-                            플랫폼 종속 MCP 서버
+                            {L.wrapperOutput}
                         </p>
                         <p className="mt-1 text-[11.5px] text-[var(--color-ink-subtle)]">
                             Node · Python
@@ -441,21 +689,21 @@ function WrapperCompilerDiagram() {
                     </div>
                 </div>
                 <p className="mt-4 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                    엔진을 내부에 상시 구동하고 MCP로 겉면만 래핑
+                    {L.wrapperNote}
                 </p>
             </div>
 
             {/* Compiler — 실행 로직을 독립 자산으로 (XGEN) */}
             <div className="rounded-2xl border border-[#cfe0ff] bg-[#f3f7ff] p-6">
                 <h4 className="text-[16px] font-bold text-[#2461d8]">
-                    실행 로직을 독립 자산으로 전환
+                    {L.compilerHead}
                 </h4>
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                     <span className="rounded-md bg-[#2f7bff] px-2.5 py-1 text-[13px] font-bold text-white">
-                        Compiler 방식
+                        {L.compilerBadge}
                     </span>
                     <span className="text-[13px] text-[var(--color-ink-muted)]">
-                        표준 프로세스 코드로 내재화
+                        {L.compilerSub}
                     </span>
                 </div>
                 <div className="mt-4 flex items-center gap-2.5">
@@ -469,14 +717,14 @@ function WrapperCompilerDiagram() {
                                 <p className="mt-1 text-[13px] font-bold text-[var(--color-ink)]">
                                     Workflow
                                 </p>
-                                <p className="text-[11.5px] text-[#2461d8]">코드 내재</p>
+                                <p className="text-[11.5px] text-[#2461d8]">{L.compilerInline}</p>
                             </div>
                             <div className="rounded-lg border border-[#cfe0ff] bg-[#f7faff] px-2 py-2 text-center">
                                 <ListChecks className="mx-auto h-4 w-4 text-[#2f7bff]" />
                                 <p className="mt-1 text-[13px] font-bold text-[var(--color-ink)]">
                                     Tool
                                 </p>
-                                <p className="text-[11.5px] text-[#2461d8]">코드 내재</p>
+                                <p className="text-[11.5px] text-[#2461d8]">{L.compilerInline}</p>
                             </div>
                         </div>
                     </div>
@@ -486,7 +734,7 @@ function WrapperCompilerDiagram() {
                             Output
                         </p>
                         <p className="mt-1 text-[13px] font-bold leading-snug">
-                            독립 MCP 서버 패키지
+                            {L.compilerOutput}
                         </p>
                         <p className="mt-1 text-[11.5px] text-white/70">
                             Node · Python
@@ -494,8 +742,7 @@ function WrapperCompilerDiagram() {
                     </div>
                 </div>
                 <p className="mt-4 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                    SDK를 통해 워크플로우와 보안 정책 자체를 표준 프로세스 코드로
-                    내재화하여 내보냄
+                    {L.compilerNote}
                 </p>
             </div>
         </div>
@@ -504,7 +751,8 @@ function WrapperCompilerDiagram() {
 
 /** Runtime SDK — XGEN 엔진 → SDK 내보내기 → 독립 MCP 서버 → MCP 클라이언트.
  *  4개 균일 카드(번호로 흐름 표현)로 깔끔하게 정리. */
-function SdkArchitecture() {
+function SdkArchitecture({ locale }: { locale: Locale }) {
+    const L = T[locale];
     const steps: {
         no: string;
         title: string;
@@ -514,46 +762,37 @@ function SdkArchitecture() {
     }[] = [
         {
             no: "1",
-            title: "XGEN 엔진",
-            caption: "RAG · 워크플로우 · LLMOps 전체를 단 하나의 SDK API로 제공",
+            title: L.sdkSteps[0].title,
+            caption: L.sdkSteps[0].caption,
             items: [
-                ["RAG", "지식 검색"],
-                ["Workflow", "워크플로우 엔진"],
-                ["Session", "세션 관리"],
-                ["LLMOps", "운영 · 모니터링"],
+                ...L.sdkSteps[0].items,
             ],
         },
         {
             no: "2",
-            title: "SDK 내보내기",
-            caption: "표준 Python / Node 코드로 두 SDK를 조합",
+            title: L.sdkSteps[1].title,
+            caption: L.sdkSteps[1].caption,
             items: [
-                ["표준 코드", "SDK 조합"],
-                ["워크플로우 · 정책", "자산화"],
-                ["배포 패키지", "실행 패키지 생성"],
+                ...L.sdkSteps[1].items,
             ],
         },
         {
             no: "3",
-            title: "독립 MCP 서버",
-            caption: "원하는 모든 환경에 단독 배포 가능",
+            title: L.sdkSteps[2].title,
+            caption: L.sdkSteps[2].caption,
             items: [
-                ["컨테이너", ""],
-                ["서버리스", ""],
-                ["엣지", ""],
+                ...L.sdkSteps[2].items,
             ],
         },
         {
             no: "4",
-            title: "MCP 클라이언트",
-            caption: "어디서나 연결, 어떤 클라이언트도 가능",
+            title: L.sdkSteps[3].title,
+            caption: L.sdkSteps[3].caption,
             teal: true,
             items: [
                 ["Claude", "MCP Client"],
                 ["Cursor", "MCP Client"],
-                ["Internal AI", "사내 시스템"],
-                ["Custom App", "자체 앱"],
-                ["Any Client", "MCP 호환"],
+                ...L.sdkSteps[3].items,
             ],
         },
     ];
@@ -610,36 +849,24 @@ function SdkArchitecture() {
 }
 
 /* ── Engines — 운영(Operation): Ontology & Harness ───────────── */
-export function EnginesContent() {
-    const ontology: [string, string, string][] = [
-        ["검색 방식", "Pinned Top-K (고정)", "Dynamic Top-k (적응형)"],
-        ["탐색", "유사도 기반 단편 검색", "관계 기반 사실 탐색"],
-        ["출처", "출처 추적이 약함", "복잡 질문 → 근거 경로 추적"],
-        ["저장소", "Vector DB · 차원 기반", "Graph DB · 사실 관계 기반"],
-    ];
-    const harnessLayers: [typeof BookOpen, string, string][] = [
-        [BookOpen, "Prompt Engineering", "LLM에게 무엇을 하라고 지시하는 문장을 정교하게 설계"],
-        [Layers, "Context Engineering", "LLM이 답할 때 무엇을 참고하고 어떤 도구를 쓸지 맥락을 설계"],
-        [ShieldCheck, "Harness Engineering", "지시·맥락·행동·검증까지, 일하는 환경 전체를 통제"],
-    ];
+export function EnginesContent({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
+    const ontology = L.ontologyRows;
+    const harnessIcons = [BookOpen, Layers, ShieldCheck] as const;
+    const harnessLayers: [typeof BookOpen, string, string][] = L.harnessLayers.map(
+        ([t, d], i) => [harnessIcons[i], t, d],
+    );
 
     return (
         <div className="space-y-16">
-            <Lead>
-                XGEN 엔진은 AI가 ‘닮은 문장’이 아니라 ‘맞는 사실’을 따라가게 하고
-                (Ontology), 그 실행 과정 전체를 통제합니다(Harness). 정확한 지식
-                맥락과 검증된 실행 환경이 신뢰할 수 있는 결과를 만듭니다.
-            </Lead>
+            <Lead>{L.enginesLead}</Lead>
 
-            <Topic id="ontology" pillar="운영" en="Knowledge Engine" title="Ontology — 관계로 ‘맞는 사실’을 따라가는 지식 엔진">
+            <Topic id="ontology" pillar={L.ontologyPillar} en="Knowledge Engine" title={L.ontologyTitle}>
                 <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                    벡터 기반 검색은 유사도가 높은 단편을 찾는 데 그칩니다. XGEN
-                    Ontology RAG는 데이터 사이의 관계를 따라가며 ‘무엇이 있는가’가
-                    아니라 ‘왜 그런가, 무엇과 연결되는가’까지 추적합니다. 문서 검색을
-                    넘어 하나의 지식 그래프로 동작합니다.
+                    {L.ontologyDesc}
                 </p>
 
-                <OntologyGraph />
+                <OntologyGraph locale={locale} />
 
                 <div className="mt-6 overflow-hidden rounded-xl border border-[var(--color-line)]">
                     <table className="w-full text-left text-[15px]">
@@ -662,14 +889,12 @@ export function EnginesContent() {
                     </table>
                 </div>
 
-                <Quote>벡터는 ‘닮은 문장’을 찾고, 온톨로지는 ‘맞는 사실’을 따라갑니다</Quote>
+                <Quote>{L.ontologyQuote}</Quote>
             </Topic>
 
-            <Topic id="harness" pillar="운영" en="Execution Harness" title="Harness — AI가 일하는 환경 전체를 설계하는 기술">
+            <Topic id="harness" pillar={L.harnessPillar} en="Execution Harness" title={L.harnessTitle}>
                 <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                    AI를 움직이는 것은 모델이 아니라 환경입니다. Harness
-                    Engineering은 지시(Prompt)와 맥락(Context)을 넘어, LLM이 실제로
-                    일하는 환경 전체를 통제해 신뢰할 수 있는 실행을 보장합니다.
+                    {L.harnessDesc}
                 </p>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -689,21 +914,18 @@ export function EnginesContent() {
                     ))}
                 </div>
 
-                <HarnessPipeline />
+                <HarnessPipeline locale={locale} />
 
                 <ul className="mt-5 space-y-2">
-                    <li className="flex gap-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                        <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
-                        일관성 — 9 Stage / 3 Phase 고정 파이프라인
-                    </li>
-                    <li className="flex gap-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                        <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
-                        토큰 효율 — Cascade 압축 · Progressive Disclosure로 컨텍스트 낭비 방지
-                    </li>
-                    <li className="flex gap-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                        <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
-                        LangChain 코어에 의존하지 않고 메시지 한 토막까지 통제
-                    </li>
+                    {L.harnessBullets.map((b) => (
+                        <li
+                            key={b}
+                            className="flex gap-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]"
+                        >
+                            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
+                            {b}
+                        </li>
+                    ))}
                 </ul>
             </Topic>
         </div>
@@ -711,43 +933,17 @@ export function EnginesContent() {
 }
 
 /* ── Frameworks — 운영 지능과 검색 프레임워크 ────────────────── */
-export function FrameworksContent() {
+export function FrameworksContent({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
     const items: [typeof Boxes, string, string, string, string][] = [
-        [
-            ShieldCheck,
-            "agenticops",
-            "AgenticOps",
-            "운영 지능",
-            "Ontology와 Harness를 하나로 묶어, 정확한 지식 맥락과 검증된 실행 환경으로 신뢰할 수 있는 결과를 보장하는 운영 지능 계층입니다.",
-        ],
-        [
-            Network,
-            "graphrag",
-            "GraphRAG",
-            "지식 그래프 검색",
-            "닮은 문장이 아닌 문서 기반 관계를 탐색해 넓은 범주에서 정답을 찾습니다. 문서 검색을 넘어 하나의 지식 그래프로 추론합니다.",
-        ],
-        [
-            Layers,
-            "hybrid-rag",
-            "Hybrid RAG",
-            "벡터 + 그래프",
-            "벡터(유사도)와 그래프(관계)를 결합해 정밀도와 탐색 범위를 동시에 확보하는 하이브리드 검색입니다.",
-        ],
-        [
-            BookOpen,
-            "context-engineering",
-            "Context Engineering",
-            "맥락 설계",
-            "LLM이 답할 때 무엇을 참고하고 어떤 도구를 사용할지 — 맥락(context) 자체를 설계하는 기술입니다.",
-        ],
+        [ShieldCheck, "agenticops", "AgenticOps", L.frameworks[0][0], L.frameworks[0][1]],
+        [Network, "graphrag", "GraphRAG", L.frameworks[1][0], L.frameworks[1][1]],
+        [Layers, "hybrid-rag", "Hybrid RAG", L.frameworks[2][0], L.frameworks[2][1]],
+        [BookOpen, "context-engineering", "Context Engineering", L.frameworks[3][0], L.frameworks[3][1]],
     ];
     return (
         <div className="space-y-8">
-            <Lead>
-                엔진을 업무로 잇는 프레임워크입니다. 운영 지능부터 그래프·하이브리드
-                검색, 맥락 설계까지 — 목적에 맞게 조합해 실제 업무를 수행합니다.
-            </Lead>
+            <Lead>{L.frameworksLead}</Lead>
 
             <div className="grid gap-4 sm:grid-cols-2">
                 {items.map(([Icon, id, title, kicker, desc]) => (
@@ -770,39 +966,30 @@ export function FrameworksContent() {
 }
 
 /* ── Runtime — 독립(Independence): MCP Apps · SDK · API ──────── */
-export function RuntimeContent() {
-    const clients = ["Claude", "Cursor", "내부 시스템(Internal AI)", "자체 앱(Custom App)", "MCP 호환 클라이언트"];
+export function RuntimeContent({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
+    const clients = L.clients;
     return (
         <div className="space-y-16">
-            <Lead>
-                XGEN 엔진은 코드를 내보내 어디서나 실행됩니다. 플랫폼에 종속되는
-                서버가 아니라, 표준 생태계(PyPI·npm) 위에서 어디서나 수정·실행·연결되는
-                독립 MCP 서버입니다.
-            </Lead>
+            <Lead>{L.runtimeLead}</Lead>
 
-            <Topic id="mcp-apps" pillar="독립" en="Open Architecture" title="MCP Apps — 감싸지(Wrapper) 않고, 코드로 담아(Compiler)냅니다">
+            <Topic id="mcp-apps" pillar={L.pillarIndependence} en="Open Architecture" title={L.mcpAppsTitle}>
                 <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                    대부분의 플랫폼은 엔진을 내부에 상시 구동하고 MCP로 겉면만 감쌉니다.
-                    XGEN은 SDK로 워크플로우와 보안 정책 자체를 표준 프로세스 코드로
-                    내재화해 ‘독립 MCP 서버 패키지’로 내보냅니다 — 한 번 만들고 어디서나
-                    실행합니다.
+                    {L.mcpAppsDesc}
                 </p>
-                <WrapperCompilerDiagram />
+                <WrapperCompilerDiagram locale={locale} />
             </Topic>
 
-            <Topic id="runtime-sdk" pillar="독립" en="Runtime SDK" title="Runtime SDK — 엔진 전체를 단 하나의 SDK API로">
+            <Topic id="runtime-sdk" pillar={L.pillarIndependence} en="Runtime SDK" title={L.sdkTitle}>
                 <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                    RAG · 워크플로우 · 세션 · LLMOps 전체를 표준 Python / Node 코드로
-                    조합합니다. 워크플로우와 정책을 자산화해 배포 가능한 실행 패키지로
-                    만듭니다.
+                    {L.sdkDesc}
                 </p>
-                <SdkArchitecture />
+                <SdkArchitecture locale={locale} />
             </Topic>
 
-            <Topic id="runtime-api" pillar="연결" en="Runtime API" title="Runtime API — 어디서나 배포하고, 어떤 클라이언트와도 연결">
+            <Topic id="runtime-api" pillar={L.pillarConnectivity} en="Runtime API" title={L.apiTitle}>
                 <p className="mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                    컨테이너 · 서버리스 · 엣지까지 원하는 모든 환경에 단독 배포할 수
-                    있습니다. 표준 MCP 인터페이스로 어떤 클라이언트와도 연결됩니다.
+                    {L.apiDesc}
                 </p>
                 <div className="mt-5 flex flex-wrap justify-center gap-2">
                     {clients.map((c) => (
