@@ -29,7 +29,10 @@ import {
  * 여기에 등록하고, 나머지는 아래 기본 템플릿으로 렌더한다. 메타데이터·JSON-LD·
  * 사이트맵은 어느 쪽이든 lib/customers.ts 하나에서 나온다.
  */
-const CUSTOM_BODIES: Record<string, () => React.ReactElement> = {
+const CUSTOM_BODIES: Record<
+    string,
+    (props: { locale: Locale }) => React.ReactElement
+> = {
     "jeju-bank-genai-platform": JejuBankCaseBody,
 };
 
@@ -124,15 +127,14 @@ export async function CaseDetailPageContent({
         ]),
     ];
 
-    // 전용 레이아웃(제주은행 심층 서사)은 한국어 원문뿐이라 영문판에서는 쓰지 않고
-    // 공통 템플릿으로 렌더한다 — 공통 템플릿은 lib/customers.ts 의 *En 필드를 쓴다.
-    const CustomBody = en ? undefined : CUSTOM_BODIES[c.slug];
+    // 전용 레이아웃(제주은행 심층 서사)은 한/영 모두 갖췄으므로 로케일과 무관하게 쓴다.
+    const CustomBody = CUSTOM_BODIES[c.slug];
     if (CustomBody) {
         return (
             <>
                 <SiteNav />
                 <JsonLd data={ld} />
-                <CustomBody />
+                <CustomBody locale={locale} />
                 <SiteFooter />
             </>
         );

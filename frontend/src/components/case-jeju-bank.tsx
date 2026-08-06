@@ -10,6 +10,8 @@ import {
     Sparkles,
     ArrowLeft,
 } from "lucide-react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 제주은행 GenAI 플랫폼 고객사례 — 확정 공개본(고객 컨펌 완료, 2026-08-04).
@@ -99,12 +101,156 @@ const OUTCOMES = [
     },
 ];
 
+
+/**
+ * 영문 본문. 고객 인용은 원문을 충실히 옮기고, 없는 내용을 더하지 않는다.
+ * 제주은행은 공개 레퍼런스라 실명 표기를 유지한다(다른 사례는 익명 원칙 그대로).
+ */
+const EN = {
+    highlights: [
+        "Internal generative-AI platform built",
+        "Network-separated, on-premise operation",
+        "Built by the business teams themselves",
+        "Embedded across bank-wide processes",
+    ],
+    breadcrumbAria: "Breadcrumb",
+    breadcrumbCases: "Customer cases",
+    breadcrumbIndustry: "Finance",
+    badgeIndustry: "Finance · Jeju Bank",
+    badgeStatus: "In operation",
+    heroTitle: (
+        <>
+            Jeju Bank,
+            <br />
+            becoming a bank that works alongside AI
+        </>
+    ),
+    heroLead:
+        "An XGEN-based generative-AI platform was built inside the bank, giving every employee a working AX environment where they can create AI agents themselves and put them to use in real work. From compliance and audit through consumer protection and sales support, AI agents are being embedded into bank-wide processes step by step.",
+    challengeTitle:
+        "AI the business side can use, on top of the security it has to keep",
+    challengeLead:
+        "Banking runs on strict security and network-separation requirements. In an environment where an external generative-AI service cannot simply be adopted as is, Jeju Bank had three problems to solve at once.",
+    challengeCards: [
+        [
+            "Adoption without loosening security",
+            "Apply generative AI to internal work while keeping the network-separated, on-premise environment intact",
+        ],
+        [
+            "A tool the business side uses directly",
+            "Not only IT — business staff themselves had to be able to build and use AI",
+        ],
+        [
+            "Embedded, not one-off",
+            "Settle into real bank-wide processes rather than stopping at a demo",
+        ],
+    ],
+    solutionTitle: "An AX platform employees build themselves",
+    solutionLead:
+        "The XGEN-based generative-AI platform was built on-premise into the bank's own infrastructure, together with a working model in which business staff design, verify, and use AI agents themselves.",
+    solutionCard1: "AI agents employees build themselves",
+    solutionCard1Items: [
+        "Start easily by wiring nodes on the canvas, or from a template or tutorial",
+        "Create an agent through chat alone — describe the goal and be guided through the steps and tools needed to finish it",
+        "Upload internal documents, connect them to a knowledge collection, and use it as a Q&A agent right away",
+    ],
+    solutionCard2: "Wired straight into the work",
+    solutionCard2Items: [
+        "Call an agent from the collaboration tool to answer a question, with the best-suited agent among several responding",
+        "Produce real work output, such as document drafts on standard templates",
+        "Extend the reach by linking internal systems through MCP and APIs",
+    ],
+    techTitle: "Technology applied",
+    techBold: [
+        "an on-premise, network-separated environment",
+        "knowledge collections (RAG)",
+        "MCP and APIs",
+        "PII masking and blocked-term filters",
+    ],
+    builtTitle: "AI agents applied across six bank-wide areas",
+    builtLead:
+        "Bank-wide work was divided into six areas, a representative task was chosen in each, and AI agents were applied. Rollout continues across the bank around the lead agent in each area.",
+    areas: [
+        [
+            "Compliance and audit automation",
+            "Continuous monitoring, KYC, selection of internal-control and audit items, and risk-based analysis support",
+        ],
+        [
+            "Consumer-protection support",
+            "Drafting responses to voice-phishing cases and customer complaints, plus complaint statistics analysis",
+        ],
+        [
+            "Sales and product efficiency",
+            "Automating reporting and analysis — branch opinion papers, daily briefings, new-product planning and research",
+        ],
+        [
+            "Credit and market monitoring",
+            "Monitoring procurement bid openings and tenders, comparing and summarizing markets and products",
+        ],
+        [
+            "Bank-wide shared agents",
+            "A shared support layer for work QA, document classification, and quality checks",
+        ],
+        [
+            "Data-driven performance sharing",
+            "Agent-assisted data reports and performance analysis that make the state of the work visible",
+        ],
+    ],
+    builtNoteTitle: "Past assisting individual tasks, into bank-wide process",
+    builtNoteBody:
+        "From document drafting and data analysis through internal control and sales support, agents are being embedded into bank-wide processes step by step.",
+    outcomesTitle:
+        "Work innovation, a culture of use, and room to expand — bank-wide",
+    outcomes: [
+        {
+            title: "AI-driven work innovation, settled in",
+            points: [
+                "Standardized work and automated repetition through generative AI",
+                "Less time spent on drafting, research, and reporting",
+                "An environment where staff concentrate on higher-value work",
+            ],
+        },
+        {
+            title: "A bank-wide culture of using AI",
+            points: [
+                "An AI platform anyone can use easily",
+                "A working culture built around AI agents",
+                "Rising AI literacy and a shift toward an AI-native organization",
+            ],
+        },
+        {
+            title: "A base for extending AI services",
+            points: [
+                "Internal systems connected through MCP and APIs",
+                "Department-level agents developed on the shared AI platform",
+                "Data and AI assets accumulated and reused over time",
+            ],
+        },
+    ],
+    vocTitle: "In the customer's words",
+    vocSpeaker: "Head of the AI Innovation Team, Jeju Bank",
+    vocOrg: "Jeju Bank · Finance",
+    vocBadge: "Customer in operation",
+    quote:
+        "Building a generative-AI platform was not simply a project to introduce a system — it was a process of changing how we work and how the organization thinks. It was not an easy journey, but XGEN's stable platform and the delivery team's fast, flexible response let us carry the project through successfully. What stood out was how quickly the varied requirements coming from the business side were reflected while the build stayed stable through to completion. Jeju Bank will now go a step further — past using AI, to become an AI Native Bank that works alongside AI.",
+    allCases: "All customer cases",
+    contact: "Get in touch",
+};
+
 const H2 =
     "text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]";
 const KICKER =
     "text-center text-[12px] font-bold uppercase tracking-[0.14em] text-[var(--color-ink-subtle)]";
 
-export function JejuBankCaseBody() {
+export function JejuBankCaseBody({ locale = "ko" }: { locale?: Locale }) {
+    const en = locale === "en";
+    const highlights = en ? EN.highlights : HIGHLIGHTS;
+    const areas = en
+        ? AREAS.map((a, i) => ({ ...a, title: EN.areas[i][0], desc: EN.areas[i][1] }))
+        : AREAS;
+    const outcomes = en
+        ? OUTCOMES.map((o, i) => ({ ...o, ...EN.outcomes[i] }))
+        : OUTCOMES;
     return (
         <main>
             {/* HERO */}
@@ -115,18 +261,21 @@ export function JejuBankCaseBody() {
                 />
                 <div className="relative mx-auto w-full max-w-4xl px-6 pt-28 pb-20">
                     <nav
-                        aria-label="브레드크럼"
+                        aria-label={en ? EN.breadcrumbAria : "브레드크럼"}
                         className="flex flex-wrap items-center justify-center gap-1.5 text-[13px] text-white/45"
                     >
-                        <Link href="/customers" className="transition hover:text-white">
-                            고객사례
+                        <Link
+                            href={localeHref(locale, "/customers")}
+                            className="transition hover:text-white"
+                        >
+                            {en ? EN.breadcrumbCases : "고객사례"}
                         </Link>
                         <span>/</span>
                         <Link
-                            href="/customers/finance"
+                            href={localeHref(locale, "/customers/finance")}
                             className="transition hover:text-white"
                         >
-                            금융
+                            {en ? EN.breadcrumbIndustry : "금융"}
                         </Link>
                     </nav>
 
@@ -135,29 +284,34 @@ export function JejuBankCaseBody() {
                             XGEN
                         </span>
                         <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[12.5px] font-semibold text-white/70">
-                            금융 · 제주은행
+                            {en ? EN.badgeIndustry : "금융 · 제주은행"}
                         </span>
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/15 px-3 py-1 text-[12.5px] font-bold text-emerald-300">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            운영 중
+                            {en ? EN.badgeStatus : "운영 중"}
                         </span>
                     </div>
 
                     <p className={`mt-8 ${KICKER} text-white/45`}>Customer Story</p>
                     <h1 className="mt-3 text-center text-[34px] font-bold leading-[1.15] tracking-tight md:text-[48px]">
-                        제주은행,
-                        <br />
-                        AI와 함께 일하는 은행으로
+                        {en ? (
+                            EN.heroTitle
+                        ) : (
+                            <>
+                                제주은행,
+                                <br />
+                                AI와 함께 일하는 은행으로
+                            </>
+                        )}
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-center text-[18px] leading-relaxed text-white/70 md:text-[20px]">
-                        XGEN 기반 사내 생성형 AI 플랫폼을 구축해, 직원 누구나 직접 AI
-                        Agent를 만들고 실제 업무에 활용하는 실행형 AX 환경을
-                        마련했습니다. 준법·감사부터 소비자보호, 영업지원까지 전행 업무
-                        프로세스에 AI Agent를 단계적으로 내재화하고 있습니다.
+                        {en
+                            ? EN.heroLead
+                            : "XGEN 기반 사내 생성형 AI 플랫폼을 구축해, 직원 누구나 직접 AI Agent를 만들고 실제 업무에 활용하는 실행형 AX 환경을 마련했습니다. 준법·감사부터 소비자보호, 영업지원까지 전행 업무 프로세스에 AI Agent를 단계적으로 내재화하고 있습니다."}
                     </p>
 
                     <ul className="mt-9 flex flex-wrap justify-center gap-2">
-                        {HIGHLIGHTS.map((h) => (
+                        {highlights.map((h) => (
                             <li
                                 key={h}
                                 className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[13.5px] font-semibold text-white/80"
@@ -173,27 +327,32 @@ export function JejuBankCaseBody() {
             {/* 배경·과제 */}
             <section className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                 <p className={KICKER}>The Challenge</p>
-                <h2 className={`mt-3 ${H2}`}>보안 위에서, 현업이 직접 쓰는 AI</h2>
+                <h2 className={`mt-3 ${H2}`}>
+                    {en ? EN.challengeTitle : "보안 위에서, 현업이 직접 쓰는 AI"}
+                </h2>
                 <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                    금융권은 강한 보안·망분리 요건 위에서 업무를 운영합니다. 외부 생성형
-                    AI 서비스를 그대로 쓰기 어려운 환경에서, 제주은행은 세 가지를 동시에
-                    풀어야 했습니다.
+                    {en
+                        ? EN.challengeLead
+                        : "금융권은 강한 보안·망분리 요건 위에서 업무를 운영합니다. 외부 생성형 AI 서비스를 그대로 쓰기 어려운 환경에서, 제주은행은 세 가지를 동시에 풀어야 했습니다."}
                 </p>
                 <div className="mt-8 grid gap-4 md:grid-cols-3">
-                    {[
-                        {
-                            t: "보안 위에서의 도입",
-                            d: "망분리·온프레미스 환경을 지키면서 생성형 AI를 사내 업무에 적용",
-                        },
-                        {
-                            t: "현업이 직접 쓰는 도구",
-                            d: "IT 조직만이 아니라 현업 직원이 직접 AI를 만들고 쓸 수 있어야 함",
-                        },
-                        {
-                            t: "일회성이 아닌 내재화",
-                            d: "데모로 끝나지 않고 실제 전행 업무 프로세스에 정착",
-                        },
-                    ].map((c) => (
+                    {(en
+                        ? EN.challengeCards.map(([t, d]) => ({ t, d }))
+                        : [
+                              {
+                                  t: "보안 위에서의 도입",
+                                  d: "망분리·온프레미스 환경을 지키면서 생성형 AI를 사내 업무에 적용",
+                              },
+                              {
+                                  t: "현업이 직접 쓰는 도구",
+                                  d: "IT 조직만이 아니라 현업 직원이 직접 AI를 만들고 쓸 수 있어야 함",
+                              },
+                              {
+                                  t: "일회성이 아닌 내재화",
+                                  d: "데모로 끝나지 않고 실제 전행 업무 프로세스에 정착",
+                              },
+                          ]
+                    ).map((c) => (
                         <div
                             key={c.t}
                             className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-5 text-center"
@@ -213,47 +372,48 @@ export function JejuBankCaseBody() {
             <section className="border-y border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                 <div className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                     <p className={KICKER}>The Solution</p>
-                    <h2 className={`mt-3 ${H2}`}>직원이 직접 만드는 실행형 AX 플랫폼</h2>
+                    <h2 className={`mt-3 ${H2}`}>
+                        {en ? EN.solutionTitle : "직원이 직접 만드는 실행형 AX 플랫폼"}
+                    </h2>
                     <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                        XGEN 기반 생성형 AI 플랫폼을 은행 인프라에 온프레미스로 구축하고,
-                        현업 직원이 직접 AI Agent를 설계·검증·활용하는 실행형 체계를
-                        마련했습니다.
+                        {en
+                            ? EN.solutionLead
+                            : "XGEN 기반 생성형 AI 플랫폼을 은행 인프라에 온프레미스로 구축하고, 현업 직원이 직접 AI Agent를 설계·검증·활용하는 실행형 체계를 마련했습니다."}
                     </p>
 
                     <div className="mt-8 grid gap-5 md:grid-cols-2">
                         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
                             <h3 className="text-[16px] font-bold text-[var(--color-ink)]">
-                                직원이 직접 만드는 AI Agent
+                                {en ? EN.solutionCard1 : "직원이 직접 만드는 AI Agent"}
                             </h3>
                             <ul className="mt-4 space-y-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                <li>
-                                    · 캔버스에서 노드를 연결하거나, 템플릿·튜토리얼로
-                                    손쉽게 시작
-                                </li>
-                                <li>
-                                    · 대화(Chat)만으로 Agent 생성 — 목표를 설명하면 필요한
-                                    단계·도구를 안내받아 완성
-                                </li>
-                                <li>
-                                    · 사내 문서를 업로드하고 지식 컬렉션에 연결하면 즉시
-                                    QnA Agent로 활용
-                                </li>
+                                {(en
+                                    ? EN.solutionCard1Items
+                                    : [
+                                          "캔버스에서 노드를 연결하거나, 템플릿·튜토리얼로 손쉽게 시작",
+                                          "대화(Chat)만으로 Agent 생성 — 목표를 설명하면 필요한 단계·도구를 안내받아 완성",
+                                          "사내 문서를 업로드하고 지식 컬렉션에 연결하면 즉시 QnA Agent로 활용",
+                                      ]
+                                ).map((li) => (
+                                    <li key={li}>· {li}</li>
+                                ))}
                             </ul>
                         </div>
                         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
                             <h3 className="text-[16px] font-bold text-[var(--color-ink)]">
-                                업무 현장에 바로 연결
+                                {en ? EN.solutionCard2 : "업무 현장에 바로 연결"}
                             </h3>
                             <ul className="mt-4 space-y-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                <li>
-                                    · 협업 툴에서 Agent를 호출해 질문에 답하고, 여러 Agent
-                                    중 가장 적합한 Agent가 응답
-                                </li>
-                                <li>
-                                    · 표준 양식 기반 문서 초안 작성 등 실제 업무 산출물로
-                                    연결
-                                </li>
-                                <li>· MCP·API로 사내 시스템과 연계해 활용 범위를 확장</li>
+                                {(en
+                                    ? EN.solutionCard2Items
+                                    : [
+                                          "협업 툴에서 Agent를 호출해 질문에 답하고, 여러 Agent 중 가장 적합한 Agent가 응답",
+                                          "표준 양식 기반 문서 초안 작성 등 실제 업무 산출물로 연결",
+                                          "MCP·API로 사내 시스템과 연계해 활용 범위를 확장",
+                                      ]
+                                ).map((li) => (
+                                    <li key={li}>· {li}</li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -263,27 +423,57 @@ export function JejuBankCaseBody() {
                         <div className="flex items-center gap-2">
                             <Sparkles className="h-4 w-4 text-[#2f7bff]" />
                             <h3 className="text-[15px] font-bold text-[var(--color-ink)]">
-                                적용 기술
+                                {en ? EN.techTitle : "적용 기술"}
                             </h3>
                         </div>
                         <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                            XGEN 기반 Agentic AI 플랫폼을{" "}
-                            <b className="font-semibold text-[var(--color-ink)]">
-                                온프레미스·망분리 환경
-                            </b>
-                            에 구축했습니다. 현업 직원은 캔버스·템플릿·대화형으로 Agent를
-                            제작하고, 사내 문서를{" "}
-                            <b className="font-semibold text-[var(--color-ink)]">
-                                지식 컬렉션(RAG)
-                            </b>
-                            에 연결해 QnA로 활용합니다.{" "}
-                            <b className="font-semibold text-[var(--color-ink)]">MCP·API</b>
-                            로 사내 시스템과 협업 툴을 연계하며,{" "}
-                            <b className="font-semibold text-[var(--color-ink)]">
-                                개인정보(PII) 마스킹·금칙어 필터
-                            </b>{" "}
-                            등 생성 단계 통제와 활용 모니터링으로 금융권 보안 요건을
-                            충족합니다.
+                            {en ? (
+                                <>
+                                    The XGEN-based Agentic AI platform was built into{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        {EN.techBold[0]}
+                                    </b>
+                                    . Business staff create agents on the canvas, from
+                                    templates, or through chat, and connect internal
+                                    documents to{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        {EN.techBold[1]}
+                                    </b>{" "}
+                                    to use them for Q&amp;A.{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        {EN.techBold[2]}
+                                    </b>{" "}
+                                    link internal systems and collaboration tools, while
+                                    generation-stage controls such as{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        {EN.techBold[3]}
+                                    </b>{" "}
+                                    and usage monitoring meet the security requirements of
+                                    the financial sector.
+                                </>
+                            ) : (
+                                <>
+                                    XGEN 기반 Agentic AI 플랫폼을{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        온프레미스·망분리 환경
+                                    </b>
+                                    에 구축했습니다. 현업 직원은 캔버스·템플릿·대화형으로
+                                    Agent를 제작하고, 사내 문서를{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        지식 컬렉션(RAG)
+                                    </b>
+                                    에 연결해 QnA로 활용합니다.{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        MCP·API
+                                    </b>
+                                    로 사내 시스템과 협업 툴을 연계하며,{" "}
+                                    <b className="font-semibold text-[var(--color-ink)]">
+                                        개인정보(PII) 마스킹·금칙어 필터
+                                    </b>{" "}
+                                    등 생성 단계 통제와 활용 모니터링으로 금융권 보안
+                                    요건을 충족합니다.
+                                </>
+                            )}
                         </p>
                     </div>
                 </div>
@@ -292,15 +482,17 @@ export function JejuBankCaseBody() {
             {/* 추진 영역 */}
             <section className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                 <p className={KICKER}>What We Built</p>
-                <h2 className={`mt-3 ${H2}`}>전행 6개 영역에 AI Agent 적용</h2>
+                <h2 className={`mt-3 ${H2}`}>
+                    {en ? EN.builtTitle : "전행 6개 영역에 AI Agent 적용"}
+                </h2>
                 <p className="mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                    전행 업무를 6개 영역으로 나눠 분야별 대표 과제를 선정하고, AI Agent를
-                    적용했습니다. 분야별 대표 Agent를 중심으로 전행 차원의 확산을 이어가고
-                    있습니다.
+                    {en
+                        ? EN.builtLead
+                        : "전행 업무를 6개 영역으로 나눠 분야별 대표 과제를 선정하고, AI Agent를 적용했습니다. 분야별 대표 Agent를 중심으로 전행 차원의 확산을 이어가고 있습니다."}
                 </p>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                    {AREAS.map((a) => {
+                    {areas.map((a) => {
                         const Icon = a.icon;
                         return (
                             <div
@@ -328,11 +520,12 @@ export function JejuBankCaseBody() {
 
                 <div className="mt-8 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center">
                     <p className="text-[15px] font-bold text-[var(--color-ink)]">
-                        개별 업무 보조를 넘어, 전행 프로세스로
+                        {en ? EN.builtNoteTitle : "개별 업무 보조를 넘어, 전행 프로세스로"}
                     </p>
                     <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                        문서 작성·데이터 분석·내부통제·영업지원까지, 전행 업무 프로세스에
-                        Agent를 단계적으로 내재화하고 있습니다.
+                        {en
+                            ? EN.builtNoteBody
+                            : "문서 작성·데이터 분석·내부통제·영업지원까지, 전행 업무 프로세스에 Agent를 단계적으로 내재화하고 있습니다."}
                     </p>
                 </div>
             </section>
@@ -342,10 +535,12 @@ export function JejuBankCaseBody() {
                 <div className="mx-auto w-full max-w-5xl px-6 py-16 md:py-20">
                     <p className={KICKER}>Outcomes</p>
                     <h2 className={`mt-3 ${H2}`}>
-                        업무혁신·활용문화·서비스 확장을 전행으로
+                        {en
+                            ? EN.outcomesTitle
+                            : "업무혁신·활용문화·서비스 확장을 전행으로"}
                     </h2>
                     <div className="mt-8 grid gap-4 md:grid-cols-3">
-                        {OUTCOMES.map((o) => (
+                        {outcomes.map((o) => (
                             <div
                                 key={o.no}
                                 className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
@@ -371,7 +566,7 @@ export function JejuBankCaseBody() {
             <section className="mx-auto w-full max-w-4xl px-6 pb-20 pt-16 md:pt-20">
                 {/* 고객의 소리(VoC) — 화자 아이덴티티 + 자평/비전 인용 */}
                 <p className={KICKER}>Voice of Customer</p>
-                <h2 className={`mt-3 ${H2}`}>고객의 목소리</h2>
+                <h2 className={`mt-3 ${H2}`}>{en ? EN.vocTitle : "고객의 목소리"}</h2>
 
                 <figure className="relative mt-10 overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-8 md:p-11">
                     <div
@@ -385,29 +580,24 @@ export function JejuBankCaseBody() {
                         </span>
                         <div className="min-w-0 text-left">
                             <p className="text-[16px] font-bold text-[var(--color-ink)]">
-                                제주은행 AI 혁신팀장
+                                {en ? EN.vocSpeaker : "제주은행 AI 혁신팀장"}
                             </p>
                             <p className="mt-0.5 text-[13.5px] font-semibold text-[#2461d8]">
-                                제주은행 · 금융
+                                {en ? EN.vocOrg : "제주은행 · 금융"}
                             </p>
                         </div>
                         <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[12.5px] font-bold text-emerald-600 sm:inline-flex">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                            운영 중 고객
+                            {en ? EN.vocBadge : "운영 중 고객"}
                         </span>
                     </figcaption>
 
                     {/* 인용 */}
                     <Quote className="relative mt-6 h-7 w-7 rotate-180 text-[#2461d8]/25" />
                     <blockquote className="relative mt-4 text-left text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[21px]">
-                        생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는 프로젝트가
-                        아니라, 업무 방식과 조직 문화를 함께 바꾸는 과정이었습니다. 쉽지
-                        않은 여정이었지만, XGEN의 안정적인 플랫폼과 수행팀의 빠르고 유연한
-                        대응 덕분에 프로젝트를 성공적으로 추진할 수 있었습니다. 특히 현업의
-                        다양한 요구사항을 신속하게 반영하며 안정적으로 구축을 완료할 수
-                        있었던 점이 인상적이었습니다. 이제 제주은행은 AI를 활용하는 수준을
-                        넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더 도약해 나갈
-                        것입니다.
+                        {en
+                            ? EN.quote
+                            : "생성형 AI 플랫폼 구축은 단순히 시스템을 도입하는 프로젝트가 아니라, 업무 방식과 조직 문화를 함께 바꾸는 과정이었습니다. 쉽지 않은 여정이었지만, XGEN의 안정적인 플랫폼과 수행팀의 빠르고 유연한 대응 덕분에 프로젝트를 성공적으로 추진할 수 있었습니다. 특히 현업의 다양한 요구사항을 신속하게 반영하며 안정적으로 구축을 완료할 수 있었던 점이 인상적이었습니다. 이제 제주은행은 AI를 활용하는 수준을 넘어, AI와 함께 일하는 AI Native Bank로 한 단계 더 도약해 나갈 것입니다."}
                     </blockquote>
                     {/* 닫는 인용부호 — 우측 하단에 배치 */}
                     <div className="relative mt-1 flex justify-end">
@@ -417,17 +607,17 @@ export function JejuBankCaseBody() {
 
                 <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] pt-8">
                     <Link
-                        href="/customers"
+                        href={localeHref(locale, "/customers")}
                         className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-ink-muted)] transition hover:text-[#2461d8]"
                     >
                         <ArrowLeft className="h-4 w-4" />
-                        전체 고객사례
+                        {en ? EN.allCases : "전체 고객사례"}
                     </Link>
                     <Link
-                        href="/contact?from=customers-case"
+                        href={`${localeHref(locale, "/contact")}?from=customers-case`}
                         className="inline-flex items-center gap-1.5 rounded-full bg-[#2461d8] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-[#1b4fb0]"
                     >
-                        도입 문의
+                        {en ? EN.contact : "도입 문의"}
                     </Link>
                 </div>
             </section>
