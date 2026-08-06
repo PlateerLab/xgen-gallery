@@ -23,7 +23,7 @@ interface LayerCopy {
     desc: [string, string];
 }
 
-const T: Record<Locale, { layers: LayerCopy[]; aria: string }> = {
+const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: string }> = {
     ko: {
         layers: [
             {
@@ -64,6 +64,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string }> = {
             },
         ],
         aria: "인프라부터 에이전트까지 여섯 계층이 쌓인 XGEN 코어 엔진 아이소메트릭 도해",
+        rightHeading: "XGEN 주요 기능 및 역할",
     },
     en: {
         layers: [
@@ -105,6 +106,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string }> = {
             },
         ],
         aria: "An isometric diagram of the XGEN core engine, six layers stacked from infrastructure up to agents",
+        rightHeading: "XGEN capabilities and their role",
     },
 };
 
@@ -210,7 +212,7 @@ export function LayerStackArt({ locale = "ko" }: { locale?: Locale }) {
 
             {/* 오른쪽 컬럼 헤딩 — XGEN 주요 역할 및 기능 */}
             <text x={fnX} y={cyOf(0) - 44} fontSize="16" fontWeight="800" fill="#2f6fe0" letterSpacing="0.01em">
-                XGEN 주요 기능 및 역할
+                {T[locale].rightHeading}
             </text>
 
             {/* 가운데 — 레이어 이름만, 플레이트와 점선 정렬 */}

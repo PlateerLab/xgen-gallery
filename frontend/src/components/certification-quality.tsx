@@ -68,9 +68,13 @@ export function CertificationQuality({
 }) {
     const t = T[locale];
     // GS인증 여정 기록(태그: GS인증)을 최신순 최대 3개 — 투명성의 신뢰 근거.
-    const gsPosts = getAllPosts()
-        .filter((p) => p.tags.includes("GS인증"))
-        .slice(0, 3);
+    // 인증 여정 글은 한국어 원문뿐이라 영문판에서는 목록을 비운다.
+    const gsPosts =
+        locale === "en"
+            ? []
+            : getAllPosts()
+                  .filter((p) => p.tags.includes("GS인증"))
+                  .slice(0, 3);
 
     const gsChips = t.gsChips;
     const aiMasterFacts = t.amFacts;
