@@ -4,6 +4,25 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/components/i18n-provider";
+
+/** 검색 UI 문구 — 인덱스 자체는 한국어 콘텐츠라 결과 제목은 원문 그대로 노출된다. */
+const UI = {
+    ko: {
+        trigger: "검색…",
+        triggerAria: "사이트 검색 (⌘K)",
+        placeholder: "페이지 · 문서 · 블로그 · 도구 검색…",
+        loading: "불러오는 중…",
+        empty: "검색 결과가 없습니다",
+    },
+    en: {
+        trigger: "Search…",
+        triggerAria: "Search the site (⌘K)",
+        placeholder: "Search pages, docs, blog, and tools…",
+        loading: "Loading…",
+        empty: "No results found",
+    },
+} as const;
 
 type Doc = {
     title: string;
@@ -15,6 +34,8 @@ type Doc = {
 
 /** 전역 사이트 검색 — 트리거 버튼 + ⌘K 모달. /api/search-index 인덱스를 퍼지 검색. */
 export function SiteSearch({ light = false }: { light?: boolean }) {
+    const { locale } = useI18n();
+    const ui = UI[locale];
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [docs, setDocs] = useState<Doc[] | null>(null);
@@ -115,7 +136,7 @@ export function SiteSearch({ light = false }: { light?: boolean }) {
             <button
                 type="button"
                 onClick={() => setOpen(true)}
-                aria-label="사이트 검색 (⌘K)"
+                aria-label={ui.triggerAria}
                 className={cn(
                     "flex w-full items-center gap-2.5 rounded-full border px-4 py-2 text-[13.5px] transition",
                     light
@@ -124,7 +145,7 @@ export function SiteSearch({ light = false }: { light?: boolean }) {
                 )}
             >
                 <Search className="h-4 w-4 flex-none" />
-                <span className="flex-1 text-left">검색…</span>
+                <span className="flex-1 text-left">{ui.trigger}</span>
                 <kbd
                     className={cn(
                         "hidden flex-none rounded border px-1.5 py-0.5 font-mono text-[11px] sm:inline",
@@ -153,7 +174,7 @@ export function SiteSearch({ light = false }: { light?: boolean }) {
                                 value={q}
                                 onChange={(e) => setQ(e.target.value)}
                                 onKeyDown={onInputKey}
-                                placeholder="페이지 · 문서 · 블로그 · 도구 검색…"
+                                placeholder={ui.placeholder}
                                 className="w-full bg-transparent py-4 text-[16px] text-[var(--color-ink)] outline-none placeholder:text-[var(--color-ink-subtle)]"
                             />
                             <button
@@ -172,11 +193,11 @@ export function SiteSearch({ light = false }: { light?: boolean }) {
                         >
                             {docs === null ? (
                                 <li className="px-3 py-8 text-center text-[14px] text-[var(--color-ink-subtle)]">
-                                    불러오는 중…
+                                    {ui.loading}
                                 </li>
                             ) : results.length === 0 ? (
                                 <li className="px-3 py-8 text-center text-[14px] text-[var(--color-ink-subtle)]">
-                                    검색 결과가 없습니다
+                                    {ui.empty}
                                 </li>
                             ) : (
                                 results.map((r, i) => (

@@ -1,6 +1,8 @@
 ---
 title: "사용자 매뉴얼을 솔루션 가이드 위키로 바꾼 이유"
+titleEn: "Why we turned the user manual into a solution guide wiki"
 description: "하나의 Markdown 원본으로 웹 위키·Word·한글·영문 문서를 동시에 생성해 매뉴얼을 제품처럼 운영한 경험 — 왜 문서 체계를 버리고 위키 기반으로 전환했는지 정리했습니다."
+descriptionEn: "A product manual answers \"what does this button do.\" A solution guide answers \"how do I get this job done.\" Notes from making that switch."
 date: "2026-07-16"
 cover: /blog/sooanc-manual-to-wiki.svg
 author: "sooanc"

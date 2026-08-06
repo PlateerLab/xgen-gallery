@@ -1,6 +1,8 @@
 ---
 title: "교훈을 다음 실행에 반영할 때 최신 상태를 유지하는 방법(10편)"
+titleEn: "Keeping lessons fresh when you feed them into the next run (part 10)"
 description: "검증 피드백, 답 후보, 판정 점수, 도구 탐색이 서로 다른 회차의 상태를 섞지 않고 다음 행동으로 이어지게 만든 과정을 다룹니다."
+descriptionEn: "Carrying feedback forward is easy; keeping it current is not. How we stopped stale lessons from steering new executions."
 date: "2026-07-10"
 cover: /blog/harness-journey-10-feedback-freshness.svg
 author: "김진수"

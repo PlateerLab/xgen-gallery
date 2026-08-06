@@ -54,6 +54,8 @@ export interface Issue {
     vol: number;
     date: string; // YYYY-MM-DD
     title: string;
+    /** 영문 제목(선택) — /en 화면에서 쓴다. 없으면 영문 화면에 노출하지 않는다. */
+    titleEn?: string;
     summary: string;
     intro: string[];
     releases: ReleaseItem[];
@@ -69,6 +71,7 @@ const vol1: Issue = {
     vol: 1,
     date: "2026-07-13",
     title: "XGEN 뉴스레터 vol.1",
+    titleEn: "XGEN Newsletter vol.1",
     summary:
         "Claude Code 백엔드 연동, 구글 검색 AI 전면 전환, Context rot — 최근 소식을 정리했습니다",
     intro: [
@@ -215,6 +218,7 @@ const vol2: Issue = {
     vol: 2,
     date: "2026-07-27",
     title: "XGEN 뉴스레터 vol.2",
+    titleEn: "XGEN Newsletter vol.2",
     summary:
         "음성 대화(STT·TTS) 도입, 에이전트별 마스킹, AI 요금이 신분이 되는 이야기 — 지난 2주 소식을 정리했습니다",
     intro: [

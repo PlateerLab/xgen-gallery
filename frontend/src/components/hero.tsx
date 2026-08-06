@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
+import { localeHref } from "@/lib/locale-path";
 // import { CustomerMarquee } from "@/components/customer-marquee"; // 임시 주석 처리
 import { cn } from "@/lib/cn";
 
@@ -83,6 +84,7 @@ function HeroActions({
 
 /** Slide 0 — XGEN Agentic AI Platform (xgen.im 소개영상 배경). */
 function XgenPlatformSlide() {
+    const { locale } = useI18n();
     return (
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
@@ -91,20 +93,47 @@ function XgenPlatformSlide() {
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
-                기업의 AX 혁신을 돕는
-                <br />
-                Agentic AI Platform
+                {locale === "ko" ? (
+                    <>
+                        기업의 AX 혁신을 돕는
+                        <br />
+                        Agentic AI Platform
+                    </>
+                ) : (
+                    <>
+                        The Agentic AI Platform
+                        <br />
+                        behind enterprise AX
+                    </>
+                )}
             </h1>
 
             <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
-                원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼 —
-                <br className="hidden sm:block" />
-                XGEN을 지금 직접 경험해보세요
+                {locale === "ko" ? (
+                    <>
+                        원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼 —
+                        <br className="hidden sm:block" />
+                        XGEN을 지금 직접 경험해보세요
+                    </>
+                ) : (
+                    <>
+                        An Agentic AI platform shaped to the LLMs and infrastructure
+                        you already run —
+                        <br className="hidden sm:block" />
+                        try XGEN for yourself
+                    </>
+                )}
             </p>
 
             <HeroActions
-                primary={{ label: "XGEN 체험하기", href: "/xgen-trial" }}
-                secondary={{ label: "제품 보기", href: "/product" }}
+                primary={{
+                    label: locale === "ko" ? "XGEN 체험하기" : "Try XGEN",
+                    href: localeHref(locale, "/xgen-trial"),
+                }}
+                secondary={{
+                    label: locale === "ko" ? "제품 보기" : "See the product",
+                    href: localeHref(locale, "/product"),
+                }}
             />
         </>
     );
@@ -112,6 +141,7 @@ function XgenPlatformSlide() {
 
 /** Slide 1 — Enterprise AI research vision. */
 function VisionSlide() {
+    const { locale } = useI18n();
     return (
         <>
             <h1 className={H1_CLS}>
@@ -121,14 +151,31 @@ function VisionSlide() {
             </h1>
 
             <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
-                Plateer Labs는 단순한 AI 기능 개발을 넘어,
-                <br className="hidden sm:block" />
-                기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다
+                {locale === "ko" ? (
+                    <>
+                        Plateer Labs는 단순한 AI 기능 개발을 넘어,
+                        <br className="hidden sm:block" />
+                        기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다
+                    </>
+                ) : (
+                    <>
+                        Plateer Labs works past the feature race, researching
+                        <br className="hidden sm:block" />
+                        the standards that make enterprise AI dependable enough to run
+                    </>
+                )}
             </p>
 
             <HeroActions
-                primary={{ label: "연구 영역 둘러보기", href: "/research" }}
-                secondary={{ label: "AI 기술 보기", href: "/technology" }}
+                primary={{
+                    label:
+                        locale === "ko" ? "연구 영역 둘러보기" : "Explore our research",
+                    href: localeHref(locale, "/research"),
+                }}
+                secondary={{
+                    label: locale === "ko" ? "AI 기술 보기" : "See the technology",
+                    href: localeHref(locale, "/technology"),
+                }}
             />
         </>
     );
@@ -171,6 +218,7 @@ function XgenSlide() {
 
 /** Slide 2 — Security & Governance (가드레일·통제, /security-and-governance 참고). */
 function SecuritySlide() {
+    const { locale } = useI18n();
     return (
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
@@ -179,30 +227,70 @@ function SecuritySlide() {
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
-                선언한 대로 통제되는
-                <br />
-                Enterprise AI
+                {locale === "ko" ? (
+                    <>
+                        선언한 대로 통제되는
+                        <br />
+                        Enterprise AI
+                    </>
+                ) : (
+                    <>
+                        Enterprise AI that behaves
+                        <br />
+                        the way you declared
+                    </>
+                )}
             </h1>
 
             <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
-                가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와 AI 위험도
-                등급까지 —
-                <br className="hidden sm:block" />
-                규제 산업에서도 신뢰할 수 있는 다층 통제 위에서 AI를 운영합니다
+                {locale === "ko" ? (
+                    <>
+                        가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와 AI 위험도
+                        등급까지 —
+                        <br className="hidden sm:block" />
+                        규제 산업에서도 신뢰할 수 있는 다층 통제 위에서 AI를 운영합니다
+                    </>
+                ) : (
+                    <>
+                        Guard models, PII masking, and blocklist filters, plus audit
+                        logs and AI risk grading —
+                        <br className="hidden sm:block" />
+                        layered controls that hold up in regulated industries
+                    </>
+                )}
             </p>
 
             <HeroActions
                 primary={{
-                    label: "보안·거버넌스 보기",
-                    href: "/security-and-governance",
+                    label:
+                        locale === "ko"
+                            ? "보안·거버넌스 보기"
+                            : "Security and governance",
+                    href: localeHref(locale, "/security-and-governance"),
                 }}
-                secondary={{ label: "인증·품질 보기", href: "/product#certification" }}
+                secondary={{
+                    label:
+                        locale === "ko"
+                            ? "인증·품질 보기"
+                            : "Certification and quality",
+                    href: localeHref(locale, "/product#certification"),
+                }}
             />
         </>
     );
 }
 
 type HeroPost = { slug: string; title: string; category: string; date: string };
+
+/** 블로그 카테고리 원문 → 영문 배지 라벨. 매핑에 없으면 원문을 그대로 쓴다. */
+const CATEGORY_EN: Record<string, string> = {
+    "제품 소식": "Product News",
+    "Tech Note": "Tech Note",
+    "Case Study": "Case Study",
+};
+function categoryLabel(category: string, locale: string): string {
+    return locale === "ko" ? category : (CATEGORY_EN[category] ?? category);
+}
 type HeroIssue = { slug: string; title: string; vol: number; date: string };
 type HeroCase = { slug: string; text: string };
 
@@ -222,6 +310,7 @@ export function Hero({
     /** 가장 최근 고객사례 — 상세(/customers/case/*)로 바로 랜딩. */
     latestCase?: HeroCase | null;
 }) {
+    const { locale } = useI18n();
     const [active, setActive] = useState(0);
 
     // 헤드라인 뉴스의 Tech Note 슬롯: 방문할 때마다 최근 글 중 하나를 무작위로.
@@ -348,7 +437,7 @@ export function Hero({
                             key={i}
                             type="button"
                             onClick={() => setActive(i)}
-                            aria-label={`슬라이드 ${i + 1}`}
+                            aria-label={`${locale === "ko" ? "슬라이드" : "Slide"} ${i + 1}`}
                             aria-current={i === active}
                             className={cn(
                                 "h-2 rounded-full transition-all",
@@ -363,7 +452,7 @@ export function Hero({
 
             {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
             {(featuredPost || productNews || latestPost || latestIssue || latestCase) && (
-                <div aria-label="최근 소식" className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
+                <div aria-label={locale === "ko" ? "최근 소식" : "Latest updates"} className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
                     <div className="mx-auto max-w-6xl rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md">
                         {/* 윗줄 — 가장 알리고 싶은 두 가지(대표 글 · 최근 고객 사례).
                             아래 3단(제품 소식·뉴스레터·Tech Note)과 구분선으로 분리한다.
@@ -378,11 +467,11 @@ export function Hero({
                                     // 달라서 가운데 정렬하면 두 '제품 소식' 배지의 x가
                                     // 어긋난다. 첫 열끼리는 왼쪽 기준으로 붙여 맞춘다.
                                     <Link
-                                        href={`/blog/${featuredPost.slug}`}
+                                        href={localeHref(locale, `/blog/${featuredPost.slug}`)}
                                         className="group flex min-w-0 items-center justify-start gap-3 py-3"
                                     >
                                         <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
-                                            {featuredPost.category}
+                                            {categoryLabel(featuredPost.category, locale)}
                                         </span>
                                         <p className="min-w-0 max-w-[400px] truncate text-[14px] font-semibold text-white group-hover:underline">
                                             {featuredPost.title}
@@ -392,11 +481,13 @@ export function Hero({
                                 )}
                                 {latestCase && (
                                     <Link
-                                        href={`/customers/case/${latestCase.slug}`}
+                                        href={localeHref(locale, `/customers/case/${latestCase.slug}`)}
                                         className="group flex min-w-0 items-center justify-center gap-3 py-3"
                                     >
                                         <span className="flex-none rounded-full bg-emerald-400/15 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-emerald-300">
-                                            최근 고객 사례
+                                            {locale === "ko"
+                                                ? "최근 고객 사례"
+                                                : "Latest case"}
                                         </span>
                                         {/* 폭을 400px로 묶어 길게 보여주되 뒤는 말줄임 처리 */}
                                         <p className="min-w-0 max-w-[400px] truncate text-[14px] font-semibold text-white group-hover:underline">
@@ -413,11 +504,11 @@ export function Hero({
                             // 선 만큼 그 다음 제품 소식은 sm 미만에서 감춘다.
                             // justify-start — 윗줄 첫 열의 '제품 소식'과 x를 맞춘다.
                             <Link
-                                href={`/blog/${productNews.slug}`}
+                                href={localeHref(locale, `/blog/${productNews.slug}`)}
                                 className="group hidden min-w-0 items-center justify-start gap-3 py-3 sm:flex"
                             >
                                 <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
-                                    {productNews.category}
+                                    {categoryLabel(productNews.category, locale)}
                                 </span>
                                 <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
                                     {productNews.title}
@@ -427,7 +518,7 @@ export function Hero({
                         )}
                         {latestIssue && (
                             <Link
-                                href={`/newsletter/${latestIssue.slug}`}
+                                href={localeHref(locale, `/newsletter/${latestIssue.slug}`)}
                                 className="group flex min-w-0 items-center justify-center gap-3 py-3"
                             >
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
@@ -443,11 +534,11 @@ export function Hero({
                             // 모바일은 세로로 쌓여 히어로 CTA를 가리므로, 고객사례 줄이
                             // 추가된 만큼 무작위 노출인 Tech Note를 sm 미만에서 감춘다.
                             <Link
-                                href={`/blog/${latestPost.slug}`}
+                                href={localeHref(locale, `/blog/${latestPost.slug}`)}
                                 className="group hidden min-w-0 items-center justify-center gap-3 py-3 sm:flex"
                             >
                                 <span className="flex-none rounded-full border border-white/20 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white/75">
-                                    {latestPost.category}
+                                    {categoryLabel(latestPost.category, locale)}
                                 </span>
                                 <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
                                     {latestPost.title}

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — 체험하기(Live Demo) 존. 제품 투어 바로 아래에 배치해, 제품을 본 직후
@@ -13,27 +15,70 @@ type ArtKind = "x2bee" | "xgen";
 
 const EXPERIENCES: {
     kind: ArtKind;
-    name: string;
-    desc: string;
+    name: Record<Locale, string>;
+    desc: Record<Locale, string>;
     href: string;
     /** true면 외부 링크(새 탭), false면 사내 라우트(같은 탭). */
     external: boolean;
 }[] = [
     {
         kind: "xgen",
-        name: "XGEN Agentic AI Platform 체험하기",
-        desc: "데이터 연동부터 노코드 에이전트 구현까지, 15일 무료 체험으로 직접 경험해보세요",
+        name: {
+            ko: "XGEN Agentic AI Platform 체험하기",
+            en: "Try the XGEN Agentic AI Platform",
+        },
+        desc: {
+            ko: "데이터 연동부터 노코드 에이전트 구현까지, 15일 무료 체험으로 직접 경험해보세요",
+            en: "From connecting your data to building agents without code — see it for yourself in a 15-day free trial",
+        },
         href: "/xgen-trial",
         external: false,
     },
     {
         kind: "x2bee",
-        name: "X2BEE AI 체험하기",
-        desc: "커머스에 특화된 AI 기능을 설치 없이 브라우저에서 바로 사용해보세요",
+        name: { ko: "X2BEE AI 체험하기", en: "Try X2BEE AI" },
+        desc: {
+            ko: "커머스에 특화된 AI 기능을 설치 없이 브라우저에서 바로 사용해보세요",
+            en: "Commerce-specific AI features, running in your browser with nothing to install",
+        },
         href: "https://ai-exp.x2bee.com",
         external: true,
     },
 ];
+
+const COPY: Record<
+    Locale,
+    { title: React.ReactNode; lead: string; cta: string; newTab: string; free: string }
+> = {
+    ko: {
+        title: (
+            <>
+                지금 바로{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
+                    체험해보세요
+                </span>
+            </>
+        ),
+        lead: "설치 없이 브라우저에서 X2BEE AI와 XGEN Agentic AI Platform을 직접 사용해볼 수 있습니다",
+        cta: "체험하기",
+        newTab: "새 탭에서 열림",
+        free: "무료 체험",
+    },
+    en: {
+        title: (
+            <>
+                Try it{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
+                    right now
+                </span>
+            </>
+        ),
+        lead: "X2BEE AI and the XGEN Agentic AI Platform both run in your browser — no installation required",
+        cta: "Try it",
+        newTab: "Opens in a new tab",
+        free: "Free trial",
+    },
+};
 
 /** 카드 상단 일러스트 — 사이트 일러스트 톤(브랜드 블루, 기하학적). */
 function ExperienceArt({ kind }: { kind: ArtKind }) {
@@ -136,7 +181,8 @@ function ExperienceArt({ kind }: { kind: ArtKind }) {
     );
 }
 
-export function HomeExperience() {
+export function HomeExperience({ locale = "ko" }: { locale?: Locale }) {
+    const t = COPY[locale];
     return (
         <section id="live-demo" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
             <div className="mx-auto max-w-7xl px-6 py-28">
@@ -144,14 +190,10 @@ export function HomeExperience() {
                     / Live Demo
                 </p>
                 <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight md:text-5xl">
-                    지금 바로{" "}
-                    <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
-                        체험해보세요
-                    </span>
+                    {t.title}
                 </h2>
                 <p className="mt-5 mx-auto max-w-2xl text-[17px] text-center leading-relaxed text-[var(--color-ink-muted)]">
-                    설치 없이 브라우저에서 X2BEE AI와 XGEN Agentic AI Platform을 직접
-                    사용해볼 수 있습니다
+                    {t.lead}
                 </p>
 
                 <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -164,7 +206,7 @@ export function HomeExperience() {
                                 <div className="relative h-44 bg-gradient-to-br from-[#eef4fc] via-[#eaf5ff] to-[#e4f3ff] px-6 py-4">
                                     <ExperienceArt kind={it.kind} />
                                     <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full border border-[#cfe0f7] bg-white/80 px-2.5 py-1 text-[12px] font-semibold text-[#1f6fd0] backdrop-blur-sm">
-                                        {it.external ? "새 탭에서 열림" : "무료 체험"}
+                                        {it.external ? t.newTab : t.free}
                                         <ArrowUpRight className="h-3 w-3" />
                                     </span>
                                 </div>
@@ -172,13 +214,13 @@ export function HomeExperience() {
                                 {/* 콘텐츠 */}
                                 <div className="flex flex-1 flex-col items-center border-t border-[var(--color-line)] p-7 text-center">
                                     <h3 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {it.name}
+                                        {it.name[locale]}
                                     </h3>
                                     <p className="mt-2.5 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {it.desc}
+                                        {it.desc[locale]}
                                     </p>
                                     <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_8px_22px_-8px_rgba(47,123,255,0.6)] transition group-hover:gap-3 group-hover:brightness-110">
-                                        체험하기
+                                        {t.cta}
                                         {it.external ? (
                                             <ArrowUpRight className="h-4 w-4" />
                                         ) : (
@@ -190,7 +232,7 @@ export function HomeExperience() {
                         );
                         return it.external ? (
                             <a
-                                key={it.name}
+                                key={it.kind}
                                 href={it.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -199,7 +241,7 @@ export function HomeExperience() {
                                 {inner}
                             </a>
                         ) : (
-                            <Link key={it.name} href={it.href} className={cardCls}>
+                            <Link key={it.kind} href={localeHref(locale, it.href)} className={cardCls}>
                                 {inner}
                             </Link>
                         );

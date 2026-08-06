@@ -7,6 +7,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getIssues } from "@/lib/newsletter";
 import { SERIES } from "@/lib/series";
 import { getAllCases, INDUSTRIES, getCasesByIndustry, type IndustryKey } from "@/lib/customers";
+import { EN_ROUTES, localePath } from "@/lib/locale-path";
 
 /**
  * Dynamic sitemap covering every public URL (home, tools, members, releases).
@@ -115,7 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Members are best-effort — never let a GitHub hiccup break the sitemap.
     }
 
-    return [
+    const koreanRoutes = [
         ...staticRoutes,
         ...groupRoutes,
         ...toolRoutes,
@@ -126,4 +127,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...caseRoutes,
         ...industryRoutes,
     ];
+
+    // 영문판(/en/*) — 실제로 번역된 경로만 색인 대상에 넣는다(EN_ROUTES가 기준).
+    // 없는 URL을 사이트맵에 넣으면 Search Console에서 404 오류로 잡힌다.
+    const englishRoutes: MetadataRoute.Sitemap = EN_ROUTES.map((path) => ({
+        url: `${SITE.url}${localePath("en", path)}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: path === "/" ? 0.9 : 0.6,
+    }));
+
+    return [...koreanRoutes, ...englishRoutes];
 }

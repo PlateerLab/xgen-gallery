@@ -37,6 +37,7 @@ const COPY = {
         inquiry: "상담 내용",
         inquiryPlaceholder:
             "제품 데모·15일 무료 체험·PoC·기술 상담 중 필요한 내용과 검토 배경을 간단히 남겨주세요. 문의 유형을 선택해 접수하시면 영업일 1~2일 내 연락드립니다.",
+        agreeAll: "전체 동의",
         agreePolicy: "[필수] 개인정보취급방침에 동의",
         agreeCollect: "[필수] 개인정보 수집 및 이용 동의",
         agreeMarketing: "[선택] 마케팅 정보 수신 동의",
@@ -115,6 +116,7 @@ const COPY = {
         inquiry: "Consultation details",
         inquiryPlaceholder:
             "Briefly tell us what you need — product demo, 15-day free trial, PoC, or tech consultation — and your context. Select an inquiry type and we'll reply within 1–2 business days.",
+        agreeAll: "Agree to all",
         agreePolicy: "[Required] I agree to the Privacy Policy.",
         agreeCollect:
             "[Required] I consent to the collection and use of personal information.",
@@ -510,7 +512,7 @@ export function DemoForm() {
                         className="h-4 w-4 shrink-0 rounded border-[var(--color-line-strong)] accent-[#2f7bff]"
                     />
                     <span className="text-[13.5px] font-bold text-[var(--color-ink)]">
-                        전체 동의
+                        {c.agreeAll}
                     </span>
                 </label>
                 {/* 동의 항목은 3개라 2열로 두면 둘째 줄에 하나만 남아 고아가 된다.

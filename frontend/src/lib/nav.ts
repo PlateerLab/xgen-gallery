@@ -34,6 +34,8 @@ export interface NavLeaf {
     route?: string;
     /** Short intro copy for a `route` item on the group one-page. */
     blurb?: string;
+    /** 영문 소개 카피 — `/en` 그룹 원페이지에서 쓴다(없으면 blurb 그대로). */
+    blurbEn?: string;
     /**
      * Hide from the menus (GNB dropdown, mobile drawer, hero quick-jump) while
      * keeping the section rendered on the group one-page. Use to retire a menu
@@ -58,6 +60,8 @@ export interface NavLeaf {
      * ("커머스 · 금융 · 공공 · IT"). Shown as muted text, not clickable.
      */
     note?: string;
+    /** Korean note override — used when the site locale is `ko` (see `labelKo`). */
+    noteKo?: string;
 }
 
 export interface NavGroup {
@@ -69,6 +73,8 @@ export interface NavGroup {
     concept: ConceptId;
     /** short hero subtitle — fill in over time */
     blurb: string;
+    /** 영문 히어로 부제 — `/en` 그룹 원페이지에서 쓴다(없으면 blurb 그대로). */
+    blurbEn?: string;
     /** sub-menu items, each an anchored section on the group page */
     items: NavLeaf[];
     /**
@@ -118,6 +124,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Research",
         concept: "research",
         blurb: "엔터프라이즈 AI를 떠받치는 연구 — 영역, 백서, 아키텍처, 로드맵.",
+        blurbEn: "The research underneath enterprise AI — areas, papers, architecture, and roadmap.",
         hidden: true,
         items: [
             { label: "Research Areas", id: "research-areas" },
@@ -130,6 +137,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Research & Technology",
         concept: "technology",
         blurb: "연구 성과부터 엔진·프레임워크·런타임·아키텍처까지.",
+        blurbEn: "From research results through the engines, frameworks, runtime, and architecture.",
         wide: true,
         items: [
             {
@@ -189,6 +197,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Products",
         concept: "products",
         blurb: "XGEN 플랫폼과 그 위의 제품들.",
+        blurbEn: "The XGEN platform and the products built on it.",
         hidden: true,
         items: [
             { label: "Polar", id: "polar" },
@@ -211,6 +220,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Applied AI",
         concept: "solutions",
         blurb: "산업별 적용, PoC·실증, 고객사례, 그리고 무료 체험.",
+        blurbEn: "Industry applications, PoCs and proof, customer cases, and a free trial.",
         wide: true,
         cols: 2,
         items: [
@@ -243,7 +253,8 @@ export const NAV_GROUPS: NavGroup[] = [
                 blurb: "금융·커머스·공공·IT/제조 현장에 XGEN·AI Code Assistant를 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
                 colBreak: true,
                 // 산업 구분은 사례 데이터가 쌓일 때까지 링크 대신 중간점 텍스트로만 노출.
-                note: "커머스 · 금융 · 공공 · IT",
+                note: "Commerce · Finance · Public · IT",
+                noteKo: "커머스 · 금융 · 공공 · IT",
             },
             {
                 // 체험하기 — Applied AI 드롭다운 3열(고객사례 옆). 헤더는 홈 Live Demo
@@ -269,6 +280,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Product",
         concept: "products",
         blurb: "XGEN — 원하는 LLM과 인프라로 만드는 맞춤 Agentic AI 플랫폼",
+        blurbEn: "XGEN — an Agentic AI platform shaped to the LLMs and infrastructure you choose",
         wide: true,
         cols: 3,
         items: [
@@ -335,6 +347,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Open Source",
         concept: "tools",
         blurb: "XGEN을 떠받치는 오픈소스 라이브러리와 실전 레시피.",
+        blurbEn: "The open-source libraries behind XGEN, plus recipes for putting them to work.",
         items: [
             {
                 label: "Library Gallery",
@@ -367,6 +380,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Insight",
         concept: "insights",
         blurb: "Enterprise AI · Agentic AI · GEO·SEO 인사이트",
+        blurbEn: "Insights on Enterprise AI, Agentic AI, and GEO/SEO",
         items: [
             {
                 // Blog — 라벨 클릭 시 /blog 전체, 하위에 카테고리 딥링크를 묶는다.
@@ -413,8 +427,14 @@ export const ABOUT_GROUP: NavGroup = {
     label: "About",
     concept: "about",
     blurb: "Plateer Labs를 만드는 미션과 사람들.",
+        blurbEn: "The mission and the people behind Plateer Labs.",
     items: [
         { label: "Company", id: "company", external: "https://www.plateer.com/" },
-        { label: "깃허브 바로가기", id: "github", external: "https://github.com/PlateerLab" },
+        {
+            label: "GitHub",
+            labelKo: "깃허브 바로가기",
+            id: "github",
+            external: "https://github.com/PlateerLab",
+        },
     ],
 };

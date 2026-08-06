@@ -1,15 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+// 내부 링크는 현재 로케일(/en 여부)에 맞춰 자동으로 다시 쓰인다 — locale-link 참고.
+import { LocaleLink as Link } from "@/components/locale-link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, ArrowRight, PlayCircle } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { GeoPattern, variantForPath } from "@/components/geo-pattern";
+import { useI18n } from "@/components/i18n-provider";
 import { NAV_GROUPS, ABOUT_GROUP, sectionHref } from "@/lib/nav";
+import { stripLocale } from "@/lib/locale-path";
 
 export function SiteFooter() {
-    const pathname = usePathname();
+    const { locale, t } = useI18n();
+    // 경로 분기는 언어 중립 경로로 판단한다 — `/en/contact`도 `/contact`와 같게 동작해야 한다.
+    const pathname = stripLocale(usePathname() || "/");
     // CTA는 메인(/)과 문의 페이지(/demo)를 제외한 모든 페이지 하단에 노출.
     const showCta = pathname !== "/" && pathname !== "/contact";
     // CTA 배너에 '실증 데모' 영상 카드를 함께 노출. CTA가 뜨는 모든 페이지에 적용하되,
@@ -17,13 +22,20 @@ export function SiteFooter() {
     const showDemo = showCta && pathname !== "/proof-in-action";
     // 데모 영상은 페이지 맥락에 맞춰 노출한다. 특정 제품 페이지는 해당 제품 데모를,
     // 그 외에는 XGEN 플랫폼 실증 데모를 기본으로 보여준다.
-    const DEMO_BY_PATH: Record<string, { id: string; title: string }> = {
-        "/code-assistant": { id: "dGEvX07WXKM", title: "AI Code Assistant 실증 데모" },
+    const DEMO_BY_PATH: Record<string, { id: string; title: Record<string, string> }> = {
+        "/code-assistant": {
+            id: "dGEvX07WXKM",
+            title: {
+                ko: "AI Code Assistant 실증 데모",
+                en: "AI Code Assistant in action",
+            },
+        },
     };
-    const demo = DEMO_BY_PATH[pathname] ?? {
+    const demoEntry = DEMO_BY_PATH[pathname] ?? {
         id: "4RiH3ThyIg0",
-        title: "XGEN 플랫폼 실증 데모",
+        title: { ko: "XGEN 플랫폼 실증 데모", en: "XGEN platform in action" },
     };
+    const demo = { id: demoEntry.id, title: demoEntry.title[locale] };
     const DEMO_ID = demo.id;
     const DEMO_THUMB = `https://i.ytimg.com/vi/${DEMO_ID}/maxresdefault.jpg`;
     // 배너 내 인라인 재생 상태(클릭 전엔 썸네일 파사드, 클릭 시 임베드 로드).
@@ -77,33 +89,44 @@ export function SiteFooter() {
                     >
                         <div>
                             <p className="font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-[var(--color-ink-subtle)]">
-                                Research. Technology. Impact.
+                                {t.footer.ctaEyebrow}
                             </p>
                             <h2 className="mt-4 text-2xl font-bold tracking-tight text-balance break-keep text-[var(--color-ink)] md:text-[34px] md:leading-[1.2]">
-                                기업용{" "}
+                                {t.footer.ctaTitleA}
                                 <span className="bg-gradient-to-r from-[#2f7bff] to-[#7c5cff] bg-clip-text text-transparent">
-                                    AI 솔루션
-                                </span>{" "}
-                                도입, 연구에서 실증까지 함께 설계합니다
+                                    {t.footer.ctaTitleHighlight}
+                                </span>
+                                {t.footer.ctaTitleB}
                             </h2>
                             <p
                                 className={`mt-4 max-w-2xl break-keep text-[14.5px] leading-snug text-[var(--color-ink-muted)] ${
                                     showDemo ? "md:mx-0" : "mx-auto"
                                 }`}
                             >
-                                현장에 배치되는{" "}
-                                <span className="font-bold text-[#2461d8]">
-                                    FDE(Forward Deployed Engineer)
-                                </span>
-                                가 요구사항 발굴부터 설계·구현·내재화까지 함께합니다
+                                {locale === "ko" ? (
+                                    <>
+                                        현장에 배치되는{" "}
+                                        <span className="font-bold text-[#2461d8]">
+                                            {t.footer.ctaFde}
+                                        </span>
+                                        가 요구사항 발굴부터 설계·구현·내재화까지 함께합니다
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="font-bold text-[#2461d8]">
+                                            {t.footer.ctaFde}
+                                        </span>{" "}
+                                        work on site with you, from discovery through design,
+                                        implementation, and handover
+                                    </>
+                                )}
                             </p>
                             <p
                                 className={`mt-4 max-w-2xl text-pretty break-keep text-[17px] leading-relaxed text-[var(--color-ink-muted)] ${
                                     showDemo ? "md:mx-0" : "mx-auto"
                                 }`}
                             >
-                                Plateer Labs는 풍부한 연구 경험과 검증된 기술력으로 귀사의
-                                AI 전환 여정을 성공적으로 지원합니다
+                                {t.footer.ctaLead}
                             </p>
                             <div
                                 className={`mt-8 flex flex-wrap items-center gap-3 ${
@@ -114,7 +137,7 @@ export function SiteFooter() {
                                     href="/contact?from=footer"
                                     className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[16px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                                 >
-                                    문의하기
+                                    {t.footer.ctaPrimary}
                                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                                 </Link>
                                 {pathname !== "/technical-consulting" && (
@@ -122,7 +145,7 @@ export function SiteFooter() {
                                         href="/poc-projects"
                                         className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] bg-white/70 px-6 py-3 text-[16px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-ink)]"
                                     >
-                                        PoC 사례 보러가기
+                                        {t.footer.ctaSecondary}
                                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                                     </Link>
                                 )}
@@ -151,7 +174,11 @@ export function SiteFooter() {
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={DEMO_THUMB}
-                                                alt={`${demo.title} 썸네일`}
+                                                alt={
+                                                    locale === "ko"
+                                                        ? `${demo.title} 썸네일`
+                                                        : `${demo.title} — video thumbnail`
+                                                }
                                                 loading="lazy"
                                                 className="absolute inset-0 h-full w-full object-cover brightness-[1.22] saturate-[1.05] transition group-hover:scale-[1.02]"
                                             />
@@ -170,7 +197,7 @@ export function SiteFooter() {
                                         href="/proof-in-action"
                                         className="group inline-flex items-center gap-1 text-[13px] font-semibold text-[#2461d8]"
                                     >
-                                        더 많은 영상 보기
+                                        {t.footer.demoMore}
                                         <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                                     </Link>
                                 </div>
@@ -191,14 +218,14 @@ export function SiteFooter() {
                             </span>
                         </div>
                         <p className="line-clamp-4 max-w-xs text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
-                            {"Plateer Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다."}
+                            {t.footer.blurb}
                         </p>
                     </div>
 
                     {/* Explore — top-level groups, split 3 + 3 (좌: Research·Technology·Applied AI / 우: Resources·Insights·Product) */}
                     <nav className="text-[16px]">
                         <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Explore
+                            {t.footer.explore}
                         </p>
                         <div className="mt-2.5 grid grid-cols-2 gap-x-6">
                             {[
@@ -242,11 +269,15 @@ export function SiteFooter() {
                     {/* About — Explore와 같은 선상의 헤딩 + Company/GitHub/PoC */}
                     <nav className="text-[16px]">
                         <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            About
+                            {t.footer.about}
                         </p>
                         <div className="mt-2.5 flex flex-col gap-2.5">
-                            {ABOUT_GROUP.items.map((it) =>
-                                it.external ? (
+                            {ABOUT_GROUP.items.map((it) => {
+                                const label =
+                                    locale === "ko" && it.labelKo
+                                        ? it.labelKo
+                                        : it.label;
+                                return it.external ? (
                                     <a
                                         key={it.id}
                                         href={it.external}
@@ -254,7 +285,7 @@ export function SiteFooter() {
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-1 text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                     >
-                                        {it.label}
+                                        {label}
                                         <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-subtle)]" />
                                     </a>
                                 ) : (
@@ -263,29 +294,29 @@ export function SiteFooter() {
                                         href={it.route ?? sectionHref(ABOUT_GROUP.key, it.id)}
                                         className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                     >
-                                        {it.label}
+                                        {label}
                                     </Link>
-                                ),
-                            )}
+                                );
+                            })}
                             {/* Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청) */}
                             <Link
                                 href="/members"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                             >
-                                Lab Members
+                                {t.footer.members}
                             </Link>
                             <Link
                                 href="/newsletter"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                             >
-                                뉴스레터 구독
+                                {t.footer.newsletter}
                             </Link>
                             {/* Decap CMS 진입점 — GitHub 로그인 후 글 기고(Open Authoring) */}
                             <a
                                 href="/admin"
                                 className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                             >
-                                블로그 기고
+                                {t.footer.contribute}
                             </a>
                         </div>
                     </nav>

@@ -1,7 +1,9 @@
 ---
 title: "모델 한도에 맞춰 추출 배치를 조절하는 방법(9편)"
+titleEn: "Adapting extraction batch size to the model's limits (part 9)"
 cover: "/blog/ontology-journey-9-adaptive-extraction.svg"
 description: "컨텍스트와 출력 예산을 함께 계산하고, 시간 초과와 JSON 절단이 발생한 배치만 더 작게 나눠 다시 처리합니다."
+descriptionEn: "Fixed batch sizes either waste context or overflow it. How we made extraction batches adapt to the model in front of us."
 date: "2026-06-30"
 author: "김진수"
 authorGithub: "jinsoo96"

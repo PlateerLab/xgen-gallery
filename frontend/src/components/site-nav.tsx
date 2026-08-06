@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+// 내부 링크는 현재 로케일(/en 여부)에 맞춰 자동으로 다시 쓰인다 — locale-link 참고.
+import { LocaleLink as Link } from "@/components/locale-link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
@@ -34,6 +35,11 @@ function buildColumns(items: NavLeaf[], cols: number): NavLeaf[][] {
 /** Resolve a nav item's display label — Korean override when locale is `ko`. */
 function navLabel(item: NavLeaf, locale: string): string {
     return locale === "ko" && item.labelKo ? item.labelKo : item.label;
+}
+
+/** 드롭다운 설명줄(note)도 라벨과 같은 규칙으로 로케일 오버라이드를 적용한다. */
+function navNote(item: NavLeaf, locale: string): string | undefined {
+    return locale === "ko" && item.noteKo ? item.noteKo : item.note;
 }
 
 function DropdownItem({
@@ -74,18 +80,18 @@ function DropdownItem({
                     {navLabel(item, locale)}
                 </Link>
             )}
-            {item.note &&
+            {navNote(item, locale) &&
                 (item.route ? (
                     <Link
                         href={item.route}
                         onClick={onClose}
                         className="block px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]"
                     >
-                        {item.note}
+                        {navNote(item, locale)}
                     </Link>
                 ) : (
                     <p className="px-3 py-1.5 text-[15px] font-medium text-[var(--color-ink-muted)]">
-                        {item.note}
+                        {navNote(item, locale)}
                     </p>
                 ))}
             {children.length > 0 && (
@@ -243,20 +249,18 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
             {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
             {bannerOpen && (
                 <div className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-[linear-gradient(90deg,#00acee_0%,#185aea_100%)] px-12 py-3 text-center text-[14px] leading-snug text-white">
-                    <span className="font-semibold">
-                        XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요
-                    </span>
+                    <span className="font-semibold">{t.nav.promo}</span>
                     <Link
                         href="/xgen-trial"
                         className="inline-flex flex-none items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-[13px] font-bold text-white backdrop-blur-sm transition hover:bg-white/30"
                     >
-                        체험 신청
+                        {t.nav.promoCta}
                         <span aria-hidden>→</span>
                     </Link>
                     <button
                         type="button"
                         onClick={dismissBanner}
-                        aria-label="배너 닫기"
+                        aria-label={t.nav.promoClose}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 transition hover:text-white"
                     >
                         <X className="h-4 w-4" />
@@ -389,16 +393,15 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                 : "border-[var(--color-line-strong)] text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
                         )}
                     >
-                        XGEN 제품보기
+                        {t.nav.productSite}
                         <ArrowUpRight className="h-3.5 w-3.5" />
                     </a>
                     <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
                     {/* members 아이콘은 검색바 뒤에서 제거 — 푸터 About으로 이동(요청).
-                        언어 전환(KO/EN)은 다시 노출(요청). 쿠키 기반 전환이라 URL이
-                        하나뿐이고 영문은 별도 색인되지 않는다 — 색인까지 필요해지면
-                        /en 경로 분리를 함께 검토한다. desktop only. */}
+                        언어 전환(KO/EN)은 경로 기반이다(`/product` ⇆ `/en/product`) —
+                        lib/locale-path.ts 참고. desktop only. */}
                     <LanguageToggle light={light} className="hidden lg:inline-flex" />
 
                     {/* primary CTA — 임시 숨김 (요청: 검색바 확장). false && 로 비활성화. */}
@@ -525,18 +528,18 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
                                                             {navLabel(it, locale)}
                                                         </Link>
                                                     )}
-                                                    {it.note &&
+                                                    {navNote(it, locale) &&
                                                         (it.route ? (
                                                             <Link
                                                                 href={it.route}
                                                                 onClick={close}
                                                                 className="block py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                                             >
-                                                                {it.note}
+                                                                {navNote(it, locale)}
                                                             </Link>
                                                         ) : (
                                                             <p className="py-2.5 text-[17px] font-medium text-[var(--color-ink-muted)]">
-                                                                {it.note}
+                                                                {navNote(it, locale)}
                                                             </p>
                                                         ))}
                                                     {it.children?.some((c) => !c.hidden) && (

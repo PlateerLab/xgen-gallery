@@ -16,6 +16,13 @@ export interface PostMeta {
     slug: string;
     title: string;
     description: string;
+    /**
+     * 영문판 제목·요약(선택). 프론트매터에 `titleEn`/`descriptionEn`을 넣으면
+     * `/en` 화면이 이 값을 쓴다. 없으면 그 글은 영문 화면에 노출하지 않는다 —
+     * 한국어 제목이 영문 페이지에 섞이면 페이지 언어 신호가 흐려진다.
+     */
+    titleEn?: string;
+    descriptionEn?: string;
     date: string; // ISO (YYYY-MM-DD)
     updated?: string;
     author: string;
@@ -80,6 +87,8 @@ function parse(slug: string): Post | null {
         slug,
         title: String(data.title ?? slug),
         description: String(data.description ?? ""),
+        titleEn: data.titleEn ? String(data.titleEn) : undefined,
+        descriptionEn: data.descriptionEn ? String(data.descriptionEn) : undefined,
         date: toISODate(data.date),
         updated: data.updated ? toISODate(data.updated) : undefined,
         author: String(data.author ?? "Plateer Labs"),

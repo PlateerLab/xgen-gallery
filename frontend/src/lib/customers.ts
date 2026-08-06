@@ -75,6 +75,8 @@ export interface CaseStudy {
     products: ProductKey[];
     /** 자족적 한 문장 요약(카드·검색·JSON-LD 공용). */
     summary: string;
+    /** 영문 요약(선택) — /en 화면에서 쓴다. 없으면 영문 화면에 노출하지 않는다. */
+    summaryEn?: string;
     /** 과제. */
     challenge: string;
     /** 적용/솔루션. */
@@ -159,6 +161,8 @@ export const CASE_STUDIES: CaseStudy[] = [
         products: ["xgen"],
         summary:
             "제주은행과 XGEN 기반 사내 생성형 AI(GenAI) 플랫폼을 구축하고, 상주 운영으로 안정화해 활용을 넓혀가는 금융권 사례",
+        summaryEn:
+            "Building an internal generative-AI platform on XGEN with Jeju Bank, then stabilizing it through on-site operations and widening its use across the bank",
         challenge:
             "금융권 보안·망분리 요건을 지키면서 사내 업무에 생성형 AI를 도입하고, 일회성 구축이 아니라 실제 운영까지 안착시켜야 했다.",
         solution:

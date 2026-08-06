@@ -1,35 +1,118 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { pageMetadata } from "@/lib/metadata";
 import { SiteNav } from "@/components/site-nav";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { CosmicBackground } from "@/components/cosmic-background";
 import { DemoForm } from "@/components/demo-form";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
-export const metadata = pageMetadata({
-    title: "데모 · 체험 · 기술 상담",
-    description:
-        "XGEN 제품 데모 요청, 15일 무료 체험 신청, PoC·기술 상담을 한 곳에서 접수합니다. 문의 유형을 선택해 남겨주시면 담당자가 영업일 기준 1–2일 내에 연락드립니다.",
-    path: "/contact",
-});
+/**
+ * 문의 페이지 — 데모·무료 체험·PoC 상담을 한 양식에서 접수한다.
+ * 폼 본체(DemoForm)는 자체 COPY 사전으로 이미 이중언어라 여기서는 주변 카피만 다룬다.
+ */
+const COPY: Record<
+    Locale,
+    {
+        eyebrow: string;
+        title: string;
+        lead: React.ReactNode;
+        fde: React.ReactNode;
+        benefits: string[];
+        trialNote: React.ReactNode;
+        trialCta: string;
+    }
+> = {
+    ko: {
+        eyebrow: "Plateer Labs · 데모 · 무료 체험 · 기술 상담",
+        title: "데모 · 체험 · 기술 상담",
+        lead: (
+            <>
+                제품 데모, XGEN 15일 무료 체험, PoC 및 기술 상담을 신청할 수
+                있습니다. 문의 유형을 선택해 접수해 주시면 담당자가{" "}
+                <br className="hidden md:inline" />
+                영업일 기준 1~2일 이내에 연락드립니다.
+            </>
+        ),
+        fde: (
+            <>
+                현장에 배치되는{" "}
+                <span className="font-semibold text-white">
+                    FDE(Forward Deployed Engineer)
+                </span>
+                가 요구사항 발굴부터 설계·구현·내재화까지 함께합니다
+            </>
+        ),
+        benefits: [
+            "제품 데모 · 15일 무료 체험 · PoC 상담을 한 번에 신청",
+            "과제 정의부터 PoC 설계·수행까지 전문가가 1:1로 지원",
+            "기술 요건에 맞는 솔루션과 레퍼런스 아키텍처 제안",
+        ],
+        trialNote: (
+            <>
+                XGEN 체험은 문의 유형에서{" "}
+                <span className="font-semibold text-white">
+                    ‘XGEN 15일 무료 체험 신청’
+                </span>
+                을 선택하세요
+            </>
+        ),
+        trialCta: "체험 안내 자세히 보기",
+    },
+    en: {
+        eyebrow: "Plateer Labs · Demo · Free trial · Technical consultation",
+        title: "Demo, trial, and technical consultation",
+        lead: (
+            <>
+                Request a product demo, a 15-day XGEN free trial, or a PoC and
+                technical consultation. Pick an inquiry type, and we will get back
+                to you{" "}
+                <br className="hidden md:inline" />
+                within one to two business days.
+            </>
+        ),
+        fde: (
+            <>
+                <span className="font-semibold text-white">
+                    Forward Deployed Engineers (FDE)
+                </span>{" "}
+                work on site with you, from discovery through design,
+                implementation, and handover
+            </>
+        ),
+        benefits: [
+            "One form for a product demo, the 15-day trial, or a PoC conversation",
+            "A specialist works with you directly, from framing the problem to running the PoC",
+            "A solution and reference architecture matched to your technical requirements",
+        ],
+        trialNote: (
+            <>
+                For the trial, choose{" "}
+                <span className="font-semibold text-white">
+                    “Request a 15-day XGEN free trial”
+                </span>{" "}
+                as your inquiry type
+            </>
+        ),
+        trialCta: "More about the trial",
+    },
+};
 
-const BENEFITS = [
-    "제품 데모 · 15일 무료 체험 · PoC 상담을 한 번에 신청",
-    "과제 정의부터 PoC 설계·수행까지 전문가가 1:1로 지원",
-    "기술 요건에 맞는 솔루션과 레퍼런스 아키텍처 제안",
-];
+export function ContactPageContent({ locale }: { locale: Locale }) {
+    const t = COPY[locale];
+    const home = locale === "en" ? "/en" : "/";
+    const self = locale === "en" ? "/en/contact" : "/contact";
 
-export default function ContactPage() {
     return (
         <>
             {/* overlay nav so the background fills behind the GNB, like the main page */}
             <SiteNav overlay />
             <JsonLd
                 data={breadcrumbLd([
-                    { name: "Home", path: "/" },
-                    { name: "Contact", path: "/contact" },
+                    { name: "Home", path: home },
+                    { name: "Contact", path: self },
                 ])}
             />
             <section className="relative flex min-h-[calc(100dvh+2px)] items-center overflow-hidden border-b border-white/10 text-white">
@@ -58,30 +141,20 @@ export default function ContactPage() {
                             pt는 우측 폼 카드의 첫 라벨과 시작선을 맞춘 값. */}
                         <div className="break-keep md:pt-12">
                             <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
-                                Plateer Labs · 데모 · 무료 체험 · 기술 상담
+                                {t.eyebrow}
                             </p>
                             <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                                데모 · 체험 · 기술 상담
+                                {t.title}
                             </h1>
                             <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/65">
-                                제품 데모, XGEN 15일 무료 체험, PoC 및 기술 상담을 신청할 수
-                                있습니다. 문의 유형을 선택해 접수해 주시면 담당자가{" "}
-                                {/* 데스크톱에서만 강제 줄바꿈. 모바일에서는 br이 숨겨져
-                                    한 흐름으로 이어지므로 위의 {" "}가 있어야 "담당자가영업일"로
-                                    붙지 않는다 */}
-                                <br className="hidden md:inline" />
-                                영업일 기준 1~2일 이내에 연락드립니다.
+                                {t.lead}
                             </p>
                             <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-white/70">
-                                현장에 배치되는{" "}
-                                <span className="font-semibold text-white">
-                                    FDE(Forward Deployed Engineer)
-                                </span>
-                                가 요구사항 발굴부터 설계·구현·내재화까지 함께합니다
+                                {t.fde}
                             </p>
 
                             <ul className="mt-8 max-w-lg space-y-3">
-                                {BENEFITS.map((b) => (
+                                {t.benefits.map((b) => (
                                     <li
                                         key={b}
                                         className="flex items-start gap-3 text-[16px] text-white/80"
@@ -95,17 +168,13 @@ export default function ContactPage() {
                             {/* 무료 체험 연계 — 이제 같은 양식의 '무료 체험 신청' 유형으로 접수 */}
                             <div className="mt-6 flex max-w-lg flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
                                 <p className="text-[15px] leading-relaxed text-white/75">
-                                    XGEN 체험은 문의 유형에서{" "}
-                                    <span className="font-semibold text-white">
-                                        ‘XGEN 15일 무료 체험 신청’
-                                    </span>
-                                    을 선택하세요
+                                    {t.trialNote}
                                 </p>
                                 <Link
-                                    href="/xgen-trial"
+                                    href={localeHref(locale, "/xgen-trial")}
                                     className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
                                 >
-                                    체험 안내 자세히 보기
+                                    {t.trialCta}
                                     <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>

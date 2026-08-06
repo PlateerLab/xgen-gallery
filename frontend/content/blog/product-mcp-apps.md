@@ -1,6 +1,8 @@
 ---
 title: "MCP Apps — 한 번 만들고 어디서나 실행"
+titleEn: "MCP Apps — build once, run anywhere"
 description: "엔진을 감싸는 Wrapper 방식을 넘어, SDK로 워크플로우·정책을 코드에 담아 독립 MCP 서버로 내보내는 MCP Apps를 소개합니다."
+descriptionEn: "Package an agent workflow as a standard MCP app and run it wherever you need it, without rebuilding the integration each time."
 date: "2026-06-21"
 cover: /blog/product-mcp-apps.svg
 author: "Plateer Labs"

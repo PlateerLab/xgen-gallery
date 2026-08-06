@@ -1,6 +1,8 @@
 ---
 title: "도구 공개와 출력 전달을 실행 컨텍스트로 설계하기(9편)"
+titleEn: "Designing tool exposure and output passing as execution context (part 9)"
 description: "연결 도구를 검색 우선으로 공개하고, 출력 목적지의 정보와 실제 전달 책임을 분리한 과정을 다룹니다."
+descriptionEn: "Which tools an agent can see, and how results move between steps, is a context design problem — not a prompt problem."
 date: "2026-07-01"
 cover: /blog/harness-journey-9-context-design.svg
 author: "김진수"

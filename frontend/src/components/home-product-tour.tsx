@@ -4,6 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { PlayCircle, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/components/i18n-provider";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — Applied AI 하위 "Product Tour" 섹션.
@@ -18,7 +21,7 @@ type Product = {
     key: string;
     name: string;
     tagline: string;
-    desc: string;
+    desc: Record<Locale, string>;
     /** 임베드 URL (YouTube/Vimeo 등). null이면 준비 중 플레이스홀더. */
     video: string | null;
     /** 썸네일 이미지 URL. 없으면 그라데이션 배경 + 재생 버튼만 표시. */
@@ -26,7 +29,7 @@ type Product = {
     /** 설정 시 클릭 전 썸네일 대신 영상 첫 N초를 무음 루프로 재생한다(살아있는 썸네일). */
     previewEndSeconds?: number;
     /** 설정 시 설명 패널에 상세 페이지 링크를 노출한다. */
-    detail?: { href: string; label: string };
+    detail?: { href: string; label: Record<Locale, string> };
 };
 
 // XGEN 우산 아래 Overview → Build(PathFinder) → Experience(FloUI) → Deploy(MCP Apps).
@@ -35,7 +38,10 @@ const PRODUCTS: Product[] = [
         key: "overview",
         name: "Overview",
         tagline: "XGEN",
-        desc: "노드 캔버스와 헤드리스 엔진 기반의 엔터프라이즈 AI 에이전트 런타임 — XGEN 플랫폼 전반을 한눈에 소개합니다",
+        desc: {
+            ko: "노드 캔버스와 헤드리스 엔진 기반의 엔터프라이즈 AI 에이전트 런타임 — XGEN 플랫폼 전반을 한눈에 소개합니다",
+            en: "An enterprise AI agent runtime built on a node canvas and a headless engine — a tour of the XGEN platform end to end",
+        },
         video: "https://www.youtube-nocookie.com/embed/x0Uch1b0kNk",
         poster: "https://img.youtube.com/vi/x0Uch1b0kNk/maxresdefault.jpg",
     },
@@ -43,16 +49,25 @@ const PRODUCTS: Product[] = [
         key: "pathfinder",
         name: "PathFinder",
         tagline: "Build",
-        desc: "복잡한 목표를 실행 가능한 에이전트 워크플로우로 설계·구성하는 단계입니다",
+        desc: {
+            ko: "복잡한 목표를 실행 가능한 에이전트 워크플로우로 설계·구성하는 단계입니다",
+            en: "Where a complicated goal gets designed into an agent workflow that can actually run",
+        },
         video: "https://www.youtube-nocookie.com/embed/4T7tT2nTXfw",
         poster: "https://img.youtube.com/vi/4T7tT2nTXfw/maxresdefault.jpg",
-        detail: { href: "/pathfinder", label: "패스파인더 자세히 보기" },
+        detail: {
+            href: "/pathfinder",
+            label: { ko: "패스파인더 자세히 보기", en: "More on PathFinder" },
+        },
     },
     {
         key: "floui",
         name: "FloUI",
         tagline: "Experience",
-        desc: "설계한 에이전트를 현업 사용자가 직관적으로 사용하는 경험을 제공합니다",
+        desc: {
+            ko: "설계한 에이전트를 현업 사용자가 직관적으로 사용하는 경험을 제공합니다",
+            en: "The layer that puts those agents in front of business users in a form they can just use",
+        },
         video: "https://www.youtube-nocookie.com/embed/StxOW5PbC8w",
         poster: "https://img.youtube.com/vi/StxOW5PbC8w/maxresdefault.jpg",
     },
@@ -60,7 +75,10 @@ const PRODUCTS: Product[] = [
         key: "code-assistant",
         name: "AI Code Assistant",
         tagline: "Code",
-        desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다",
+        desc: {
+            ko: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다",
+            en: "An enterprise coding assistant that learns your codebase, APIs, database schemas, and artifacts, then answers at code level in your project's context",
+        },
         video: "https://www.youtube-nocookie.com/embed/dGEvX07WXKM",
         poster: "https://img.youtube.com/vi/dGEvX07WXKM/maxresdefault.jpg",
     },
@@ -76,7 +94,50 @@ function ytId(embedUrl: string) {
     return embedUrl.split("/embed/")[1]?.split(/[?&]/)[0] ?? "";
 }
 
+const COPY: Record<
+    Locale,
+    { title: React.ReactNode; lead: string; more: string; play: (n: string) => string; soon: (n: string) => string; thumb: (n: string) => string; preview: (n: string) => string; video: (n: string) => string }
+> = {
+    ko: {
+        title: (
+            <>
+                제품을{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
+                    영상
+                </span>
+                으로 만나보세요
+            </>
+        ),
+        lead: "XGEN과 핵심 제품의 주요 기능을 짧은 소개영상으로 확인할 수 있습니다",
+        more: "데모 영상 더보기",
+        play: (n) => `${n} 소개영상 재생`,
+        soon: (n) => `${n} 소개영상 준비 중`,
+        thumb: (n) => `${n} 소개영상 썸네일`,
+        preview: (n) => `${n} 미리보기`,
+        video: (n) => `${n} 소개영상`,
+    },
+    en: {
+        title: (
+            <>
+                See the products{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
+                    in motion
+                </span>
+            </>
+        ),
+        lead: "Short walkthroughs of XGEN and the key capabilities built on it",
+        more: "More demo videos",
+        play: (n) => `Play the ${n} walkthrough`,
+        soon: (n) => `${n} walkthrough coming soon`,
+        thumb: (n) => `${n} walkthrough thumbnail`,
+        preview: (n) => `${n} preview`,
+        video: (n) => `${n} walkthrough`,
+    },
+};
+
 export function HomeProductTour() {
+    const { locale } = useI18n();
+    const t = COPY[locale];
     const [activeKey, setActiveKey] = useState(PRODUCTS[0].key);
     const [playing, setPlaying] = useState(false);
     const active = PRODUCTS.find((p) => p.key === activeKey) ?? PRODUCTS[0];
@@ -94,15 +155,10 @@ export function HomeProductTour() {
                         / Product Tour
                     </p>
                     <h2 className="mt-3 mx-auto max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
-                        제품을{" "}
-                        <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
-                            영상
-                        </span>
-                        으로 만나보세요
+                        {t.title}
                     </h2>
                     <p className="mt-5 mx-auto max-w-2xl text-[17px] leading-relaxed text-white/65">
-                        XGEN과 핵심 제품의 주요 기능을 짧은 소개영상으로 확인할 수
-                        있습니다
+                        {t.lead}
                     </p>
                 </div>
 
@@ -136,7 +192,7 @@ export function HomeProductTour() {
                                     <iframe
                                         key={active.key}
                                         src={withAutoplay(active.video)}
-                                        title={`${active.name} 소개영상`}
+                                        title={t.video(active.name)}
                                         className="h-full w-full"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
                                         allowFullScreen
@@ -146,12 +202,12 @@ export function HomeProductTour() {
                                     <button
                                         type="button"
                                         onClick={() => setPlaying(true)}
-                                        aria-label={`${active.name} 소개영상 재생`}
+                                        aria-label={t.play(active.name)}
                                         className="group relative flex h-full w-full items-center justify-center overflow-hidden bg-black"
                                     >
                                         <iframe
                                             src={`${active.video}?autoplay=1&mute=1&controls=0&loop=1&playlist=${ytId(active.video)}&start=0&end=${active.previewEndSeconds}&modestbranding=1&rel=0&playsinline=1`}
-                                            title={`${active.name} 미리보기`}
+                                            title={t.preview(active.name)}
                                             className="pointer-events-none absolute inset-0 h-full w-full"
                                             allow="autoplay; encrypted-media"
                                         />
@@ -164,14 +220,14 @@ export function HomeProductTour() {
                                     <button
                                         type="button"
                                         onClick={() => setPlaying(true)}
-                                        aria-label={`${active.name} 소개영상 재생`}
+                                        aria-label={t.play(active.name)}
                                         className="group relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#0b1230] to-[#0a0f24]"
                                     >
                                         {active.poster && (
                                             // eslint-disable-next-line @next/next/no-img-element
                                             <img
                                                 src={active.poster}
-                                                alt={`${active.name} 소개영상 썸네일`}
+                                                alt={t.thumb(active.name)}
                                                 loading="lazy"
                                                 className="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                                             />
@@ -185,7 +241,7 @@ export function HomeProductTour() {
                                 <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
                                     <PlayCircle className="h-14 w-14 text-white/35" />
                                     <p className="text-[15px] font-medium text-white/55">
-                                        {active.name} 소개영상 준비 중
+                                        {t.soon(active.name)}
                                     </p>
                                 </div>
                             )}
@@ -201,14 +257,14 @@ export function HomeProductTour() {
                             {active.name}
                         </h3>
                         <p className="mt-3 text-[15.5px] leading-relaxed text-white/70">
-                            {active.desc}
+                            {active.desc[locale]}
                         </p>
                         {active.detail && (
                             <Link
-                                href={active.detail.href}
+                                href={localeHref(locale, active.detail.href)}
                                 className="group mt-5 inline-flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#5eead4] transition hover:text-white"
                             >
-                                {active.detail.label}
+                                {active.detail.label[locale]}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                         )}
@@ -218,10 +274,10 @@ export function HomeProductTour() {
                 {/* 데모 영상 더보기 — 하단 우측 */}
                 <div className="mt-10 flex justify-end">
                     <Link
-                        href="/proof-in-action"
+                        href={localeHref(locale, "/proof-in-action")}
                         className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#5eead4] transition hover:text-white"
                     >
-                        데모 영상 더보기
+                        {t.more}
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </Link>
                 </div>

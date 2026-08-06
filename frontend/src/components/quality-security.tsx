@@ -1,32 +1,108 @@
 import Link from "next/link";
 import { Award, ShieldCheck, BadgeCheck, Check, ArrowRight } from "lucide-react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — 품질·보안(GS 인증) 섹션. 경쟁사 장표를 그대로 옮기지 않고 연구소 톤으로 재구성하고
  * 좌(헤딩·상태) / 우(카드 스택) 2단 레이아웃으로 새로 잡았다.
  * ※ GS인증 1등급 획득(2026-07-06 인증심사위원회 확정).
+ *
+ * 영문 카피 주의: GS 인증은 한국 제도라 영어권 독자에게 "국가 공인"의 무게가 바로
+ * 전달되지 않는다. 제도 주체(과기정통부)와 근거 표준(ISO/IEC 25000)을 명시해
+ * 벤더 자체 주장이 아니라 제3자 공인시험임을 분명히 한다.
  */
-const INFO: { icon: typeof Award; title: string; body: string }[] = [
+const COPY: Record<
+    Locale,
     {
-        icon: Award,
-        title: "국가 공인 SW 품질인증",
-        body: "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증입니다. 지정된 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 제품 품질을 시험·평가합니다.",
+        badge: string;
+        title: React.ReactNode;
+        lead: string;
+        certName: string;
+        certGrade: string;
+        more: string;
+        imageAlt: string;
+        effectsTitle: string;
+        info: { icon: typeof Award; title: string; body: string }[];
+        effects: string[];
+    }
+> = {
+    ko: {
+        badge: "Quality & Security",
+        title: (
+            <>
+                검증 가능한 Enterprise AI,{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
+                    GS 인증
+                </span>
+            </>
+        ),
+        lead: "성능을 주장하는 대신, 국가 공인 제3자 시험으로 품질을 증명합니다. XGEN은 GS(Good Software) 인증 1등급(최고 등급)을 획득했습니다",
+        certName: "GS 인증 (Good Software)",
+        certGrade: "GS 1등급 획득",
+        more: "인증·품질 자세히 보기",
+        imageAlt: "XGEN Platform — GS 인증 1등급 획득",
+        effectsTitle: "인증의 의미와 효과",
+        info: [
+            {
+                icon: Award,
+                title: "국가 공인 SW 품질인증",
+                body: "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증입니다. 지정된 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 제품 품질을 시험·평가합니다.",
+            },
+            {
+                icon: ShieldCheck,
+                title: "세 영역을 실증 시험",
+                body: "실사용과 유사한 환경에서 제품 명세서 · 사용자 설명서 · 실행 소프트웨어 세 영역을 시험하고, 기능 적합성 · 성능 효율성 · 신뢰성 · 보안성 등 품질 특성을 종합 평가합니다.",
+            },
+        ],
+        effects: [
+            "조달청 우수조달물품 지정 신청 자격",
+            "공공 소프트웨어 사업 발주 시 분리발주 의무 대상",
+            "중소벤처기업부 우선구매 대상 지정",
+            "기술성 평가 가점 · 제3자 공인시험 기반 신뢰",
+        ],
     },
-    {
-        icon: ShieldCheck,
-        title: "세 영역을 실증 시험",
-        body: "실사용과 유사한 환경에서 제품 명세서 · 사용자 설명서 · 실행 소프트웨어 세 영역을 시험하고, 기능 적합성 · 성능 효율성 · 신뢰성 · 보안성 등 품질 특성을 종합 평가합니다.",
+    en: {
+        badge: "Quality & Security",
+        title: (
+            <>
+                Enterprise AI you can verify —{" "}
+                <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
+                    GS certified
+                </span>
+            </>
+        ),
+        lead: "Rather than claiming performance, we had the quality tested by an accredited third party. XGEN holds Grade 1 GS (Good Software) certification — the highest grade available",
+        certName: "GS Certification (Good Software)",
+        certGrade: "Grade 1 awarded",
+        more: "More on certification and quality",
+        imageAlt: "XGEN Platform — awarded Grade 1 GS certification",
+        effectsTitle: "What the certification unlocks",
+        info: [
+            {
+                icon: Award,
+                title: "A national software quality certification",
+                body: "GS (Good Software) certification is operated by Korea's Ministry of Science and ICT under the Software Promotion Act. Accredited testing laboratories evaluate product quality against the ISO/IEC 25000 series of international standards.",
+            },
+            {
+                icon: ShieldCheck,
+                title: "Three areas tested in realistic conditions",
+                body: "Testing covers the product specification, the user documentation, and the running software in an environment close to real use, assessing functional suitability, performance efficiency, reliability, and security.",
+            },
+        ],
+        effects: [
+            "Eligible to apply for Excellent Procurement Product designation",
+            "Qualifies for mandatory split-ordering in public software projects",
+            "Designated for priority purchase by the Ministry of SMEs and Startups",
+            "Scored technical credit, backed by accredited third-party testing",
+        ],
     },
-];
+};
 
-const EFFECTS = [
-    "조달청 우수조달물품 지정 신청 자격",
-    "공공 소프트웨어 사업 발주 시 분리발주 의무 대상",
-    "중소벤처기업부 우선구매 대상 지정",
-    "기술성 평가 가점 · 제3자 공인시험 기반 신뢰",
-];
-
-export function QualitySecurity() {
+export function QualitySecurity({ locale = "ko" }: { locale?: Locale }) {
+    const t = COPY[locale];
+    const INFO = t.info;
+    const EFFECTS = t.effects;
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-7xl px-6 py-28">
@@ -34,18 +110,13 @@ export function QualitySecurity() {
                 <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
                 <div className="mx-auto max-w-3xl text-center">
                     <span className="inline-flex rounded-full border border-[var(--color-line)] bg-white px-3 py-1 font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                        Quality &amp; Security
+                        {t.badge}
                     </span>
                     <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
-                        검증 가능한 Enterprise AI,{" "}
-                        <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
-                            GS 인증
-                        </span>
+                        {t.title}
                     </h2>
                     <p className="mt-5 mx-auto max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                        성능을 주장하는 대신, 국가 공인 제3자 시험으로
-                        품질을 증명합니다. XGEN은 GS(Good Software) 인증 1등급(최고
-                        등급)을 획득했습니다
+                        {t.lead}
                     </p>
 
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
@@ -54,19 +125,19 @@ export function QualitySecurity() {
                             <Award className="h-5 w-5 text-[#1f9d57]" />
                             <div className="text-left">
                                 <p className="text-[14px] font-bold text-[var(--color-ink)]">
-                                    GS 인증 (Good Software)
+                                    {t.certName}
                                 </p>
                                 <p className="text-[13px] font-semibold text-[#1f9d57]">
-                                    GS 1등급 획득
+                                    {t.certGrade}
                                 </p>
                             </div>
                         </div>
 
                         <Link
-                            href="/product#certification"
+                            href={localeHref(locale, "/product#certification")}
                             className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
-                            인증·품질 자세히 보기
+                            {t.more}
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
                     </div>
@@ -74,7 +145,7 @@ export function QualitySecurity() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/xgen-gs-box2.png"
-                    alt="XGEN Platform — GS 인증 1등급 획득"
+                    alt={t.imageAlt}
                     className="mx-auto w-full max-w-sm lg:max-w-none"
                 />
                 </div>
@@ -107,7 +178,7 @@ export function QualitySecurity() {
                                 <BadgeCheck className="h-5 w-5" />
                             </span>
                             <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                                인증의 의미와 효과
+                                {t.effectsTitle}
                             </h3>
                         </div>
                         <ul className="mt-4 space-y-2.5">

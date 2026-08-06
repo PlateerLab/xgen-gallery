@@ -9,6 +9,22 @@ import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import type { NavGroup, NavLeaf } from "@/lib/nav";
 import { cn } from "@/lib/cn";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
+
+/** 그룹 원페이지 공통 문구 — 섹션 라벨은 nav의 영문 label을 그대로 쓴다. */
+const UI: Record<Locale, { comingSoon: string; goTo: (l: string) => string; routeIntro: (l: string) => string }> = {
+    ko: {
+        comingSoon: "콘텐츠 준비 중입니다.",
+        goTo: (l) => `${l} 바로가기`,
+        routeIntro: (l) => `${l} 전체 내용을 별도 페이지에서 확인하세요.`,
+    },
+    en: {
+        comingSoon: "This section is being written.",
+        goTo: (l) => `Go to ${l}`,
+        routeIntro: (l) => `Read the full ${l} content on its own page.`,
+    },
+};
 
 /**
  * Dark, full-bleed hero for a group one-page. Mirrors the releases/members
@@ -17,23 +33,23 @@ import { cn } from "@/lib/cn";
 function GroupHero({
     group,
     content,
+    locale,
 }: {
     group: NavGroup;
     content?: ReactNode;
+    locale: Locale;
 }) {
     return (
         <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
             <SceneBackground concept={group.concept} />
             <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
-                {content ?? (
-                    <DefaultGroupHero group={group} />
-                )}
+                {content ?? <DefaultGroupHero group={group} locale={locale} />}
             </div>
         </section>
     );
 }
 
-function DefaultGroupHero({ group }: { group: NavGroup }) {
+function DefaultGroupHero({ group, locale }: { group: NavGroup; locale: Locale }) {
     return (
         <>
             <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
@@ -43,7 +59,7 @@ function DefaultGroupHero({ group }: { group: NavGroup }) {
                 {group.label}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/65">
-                {group.blurb}
+                {(locale === "en" ? group.blurbEn : group.blurb) ?? group.blurb}
             </p>
 
             {/* quick jump to sections */}
@@ -65,7 +81,7 @@ function DefaultGroupHero({ group }: { group: NavGroup }) {
                             ) : it.route ? (
                                 <Link
                                     key={it.id}
-                                    href={it.route}
+                                    href={localeHref(locale, it.route)}
                                     className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[14px] font-medium text-white/75 backdrop-blur-sm transition hover:border-white/40 hover:text-white"
                                 >
                                     {it.label}
@@ -95,10 +111,12 @@ export function Section({
     item,
     tone = "default",
     children,
+    locale = "ko",
 }: {
     item: NavLeaf;
     tone?: "default" | "alt";
     children?: ReactNode;
+    locale?: Locale;
 }) {
     return (
         <section
@@ -137,35 +155,36 @@ export function Section({
                     </div>
                 )}
 
-                <div className="mt-8">{children ?? <ComingSoon />}</div>
+                <div className="mt-8">{children ?? <ComingSoon locale={locale} />}</div>
             </div>
         </section>
     );
 }
 
-function ComingSoon() {
+function ComingSoon({ locale }: { locale: Locale }) {
     return (
         <div className="rounded-xl border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] p-10 text-center">
             <p className="text-[16px] text-[var(--color-ink-muted)]">
-                콘텐츠 준비 중입니다.
+                {UI[locale].comingSoon}
             </p>
         </div>
     );
 }
 
 /** Brief intro + link to a standalone page (for `route` items). */
-function RouteIntro({ item }: { item: NavLeaf }) {
+function RouteIntro({ item, locale }: { item: NavLeaf; locale: Locale }) {
+    const blurb =
+        (locale === "en" ? item.blurbEn : item.blurb) ?? item.blurb;
     return (
         <div className="flex flex-col items-start gap-5 rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-8">
             <p className="max-w-xl text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
-                {item.blurb ??
-                    `${item.label} 전체 내용을 별도 페이지에서 확인하세요.`}
+                {blurb ?? UI[locale].routeIntro(item.label)}
             </p>
             <Link
-                href={item.route!}
+                href={localeHref(locale, item.route!)}
                 className="inline-flex items-center gap-2 rounded-md bg-[var(--color-ink)] px-4 py-2.5 text-[16px] font-semibold text-white transition hover:opacity-90"
             >
-                {item.label} 바로가기
+                {UI[locale].goTo(item.label)}
                 <ArrowRight className="h-4 w-4" />
             </Link>
         </div>
@@ -184,8 +203,11 @@ export function GroupPage({
     hideSections,
     leading,
     trailing,
+    locale = "ko",
 }: {
     group: NavGroup;
+    /** 페이지 언어 — `/en` 라우트에서는 "en"을 넘긴다. */
+    locale?: Locale;
     content?: Record<string, ReactNode>;
     /** Custom hero key-visual content; falls back to the default title+blurb. */
     hero?: ReactNode;
@@ -208,11 +230,14 @@ export function GroupPage({
             {/* 그룹 원페이지 공통 BreadcrumbList — GEO·SEO 기본 적용(모든 그룹 페이지). */}
             <JsonLd
                 data={breadcrumbLd([
-                    { name: "Home", path: "/" },
-                    { name: group.label, path: `/${group.key}` },
+                    { name: "Home", path: locale === "en" ? "/en" : "/" },
+                    {
+                        name: group.label,
+                        path: localeHref(locale, `/${group.key}`),
+                    },
                 ])}
             />
-            <GroupHero group={group} content={hero} />
+            <GroupHero group={group} content={hero} locale={locale} />
             {/* 섹션 인덱스 — 히어로의 quick-jump는 스크롤하면 사라지므로, 페이지 내내
                 상단에 고정되는 스티키 인덱스를 둔다(/architecture·/product와 동일 패턴). */}
             {sections.length > 1 && (
@@ -230,9 +255,12 @@ export function GroupPage({
                         key={it.id}
                         item={it}
                         tone={i % 2 === 1 ? "alt" : "default"}
+                        locale={locale}
                     >
                         {content?.[it.id] ??
-                            (it.route ? <RouteIntro item={it} /> : undefined)}
+                            (it.route ? (
+                                <RouteIntro item={it} locale={locale} />
+                            ) : undefined)}
                     </Section>
                 ))}
                 {trailing}

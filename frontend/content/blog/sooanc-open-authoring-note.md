@@ -1,6 +1,8 @@
 ---
 title: "개발자를 위한 블로그 기고 환경 구축하기"
+titleEn: "Setting up a blog authoring workflow developers will actually use"
 description: "메인 저장소 권한을 열지 않고도 개발자가 자신의 GitHub 계정으로 기고하도록 — Open Authoring으로 참여 비용만 낮춘 운영 구조 이야기입니다."
+descriptionEn: "GitHub login, open authoring, and a CMS that commits straight to the repo — how we removed the friction between writing and publishing."
 date: "2026-07-14"
 cover: /blog/sooanc-open-authoring-note.svg
 author: "sooanc"

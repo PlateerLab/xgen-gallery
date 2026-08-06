@@ -103,6 +103,32 @@ export interface Dict {
         github: string;
         star: string;
         tagline: string;
+        /** 상단 프로모션 배너(15일 무료 체험). */
+        promo: string;
+        promoCta: string;
+        promoClose: string;
+        /** 검색바 왼쪽 XGEN 제품 사이트 아웃링크. */
+        productSite: string;
+    };
+    /** 푸터 — Explore/About 열, 브랜드 소개, CTA 배너. */
+    footer: {
+        tools: string;
+        contact: string;
+        explore: string;
+        about: string;
+        blurb: string;
+        members: string;
+        newsletter: string;
+        contribute: string;
+        ctaEyebrow: string;
+        ctaTitleA: string;
+        ctaTitleHighlight: string;
+        ctaTitleB: string;
+        ctaFde: string;
+        ctaLead: string;
+        ctaPrimary: string;
+        ctaSecondary: string;
+        demoMore: string;
     };
     hero: {
         badge: string;
@@ -127,7 +153,6 @@ export interface Dict {
         items: UseCaseEntry[];
     };
     faq: { eyebrow: string; title: string; entries: FaqEntry[] };
-    footer: { tools: string; contact: string };
     releasesPage: { eyebrow: string; title: string; desc: string };
     membersPage: {
         eyebrow: string;
@@ -223,6 +248,29 @@ export const dict: Record<Locale, Dict> = {
             github: "GitHub",
             star: "GitHub에서 별 주기",
             tagline: "Plateer Labs for Enterprise AI·AX",
+            promo: "XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요",
+            promoCta: "체험 신청",
+            promoClose: "배너 닫기",
+            productSite: "XGEN 제품보기",
+        },
+        footer: {
+            tools: "도구",
+            contact: "문의",
+            explore: "Explore",
+            about: "About",
+            blurb: "Plateer Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
+            members: "Lab Members",
+            newsletter: "뉴스레터 구독",
+            contribute: "블로그 기고",
+            ctaEyebrow: "Research. Technology. Impact.",
+            ctaTitleA: "기업용 ",
+            ctaTitleHighlight: "AI 솔루션",
+            ctaTitleB: " 도입, 연구에서 실증까지 함께 설계합니다",
+            ctaFde: "FDE(Forward Deployed Engineer)",
+            ctaLead: "Plateer Labs는 풍부한 연구 경험과 검증된 기술력으로 귀사의 AI 전환 여정을 성공적으로 지원합니다",
+            ctaPrimary: "문의하기",
+            ctaSecondary: "PoC 사례 보러가기",
+            demoMore: "더 많은 영상 보기",
         },
         hero: {
             badge: "8개 라이브러리 · 브라우저에서 바로 체험",
@@ -270,7 +318,6 @@ export const dict: Record<Locale, Dict> = {
             ],
         },
         faq: { eyebrow: "/ 자주 묻는 질문", title: "자주 묻는 질문", entries: FAQ_KO },
-        footer: { tools: "도구", contact: "문의" },
         releasesPage: {
             eyebrow: "Release Notes",
             title: "Better with every release",
@@ -292,6 +339,30 @@ export const dict: Record<Locale, Dict> = {
             github: "GitHub",
             star: "Star on GitHub",
             tagline: "Plateer Labs for Enterprise AI·AX",
+            promo: "Try XGEN free for 15 days — nothing to install, runs in your browser",
+            promoCta: "Start free trial",
+            promoClose: "Dismiss banner",
+            // 한국어("XGEN 제품보기")보다 길면 GNB에서 줄바꿈되어 메뉴와 겹친다 — 짧게 유지.
+            productSite: "XGEN site",
+        },
+        footer: {
+            tools: "Tools",
+            contact: "Contact",
+            explore: "Explore",
+            about: "About",
+            blurb: "Plateer Labs researches and shares the core technologies behind AI platforms enterprises can trust. The document ingestion, knowledge graph, and agent frameworks that make up XGEN are published as open source, so anyone can install them, experiment, and put them into production.",
+            members: "Lab Members",
+            newsletter: "Newsletter",
+            contribute: "Write for the blog",
+            ctaEyebrow: "Research. Technology. Impact.",
+            ctaTitleA: "Enterprise ",
+            ctaTitleHighlight: "AI adoption",
+            ctaTitleB: ", designed with you from research to proof",
+            ctaFde: "Forward Deployed Engineers (FDE)",
+            ctaLead: "Plateer Labs brings deep research experience and proven engineering to your AI transformation.",
+            ctaPrimary: "Get in touch",
+            ctaSecondary: "See PoC case studies",
+            demoMore: "More videos",
         },
         hero: {
             badge: "8 libraries · live in your browser",
@@ -339,7 +410,6 @@ export const dict: Record<Locale, Dict> = {
             ],
         },
         faq: { eyebrow: "/ frequently asked", title: "Frequently asked questions", entries: FAQ_EN },
-        footer: { tools: "Tools", contact: "Contact" },
         releasesPage: {
             eyebrow: "Release Notes",
             title: "Better with every release",

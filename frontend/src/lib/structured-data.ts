@@ -6,12 +6,18 @@
 import { SITE, absoluteUrl } from "./site";
 import type { Tool } from "./tools";
 import type { MemberDetail } from "./members/types";
+import { type Locale, DEFAULT_LOCALE } from "./i18n";
 
 const ORG_ID = `${SITE.url}/#organization`;
 const WEBSITE_ID = `${SITE.url}/#website`;
 
+/** 언어별 조직/사이트 설명 — 엔티티(@id)는 하나지만 설명은 페이지 언어를 따른다. */
+function siteDescription(locale: Locale): string {
+    return locale === "en" ? SITE.descriptionEn : SITE.description;
+}
+
 /** The lab itself — referenced by @id from every other node. */
-export function organizationLd() {
+export function organizationLd(locale: Locale = DEFAULT_LOCALE) {
     return {
         "@context": "https://schema.org",
         "@type": ["Organization", "ResearchOrganization"],
@@ -19,20 +25,20 @@ export function organizationLd() {
         name: SITE.name,
         url: SITE.url,
         logo: absoluteUrl("/icon.png"),
-        description: SITE.description,
+        description: siteDescription(locale),
         sameAs: [SITE.github, SITE.youtube],
     };
 }
 
-export function websiteLd() {
+export function websiteLd(locale: Locale = DEFAULT_LOCALE) {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         name: SITE.name,
         url: SITE.url,
-        description: SITE.description,
-        inLanguage: "ko",
+        description: siteDescription(locale),
+        inLanguage: locale,
         publisher: { "@id": ORG_ID },
         potentialAction: {
             "@type": "SearchAction",
