@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -10,6 +12,7 @@ import {
     type CaseStudy,
     type ProductKey,
     type IndustryKey,
+    CASE_STATUS_EN,
 } from "@/lib/customers";
 import { IndustryVisual } from "@/components/industry-visual";
 
@@ -28,10 +31,12 @@ function Thumb({
     c,
     className,
     children,
+    en,
 }: {
     c: CaseStudy;
     className?: string;
     children?: React.ReactNode;
+    en: boolean;
 }) {
     return (
         <div
@@ -45,9 +50,9 @@ function Thumb({
             />
             {/* 고객 뱃지 */}
             <span className="absolute right-4 top-4 inline-flex items-center rounded-md bg-white/15 px-2.5 py-1 text-[12px] font-semibold backdrop-blur-sm">
-                {c.customer}
+                {(en && c.customerEn) || c.customer}
                 {c.customerAnonymous && (
-                    <span className="ml-1 text-white/55">익명</span>
+                    <span className="ml-1 text-white/55">{en ? "anonymized" : "익명"}</span>
                 )}
             </span>
             {children && <div className="relative">{children}</div>}
@@ -56,8 +61,11 @@ function Thumb({
 }
 
 /** 해시태그(산업 + 대표 제품) — LG CNS 태그 스타일. */
-function HashTags({ c }: { c: CaseStudy }) {
-    const tags = [INDUSTRIES[c.industry].ko, PRODUCTS[c.products[0]].name];
+function HashTags({ c, en }: { c: CaseStudy; en: boolean }) {
+    const tags = [
+        en ? INDUSTRIES[c.industry].en : INDUSTRIES[c.industry].ko,
+        PRODUCTS[c.products[0]].name,
+    ];
     return (
         <div className="flex flex-wrap gap-1.5">
             {tags.map((t) => (
@@ -72,21 +80,22 @@ function HashTags({ c }: { c: CaseStudy }) {
     );
 }
 
-function StatusBadge({ c }: { c: CaseStudy }) {
+function StatusBadge({ c, en }: { c: CaseStudy; en: boolean }) {
     return (
         <span className="inline-flex items-center gap-1 rounded-full bg-[#ecf8f1] px-2.5 py-0.5 text-[12px] font-bold text-[#1f9d57]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#1f9d57]" />
-            {c.status}
+            {en ? CASE_STATUS_EN[c.status] : c.status}
         </span>
     );
 }
 
 /** 리스트 행 — 좌측 그라디언트 썸네일 + 우측 제목·설명·태그. */
-function CaseRow({ c }: { c: CaseStudy }) {
+function CaseRow({ c, locale }: { c: CaseStudy; locale: Locale }) {
+    const en = locale === "en";
     const linkable = caseLinkEnabled(c.slug);
     const inner = (
         <>
-            <Thumb c={c} className="min-h-[172px] p-5" />
+            <Thumb c={c} en={en} className="min-h-[172px] p-5" />
             <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                     {c.products.map((p) => (
@@ -102,24 +111,24 @@ function CaseRow({ c }: { c: CaseStudy }) {
                             {PRODUCTS[p].name}
                         </span>
                     ))}
-                    <StatusBadge c={c} />
+                    <StatusBadge c={c} en={en} />
                 </div>
                 <h3
                     className={`mt-2.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition ${
                         linkable ? "group-hover:text-[#2461d8]" : ""
                     }`}
                 >
-                    {c.title}
+                    {(en && c.titleEn) || c.title}
                 </h3>
                 <p className="mt-2 line-clamp-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {c.summary}
+                    {(en && c.summaryEn) || c.summary}
                 </p>
                 <div className="mt-3.5 flex items-center justify-between gap-3">
-                    <HashTags c={c} />
+                    <HashTags c={c} en={en} />
                     {/* 상세 링크 비활성 시 '자세히 보기' 어포던스는 숨긴다(오해 방지) */}
                     {linkable && (
                         <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
-                            자세히 보기
+                            {en ? "Read more" : "자세히 보기"}
                             <ArrowUpRight className="h-4 w-4" />
                         </span>
                     )}
@@ -136,7 +145,7 @@ function CaseRow({ c }: { c: CaseStudy }) {
         return <div className={`${cls} cursor-default`}>{inner}</div>;
     }
     return (
-        <Link href={`/customers/case/${c.slug}`} className={cls}>
+        <Link href={localeHref(locale, `/customers/case/${c.slug}`)} className={cls}>
             {inner}
         </Link>
     );
@@ -179,11 +188,14 @@ function FilterChip({
 export function CustomersLibrary({
     cases,
     initialProduct = "all",
+    locale = "ko",
 }: {
     cases: CaseStudy[];
     /** URL 쿼리로 넘어온 초기 제품 필터(예: /customers?product=code-assistant). */
     initialProduct?: ProductKey | "all";
+    locale?: Locale;
 }) {
+    const en = locale === "en";
     const [product, setProduct] = useState<ProductKey | "all">(initialProduct);
     const [industry, setIndustry] = useState<IndustryKey | "all">("all");
     // 산업 필터는 사례 데이터가 충분히 쌓일 때까지 숨긴다(true로 바꾸면 다시 노출).
@@ -217,8 +229,9 @@ export function CustomersLibrary({
             {/* 리드 문구 */}
             <div className="text-center">
                 <h2 className="mx-auto max-w-3xl text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[32px] md:leading-snug">
-                    XGEN·AI Code Assistant로 업무를 혁신한
-                    <br className="hidden sm:block" /> 고객의 이야기를 살펴보세요
+                    {en
+                        ? "Stories from customers who changed how they work with XGEN and AI Code Assistant"
+                        : "XGEN·AI Code Assistant로 업무를 혁신한 고객의 이야기를 살펴보세요"}
                 </h2>
             </div>
 
@@ -226,12 +239,12 @@ export function CustomersLibrary({
             <div className="mt-10 space-y-3">
                 <div className="flex flex-wrap items-center justify-center gap-2">
                     <span className="mr-1 text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
-                        제품
+                        {en ? "Product" : "제품"}
                     </span>
                     <FilterChip
                         active={product === "all"}
                         onClick={() => setProduct("all")}
-                        label="전체"
+                        label={en ? "All" : "전체"}
                         count={cases.length}
                     />
                     {productKeys.map((k) => (
@@ -247,12 +260,12 @@ export function CustomersLibrary({
                 {SHOW_INDUSTRY_FILTER && (
                     <div className="flex flex-wrap items-center gap-2">
                         <span className="mr-1 text-[13px] font-bold uppercase tracking-wide text-[var(--color-ink-subtle)]">
-                            산업
+                            {en ? "Industry" : "산업"}
                         </span>
                         <FilterChip
                             active={industry === "all"}
                             onClick={() => setIndustry("all")}
-                            label="전체"
+                            label={en ? "All" : "전체"}
                             count={cases.length}
                         />
                         {industryKeys.map((k) => (
@@ -260,7 +273,7 @@ export function CustomersLibrary({
                                 key={k}
                                 active={industry === k}
                                 onClick={() => setIndustry(k)}
-                                label={INDUSTRIES[k].ko}
+                                label={en ? INDUSTRIES[k].en : INDUSTRIES[k].ko}
                                 count={cases.filter((c) => c.industry === k).length}
                             />
                         ))}
@@ -273,21 +286,31 @@ export function CustomersLibrary({
                 className="mt-8 border-b border-[var(--color-line)] pb-4 text-[15px] font-semibold text-[var(--color-ink)]"
                 aria-live="polite"
             >
-                총 <span className="text-[#2461d8]">{visibleCount}</span>건
+                {en ? (
+                    <>
+                        <span className="text-[#2461d8]">{visibleCount}</span> cases
+                    </>
+                ) : (
+                    <>
+                        총 <span className="text-[#2461d8]">{visibleCount}</span>건
+                    </>
+                )}
             </p>
 
             {/* 리스트 — 모든 행 렌더, 비매칭은 hidden(SEO) */}
             <div className="divide-y divide-[var(--color-line)]">
                 {cases.map((c) => (
                     <div key={c.slug} hidden={!matches(c)}>
-                        <CaseRow c={c} />
+                        <CaseRow c={c} locale={locale} />
                     </div>
                 ))}
             </div>
 
             {visibleCount === 0 && (
                 <p className="rounded-xl border border-dashed border-[var(--color-line)] bg-[var(--color-surface-alt)] px-6 py-8 text-center text-[15px] text-[var(--color-ink-muted)]">
-                    선택한 조건에 맞는 사례가 아직 없습니다. 다른 필터를 선택해 보세요
+                    {en
+                        ? "No cases match those filters yet. Try a different combination"
+                        : "선택한 조건에 맞는 사례가 아직 없습니다. 다른 필터를 선택해 보세요"}
                 </p>
             )}
         </div>

@@ -34,6 +34,14 @@ export type ProductKey = "xgen" | "polar" | "code-assistant";
 export type IndustryKey = "commerce" | "finance" | "public" | "it-services";
 export type CaseStatus = "운영 중" | "구축 완료" | "확산 중" | "구축·운영 중";
 
+/** 상태 라벨 영문 표기 — `/en` 화면에서 쓴다. */
+export const CASE_STATUS_EN: Record<CaseStatus, string> = {
+    "운영 중": "In operation",
+    "구축 완료": "Delivered",
+    "확산 중": "Rolling out",
+    "구축·운영 중": "Building and operating",
+};
+
 export interface ProductMeta {
     key: ProductKey;
     /** 표기 일관성(엔티티) — 사이트 전역 동일 철자. */
@@ -66,8 +74,15 @@ export interface CaseStudy {
     slug: string;
     /** 성과가 읽히는 헤드라인(사실 기반, 과장·미검증 수치 금지). */
     title: string;
+    /** 영문 헤드라인 — `/en` 화면에서 쓴다. */
+    titleEn?: string;
     /** 고객명(공개 레퍼런스면 실명, 아니면 업종+규모 익명 표현). */
     customer: string;
+    /**
+     * 영문 고객 표기. 익명 원칙은 한국어와 동일하게 유지한다 —
+     * 실명 공개에 동의한 레퍼런스만 실명, 나머지는 업종+규모로만 적는다.
+     */
+    customerEn?: string;
     /** true면 익명 표기(대외 공개 동의 없는 고객). */
     customerAnonymous?: boolean;
     industry: IndustryKey;
@@ -79,10 +94,16 @@ export interface CaseStudy {
     summaryEn?: string;
     /** 과제. */
     challenge: string;
+    /** 영문 과제. */
+    challengeEn?: string;
     /** 적용/솔루션. */
     solution: string;
+    /** 영문 솔루션. */
+    solutionEn?: string;
     /** 제공 범위·산출물(사실 기반 — 수치 아님). */
     highlights: string[];
+    /** 영문 제공 범위. */
+    highlightsEn?: string[];
     /** 납품/운영 상태 — 사실 기반 신뢰 신호. */
     status: CaseStatus;
     /** 성과 지표 — **실측치가 있을 때만**. 기본은 비움(미검증 수치 금지). */
@@ -155,7 +176,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "jeju-bank-genai-platform",
         title: "제주은행과 사내 생성형 AI 플랫폼을 구축하고 운영으로 안착시키다",
+        titleEn:
+            "Building an internal generative-AI platform with Jeju Bank, and settling it into operation",
         customer: "제주은행",
+        customerEn: "Jeju Bank",
         customerAnonymous: false,
         industry: "finance",
         products: ["xgen"],
@@ -165,12 +189,21 @@ export const CASE_STUDIES: CaseStudy[] = [
             "Building an internal generative-AI platform on XGEN with Jeju Bank, then stabilizing it through on-site operations and widening its use across the bank",
         challenge:
             "금융권 보안·망분리 요건을 지키면서 사내 업무에 생성형 AI를 도입하고, 일회성 구축이 아니라 실제 운영까지 안착시켜야 했다.",
+        challengeEn:
+            "Generative AI had to reach internal work while meeting the security and network-separation requirements of the financial sector — and it had to land in real operation, not stop at a one-off build.",
         solution:
             "XGEN 기반 GenAI 플랫폼을 은행 인프라에 구축하고, 상주 운영 체계로 서비스를 안정화했다. 1차 구축 성과를 바탕으로 활용 범위를 넓히는 후속 사업을 이어가고 있다.",
+        solutionEn:
+            "An XGEN-based generative-AI platform was built into the bank's own infrastructure and stabilized through an on-site operating team. On the strength of the first phase, follow-on work is widening where it gets used.",
         highlights: [
             "사내 생성형 AI 플랫폼 구축",
             "망분리·온프레미스 운영",
             "상주 운영 · 후속 사업 확대",
+        ],
+        highlightsEn: [
+            "Internal generative-AI platform built",
+            "Network-separated, on-premise operation",
+            "On-site operations · follow-on expansion",
         ],
         status: "운영 중",
         published: "2026-03-11",
@@ -179,20 +212,34 @@ export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "retail-genai-retention",
         title: "생성형 AI로 고객 리텐션과 심의 업무를 지원하다",
+        titleEn:
+            "Supporting customer retention and review work with generative AI",
         customer: "국내 대형 홈쇼핑사",
+        customerEn: "A large home-shopping retailer",
         customerAnonymous: true,
         industry: "commerce",
         products: ["xgen"],
         summary:
             "대형 홈쇼핑사와 생성형 AI 기반 리텐션(win-back)·심의 지원 애플리케이션을 구축하고, 2차년도 사업으로 확대한 커머스 사례",
+        summaryEn:
+            "A commerce engagement with a large home-shopping retailer: generative-AI applications for win-back retention and broadcast review, extended into a second-year program",
         challenge:
             "이탈 고객 재유입과 방송 심의 등 반복 업무에 생성형 AI를 적용하되, 기존 사내 시스템과 자연스럽게 연동돼야 했다.",
+        challengeEn:
+            "Generative AI had to apply to repetitive work such as winning back lapsed customers and broadcast review, while integrating naturally with the systems already in place.",
         solution:
             "XGEN으로 리텐션·심의 지원 애플리케이션을 구축했다. 1차 사업의 성과를 바탕으로 적용 범위를 넓히는 2차년도 사업으로 이어졌다.",
+        solutionEn:
+            "Retention and review-support applications were built on XGEN. Results from the first phase led into a second-year program widening where it applies.",
         highlights: [
             "리텐션(win-back) 지원",
             "내부·심의 업무 지원",
             "2차년도 확대 계약",
+        ],
+        highlightsEn: [
+            "Win-back retention support",
+            "Internal and review workflow support",
+            "Second-year expansion",
         ],
         status: "구축 완료",
         published: "2026-01-15",
@@ -201,20 +248,34 @@ export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "semiconductor-code-assistant",
         title: "사내 개발 환경에 맞춘 AI Code Assistant를 전사로 확산하다",
+        titleEn:
+            "Rolling out an AI Code Assistant fitted to an internal development environment",
         customer: "국내 반도체 제조 대기업",
+        customerEn: "A large semiconductor manufacturer",
         customerAnonymous: true,
         industry: "it-services",
         products: ["code-assistant"],
         summary:
             "반도체 제조 대기업의 사내 개발 환경에 AI Code Assistant를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
+        summaryEn:
+            "An AI Code Assistant introduced into a semiconductor manufacturer's internal development environment, connected to a local LLM with improved Korean answer quality, then rolled out company-wide",
         challenge:
             "외부 코드 어시스턴트는 보안상 사용이 어려웠고, 사내 환경에서 한글 기술 질의에 대한 답변 품질을 끌어올려야 했다.",
+        challengeEn:
+            "External coding assistants were not usable for security reasons, and answer quality for Korean-language technical questions had to be raised inside the internal environment.",
         solution:
             "사내 Local LLM에 연동한 AI Code Assistant를 구축하고, 한글 답변 품질을 개선했다. 사내 교육을 병행해 실제 활용을 전사로 확산했다.",
+        solutionEn:
+            "An AI Code Assistant was built against the internal local LLM, with Korean answer quality improved. Training ran alongside, spreading real usage across the company.",
         highlights: [
             "사내 Local LLM 연동",
             "한글 답변 품질 개선",
             "전사 확산 · 교육 지원",
+        ],
+        highlightsEn: [
+            "Connected to an internal local LLM",
+            "Korean answer quality improved",
+            "Company-wide rollout with training",
         ],
         status: "확산 중",
         published: "2026-03-03",
@@ -223,34 +284,61 @@ export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "defense-code-assistant",
         title: "폐쇄망 개발 환경에 XGEN 기반 AI Code Assistant를 구축하다",
+        titleEn:
+            "An XGEN-based AI Code Assistant inside an air-gapped development environment",
         customer: "국내 방산·시스템 기업",
+        customerEn: "A defense and systems company",
         customerAnonymous: true,
         industry: "it-services",
         products: ["code-assistant"],
         summary:
             "강한 보안 요건의 폐쇄망 개발 환경에 XGEN 기반 AI Code Assistant를 온프레미스로 구축한 사례",
+        summaryEn:
+            "An XGEN-based AI Code Assistant deployed on-premise into an air-gapped development environment with strict security requirements",
         challenge:
             "외부 연결이 차단된 폐쇄망에서 개발 생산성을 높일 코드 어시스턴트가 필요했다.",
+        challengeEn:
+            "An air-gapped environment with no external connectivity still needed a coding assistant to raise development productivity.",
         solution:
             "XGEN 기반 AI Code Assistant를 온프레미스로 구축해, 폐쇄망 안에서 코드 지원을 제공했다.",
+        solutionEn:
+            "An XGEN-based AI Code Assistant was deployed on-premise, providing code support entirely inside the closed network.",
         highlights: ["온프레미스 · 폐쇄망 구축", "XGEN 기반 Code Assistant"],
+        highlightsEn: [
+            "On-premise, air-gapped deployment",
+            "XGEN-based Code Assistant",
+        ],
         status: "구축 완료",
         published: "2026-01-31",
     },
     {
         slug: "public-procurement-search",
         title: "대규모 조달 검색 시스템을 AI로 고도화하다",
+        titleEn:
+            "Modernizing a large-scale procurement search system with AI",
         customer: "국내 공제회",
+        customerEn: "A public mutual-aid association",
         customerAnonymous: true,
         industry: "public",
         products: ["xgen"],
         summary:
             "공제회의 대규모 조달(구매) 검색 시스템을 AI 검색으로 재구축해 고도화하고 상주 운영으로 안정화한 공공 사례",
+        summaryEn:
+            "A public-sector engagement rebuilding a mutual-aid association's large-scale procurement search on AI search, then stabilizing it through on-site operations",
         challenge:
             "방대한 조달 데이터에서 정확한 검색 결과를 제공하도록 검색 영역을 고도화해야 했다.",
+        challengeEn:
+            "Search had to be modernized so that accurate results came back from a very large body of procurement data.",
         solution:
             "AI 검색 기술로 조달 검색 영역을 재구축하고, 상주 운영으로 서비스를 안정화했다.",
+        solutionEn:
+            "The procurement search layer was rebuilt on AI search technology, and the service was stabilized through an on-site operating team.",
         highlights: ["조달 검색 영역 재구축", "대규모 데이터 대응", "상주 운영"],
+        highlightsEn: [
+            "Procurement search layer rebuilt",
+            "Handles large-scale data",
+            "On-site operations",
+        ],
         status: "운영 중",
         published: "2025-11-03",
     },

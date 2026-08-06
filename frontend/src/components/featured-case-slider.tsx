@@ -6,15 +6,18 @@
  */
 
 import { useEffect, useState } from "react";
+import type { Locale } from "@/lib/i18n";
 import type { CaseStudy } from "@/lib/customers";
 import { FeaturedCaseCard } from "@/components/featured-case-card";
 
 export function FeaturedCaseSlider({
     items,
-    label = "최근 사례",
+    label,
+    locale = "ko",
 }: {
     items: CaseStudy[];
     label?: string;
+    locale?: Locale;
 }) {
     const [active, setActive] = useState(0);
     const count = items.length;
@@ -42,7 +45,11 @@ export function FeaturedCaseSlider({
                             <button
                                 key={c.slug}
                                 type="button"
-                                aria-label={`${i + 1}번째 사례로 이동`}
+                                aria-label={
+                                    locale === "en"
+                                        ? `Go to case ${i + 1}`
+                                        : `${i + 1}번째 사례로 이동`
+                                }
                                 onClick={() => setActive(i)}
                                 className={`h-2 rounded-full transition-all ${
                                     active === i
@@ -62,7 +69,7 @@ export function FeaturedCaseSlider({
                 >
                     {items.map((c) => (
                         <div key={c.slug} className="w-full shrink-0">
-                            <FeaturedCaseCard item={c} />
+                            <FeaturedCaseCard locale={locale} item={c} />
                         </div>
                     ))}
                 </div>

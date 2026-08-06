@@ -592,14 +592,9 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
         ? TECH_LAYERS.map((x, i) => ({ ...x, title: E.techLayers[i][0], desc: E.techLayers[i][1] }))
         : TECH_LAYERS;
     // 최근 XGEN 고객사례 3건 — /customers 허브와 연계(신뢰 정책: customer 필드가 익명/실명 관리).
-    // 고객사례는 한국어 원문만 있어 영문판에서는 섹션을 감춘다 — 영문 페이지에
-    // 한국어 사례 제목이 섞이면 페이지 언어 신호가 흐려진다(lib/customers.ts에
-    // 영문 요약이 추가되면 다시 켠다).
-    const recentCases = en
-        ? []
-        : getAllCases()
-              .filter((c) => c.products.includes("xgen"))
-              .slice(0, 3);
+    const recentCases = getAllCases()
+        .filter((c) => c.products.includes("xgen"))
+        .slice(0, 3);
     return (
         <>
             <SiteNav overlay />
@@ -1371,8 +1366,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 고객사례 — 최근 3건 + /customers 연계 (영문판은 원문이 한국어라 생략) */}
-                {!en && (
+                {/* 고객사례 — 최근 3건 + /customers 연계 */}
                 <section
                     id="cases"
                     className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
@@ -1391,7 +1385,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             {recentCases.map((c) => (
                                 <Link
                                     key={c.slug}
-                                    href={`/customers/case/${c.slug}`}
+                                    href={localeHref(locale, `/customers/case/${c.slug}`)}
                                     className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
                                     <div className="flex items-center gap-2 text-[12.5px]">
@@ -1399,7 +1393,9 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             {PRODUCTS[c.products[0]].name}
                                         </span>
                                         <span className="text-[var(--color-ink-subtle)]">
-                                            {INDUSTRIES[c.industry].ko}
+                                            {en
+                                                ? INDUSTRIES[c.industry].en
+                                                : INDUSTRIES[c.industry].ko}
                                         </span>
                                         <time
                                             dateTime={c.published}
@@ -1409,13 +1405,13 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                         </time>
                                     </div>
                                     <h3 className="mt-3 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                        {c.title}
+                                        {(en && c.titleEn) || c.title}
                                     </h3>
                                     <p className="mt-2 line-clamp-2 flex-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {c.summary}
+                                        {(en && c.summaryEn) || c.summary}
                                     </p>
                                     <p className="mt-4 border-t border-[var(--color-line)] pt-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
-                                        {c.customer}
+                                        {(en && c.customerEn) || c.customer}
                                     </p>
                                 </Link>
                             ))}
@@ -1431,7 +1427,6 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         </div>
                     </div>
                 </section>
-                )}
 
                 {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
