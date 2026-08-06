@@ -15,13 +15,13 @@ export async function generateMetadata({
     const { id } = await params;
     const tool = TOOLS.find((t) => t.id === id);
     if (!tool) return { title: "Tool not found" };
-    return toolMetadata(tool, "ko");
+    return toolMetadata(tool, "en");
 }
 
-export default async function ToolDemoPage({
+export default async function ToolDemoPageEn({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
-    return <ToolPageContent params={params} locale="ko" />;
+    return <ToolPageContent params={params} locale="en" />;
 }

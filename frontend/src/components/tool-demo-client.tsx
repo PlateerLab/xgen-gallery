@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
+import type { Locale } from "@/lib/i18n";
+import { localizeManifest } from "@/lib/demo-i18n";
 import Link from "next/link";
 import { ArrowLeft, Play, Upload, X } from "lucide-react";
 import { marked } from "marked";
@@ -31,18 +33,36 @@ const CATEGORY_LABEL: Record<Tool["category"], string> = {
     utility: "Utility",
 };
 
-export function ToolDemoClient({ tool }: { tool: Tool }) {
+const COPY = {
+    ko: {
+        noSample: "이 데모에는 아직 예시 결과가 준비되지 않았습니다.",
+        sampleTitle: "라이브 백엔드 대신 큐레이션된 예시 결과를 표시합니다.",
+    },
+    en: {
+        noSample: "No sample result is prepared for this demo yet.",
+        sampleTitle: "Showing a curated sample result instead of the live backend.",
+    },
+} as const;
+
+export function ToolDemoClient({
+    tool,
+    locale = "ko",
+}: {
+    tool: Tool;
+    locale?: Locale;
+}) {
     // 로컬 매니페스트(신규 라이브러리)를 먼저 확인하고, 없으면 패키지 레지스트리로 폴백.
-    const manifest = useMemo(
-        () => LOCAL_DEMO_MANIFESTS[tool.repo] ?? getDemoManifest(tool.repo),
-        [tool.repo],
-    );
+    const manifest = useMemo(() => {
+        const base = LOCAL_DEMO_MANIFESTS[tool.repo] ?? getDemoManifest(tool.repo);
+        // 매니페스트 문구는 대부분 npm 패키지에서 오므로 렌더 직전에 영문으로 치환한다.
+        return base ? localizeManifest(base, locale) : base;
+    }, [tool.repo, locale]);
 
     if (!manifest) {
         return <NoManifest tool={tool} />;
     }
 
-    return <DemoRunner tool={tool} manifest={manifest} />;
+    return <DemoRunner tool={tool} manifest={manifest} locale={locale} />;
 }
 
 /* ------------------------------- No manifest -------------------------------- */
@@ -88,7 +108,16 @@ interface DemoState {
     isSample: boolean;
 }
 
-function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) {
+function DemoRunner({
+    tool,
+    manifest,
+    locale,
+}: {
+    tool: Tool;
+    manifest: DemoManifest;
+    locale: Locale;
+}) {
+    const t = COPY[locale];
     const initialState = useMemo<DemoState>(() => {
         const inputValues: Record<string, unknown> = {};
         const files: Record<string, File | null> = {};
@@ -153,7 +182,7 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                     elapsedMs: null,
                 }));
             } else {
-                setState((s) => ({ ...s, error: "이 데모에는 아직 예시 결과가 준비되지 않았습니다." }));
+                setState((s) => ({ ...s, error: t.noSample }));
             }
             return;
         }
@@ -345,7 +374,7 @@ function DemoRunner({ tool, manifest }: { tool: Tool; manifest: DemoManifest }) 
                         {state.isSample && state.outputValues && !state.error ? (
                             <span
                                 className="inline-flex items-center gap-1 rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2 py-0.5 font-mono text-[12px] text-[var(--color-ink-muted)]"
-                                title="라이브 백엔드 대신 큐레이션된 예시 결과를 표시합니다."
+                                title={t.sampleTitle}
                             >
                                 <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
                                 sample

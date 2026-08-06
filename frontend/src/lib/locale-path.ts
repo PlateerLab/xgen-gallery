@@ -52,6 +52,8 @@ const EN_DYNAMIC_PREFIXES: readonly string[] = [
     // 블로그는 38편 전편이 content/blog/en 에 있어 slug 단위로 1:1 대응한다.
     "/blog/series/",
     "/blog/",
+    // 오픈소스 툴 상세 — 데모 UI가 이미 영문이라 전체 slug에 영문판이 있다.
+    "/tool/",
 ];
 
 /** `/en/about` → `"en"`, `/about` → `"ko"`. */
