@@ -5,26 +5,42 @@
  * 구성이라 오른쪽 통제 카드 그리드와 세로 높이가 균형을 이룬다.
  * 외부 이미지/라이브러리 없이 CSP-safe SMIL로 구현.
  */
+import type { Locale } from "@/lib/i18n";
+
 const cx = 280;
 const cy = 130;
 
-// 코어를 기준으로 좌/우 각각 위·아래 2개씩 대칭 배치.
-const LEFT = [
-    { y: 42, label: "인증 · MFA / OTP" },
-    { y: 188, label: "가드레일 · PII 마스킹" },
-];
-const RIGHT = [
-    { y: 42, label: "권한 · ABAC 3-레이어" },
-    { y: 188, label: "감사 로그 · 100% 추적" },
-];
+/** 통제 항목 칩 라벨 — SVG 안쪽 글자도 페이지 언어를 따라간다. */
+const T: Record<Locale, { left: string[]; right: string[]; aria: string }> = {
+    ko: {
+        left: ["인증 · MFA / OTP", "가드레일 · PII 마스킹"],
+        right: ["권한 · ABAC 3-레이어", "감사 로그 · 100% 추적"],
+        aria: "중앙 보안 코어를 동심 방어 계층과 좌우 통제 항목이 감싸는 XGEN 거버넌스 개념도",
+    },
+    en: {
+        left: ["Authentication · MFA / OTP", "Guardrails · PII masking"],
+        right: ["Permissions · 3-layer ABAC", "Audit log · fully traced"],
+        aria: "A diagram of XGEN governance — a central security core wrapped by concentric defense layers, with control items on either side",
+    },
+};
 
-export function GovernanceArt() {
+export function GovernanceArt({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
+    // 코어를 기준으로 좌/우 각각 위·아래 2개씩 대칭 배치.
+    const LEFT = [
+        { y: 42, label: L.left[0] },
+        { y: 188, label: L.left[1] },
+    ];
+    const RIGHT = [
+        { y: 42, label: L.right[0] },
+        { y: 188, label: L.right[1] },
+    ];
     return (
         <svg
             viewBox="0 0 560 250"
             className="w-full"
             role="img"
-            aria-label="중앙 보안 코어를 동심 방어 계층과 좌우 통제 항목이 감싸는 XGEN 거버넌스 개념도"
+            aria-label={L.aria}
         >
             <defs>
                 <radialGradient id="gov-core" cx="0.4" cy="0.32" r="0.9">

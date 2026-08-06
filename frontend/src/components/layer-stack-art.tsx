@@ -4,70 +4,112 @@
  * 그라데이션 위에 놓인다. 층 사이마다 상승 화살표가 아래→위로 흐르고, 가운데엔 각 계층 이름,
  * 오른쪽엔 각 층의 기능·역할(XGEN 주요 기능 및 역할)을 라벨로 렌더한다.
  */
-const LAYERS = [
-    {
-        top: "#3a4863",
-        left: "#2f3a53",
-        right: "#26314a",
-        dark: true,
-        title: "에이전트 오케스트레이션",
-        role: ["여러 에이전트가 협업해", "복잡한 업무를 자동 수행"],
-        feat: ["Agent Workflow", "멀티에이전트 협업과 복잡한 업무 자동화"],
-        desc: ["멀티에이전트 워크플로우 · 태스크 라우팅", "프롬프트 관리"],
-    },
-    {
-        top: "#17a794",
-        left: "#128a7b",
-        right: "#0d7264",
-        dark: true,
-        title: "에이전트 빌더",
-        role: ["코드 없이 캔버스에서", "에이전트·워크플로우 설계"],
-        feat: ["Workflow Canvas · 이지모드 · Pathfinder", "노코드·이지모드로 손쉽게 AI 에이전트 설계"],
-        desc: ["노코드 캔버스 · 워크플로우", "프롬프트 / 도구 구성"],
-    },
-    {
-        top: "#eff2f6",
-        left: "#dde3ec",
-        right: "#c9d2df",
-        dark: false,
-        title: "RAG 하이브리드 검색",
-        role: ["사내 지식에서 근거를 찾아", "환각 없는 답변 생성"],
-        feat: ["Hybrid RAG Search", "온톨로지·근거 기반의 정확한 기업 지식 검색"],
-        desc: ["Dense + Sparse(SPLADE) + Reranker", "Late Chunking + Vision · 온톨로지"],
-    },
-    {
-        top: "#4a8bef",
-        left: "#3e75d6",
-        right: "#315fba",
-        dark: true,
-        title: "Model Router · 멀티 LLM",
-        role: ["업무·비용·보안에 맞는", "최적 LLM 자동 선택"],
-        feat: ["Model Router", "최적의 LLM 자동 선택 및 전환"],
-        desc: ["GPT · Claude · Gemini", "Private LLM"],
-    },
-    {
-        top: "#eff2f6",
-        left: "#dde3ec",
-        right: "#c9d2df",
-        dark: false,
-        title: "데이터 레이어",
-        role: ["벡터·객체·관계형·캐시", "데이터를 통합 관리"],
-        feat: ["AI Data Foundation", "AI 데이터를 통합 저장·관리"],
-        desc: ["Qdrant(Vector DB) · MinIO(Object Storage)", "CNPG · Valkey(Cache)"],
-    },
-    {
-        top: "#2b3a58",
-        left: "#22304b",
-        right: "#1b2740",
-        dark: true,
-        title: "인프라 레이어",
-        role: ["고가용성·무중단 배포의", "온프레미스 실행 기반"],
-        feat: ["AI Runtime Platform", "고가용성 AI 실행 환경 제공"],
-        desc: ["k3s HA(고가용성) + ArgoCD GitOps", "무중단 배포"],
-    },
+import type { Locale } from "@/lib/i18n";
+
+/** 슬래브 색상은 언어와 무관하므로 라벨만 사전으로 분리한다. */
+const LAYER_COLORS = [
+    { top: "#3a4863", left: "#2f3a53", right: "#26314a", dark: true },
+    { top: "#17a794", left: "#128a7b", right: "#0d7264", dark: true },
+    { top: "#eff2f6", left: "#dde3ec", right: "#c9d2df", dark: false },
+    { top: "#4a8bef", left: "#3e75d6", right: "#315fba", dark: true },
+    { top: "#eff2f6", left: "#dde3ec", right: "#c9d2df", dark: false },
+    { top: "#2b3a58", left: "#22304b", right: "#1b2740", dark: true },
 ];
 
-export function LayerStackArt() {
+interface LayerCopy {
+    title: string;
+    role: [string, string];
+    feat: [string, string];
+    desc: [string, string];
+}
+
+const T: Record<Locale, { layers: LayerCopy[]; aria: string }> = {
+    ko: {
+        layers: [
+            {
+                title: "에이전트 오케스트레이션",
+                role: ["여러 에이전트가 협업해", "복잡한 업무를 자동 수행"],
+                feat: ["Agent Workflow", "멀티에이전트 협업과 복잡한 업무 자동화"],
+                desc: ["멀티에이전트 워크플로우 · 태스크 라우팅", "프롬프트 관리"],
+            },
+            {
+                title: "에이전트 빌더",
+                role: ["코드 없이 캔버스에서", "에이전트·워크플로우 설계"],
+                feat: ["Workflow Canvas · 이지모드 · Pathfinder", "노코드·이지모드로 손쉽게 AI 에이전트 설계"],
+                desc: ["노코드 캔버스 · 워크플로우", "프롬프트 / 도구 구성"],
+            },
+            {
+                title: "RAG 하이브리드 검색",
+                role: ["사내 지식에서 근거를 찾아", "환각 없는 답변 생성"],
+                feat: ["Hybrid RAG Search", "온톨로지·근거 기반의 정확한 기업 지식 검색"],
+                desc: ["Dense + Sparse(SPLADE) + Reranker", "Late Chunking + Vision · 온톨로지"],
+            },
+            {
+                title: "Model Router · 멀티 LLM",
+                role: ["업무·비용·보안에 맞는", "최적 LLM 자동 선택"],
+                feat: ["Model Router", "최적의 LLM 자동 선택 및 전환"],
+                desc: ["GPT · Claude · Gemini", "Private LLM"],
+            },
+            {
+                title: "데이터 레이어",
+                role: ["벡터·객체·관계형·캐시", "데이터를 통합 관리"],
+                feat: ["AI Data Foundation", "AI 데이터를 통합 저장·관리"],
+                desc: ["Qdrant(Vector DB) · MinIO(Object Storage)", "CNPG · Valkey(Cache)"],
+            },
+            {
+                title: "인프라 레이어",
+                role: ["고가용성·무중단 배포의", "온프레미스 실행 기반"],
+                feat: ["AI Runtime Platform", "고가용성 AI 실행 환경 제공"],
+                desc: ["k3s HA(고가용성) + ArgoCD GitOps", "무중단 배포"],
+            },
+        ],
+        aria: "인프라부터 에이전트까지 여섯 계층이 쌓인 XGEN 코어 엔진 아이소메트릭 도해",
+    },
+    en: {
+        layers: [
+            {
+                title: "Agent orchestration",
+                role: ["Agents collaborate to run", "complex work automatically"],
+                feat: ["Agent Workflow", "Multi-agent collaboration and automation of complex work"],
+                desc: ["Multi-agent workflow · task routing", "Prompt management"],
+            },
+            {
+                title: "Agent builder",
+                role: ["Design agents and workflows", "on a canvas, without code"],
+                feat: ["Workflow Canvas · Easy Mode · Pathfinder", "Design AI agents easily with no-code and Easy Mode"],
+                desc: ["No-code canvas · workflow", "Prompt and tool configuration"],
+            },
+            {
+                title: "Hybrid RAG retrieval",
+                role: ["Find evidence in internal knowledge", "and answer without hallucination"],
+                feat: ["Hybrid RAG Search", "Precise enterprise knowledge retrieval grounded in ontology and evidence"],
+                desc: ["Dense + Sparse (SPLADE) + Reranker", "Late chunking + vision · ontology"],
+            },
+            {
+                title: "Model Router · multi-LLM",
+                role: ["Automatically pick the LLM that fits", "the task, cost, and security"],
+                feat: ["Model Router", "Automatic LLM selection and switching"],
+                desc: ["GPT · Claude · Gemini", "Private LLM"],
+            },
+            {
+                title: "Data layer",
+                role: ["Vector, object, relational, and cache", "data managed as one"],
+                feat: ["AI Data Foundation", "Unified storage and management of AI data"],
+                desc: ["Qdrant (Vector DB) · MinIO (Object Storage)", "CNPG · Valkey (Cache)"],
+            },
+            {
+                title: "Infrastructure layer",
+                role: ["The on-premise execution base for", "high availability and zero-downtime deployment"],
+                feat: ["AI Runtime Platform", "A highly available AI execution environment"],
+                desc: ["k3s HA + ArgoCD GitOps", "Zero-downtime deployment"],
+            },
+        ],
+        aria: "An isometric diagram of the XGEN core engine, six layers stacked from infrastructure up to agents",
+    },
+};
+
+export function LayerStackArt({ locale = "ko" }: { locale?: Locale }) {
+    const LAYERS = T[locale].layers.map((l, i) => ({ ...LAYER_COLORS[i], ...l }));
     const cx = 235; // 스택 중심(살짝 오른쪽)
     const w = 112; // 스택 폭 축소
     const hh = 50; // 아이소 반높이(납작하게 — 수평 텍스트와 각 맞춤)
@@ -89,7 +131,7 @@ export function LayerStackArt() {
             viewBox={`0 0 1178 ${floorY + 46}`}
             className="w-full"
             role="img"
-            aria-label="인프라부터 에이전트까지 여섯 계층이 쌓인 XGEN 코어 엔진 아이소메트릭 도해"
+            aria-label={T[locale].aria}
         >
             <defs>
                 <radialGradient id="ls-floor" cx="0.5" cy="0.5" r="0.5">

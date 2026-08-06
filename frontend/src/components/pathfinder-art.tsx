@@ -3,14 +3,33 @@
  * 기존 웹 화면을 익스텐션으로 잡아 Agent Tool로 등록하는 흐름을 표현.
  * 순수 SVG(외부 이미지 없음).
  */
-export function PathFinderArt() {
+import type { Locale } from "@/lib/i18n";
+
+/** 익스텐션 팝업 안 문구 — SVG 텍스트도 페이지 언어를 따라간다. */
+const T: Record<Locale, { aria: string; popupTitle: string; steps: string[]; button: string }> = {
+    ko: {
+        aria: "PathFinder — 브라우저의 기존 웹 화면을 XGEN 크롬 익스텐션으로 Agent Tool로 연결",
+        popupTitle: "이 화면을 Agent Tool로",
+        steps: ["연결", "테스트", "등록"],
+        button: "Agent Tool 등록",
+    },
+    en: {
+        aria: "PathFinder — turning an existing web screen into an Agent Tool through the XGEN Chrome extension",
+        popupTitle: "Turn this screen into an Agent Tool",
+        steps: ["Connect", "Test", "Register"],
+        button: "Register Agent Tool",
+    },
+};
+
+export function PathFinderArt({ locale = "ko" }: { locale?: Locale }) {
+    const L = T[locale];
     return (
         <div className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <svg
                 viewBox="0 0 480 240"
                 className="block h-auto w-full"
                 role="img"
-                aria-label="PathFinder — 브라우저의 기존 웹 화면을 XGEN 크롬 익스텐션으로 Agent Tool로 연결"
+                aria-label={L.aria}
                 fontFamily="Pretendard, system-ui, sans-serif"
             >
                 <defs>
@@ -77,12 +96,12 @@ export function PathFinderArt() {
                 </g>
                 <line x1="350" y1="74" x2="452" y2="74" stroke="#ffffff" strokeOpacity="0.1" />
                 {/* 팝업 본문 — 화면을 도구로 */}
-                <text x="352" y="92" fontSize="10.5" fontWeight="700" fill="#cfe3ff">이 화면을 Agent Tool로</text>
+                <text x="352" y="92" fontSize="10.5" fontWeight="700" fill="#cfe3ff">{L.popupTitle}</text>
                 {/* 단계 */}
                 {[
-                    ["연결", 108],
-                    ["테스트", 126],
-                    ["등록", 144],
+                    [L.steps[0], 108],
+                    [L.steps[1], 126],
+                    [L.steps[2], 144],
                 ].map(([label, y]) => (
                     <g key={String(label)}>
                         <circle cx="357" cy={Number(y)} r="4.5" fill="none" stroke="#7dd3fc" strokeWidth="1.6" />
@@ -102,7 +121,7 @@ export function PathFinderArt() {
                 {/* 등록 버튼 */}
                 <rect x="352" y="160" width="98" height="20" rx="10" fill="url(#pf-blue)" />
                 <text x="401" y="173.5" textAnchor="middle" fontSize="10" fontWeight="700" fill="#ffffff">
-                    Agent Tool 등록
+                    {L.button}
                 </text>
             </svg>
         </div>

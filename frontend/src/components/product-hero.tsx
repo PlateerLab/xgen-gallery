@@ -26,7 +26,79 @@ const MODELS: { name: string; src: string }[] = [
 
 const SLIDE_COUNT = 3;
 
-export function ProductHero() {
+import type { Locale } from "@/lib/i18n";
+
+/** 히어로 3슬라이드 카피 — 강조 span 은 조각으로 나눠 언어별 어순에 맞춘다. */
+const T: Record<
+    Locale,
+    {
+        s1TitleA: string;
+        s1Highlight: string;
+        s1TitleB: string;
+        s1Lead: string;
+        s2TitleA: string;
+        s2Highlight: string;
+        s2TitleB: string;
+        s2TitleC: string;
+        s3TitleA: string;
+        s3Highlight: string;
+        s3TitleB: string;
+        s3Lead: string;
+        ctaDemo: string;
+        ctaPlatform: string;
+        ctaOnprem: string;
+        dotAria: (n: number) => string;
+        netAria: string;
+        netInternal: string;
+        netExternal: string;
+    }
+> = {
+    ko: {
+        s1TitleA: "기업의 AX 혁신을 돕는",
+        s1Highlight: "Agentic AI Platform",
+        s1TitleB: ", XGEN",
+        s1Lead: "맞춤형 AI 서비스를 설계하고, 운영하며, 신뢰를 완성하는 하나의 플랫폼 — 복잡한 개발 지식 없이도 Agent 기반 업무 자동화를 안전하게 구현합니다.",
+        s2TitleA: "원하는 ",
+        s2Highlight: "LLM과 인프라",
+        s2TitleB: "로 최적화된",
+        s2TitleC: "맞춤 Agentic AI 서비스를 생성하세요",
+        s3TitleA: "외부 데이터 유출 걱정 없이",
+        s3Highlight: "기업 내부 데이터",
+        s3TitleB: "를 안심하고 활용하세요",
+        s3Lead: "온프레미스로 구축돼 데이터가 외부로 유출되지 않고, 역할 기반 접근 제어(RBAC)로 내부 접근 권한을 세분화하며, 고객사 데이터가 외부 모델의 학습 데이터로 쓰이지 않도록 기술적으로 차단합니다",
+        ctaDemo: "데모 요청하기",
+        ctaPlatform: "플랫폼 살펴보기",
+        ctaOnprem: "온프레미스 자세히",
+        dotAria: (n) => `슬라이드 ${n}로 이동`,
+        netAria: "외부망과 내부망 — 방화벽으로 보호되는 온프레미스 네트워크",
+        netInternal: "내부망 · On-Premise",
+        netExternal: "외부망 · Internet",
+    },
+    en: {
+        s1TitleA: "XGEN —",
+        s1Highlight: "the Agentic AI Platform",
+        s1TitleB: " for enterprise AX",
+        s1Lead: "One platform to design custom AI services, operate them, and make them trustworthy — agent-based automation you can build safely, without deep development expertise.",
+        s2TitleA: "Build Agentic AI services",
+        s2Highlight: "on the LLMs and infrastructure",
+        s2TitleB: "",
+        s2TitleC: "you already run",
+        s3TitleA: "Put your internal data to work —",
+        s3Highlight: "without it leaving",
+        s3TitleB: "",
+        s3Lead: "Built on-premise so data never goes outside, with role-based access control (RBAC) scoping internal permissions, and technical safeguards that keep customer data out of external models' training sets",
+        ctaDemo: "Request a demo",
+        ctaPlatform: "Explore the platform",
+        ctaOnprem: "More on on-premise",
+        dotAria: (n) => `Go to slide ${n}`,
+        netAria: "External and internal networks — an on-premise network protected by a firewall",
+        netInternal: "Internal · On-Premise",
+        netExternal: "External · Internet",
+    },
+};
+
+export function ProductHero({ locale = "ko" }: { locale?: Locale }) {
+    const t = T[locale];
     const [active, setActive] = useState(0);
 
     // active가 바뀔 때마다(자동·수동 모두) 다음 전환을 새로 예약 → 수동 이동이 바로 덮이지 않음
@@ -63,31 +135,29 @@ export function ProductHero() {
                             XGEN · Agentic AI Platform
                         </div>
                         <h1 className="mt-7 text-3xl font-bold leading-[1.2] tracking-tight md:text-[42px]">
-                            기업의 AX 혁신을 돕는
+                            {t.s1TitleA}
                             <br />
                             <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                                Agentic AI Platform
+                                {t.s1Highlight}
                             </span>
-                            , XGEN
+                            {t.s1TitleB}
                         </h1>
                         <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-                            맞춤형 AI 서비스를 설계하고, 운영하며, 신뢰를 완성하는 하나의
-                            플랫폼 — 복잡한 개발 지식 없이도 Agent 기반 업무 자동화를
-                            안전하게 구현합니다.
+                            {t.s1Lead}
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
                                 href="/contact?type=demo&from=product-hero"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
-                                데모 요청하기
+                                {t.ctaDemo}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <a
                                 href="#platform"
                                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
-                                플랫폼 살펴보기
+                                {t.ctaPlatform}
                             </a>
                         </div>
                     </div>
@@ -124,13 +194,13 @@ export function ProductHero() {
                         </div>
                     </div>
                     <h2 className="mx-auto mt-7 max-w-3xl text-3xl font-bold leading-[1.28] tracking-tight md:text-[42px]">
-                        원하는{" "}
+                        {t.s2TitleA}
                         <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                            LLM과 인프라
+                            {t.s2Highlight}
                         </span>
-                        로 최적화된
+                        {t.s2TitleB}
                         <br />
-                        맞춤 Agentic AI 서비스를 생성하세요
+                        {t.s2TitleC}
                     </h2>
                     <div className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
                         <div className="marquee-track flex w-max items-center gap-12 pr-12 md:gap-16 md:pr-16">
@@ -159,14 +229,14 @@ export function ProductHero() {
                             href="/contact?type=demo&from=product-hero"
                             className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                         >
-                            데모 요청하기
+                            {t.ctaDemo}
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
                         <a
                             href="#platform"
                             className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                         >
-                            플랫폼 살펴보기
+                            {t.ctaPlatform}
                         </a>
                     </div>
                 </div>
@@ -185,31 +255,29 @@ export function ProductHero() {
                             XGEN · Agentic AI Platform
                         </div>
                         <h2 className="mt-7 text-3xl font-bold leading-[1.22] tracking-tight md:text-[40px]">
-                            외부 데이터 유출 걱정 없이
+                            {t.s3TitleA}
                             <br />
                             <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                                기업 내부 데이터
+                                {t.s3Highlight}
                             </span>
-                            를 안심하고 활용하세요
+                            {t.s3TitleB}
                         </h2>
                         <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/70">
-                            온프레미스로 구축돼 데이터가 외부로 유출되지 않고, 역할 기반
-                            접근 제어(RBAC)로 내부 접근 권한을 세분화하며, 고객사 데이터가
-                            외부 모델의 학습 데이터로 쓰이지 않도록 기술적으로 차단합니다
+                            {t.s3Lead}
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link
                                 href="/contact?type=demo&from=product-hero"
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
                             >
-                                데모 요청하기
+                                {t.ctaDemo}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <a
                                 href="#on-premise"
                                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
-                                온프레미스 자세히
+                                {t.ctaOnprem}
                             </a>
                         </div>
                     </div>
@@ -217,7 +285,7 @@ export function ProductHero() {
                     {/* 외부망/내부망 네트워크 보안 비주얼(움직임) */}
                     <div className="w-full lg:translate-x-2">
                         <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[radial-gradient(120%_120%_at_72%_18%,#173a86_0%,#0a1636_62%)] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)]">
-                            <OnPremNetwork />
+                            <OnPremNetwork locale={locale} />
                         </div>
                     </div>
                 </div>
@@ -229,7 +297,7 @@ export function ProductHero() {
                     <button
                         key={i}
                         type="button"
-                        aria-label={`슬라이드 ${i + 1}로 이동`}
+                        aria-label={t.dotAria(i + 1)}
                         onClick={() => setActive(i)}
                         className={`h-2 rounded-full transition-all ${
                             active === i
@@ -249,7 +317,7 @@ export function ProductHero() {
  *  · 우: 내부망(On-Premise) 객체들이 유기적으로 연결, 링크에 데이터가 흐름
  * SVG + CSS(.flowline 흐르는 점선, Tailwind animate-pulse) — 외부 에셋 없음.
  */
-function OnPremNetwork() {
+function OnPremNetwork({ locale }: { locale: Locale }) {
     // 내부망 노드 좌표(viewBox 400x300 기준)
     const core = { x: 292, y: 150 };
     const inner = [
@@ -262,7 +330,7 @@ function OnPremNetwork() {
         <svg
             viewBox="0 0 400 300"
             role="img"
-            aria-label="외부망과 내부망 — 방화벽으로 보호되는 온프레미스 네트워크"
+            aria-label={T[locale].netAria}
             className="block h-auto w-full"
         >
             {/* 내부망 존 */}
@@ -278,7 +346,7 @@ function OnPremNetwork() {
                 strokeOpacity="0.28"
             />
             <text x="282" y="279" textAnchor="middle" fontSize="12.5" fontWeight="600" letterSpacing="0.04em" fill="#cfe8ff">
-                내부망 · On-Premise
+                {T[locale].netInternal}
             </text>
 
             {/* 내부망 링크 — 유기적 연결 + 데이터 흐름 */}
@@ -325,7 +393,7 @@ function OnPremNetwork() {
 
             {/* 외부망 노드 + 차단된 침입 시도 */}
             <text x="66" y="279" textAnchor="middle" fontSize="12.5" fontWeight="600" letterSpacing="0.04em" fill="#a7b8d6">
-                외부망 · Internet
+                {T[locale].netExternal}
             </text>
             <line x1="46" y1="112" x2="62" y2="188" stroke="#8ea3c6" strokeOpacity="0.5" strokeWidth="1.6" />
             <circle cx="46" cy="112" r="6" fill="#8ea3c6" fillOpacity="0.85" />
