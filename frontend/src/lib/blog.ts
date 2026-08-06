@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 파일베이스 블로그 — `content/blog/*.md`의 마크다운 + YAML 프론트매터를 빌드 시점에
@@ -46,6 +47,15 @@ export interface Post extends PostMeta {
 }
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+/**
+ * 영문 글은 `content/blog/en/<slug>.md` 에 같은 slug 로 둔다 —
+ * `/blog/x` 와 `/en/blog/x` 가 1:1로 맞아 hreflang·canonical 이 단순해진다.
+ */
+const BLOG_DIR_EN = path.join(BLOG_DIR, "en");
+
+function dirFor(locale: Locale) {
+    return locale === "en" ? BLOG_DIR_EN : BLOG_DIR;
+}
 
 function isProd() {
     return process.env.NODE_ENV === "production";
@@ -67,17 +77,19 @@ function toISODate(v: unknown): string {
     return Number.isNaN(d.getTime()) ? s.slice(0, 10) : d.toISOString().slice(0, 10);
 }
 
-function readSlugs(): string[] {
-    if (!fs.existsSync(BLOG_DIR)) return [];
+function readSlugs(locale: Locale = "ko"): string[] {
+    const dir = dirFor(locale);
+    if (!fs.existsSync(dir)) return [];
     return fs
-        .readdirSync(BLOG_DIR)
+        .readdirSync(dir)
         .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"))
         .map((f) => f.replace(/\.mdx?$/, ""));
 }
 
-function parse(slug: string): Post | null {
-    const md = path.join(BLOG_DIR, `${slug}.md`);
-    const mdx = path.join(BLOG_DIR, `${slug}.mdx`);
+function parse(slug: string, locale: Locale = "ko"): Post | null {
+    const dir = dirFor(locale);
+    const md = path.join(dir, `${slug}.md`);
+    const mdx = path.join(dir, `${slug}.mdx`);
     const file = fs.existsSync(md) ? md : fs.existsSync(mdx) ? mdx : null;
     if (!file) return null;
 
@@ -121,29 +133,34 @@ function parse(slug: string): Post | null {
 }
 
 /** 발행된 글 목록(초안 제외, 최신순). 운영 빌드에서만 draft를 숨긴다. */
-export function getAllPosts(): PostMeta[] {
-    return readSlugs()
-        .map(parse)
+export function getAllPosts(locale: Locale = "ko"): PostMeta[] {
+    return readSlugs(locale)
+        .map((slug) => parse(slug, locale))
         .filter((p): p is Post => p !== null)
         .filter((p) => !(isProd() && p.draft))
         .sort((a, b) => (a.date < b.date ? 1 : -1))
         .map(({ html: _html, readingMinutes: _r, ...meta }) => meta);
 }
 
-export function getPost(slug: string): Post | null {
-    const post = parse(slug);
+export function getPost(slug: string, locale: Locale = "ko"): Post | null {
+    const post = parse(slug, locale);
     if (!post) return null;
     if (isProd() && post.draft) return null;
     return post;
 }
 
-export function getAllSlugs(): string[] {
-    return getAllPosts().map((p) => p.slug);
+export function getAllSlugs(locale: Locale = "ko"): string[] {
+    return getAllPosts(locale).map((p) => p.slug);
+}
+
+/** 영문판이 존재하는 slug 집합 — hreflang·언어 토글이 이 값을 기준으로 판단한다. */
+export function getEnglishSlugs(): Set<string> {
+    return new Set(getAllSlugs("en"));
 }
 
 /** 모든 태그(중복 제거). */
-export function getAllTags(): string[] {
+export function getAllTags(locale: Locale = "ko"): string[] {
     const set = new Set<string>();
-    getAllPosts().forEach((p) => p.tags.forEach((t) => set.add(t)));
+    getAllPosts(locale).forEach((p) => p.tags.forEach((t) => set.add(t)));
     return [...set].sort();
 }
