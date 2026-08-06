@@ -1,32 +1,53 @@
 import Link from "next/link";
 import { ArrowRight, GraduationCap, LifeBuoy } from "lucide-react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * 도입 이후 지원 안내 — 제품 페이지 하단에서 교육 지원·운영/기술지원으로 연계.
  * 제품 딜리버리가 구축에서 끝나지 않고 내재화·운영까지 이어짐을 짧게 안내한다.
  */
-const ITEMS = [
-    {
-        icon: GraduationCap,
-        title: "교육 지원",
-        desc: "역할·프로젝트 단계별 맞춤 교육으로 조직에 빠르게 내재화합니다.",
-        href: "/enablement",
-    },
-    {
-        icon: LifeBuoy,
-        title: "운영·기술지원",
-        desc: "유지보수·장애 대응·모니터링으로 구축 이후 운영을 책임집니다.",
-        href: "/support",
-    },
-];
+const T: Record<Locale, { title: string; desc: string; href: string }[]> = {
+    ko: [
+        {
+            title: "교육 지원",
+            desc: "역할·프로젝트 단계별 맞춤 교육으로 조직에 빠르게 내재화합니다.",
+            href: "/enablement",
+        },
+        {
+            title: "운영·기술지원",
+            desc: "유지보수·장애 대응·모니터링으로 구축 이후 운영을 책임집니다.",
+            href: "/support",
+        },
+    ],
+    en: [
+        {
+            title: "Enablement",
+            desc: "Training tailored to each role and project stage, so the capability lands inside your team quickly.",
+            href: "/enablement",
+        },
+        {
+            title: "Operations and support",
+            desc: "Maintenance, incident response, and monitoring — we stay responsible for operations after the build.",
+            href: "/support",
+        },
+    ],
+};
 
-export function PostDeploymentSupport() {
+const ICONS = [GraduationCap, LifeBuoy];
+
+export function PostDeploymentSupport({
+    locale = "ko",
+}: {
+    locale?: Locale;
+}) {
+    const ITEMS = T[locale].map((it, i) => ({ ...it, icon: ICONS[i] }));
     return (
         <div className="grid gap-4 sm:grid-cols-2">
             {ITEMS.map((it) => (
                 <Link
                     key={it.href}
-                    href={it.href}
+                    href={localeHref(locale, it.href)}
                     className="group flex flex-col items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 text-center transition hover:border-[#2f7bff]/40 hover:shadow-[0_12px_30px_-16px_rgba(20,40,80,0.35)]"
                 >
                     <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">

@@ -3,7 +3,26 @@
  * 사내 코드 맥락에서 AI가 코드 수준으로 제안하는 모습을 표현. 외부 이미지/폰트 없이
  * 자체 완결(CSP-safe). 특정 고객 사례와 무관한 제품 일반 비주얼.
  */
-export function CodeAssistantHeroArt() {
+import type { Locale } from "@/lib/i18n";
+
+/** 목업 안의 주석·AI 제안 문구 — 코드 키워드는 언어와 무관하게 그대로 둔다. */
+const T: Record<Locale, { comment: string; suggestBadge: string; suggestComment: string; chat: string }> = {
+    ko: {
+        comment: "// 사내 결제 서비스 — XGEN이 리포지토리 맥락으로 이해",
+        suggestBadge: "AI 제안 · Tab",
+        suggestComment: "// 이상거래 점검 후 승인 처리",
+        chat: "이 결제 로직에 사내 규정 기반 이상거래 점검을 추가해줘",
+    },
+    en: {
+        comment: "// Internal payment service — XGEN reads it in repository context",
+        suggestBadge: "AI suggestion · Tab",
+        suggestComment: "// Run the fraud check, then approve",
+        chat: "Add a fraud check based on our internal policy to this payment logic",
+    },
+};
+
+export function CodeAssistantHeroArt({ locale = "ko" }: { locale?: Locale }) {
+    const t = T[locale];
     return (
         <div className="w-full lg:translate-x-2">
             <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#0b1020] shadow-[0_28px_60px_-24px_rgba(0,0,0,0.75)]">
@@ -31,7 +50,7 @@ export function CodeAssistantHeroArt() {
                     <div className="overflow-x-auto px-4 py-4">
                         <div className="text-white/40">
                             <span className="text-[#7d8590]">
-                                {"// 사내 결제 서비스 — XGEN이 리포지토리 맥락으로 이해"}
+                                {t.comment}
                             </span>
                         </div>
                         <div>
@@ -61,13 +80,13 @@ export function CodeAssistantHeroArt() {
                             <span className="text-[#7dd3fc]">xgen</span>
                             <span className="text-white/70">.assessFraud(order)</span>
                             <span className="ml-2 rounded bg-[#7dd3fc]/15 px-1.5 py-0.5 text-[10.5px] font-semibold text-[#7dd3fc]">
-                                AI 제안 · Tab
+                                {t.suggestBadge}
                             </span>
                         </div>
 
                         <div className="pl-5 text-white/40">
                             <span className="text-[#7d8590]">
-                                {"// 이상거래 점검 후 승인 처리"}
+                                {t.suggestComment}
                             </span>
                         </div>
                         <div className="pl-5">
@@ -82,7 +101,7 @@ export function CodeAssistantHeroArt() {
                 {/* 하단 채팅 바 */}
                 <div className="flex items-center gap-2 border-t border-white/10 bg-white/[0.03] px-4 py-3">
                     <div className="flex-1 truncate rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[12.5px] text-white/55">
-                        이 결제 로직에 사내 규정 기반 이상거래 점검을 추가해줘
+                        {t.chat}
                     </div>
                     <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[linear-gradient(45deg,#00acee,#185aea)] text-white">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
