@@ -33,6 +33,7 @@ export const EN_ROUTES: readonly string[] = [
     "/documentation",
     "/xgen-trial",
     "/support",
+    "/polar",
 ];
 
 /** 하위 경로까지 영문판이 있는 동적 라우트(개별 글은 slug 단위로 별도 확인). */
