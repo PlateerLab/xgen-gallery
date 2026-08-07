@@ -43,6 +43,7 @@ export const EN_ROUTES: readonly string[] = [
     "/research",
     "/library-gallery",
     "/blog",
+    "/newsletter",
 ];
 
 /** 하위 경로까지 영문판이 있는 동적 라우트(개별 글은 slug 단위로 별도 확인). */
@@ -54,6 +55,8 @@ const EN_DYNAMIC_PREFIXES: readonly string[] = [
     "/blog/",
     // 오픈소스 툴 상세 — 데모 UI가 이미 영문이라 전체 slug에 영문판이 있다.
     "/tool/",
+    // 뉴스레터 — 영문본이 있는 호만 /en 라우트가 생성된다(newsletter-en.ts 기준).
+    "/newsletter/",
 ];
 
 /** `/en/about` → `"en"`, `/about` → `"ko"`. */

@@ -1,11 +1,12 @@
 import { NewsletterIssuePageContent } from "@/components/pages/newsletter-issue-page";
-import { getIssue, getIssues } from "@/lib/newsletter";
+import { getIssueFor, getIssuesFor } from "@/lib/newsletter";
 import { pageMetadata } from "@/lib/metadata";
 
 export const dynamicParams = false;
 
+/** 영문판이 준비된 호만 생성한다 — 없는 호에 hreflang을 걸지 않기 위해. */
 export function generateStaticParams() {
-    return getIssues().map((i) => ({ slug: i.slug }));
+    return getIssuesFor("en").map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({
@@ -14,19 +15,20 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const issue = getIssue(slug);
+    const issue = getIssueFor(slug, "en");
     if (!issue) return {};
     return pageMetadata({
         title: issue.title,
         description: issue.summary,
         path: `/newsletter/${issue.slug}`,
+        locale: "en",
     });
 }
 
-export default async function NewsletterIssuePage({
+export default async function NewsletterIssuePageEn({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    return <NewsletterIssuePageContent params={params} locale="ko" />;
+    return <NewsletterIssuePageContent params={params} locale="en" />;
 }

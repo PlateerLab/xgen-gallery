@@ -4,6 +4,9 @@
  * 자동 반영된다. 원본은 사내 메일(.msg)이며, 사이트 공개용으로 큐레이션한다.
  */
 
+import type { Locale } from "@/lib/i18n";
+import { NEWSLETTER_EN } from "@/lib/newsletter-en";
+
 export type Badge =
     | "신규"
     | "개선"
@@ -365,6 +368,59 @@ const vol2: Issue = {
         },
     ],
 };
+
+/**
+ * 호 하나를 로케일에 맞게 바꾼다.
+ *
+ * 한국어가 정규 데이터이고 영문은 newsletter-en.ts 가 인덱스로 대응해 들고 있다.
+ * 영문이 없는 호는 한국어 그대로 돌려준다 — 목록에서 걸러내는 판단은 화면이 한다.
+ * 배지 값(신규·개선 …)은 정규값이라 바꾸지 않고, 표기만 BADGE_EN 으로 옮긴다.
+ */
+export function localizeIssue(issue: Issue, locale: Locale): Issue {
+    if (locale !== "en") return issue;
+    const en = NEWSLETTER_EN[issue.slug];
+    if (!en) return issue;
+    const zip = <T, U extends { title?: string; body: string }>(
+        base: T[],
+        over: U[],
+    ): T[] =>
+        base.map((item, i) => {
+            const o = over[i];
+            if (!o) return item;
+            return {
+                ...item,
+                ...(o.title ? { title: o.title } : {}),
+                body: o.body,
+            };
+        });
+    return {
+        ...issue,
+        title: issue.titleEn ?? issue.title,
+        summary: en.summary,
+        intro: en.intro,
+        releases: zip(issue.releases, en.releases),
+        inProgress: zip(issue.inProgress, en.inProgress),
+        news: zip(issue.news, en.news),
+        reading: zip(issue.reading, en.reading),
+        papers: zip(issue.papers, en.papers),
+        upcoming: zip(issue.upcoming, en.upcoming),
+    };
+}
+
+/** 영문판이 준비된 호만 — /en 목록·사이트맵의 기준. */
+export function getIssuesFor(locale: Locale): Issue[] {
+    const all = getIssues();
+    return locale === "en"
+        ? all.filter((i) => NEWSLETTER_EN[i.slug]).map((i) => localizeIssue(i, "en"))
+        : all;
+}
+
+export function getIssueFor(slug: string, locale: Locale): Issue | undefined {
+    const i = getIssue(slug);
+    if (!i) return undefined;
+    if (locale === "en" && !NEWSLETTER_EN[i.slug]) return undefined;
+    return localizeIssue(i, locale);
+}
 
 /** 최신호가 앞. 새 호는 이 배열 맨 앞에 추가한다. */
 export const ISSUES: Issue[] = [vol2, vol1];

@@ -4,7 +4,7 @@ import { TOOLS } from "@/lib/tools";
 import { NAV_GROUPS } from "@/lib/nav";
 import { getMembersPayload } from "@/lib/members/cache";
 import { getAllPosts } from "@/lib/blog";
-import { getIssues } from "@/lib/newsletter";
+import { getIssues, getIssuesFor } from "@/lib/newsletter";
 import { SERIES } from "@/lib/series";
 import { getAllCases, INDUSTRIES, getCasesByIndustry, type IndustryKey } from "@/lib/customers";
 import { EN_ROUTES, localePath } from "@/lib/locale-path";
@@ -131,11 +131,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // 영문판(/en/*) — 실제로 번역된 경로만 색인 대상에 넣는다(EN_ROUTES가 기준).
     // 없는 URL을 사이트맵에 넣으면 Search Console에서 404 오류로 잡힌다.
     const enToolPaths = TOOLS.map((t) => `/tool/${t.id}`);
+    const enNewsletterPaths = getIssuesFor("en").map((i) => `/newsletter/${i.slug}`);
     const enBlogPaths = getAllPosts("en").map((p) => `/blog/${p.slug}`);
     const enSeriesPaths = SERIES.map((d) => `/blog/series/${d.key}`);
     const englishRoutes: MetadataRoute.Sitemap = [
         ...EN_ROUTES,
         ...enToolPaths,
+        ...enNewsletterPaths,
         ...enBlogPaths,
         ...enSeriesPaths,
     ].map((path) => ({
