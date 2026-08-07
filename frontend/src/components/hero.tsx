@@ -22,25 +22,29 @@ const SLIDE_COUNT = 4;
 const ROTATE_MS = 6000;
 
 // Per-slide background videos (index matches the active slide).
-// 연구소 정체성(Research Vision)을 첫 슬라이드로 두어 "연구소가 만든 것을 제품으로
-// 증명한다"는 서사를 살린다. XGEN 소개영상(hero-xgen.mp4, xgen.im 공식)은 두 번째.
+// 순서: 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// 오픈소스 툴킷을 첫 슬라이드로 두어, 검색으로 홈에 도착한 개발자가 첫 화면에서
+// 자기 경로를 찾게 한다(연구소 서사는 마지막으로 이동).
+// 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
-    "/hero-vision.jpeg",
-    "/hero-xgen.mp4",
-    "/hero-security.jpeg",
     "/hero-slide2.mp4",
+    "/hero-security.jpeg",
+    "/hero-xgen.mp4",
+    "/hero-vision.jpeg",
 ];
 const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
 // Per-slide object-position (기본 중앙).
 const SLIDE_POS = ["center", "center", "center", "center"];
-// Per-slide 추가 이동/확대(이미지 슬라이드용). 3번째(보안) 이미지는 피사체를 더
-// 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시킨다.
+// Per-slide 추가 이동/확대(이미지 슬라이드용). 거버넌스 이미지는 피사체를 더
+// 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시키고,
+// 연구소 정체성 이미지는 좌하단으로 옮긴다. 값은 각 이미지에 맞춰 잡은 것이라
+// 슬라이드 순서와 함께 이동한다.
 const SLIDE_TRANSFORM: (string | undefined)[] = [
-    "scale(1.3) translate(calc(-10% + 5px), 12%)",
     undefined,
     "scale(1.3) translateX(16%)",
     undefined,
+    "scale(1.3) translate(calc(-10% + 5px), 12%)",
 ];
 
 const H1_CLS =
@@ -83,7 +87,7 @@ function HeroActions({
     );
 }
 
-/** Slide 0 — XGEN Agentic AI Platform (xgen.im 소개영상 배경). */
+/** 슬라이드 3 — XGEN 제품소개 (xgen.im 소개영상 배경). */
 function XgenPlatformSlide() {
     const { locale } = useI18n();
     return (
@@ -140,7 +144,7 @@ function XgenPlatformSlide() {
     );
 }
 
-/** Slide 1 — Enterprise AI research vision. */
+/** 슬라이드 4 — 연구소 정체성(Enterprise AI research vision). */
 function VisionSlide() {
     const { locale } = useI18n();
     return (
@@ -182,7 +186,7 @@ function VisionSlide() {
     );
 }
 
-/** Slide 2 — the XGEN toolkit pitch (original hero). */
+/** 슬라이드 1 — 오픈소스 툴킷 (original hero). */
 function XgenSlide() {
     const { locale, t } = useI18n();
     return (
@@ -217,7 +221,7 @@ function XgenSlide() {
     );
 }
 
-/** Slide 2 — Security & Governance (가드레일·통제, /security-and-governance 참고). */
+/** 슬라이드 2 — 거버넌스 (가드레일·통제, /security-and-governance 참고). */
 function SecuritySlide() {
     const { locale } = useI18n();
     return (
@@ -421,13 +425,13 @@ export function Hero({
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
-                        <VisionSlide />
-                    ) : active === 1 ? (
-                        <XgenPlatformSlide />
-                    ) : active === 2 ? (
-                        <SecuritySlide />
-                    ) : (
                         <XgenSlide />
+                    ) : active === 1 ? (
+                        <SecuritySlide />
+                    ) : active === 2 ? (
+                        <XgenPlatformSlide />
+                    ) : (
+                        <VisionSlide />
                     )}
                 </div>
 
