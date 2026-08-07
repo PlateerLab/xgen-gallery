@@ -204,9 +204,111 @@ const playleft: DemoManifest = {
 };
 
 /** 레포 이름 → 로컬 매니페스트. 패키지 레지스트리에 없는 신규 라이브러리만. */
+/**
+ * xgen-sdk — ABAC 권한 판정.
+ * SDK 모듈 중 DB·네트워크 없이 결과가 결정적으로 나오는 부분이라 데모로 적합하다.
+ * 와일드카드(`admin.*:*`, `workflow:*`)와 superuser 우회를 그대로 보여준다.
+ */
+const xgenSdk: DemoManifest = {
+    projectName: "xgen-sdk",
+    title: "XGen SDK Demo",
+    description:
+        "백엔드 공통 빌딩블록을 한 패키지로 모은 파이썬 툴킷. 그중 ABAC 권한 판정을 실행해 봅니다.",
+    icon: "🧰",
+    inputs: [
+        {
+            key: "granted",
+            type: "textarea",
+            label: "보유 권한 (줄바꿈 구분)",
+            placeholder: "예: admin.role:*\nworkflow:read",
+            required: true,
+        },
+        {
+            key: "required",
+            type: "text",
+            label: "엔드포인트가 요구하는 권한",
+            placeholder: "예: admin.role:read",
+            required: true,
+        },
+        {
+            key: "superuser",
+            type: "toggle",
+            label: "superuser",
+            default: false,
+        },
+    ],
+    outputs: [
+        { key: "decision", type: "text", label: "판정" },
+        { key: "trace", type: "json", label: "평가 근거" },
+    ],
+    samples: [
+        {
+            label: "와일드카드 허용",
+            description: "admin.role:* 가 admin.role:read 를 덮는다",
+            inputs: {
+                granted: "admin.role:*\nworkflow:read",
+                required: "admin.role:read",
+                superuser: false,
+            },
+            mockOutput: {
+                decision: "allow — admin.role:* 가 요구 권한을 덮습니다",
+                trace: {
+                    required: "admin.role:read",
+                    superuser: false,
+                    checked: [
+                        { rule: "admin.role:*", match: true, reason: "action wildcard" },
+                        { rule: "workflow:read", match: false, reason: "resource mismatch" },
+                    ],
+                    decision: "allow",
+                },
+            },
+        },
+        {
+            label: "권한 없음",
+            description: "리소스가 달라 어떤 규칙도 맞지 않는다",
+            inputs: {
+                granted: "workflow:read\nworkflow:write",
+                required: "admin.role:read",
+                superuser: false,
+            },
+            mockOutput: {
+                decision: "deny — 요구 권한을 덮는 규칙이 없습니다",
+                trace: {
+                    required: "admin.role:read",
+                    superuser: false,
+                    checked: [
+                        { rule: "workflow:read", match: false, reason: "resource mismatch" },
+                        { rule: "workflow:write", match: false, reason: "resource mismatch" },
+                    ],
+                    decision: "deny",
+                },
+            },
+        },
+        {
+            label: "superuser 우회",
+            description: "보유 권한과 무관하게 통과한다",
+            inputs: {
+                granted: "workflow:read",
+                required: "admin.role:read",
+                superuser: true,
+            },
+            mockOutput: {
+                decision: "allow — superuser 는 권한 검사를 우회합니다",
+                trace: {
+                    required: "admin.role:read",
+                    superuser: true,
+                    checked: [],
+                    decision: "allow",
+                },
+            },
+        },
+    ],
+};
+
 export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "document-adapter": documentAdapter,
     "xgen-omnifuse": omnifuse,
     "xgen-harness-executor": xgenHarness,
     "playwLeft": playleft,
+    "xgen-sdk": xgenSdk,
 };

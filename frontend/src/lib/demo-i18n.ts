@@ -137,6 +137,40 @@ const DICT: Record<string, string> = {
         "Two edits applied — one title, one format. The original structure (styles, table of contents) is left intact.",
     "Q1 12.4M · Q2 15.1M · Q3 14.8M · Q4 18.2M — 합계 60.5M (2차 시도에서 판정 통과).":
         "Q1 12.4M · Q2 15.1M · Q3 14.8M · Q4 18.2M — total 60.5M (cleared judgement on the second attempt).",
+
+    // ── xgen-sdk ────────────────────────────────────
+    "백엔드 공통 빌딩블록을 한 패키지로 모은 파이썬 툴킷. 그중 ABAC 권한 판정을 실행해 봅니다.":
+        "A Python toolkit that gathers common backend building blocks into one package. Here you can run its ABAC permission check.",
+    "보유 권한 (줄바꿈 구분)":
+        "Granted permissions (one per line)",
+    "엔드포인트가 요구하는 권한":
+        "Permission the endpoint requires",
+    "판정":
+        "Decision",
+    "평가 근거":
+        "Evaluation trace",
+    "와일드카드 허용":
+        "Wildcard grants access",
+    "admin.role:* 가 admin.role:read 를 덮는다":
+        "admin.role:* covers admin.role:read",
+    "권한 없음":
+        "No matching permission",
+    "리소스가 달라 어떤 규칙도 맞지 않는다":
+        "The resource differs, so no rule matches",
+    "superuser 우회":
+        "Superuser bypass",
+    "보유 권한과 무관하게 통과한다":
+        "Passes regardless of granted permissions",
+    "allow — admin.role:* 가 요구 권한을 덮습니다":
+        "allow — admin.role:* covers the required permission",
+    "deny — 요구 권한을 덮는 규칙이 없습니다":
+        "deny — no rule covers the required permission",
+    "allow — superuser 는 권한 검사를 우회합니다":
+        "allow — a superuser bypasses the permission check",
+    "예: admin.role:*\nworkflow:read":
+        "e.g. admin.role:*\nworkflow:read",
+    "예: admin.role:read":
+        "e.g. admin.role:read",
 };
 
 /** 사전에 있으면 영문으로, 없으면 원문 그대로. */

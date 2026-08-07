@@ -160,7 +160,7 @@ export const TOOLS: Tool[] = [
             "A curated Python toolkit of reusable backend building blocks — DB pooling, config, storage, ABAC auth, quota, and a LangChain-free agent harness — consolidated into one canonical package.",
         category: "utility",
         install: "pip install xgen-sdk",
-        hasDemo: false,
+        hasDemo: true,
         language: "Python",
     },
 ];
