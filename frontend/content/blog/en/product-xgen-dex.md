@@ -6,7 +6,7 @@ cover: /blog/product-xgen-dex.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "On-premise", "Product"]
-draft: true
+draft: false
 ---
 
 **In one line —** XGEN DeX is not a product that runs AI on the desktop. It is a connector that safely links the user's desktop to agents running on an on-premise XGEN Server.

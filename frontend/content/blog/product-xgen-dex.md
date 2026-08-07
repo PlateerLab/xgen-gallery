@@ -6,7 +6,7 @@ cover: /blog/product-xgen-dex.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "온프레미스", "제품"]
-draft: true
+draft: false
 ---
 
 **한 줄 요약 —** XGEN DeX는 데스크톱에서 AI를 실행하는 제품이 아닙니다. 온프레미스 XGEN Server에서 돌아가는 Agent와 사용자의 데스크톱을 안전하게 잇는 커넥터입니다.
