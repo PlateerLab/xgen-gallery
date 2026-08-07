@@ -165,6 +165,17 @@ export function getPost(slug: string, locale: Locale = "ko"): Post | null {
     return post;
 }
 
+/**
+ * 초안(draft)까지 포함해 글을 읽는다 — 내부 검토용 히든 페이지 전용.
+ *
+ * getPost 는 운영 빌드에서 draft 를 숨기므로, 발행 전 글은 배포된 사이트에서 볼 수
+ * 없다. 검토 링크를 공유하려면 이 경로가 필요하다. 목록·사이트맵·RSS 는 여전히
+ * getAllPosts 를 쓰므로 초안이 새어 나가지 않는다.
+ */
+export function getDraftPost(slug: string, locale: Locale = "ko"): Post | null {
+    return parse(slug, locale);
+}
+
 export function getAllSlugs(locale: Locale = "ko"): string[] {
     return getAllPosts(locale).map((p) => p.slug);
 }

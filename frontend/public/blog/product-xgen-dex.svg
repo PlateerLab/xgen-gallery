@@ -1,0 +1,72 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX — 서버에서 실행되는 Agent와 사용자 데스크톱을 잇는 커넥터">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b1c"/>
+      <stop offset="1" stop-color="#0d1633"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00acee"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="600" cy="338" r="300" fill="url(#glow)"/>
+
+  <!-- 좌: 데스크톱 -->
+  <g transform="translate(150 218)">
+    <rect width="230" height="150" rx="14" fill="#ffffff0f" stroke="#ffffff2e" stroke-width="1.5"/>
+    <rect x="18" y="18" width="194" height="98" rx="7" fill="#ffffff14"/>
+    <rect x="34" y="36" width="86" height="8" rx="4" fill="#ffffff59"/>
+    <rect x="34" y="56" width="140" height="7" rx="3.5" fill="#ffffff30"/>
+    <rect x="34" y="72" width="118" height="7" rx="3.5" fill="#ffffff30"/>
+    <rect x="34" y="88" width="132" height="7" rx="3.5" fill="#ffffff30"/>
+    <rect x="86" y="128" width="58" height="7" rx="3.5" fill="#ffffff3d"/>
+    <text x="115" y="182" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Desktop</text>
+  </g>
+
+  <!-- 우: 서버 -->
+  <g transform="translate(820 218)">
+    <rect width="230" height="150" rx="14" fill="#ffffff0f" stroke="#ffffff2e" stroke-width="1.5"/>
+    <rect x="26" y="26" width="178" height="30" rx="7" fill="#ffffff17"/>
+    <circle cx="48" cy="41" r="6" fill="#34d399"/>
+    <rect x="66" y="37" width="96" height="8" rx="4" fill="#ffffff45"/>
+    <rect x="26" y="66" width="178" height="30" rx="7" fill="#ffffff17"/>
+    <circle cx="48" cy="81" r="6" fill="#34d399"/>
+    <rect x="66" y="77" width="72" height="8" rx="4" fill="#ffffff45"/>
+    <rect x="26" y="106" width="178" height="30" rx="7" fill="#ffffff17"/>
+    <circle cx="48" cy="121" r="6" fill="#34d399"/>
+    <rect x="66" y="117" width="110" height="8" rx="4" fill="#ffffff45"/>
+    <text x="115" y="182" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">XGEN Server</text>
+  </g>
+
+  <!-- 중앙 커넥터 -->
+  <line x1="380" y1="293" x2="516" y2="293" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.75"/>
+  <line x1="684" y1="293" x2="820" y2="293" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.75"/>
+  <g transform="translate(516 245)">
+    <rect width="168" height="96" rx="22" fill="url(#brand)"/>
+    <path d="M56 48 h56 M92 32 l20 16 -20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M56 48 l-20 -16 M56 48 l-20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  </g>
+  <text x="600" y="378" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">DeX Connector</text>
+
+  <!-- 타이틀 -->
+  <text x="600" y="126" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">XGEN DeX</text>
+  <text x="600" y="182" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="46" font-weight="700" fill="#ffffff">Desktop Experience</text>
+
+  <!-- 하단 요약 -->
+  <text x="600" y="500" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="21" fill="#ffffff8f">Agent는 서버에서 실행되고, 업무는 데스크톱에서 이어집니다</text>
+
+  <g font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#ffffff70">
+    <rect x="331" y="544" width="164" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="413" y="571" text-anchor="middle">Local Apps</text>
+    <rect x="513" y="544" width="174" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="600" y="571" text-anchor="middle">Cloud Storage</text>
+    <rect x="705" y="544" width="196" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="803" y="571" text-anchor="middle">Enterprise Systems</text>
+  </g>
+</svg>
