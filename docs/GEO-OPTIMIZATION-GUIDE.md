@@ -32,7 +32,7 @@ Claude, Copilot 같은 **생성형 AI 답변 엔진**이 우리 콘텐츠를 **�
 ### SEO 필수 체크리스트
 - **타이틀/메타**: 페이지별 고유 `title`(≤60자, 핵심 키워드 앞쪽) + `meta description`(≤155자). Next `metadata`/`generateMetadata`로 라우트마다 생성.
 - **정규 URL(canonical)**: `alternates.canonical`로 중복 URL 정리. 쿼리·앵커 변형이 별도 색인되지 않게.
-- **다국어(i18n) hreflang**: KO/EN 전환 사이트이므로 `alternates.languages`(hreflang `ko`,`en`,`x-default`)로 언어별 대체 URL 명시. 언어별 URL 전략(쿠키 전환은 색인 한계 → 필요 시 `/en` 경로 분리 검토).
+- **다국어(i18n) hreflang**: 한국어는 접두사 없이, 영어는 `/en` 경로로 분리해 서빙한다(쿠키 전환은 색인이 안 되어 2026-08 경로 분리 완료). `alternates.languages`로 hreflang `ko`·`en`·`x-default`를 명시하고, **한국어를 고치면 영문도 같은 작업에서 반영**한다 → [§2.3-I](#23-i-다국어koen--한쪽만-고치지-않는다).
 - **사이트맵/robots**: `app/sitemap.ts`(우선순위·lastModified) + `app/robots.ts`(AI 봇 + 일반 크롤러 허용 + Sitemap 라인). ([§2.3](#) 참고)
 - **구조화 데이터(JSON-LD)**: Organization/WebSite/BreadcrumbList/FAQPage/Article/SoftwareApplication → **리치 결과(rich snippet)** 확보. (GEO와 공유)
 - **시맨틱 마크업 & 헤딩 위계**: 페이지당 `<h1>` 1개, 논리적 h2/h3, 시맨틱 태그. 키워드 자연 포함.
@@ -172,6 +172,33 @@ export const metadata = pageMetadata({
 > 정리: robots/미들웨어 차단 목록은 **항상 동기화**하고, 새 경쟁/스크래퍼 봇 UA를 발견하면 두 곳 모두에 추가한다.
 > GEO·SEO에 이로운 봇은 절대 차단 목록에 넣지 않는다.
 
+### 2.3-I 다국어(KO/EN) — **한쪽만 고치지 않는다**
+
+**강제 규칙: 한국어 화면을 바꾸면 영문(`/en`)도 같은 작업에서 함께 바꾼다.**
+"영문은 나중에"로 남기지 않는다.
+
+한국어는 접두사 없이(`/about`), 영어는 `/en` 접두사로(`/en/about`) 서빙한다. 두 언어가
+동등한 색인 대상이므로, 한쪽만 고치면 hreflang이 **서로 다른 내용을 같은 페이지의
+대체본이라고 선언**하게 되고 영문 방문자는 낡은 화면을 본다.
+
+| 무엇을 고쳤나 | 영문 반영 방법 |
+|---|---|
+| 공유 컴포넌트(`components/*.tsx`, `components/pages/*`) | 자동 반영 — 별도 작업 없음을 **확인만** 하고 넘어간다 |
+| 로케일별 라우트(`app/(ko)/…` · `app/(en)/en/…`) | 양쪽 파일을 다 고친다 |
+| `COPY: Record<Locale, …>` 사전 | `ko`·`en` 두 항목을 같이 고친다 |
+| 블로그·콘텐츠 | `content/blog/<slug>.md` ↔ `content/blog/en/<slug>.md` 짝을 맞춘다 |
+| 데모 매니페스트(npm 패키지 소유) | 저장소에서 못 고치므로 `lib/demo-i18n.ts` 사전에 영문을 추가한다 |
+
+**새 페이지를 추가할 때**: 영문판을 실제로 만든 **뒤에야** `lib/locale-path.ts`의
+`EN_ROUTES`(또는 동적 prefix)에 등록한다. 없는 URL에 hreflang을 걸면 색인 오류가 된다.
+
+**검증**: 빌드 후 `.next/server/app/en/**/*.html`에서 한글을 스캔한다.
+다만 **Suspense 안 클라이언트 컴포넌트가 그리는 영역(목록·필터 등)은 정적 HTML에
+없으므로** 스캔이 통과해도 검증된 것이 아니다 — 그런 화면은 실제 브라우저로 확인한다.
+
+원문 유지가 맞는 예외: 사람 이름(검증된 로마자 표기가 없을 때), 논문 서지정보
+(제목·저자·게재처는 인용 정보), 언어 전환 링크(대상 언어로 표기하는 것이 표준).
+
 ### 2.4 시맨틱 HTML & 접근성
 - 페이지당 `<h1>` 1개, 논리적 `h2/h3` 계층(건너뛰지 않기).
 - `<main> <article> <section> <nav> <header> <footer>` 시맨틱 태그 사용.
@@ -242,6 +269,7 @@ export const metadata = pageMetadata({
 - [ ] 핵심 콘텐츠가 SSR/SSG로 노출(클라이언트 JS 의존 ❌)
 - [ ] 이미지 alt·의미 있는 링크 텍스트, 접근성 통과
 - [ ] **(SEO)** canonical + KO/EN `hreflang`(alternates.languages) 설정
+- [ ] **(i18n)** 한국어를 고쳤으면 **영문(`/en`)도 같은 작업에서 반영**했는가 — 공유 컴포넌트면 자동 반영 확인, 로케일별 파일·콘텐츠는 양쪽 수정 ([§2.3-I](#)). 클라이언트 렌더 영역은 브라우저로 확인
 - [ ] **(SEO)** 내부 링크/브레드크럼 연결, 클린 URL, 404/301 점검
 - [ ] **(SEO)** Core Web Vitals(LCP<2.5s·CLS<0.1·INP<200ms) + 모바일 반응형 확인
 - [ ] **(SEO)** OpenGraph/Twitter 카드 이미지(1200×630) 노출

@@ -38,7 +38,7 @@
 </style>
 </head>
 <body>
-<div class="top"><div class="inner"><span class="brand">🔍 작성 가이드</span><a href="blog-writing.html">📝 블로그 글쓰기 가이드</a><a href="contributing.html">🤝 블로그 기여 가이드</a><a href="operations.html">🛠️ 블로그 운영 방식</a><a href="geo-seo.html" class="on">🔍 GEO·SEO 최적화 가이드</a></div></div>
+<div class="top"><div class="inner"><span class="brand">🔍 작성 가이드</span><a href="blog-writing.html">📝 블로그 글쓰기 가이드</a><a href="geo-seo.html" class="on">🔍 GEO·SEO 최적화 가이드</a><a href="contributing.html">🤝 블로그 기여 가이드</a><a href="operations.html">🛠️ 블로그 운영 방식</a></div></div>
 <main><article class="doc"><h1>GEO·SEO 최적화 가이드 — Plateer Labs 연구소 홈페이지</h1>
 <blockquote>
 <p><strong>이 문서는 강제 규칙입니다.</strong> Plateer Labs(PLEX) 연구소 홈페이지의 모든 사이트/페이지는
@@ -69,7 +69,7 @@ Claude, Copilot 같은 <strong>생성형 AI 답변 엔진</strong>이 우리 콘
 <ul>
 <li><strong>타이틀/메타</strong>: 페이지별 고유 <code>title</code>(≤60자, 핵심 키워드 앞쪽) + <code>meta description</code>(≤155자). Next <code>metadata</code>/<code>generateMetadata</code>로 라우트마다 생성.</li>
 <li><strong>정규 URL(canonical)</strong>: <code>alternates.canonical</code>로 중복 URL 정리. 쿼리·앵커 변형이 별도 색인되지 않게.</li>
-<li><strong>다국어(i18n) hreflang</strong>: KO/EN 전환 사이트이므로 <code>alternates.languages</code>(hreflang <code>ko</code>,<code>en</code>,<code>x-default</code>)로 언어별 대체 URL 명시. 언어별 URL 전략(쿠키 전환은 색인 한계 → 필요 시 <code>/en</code> 경로 분리 검토).</li>
+<li><strong>다국어(i18n) hreflang</strong>: 한국어는 접두사 없이, 영어는 <code>/en</code> 경로로 분리해 서빙한다(쿠키 전환은 색인이 안 되어 2026-08 경로 분리 완료). <code>alternates.languages</code>로 hreflang <code>ko</code>·<code>en</code>·<code>x-default</code>를 명시하고, <strong>한국어를 고치면 영문도 같은 작업에서 반영</strong>한다 → <a href="#23-i-%EB%8B%A4%EA%B5%AD%EC%96%B4koen--%ED%95%9C%EC%AA%BD%EB%A7%8C-%EA%B3%A0%EC%B9%98%EC%A7%80-%EC%95%8A%EB%8A%94%EB%8B%A4">§2.3-I</a>.</li>
 <li><strong>사이트맵/robots</strong>: <code>app/sitemap.ts</code>(우선순위·lastModified) + <code>app/robots.ts</code>(AI 봇 + 일반 크롤러 허용 + Sitemap 라인). (<a href="#">§2.3</a> 참고)</li>
 <li><strong>구조화 데이터(JSON-LD)</strong>: Organization/WebSite/BreadcrumbList/FAQPage/Article/SoftwareApplication → <strong>리치 결과(rich snippet)</strong> 확보. (GEO와 공유)</li>
 <li><strong>시맨틱 마크업 &amp; 헤딩 위계</strong>: 페이지당 <code>&lt;h1&gt;</code> 1개, 논리적 h2/h3, 시맨틱 태그. 키워드 자연 포함.</li>
@@ -86,6 +86,47 @@ Claude, Copilot 같은 <strong>생성형 AI 답변 엔진</strong>이 우리 콘
 둘은 90% 같은 작업(시맨틱 HTML·JSON-LD·메타·사이트맵·성능·SSR)을 공유하고, SEO는 <em>랭킹/리치결과/CWV</em>,
 GEO는 <em>answer-first·인용 가능 단위·llms.txt</em>에 추가 무게를 둔다. 본 가이드는 둘을 통합해 다룬다.</p>
 </blockquote>
+<h2>0-G. 구글 공식 입장(AI 기능 최적화 가이드) — 과잉 최적화 금지</h2>
+<p>출처: <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ko">SEO 기본 가이드</a> ·
+<a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide?hl=ko">AI 기능 최적화 가이드</a> (2026-08-02 확인)</p>
+<p>AI 개요(AI Overviews)·AI 모드에 노출되는 조건은 <strong>별도 기법이 아니라 일반 검색 색인</strong>이다.
+구글이 명시적으로 &quot;효과 없다&quot;고 한 것에 시간을 쓰지 않는다.</p>
+<table>
+<thead>
+<tr>
+<th>구글 공식 입장</th>
+<th>우리 적용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>생성형 AI 검색에 <strong>구조화 데이터는 필수가 아님</strong>(단, 리치 결과용으로 계속 권장)</td>
+<td>JSON-LD는 유지하되 <em>리치 결과·엔티티 명확성</em> 목적임을 인지</td>
+</tr>
+<tr>
+<td><strong>llms.txt는 구글 검색이 무시</strong>한다</td>
+<td><code>/llms.txt</code>는 유지하되 <strong>구글 대비 수단이 아님</strong> — ChatGPT·Perplexity 등 타 엔진용 보조 자산으로만 취급</td>
+</tr>
+<tr>
+<td>AI용 <strong>콘텐츠 청킹 불필요</strong> — 한 페이지의 여러 주제를 이해함</td>
+<td>인용 가능한 문장 구조는 가독성 목적이지, 잘게 쪼갠 페이지 양산 금지</td>
+</tr>
+<tr>
+<td>팬아웃 쿼리별 페이지 양산은 <strong>확장된 콘텐츠 악용 스팸 정책 위반</strong></td>
+<td>키워드 변형용 얇은 페이지 생성 금지</td>
+</tr>
+<tr>
+<td>&quot;AEO/GEO&quot;라 불러도 <strong>여전히 SEO</strong></td>
+<td>본 가이드의 GEO 항목은 SEO와 분리된 별도 작업이 아님</td>
+</tr>
+<tr>
+<td>노출 전제: <strong>색인 + 스니펫 표시 가능</strong>해야 함</td>
+<td><code>nosnippet</code>·과도한 <code>max-snippet</code> 금지, 비공개 페이지만 noindex</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>결론: <strong>AI 전용 트릭이 아니라 &quot;색인 가능 + 고유하고 유용한 콘텐츠 + 스니펫 허용&quot;</strong> 이 GEO의 실제 조건이다.</p>
+</blockquote>
+<hr>
 <h2>1. 7대 핵심 원칙</h2>
 <ol>
 <li><strong>Answer-first (결론 우선).</strong> 각 페이지/섹션은 첫 문단에서 &quot;무엇인지/무엇을 하는지&quot;를 한두 문장으로
@@ -219,6 +260,47 @@ export const metadata = pageMetadata({
 <p>정리: robots/미들웨어 차단 목록은 <strong>항상 동기화</strong>하고, 새 경쟁/스크래퍼 봇 UA를 발견하면 두 곳 모두에 추가한다.
 GEO·SEO에 이로운 봇은 절대 차단 목록에 넣지 않는다.</p>
 </blockquote>
+<h3>2.3-I 다국어(KO/EN) — <strong>한쪽만 고치지 않는다</strong></h3>
+<p><strong>강제 규칙: 한국어 화면을 바꾸면 영문(<code>/en</code>)도 같은 작업에서 함께 바꾼다.</strong>
+&quot;영문은 나중에&quot;로 남기지 않는다.</p>
+<p>한국어는 접두사 없이(<code>/about</code>), 영어는 <code>/en</code> 접두사로(<code>/en/about</code>) 서빙한다. 두 언어가
+동등한 색인 대상이므로, 한쪽만 고치면 hreflang이 <strong>서로 다른 내용을 같은 페이지의
+대체본이라고 선언</strong>하게 되고 영문 방문자는 낡은 화면을 본다.</p>
+<table>
+<thead>
+<tr>
+<th>무엇을 고쳤나</th>
+<th>영문 반영 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>공유 컴포넌트(<code>components/*.tsx</code>, <code>components/pages/*</code>)</td>
+<td>자동 반영 — 별도 작업 없음을 <strong>확인만</strong> 하고 넘어간다</td>
+</tr>
+<tr>
+<td>로케일별 라우트(<code>app/(ko)/…</code> · <code>app/(en)/en/…</code>)</td>
+<td>양쪽 파일을 다 고친다</td>
+</tr>
+<tr>
+<td><code>COPY: Record&lt;Locale, …&gt;</code> 사전</td>
+<td><code>ko</code>·<code>en</code> 두 항목을 같이 고친다</td>
+</tr>
+<tr>
+<td>블로그·콘텐츠</td>
+<td><code>content/blog/&lt;slug&gt;.md</code> ↔ <code>content/blog/en/&lt;slug&gt;.md</code> 짝을 맞춘다</td>
+</tr>
+<tr>
+<td>데모 매니페스트(npm 패키지 소유)</td>
+<td>저장소에서 못 고치므로 <code>lib/demo-i18n.ts</code> 사전에 영문을 추가한다</td>
+</tr>
+</tbody></table>
+<p><strong>새 페이지를 추가할 때</strong>: 영문판을 실제로 만든 <strong>뒤에야</strong> <code>lib/locale-path.ts</code>의
+<code>EN_ROUTES</code>(또는 동적 prefix)에 등록한다. 없는 URL에 hreflang을 걸면 색인 오류가 된다.</p>
+<p><strong>검증</strong>: 빌드 후 <code>.next/server/app/en/**/*.html</code>에서 한글을 스캔한다.
+다만 <strong>Suspense 안 클라이언트 컴포넌트가 그리는 영역(목록·필터 등)은 정적 HTML에
+없으므로</strong> 스캔이 통과해도 검증된 것이 아니다 — 그런 화면은 실제 브라우저로 확인한다.</p>
+<p>원문 유지가 맞는 예외: 사람 이름(검증된 로마자 표기가 없을 때), 논문 서지정보
+(제목·저자·게재처는 인용 정보), 언어 전환 링크(대상 언어로 표기하는 것이 표준).</p>
 <h3>2.4 시맨틱 HTML &amp; 접근성</h3>
 <ul>
 <li>페이지당 <code>&lt;h1&gt;</code> 1개, 논리적 <code>h2/h3</code> 계층(건너뛰지 않기).</li>
@@ -310,6 +392,7 @@ GEO·SEO에 이로운 봇은 절대 차단 목록에 넣지 않는다.</p>
 <li><input disabled="" type="checkbox"> 핵심 콘텐츠가 SSR/SSG로 노출(클라이언트 JS 의존 ❌)</li>
 <li><input disabled="" type="checkbox"> 이미지 alt·의미 있는 링크 텍스트, 접근성 통과</li>
 <li><input disabled="" type="checkbox"> <strong>(SEO)</strong> canonical + KO/EN <code>hreflang</code>(alternates.languages) 설정</li>
+<li><input disabled="" type="checkbox"> <strong>(i18n)</strong> 한국어를 고쳤으면 <strong>영문(<code>/en</code>)도 같은 작업에서 반영</strong>했는가 — 공유 컴포넌트면 자동 반영 확인, 로케일별 파일·콘텐츠는 양쪽 수정 (<a href="#">§2.3-I</a>). 클라이언트 렌더 영역은 브라우저로 확인</li>
 <li><input disabled="" type="checkbox"> <strong>(SEO)</strong> 내부 링크/브레드크럼 연결, 클린 URL, 404/301 점검</li>
 <li><input disabled="" type="checkbox"> <strong>(SEO)</strong> Core Web Vitals(LCP&lt;2.5s·CLS&lt;0.1·INP&lt;200ms) + 모바일 반응형 확인</li>
 <li><input disabled="" type="checkbox"> <strong>(SEO)</strong> OpenGraph/Twitter 카드 이미지(1200×630) 노출</li>

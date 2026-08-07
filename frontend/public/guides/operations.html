@@ -38,7 +38,7 @@
 </style>
 </head>
 <body>
-<div class="top"><div class="inner"><span class="brand">🛠️ 작성 가이드</span><a href="blog-writing.html">📝 블로그 글쓰기 가이드</a><a href="contributing.html">🤝 블로그 기여 가이드</a><a href="operations.html" class="on">🛠️ 블로그 운영 방식</a><a href="geo-seo.html">🔍 GEO·SEO 최적화 가이드</a></div></div>
+<div class="top"><div class="inner"><span class="brand">🛠️ 작성 가이드</span><a href="blog-writing.html">📝 블로그 글쓰기 가이드</a><a href="geo-seo.html">🔍 GEO·SEO 최적화 가이드</a><a href="contributing.html">🤝 블로그 기여 가이드</a><a href="operations.html" class="on">🛠️ 블로그 운영 방식</a></div></div>
 <main><article class="doc"><h1>블로그 운영 방식 — 기고부터 발행까지</h1>
 <p>Plateer Labs Insight 블로그는 <strong>DB 없이 git 저장소의 마크다운 파일</strong>로 운영됩니다.
 글 1개는 <code>frontend/content/blog/&lt;slug&gt;.md</code> 파일 1개이고, <code>main</code>에 머지되면 자동 배포됩니다.
@@ -109,6 +109,33 @@ Decap 편집자 보드에는 나타나지 않습니다. 이는 정상 동작이�
 <p>리뷰는 게이트가 아니라 품질 보조입니다. 리뷰어는 <a href="blog-writing.html">글쓰기 가이드</a>의 B2B 톤과
 <a href="geo-seo.html">GEO·SEO 가이드</a>의 체크리스트를 기준으로 봅니다.
 멤버 개인 글은 코퍼릿 톤으로 정규화하지 않고 작성자 목소리를 유지합니다.</p>
+<h2>노출·큐레이션 규칙</h2>
+<p>발행된 글이 <code>/blog</code>에서 어떻게 배치되는지에 대한 운영 규칙입니다. 아래 규칙은 코드로
+자동 적용되므로, 편집자는 프론트매터(카테고리·작성자·<code>featured</code>)와 슬러그만 맞추면 됩니다.</p>
+<h3>1) 상단 키비주얼(캐러셀) 선정</h3>
+<p>키비주얼은 <strong>카테고리마다 최신 1편</strong>을 올리되, <strong>Tech Note는 작성자가 서로 다른 최신 2편</strong>을
+뽑습니다. 즉 <code>제품 소식 1 + Case Study 1 + Tech Note 2(다른 작성자)</code>로 최대 4편이 최신순으로
+노출됩니다. 같은 작성자가 Tech Note를 연달아 쓴 경우, 두 번째 자리는 다음으로 최신인
+<strong>다른 작성자</strong>의 글로 채워집니다.</p>
+<ul>
+<li>특정 글을 강제로 올리려면 프론트매터에 <strong><code>featured: true</code></strong> 를 지정합니다. <code>featured</code> 글이
+하나라도 있으면 자동 큐레이션 대신 <code>featured</code> 글들이 최신순으로 키비주얼에 노출됩니다(수동 override).</li>
+<li>구현: <a href="../frontend/src/app/blog/page.tsx"><code>frontend/src/app/blog/page.tsx</code></a>의 <code>pickHeroPosts()</code>.</li>
+</ul>
+<h3>2) 아티클 시리즈 — 말머리와 제목 시퀀스</h3>
+<p>연재물은 <strong>슬러그 패턴</strong>으로 묶습니다(프론트매터 불필요, 후속편 자동 편입). 시리즈로 묶이면
+<code>/blog</code>의 &quot;아티클 시리즈&quot; 섹션과 <strong>인기 있는 글</strong> 목록에 자동으로 <strong>말머리 <code>[라벨]</code></strong>(예: <code>[GS인증]</code>)이
+붙습니다. 시리즈 노출 순서는 <code>SERIES</code> 배열 순서를 따릅니다(맨 앞이 먼저 노출).</p>
+<ul>
+<li><strong>시리즈 등록</strong>: <a href="../frontend/src/lib/series.ts"><code>frontend/src/lib/series.ts</code></a>의 <code>SERIES</code>에
+<code>{ key, title, label, subtitle, description, cover, match, order }</code>를 추가합니다.
+<code>match</code>는 슬러그 접두사(예: <code>/^gs-cert-journey-/</code>), <code>order</code>는 편 번호 추출 정규식입니다.</li>
+<li><strong>시리즈 커버</strong>: <code>frontend/public/blog/series-&lt;key&gt;.svg</code> (1200×900 세로형, 다크 배경).</li>
+<li><strong>제목 끝 시퀀스</strong>: 시리즈 글 제목 끝에는 <strong><code>(N편)</code></strong> 을 공백 없이 붙입니다
+(예: <code>…결함의 정의를 다시 배웠습니다(1편)</code>). 이 표기는 제목 프론트매터에 직접 넣으며,
+피드·인기글·시리즈 목록 어디에서나 함께 노출됩니다.</li>
+<li>각 편 하단에는 이전/다음 편 링크를 답니다(작성자가 본문에 직접 관리).</li>
+</ul>
 </article></main>
 </body>
 </html>
