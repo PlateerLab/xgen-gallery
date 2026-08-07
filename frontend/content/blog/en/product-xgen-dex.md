@@ -90,4 +90,4 @@ We see it as more than a desktop connection tool: an execution layer that joins 
 
 Competition in AI is not settled by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. XGEN DeX is the first Desktop Experience platform we are building toward that.
 
-We will announce the release schedule and detailed specifications here as they are ready. If your organization would like an early look, [get in touch](/en/contact).
+We will introduce XGEN DeX's release schedule and capabilities here on the blog, step by step. For a product demo or a conversation about adoption, [get in touch](/en/contact) any time.
