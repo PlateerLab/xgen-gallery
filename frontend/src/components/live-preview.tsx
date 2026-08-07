@@ -19,6 +19,8 @@ const COPY = {
         lead: "XGEN을 떠받치는 오픈소스 라이브러리. pip로 설치하거나, 모든 도구를 지금 여기 브라우저에서 체험하세요.",
         prev: "이전",
         next: "다음",
+        sdkGate: "권한 판정",
+        defaultHint: "브라우저에서 실행",
         googer: [
             ["Machine Learning with Python — scikit-learn", "분류, 회귀, 클러스터링 예제 포함."],
             ["TensorFlow 튜토리얼 — 초보자를 위한 ML", "딥러닝 기본부터 응용까지."],
@@ -35,6 +37,8 @@ const COPY = {
         lead: "The open-source libraries behind XGEN. Install them with pip, or try every tool right here in your browser.",
         prev: "Previous",
         next: "Next",
+        sdkGate: "permission gate",
+        defaultHint: "run in the browser",
         googer: [
             [
                 "Machine Learning with Python — scikit-learn",
@@ -289,6 +293,8 @@ function Visual({ tool }: { tool: Tool }) {
             return <OmniFuseViz />;
         case "playleft":
             return <PlaywLeftViz />;
+        case "xgen-sdk":
+            return <XgenSdkViz />;
         default:
             return <DefaultViz tool={tool} />;
     }
@@ -848,30 +854,138 @@ function PlaywLeftViz() {
 }
 
 /* ── Default: category-themed pulse (fallback for any featured tool) ───── */
-function DefaultViz({ tool }: { tool: Tool }) {
+/* ── XGen SDK: ABAC 권한 판정 ─────────────────────────────────────────
+ * 데모(/tool/xgen-sdk)와 같은 소재. 보유 권한이 게이트를 지나 allow/deny 로 갈린다.
+ * 와일드카드(admin.role:*)가 요구 권한을 덮는 장면이 이 SDK의 특징이다. */
+function XgenSdkViz() {
+    const { locale } = useI18n();
+    const c = COPY[locale];
+    const rules: [string, boolean][] = [
+        ["admin.role:*", true],
+        ["workflow:read", false],
+        ["workflow:write", false],
+    ];
     return (
-        <div className="flex flex-col items-center justify-center gap-4 py-6">
-            <div className="relative flex h-24 w-24 items-center justify-center">
-                {[0, 1, 2].map((i) => (
-                    <motion.span
+        <div className="space-y-3.5">
+            <motion.div
+                {...fadeIn(0)}
+                className="flex items-center justify-between font-mono text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span>xgen_sdk.auth</span>
+                <span>admin.role:read</span>
+            </motion.div>
+
+            <div className="space-y-1.5">
+                {rules.map(([rule, hit], i) => (
+                    <motion.div
+                        key={rule}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.25 + i * 0.18, duration: 0.35 }}
+                        className={`flex items-center justify-between rounded-md border px-3 py-2 font-mono text-[12.5px] ${
+                            hit
+                                ? "border-[#b6e6cd] bg-[#eafaf1] text-[#0f766e]"
+                                : "border-[var(--color-line)] bg-white text-[var(--color-ink-subtle)]"
+                        }`}
+                    >
+                        <span>{rule}</span>
+                        <span className="text-[11px]">{hit ? "match" : "—"}</span>
+                    </motion.div>
+                ))}
+            </div>
+
+            <motion.div
+                {...fadeIn(0.95)}
+                className="flex items-center gap-2 text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+                <span className="font-mono">{c.sdkGate}</span>
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.15, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#16a34a] py-2.5 text-[14px] font-bold text-white"
+            >
+                <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
+                    <path
+                        d="M3 8.5 L6.5 12 L13 4.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </svg>
+                allow
+            </motion.div>
+        </div>
+    );
+}
+
+/**
+ * 전용 일러스트가 없는 툴의 기본 화면.
+ *
+ * 주간 자동 점검이 새 라이브러리를 계속 추가하므로 이 경로는 앞으로도 계속 쓰인다.
+ * 빈 링 + 점만 두면 "만들다 만 화면"으로 읽히므로, 툴 데이터(설치 명령·카테고리)로
+ * 실제 정보를 채워 의도된 화면이 되게 한다.
+ */
+function DefaultViz({ tool }: { tool: Tool }) {
+    const { locale } = useI18n();
+    const c = COPY[locale];
+    return (
+        <div className="space-y-3.5">
+            <motion.div
+                {...fadeIn(0)}
+                className="flex items-center justify-between font-mono text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span>{tool.language}</span>
+                <span>MIT</span>
+            </motion.div>
+
+            {/* 설치 한 줄 — 이 갤러리에서 가장 실용적인 정보 */}
+            <motion.div
+                {...fadeIn(0.15)}
+                className="flex items-center gap-2 rounded-md border border-[var(--color-line)] bg-white px-3 py-2.5 font-mono text-[13px] text-[var(--color-ink)]"
+            >
+                <span className="text-[var(--color-ink-subtle)]">$</span>
+                <span>{tool.install}</span>
+            </motion.div>
+
+            {/* 모듈 블록이 쌓이는 모션 — 라이브러리가 조립된다는 감각만 전달 */}
+            <div className="grid grid-cols-4 gap-1.5">
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    <motion.div
                         key={i}
-                        className="absolute rounded-full border border-[var(--color-line)]"
-                        initial={{ width: 32, height: 32, opacity: 0 }}
-                        animate={{
-                            width: [32, 96],
-                            height: [32, 96],
-                            opacity: [0.6, 0],
-                        }}
-                        transition={{
-                            delay: i * 0.6,
-                            duration: 1.8,
-                            repeat: Infinity,
-                            ease: "easeOut",
-                        }}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.35 + i * 0.07, duration: 0.35 }}
+                        className={`h-7 rounded-md ${
+                            i % 3 === 0
+                                ? "bg-[var(--color-ink)]/85"
+                                : "bg-[var(--color-surface-alt)] ring-1 ring-inset ring-[var(--color-line)]"
+                        }`}
                     />
                 ))}
-                <span className="relative h-3 w-3 rounded-full bg-[var(--color-ink)]" />
             </div>
+
+            <motion.p
+                {...fadeIn(1)}
+                className="line-clamp-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]"
+            >
+                {tool.description}
+            </motion.p>
+
+            <motion.div
+                {...fadeIn(1.15)}
+                className="flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-widest text-[var(--color-ink-subtle)]"
+            >
+                <span>{tool.category}</span>
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+                <span>{c.defaultHint}</span>
+            </motion.div>
             <div className="text-center">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     {tool.category}

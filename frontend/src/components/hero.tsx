@@ -58,8 +58,13 @@ function HeroActions({
     primary?: { label: string; href: string };
     secondary?: { label: string; href: string; external?: boolean };
 } = {}) {
-    const { t } = useI18n();
-    const p = primary ?? { label: t.hero.browse, href: "/#tools" };
+    const { t, locale } = useI18n();
+    // 기본 CTA는 라이브러리 갤러리로 보낸다. 예전 값은 "/#tools" 였는데 홈에는
+    // ToolGrid(id="tools")가 없어 앵커가 비어 있었다 — 클릭해도 홈 상단에 머물렀다.
+    const p = primary ?? {
+        label: t.hero.browse,
+        href: localeHref(locale, "/library-gallery"),
+    };
     const s = secondary ?? {
         label: t.hero.viewGithub,
         href: "https://github.com/PlateerLab",
