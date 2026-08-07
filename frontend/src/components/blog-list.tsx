@@ -231,7 +231,7 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
                                 <h4 className="line-clamp-2 text-[14.5px] font-bold leading-snug text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
                                     {seriesOf(p.slug) && (
                                         <span className="mr-1 align-[1px] text-[11.5px] font-extrabold text-[#0f766e]">
-                                            [{seriesOf(p.slug)!.label}]
+                                            [{seriesCopy(seriesOf(p.slug)!, locale === "en").label}]
                                         </span>
                                     )}
                                     {p.title}
@@ -558,7 +558,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                                     </span>
                                                     {seriesOf(p.slug) && (
                                                         <span className="rounded-full bg-[#0d9488]/10 px-2 py-0.5 font-semibold text-[#0f766e]">
-                                                            {seriesOf(p.slug)!.title}
+                                                            {seriesCopy(seriesOf(p.slug)!, en).title}
                                                         </span>
                                                     )}
                                                     <time dateTime={p.date}>
