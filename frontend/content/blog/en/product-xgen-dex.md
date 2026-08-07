@@ -9,7 +9,7 @@ tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "On-premise", "Product"]
 draft: false
 ---
 
-**In one line —** XGEN DeX is not a product that runs AI on the desktop. It is a connector that safely links the user's desktop to agents running on an on-premise XGEN Server.
+**In one line —** XGEN DeX is a Desktop Experience component that connects agents running on the XGEN Server to the user's desktop, so local environments and applications can be used safely.
 
 Enterprise AI is no longer a chatbot that answers questions. It is moving toward agents that understand the work, connect to the systems already in place, and carry out real tasks on the user's behalf.
 

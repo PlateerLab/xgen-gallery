@@ -9,7 +9,7 @@ tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "온프레미스", "제�
 draft: false
 ---
 
-**한 줄 요약 —** XGEN DeX는 데스크톱에서 AI를 실행하는 제품이 아닙니다. 온프레미스 XGEN Server에서 돌아가는 Agent와 사용자의 데스크톱을 안전하게 잇는 커넥터입니다.
+**한 줄 요약 —** XGEN DeX는 XGEN Server에서 운영되는 Agent와 사용자의 Desktop을 연결해, 로컬 환경과 애플리케이션을 안전하게 활용할 수 있도록 지원하는 Desktop Experience 컴포넌트입니다.
 
 Enterprise AI는 더 이상 질문에 답하는 챗봇이 아닙니다. 업무를 이해하고, 기존 시스템에 연결되고, 사용자를 대신해 실제 작업을 수행하는 Agent로 옮겨가고 있습니다.
 
