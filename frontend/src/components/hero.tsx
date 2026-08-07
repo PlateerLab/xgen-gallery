@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { TOOLS } from "@/lib/tools";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
@@ -188,7 +189,7 @@ function XgenSlide() {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                {t.hero.badge}
+                {t.hero.badge(TOOLS.length)}
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
@@ -208,7 +209,7 @@ function XgenSlide() {
             </h1>
 
             <p className="mt-7 mx-auto max-w-xl text-xl leading-relaxed text-white/70">
-                {t.hero.desc}
+                {t.hero.desc(TOOLS.length)}
             </p>
 
             <HeroActions />

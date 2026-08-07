@@ -131,16 +131,24 @@ export interface Dict {
         demoMore: string;
     };
     hero: {
-        badge: string;
+        /**
+         * 라이브러리 개수가 들어가는 문구는 TOOLS.length 를 받아 만든다.
+         * 주간 자동 점검이 새 저장소를 추가해도 숫자가 저절로 맞는다.
+         */
+        badge: (count: number) => string;
         // title is composed in the component (highlight on XGEN)
-        desc: string;
+        desc: (count: number) => string;
         browse: string;
         viewGithub: string;
     };
     live: { try: string };
     toolsSection: {
         eyebrow: string;
-        titleA: string;
+        /**
+         * 라이브러리 개수는 주간 자동 점검이 새 저장소를 추가하면 늘어난다.
+         * 문구에 숫자를 박아두면 그때마다 틀어지므로 TOOLS.length 를 받아 만든다.
+         */
+        titleA: (count: number) => string;
         titleB: string;
     };
     categories: { all: string; ingestion: string; knowledge: string; agent: string };
@@ -273,15 +281,16 @@ export const dict: Record<Locale, Dict> = {
             demoMore: "더 많은 영상 보기",
         },
         hero: {
-            badge: "8개 라이브러리 · 브라우저에서 바로 체험",
-            desc: "XGEN 플랫폼을 떠받치는 8개의 오픈소스 라이브러리, pip로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요",
+            badge: (n) => `${n}개 라이브러리 · 브라우저에서 바로 체험`,
+            desc: (n) =>
+                `XGEN 플랫폼을 떠받치는 ${n}개의 오픈소스 라이브러리, pip로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요`,
             browse: "도구 둘러보기",
             viewGithub: "GitHub에서 보기",
         },
         live: { try: "이 데모 체험하기" },
         toolsSection: {
             eyebrow: "/ 도구",
-            titleA: "8개의 라이브러리.",
+            titleA: (n) => `${n}개의 라이브러리.`,
             titleB: "설치 한 번이면 끝.",
         },
         categories: {
@@ -369,15 +378,16 @@ export const dict: Record<Locale, Dict> = {
             demoMore: "More videos",
         },
         hero: {
-            badge: "8 libraries · live in your browser",
-            desc: "Eight open-source libraries powering the XGEN platform — install them with pip, or try every tool right here in your browser",
+            badge: (n) => `${n} libraries · live in your browser`,
+            desc: (n) =>
+                `${n} open-source libraries powering the XGEN platform — install them with pip, or try every tool right here in your browser`,
             browse: "Browse tools",
             viewGithub: "View on GitHub",
         },
         live: { try: "Try this demo" },
         toolsSection: {
             eyebrow: "/ tools",
-            titleA: "Eight libraries.",
+            titleA: (n) => `${n} libraries.`,
             titleB: "One install away.",
         },
         categories: {
