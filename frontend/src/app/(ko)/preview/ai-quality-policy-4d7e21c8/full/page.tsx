@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/metadata";
 const BASE = "/preview/ai-quality-policy-4d7e21c8";
 
 export const metadata = pageMetadata({
-    title: "AI 품질 방침 전문",
+    title: "AI 품질 방침 전문 (검토본)",
     description:
         "플래티어 AI연구소 AI 품질 방침 전문 — 적용 범위, 7대 원칙, 사내 AI 이용 기준, 품질 목표, 거버넌스, 책임 분계와 고객사 이행 가이드.",
     path: `${BASE}/full`,
