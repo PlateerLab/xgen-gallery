@@ -12,7 +12,6 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { AiQualityArt } from "@/components/ai-quality-art";
-import { PreviewBand, PREVIEW_BAND_H } from "@/components/preview-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { localeHref, localePath } from "@/lib/locale-path";
@@ -300,10 +299,7 @@ export function AiQualityPolicyPageContent({
 
     return (
         <>
-            {/* 승인 대기 검토본 표시 — 정식 공개 시 이 두 줄을 주석 처리하고
-                <SiteNav overlay /> 로 되돌린다(밴드가 없으면 오프셋도 필요 없다). */}
-            <PreviewBand locale={locale} />
-            <SiteNav overlay offsetTop={PREVIEW_BAND_H} />
+            <SiteNav overlay />
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: localePath(locale, "/") },

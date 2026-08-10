@@ -3,7 +3,6 @@ import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
-import { PreviewBand, PREVIEW_BAND_H } from "@/components/preview-band";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { localePath } from "@/lib/locale-path";
 import { POLICY_DOC } from "@/components/pages/ai-quality-policy-page";
@@ -149,10 +148,7 @@ export function AiQualityPolicyFullPageContent({
 }) {
     return (
         <>
-            {/* 승인 대기 검토본 표시 — 정식 공개 시 이 두 줄을 주석 처리하고
-                <SiteNav /> 로 되돌린다(개요 페이지와 같은 규칙). */}
-            <PreviewBand />
-            <SiteNav offsetTop={PREVIEW_BAND_H} />
+            <SiteNav />
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: localePath("ko", "/") },
