@@ -88,7 +88,7 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
     ko: {
         eyebrow: "AI Quality Policy · Plateer AI Lab",
-        h1: ["Enterprise AI의 신뢰는 기술이 아니라,", "체계적인 통제와 운영에서 완성됩니다"],
+        h1: ["Enterprise AI의 신뢰는,", "체계적인 통제와 운영에서 완성됩니다"],
         heroLead: [
             "플래티어 AI연구소는 AI를 개발하고 기업 현장에 적용합니다.",
             "성능을 넘어 안전성·책임성·통제 가능성을 확보하여, 고객이 안심하고 Enterprise AI를 운영할 수 있도록 하는 것이 우리의 AI 품질 원칙입니다.",
@@ -173,10 +173,7 @@ const COPY: Record<Locale, Copy> = {
     },
     en: {
         eyebrow: "AI Quality Policy · Plateer AI Lab",
-        h1: [
-            "Trust in enterprise AI is not built by technology alone —",
-            "it is completed by disciplined control and operations",
-        ],
+        h1: ["Trust in enterprise AI", "is completed by disciplined control and operations"],
         heroLead: [
             "Plateer AI Lab develops AI and puts it to work on real enterprise ground.",
             "Securing safety, accountability, and controllability beyond raw performance — so that customers can run Enterprise AI with confidence — is our AI quality principle.",
