@@ -67,6 +67,33 @@ export function SiteFooter() {
             sameOwner: true,
         },
     ];
+    // About 목록 — 조직·구독·정책 링크. 외부 링크가 위, 내부 링크가 아래로 온다.
+    // Explore가 "볼 거리"라면 이쪽은 연구소 자체와 문서에 대한 링크다.
+    const aboutLinks: {
+        key: string;
+        label: string;
+        href: string;
+        /** 새 탭 + 아웃링크 화살표 */
+        external?: boolean;
+        /** Next 라우터 밖의 정적 경로 — 같은 탭이되 클라이언트 내비게이션은 쓰지 않는다 */
+        plain?: boolean;
+    }[] = [
+        ...ABOUT_GROUP.items.map((it) => ({
+            key: it.id,
+            label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
+            href: it.external ?? it.route ?? sectionHref(ABOUT_GROUP.key, it.id),
+            external: !!it.external,
+        })),
+        // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
+        { key: "members", label: t.footer.members, href: "/members" },
+        { key: "newsletter", label: t.footer.newsletter, href: "/newsletter" },
+        // AI 품질 방침 — 대외 공표 문서지만 지금은 승인 대기 히든 프리뷰라 링크를 걸지
+        // 않는다(공개 라우트가 없어 404). 승인 후 아래 한 줄을 되살리면 된다 —
+        // 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지 인증·품질 섹션이 제자리다.
+        // { key: "ai-quality-policy", label: t.footer.aiPolicy, href: "/ai-quality-policy" },
+        // Decap CMS 진입점 — GitHub 로그인 후 글 기고(Open Authoring)
+        { key: "contribute", label: t.footer.contribute, href: "/admin", plain: true },
+    ];
     // 저작권 끝 연도는 현재 연도로 자동 갱신 (2027년이면 2023–2027).
     const year = new Date().getFullYear();
 
@@ -226,7 +253,8 @@ export function SiteFooter() {
                         </p>
                     </div>
 
-                    {/* Explore — top-level groups, split 3 + 3 (좌: Research·Technology·Applied AI / 우: Resources·Insights·Product) */}
+                    {/* Explore — top-level groups + XGEN(현재 6개), 좌우 3 + 3으로 나눈다.
+                        항목을 늘리면 아래 slice 기준도 같이 맞춘다. */}
                     <nav className="text-[16px]">
                         <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             {t.footer.explore}
@@ -270,58 +298,42 @@ export function SiteFooter() {
                         </div>
                     </nav>
 
-                    {/* About — Explore와 같은 선상의 헤딩 + Company/GitHub/PoC */}
+                    {/* About — Explore와 같은 선상의 헤딩. 목록은 위 aboutLinks가 단일 출처다. */}
                     <nav className="text-[16px]">
                         <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             {t.footer.about}
                         </p>
                         <div className="mt-2.5 flex flex-col gap-2.5">
-                            {ABOUT_GROUP.items.map((it) => {
-                                const label =
-                                    locale === "ko" && it.labelKo
-                                        ? it.labelKo
-                                        : it.label;
-                                return it.external ? (
+                            {aboutLinks.map((l) =>
+                                l.plain ? (
                                     <a
-                                        key={it.id}
-                                        href={it.external}
+                                        key={l.key}
+                                        href={l.href}
+                                        className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+                                    >
+                                        {l.label}
+                                    </a>
+                                ) : l.external ? (
+                                    <a
+                                        key={l.key}
+                                        href={l.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-1 text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                     >
-                                        {label}
+                                        {l.label}
                                         <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-subtle)]" />
                                     </a>
                                 ) : (
                                     <Link
-                                        key={it.id}
-                                        href={it.route ?? sectionHref(ABOUT_GROUP.key, it.id)}
+                                        key={l.key}
+                                        href={l.href}
                                         className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
                                     >
-                                        {label}
+                                        {l.label}
                                     </Link>
-                                );
-                            })}
-                            {/* Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청) */}
-                            <Link
-                                href="/members"
-                                className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-                            >
-                                {t.footer.members}
-                            </Link>
-                            <Link
-                                href="/newsletter"
-                                className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-                            >
-                                {t.footer.newsletter}
-                            </Link>
-                            {/* Decap CMS 진입점 — GitHub 로그인 후 글 기고(Open Authoring) */}
-                            <a
-                                href="/admin"
-                                className="text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-                            >
-                                {t.footer.contribute}
-                            </a>
+                                ),
+                            )}
                         </div>
                     </nav>
                 </div>

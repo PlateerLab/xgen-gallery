@@ -44,6 +44,8 @@ export const EN_ROUTES: readonly string[] = [
     "/library-gallery",
     "/blog",
     "/newsletter",
+    // "/ai-quality-policy" — 승인 대기 히든 프리뷰로만 존재한다. 공개 라우트가 없는데
+    // 여기 남겨 두면 사이트맵이 404 URL을 광고하게 된다. 정식 공개 때 되살린다.
 ];
 
 /** 하위 경로까지 영문판이 있는 동적 라우트(개별 글은 slug 단위로 별도 확인). */

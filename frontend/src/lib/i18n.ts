@@ -120,6 +120,7 @@ export interface Dict {
         members: string;
         newsletter: string;
         contribute: string;
+        aiPolicy: string;
         ctaEyebrow: string;
         ctaTitleA: string;
         ctaTitleHighlight: string;
@@ -270,6 +271,7 @@ export const dict: Record<Locale, Dict> = {
             members: "Lab Members",
             newsletter: "뉴스레터 구독",
             contribute: "블로그 기고",
+            aiPolicy: "AI 품질 방침",
             ctaEyebrow: "Research. Technology. Impact.",
             ctaTitleA: "기업용 ",
             ctaTitleHighlight: "AI 솔루션",
@@ -367,6 +369,7 @@ export const dict: Record<Locale, Dict> = {
             members: "Lab Members",
             newsletter: "Newsletter",
             contribute: "Write for the blog",
+            aiPolicy: "AI quality policy",
             ctaEyebrow: "Research. Technology. Impact.",
             ctaTitleA: "Enterprise ",
             ctaTitleHighlight: "AI adoption",

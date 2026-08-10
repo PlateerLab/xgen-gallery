@@ -1350,6 +1350,29 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         <div className="mt-10">
                             <CertificationQuality locale={locale} />
                         </div>
+                        {/* AI 품질 방침 카드 — 인증이 "검증받은 결과"라면, 방침은 그 앞의 기준이다.
+                            지금은 방침이 승인 대기 히든 프리뷰라 공개 라우트가 없어(404) 링크를
+                            내려 둔다. 승인 후 아래 블록의 주석을 풀면 이 자리로 돌아온다.
+                        <Link
+                            href={localeHref(locale, "/ai-quality-policy")}
+                            className="group mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] sm:flex-row sm:items-center sm:justify-between"
+                        >
+                            <span>
+                                <span className="block text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {en ? "AI Quality Policy" : "AI 품질 방침"}
+                                </span>
+                                <span className="mt-1.5 block text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {en
+                                        ? "The principles behind the certifications — safety, accountability, controllability, and the division of responsibility, published in full"
+                                        : "인증 뒤에 있는 기준 — 안전성·책임성·통제 가능성과 공급자·고객사 책임 분계를 전문으로 공개합니다"}
+                                </span>
+                            </span>
+                            <span className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition group-hover:gap-2.5">
+                                {en ? "Read the policy" : "방침 보기"}
+                                <ArrowRight className="h-4 w-4" />
+                            </span>
+                        </Link>
+                        */}
                         {/* 보안·규제·조달 요건 상담 — 의사결정자 전환 경로 */}
                         <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
                             <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">

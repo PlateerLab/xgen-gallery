@@ -133,7 +133,18 @@ function DropdownItem({
  * With `overlay`, the bar floats transparent over a dark hero, then turns solid
  * white on scroll. Without it, it's the regular sticky white bar.
  */
-export function SiteNav({ overlay = false }: { overlay?: boolean }) {
+export function SiteNav({
+    overlay = false,
+    offsetTop = 0,
+}: {
+    overlay?: boolean;
+    /**
+     * 헤더를 상단에서 이만큼(px) 내려 붙인다. 헤더 위에 또 다른 고정 띠를 두는
+     * 페이지용 — 지금은 승인 대기 검토본의 대외비 밴드(PREVIEW_BAND_H)가 유일하다.
+     * 0이면 기존과 완전히 동일하게 top-0 에 붙는다.
+     */
+    offsetTop?: number;
+}) {
     const { locale, t } = useI18n();
     const [scrolled, setScrolled] = useState(false);
     const [openKey, setOpenKey] = useState<string | null>(null);
@@ -244,6 +255,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
         <header
             ref={headerRef}
             className={headerCls}
+            style={offsetTop ? { top: offsetTop } : undefined}
             onMouseLeave={scheduleClose}
         >
             {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
