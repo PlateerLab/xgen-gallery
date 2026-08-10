@@ -114,7 +114,7 @@ const COPY: Record<Locale, Copy> = {
             ["Data Quality First", "데이터의 품질이 곧 AI의 품질입니다. 출처와 계보를 관리합니다."],
             ["Explainable AI", "결과의 근거와 처리 경로를 추적할 수 있게 합니다."],
             ["Fairness by Design", "편향을 사전에 식별하고, 점검할 수 있는 수단을 제공합니다."],
-            ["Accountability", "공급자와 운영자의 책임 경계를 공개하고 회피하지 않습니다."],
+            ["Accountability", "공급자와 운영자의 역할과 책임을 명확히 구분하고, 공급자로서의 책임을 투명하게 이행합니다."],
             ["Continuous Improvement", "이해관계자의 의견과 규제 변화를 지속적으로 반영합니다."],
         ],
         productTitle: "제품에 반영되는 품질 체계",
