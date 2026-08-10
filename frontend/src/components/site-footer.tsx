@@ -10,6 +10,7 @@ import { GeoPattern, variantForPath } from "@/components/geo-pattern";
 import { useI18n } from "@/components/i18n-provider";
 import { NAV_GROUPS, ABOUT_GROUP, sectionHref } from "@/lib/nav";
 import { stripLocale } from "@/lib/locale-path";
+import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 
 export function SiteFooter() {
     const { locale, t } = useI18n();
@@ -87,10 +88,15 @@ export function SiteFooter() {
         // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
         { key: "members", label: t.footer.members, href: "/members" },
         { key: "newsletter", label: t.footer.newsletter, href: "/newsletter" },
-        // AI 품질 방침 — 대외 공표 문서지만 지금은 승인 대기 히든 프리뷰라 링크를 걸지
-        // 않는다(공개 라우트가 없어 404). 승인 후 아래 한 줄을 되살리면 된다 —
-        // 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지 인증·품질 섹션이 제자리다.
-        // { key: "ai-quality-policy", label: t.footer.aiPolicy, href: "/ai-quality-policy" },
+        // AI 품질 방침 — 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지
+        // 인증·품질 섹션이 제자리다. 아직 공개 라우트(/ai-quality-policy)가 없어
+        // 프리뷰 경로로 직접 건다(en 페이지가 따로 있어 로케일을 여기서 가른다).
+        // 정식 공개 때 아래 href 를 "/ai-quality-policy" 로 바꾸면 된다.
+        {
+            key: "ai-quality-policy",
+            label: t.footer.aiPolicy,
+            href: AI_POLICY_HREF[locale],
+        },
         // Decap CMS 진입점 — GitHub 로그인 후 글 기고(Open Authoring)
         { key: "contribute", label: t.footer.contribute, href: "/admin", plain: true },
     ];
