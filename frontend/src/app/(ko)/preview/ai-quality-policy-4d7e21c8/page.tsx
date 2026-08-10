@@ -20,7 +20,7 @@ import { pageMetadata } from "@/lib/metadata";
 const BASE = "/preview/ai-quality-policy-4d7e21c8";
 
 export const metadata = pageMetadata({
-    title: "AI 품질 방침 (검토본)",
+    title: "AI 품질 방침",
     description:
         "플래티어 AI연구소의 AI 품질 원칙과 XGEN에 구현된 품질 체계 — 안전성·책임성·통제 가능성·운영 품질에 대한 우리의 약속입니다.",
     path: BASE,

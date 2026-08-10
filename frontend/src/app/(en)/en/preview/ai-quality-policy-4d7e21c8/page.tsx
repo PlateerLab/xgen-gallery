@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/metadata";
 const KO_BASE = "/preview/ai-quality-policy-4d7e21c8";
 
 export const metadata = pageMetadata({
-    title: "AI Quality Policy (review copy)",
+    title: "AI Quality Policy",
     description:
         "The AI quality principles of Plateer AI Lab and how they are built into XGEN — our commitment on safety, accountability, controllability, and operational quality.",
     path: `${KO_BASE}`,
