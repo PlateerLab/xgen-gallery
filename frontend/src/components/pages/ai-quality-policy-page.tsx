@@ -11,6 +11,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
+import { AiQualityArt } from "@/components/ai-quality-art";
 import { PreviewBand, PREVIEW_BAND_H } from "@/components/preview-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
@@ -87,11 +88,10 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
     ko: {
         eyebrow: "AI Quality Policy · Plateer AI Lab",
-        h1: ["신뢰할 수 있는 Enterprise AI는", "우연히 만들어지지 않습니다"],
+        h1: ["Enterprise AI의 신뢰는 기술이 아니라,", "체계적인 통제와 운영에서 완성됩니다"],
         heroLead: [
-            "플래티어 AI연구소는 AI를 개발하는 조직인 동시에, 실제 기업 환경에 AI 플랫폼을 공급합니다.",
-            "우리는 AI의 성능만큼 안전성, 책임성, 통제 가능성, 운영 품질이 중요하다고 믿습니다.",
-            "AI 품질 방침은 연구소 내부의 개발 원칙을 넘어, 고객이 안심하고 Enterprise AI를 운영할 수 있도록 하기 위한 우리의 약속입니다.",
+            "플래티어 AI연구소는 AI를 개발하고 기업 현장에 적용합니다.",
+            "성능을 넘어 안전성·책임성·통제 가능성을 확보하여, 고객이 안심하고 Enterprise AI를 운영할 수 있도록 하는 것이 우리의 AI 품질 원칙입니다.",
         ],
         breadcrumb: "AI 품질 방침",
         qualityTitle: "우리가 생각하는 AI 품질",
@@ -173,11 +173,13 @@ const COPY: Record<Locale, Copy> = {
     },
     en: {
         eyebrow: "AI Quality Policy · Plateer AI Lab",
-        h1: ["Enterprise AI you can trust", "does not happen by accident"],
+        h1: [
+            "Trust in enterprise AI is not built by technology alone —",
+            "it is completed by disciplined control and operations",
+        ],
         heroLead: [
-            "Plateer AI Lab both develops AI and supplies an AI platform into real enterprise environments.",
-            "We hold that safety, accountability, controllability, and operational quality matter as much as performance.",
-            "This policy goes past our internal development principles — it is our commitment that customers can run Enterprise AI with confidence.",
+            "Plateer AI Lab develops AI and puts it to work on real enterprise ground.",
+            "Securing safety, accountability, and controllability beyond raw performance — so that customers can run Enterprise AI with confidence — is our AI quality principle.",
         ],
         breadcrumb: "AI quality policy",
         qualityTitle: "What we mean by AI quality",
@@ -319,22 +321,26 @@ export function AiQualityPolicyPageContent({
             {/* Hero */}
             <section className="relative flex min-h-[500px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-4xl px-6 pt-16">
-                    <p className="text-[15px] font-semibold tracking-tight text-[#5eead4]">
-                        {t.eyebrow}
-                    </p>
-                    <h1 className="mt-4 text-3xl font-bold leading-[1.2] tracking-tight md:text-[46px]">
-                        {t.h1[0]}
-                        <br />
-                        {t.h1[1]}
-                    </h1>
-                    <div className="mt-7 max-w-2xl space-y-3">
-                        {t.heroLead.map((p) => (
-                            <p key={p} className="text-[17px] leading-relaxed text-white/75">
-                                {p}
-                            </p>
-                        ))}
+                {/* 좌: 카피 / 우: 키비주얼. lg 미만에서는 키비주얼이 아래로 쌓인다. */}
+                <div className="relative mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 px-6 pt-16 lg:grid-cols-2 lg:gap-12">
+                    <div>
+                        <p className="text-[15px] font-semibold tracking-tight text-[#5eead4]">
+                            {t.eyebrow}
+                        </p>
+                        {/* 2단 히어로라 폭이 좁다 — 고정 <br> 대신 text-balance로 줄을 고르게
+                            나눠 "AI는" 같은 외톨이 줄이 생기지 않게 한다. */}
+                        <h1 className="mt-4 text-pretty text-3xl font-bold leading-[1.25] tracking-tight md:text-[40px] lg:text-balance">
+                            {t.h1[0]} {t.h1[1]}
+                        </h1>
+                        <div className="mt-7 space-y-3">
+                            {t.heroLead.map((p) => (
+                                <p key={p} className="text-[17px] leading-relaxed text-white/75">
+                                    {p}
+                                </p>
+                            ))}
+                        </div>
                     </div>
+                    <AiQualityArt locale={locale} />
                 </div>
             </section>
 

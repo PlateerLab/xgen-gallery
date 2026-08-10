@@ -294,7 +294,7 @@ export function AiQualityPolicyFullPageContent({
                         rows={[
                             ["1", <span key="a"><B>인간의 주체성과 감독</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Human Agency &amp; Oversight</span></span>, "AI 산출물을 사람이 검토·승인한 뒤에만 반영합니다.", "자동화 처리의 거부·변경·중단, 이의 제기, 통제권 이관 기능"],
                             ["2", <span key="b"><B>기술적 견고성과 안전성</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Technical Robustness &amp; Safety</span></span>, "릴리즈 전 비정상 입력·데이터 오염에 대한 강건성 시험을 수행합니다.", <span key="b2">남용·오용·불법 사용에 대응하는 <B>가드레일 기본 제공</B></span>],
-                            ["3", <span key="c"><B>프라이버시와 데이터 거버넌스</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Privacy &amp; Data Governance</span></span>, "기밀·개인정보를 외부 AI 서비스에 입력하지 않습니다.", "역할 기반 접근통제, 민감정보 통제, 계보 추적, 확인 가능한 파기"],
+                            ["3", <span key="c"><B>프라이버시와 데이터 거버넌스</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Privacy &amp; Data Governance</span></span>, "기밀·개인정보는 내부 격리 환경의 승인된 AI 도구에서만 처리합니다.", "역할 기반 접근통제, 민감정보 통제, 계보 추적, 확인 가능한 파기"],
                             ["4", <span key="d"><B>투명성</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Transparency</span></span>, "AI로 생성한 산출물은 그 사실과 이력을 기록합니다.", <span key="d2">AI 생성물 표기, 제품의 목적·능력·<B>한계</B> 및 연계 외부 모델 정보 공개</span>],
                             ["5", <span key="e"><B>다양성·비차별·공정성</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Diversity, Non-discrimination &amp; Fairness</span></span>, "제품 검증 단계에서 편향 가능성을 평가합니다.", "운영 중 편향을 점검할 수 있는 로그와 지표"],
                             ["6", <span key="f"><B>사회적·환경적 웰빙</B><br /><span className="text-[13px] text-[var(--color-ink-subtle)]">Societal &amp; Environmental Well-being</span></span>, "개발·도입의 사회적 영향을 사전 평가하고 컴퓨팅 자원 소모를 줄입니다.", "자원 사용 현황의 가시화"],
@@ -352,14 +352,14 @@ export function AiQualityPolicyFullPageContent({
                 <Ch n={7} title="사내 AI 이용 기준" id="internal-use">
                     <p>
                         연구소는 AI를 만드는 조직인 동시에 <B>AI를 업무에 사용하는 조직</B>입니다.
-                        코드 어시스턴트, 사내 AI 챗봇, 외부 생성형 AI 서비스 등 모든 AI 도구의
-                        사용에 다음 기준을 적용합니다.
+                        코드 어시스턴트, 사내 AI 챗봇, XGEN 기반 에이전트 등 연구소가
+                        개발·운영하는 AI 도구의 사용에 다음 기준을 적용합니다.
                     </p>
                     <Table
                         head={["#", "기준", "내용"]}
                         rows={[
                             ["1", <B key="a">승인된 도구만 사용</B>, <span key="a2">업무에 사용하는 AI 도구는 사전 검토·승인을 거쳐 <B>사내 AI 도구 대장</B>에 등재된 것으로 한정합니다. 신규 도구는 보안·라이선스·데이터 처리 방식을 검토한 뒤 도입합니다.</span>],
-                            ["2", <B key="b">기밀·개인정보 입력 금지</B>, <span key="b2">고객사 데이터, 개인정보, 미공개 소스코드 및 사내 기밀은 <B>외부 AI 서비스에 입력하지 않습니다.</B> 필요한 경우 내부 격리 환경의 AI만 사용합니다.</span>],
+                            ["2", <B key="b">기밀·개인정보 입력 금지</B>, <span key="b2">고객사 데이터, 개인정보, 미공개 소스코드 및 사내 기밀은 <B>내부 격리 환경에서 운영되는 승인된 AI 도구에서만 처리합니다.</B> 승인되지 않은 외부 AI 서비스에는 입력하지 않습니다.</span>],
                             ["3", <B key="c">검증 책임은 사용자에게</B>, <span key="c2">AI가 생성한 코드·문서·분석 결과는 <B>사용자가 검증한 뒤에만</B> 산출물로 반영합니다. 검증하지 않은 AI 산출물의 직접 반영을 금지합니다.</span>],
                             ["4", <B key="d">생성 이력 관리</B>, "AI를 활용해 작성한 주요 산출물은 그 사실과 사용 도구를 기록하여 추적 가능하게 합니다."],
                             ["5", <B key="e">이용 현황 점검</B>, "AI 도구의 이용 현황과 이상 사용 여부를 정기적으로 점검하고, 결과를 거버넌스 기구에 보고합니다."],
@@ -375,8 +375,10 @@ export function AiQualityPolicyFullPageContent({
 
                 <Ch n={8} title="AI 품질 목표" id="objectives">
                     <p>
-                        연구소는 매년 정량·정성 목표를 수립하고 그 달성 여부를 거버넌스 기구에 정기
-                        보고합니다.
+                        연구소는 매년 AI 연구·개발 및 운영에 대한 정량·정성 목표를 수립하고, 추진
+                        실적과 목표 달성 여부를 정기적으로 점검합니다. 점검 결과는{" "}
+                        <B>내부 AI 거버넌스 위원회에 정기 보고</B>하며, 위원회의 검토 및 개선
+                        의견을 차년도 목표와 운영 계획에 반영합니다.
                     </p>
                     <H3>8.1 정량 목표 (2026년도)</H3>
                     <Table
@@ -426,7 +428,7 @@ export function AiQualityPolicyFullPageContent({
                             [<B key="b">AI 거버넌스 위원회</B>, <span key="b2">AI 정책·원칙의 적정성 정기 평가, 고영향 AI 해당 여부 심의, 리스크 대응 방안 및 잔여 리스크 수용 여부 결정, 신규 AI 기능 도입·릴리즈·지원종료 승인, <B>사내 AI 도구 도입 승인</B></span>],
                             [<B key="c">AI 품질책임자</B>, "품질 기준 수립, 릴리즈 품질 보증 활동 수행 및 월간 품질 보고"],
                             [<B key="d">데이터 책임자 (CDO)</B>, "데이터 품질 정책 수립, 개발·검증용 데이터의 획득·처리·파기 관리 및 개인정보 보호 총괄"],
-                            [<B key="e">AI 사고 대응 조직</B>, "AI 사고·취약점의 원인 분석과 조치, 고객 안내 및 재발 방지 활동"],
+                            [<B key="e">AI 사고 대응 조직</B>, "AI 사고·취약점의 접수·분석·조치, 영향받는 고객사 통지 및 재발 방지 대책 수립"],
                             [<B key="f">내부감사 조직</B>, <span key="f2">개발·운영 조직과 <B>분리된 독립 조직</B>으로서 방침 이행 여부를 감사하고 시정조치를 요구</span>],
                         ]}
                     />
@@ -452,9 +454,9 @@ export function AiQualityPolicyFullPageContent({
                         ]}
                     />
                     <p>
-                        AI 관련 사고나 제품 취약점이 확인될 경우, 연구소는 표준화된 대응 절차에 따라{" "}
-                        <B>원인 분석, 신속한 조치, 고객 안내, 재발 방지 활동</B>을 체계적으로
-                        수행합니다. 이를 통해 제품의 안정성과 신뢰성을 지속적으로 강화합니다.
+                        AI 사고 또는 제품 취약점이 확인된 경우, 정해진 기준에 따라{" "}
+                        <B>접수 → 원인 분석 → 조치 → 영향받는 고객사 통지 → 재발 방지 대책 수립</B>의
+                        절차를 이행합니다. 이를 통해 제품의 안정성과 신뢰성을 지속적으로 강화합니다.
                     </p>
                 </Ch>
 
