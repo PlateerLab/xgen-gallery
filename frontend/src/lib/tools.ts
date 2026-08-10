@@ -163,6 +163,54 @@ export const TOOLS: Tool[] = [
         hasDemo: true,
         language: "Python",
     },
+    {
+        id: "xgen-agent-memory",
+        repo: "xgen-agent-memory",
+        name: "XGen Agent Memory",
+        tagline: "Learnable graph-traversal memory for agents",
+        description:
+            "A lightweight memory engine fusing semantic search, BM25 keyword search, and typed-edge graph traversal with an online-learned ranker — all in a single SQLite file.",
+        category: "knowledge",
+        install: "pip install xgen-agent-memory",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "xgen-agent-runtime",
+        repo: "xgen-agent-runtime",
+        name: "XGen Agent Runtime",
+        tagline: "21-stage harness-engineered agent pipeline",
+        description:
+            "A manifest-driven agent pipeline with a dual-abstraction architecture (stage x strategy slots), five LLM providers, and native MCP support — every step observable and swappable.",
+        category: "agent",
+        install: "pip install xgen-agent-runtime",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "xgen-an-web",
+        repo: "xgen-an-web",
+        name: "AN-Web",
+        tagline: "AI-native headless browser engine for agents",
+        description:
+            "Executes the web as an actionable state machine instead of rendering pixels for human eyes — every page becomes a structured semantic graph agents can reason over and act upon.",
+        category: "agent",
+        install: "pip install xgen-an-web",
+        hasDemo: false,
+        language: "Python",
+    },
+    {
+        id: "xgen-edit2docs",
+        repo: "xgen-edit2docs",
+        name: "Edit2Docs",
+        tagline: "Generate and chat-edit real Office documents",
+        description:
+            "An AI-agent-native document engine that produces natively editable DOCX, XLSX, and PPTX files from a one-line intent, and chat-edits existing ones — real paragraphs, cells, and charts.",
+        category: "ingestion",
+        install: "pip install xgen_edit2docs",
+        hasDemo: false,
+        language: "Python",
+    },
 ];
 
 export const CATEGORIES: { id: ToolCategory | "all"; label: string }[] = [
