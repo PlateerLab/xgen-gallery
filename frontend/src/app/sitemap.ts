@@ -42,6 +42,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/xgen-trial`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/releases`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
         { url: `${SITE.url}/customers`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+        // AI 품질 방침 — 대외 공개가 AI-MASTER NEW1 증빙 요건이라 색인에서 빼면 안 된다.
+        { url: `${SITE.url}/ai-quality-policy`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${SITE.url}/ai-quality-policy/full`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     ];
 
     // 고객사례 — 개별 사례 페이지 + 사례가 있는 산업 페이지만 색인(빈 산업 스텁은 제외).

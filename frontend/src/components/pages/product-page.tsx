@@ -1352,8 +1352,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             <CertificationQuality locale={locale} />
                         </div>
                         {/* AI 품질 방침 카드 — 인증이 "검증받은 결과"라면, 방침은 그 앞의 기준이다.
-                            공개 라우트(/ai-quality-policy)가 아직 없어 프리뷰 경로로 건다 — 주소는
-                            lib/ai-policy-link.ts 가 단일 출처(푸터 About 링크와 같은 값). */}
+                            주소는 lib/ai-policy-link.ts 가 단일 출처(푸터 About 링크와 같은 값). */}
                         <Link
                             href={AI_POLICY_HREF[locale]}
                             className="group mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] sm:flex-row sm:items-center sm:justify-between"
