@@ -89,9 +89,8 @@ export function SiteFooter() {
         { key: "members", label: t.footer.members, href: "/members" },
         { key: "newsletter", label: t.footer.newsletter, href: "/newsletter" },
         // AI 품질 방침 — 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지
-        // 인증·품질 섹션이 제자리다. 아직 공개 라우트(/ai-quality-policy)가 없어
-        // 프리뷰 경로로 직접 건다(en 페이지가 따로 있어 로케일을 여기서 가른다).
-        // 정식 공개 때 아래 href 를 "/ai-quality-policy" 로 바꾸면 된다.
+        // 인증·품질 섹션이 제자리다. 주소는 lib/ai-policy-link.ts 가 단일 출처다.
+        // 대외 공개가 AI-MASTER NEW1 증빙 요건이므로 이 진입 링크를 지우지 않는다.
         {
             key: "ai-quality-policy",
             label: t.footer.aiPolicy,
