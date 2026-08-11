@@ -20,7 +20,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * AI 품질 방침 — 개요(에디토리얼) 페이지.
  *
- * 전문(18개 장)은 별도 페이지가 담당하고, 이 페이지는 그 입구다.
+ * 전문(서술 01~10 + 관리 체계 부속 A1~A9)은 별도 페이지가 담당하고, 이 페이지는 그 입구다.
  * AI-MASTER NEW1 증빙은 **전문 페이지**가 담당하므로 하단 「전문 보기」 링크와
  * 문서 정보 스트립(문서번호·버전·개정일)을 제거하면 안 된다.
  *
@@ -30,7 +30,7 @@ import type { Locale } from "@/lib/i18n";
 /** 문서 정보 — 개정 시 전문 페이지와 같은 값으로 함께 갱신한다. */
 export const POLICY_DOC = {
     no: "PLT-AI-POL-001",
-    version: "v2.0",
+    version: "v3.0",
     revised: "2026-08-11",
     nextReview: "2027-08-06",
 } as const;
