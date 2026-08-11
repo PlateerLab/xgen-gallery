@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import { SiteNav } from "@/components/site-nav";
@@ -44,7 +43,21 @@ const COPY: Record<Locale, { eyebrowNote: string }> = {
     en: { eyebrowNote: "Insight from our research and the field" },
 };
 
-export function BlogIndexPageContent({ locale }: { locale: Locale }) {
+/** URL 쿼리로 들어오는 목록 상태 — 라우트가 읽어서 그대로 넘긴다. */
+export type BlogListParams = {
+    cat?: string;
+    tag?: string;
+    author?: string;
+    page?: string;
+};
+
+export function BlogIndexPageContent({
+    locale,
+    params,
+}: {
+    locale: Locale;
+    params?: BlogListParams;
+}) {
     const posts = getAllPosts(locale);
     const t = COPY[locale];
     // 키비주얼 캐러셀 — 카테고리별 최신 1편 + Tech Note는 작성자 다른 2편(규칙: pickHeroPosts).
@@ -96,10 +109,18 @@ export function BlogIndexPageContent({ locale }: { locale: Locale }) {
                 </div>
             </section>
 
+            {/* 목록은 서버에서 렌더한다 — 필터·페이지를 props 로 내리므로 BlogList 가
+                useSearchParams() 를 쓰지 않고, 따라서 CSR 바로 이탈도 없다.
+                예전에는 <Suspense fallback={null}> 이 이 자리를 감싸고 있어서 글 링크가
+                서버 HTML 에 하나도 나가지 않았다(blog-list.tsx 주석 참고). */}
             <main id="articles" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-14">
-                <Suspense fallback={null}>
-                    <BlogList posts={posts} />
-                </Suspense>
+                <BlogList
+                    posts={posts}
+                    cat={params?.cat}
+                    tag={params?.tag}
+                    author={params?.author}
+                    page={Number(params?.page) || 1}
+                />
             </main>
             <SiteFooter />
         </>

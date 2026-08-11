@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
     ChevronLeft,
     ChevronRight,
@@ -249,41 +249,69 @@ function PopularList({ posts }: { posts: PostMeta[] }) {
     );
 }
 
-export function BlogList({ posts }: { posts: PostMeta[] }) {
+/**
+ * 필터·페이지는 URL 쿼리가 단일 출처이고, 값은 서버(page.tsx → BlogIndexPageContent)에서
+ * props 로 내려온다. 예전에는 이 컴포넌트가 useSearchParams() 로 직접 읽었는데, 그러면
+ * 정적 렌더 라우트에서 CSR 바로 이탈이 일어나 감싸고 있던 <Suspense fallback={null}> 이
+ * 그대로 HTML 로 나가면서 글 목록 링크가 서버 HTML 에 하나도 남지 않았다
+ * (검색엔진이 글 39편을 링크로 발견하지 못하던 원인). props 로 받으면 목록이 SSR 된다.
+ */
+export function BlogList({
+    posts,
+    cat,
+    tag,
+    author,
+    page,
+}: {
+    posts: PostMeta[];
+    cat?: string;
+    tag?: string;
+    author?: string;
+    page?: number;
+}) {
     const { locale } = useI18n();
     const t = COPY[locale];
     const en = locale === "en";
-    const searchParams = useSearchParams();
     const router = useRouter();
 
-    const key = searchParams.get("cat");
-    const active: Tab = (key && CATEGORY_BY_KEY[key]) || ALL;
-    const activeTag = searchParams.get("tag");
-    const activeAuthor = searchParams.get("author");
-
-    const [page, setPage] = useState(1);
-    // 필터가 바뀌면 1페이지로 리셋.
-    useEffect(() => {
-        setPage(1);
-    }, [active, activeTag, activeAuthor]);
+    const active: Tab = (cat && CATEGORY_BY_KEY[cat]) || ALL;
+    const activeTag = tag ?? null;
+    const activeAuthor = author ?? null;
 
     const scoped = useMemo(
         () => (activeAuthor ? posts.filter((p) => p.author === activeAuthor) : posts),
         [posts, activeAuthor],
     );
 
-    const pushParams = (
+    /**
+     * 목록 상태를 그대로 담은 URL — 탭·태그·작성자·페이지가 전부 쿼리에 들어간다.
+     * 페이지네이션이 이 주소를 <Link> 로 걸기 때문에 크롤러도 2페이지 이후의 글까지
+     * 링크로 따라올 수 있다. 로케일 접두사(/en)는 localeHref 가 붙인다.
+     */
+    const hrefFor = (
         catKey: string | undefined,
-        tag: string | null,
-        author: string | null = activeAuthor,
+        tagValue: string | null,
+        authorValue: string | null,
+        pageValue = 1,
     ) => {
         const sp = new URLSearchParams();
         if (catKey) sp.set("cat", catKey);
-        if (tag) sp.set("tag", tag);
-        if (author) sp.set("author", author);
+        if (tagValue) sp.set("tag", tagValue);
+        if (authorValue) sp.set("author", authorValue);
+        if (pageValue > 1) sp.set("page", String(pageValue));
         const qs = sp.toString();
-        router.replace(qs ? `/blog?${qs}` : "/blog", { scroll: false });
+        return localeHref(locale, qs ? `/blog?${qs}` : "/blog");
     };
+
+    // 필터를 바꾸면 항상 1페이지부터 다시 본다.
+    const pushParams = (
+        catKey: string | undefined,
+        tagValue: string | null,
+        authorValue: string | null = activeAuthor,
+    ) =>
+        router.replace(hrefFor(catKey, tagValue, authorValue), {
+            scroll: false,
+        });
 
     const selectTab = (t: Tab) => pushParams(KEY_BY_CATEGORY[t], null);
 
@@ -304,7 +332,9 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
     const listPosts = filtered;
 
     const totalPages = Math.max(1, Math.ceil(listPosts.length / PAGE_SIZE));
-    const safePage = Math.min(page, totalPages);
+    const safePage = Math.min(Math.max(page ?? 1, 1), totalPages);
+    const pageHref = (n: number) =>
+        hrefFor(KEY_BY_CATEGORY[active], activeTag, activeAuthor, n);
     const pagePosts = listPosts.slice(
         (safePage - 1) * PAGE_SIZE,
         safePage * PAGE_SIZE,
@@ -584,45 +614,66 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                                 </p>
                             )}
 
-                            {/* 페이지네이션 */}
+                            {/* 페이지네이션 — 버튼이 아니라 링크다. 2페이지 이후의 글도
+                                크롤러가 <a href> 로 따라올 수 있어야 색인에 들어간다. */}
                             {totalPages > 1 && (
-                                <div className="mt-8 flex items-center justify-center gap-1.5">
-                                    <button
-                                        type="button"
-                                        aria-label={t.prev}
-                                        disabled={safePage === 1}
-                                        onClick={() => setPage(safePage - 1)}
-                                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
-                                    >
-                                        <ChevronLeft className="h-4 w-4" />
-                                    </button>
+                                <nav
+                                    aria-label={t.allArticles}
+                                    className="mt-8 flex items-center justify-center gap-1.5"
+                                >
+                                    {safePage === 1 ? (
+                                        <span
+                                            aria-hidden
+                                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] opacity-40"
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                        </span>
+                                    ) : (
+                                        <Link
+                                            href={pageHref(safePage - 1)}
+                                            scroll={false}
+                                            aria-label={t.prev}
+                                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]"
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                        </Link>
+                                    )}
                                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                                         (n) => (
-                                            <button
+                                            <Link
                                                 key={n}
-                                                type="button"
-                                                onClick={() => setPage(n)}
+                                                href={pageHref(n)}
+                                                scroll={false}
+                                                aria-current={n === safePage ? "page" : undefined}
                                                 className={cn(
-                                                    "h-9 min-w-9 rounded-lg px-3 text-[14px] font-bold transition",
+                                                    "inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-3 text-[14px] font-bold transition",
                                                     n === safePage
                                                         ? "bg-[var(--color-ink)] text-white"
                                                         : "border border-[var(--color-line)] text-[var(--color-ink-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]",
                                                 )}
                                             >
                                                 {n}
-                                            </button>
+                                            </Link>
                                         ),
                                     )}
-                                    <button
-                                        type="button"
-                                        aria-label={t.next}
-                                        disabled={safePage === totalPages}
-                                        onClick={() => setPage(safePage + 1)}
-                                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
-                                    >
-                                        <ChevronRight className="h-4 w-4" />
-                                    </button>
-                                </div>
+                                    {safePage === totalPages ? (
+                                        <span
+                                            aria-hidden
+                                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] opacity-40"
+                                        >
+                                            <ChevronRight className="h-4 w-4" />
+                                        </span>
+                                    ) : (
+                                        <Link
+                                            href={pageHref(safePage + 1)}
+                                            scroll={false}
+                                            aria-label={t.next}
+                                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line)] text-[var(--color-ink-muted)] transition hover:border-[var(--color-line-strong)] hover:text-[var(--color-ink)]"
+                                        >
+                                            <ChevronRight className="h-4 w-4" />
+                                        </Link>
+                                    )}
+                                </nav>
                             )}
                         </div>
 
