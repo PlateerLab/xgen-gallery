@@ -1363,8 +1363,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                 </p>
                                 <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                                     {en
-                                        ? "The principles behind the certifications — safety, accountability, controllability, and the division of responsibility between us and our customers"
-                                        : "인증 뒤에 있는 기준 — 안전성·책임성·통제 가능성과 공급자·고객사 책임 분계를 전문으로 공개합니다"}
+                                        ? "Beyond certification — we publish the standards for trustworthy enterprise AI, defining everything from safety, accountability, and controllability to where our responsibility ends and yours begins."
+                                        : "인증을 넘어, 신뢰할 수 있는 Enterprise AI를 위한 기준을 공개합니다. 안전성·책임성·통제 가능성부터 공급자와 고객사의 책임 범위까지 명확하게 정의합니다."}
                                 </p>
                             </div>
                             <span className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]">
