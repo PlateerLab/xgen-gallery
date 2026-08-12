@@ -1,71 +1,137 @@
 ---
 title: "On-premise AI agents — why XGEN"
-description: "Once an agent starts executing inside your core systems, the question changes. Here is why an on-premise agent operating layer with data sovereignty, control, and auditability should start with XGEN."
+description: "Once agents start executing inside core systems, the selection criteria change. Here is the on-premise agent platform that keeps data inside your boundary, connects to existing systems, and keeps execution controlled and traceable."
 date: "2026-08-12"
 cover: /blog/onprem-agent-why-xgen.svg
 author: "Plateer Labs"
-category: "Product news"
+category: "Industry Note"
 tags: ["On-premise", "Private Agent", "Data sovereignty", "AI governance", "XGEN", "Agentic AI"]
 faq:
   - q: "How does an on-premise AI agent differ from a cloud SaaS one?"
-    a: "The difference is where execution happens and who holds control. With cloud SaaS, data crosses into the vendor's boundary and the model, policy, and availability depend on that vendor. With an on-premise AI agent, the model and the agent run inside the enterprise boundary, so data never leaves and the enterprise controls permissions, audit, and continuity directly."
+    a: "The difference is where execution happens and who holds control. With cloud SaaS, data crosses into the vendor's boundary and the model, policy, and availability depend on that vendor. With an on-premise AI agent, the model and the agent run inside the enterprise security boundary, so core data never leaves and the enterprise controls permissions, audit, and continuity directly."
   - q: "Which industries need on-premise AI agents?"
-    a: "Industries where data sovereignty and regulatory risk are decisive: defense and aerospace, shipbuilding and advanced manufacturing, semiconductors and batteries, finance and insurance, healthcare and pharmaceuticals, energy and other critical national infrastructure, and public and research institutions. What they share is a constraint — drawings, process data, technical documents, and customer records cannot leave the building."
+    a: "Industries where data sovereignty, security, and regulatory requirements are decisive: manufacturing, finance, the public sector, defense, semiconductors, energy, and healthcare. What they share is a constraint — design information, process data, source code, and customer records cannot be sent to an external AI service."
   - q: "What does XGEN cover on-premise?"
-    a: "The XGEN Agentic AI Platform provides agent execution and orchestration, enterprise data connectivity (RAG), integration with core systems, permissions and audit logging, and a governance framework as one operating layer. It includes an execution layer that reaches the desktop (XGEN DeX) and on-premise deployment."
-  - q: "Can an AI agent's actions be audited?"
-    a: "They must be, and that is one reason enterprises choose on-premise. Unless there is a record of what data an agent read and which tools it executed, no one can trace an incident afterwards or assign responsibility. XGEN treats permission decisions and execution logs as platform basics rather than add-ons."
+    a: "The XGEN Agentic AI Platform provides agent execution and orchestration, enterprise data connectivity (RAG), integration with existing business systems, permission and execution controls with audit logs, and a governance framework as one operating layer. It includes an execution layer that reaches the user's desktop (XGEN DeX) and on-premise deployment."
+  - q: "Can an AI agent's execution be traced?"
+    a: "It must be, and that is one reason enterprises choose on-premise. Unless there is a record of who used which agent, what data it accessed, and which tools it executed, no one can trace an incident afterwards or assign responsibility. XGEN provides permission management and execution history with audit logs as platform-level capabilities."
 draft: false
 ---
 
-**In one line —** Once AI moves past answering questions and starts executing inside core systems, the selection criteria shift from model performance to whether it can work safely inside your boundary, under your control, and leave an audit trail. The XGEN Agentic AI Platform is an on-premise agent operating layer designed around exactly those conditions.
+**As enterprise AI evolves from a tool that generates answers into agents that carry out real work, the criteria for choosing an AI platform change with it. Model performance is no longer the only thing that matters. The platform has to protect data inside the enterprise security boundary, connect safely to existing systems, and keep the AI's decisions and actions controlled and traceable.**
 
-For the past two years, enterprise AI adoption mostly looked the same. Give employees a cloud SaaS chat assistant and lift productivity in writing, search, and coding. The decision was not hard. Data moved around, but the work was largely individual, and mistakes stayed inside a range you could undo.
+The XGEN Agentic AI Platform is an on-premise agent platform designed for exactly this kind of enterprise AI environment.
 
-What is happening now is different in kind. AI connects directly to ERP, MES, PLM, groupware, and databases; it makes calls, executes tools, and intervenes in core processes. It has stopped being a conversation partner and become an **actor**.
+## AI is moving from 'answering' to 'executing'
 
-## When AI becomes an actor, the questions change
+Enterprise use of generative AI started with individual productivity — drafting documents, searching for information, summarizing, translating, and assisting with code.
 
-In review sessions with manufacturing, finance, and public-sector customers, the same three questions kept coming up. None of them were about specifications. All of them were about control.
+The role of AI agents is now going a step further.
 
-Can our drawings, process data, technical documents, and customer records be sent outside? If an external service goes down, can core operations continue? Can we control and audit what data an agent read and what it executed?
+They connect to internal systems such as ERP, MES, PLM, groupware, and databases to retrieve the information they need, make judgments about the work, and execute tools and processes within the permissions they have been given.
 
-The harder those questions are to answer confidently, the more the conclusion converges. Defense and aerospace, shipbuilding and advanced manufacturing, semiconductors and batteries, finance and insurance, healthcare and pharmaceuticals, energy and critical national infrastructure, public and research institutions. Weigh what those sectors represent in the Korean industrial base and on-premise AI is not a niche — it is close to the mainstream.
+As AI moves beyond an assistive tool and becomes **an actor with access to enterprise systems and data**, the criteria an enterprise has to review change as well.
 
-This is not a local sentiment either. A recent analysis of B2B AI SaaS strategy [published in Yozm IT](https://yozm.wishket.com/magazine/detail/3894/) lands on the same point. In a March 2026 Teikoku Databank survey of 10,312 Japanese companies, 86.7% of adopters found AI useful, yet overall adoption stood at 34.5% — and **33.5% named the risk of information leakage** as a barrier. Companies are not stalling because they doubt the value. They are stalling because they cannot confirm control.
+* Does core data stay inside the enterprise security boundary?
+* Can the data and systems an agent may reach be controlled?
+* Can you trace who executed what, through which agent?
+* Are core operations insulated from outages or policy changes at an external AI service?
+* Can AI be applied while existing systems and security policies stay as they are?
 
-The same piece puts the conclusion well: security compliance is no longer a passive shield but "the most powerful weapon in B2B sales" for getting through market barriers. Our reading matches. Controllability is turning from an obstacle into **a reason to buy**.
+In industries where data sovereignty, security, and regulatory requirements weigh heavily — manufacturing, finance, the public sector, defense, semiconductors, energy, healthcare — these conditions are becoming the deciding factor in whether AI gets adopted at all.
 
-## The real reason on-premise is hard
+## The challenge of on-premise AI is not 'installation' but 'operation'
 
-There is a reason on-premise agents have struggled to compete with cloud offerings. This is not one technology but a system of layers that only works when they interlock.
+Installing an LLM in an on-premise environment does not, by itself, make enterprise AI complete.
 
-You need hardware that can carry inference, open-source models you can actually run yourself, and quantization and optimization to get performance out of constrained infrastructure. On top of that sit inference serving and resource scheduling, agent execution and orchestration, RAG that connects internal data reliably, integration with core systems, permissions and audit logs, governance, and finally the work of making it stick with the people who do the job.
+Applying AI agents to real work requires more than a model and infrastructure: several technologies and operating structures have to interlock.
 
-Miss one and the project stops at pilot. The model is good but internal data will not connect; the data connects but there is no permission model, so it fails security review; everything works but nobody uses it. Most failures we have watched in the field were not missing technology. They were **missing connections**.
+**Infrastructure → Model → Data → Agent → Enterprise System → Security → Governance → Operation**
 
-## What XGEN sells is an operating layer, not a model
+You need GPU and inference infrastructure suited to the enterprise environment, and the model has to run reliably on it. Internal documents and data have to be connected to RAG and a knowledge structure, and agents have to be wired into existing systems such as ERP, MES, and groupware.
 
-So we designed XGEN as an operating layer rather than a model wrapper. What a customer buys is not a good model but an **AI operating layer** that works safely inside the enterprise, stays under control, and produces real outcomes.
+On top of that, per-user and per-agent access rights, execution controls, logging and audit trails, AI risk management, and governance all have to be designed together.
 
-**Execution that never crosses the boundary.** XGEN is built for on-premise deployment. Models and agents run inside the enterprise boundary, so drawings and process data stay put — and an outage at an external service does not become an outage in your operations.
+Implementing any one of these in isolation makes it hard to move past a proof of concept and into a real operational system.
 
-**An execution layer that reaches the desktop.** Work still starts at the desktop. XGEN DeX connects agents running on the server to the user's desktop, so the enterprise keeps central control while nobody has to change how they work. The design is covered in [our XGEN DeX introduction](/en/blog/product-xgen-dex).
+In the end, the competitiveness of on-premise AI comes down to **not whether you can install an LLM internally, but whether you have the structure to keep operating AI inside the enterprise**.
 
-**The nodes the field actually asks for.** An agentic platform is not proven by how many nodes it ships, but by whether the node you need exists. Internal document pipelines, core-system integration, folding collected data into RAG — these came from customer sites and became nodes. Whatever generalizes, we publish as [open-source libraries](/en/library-gallery).
+## XGEN connects the whole of enterprise AI operation into one platform
 
-**Control and audit.** If there is no record of what an agent read and executed, no one can assign responsibility when something goes wrong. XGEN treats permission decisions and execution logs as basics, not extras.
+XGEN is not an interface for using a particular LLM. It is an agentic AI platform for building, connecting, controlling, and operating AI agents inside the enterprise.
 
-**Verified quality.** XGEN holds GS Certification Grade 1 and is undergoing AI trustworthiness certification (AI-MASTER) testing. Those are third-party findings, not our claims. The standard behind the quality is published as our [AI Quality Policy](/en/ai-quality-policy).
+### 1. Execution inside the enterprise security boundary
 
-**People go in with it.** The step that most often collapses in on-premise adoption is the last metre — adoption by the people doing the work. We place Forward Deployed Engineers on site, from requirements discovery through design, implementation, and internalization.
+XGEN supports on-premise environments, so enterprise data and the AI execution environment can be configured to match internal security policy.
 
-## Why the decision matters now
+It is designed so that core enterprise data — sensitive documents, design information, process data, source code, customer records — can be used inside the internal environment without being handed to an external AI service.
 
-On-premise AI is not something you begin after the preparation is finished. Hardware procurement, model selection, data readiness, security review, and governance have to run in parallel rather than in sequence — and tying all of it into a single result takes experience.
+That lets an enterprise apply generative AI and agents to its work while keeping its existing data security policy and infrastructure strategy intact.
 
-We expect the competition ahead to be decided less by which model is smarter and more by **who can connect hardware, models, agents, data, security, and governance into one operating result**. That is why we concentrate our effort on private agents.
+### 2. Agents that connect to existing business systems
 
-Letting AI carry out core enterprise work should not be an outcome you buy by giving up control. There is a way to keep control and still get the outcome, and XGEN is how we are building it.
+The value of enterprise AI is not decided by answer accuracy alone.
 
-If you are working through security, regulatory, or procurement requirements, [get in touch](/en/contact). We will map the architecture and controls to your requirements with you.
+An agent has to be able to retrieve the data the work actually needs and safely execute the systems and tools involved.
+
+XGEN connects not only internal documents and knowledge data but also APIs, databases, and existing business systems as agent tools, so AI operates inside real business processes.
+
+Enterprises can apply AI agents to their current environment step by step, without replacing the systems they already run.
+
+### 3. Control over agent permissions and execution
+
+Once AI agents start executing against enterprise systems, controllability matters more than convenience.
+
+XGEN provides the controls enterprise AI operation requires at the platform level — permission management per agent and per user, execution history, and audit logs.
+
+This lets an enterprise go beyond "what did the AI answer" to managing and tracing
+
+**who → used which agent → accessed which data → and executed which tools**
+
+### 4. Connecting the server to the user's working environment
+
+Real enterprise work does not happen only on servers.
+
+Writing documents, managing files, using in-house applications — much of the work starts on the user's PC.
+
+[XGEN DeX (Desktop Experience)](/en/blog/product-xgen-dex) is the execution layer that connects centrally managed XGEN agents to the user's desktop working environment.
+
+The aim is a structure where the enterprise manages AI and agents centrally while users take advantage of AI without significantly changing how they already work.
+
+### 5. The AI governance an enterprise environment needs
+
+The more AI participates in real business processes, the more operating standards and accountability matter alongside model performance.
+
+XGEN builds the governance an enterprise needs for continuous AI operation into the platform — permission management, execution history, and AI control policy.
+
+Plateer Labs applies these standards not only to product features but also codifies them as an [AI quality policy](/en/ai-quality-policy) and operating procedures that we manage on an ongoing basis.
+
+### 6. Verified quality and field-led implementation
+
+Enterprise AI adoption does not end when the features are built.
+
+It has to be verified as stable in a real enterprise environment, then applied to the actual work and embedded until people keep using it.
+
+XGEN Agentic AI Platform v1.0 holds [GS Certification Grade 1](/en/product#certification), and we continue to verify the platform's quality and reliability against objective standards.
+
+Our field-led technical support structure also supports the real adoption process — from requirements analysis through agent design, system integration, verification, and internalization of operations.
+
+## What an enterprise should choose is not a 'model' but an 'operable AI environment'
+
+The competitiveness of enterprise AI will not be decided by which LLM you picked.
+
+Models will keep improving, and they can be replaced.
+
+Enterprise data, systems, security policy, permission structures, and business processes, on the other hand, have to persist.
+
+So the core of an enterprise AI platform is not being tied to a specific model, but
+
+**whether infrastructure, model, data, agent, security, and governance can be connected into one operating layer and managed continuously**
+
+That is exactly what XGEN aims at.
+
+An environment where core enterprise data stays under enterprise control, agents connect while existing systems and working environments stay in place, agent access and execution are controlled, and new models and technologies can keep being adopted.
+
+**XGEN goes beyond a platform for introducing AI: it provides the enterprise AI foundation for operating AI agents in real work, continuously.**
+
+If security, regulation, or data sovereignty make it hard to scale core operations on public AI services alone, XGEN is a way to review a [private agent architecture and adoption plan](/en/contact) suited to your environment.

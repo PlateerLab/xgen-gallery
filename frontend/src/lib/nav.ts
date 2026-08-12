@@ -390,7 +390,10 @@ export const NAV_GROUPS: NavGroup[] = [
                 children: [
                     { label: "Product News", labelKo: "제품 소식", id: "cat-product", route: "/blog?cat=product" },
                     { label: "Tech Note", id: "cat-labs", route: "/blog?cat=labs" },
-                    { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
+                    { label: "Industry Note", id: "cat-industry", route: "/blog?cat=industry" },
+                    // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
+                    // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
+                    // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
                 ],
             },
             { label: "Newsletter", labelKo: "뉴스레터", id: "newsletter", route: "/newsletter" },

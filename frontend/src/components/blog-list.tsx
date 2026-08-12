@@ -12,7 +12,10 @@ import {
     X,
 } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
-import { categoryLabel } from "@/lib/blog-categories";
+import {
+    categoryLabel,
+    VISIBLE_BLOG_CATEGORIES,
+} from "@/lib/blog-categories";
 import { localeHref } from "@/lib/locale-path";
 import { useI18n } from "@/components/i18n-provider";
 import type { Locale } from "@/lib/i18n";
@@ -72,19 +75,23 @@ const COPY: Record<
 };
 
 const ALL = "전체";
-const TABS = [ALL, "제품 소식", "Tech Note", "Case Study"] as const;
-type Tab = (typeof TABS)[number];
+// 노출 카테고리는 lib/blog-categories.ts 가 단일 출처다(감춘 것도 거기서 정한다).
+const TABS = [ALL, ...VISIBLE_BLOG_CATEGORIES] as const;
+type Tab = (typeof TABS)[number] | "Case Study";
 const PAGE_SIZE = 5;
 
 /** GNB 서브메뉴 딥링크용: /blog?cat=<key> → 카테고리 라벨. */
 const CATEGORY_BY_KEY: Record<string, Tab> = {
     product: "제품 소식",
     labs: "Tech Note",
+    industry: "Industry Note",
+    // 탭에서는 감췄지만 기존 링크·북마크가 죽지 않도록 키는 남겨 둔다.
     case: "Case Study",
 };
 const KEY_BY_CATEGORY: Partial<Record<Tab, string>> = {
     "제품 소식": "product",
     "Tech Note": "labs",
+    "Industry Note": "industry",
     "Case Study": "case",
 };
 
@@ -104,6 +111,11 @@ const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
         grad: "linear-gradient(135deg,#eafaf1 0%,#d6f2e2 100%)",
         ink: "#1f9d57",
         word: "CASE STUDY",
+    },
+    "Industry Note": {
+        grad: "linear-gradient(135deg,#fff1e8 0%,#ffe0cc 100%)",
+        ink: "#c2570d",
+        word: "INDUSTRY NOTE",
     },
 };
 

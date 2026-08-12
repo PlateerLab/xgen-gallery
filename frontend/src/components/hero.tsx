@@ -297,6 +297,7 @@ const CATEGORY_EN: Record<string, string> = {
     "제품 소식": "Product News",
     "Tech Note": "Tech Note",
     "Case Study": "Case Study",
+    "Industry Note": "Industry Note",
 };
 function categoryLabel(category: string, locale: string): string {
     return locale === "ko" ? category : (CATEGORY_EN[category] ?? category);
