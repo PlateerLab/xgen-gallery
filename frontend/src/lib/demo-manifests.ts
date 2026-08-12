@@ -1,4 +1,10 @@
-import type { DemoManifest } from "@plateerlab/xgen-gallery";
+import {
+    getDemoManifest,
+    type DemoManifest,
+} from "@plateerlab/xgen-gallery";
+import type { Locale } from "@/lib/i18n";
+import type { Tool } from "@/lib/tools";
+import { buildFallbackManifest } from "@/lib/demo-fallback";
 
 /**
  * 프론트 로컬 데모 매니페스트 — npm 패키지(@plateerlab/xgen-gallery)의 데모 레지스트리에
@@ -774,3 +780,28 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-an-web": anWeb,
     "xgen-edit2docs": edit2docs,
 };
+
+/**
+ * 사람이 소재를 골라 쓴 매니페스트가 있는가 — 이 저장소의 로컬 맵이나 npm 패키지
+ * 레지스트리에 등록된 경우만 true. 카드의 "라이브 데모" 배지 기준이다.
+ *
+ * 신규 라이브러리는 여기서 false 지만 demoManifestFor 가 폴백을 만들어 주므로
+ * 데모 페이지와 버튼은 그대로 생긴다.
+ */
+export function hasCuratedDemo(repo: string): boolean {
+    return repo in LOCAL_DEMO_MANIFESTS || getDemoManifest(repo) != null;
+}
+
+/**
+ * 어떤 라이브러리든 데모 매니페스트를 돌려준다 — 로컬 → 패키지 → 자동 폴백 순서.
+ *
+ * 이 함수가 null 을 돌려주지 않기 때문에, TOOLS 에 항목만 추가되면 별도 작업 없이
+ * /tool/<id> 데모 페이지와 카드의 데모 버튼이 함께 생긴다.
+ */
+export function demoManifestFor(tool: Tool, locale: Locale): DemoManifest {
+    return (
+        LOCAL_DEMO_MANIFESTS[tool.repo] ??
+        getDemoManifest(tool.repo) ??
+        buildFallbackManifest(tool, locale)
+    );
+}

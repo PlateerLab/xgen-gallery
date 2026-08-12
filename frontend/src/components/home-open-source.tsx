@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Terminal, Play } from "lucide-react";
 import { TOOLS, type ToolCategory } from "@/lib/tools";
+import { hasCuratedDemo } from "@/lib/demo-manifests";
 import { CountUp } from "@/components/home-motion";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
@@ -169,7 +170,8 @@ export function HomeOpenSource({ locale = "ko" }: { locale?: Locale }) {
                                 <code className="truncate font-mono text-[12.5px] text-[var(--color-ink-muted)]">
                                     {tool.install}
                                 </code>
-                                {tool.hasDemo && (
+                                {/* Live 배지 = 큐레이션 데모가 있는 라이브러리(tool-card 와 같은 기준) */}
+                                {hasCuratedDemo(tool.repo) && (
                                     <span className="inline-flex flex-none items-center gap-1 rounded-full bg-[#e7f7f0] px-2 py-0.5 text-[11px] font-semibold text-[#1f9d6b]">
                                         <Play className="h-2.5 w-2.5" />
                                         Live

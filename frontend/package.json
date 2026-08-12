@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0"
+    "start": "next start -H 0.0.0.0",
+    "demo:coverage": "node scripts/demo-coverage.mjs"
   },
   "dependencies": {
     "@plateerlab/xgen-gallery": "^0.3.1",

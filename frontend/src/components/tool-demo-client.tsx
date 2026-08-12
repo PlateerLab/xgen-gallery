@@ -7,13 +7,12 @@ import Link from "next/link";
 import { ArrowLeft, Play, Upload, X } from "lucide-react";
 import { marked } from "marked";
 import {
-    getDemoManifest,
     type DemoManifest,
     type InputField,
     type OutputField,
 } from "@plateerlab/xgen-gallery";
 import type { Tool } from "@/lib/tools";
-import { LOCAL_DEMO_MANIFESTS } from "@/lib/demo-manifests";
+import { demoManifestFor } from "@/lib/demo-manifests";
 import { cn } from "@/lib/cn";
 import { formatBytes } from "@/lib/format";
 import { CopyCommand } from "./copy-command";
@@ -51,48 +50,20 @@ export function ToolDemoClient({
     tool: Tool;
     locale?: Locale;
 }) {
-    // 로컬 매니페스트(신규 라이브러리)를 먼저 확인하고, 없으면 패키지 레지스트리로 폴백.
+    // 로컬(큐레이션) → npm 패키지 → 자동 폴백 순서. demoManifestFor 는 항상 값을
+    // 돌려주므로 신규 라이브러리도 매니페스트를 손으로 넣기 전에 데모가 동작한다.
     const manifest = useMemo(() => {
-        const base = LOCAL_DEMO_MANIFESTS[tool.repo] ?? getDemoManifest(tool.repo);
+        const base = demoManifestFor(tool, locale);
         // 매니페스트 문구는 대부분 npm 패키지에서 오므로 렌더 직전에 영문으로 치환한다.
-        return base ? localizeManifest(base, locale) : base;
-    }, [tool.repo, locale]);
-
-    if (!manifest) {
-        return <NoManifest tool={tool} />;
-    }
+        // 폴백은 이미 로케일에 맞게 생성되므로 사전을 타도 그대로 통과한다.
+        return localizeManifest(base, locale);
+    }, [tool, locale]);
 
     return <DemoRunner tool={tool} manifest={manifest} locale={locale} />;
 }
 
-/* ------------------------------- No manifest -------------------------------- */
-
-function NoManifest({ tool }: { tool: Tool }) {
-    return (
-        <div className="mx-auto max-w-3xl px-6 py-28 text-center">
-            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                / demo unavailable
-            </p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight">
-                {tool.name}
-            </h1>
-            <p className="mt-4 text-[var(--color-ink-muted)]">
-                An interactive demo hasn't been wired up for this tool yet.
-                You can still install it or browse the source.
-            </p>
-            <div className="mt-8 flex justify-center gap-3">
-                <Link
-                    href={`https://github.com/PlateerLab/${tool.repo}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-md border border-[var(--color-line)] bg-white px-4 py-2 text-[16px] font-medium transition hover:border-[var(--color-ink)]"
-                >
-                    Open on GitHub
-                </Link>
-            </div>
-        </div>
-    );
-}
+/* "데모 준비중" 화면은 없앴다 — demoManifestFor 가 폴백을 만들어 주므로 매니페스트가
+   없는 라이브러리가 더는 존재하지 않는다(lib/demo-fallback.ts). */
 
 /* --------------------------------- Runner ---------------------------------- */
 

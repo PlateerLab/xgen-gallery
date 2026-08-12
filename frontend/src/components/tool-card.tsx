@@ -7,6 +7,7 @@ import type { Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
 import { TOOL_I18N } from "@/lib/i18n";
+import { hasCuratedDemo } from "@/lib/demo-manifests";
 
 /** 카테고리별 칩 컬러 — 사이트 전반(블로그·뉴스레터)과 동일한 톤. */
 const CAT_STYLE: Record<Tool["category"], string> = {
@@ -23,6 +24,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
     const categoryLabel =
         t.categories[tool.category as keyof typeof t.categories] ??
         tool.category;
+    const curated = hasCuratedDemo(tool.repo);
 
     const copy = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -49,7 +51,9 @@ export function ToolCard({ tool }: { tool: Tool }) {
                     >
                         {categoryLabel}
                     </span>
-                    {tool.hasDemo && (
+                    {/* "라이브 데모" 배지는 사람이 소재를 골라 쓴 매니페스트가 있을 때만.
+                        신규 라이브러리는 자동 폴백 데모라 버튼만 생기고 배지는 아직 없다. */}
+                    {curated && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#10b981]/10 px-2 py-0.5 text-[11.5px] font-semibold text-[#0d9268]">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                             {t.toolCard.liveDemo}
@@ -95,15 +99,15 @@ export function ToolCard({ tool }: { tool: Tool }) {
                         <Copy className="h-3.5 w-3.5 flex-shrink-0" />
                     )}
                 </button>
-                {tool.hasDemo && (
-                    <Link
-                        href={`/tool/${tool.id}`}
-                        className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-[linear-gradient(45deg,#00acee_10%,#185aea_90%)] px-3 py-2 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(24,90,234,0.55)] transition hover:brightness-110"
-                    >
-                        <Play className="h-3 w-3 fill-current" />
-                        {t.toolCard.openDemo}
-                    </Link>
-                )}
+                {/* 데모 버튼은 모든 라이브러리에 붙는다 — 매니페스트가 없으면
+                    자동 폴백 데모가 뜨므로 빈 페이지로 보내는 경우가 없다. */}
+                <Link
+                    href={`/tool/${tool.id}`}
+                    className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-[linear-gradient(45deg,#00acee_10%,#185aea_90%)] px-3 py-2 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(24,90,234,0.55)] transition hover:brightness-110"
+                >
+                    <Play className="h-3 w-3 fill-current" />
+                    {t.toolCard.openDemo}
+                </Link>
             </div>
         </div>
     );

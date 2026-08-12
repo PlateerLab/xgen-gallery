@@ -8,7 +8,14 @@ export interface Tool {
     description: string;
     category: ToolCategory;
     install: string;
-    hasDemo: boolean;
+    /**
+     * @deprecated 더는 데모 노출을 좌우하지 않는다. 데모 페이지와 카드의 데모 버튼은
+     * 항목이 이 배열에 있기만 하면 자동으로 생긴다(lib/demo-manifests.ts 의
+     * demoManifestFor, lib/demo-fallback.ts). "라이브 데모" 배지 역시 매니페스트
+     * 유무로 판별한다(hasCuratedDemo). 주간 자동 점검이 넣던 값을 그대로 둬도
+     * 무해하도록 optional 로만 남겨 뒀다.
+     */
+    hasDemo?: boolean;
     language: string;
     /**
      * 추가일(YYYY-MM-DD, 선택). 신규 라이브러리를 키비주얼에 '먼저' 띄우는 기준.
