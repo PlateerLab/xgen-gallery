@@ -106,6 +106,12 @@ interface DemoState {
     // 결과가 라이브 백엔드 응답이 아니라 큐레이션된 샘플(mockOutput)인지 여부.
     // 백엔드 미배포·미도달 시에도 데모가 의미 있는 결과를 보여주도록 폴백할 때 true.
     isSample: boolean;
+    /**
+     * 마지막으로 고른 샘플 번호. 샘플로 폴백할 때 '어느' 샘플을 쓸지 결정한다.
+     * 예전에는 무조건 samples[0] 을 썼는데, 그러면 2·3번 샘플을 고르고 Run demo 를
+     * 누를 때 입력은 3번인데 출력은 1번이 나와 서로 말이 맞지 않았다.
+     */
+    sampleIdx: number;
 }
 
 function DemoRunner({
@@ -136,6 +142,7 @@ function DemoRunner({
             error: null,
             elapsedMs: null,
             isSample: false,
+            sampleIdx: 0,
         };
     }, [manifest]);
 
@@ -160,6 +167,7 @@ function DemoRunner({
                 error: null,
                 elapsedMs: null,
                 isSample: sample.mockOutput != null,
+                sampleIdx: idx,
             }));
         },
         [manifest.samples],
@@ -169,7 +177,11 @@ function DemoRunner({
 
     const runDemo = useCallback(async () => {
         // 백엔드가 도달 불가하거나(프로덕션·미배포) 응답이 실패하면 보여줄 큐레이션 샘플.
-        const fallbackSample = manifest.samples[0]?.mockOutput ?? null;
+        // 지금 폼에 올라와 있는 샘플을 쓴다 — 입력과 출력이 어긋나면 데모가 거짓말을 한다.
+        const fallbackSample =
+            manifest.samples[state.sampleIdx]?.mockOutput ??
+            manifest.samples[0]?.mockOutput ??
+            null;
 
         // apiEndpoint가 없는 라이브러리 → 애초에 백엔드가 없으므로 샘플을 바로 보여준다.
         if (!manifest.apiEndpoint) {
@@ -251,7 +263,13 @@ function DemoRunner({
                 }));
             }
         }
-    }, [manifest.apiEndpoint, manifest.samples, state.files, state.inputValues]);
+    }, [
+        manifest.apiEndpoint,
+        manifest.samples,
+        state.files,
+        state.inputValues,
+        state.sampleIdx,
+    ]);
 
     return (
         <main className="mx-auto max-w-7xl px-6 pt-8 pb-24">

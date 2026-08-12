@@ -171,6 +171,187 @@ const DICT: Record<string, string> = {
         "e.g. admin.role:*\nworkflow:read",
     "예: admin.role:read":
         "e.g. admin.role:read",
+
+    // ── xgen-agent-memory ───────────────────────────
+    "의미 검색·BM25·타입드 엣지 그래프 탐색을 한 번에 합치는 메모리 엔진. 세 신호가 각각 얼마나 기여했는지 보여줍니다.":
+        "A memory engine that fuses semantic search, BM25, and typed-edge graph traversal in a single pass — and shows how much each signal contributed.",
+    "예: 환불 정책이 언제 왜 바뀌었나":
+        "e.g. When and why did the refund policy change",
+    "그래프 탐색 깊이": "Graph traversal depth",
+    "사용 안 함": "Off",
+    "1홉": "1 hop",
+    "2홉": "2 hops",
+    "검색 결과": "Results",
+    "신호별 스코어": "Score by signal",
+    "세 신호 합산": "All three signals",
+    "의미·키워드·그래프가 모두 기여하는 일반 질의":
+        "A general query where the semantic, keyword, and graph signals all contribute",
+    "환불 정책이 언제 왜 바뀌었나":
+        "When and why did the refund policy change",
+    "환불 정책 개정 (2026-03)": "Refund policy revision (2026-03)",
+    "배송 지연 기준을 7일에서 5일로 단축. 개정 사유는 CS 인입 급증.":
+        "Shortened the shipping-delay threshold from 7 days to 5, prompted by a spike in support volume.",
+    "CS 티켓 급증 리포트": "Support ticket spike report",
+    "지연 문의가 전분기 대비 2.4배. 정책 개정 논의의 출발점.":
+        "Delay inquiries at 2.4x the previous quarter — where the policy discussion started.",
+    "환불 정책 (구버전)": "Refund policy (previous version)",
+    "배송 7일 초과 시 전액 환불. 개정 전 원문.":
+        "Full refund when shipping exceeds 7 days — the text before the revision.",
+    "online-learned (feedback 412건 반영)":
+        "online-learned (412 feedback events applied)",
+    "키워드가 이기는 질의": "Keyword wins",
+    "고유명사·식별자는 BM25가 의미 검색을 앞선다":
+        "For proper nouns and identifiers, BM25 beats semantic search",
+    "ERR_QUOTA_4021 — 조직 단위 쿼터 초과":
+        "ERR_QUOTA_4021 — organization quota exceeded",
+    "quota.py 에서 조직 합산 사용량이 한도를 넘을 때 발생. 재시도 대상 아님.":
+        "Raised in quota.py when an organization's combined usage passes its limit. Not retryable.",
+    "쿼터 정책 설계 노트": "Quota policy design note",
+    "조직·프로젝트 2단 쿼터를 둔 이유와 한도 산정 근거.":
+        "Why quotas are two-tier (organization and project) and how the limits were derived.",
+    "graph_hops=0 이라 그래프 신호는 계산하지 않았습니다":
+        "graph_hops=0, so the graph signal was not computed",
+    "그래프 2홉으로 도달": "Reached over two graph hops",
+    "의미 유사도가 낮아 검색으로는 안 잡히는 문서를 엣지로 찾아낸다":
+        "Reaches a document over typed edges that search alone misses because its semantic similarity is low",
+    "지난 분기 CS 급증의 후속 조치":
+        "Follow-up actions after last quarter's support spike",
+    "지연 문의가 전분기 대비 2.4배.":
+        "Delay inquiries at 2.4x the previous quarter.",
+    "리포트 → 논의 → 개정으로 이어진 2홉 경로 끝에 있는 문서.":
+        "The document at the end of a two-hop path: report → discussion → revision.",
+    "배송사 SLA 재협상 기록": "Carrier SLA renegotiation record",
+    "같은 원인에서 갈라져 나온 다른 조치. 의미 유사도 0.29 로 검색만으로는 누락됨.":
+        "A different action branching from the same cause — missed by search alone at 0.29 semantic similarity.",
+
+    // ── xgen-agent-runtime ──────────────────────────
+    "21개 스테이지가 각각 전략 슬롯을 갖는 매니페스트 기반 파이프라인. 어느 스테이지에 어떤 전략이 끼워졌는지 그대로 드러납니다.":
+        "A manifest-driven pipeline whose 21 stages each expose a strategy slot — you can see exactly which strategy filled which stage.",
+    "작업 지시": "Task",
+    "예: 첨부한 계약서에서 위약금 조항을 찾아 요약해줘":
+        "e.g. Find the penalty clause in the attached contract and summarize it",
+    "LLM 제공자": "LLM provider",
+    "vLLM (자체 호스팅)": "vLLM (self-hosted)",
+    "계획 전략": "Planning strategy",
+    "기본 파이프라인 (ReAct)": "Default pipeline (ReAct)",
+    "21개 스테이지 중 실제로 발화한 것만 로그에 남는다":
+        "Of the 21 stages, only the ones that actually fired appear in the log",
+    "첨부한 계약서에서 위약금 조항을 찾아 요약해줘":
+        "Find the penalty clause in the attached contract and summarize it",
+    "청크 8건 회수": "8 chunks retrieved",
+    "통과": "Passed",
+    "위약금 조항은 제12조에 있습니다. 계약 해지 시 잔여 계약금액의 30%를 위약금으로 지급하되, 상대방 귀책 사유로 인한 해지에는 적용되지 않습니다.":
+        "The penalty clause is Article 12. On termination, 30% of the remaining contract value is payable as a penalty — except where the other party is at fault.",
+    "MCP 도구 호출": "MCP tool call",
+    "외부 도구를 MCP 로 붙여 같은 파이프라인에서 실행":
+        "External tools attached over MCP and run inside the same pipeline",
+    "사내 위키에서 배포 절차 문서를 찾아 요약해줘":
+        "Find the deployment procedure in the internal wiki and summarize it",
+    "출처 3건 확인": "3 citations verified",
+    "배포는 스테이징 검증 → 릴리즈 노트 작성 → 승인 → 운영 반영 순서입니다. 승인자는 품질책임자이며, 롤백 기준은 오류율 1% 초과입니다.":
+        "Deployment runs staging verification → release notes → approval → production rollout. The quality lead approves, and rollback is triggered above a 1% error rate.",
+    "전략 교체 (Reflexion)": "Strategy swap (Reflexion)",
+    "스테이지는 그대로 두고 전략 슬롯만 바꾼다 — 검증 실패 시 자기 교정이 붙는다":
+        "The stages stay the same and only the strategy slot changes — a failed check adds self-correction",
+    "실패 — 합계가 열 합과 불일치":
+        "Failed — the total does not match the column sum",
+    "3분기 결측치를 0으로 처리한 것이 원인":
+        "Cause: the missing Q3 value was treated as zero",
+    "재실행": "Re-run",
+    "1분기 12.4억, 2분기 14.1억, 3분기 결측(집계 제외), 4분기 16.8억 — 확인 가능한 3개 분기 합계는 43.3억입니다.":
+        "Q1 1.24B, Q2 1.41B, Q3 missing (excluded), Q4 1.68B — the three quarters that can be verified total 4.33B KRW.",
+
+    // ── xgen-an-web ─────────────────────────────────
+    "웹을 픽셀로 그리지 않고 '행동 가능한 상태 기계'로 실행합니다. 페이지가 에이전트용 시맨틱 그래프로 바뀝니다.":
+        "Runs the web as an actionable state machine instead of painting pixels — a page becomes a semantic graph an agent can act on.",
+    "예: https://shop.example.com/search": "e.g. https://shop.example.com/search",
+    "목표": "Goal",
+    "예: 재고 있는 상품 중 가장 싼 것을 장바구니에 담기":
+        "e.g. Add the cheapest in-stock product to the cart",
+    "시맨틱 상태": "Semantic state",
+    "행동 계획": "Action plan",
+    "검색 → 담기": "Search, then add to cart",
+    "상품 목록을 상태로 읽고 조건에 맞는 행동을 고른다":
+        "Reads the product list as state and picks the action that fits the condition",
+    "재고 있는 상품 중 가장 싼 것을 장바구니에 담기":
+        "Add the cheapest in-stock product to the cart",
+    "무선 키보드 K380": "Wireless Keyboard K380",
+    "기계식 키보드 MX": "Mechanical Keyboard MX",
+    "저소음 키보드 QT": "Quiet Keyboard QT",
+    "1.8 MB (렌더링 생략)": "1.8 MB (rendering skipped)",
+    "in_stock=false 인 a9 는 후보에서 제외":
+        "a9 is dropped from the candidates because in_stock=false",
+    "남은 후보 중 최저가는 a7 (49,000원)":
+        "Among the remaining candidates, a7 is cheapest (KRW 49,000)",
+    "로그인 폼": "Login form",
+    "입력 가능한 필드와 제출 조건을 상태로 노출한다":
+        "Exposes the fillable fields and the submit condition as state",
+    "저장된 자격증명으로 로그인하기": "Sign in with saved credentials",
+    "이메일": "Email",
+    "비밀번호": "Password",
+    "로그인": "Sign in",
+    "b1 은 f1·f2 가 모두 채워지기 전에는 비활성 — 클릭 시도 자체를 하지 않는다":
+        "b1 stays disabled until both f1 and f2 are filled — so the click is never attempted",
+    "표 추출": "Table extraction",
+    "화면 스크린샷 대신 구조화된 표를 그대로 얻는다":
+        "Returns the structured table itself instead of a screenshot",
+    "분기 실적 표를 구조화해서 가져오기":
+        "Pull the quarterly results table as structured data",
+    "2026 분기 실적": "2026 quarterly results",
+    "분기": "Quarter",
+    "매출": "Revenue",
+    "영업이익": "Operating profit",
+    "12.4억": "1.24B",
+    "1.1억": "0.11B",
+    "14.1억": "1.41B",
+    "1.6억": "0.16B",
+    "2페이지 분 병합": "Merged with page 2",
+
+    // ── xgen-edit2docs ──────────────────────────────
+    "한 줄 의도로 진짜 편집 가능한 DOCX·XLSX·PPTX 를 만들고, 이미 있는 문서는 대화로 고칩니다. 이미지가 아니라 실제 문단·셀·차트가 생성됩니다.":
+        "Turns a one-line intent into genuinely editable DOCX, XLSX, and PPTX files, and edits existing ones through chat — real paragraphs, cells, and charts, not images.",
+    "동작": "Action",
+    "새로 생성": "Create new",
+    "기존 문서 편집": "Edit an existing document",
+    "의도 (한 줄)": "Intent (one line)",
+    "예: 신규 고객사 대상 PoC 제안서 초안":
+        "e.g. Draft a PoC proposal for a new customer",
+    "생성된 문서 구조": "Generated document structure",
+    "제안서 생성 (DOCX)": "Generate a proposal (DOCX)",
+    "한 줄 의도에서 문단·표·스타일이 있는 실제 문서로":
+        "From a one-line intent to a real document with paragraphs, tables, and styles",
+    "신규 고객사 대상 PoC 제안서 초안":
+        "Draft a PoC proposal for a new customer",
+    "PoC 제안서": "PoC proposal",
+    "1. 배경과 목표": "1. Background and goals",
+    "2. 검증 범위": "2. Scope of validation",
+    "항목": "Item",
+    "범위": "Scope",
+    "산출물": "Deliverable",
+    "3. 일정": "3. Schedule",
+    "주차": "Week",
+    "활동": "Activity",
+    "4. 성공 기준": "4. Success criteria",
+    "문단 9개, 표 2개, 불릿 3개를 담은 DOCX 를 생성했습니다. Word 에서 열면 스타일과 목차가 그대로 살아 있어 이어서 편집할 수 있습니다.":
+        "Generated a DOCX with 9 paragraphs, 2 tables, and 3 bullets. Open it in Word and the styles and outline are intact, ready to keep editing.",
+    "집계표 + 차트 생성 (XLSX)": "Generate a summary sheet with a chart (XLSX)",
+    "수식과 차트가 들어간 시트를 만든다":
+        "Builds a sheet containing formulas and a chart",
+    "분기별 매출을 정리하고 추이 차트 넣기":
+        "Lay out quarterly revenue and add a trend chart",
+    "전분기 대비": "vs. previous quarter",
+    "분기 매출 추이": "Quarterly revenue trend",
+    "4개 행과 수식 2개, 라인 차트 1개가 있는 XLSX 를 생성했습니다. 셀 값을 바꾸면 수식과 차트가 그대로 다시 계산됩니다.":
+        "Generated an XLSX with 4 rows, 2 formulas, and 1 line chart. Change a cell and the formulas and chart recalculate as they normally would.",
+    "대화로 편집 (PPTX)": "Edit through chat (PPTX)",
+    "이미 있는 발표자료를 자연어 지시로 고친다":
+        "Revises an existing deck from a natural-language instruction",
+    "3번 슬라이드 제목을 바꾸고 마지막에 Q&A 슬라이드 추가":
+        "Change the title of slide 3 and add a Q&A slide at the end",
+    "진행 현황": "Progress update",
+    "2분기 진행 현황": "Q2 progress update",
+    "제목 1건을 교체하고 Q&A 슬라이드를 마지막에 추가했습니다. 기존 마스터·테마는 건드리지 않아 디자인이 유지됩니다.":
+        "Replaced one title and appended a Q&A slide. The existing master and theme are untouched, so the design stays put.",
 };
 
 /** 사전에 있으면 영문으로, 없으면 원문 그대로. */
