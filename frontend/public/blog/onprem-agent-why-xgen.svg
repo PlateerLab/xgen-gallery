@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온프레미스 AI Agent — 기업 경계 안에서 실행되고 감사되는 XGEN 운영 계층">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b1c"/>
+      <stop offset="1" stop-color="#0d1633"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00acee"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="330" fill="url(#glow)"/>
+
+  <!-- 타이틀 -->
+  <text x="600" y="106" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#7dd3fc" letter-spacing="5">PRIVATE AGENT</text>
+  <text x="600" y="162" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="44" font-weight="700" fill="#ffffff">경계 안에서 실행되는 AI</text>
+
+  <!-- 기업 경계 -->
+  <rect x="150" y="212" width="720" height="316" rx="22" fill="#ffffff08" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="10 8" opacity="0.85"/>
+  <text x="176" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="700" fill="#7dd3fc" letter-spacing="2">ON-PREMISE — 기업 경계</text>
+
+  <!-- 계층 스택 -->
+  <g font-family="system-ui,-apple-system,sans-serif">
+    <rect x="182" y="272" width="656" height="52" rx="12" fill="url(#brand)"/>
+    <text x="206" y="304" font-size="18" font-weight="700" fill="#ffffff">XGEN — Agent 실행 · 오케스트레이션</text>
+
+    <rect x="182" y="336" width="318" height="50" rx="12" fill="#ffffff12" stroke="#ffffff26"/>
+    <text x="206" y="367" font-size="16" font-weight="600" fill="#ffffffcc">RAG · 사내 데이터</text>
+
+    <rect x="520" y="336" width="318" height="50" rx="12" fill="#ffffff12" stroke="#ffffff26"/>
+    <text x="544" y="367" font-size="16" font-weight="600" fill="#ffffffcc">ERP · MES · PLM 연동</text>
+
+    <rect x="182" y="398" width="318" height="50" rx="12" fill="#ffffff12" stroke="#ffffff26"/>
+    <text x="206" y="429" font-size="16" font-weight="600" fill="#ffffffcc">권한 · 감사로그</text>
+
+    <rect x="520" y="398" width="318" height="50" rx="12" fill="#ffffff12" stroke="#ffffff26"/>
+    <text x="544" y="429" font-size="16" font-weight="600" fill="#ffffffcc">모델 · 추론 서빙</text>
+
+    <rect x="182" y="460" width="656" height="46" rx="12" fill="#ffffff0d" stroke="#ffffff1f"/>
+    <text x="206" y="489" font-size="15" font-weight="600" fill="#ffffff8f">NPU · 서버 — 온프레미스 추론 기반</text>
+  </g>
+
+  <!-- 차단된 외부 반출 -->
+  <g>
+    <line x1="870" y1="370" x2="978" y2="370" stroke="#f87171" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.8"/>
+    <circle cx="1024" cy="370" r="30" fill="none" stroke="#f87171" stroke-width="2.5" opacity="0.9"/>
+    <line x1="1004" y1="350" x2="1044" y2="390" stroke="#f87171" stroke-width="2.5" opacity="0.9"/>
+    <text x="1024" y="428" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="600" fill="#f8717199">외부 반출 없음</text>
+  </g>
+
+  <!-- 하단 요약 -->
+  <text x="600" y="578" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#ffffff8f">데이터는 나가지 않고, 실행은 기록되며, 통제는 기업에 남습니다</text>
+
+  <g font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffff70">
+    <rect x="352" y="608" width="150" height="38" rx="19" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="427" y="633" text-anchor="middle">데이터 주권</text>
+    <rect x="518" y="608" width="164" height="38" rx="19" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="600" y="633" text-anchor="middle">통제 가능성</text>
+    <rect x="698" y="608" width="150" height="38" rx="19" fill="#ffffff0f" stroke="#ffffff26"/>
+    <text x="773" y="633" text-anchor="middle">감사 추적</text>
+  </g>
+</svg>
