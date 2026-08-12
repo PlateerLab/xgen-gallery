@@ -363,9 +363,29 @@ export function Hero({
         return () => timers.forEach((t) => clearTimeout(t));
     }, [active]);
 
+    /**
+     * 헤드라인 스트립의 실측 높이를 `--hero-band-h`로 내보낸다.
+     * 슬라이드를 GNB와 이 스트립 사이 중앙에 두려면 스트립이 차지한 높이를 알아야 하는데,
+     * 줄 수가 화면 폭에 따라 달라져(모바일에서는 일부 칸이 숨는다) 고정값을 쓸 수 없다.
+     */
+    const bandRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const band = bandRef.current;
+        if (!band) return;
+        const sync = () =>
+            document.documentElement.style.setProperty(
+                "--hero-band-h",
+                `${Math.round(band.getBoundingClientRect().height)}px`,
+            );
+        sync();
+        const ro = new ResizeObserver(sync);
+        ro.observe(band);
+        return () => ro.disconnect();
+    }, []);
+
     return (
         <>
-        <section className="relative flex min-h-screen items-start overflow-hidden bg-[#050813] text-white">
+        <section className="relative flex min-h-screen items-center overflow-hidden bg-[#050813] text-white">
             {/* main background videos — crossfade between slides */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 {SLIDE_BG.map((src, i) =>
@@ -422,11 +442,14 @@ export function Hero({
                 )}
             </div>
 
-            {/* pt는 창 높이에 따라 줄인다 — 고정 pt-72(288px)면 노트북처럼 낮은 창에서
-                안쪽 콘텐츠가 100vh를 넘어 섹션이 늘어나고, 하단에 absolute로 붙인
-                헤드라인 스트립이 화면 밖으로 밀려 아예 안 보였다.
-                pb는 그 스트립(2줄 기준 약 110px) 자리를 미리 비워 둔다. */}
-            <div className="relative mx-auto w-full max-w-7xl px-6 pb-28 pt-[clamp(96px,18vh,288px)]">
+            {/* 슬라이드는 GNB 아래와 헤드라인 스트립 위 사이의 '남은 공간' 중앙에 온다.
+                섹션이 items-center 라서, 위아래 패딩으로 두 요소가 차지한 자리를 비워 두면
+                그 나머지 영역을 기준으로 가운데 정렬된다.
+                - pt: 헤더 실측 높이(--nav-h, 프로모 배너 포함. site-nav가 세팅)
+                - pb: 아래 헤드라인 스트립 실측 높이(--hero-band-h, 아래 useEffect가 세팅)
+                예전에는 items-start + pt-[clamp(96px,18vh,288px)] 이라 창 높이에 따라
+                콘텐츠가 위로 치우쳐 보였다. */}
+            <div className="relative mx-auto w-full max-w-7xl px-6 pb-[var(--hero-band-h,132px)] pt-[var(--nav-h,84px)]">
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
@@ -462,7 +485,7 @@ export function Hero({
 
             {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
             {(featuredPost || productNews || latestPost || latestIssue || latestCase) && (
-                <div aria-label={locale === "ko" ? "최근 소식" : "Latest updates"} className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
+                <div ref={bandRef} aria-label={locale === "ko" ? "최근 소식" : "Latest updates"} className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
                     <div className="mx-auto max-w-6xl rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md">
                         {/* 윗줄 — 가장 알리고 싶은 두 가지(대표 글 · 최근 고객 사례).
                             아래 3단(제품 소식·뉴스레터·Tech Note)과 구분선으로 분리한다.
