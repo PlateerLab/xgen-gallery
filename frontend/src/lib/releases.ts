@@ -21,6 +21,112 @@ export interface Release {
 
 export const RELEASES: Release[] = [
     {
+        version: "v2.5.0",
+        date: "2026-08-13",
+        product: "xgen",
+        tagline: "API Data Sources, Upload Versioning & Multi-Model GPU Serving",
+        summary:
+            "외부 API를 지식 컬렉션에 붙여 정한 주기마다 스스로 색인하고, 같은 이름으로 다시 올린 파일은 지워지지 않고 버전으로 쌓입니다. 모델 서빙은 GPU 한 장에 여러 모델을 올리고 그 상태를 실시간으로 지켜봅니다.",
+        highlights: [
+            "API 데이터 소스 — 컬렉션 자동 색인",
+            "업로드 버전 관리 · 충돌 확인",
+            "한 GPU 다중 모델 · 서빙 관측",
+            "임베딩 초과 시 청크 자동 조정",
+        ],
+        items: [
+            {
+                category: "new",
+                title: "API 데이터 소스 — 컬렉션 자동 색인",
+                detail: "도구로 등록해 둔 외부 API를 고르고 연결 테스트로 응답을 확인한 뒤 가져올 주기를 정하면 끝입니다. 주기는 수동 실행부터 5분·30분·1시간·6시간·24시간까지 고를 수 있고, 가져온 응답은 마크다운 문서로 바뀌어 문서 업로드와 똑같은 보안·인덱싱 과정을 거칩니다. 매번 전부 다시 넣지 않고 새로 생긴 것만 더합니다. JSON뿐 아니라 XML 응답도 변환해 받고, 반복 매개변수가 있는 API는 값 목록을 넣어 여러 번 호출합니다.",
+                modules: ["xgen-documents", "xgen-core", "xgen-frontend"],
+            },
+            {
+                category: "new",
+                title: "업로드 버전 관리 · 충돌 확인",
+                detail: "같은 이름의 파일을 다시 올릴 때 덮어쓰기·건너뛰기·이름 바꾸기 중에서 고릅니다. 덮어써도 이전 파일이 사라지지 않고 버전으로 쌓이며, 파일마다 [버전 기록]에서 원본 해시(SHA-256)와 함께 지난 버전을 확인합니다. 폴더째 올릴 때도 안에 든 파일 하나하나의 충돌을 먼저 보여주고, 파일별로 고르거나 한 번에 적용합니다. 판정은 서버가 합니다.",
+                modules: ["xgen-documents", "xgen-core", "xgen-frontend"],
+            },
+            {
+                category: "new",
+                title: "API 인증 프로필",
+                detail: "인증이 필요한 외부 API는 인증 프로필을 따로 두어 토큰이 컬렉션 설정과 섞이지 않게 했습니다. form-urlencoded 방식 요청도 함께 지원합니다.",
+                modules: ["xgen-core", "xgen-documents"],
+            },
+            {
+                category: "improved",
+                title: "한 GPU에 여러 모델 — 메모리 여유 기반 적재",
+                detail: "GPU 메모리 여유를 기준으로 적재를 허가하도록 바꿔, GPU 한 장에 음성 인식 모델과 LLM을 함께 올릴 수 있습니다.",
+                modules: ["xgen-model", "xgen-infra"],
+            },
+            {
+                category: "improved",
+                title: "모델 서빙 관측 · 실시간 상태",
+                detail: "vLLM 엔진 지표를 Prometheus로 내보내 대시보드와 알림에 연결했습니다. 어떤 모델이 요청을 얼마나 받고 대기열이 어디서 밀리는지 운영 화면에서 바로 보이고, 관리자 상태 화면은 새로고침 버튼 없이 SSE로 갱신됩니다.",
+                modules: ["xgen-model", "xgen-infra", "xgen-frontend"],
+            },
+            {
+                category: "improved",
+                title: "임베딩 입력 초과 시 청크 자동 조정",
+                detail: "임베딩 입력 한도를 넘긴 문서는 청크 크기를 자동으로 줄여 다시 시도합니다. 실패한 문서를 사람이 찾아 다시 올리던 일이 줄었습니다. 재시도 진행 상황은 SSE로 전달됩니다.",
+                modules: ["xgen-documents", "xgen-frontend"],
+            },
+            {
+                category: "improved",
+                title: "llama.cpp 빌드 장비 비종속화",
+                detail: "빌드가 특정 장비에 묶이지 않도록 고치고 Blackwell(sm_120) 세대를 추가했습니다.",
+                modules: ["xgen-infra"],
+            },
+            {
+                category: "improved",
+                title: "Redis 접속 일원화 · 설정 캐시 전파",
+                detail: "흩어져 있던 Redis 접속을 xgen_sdk.redis로 모으고 복사본을 지웠습니다. 사용자 preferences는 저장 즉시 다른 서비스의 캐시를 깨우도록 바꿔, TTL을 기다리지 않고 반영됩니다.",
+                modules: ["xgen-core", "xgen-documents", "xgen-workflow"],
+            },
+            {
+                category: "fixed",
+                title: "게이트웨이 라우팅 누락으로 502",
+                detail: "실제로 있는 모듈 다섯 종이 화이트리스트에 없어 Unknown service 502를 내던 경로를 바로잡고, 설정이 어긋나는 것을 막는 가드를 넣었습니다.",
+                modules: ["xgen-backend-gateway"],
+            },
+            {
+                category: "fixed",
+                title: "파일명의 # · ? 를 주소 구분자로 되살리던 프록시",
+                detail: "프록시가 파일명에 들어 있는 # 과 ? 를 URL 구분자로 해석해 파일을 찾지 못하던 문제를 고쳤습니다.",
+                modules: ["xgen-backend-gateway"],
+            },
+            {
+                category: "fixed",
+                title: "업로드 전체가 중단되던 오류",
+                detail: "모든 업로드를 죽이던 UnboundLocalError를 긴급 수정하고, 저장보다 늦게 내려지던 판정 순서를 바로잡았습니다.",
+                modules: ["xgen-documents"],
+            },
+            {
+                category: "fixed",
+                title: "노트북 세션 원격 접속 403",
+                detail: "Jupyter 원격 접속이 websocket 단계에서 403으로 막히던 문제를 allow_remote_access·allow_origin 설정으로 해결했습니다.",
+                modules: ["xgen-workbench"],
+            },
+            {
+                category: "fixed",
+                title: "체험존을 새로 만들면 대화를 시작할 수 없던 문제",
+                detail: "신규 체험존에서 채팅 시작 목록이 비어 대화를 시작할 수 없던 문제를 고쳤습니다. 게이트웨이 라우팅 누락과 벡터 저장소 자원 설정도 함께 정리했습니다.",
+                modules: ["xgen-infra"],
+            },
+            {
+                category: "fixed",
+                title: "채팅 첨부 이력 복원",
+                detail: "대화에 올린 첨부가 이력에서 복원되지 않던 문제를 고쳤습니다.",
+                modules: ["xgen-core"],
+            },
+            {
+                category: "fixed",
+                title: "DB 결과 처리 · 조회 문법 허용 범위",
+                detail: "결과 가공 SQL 모드에서 Decimal 컬럼 바인딩이 실패하던 문제를 고쳤습니다. 관리자 SQL 콘솔은 조회 문법을 전부 허용하고 삭제·권한 구문만 막도록 정리했으며, 상세 오류를 화면에 전달합니다.",
+                modules: ["xgen-workflow", "xgen-core"],
+            },
+        ],
+    },
+    {
         version: "v2.4.0",
         date: "2026-07-27",
         product: "xgen",
