@@ -1,4 +1,4 @@
-import type { Badge } from "@/lib/newsletter";
+import type { Badge, SectionCopy } from "@/lib/newsletter";
 
 /**
  * 뉴스레터 영문판.
@@ -21,15 +21,34 @@ export const BADGE_EN: Record<Badge, string> = {
     준비중: "Coming",
 };
 
+/**
+ * 항목 override. body 는 한국어와 같은 규약으로 문단을 "\n\n" 로 잇고,
+ * figure 는 이미지 캡션만 옮긴다(이미지 자체는 한국어 데이터의 것을 쓴다).
+ */
+interface ItemEn {
+    title?: string;
+    subtitle?: string;
+    /** 배포 단계 칩 표기 — 값이 한국어인 호만 옮긴다. */
+    stage?: string;
+    body: string;
+    figure?: string;
+}
+
 interface IssueEn {
     summary: string;
     intro: string[];
-    releases: { title: string; body: string }[];
-    inProgress: { title: string; body: string }[];
-    news: { title: string; body: string }[];
-    reading: { title: string; body: string }[];
-    papers: { body: string }[];
-    upcoming: { title: string; body: string }[];
+    sections?: SectionCopy;
+    releases: ItemEn[];
+    also?: string[];
+    /** items 는 숫자 아래 라벨만 — 숫자 자체는 로케일과 무관하다. */
+    stats?: { items: string[]; note?: string; linkLabel?: string };
+    /** 「이번 호의 한 장면」 캡션 — 한국어 figures 와 인덱스로 대응한다. */
+    figures?: string[];
+    inProgress: ItemEn[];
+    news: ItemEn[];
+    reading: ItemEn[];
+    papers: ItemEn[];
+    upcoming: ItemEn[];
 }
 
 export const NEWSLETTER_EN: Record<string, IssueEn> = {
@@ -228,49 +247,82 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
     },
     "vol-3": {
         summary:
-            "Automatic collection indexing for external APIs, upload version control, multi-model GPU loading — the fortnight in review",
-        intro: [
-            "Hello from the AI Solutions Lab. Here is what was added to XGEN over the past two weeks, along with the AI news worth your attention.",
-            "This issue opens a path for attaching external APIs to knowledge collections. We start with what finished development and reached verification or beyond: of the 293 merge requests landed since 27 July, 52 went all the way to the verification and production lines. What is in development and research follows, along with technology news, reading, and papers.",
-        ],
+            "Attach an external API to a collection and it indexes itself on the schedule you set. Upload version control, multi-model GPU loading — the fortnight in review.",
+        intro: [],
+        sections: {
+            releasesLabel: "Shipped this fortnight",
+            releasesTitle: "Attach an API, and it becomes knowledge.",
+            releasesDesc:
+                "The path for attaching an external API to a knowledge collection is open. These finished development over the past two weeks and reached verification or beyond, and each item carries a badge for how far it went (stage, production). What is in development follows, along with technology news, reading, and papers.",
+            progressDesc:
+                "What we are building or experimenting with right now. If any of it interests you, let's talk any time.",
+            figuresTitle: "A look at this issue",
+            figuresDesc:
+                "Screens that words alone do not do justice. This is what the items above actually look like.",
+            papersDesc:
+                "Papers worth attention, close to what the team is researching. Two of them look at the same structure from opposite sides.",
+            upcomingTitle: "News and our channels",
+            upcomingDesc:
+                "Product news and team channels, together with what we will carry on with in the next issue.",
+        },
         releases: [
             {
                 title: "API data sources — automatic collection indexing",
-                body: "External API responses are indexed into a knowledge collection automatically. Pick an API you registered as a tool, check the response with a connection test, set how often to fetch, and you are done — manual, or every 5 minutes, 30 minutes, 1 hour, 6 hours, or 24 hours. Fetched responses become Markdown documents and go through exactly the same security and indexing path as an upload, and rather than reloading everything each time only what is new is added. APIs that need authentication get their own credential profile so tokens do not mix with collection settings, and APIs with a repeating parameter are called several times from a list of values. XML responses are converted as well as JSON. (on stage)",
+                stage: "stage",
+                body: "External API responses are indexed into a knowledge collection automatically. Pick an API you registered as a tool, confirm the response with a connection test, set how often to fetch, and that is it. The interval runs from manual execution through 5 minutes, 30 minutes, 1 hour, 6 hours, and 24 hours.\n\nFetched responses become Markdown documents and go through exactly the same security and indexing path as a document upload. Rather than reloading everything each time, only what is new is added. APIs that need authentication get a separate credential profile so tokens do not mix with collection settings, and APIs with a repeating parameter are called several times from a list of values. XML responses are converted and received as well as JSON.",
             },
             {
                 title: "Upload version control and conflict review",
-                body: "When you upload a file under a name that already exists, you choose what happens. Overwriting does not remove the previous file — versions stack up, and [Version history] on each file shows past versions alongside the original hash (SHA-256). Uploading a whole folder shows the conflicts file by file first, to be resolved individually or all at once; the options are unified to overwrite, skip, and rename, and the server makes the call. We also fixed a cancelled upload showing as 'complete' and skipped files being uploaded anyway. (on stage)",
+                stage: "stage",
+                body: "When you upload a file under a name that already exists, you choose what happens. Overwriting does not make the previous file disappear — versions stack up, and [Version history] on each file shows past versions alongside the original hash.\n\nUploading a whole folder shows the conflict on each file inside first, to be resolved file by file or all at once. The options are unified into three — overwrite, skip, rename — and the server makes the call. We also fixed a cancelled upload appearing as 'complete', and skipped files being uploaded anyway.",
             },
             {
                 title: "Model serving — observability and multi-model GPU loading",
-                body: "vLLM engine metrics are exported to Prometheus and wired into dashboards and alerts. Which model is taking how many requests, and where the queue is backing up, is visible straight from the operations screen. Loading is now permitted against free GPU memory, so several models can share a single GPU, and the administrator status screen refreshes live without a reload button. The llama.cpp build was fixed so it is not tied to one machine, and now supports the Blackwell generation. (in production)",
-            },
-            {
-                title: "Administration and provider coverage",
-                body: "Execution history for a shared workflow now records both who ran it and whose it is. Agent lists and failure logs download as Excel from the administrator screen, and the administrator SQL console accepts the full query syntax (only deletion and privilege statements are blocked). DeepSeek can be registered as an LLM provider. (in production)",
+                stage: "in production",
+                body: "vLLM engine metrics are exported to Prometheus and connected to dashboards and alerts. Which model is taking how many requests, and where the queue is backing up, is visible straight from the operations screen.\n\nLoading is now permitted against free GPU memory, so several models can go onto a single GPU together, and the administrator status screen refreshes live without a reload button. The llama.cpp build was fixed so it is not tied to one machine, and supports up to the Blackwell generation.",
             },
             {
                 title: "Stability fixes",
-                body: "A document that exceeds the embedding input limit now retries with an automatically reduced chunk size, so fewer failed documents have to be hunted down and re-uploaded by hand, and an error that killed the entire upload was closed by hotfix. We fixed a gateway path returning 502 because five perfectly healthy modules were missing from the whitelist, and a proxy problem that resurrected # and ? in filenames as URL delimiters. A 403 on remote access from notebook sessions, and an empty chat list that made it impossible to start a conversation in a newly created trial zone, were resolved as well. (in production)",
+                stage: "in production",
+                body: "A document that exceeds the embedding input limit now retries with an automatically reduced chunk size. There is less of a person hunting down a failed document to upload it again. An error that killed the entire upload was stopped by hotfix.\n\nWe fixed a gateway path returning 502 because five perfectly healthy modules were missing from the whitelist, and a proxy problem that resurrected # and ? in filenames as URL delimiters. A 403 on remote access from notebook sessions, and an empty chat list that made it impossible to start a conversation in a newly created trial zone, were resolved as well.",
             },
+        ],
+        also: [
+            "Execution history for a shared workflow now records both who ran it and whose it is",
+            "Agent lists and failure logs download as Excel from the administrator screen",
+            "The administrator SQL console accepts the full query syntax. Only deletion and privilege statements are blocked",
+            "DeepSeek can be registered as an LLM provider",
+        ],
+        stats: {
+            items: ["Merge requests landed", "Modules touched", "On verification and production"],
+            note: "Based on merge requests merged since 27 July (customer-only branches excluded). Of those, 52 reached the stage and main lines.",
+            linkLabel: "See all release notes",
+        },
+        figures: [
+            "[Upload > API] Pick an external API you registered as a tool, press the connection test, and you see the real response right there. The Bank of Korea exchange rate API is returning the KRW/USD base rate. (development environment)",
+            "[Step 3 · Sync settings] Choose how often to fetch. From manual execution through 5 minutes, 30 minutes, 1 hour, 6 hours, and 24 hours. Fetched data goes through the same security and indexing path as a document upload. (development environment)",
+            "Connecting creates a data source card in the collection. It runs by itself every 30 minutes and adds only what is new. This run added 1 of 60 items and skipped 59. (development environment)",
+            "[Knowledge management > Collections > Upload history] One upload, expanded. The original hash (SHA-256) tells whether it is the same file, and the chunking result and storage encryption are kept in one place. (development environment)",
+            "[Admin settings > Environment > Infrastructure] A speech recognition model and an LLM are loaded together on a single GPU (120GB). 'Live connection' at the top right means the state refreshes without a reload. (development environment)",
         ],
         inProgress: [
             {
                 title: "XGeny — the tools an agent makes now persist",
-                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they survive a pod restart, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. What we called Geny through the last issue becomes XGeny (internal identifiers are unchanged).",
+                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they do not disappear when the pod restarts, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. What we called Geny through the last issue becomes XGeny (internal identifiers are unchanged).",
             },
             {
                 title: "Audio file transcription",
-                body: "We are building the path where a meeting recording uploaded straight into a knowledge collection is transcribed and then indexed. The speech-to-text workflow node, the live transcription receive and output nodes, and the error codes that separate the causes of failure all reached verification. Uploading audio in the development environment still fails at the transcription step, though — catching that error is what remains.",
+                body: "We are building the path where a meeting recording uploaded straight into a knowledge collection is transcribed and then indexed. The speech-to-text workflow node, the live transcription receive and output nodes, and the error codes that separate the causes of failure all reached verification. Uploading audio in the development environment still fails at the transcription step, though. Catching that error is what remains.",
+                figure: "[Admin settings > Environment > Audio] Choose which of three providers handles speech recognition. (development environment)",
             },
             {
                 title: "Personal cloud storage",
-                body: "We are connecting your PC or laptop to XGEN so an agent can read and write the files on it directly. It is switched on and off per person from [Cloud] on My Page, which also lists connected devices and their change history. Folders are pinned so paths hold even when a device is renamed, and file access is verified by the server in two stages.",
+                body: "We are connecting your PC or laptop to XGEN so an agent can read and write the files on it directly. It is switched on and off per person from [Cloud] on My Page, which also shows connected devices and their change history. Folders are pinned so paths hold even when a device is renamed, and file access is verified by the server in two stages.",
+                figure: "[My Page > Cloud > Storage] Your files sit on the server and the connector lets you use them from your own computer too. It splits into three tabs: files, connections, history. (development environment)",
             },
             {
                 title: "Documentation build automation",
-                body: "A pipeline that finds, on its own, the manual chapters a code change touches and rewrites them. It watches develop, queues only the affected chapter when a merge request changes on-screen wording, and raises the rewritten result as a documentation MR — with the originating code MR recorded in it, so the reason the document changed is right there. It ran eleven times over the past two weeks and more than twenty chapters were brought up to date this way. On 6 August the final step landed: a dated record of what changed that day and why. That step uses no LLM — it only assembles the change list and the originating MRs. Compile code and you get an executable; from the same code, the documentation compiles out too. It is called living documentation.",
+                body: "A pipeline that finds, on its own, the manual chapters a code change touches and rewrites them. It watches develop, and when a merge request that changed on-screen wording comes in, only that chapter goes into the queue; XGEN rewrites it and raises it as a documentation MR. That MR carries the originating code MR — why this document changed.\n\nIt ran eleven times over the past two weeks, and more than twenty chapters — user management, permissions, LLM settings, the governance dashboard — were brought up to date this way. On 6 August the final step landed: a dated record of what changed that day and why. This step uses no LLM. It only assembles the change list and the originating MRs, so there is no room for judgement to enter, and on a day with no updates it records what was reviewed instead.\n\nThe scope right now is the user, administrator, operations, and common manual Markdown, and automatic screen capture is next in line. [Solution guide], read inside the app, connects as soon as gateway routing opens.\n\nThis approach is called living documentation. Compile code and you get an executable; from the same code, the documentation compiles out too. Documentation is not something written by hand but a build artifact. Robert Martin, who wrote Clean Code, said the truth can be found in only one place: the code. If so, the documentation should come out of that one place as well. Build automation is not a convenience but the only way.",
             },
             {
                 title: "Agent harness v2",
@@ -278,57 +330,60 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
             },
             {
                 title: "AI avatars",
-                body: "Per-user avatar storage, serving, and deletion (Live2D, Spine) reached production since the last issue. The upload confirmation and naming flow are tidied up, so what remains is a single piece: actually drawing the avatar into the chat screen.",
+                body: "Per-user avatar storage, serving, and deletion (Live2D, Spine) reached production since the last issue. The upload confirmation and naming flow are tidied up, so what remains is a single connection: actually drawing the avatar into the chat screen.",
+                figure: "[My Page > Settings > Avatar settings] Upload a Live2D or Spine model, or a photo, and it appears in the chat screen. (development environment)",
             },
             {
                 title: "Ontology v3",
-                body: "We are still researching build logic that does not lean on an LLM. Search speed and accuracy on Fuseki and Postgres and the dynamic top-K retrieval logic are being reworked, and we are benchmarking whether build quality holds with local models alone.",
+                body: "We are still researching build logic that does not lean on an LLM. Search speed and accuracy on Fuseki and Postgres and the dynamic top-K retrieval logic are being reworked, and we are checking with benchmarks whether build quality holds with local models alone.",
             },
         ],
         news: [
             {
                 title: "The standard for attaching tools dropped sessions",
-                body: "The new specification of MCP — the standard for attaching tools and data to agents — was finalized on 28 July. The biggest change is that the protocol became stateless: session IDs and the handshake are gone, so servers can run several deep behind an ordinary load balancer. MCP Apps, where the server draws the UI, and Tasks, for long-running work, were promoted to formal features, and OAuth 2.0 and OpenID Connect compatibility plus a deprecation policy settled into place. Dropping sessions is ultimately an operations story. This issue is about attaching external APIs to collections — this document is about how the industry is standardizing that same act of attaching. If you plan to scale out MCP servers, start by checking whether you can drop session affinity.",
+                body: "The new specification of MCP — the standard for attaching tools and data to agents — was finalized on 28 July. The biggest change is that the protocol no longer holds state. Session IDs and the handshake are gone, so servers can run several deep behind an ordinary load balancer. As extensions were promoted to formal features, MCP Apps, where the server draws the UI, and Tasks, for long-running work, came in, and OAuth 2.0 and OpenID Connect compatibility plus a deprecation policy settled into place. It is the first major revision since the standard moved under the Linux Foundation last December and became vendor-neutral.\n\nDropping sessions is ultimately an operations story. Until now, scaling out MCP servers meant keeping the same user pinned to the same pod; that constraint is gone. This issue talks about attaching external APIs to collections — and this document is where the industry writes down how that act of attaching is being standardized. If you plan to scale out MCP servers, start by checking whether you can drop session affinity.",
             },
             {
                 title: "What an agent does not know is not the code — it is the organization",
-                body: "Spotify published Xirp, its internal AI coding environment. The diagnosis stands out: agents decide fast and confidently, but cause production incidents because they do not know organizational context. Who owns this service, what it depends on, why it was designed that way — none of that is in the code; it is in Slack threads and in people's heads. Xirp pulls that context from the developer portal into every session, and pushes knowledge that surfaced in a session back out into documentation. That return loop is what we do not have — our documentation automation leaves a record every day, but only up to why the code changed. What was decided in a meeting, and why we chose that direction, is still written down nowhere.",
+                body: "Spotify published Xirp, its internal AI coding environment. The diagnosis stands out — agents decide fast and confidently, but cause production incidents because they do not know organizational context. Who owns this service, what it depends on, why it was designed that way: none of that is in the code. It is in Slack threads and in people's heads.\n\nXirp pulls that context from the developer portal into every session, and pushes knowledge that surfaced in a session back out into documentation. Instead of making the agent smarter, it increases what the agent knows.\n\nThat return loop is what we do not have. Our documentation automation leaves a record every day, but what it holds goes only as far as why the code changed. What was decided in a meeting, and why we chose that direction, is still written down nowhere.\n\nThis is not a story about needing a new system. It is a question of whether to put one more line into a place that already runs every day.",
             },
             {
                 title: "A third of the price, twice the spend",
-                body: "The average price per million tokens fell from $18.40 in Q1 last year to $6.07 in Q1 this year, and sits at $1.16–1.18 in early August. Yet over the same period enterprise AI spending more than doubled, from $3.5bn to $8.4bn — cheaper simply means more use. The leaks are quite specific. One agent stuck in a loop burned $47,000 over eleven days; sending work a small model could handle to a top-tier model costs up to 50× more, and not caching repeated input up to 90% more. Filter with cheap models first, cache the part that does not change, and stop resending the whole conversation each turn — stack all three and reported savings run 60–80%. To choose where to start you have to see where it leaks, and our admin screen currently stops at per-user totals.",
+                body: "The AI inference cost enterprises pay hit a low for the year. The average price per million tokens fell from $18.40 in Q1 last year to $6.07 in Q1 this year, and sits around $1.16–1.18 in early August. Open models' share of enterprise token usage also grew from 11% to 38% in a year.\n\nAnd yet what enterprises actually pay did not fall. Over roughly the same period, enterprise AI spending more than doubled, from $3.5bn to $8.4bn. Because cheaper simply means more use. Google said its monthly token throughput grew 330-fold in two years.\n\nThe leaks are quite specific. One agent stuck in a loop burned $47,000 over eleven days. Because every step resends the whole conversation, cost accrues with the square of the conversation's length. Sending work a small model could handle to a top-tier model costs up to 50× more; not caching repeated input, up to 90% more.\n\nThe ways to cut it are already settled. Filter with cheap models first (classification and scanning on a $0.10-per-million-token model, final judgement only on a model in the $10 range), keep the part that does not change in cache, and stop resending the whole conversation every time. Stack all three and reports show 60–80% cut in production. Cloudflare, which had attached 2,500 tools, folded a tool list of 1.17 million tokens into two, at 1,000 tokens.\n\nFor 'it got cheaper' to hold, the unit of counting has to be the same. The price of one token became a third, but the number of tokens it takes to finish one job grew faster than that. To decide which of the three to start with, you first have to see where it leaks. Stanford HAI found that teams measuring tokens per tool call find their savings three times faster than teams looking only at the invoice total. Our admin screen currently goes as far as per-user totals. It looks like it needs one more column beside it, counted per call.",
             },
         ],
         reading: [
             {
                 title: "Control the ideas, not the code",
-                body: "antirez, who built Redis, wrote up how he works now. Writing code and hunting bugs go to the model; idea design, QA, optimization strategy, and design documents he writes himself. You cannot say 'implement it' and expect the result to work, he notes — instructions only hold if you understand the design and the performance. His conclusion: if you hold the idea of the software, reading the code itself is mostly pointless. The uncomfortable part is not his argument but us — the people who say you must read the code do not read it either. antirez decided not to look and took hold of the design instead; we say we look, and do not. He is the honest one.",
+                body: "antirez, who built Redis, wrote up how he works these days. Writing code and hunting bugs go to the model; idea design, QA, optimization strategy, and design documents he writes himself. Building LLM inference software that runs locally, he had the model implement DeepSeek and GLM support — but you cannot say 'implement it' and expect the result to work, he says. Instructions only hold if you understand the design and the performance.\n\nHis conclusion is this. If you hold the idea of the software, looking at the code itself is mostly pointless. He writes that nobody should read this code — read only the idea the code carries. And he adds that a book from the seventies explains the present better than much of what came out between 2000 and 2020.\n\nThe uncomfortable side is not his argument but us. The people who say you must read the code do not actually read it. Try to remember the last time you scrolled a diff to the end before pressing approve. antirez decided not to look, and took hold of the design instead. We say we look, and do not. Of the two, he is the honest one.",
             },
             {
                 title: "When code gets cheap, where does the bottleneck go",
-                body: "Google published a piece arguing Go suits AI-assisted development, but the diagnosis before the language argument is what stays. How fast a person writes code hardly matters now; what matters is reviewing, verifying, and maintaining code already written — the bottleneck moved wholesale from generation to verification. First generation is 95% correct, but repeat the same task and errors accumulate as context degrades, so accuracy falls while token cost rises. Two hundred and ninety-three merge requests landed on internal branches in the past two weeks, and this issue's documentation build automation is aimed exactly here. It is also a structure that answers a problem caused by cheap generation with more generation, though — who reads an automatically written document, and what confirms it is right?",
+                body: "Google published a piece titled 'why Go is an ideal language for AI-assisted development', but what stays is the diagnosis before the language argument. How fast a person writes code hardly matters now, it says; what matters is reviewing, verifying, and maintaining code that is already written. The phrase that the bottleneck moved wholesale from generation to verification appears too.\n\nThere are numbers. First generation is 95% correct, but repeat the same task and errors accumulate as context is polluted, so accuracy falls while token cost rises. Hence the logic that readable syntax, static types acting as an automatic safety net, and compatibility that compiles 15-year-old code unchanged, hold value.\n\nTwo hundred and ninety-three merge requests landed on internal branches alone in the past two weeks. The documentation build automation in this issue's in-development section is aimed exactly here — make the manual change when the code changes, and reduce the share a person has to chase. In the past two weeks alone, more than twenty chapters were updated that way.\n\nIt is also a structure that blocks a problem caused by cheap generation with yet more generation, though. Who reads an automatically written document, and what confirms it is right? That question waits at the next stop. The only answer we have right now is that a person opens the chapter.",
             },
             {
                 title: "Rewrite all the code, all the time",
-                body: "If producing code keeps getting cheaper until reimplementing an entire codebase costs about what a SaaS subscription does, what then? The proposal: keep the requirements specification in the repository instead of the code, and when a policy or a performance target changes, edit the spec and regenerate everything. Code becomes a disposable by-product of the artifact that actually lasts. The author is firm that generation alone is not enough — you must be able to verify the generated code against the requirements, which means writing the specification in a language whose meaning does not drift. We are building the opposite: code as the original, documentation following behind. Ask it this way and it sharpens — what in your repository must never be lost? For the record, 125 of those 293 merge requests, 43%, fixed something.",
+                body: "A post from 4 August with a bold premise. The cost of producing code keeps falling — so what if reimplementing a large codebase wholesale came down to the level of today's SaaS subscription? The author's starting point is that the way software is made would then have to change.\n\nThe design goes like this. Keep the requirements specification in the repository instead of the code. When a security policy changes or a performance target moves, edit the spec, press a button, and regenerate everything. Regenerating from new requirements should be as simple as recompiling a program, he writes. Code becomes a disposable by-product of the artifact that actually lasts, the piece says.\n\nHe is firm that automatic generation alone will not do. You must be able to verify that the generated code kept to the requirements, and for that you have to write the specification in a language whose meaning does not drift. Requirements written in natural language alone do not make this picture work.\n\nWhat the design aims at, in the end, is fixing. Much of the time development takes goes not into making something new but into holding on to what is already made and fixing it. If you can pull it out of the spec again, you gain the option of making it anew instead of fixing it.\n\nSo we counted how much we are fixing. Of the 293 merge requests raised on internal branches in the past two weeks, 125 — 43% — fixed something. Two of those had [urgent] in the title: the error where uploads failed entirely, and the one where the DB query node died. This number may mean quality is poor, or it may mean we fix things often because we can fix them fast. Which one it is cannot be told from the number alone.\n\nOne more thing to note. We are building a system where the manual changes when the code changes. The code is the original and the documentation follows behind. This piece proposes the exact opposite: requirements as the original, code as the result. What ought to be the original has no answer yet, but asking it this way sharpens it a little. What in your repository must never be lost? If all the code is gone but the requirements remain, you can make it again. The other way around is hard.",
             },
         ],
         papers: [
             {
-                body: "A paper on the waste of an agent regenerating the same procedural code on every request (9 July). Compiling repeated business procedures into pre-verified, versioned tools cut latency by up to 42% in a live service and improved the error rate by 53%, while making it easier to trace what was used when. The same ground XGeny stands on in this issue.",
+                body: "A paper on the waste of an agent regenerating the same procedural code on every request (Kalle Kujanpää et al., 9 July). Switching to compiling repeated business procedures into pre-verified, versioned tools cut latency by up to 42% in a live service and improved the error rate by 53%. Tracing what was used when also became easier. The same ground XGeny stands on in this issue.",
             },
             {
-                body: "The same structure seen from the other side (22 June). Once an agent builds its own tools and accumulates memory, a bad influence that got in once is not erased — it carries into the next generation. Splitting the attack surface into 25 areas, 17 were exposed, and the more evolution-centric the design, the more the surface grew — by 3.5×. The point: attacks that used to vanish with the session now survive along the lineage.",
+                body: "The same structure seen from the other side (22 June). Once an agent builds its own tools and accumulates memory, a bad influence that got in once is not erased and carries into the next generation. Splitting the attack surface into 25 areas, 17 were exposed, and the more evolution-centric the design, the more the surface grew — by 3.5×. The point: attacks that used to disappear when the session ended now survive along the lineage.",
             },
         ],
         upcoming: [
             {
-                title: "XGEN DeX — coming soon",
-                body: "An execution layer that carries enterprise AI all the way to the desktop. The AI agent runs on the server and you work with it from your own desktop — central control stays as it is, and how you work does not change. Attach an MCP server running on your PC and the agent can reach tools inside the corporate network or programs that exist only on that machine, using server and local resources together. More in the next issue.",
+                title: "XGEN DeX · coming soon",
+                subtitle: "An execution layer carrying enterprise AI to the desktop",
+                body: "The AI agent runs on the server, and you work with that agent from your own desktop. It is a way of connecting that leaves central control as it is and does not change how you work.\n\nSo the resources an agent uses are not bound to the server alone. Attach an MCP server running on your PC and the agent can call tools inside the corporate network, or programs that exist only on this computer. Server resources and local resources, used together. More detail in the next issue.",
+                figure: "XGEN Connector — your agent list on the left, quick chat below, an avatar on screen. Agents running on the server, called straight from the desktop.",
             },
             {
                 title: "Plateer Labs YouTube channel",
-                body: "The team YouTube channel for XGEN demos and technical sessions is open. Videos go up as they are ready — subscribe and you will see each new one as it lands.",
+                body: "XGEN demos and technical sessions go up here. Subscribe and you will see each new video as it lands.",
             },
         ],
     },

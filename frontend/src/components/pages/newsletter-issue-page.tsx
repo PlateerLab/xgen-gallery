@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { localeHref, localePath } from "@/lib/locale-path";
 import { BADGE_EN } from "@/lib/newsletter-en";
 import type { Locale } from "@/lib/i18n";
@@ -9,7 +10,12 @@ import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
-import { getIssueFor, getIssues, type Badge } from "@/lib/newsletter";
+import {
+    getIssueFor,
+    getIssues,
+    type Badge,
+    type Figure,
+} from "@/lib/newsletter";
 
 export const dynamicParams = false;
 
@@ -34,6 +40,56 @@ function BadgeChip({ badge, en }: { badge: Badge; en: boolean }) {
     );
 }
 
+/** 배포 단계 칩(stage · 운영 반영) — 배지 옆에 회색으로 붙는다. */
+function StageChip({ stage }: { stage: string }) {
+    return (
+        <span className="inline-flex flex-none items-center rounded-full bg-[var(--color-surface-alt)] px-2.5 py-0.5 font-mono text-[11px] font-semibold text-[var(--color-ink-subtle)]">
+            {stage}
+        </span>
+    );
+}
+
+/**
+ * 카드 본문. 원문 메일의 문단 구분("\n\n")을 그대로 살려 <p> 로 나눈다.
+ */
+function Paragraphs({
+    body,
+    className = "text-[15px] leading-relaxed text-[var(--color-ink-muted)]",
+}: {
+    body: string;
+    className?: string;
+}) {
+    const paras = body.split("\n\n");
+    return (
+        <div className="space-y-3">
+            {paras.map((p, i) => (
+                <p key={i} className={className}>
+                    {p}
+                </p>
+            ))}
+        </div>
+    );
+}
+
+/** 원본 메일에 실린 화면 캡처 — 캡션을 아래에 단다. */
+function FigureBlock({ figure }: { figure: Figure }) {
+    return (
+        <figure className="mt-5">
+            <Image
+                src={figure.src}
+                alt={figure.caption}
+                width={figure.width}
+                height={figure.height}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="w-full rounded-xl border border-[var(--color-line)]"
+            />
+            <figcaption className="mt-2.5 text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">
+                {figure.caption}
+            </figcaption>
+        </figure>
+    );
+}
+
 function SectionHead({
     label,
     title,
@@ -43,9 +99,18 @@ function SectionHead({
     title: string;
     desc?: string;
 }) {
+    // 라벨은 기본이 영문 모노 키커다. 원문 메일의 한글 키커를 그대로 쓰는 호가
+    // 있어, 비ASCII가 섞이면 본문 서체·자간으로 떨어뜨린다.
+    const ascii = !/[^\x20-\x7E]/.test(label);
     return (
         <div className="mb-6">
-            <p className="font-mono text-[12px] font-semibold uppercase tracking-[0.18em] text-[var(--color-ink-subtle)]">
+            <p
+                className={`text-[12px] font-semibold text-[var(--color-ink-subtle)] ${
+                    ascii
+                        ? "font-mono uppercase tracking-[0.18em]"
+                        : "tracking-[0.08em]"
+                }`}
+            >
                 {label}
             </p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)]">
@@ -79,6 +144,9 @@ const COPY: Record<
         noticeB: string;
         releasesTitle: string;
         releasesDesc: string;
+        alsoTitle: string;
+        statsTitle: string;
+        figuresTitle: string;
         progressTitle: string;
         progressDesc: string;
         newsTitle: string;
@@ -106,6 +174,9 @@ const COPY: Record<
         noticeB: "에서 격주로 발간하는 XGEN·AI 뉴스레터 콘텐츠입니다. 메일로 발행된 뉴스레터를 웹에서도 그대로 보실 수 있습니다.",
         releasesTitle: "XGEN 이번 호 릴리즈",
         releasesDesc: "이번 호에 배포된 새 기능·개선·수정입니다.",
+        alsoTitle: "이런 것도 함께",
+        statsTitle: "숫자로 보는 2주",
+        figuresTitle: "이번 호의 한 장면",
         progressTitle: "개발 · 연구 중",
         progressDesc: "지금 팀에서 만들고 있고, 실험하고 있는 과제들입니다.",
         newsTitle: "기술 뉴스",
@@ -132,6 +203,9 @@ const COPY: Record<
         noticeB: ". The issue that goes out by email is readable here on the web, as it is.",
         releasesTitle: "Shipped in this issue",
         releasesDesc: "New capabilities, improvements, and fixes released this issue.",
+        alsoTitle: "Also in this issue",
+        statsTitle: "The fortnight in numbers",
+        figuresTitle: "A look at this issue",
         progressTitle: "In development and research",
         progressDesc: "What the team is building and experimenting with right now.",
         newsTitle: "Technology news",
@@ -161,6 +235,8 @@ export async function NewsletterIssuePageContent({
     const { slug } = await params;
     const issue = getIssueFor(slug, locale);
     if (!issue) notFound();
+    // 원문 메일이 그 호에만 쓴 섹션 머리말 — 없으면 화면 기본 문구를 쓴다.
+    const s = issue.sections;
 
     return (
         <>
@@ -217,24 +293,26 @@ export async function NewsletterIssuePageContent({
                     </p>
                 </div>
 
-                {/* 인사말 */}
-                <div className="space-y-4 border-b border-[var(--color-line)] pb-12">
-                    {issue.intro.map((p, i) => (
-                        <p
-                            key={i}
-                            className="text-[16px] leading-relaxed text-[var(--color-ink-muted)]"
-                        >
-                            {p}
-                        </p>
-                    ))}
-                </div>
+                {/* 인사말 — 원문에 인사말이 없는 호는 건너뛴다. */}
+                {issue.intro.length > 0 && (
+                    <div className="space-y-4 border-b border-[var(--color-line)] pb-12">
+                        {issue.intro.map((p, i) => (
+                            <p
+                                key={i}
+                                className="text-[16px] leading-relaxed text-[var(--color-ink-muted)]"
+                            >
+                                {p}
+                            </p>
+                        ))}
+                    </div>
+                )}
 
                 {/* 이번 호 릴리즈 */}
                 <section className="pt-12">
                     <SectionHead
-                        label="Release"
-                        title={t.releasesTitle}
-                        desc={t.releasesDesc}
+                        label={s?.releasesLabel ?? "Release"}
+                        title={s?.releasesTitle ?? t.releasesTitle}
+                        desc={s?.releasesDesc ?? t.releasesDesc}
                     />
                     <div className="space-y-4">
                         {issue.releases.map((r) => (
@@ -242,26 +320,103 @@ export async function NewsletterIssuePageContent({
                                 key={r.title}
                                 className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
                             >
-                                <div className="flex items-center gap-2.5">
+                                <div className="flex flex-wrap items-center gap-2.5">
                                     <BadgeChip badge={r.badge} en={en} />
+                                    {r.stage && <StageChip stage={r.stage} />}
                                     <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
                                         {r.title}
                                     </h3>
                                 </div>
-                                <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {r.body}
-                                </p>
+                                <div className="mt-3">
+                                    <Paragraphs body={r.body} />
+                                </div>
                             </div>
                         ))}
                     </div>
+
+                    {/* 이런 것도 함께 */}
+                    {issue.also && issue.also.length > 0 && (
+                        <div className="mt-4 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
+                            <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-[var(--color-ink-subtle)]">
+                                {t.alsoTitle}
+                            </p>
+                            <ul className="mt-3 space-y-2">
+                                {issue.also.map((a) => (
+                                    <li
+                                        key={a}
+                                        className="flex gap-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]"
+                                    >
+                                        <span
+                                            aria-hidden
+                                            className="mt-2 h-1 w-1 flex-none rounded-full bg-[var(--color-ink-subtle)]"
+                                        />
+                                        {a}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </section>
+
+                {/* 숫자로 보는 2주 */}
+                {issue.stats && (
+                    <section className="pt-14">
+                        <SectionHead label="Numbers" title={t.statsTitle} />
+                        <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
+                            <div className="grid gap-6 sm:grid-cols-3">
+                                {issue.stats.items.map((it) => (
+                                    <div key={it.label}>
+                                        <p className="font-mono text-3xl font-bold tabular-nums tracking-tight text-[var(--color-ink)]">
+                                            {it.value}
+                                        </p>
+                                        <p className="mt-1 text-[14px] text-[var(--color-ink-muted)]">
+                                            {it.label}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                            {issue.stats.note && (
+                                <p className="mt-5 border-t border-[var(--color-line)] pt-4 text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">
+                                    {issue.stats.note}
+                                </p>
+                            )}
+                            {issue.stats.link && (
+                                <a
+                                    href={issue.stats.link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group mt-3 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8]"
+                                >
+                                    {issue.stats.link.label}
+                                    <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </a>
+                            )}
+                        </div>
+                    </section>
+                )}
+
+                {/* 이번 호의 한 장면 */}
+                {issue.figures && issue.figures.length > 0 && (
+                    <section className="pt-14">
+                        <SectionHead
+                            label="Screens"
+                            title={s?.figuresTitle ?? t.figuresTitle}
+                            desc={s?.figuresDesc}
+                        />
+                        <div className="space-y-8">
+                            {issue.figures.map((f) => (
+                                <FigureBlock key={f.src} figure={f} />
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 {/* 개발 · 연구 중 */}
                 <section className="pt-14">
                     <SectionHead
                         label="In progress"
                         title={t.progressTitle}
-                        desc={t.progressDesc}
+                        desc={s?.progressDesc ?? t.progressDesc}
                     />
                     <div className="space-y-4">
                         {issue.inProgress.map((p) => (
@@ -284,9 +439,10 @@ export async function NewsletterIssuePageContent({
                                         style={{ width: `${p.percent}%` }}
                                     />
                                 </div>
-                                <p className="mt-3.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {p.body}
-                                </p>
+                                <div className="mt-3.5">
+                                    <Paragraphs body={p.body} />
+                                </div>
+                                {p.figure && <FigureBlock figure={p.figure} />}
                             </div>
                         ))}
                     </div>
@@ -321,7 +477,7 @@ export async function NewsletterIssuePageContent({
                     <SectionHead
                         label="Papers"
                         title={t.papersTitle}
-                        desc={t.papersDesc}
+                        desc={s?.papersDesc ?? t.papersDesc}
                     />
                     <div className="space-y-4">
                         {issue.papers.map((p) => (
@@ -345,9 +501,9 @@ export async function NewsletterIssuePageContent({
                                 <h3 className="mt-3 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
                                     {p.title}
                                 </h3>
-                                <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {p.body}
-                                </p>
+                                <div className="mt-2.5">
+                                    <Paragraphs body={p.body} />
+                                </div>
                                 <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-[#2461d8]">
                                     {t.paperCta}
                                     <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -362,24 +518,46 @@ export async function NewsletterIssuePageContent({
                     <section className="pt-14">
                         <SectionHead
                             label="Coming up"
-                            title={t.upcomingTitle}
-                            desc={t.upcomingDesc}
+                            title={s?.upcomingTitle ?? t.upcomingTitle}
+                            desc={s?.upcomingDesc ?? t.upcomingDesc}
                         />
-                        <div className="grid gap-4 sm:grid-cols-2">
+                        <div className="space-y-4">
                             {issue.upcoming.map((u) => (
                                 <div
                                     key={u.title}
                                     className="rounded-2xl border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] p-6"
                                 >
-                                    <div className="flex items-center gap-2.5">
-                                        <BadgeChip badge={u.badge} en={en} />
+                                    <div className="flex flex-wrap items-center gap-2.5">
+                                        {u.badge && (
+                                            <BadgeChip badge={u.badge} en={en} />
+                                        )}
                                         <h3 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
                                             {u.title}
                                         </h3>
                                     </div>
-                                    <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {u.body}
-                                    </p>
+                                    {u.subtitle && (
+                                        <p className="mt-2 text-[15px] font-semibold text-[var(--color-ink)]">
+                                            {u.subtitle}
+                                        </p>
+                                    )}
+                                    <div className="mt-3">
+                                        <Paragraphs
+                                            body={u.body}
+                                            className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                        />
+                                    </div>
+                                    {u.figure && <FigureBlock figure={u.figure} />}
+                                    {u.link && (
+                                        <a
+                                            href={u.link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group mt-3.5 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8]"
+                                        >
+                                            {u.link.label}
+                                            <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -426,11 +604,12 @@ function LinkRow({
         n: string;
         title: string;
         body: string;
-        source: string;
-        readTime: string;
+        source?: string;
+        readTime?: string;
         url: string;
     };
 }) {
+    const meta = [item.source, item.readTime].filter(Boolean).join(" · ");
     return (
         <a
             href={item.url}
@@ -446,12 +625,17 @@ function LinkRow({
                     <span className="group-hover:underline">{item.title}</span>
                     <ArrowUpRight className="mt-0.5 h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </h3>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {item.body}
-                </p>
-                <p className="mt-2.5 text-[13px] font-medium text-[var(--color-ink-subtle)]">
-                    {item.source} · {item.readTime}
-                </p>
+                <div className="mt-2">
+                    <Paragraphs
+                        body={item.body}
+                        className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                    />
+                </div>
+                {meta && (
+                    <p className="mt-2.5 text-[13px] font-medium text-[var(--color-ink-subtle)]">
+                        {meta}
+                    </p>
+                )}
             </div>
         </a>
     );
