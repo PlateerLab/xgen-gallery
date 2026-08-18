@@ -47,16 +47,22 @@ export const CATEGORY_CANONICAL: Record<string, string> = {
     "Product news": "제품 소식",
 };
 
-/** 카테고리의 화면 표기 — 정규값(한국어)을 로케일에 맞는 라벨로 바꾼다. */
+/**
+ * 카테고리의 화면 표기 — 정규값(한국어)을 로케일에 맞는 라벨로 바꾼다.
+ *
+ * 저장 값과 표기가 다를 수 있다: "제품 소식"은 프론트매터·필터·URL(`?cat=product`)이
+ * 함께 쓰는 키라 그대로 두고, 화면에는 브랜드 이름 "XGEN Next"로 보여준다.
+ * 표기를 또 바꿀 일이 있으면 이 표만 고치면 된다 — 글 데이터는 손대지 않는다.
+ */
 export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
     ko: {
-        "제품 소식": "제품 소식",
+        "제품 소식": "XGEN Next",
         "Tech Note": "Tech Note",
         "Case Study": "Case Study",
         "Industry Note": "Industry Note",
     },
     en: {
-        "제품 소식": "Product news",
+        "제품 소식": "XGEN Next",
         "Tech Note": "Tech Note",
         "Case Study": "Case Study",
         "Industry Note": "Industry Note",

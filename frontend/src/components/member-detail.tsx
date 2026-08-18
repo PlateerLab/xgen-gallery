@@ -19,6 +19,7 @@ import {
     PenLine,
 } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";
+import { categoryLabel } from "@/lib/blog-categories";
 import { cn } from "@/lib/cn";
 import {
     formatRelative,
@@ -311,8 +312,9 @@ export function MemberDetailView({
                                 className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-white p-4 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-20px_rgba(20,40,80,0.28)]"
                             >
                                 <div className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                    {/* 멤버 상세는 한국어 전용 화면이라 로케일을 고정한다. */}
                                     <span className="rounded-full bg-[#2f7bff]/10 px-2 py-0.5 font-semibold text-[#2461d8]">
-                                        {p.category}
+                                        {categoryLabel(p.category, "ko")}
                                     </span>
                                     <time dateTime={p.date}>
                                         {p.date.replaceAll("-", ".")}

@@ -47,7 +47,7 @@ const CONFIG: Record<
             </>
         ),
         // 노출 카테고리와 맞춘다 — Case Study 는 목록 탭에서 감췄다(blog-categories.ts).
-        desc: "Tech Note·제품 소식·Industry Note, 플래티어랩의 새 인사이트를 메일로 알려드립니다",
+        desc: "Tech Note·XGEN Next·Industry Note, 플래티어랩의 새 인사이트를 메일로 알려드립니다",
         doneDesc: "새 글이 올라오면 메일로 알려드릴게요",
     },
 };

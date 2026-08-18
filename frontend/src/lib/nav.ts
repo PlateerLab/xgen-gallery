@@ -371,9 +371,10 @@ export const NAV_GROUPS: NavGroup[] = [
         ],
     },
     {
-        // 블로그(/blog) 최상위 — 드롭다운: 카테고리(제품 소식 / Tech Note /
-        // Case Study) → Lab Members 순. 카테고리는 /blog?cat=…
-        // 로 딥링크되어 BlogList가 초기 필터를 적용한다(blog-list.tsx의 CATEGORY_BY_KEY).
+        // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: 카테고리 3개 →
+        // Inside Newsletter → Downloads. 카테고리는 /blog?cat=… 로 딥링크되어
+        // BlogList가 초기 필터를 적용한다(blog-list.tsx의 CATEGORY_BY_KEY).
+        // 글 목록 전체로 가는 링크는 그룹 라벨(Insight → /blog)이 맡는다.
         // GNB 순서: Open Source 다음(최상위 메뉴 끝)에 배치 — 블로그를 마지막에 둔다.
         key: "blog",
         order: 5,
@@ -382,24 +383,17 @@ export const NAV_GROUPS: NavGroup[] = [
         blurb: "Enterprise AI · Agentic AI · GEO·SEO 인사이트",
         blurbEn: "Insights on Enterprise AI, Agentic AI, and GEO/SEO",
         items: [
+            // 표기는 "XGEN Next"지만 딥링크 키(cat=product)와 저장 값은 그대로다.
+            // 표기 문구는 lib/blog-categories.ts 의 CATEGORY_LABEL 과 맞춰 둔다.
+            { label: "XGEN Next", id: "cat-product", route: "/blog?cat=product" },
+            { label: "Tech Note", id: "cat-labs", route: "/blog?cat=labs" },
+            { label: "Industry Note", id: "cat-industry", route: "/blog?cat=industry" },
+            // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
+            // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
+            // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
+            { label: "Inside Newsletter", id: "newsletter", route: "/newsletter" },
             {
-                // Blog — 라벨 클릭 시 /blog 전체, 하위에 카테고리 딥링크를 묶는다.
-                label: "Blog",
-                id: "blog-articles",
-                route: "/blog",
-                children: [
-                    { label: "Product News", labelKo: "제품 소식", id: "cat-product", route: "/blog?cat=product" },
-                    { label: "Tech Note", id: "cat-labs", route: "/blog?cat=labs" },
-                    { label: "Industry Note", id: "cat-industry", route: "/blog?cat=industry" },
-                    // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
-                    // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
-                    // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
-                ],
-            },
-            { label: "Newsletter", labelKo: "뉴스레터", id: "newsletter", route: "/newsletter" },
-            {
-                label: "Resources",
-                labelKo: "자료실",
+                label: "Downloads",
                 id: "resources",
                 route: "/resources",
                 blurb: "XGEN 소개서 등 다운로드 자료를 제공합니다.",

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { localeHref } from "@/lib/locale-path";
+import { categoryLabel } from "@/lib/blog-categories";
 // import { CustomerMarquee } from "@/components/customer-marquee"; // 임시 주석 처리
 import { cn } from "@/lib/cn";
 
@@ -292,16 +293,8 @@ function SecuritySlide() {
 
 type HeroPost = { slug: string; title: string; category: string; date: string };
 
-/** 블로그 카테고리 원문 → 영문 배지 라벨. 매핑에 없으면 원문을 그대로 쓴다. */
-const CATEGORY_EN: Record<string, string> = {
-    "제품 소식": "Product News",
-    "Tech Note": "Tech Note",
-    "Case Study": "Case Study",
-    "Industry Note": "Industry Note",
-};
-function categoryLabel(category: string, locale: string): string {
-    return locale === "ko" ? category : (CATEGORY_EN[category] ?? category);
-}
+// 카테고리 배지 라벨은 lib/blog-categories.ts 의 CATEGORY_LABEL 이 단일 출처다
+// (예전에는 여기 영문 표만 따로 두어 한국어는 저장 값이 그대로 나왔다).
 type HeroIssue = { slug: string; title: string; vol: number; date: string };
 type HeroCase = { slug: string; text: string };
 
