@@ -532,7 +532,17 @@ export async function NewsletterIssuePageContent({
                                             <BadgeChip badge={u.badge} en={en} />
                                         )}
                                         <h3 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {u.title}
+                                            {u.href ? (
+                                                <Link
+                                                    href={localeHref(locale, u.href)}
+                                                    className="group inline-flex items-center gap-1 transition hover:text-[#2461d8]"
+                                                >
+                                                    {u.title}
+                                                    <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                                </Link>
+                                            ) : (
+                                                u.title
+                                            )}
                                         </h3>
                                     </div>
                                     {u.subtitle && (

@@ -72,6 +72,8 @@ export interface UpcomingItem {
     /** 원문에 배지가 없는 항목도 있어 선택이다. */
     badge?: Extract<Badge, "준비중">;
     subtitle?: string;
+    /** 제목에 거는 내부 링크 — 이 소식을 자세히 다룬 글로 잇는다. 로케일 접두사는 화면이 붙인다. */
+    href?: string;
     body: Body;
     figure?: Figure;
     link?: { label: string; url: string };
@@ -654,6 +656,7 @@ const vol3: Issue = {
             title: "XGEN DeX · 출시 예정",
             badge: "준비중",
             subtitle: "Enterprise AI를 데스크톱까지 잇는 실행 계층",
+            href: "/blog/product-xgen-dex",
             body: "AI Agent는 서버에서 실행되고, 사용자는 자기 데스크톱에서 그 Agent와 일합니다. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결 방식입니다.\n\n그래서 에이전트가 쓰는 자원이 서버에만 묶이지 않습니다. 내 PC에서 도는 MCP 서버를 붙이면 사내망 안쪽 도구나 이 컴퓨터에만 있는 프로그램까지 에이전트가 부를 수 있습니다. 서버 자원과 로컬 자원을 함께 쓰는 셈입니다. 자세한 내용은 다음 호에서 소개합니다.",
             figure: {
                 src: "/newsletter/vol-3/xgen-dex-connector.jpg",
