@@ -30,3 +30,11 @@ __pycache__/
 # dev/build logs
 frontend/.devserver.log
 frontend/.npminstall.log
+
+# 루트에 쌓이는 작업용 스크린샷/캡처 — 프로젝트 이미지(frontend/public 등)는 영향 없음
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+/_screenshots/
