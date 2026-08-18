@@ -383,17 +383,18 @@ export const NAV_GROUPS: NavGroup[] = [
         blurb: "Enterprise AI · Agentic AI · GEO·SEO 인사이트",
         blurbEn: "Insights on Enterprise AI, Agentic AI, and GEO/SEO",
         items: [
-            // 표기는 "XGEN Next"지만 딥링크 키(cat=product)와 저장 값은 그대로다.
-            // 표기 문구는 lib/blog-categories.ts 의 CATEGORY_LABEL 과 맞춰 둔다.
-            { label: "XGEN Next", id: "cat-product", route: "/blog?cat=product" },
-            { label: "Tech Note", id: "cat-labs", route: "/blog?cat=labs" },
-            { label: "Industry Note", id: "cat-industry", route: "/blog?cat=industry" },
+            // 표기는 "XGEN Preview"지만 딥링크 키(cat=product)와 저장 값은 그대로다.
+            // 국문 GNB 는 한글 표기를 쓴다(labelKo) — 영문 표기는 label 이 그대로 맡는다.
+            { label: "XGEN Preview", labelKo: "XGEN 프리뷰", id: "cat-product", route: "/blog?cat=product" },
+            { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
+            { label: "Industry Note", labelKo: "인더스트리 노트", id: "cat-industry", route: "/blog?cat=industry" },
             // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
             // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
-            { label: "Lab Newsletter", id: "newsletter", route: "/newsletter" },
+            { label: "Lab Newsletter", labelKo: "랩 뉴스레터", id: "newsletter", route: "/newsletter" },
             {
                 label: "Downloads",
+                labelKo: "다운로드",
                 id: "resources",
                 route: "/resources",
                 blurb: "XGEN 소개서 등 다운로드 자료를 제공합니다.",
