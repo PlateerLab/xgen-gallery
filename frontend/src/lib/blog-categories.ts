@@ -15,6 +15,10 @@ import type { Locale } from "@/lib/i18n";
  * 시장이 어떻게 움직이고 그 안에서 저희가 무엇을 기준으로 판단하는지 쓰는 글.
  * Tech Note 가 "어떻게 만들었나"라면 Industry Note 는 "왜 그렇게 보는가"다.
  *
+ * "Field Note"는 앞의 셋과 출발점이 다르다 — 고객 미팅·PoC·도입 현장에서 실제로
+ * 나온 질문과 그 답을 정리한 글이다. 우리가 하고 싶은 이야기가 아니라 받은 질문이
+ * 글의 뼈대가 된다.
+ *
  * 목록 탭에 보이는 것과는 다르다 — 노출 여부는 VISIBLE_BLOG_CATEGORIES 가 정한다.
  */
 export const BLOG_CATEGORIES = [
@@ -22,6 +26,7 @@ export const BLOG_CATEGORIES = [
     "Tech Note",
     "제품 소식",
     "Industry Note",
+    "Field Note",
 ] as const;
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
@@ -36,6 +41,7 @@ export const VISIBLE_BLOG_CATEGORIES = [
     "제품 소식",
     "Tech Note",
     "Industry Note",
+    "Field Note",
 ] as const;
 
 /**
@@ -64,12 +70,14 @@ export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
         "Tech Note": "테크 노트",
         "Case Study": "케이스 스터디",
         "Industry Note": "인더스트리 노트",
+        "Field Note": "필드 노트",
     },
     en: {
         "제품 소식": "XGEN Preview",
         "Tech Note": "Tech Note",
         "Case Study": "Case Study",
         "Industry Note": "Industry Note",
+        "Field Note": "Field Note",
     },
 };
 

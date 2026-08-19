@@ -60,7 +60,7 @@ collections:
                 name: category,
                 label: "카테고리",
                 widget: select,
-                options: ["Case Study", "Tech Note", "제품 소식"],
+                options: ["Case Study", "Tech Note", "제품 소식", "Industry Note", "Field Note"],
                 default: "Tech Note",
                 hint: "글의 유형. 목록 상단 탭으로 필터됨",
             }

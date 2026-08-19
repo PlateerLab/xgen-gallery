@@ -85,6 +85,7 @@ const CATEGORY_BY_KEY: Record<string, Tab> = {
     product: "제품 소식",
     labs: "Tech Note",
     industry: "Industry Note",
+    field: "Field Note",
     // 탭에서는 감췄지만 기존 링크·북마크가 죽지 않도록 키는 남겨 둔다.
     case: "Case Study",
 };
@@ -92,6 +93,7 @@ const KEY_BY_CATEGORY: Partial<Record<Tab, string>> = {
     "제품 소식": "product",
     "Tech Note": "labs",
     "Industry Note": "industry",
+    "Field Note": "field",
     "Case Study": "case",
 };
 
@@ -116,6 +118,12 @@ const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
         grad: "linear-gradient(135deg,#fff1e8 0%,#ffe0cc 100%)",
         ink: "#c2570d",
         word: "INDUSTRY NOTE",
+    },
+    // 앞의 넷과 겹치지 않는 색(청록)을 준다 — 파랑·보라·초록·주황은 이미 쓰였다.
+    "Field Note": {
+        grad: "linear-gradient(135deg,#e6f6f8 0%,#cbe9ef 100%)",
+        ink: "#0e7490",
+        word: "FIELD NOTE",
     },
 };
 
