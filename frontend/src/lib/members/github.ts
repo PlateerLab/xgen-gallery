@@ -752,8 +752,9 @@ async function tryApiMembers(path: string): Promise<string[]> {
  * 로그인은 소문자로 비교(대소문자 무관). 편집자가 목록을 관리한다.
  */
 const MEMBER_EXCLUDE = new Set<string>([
-    "createyouracccount",
-    "mumberrymountain",
+    // 지금은 비어 있다 — 조직 멤버를 전원 노출한다. 2026-07 리뷰에서 비연구원으로
+    // 분류해 뺐던 Createyouracccount·mumberrymountain 은 편집자 확인을 거쳐 되살렸다.
+    // 봇이나 테스트 계정이 생기면 로그인을 소문자로 여기에 추가하면 된다.
 ]);
 
 function keepMember(login: string): boolean {
