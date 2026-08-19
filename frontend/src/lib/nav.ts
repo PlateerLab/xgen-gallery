@@ -372,7 +372,8 @@ export const NAV_GROUPS: NavGroup[] = [
     },
     {
         // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: 카테고리 3개 →
-        // Lab Newsletter → Downloads. 카테고리는 /blog?cat=… 로 딥링크되어
+        // Lab Newsletter. (Downloads 는 hidden 으로 감춰 둔 상태다.)
+        // 카테고리는 /blog?cat=… 로 딥링크되어
         // BlogList가 초기 필터를 적용한다(blog-list.tsx의 CATEGORY_BY_KEY).
         // 글 목록 전체로 가는 링크는 그룹 라벨(Insight → /blog)이 맡는다.
         // GNB 순서: Open Source 다음(최상위 메뉴 끝)에 배치 — 블로그를 마지막에 둔다.
@@ -394,6 +395,10 @@ export const NAV_GROUPS: NavGroup[] = [
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
             { label: "Lab Newsletter", labelKo: "랩 뉴스레터", id: "newsletter", route: "/newsletter" },
             {
+                // 메뉴에서만 감춘다 — /resources 페이지와 그 안의 소개서 다운로드는
+                // 그대로 살아 있고, 직접 주소로도 각 페이지 링크로도 접근된다.
+                // 다시 노출하려면 hidden 줄만 지우면 된다.
+                hidden: true,
                 label: "Downloads",
                 labelKo: "다운로드",
                 id: "resources",
