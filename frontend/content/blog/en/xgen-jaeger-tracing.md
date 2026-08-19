@@ -83,10 +83,10 @@ Because instrumentation happens inside the application process, concrete applica
 
 ## Where you instrument decides what a trace is worth
 
-One question ran through all three choices: **where to put the instrumentation.** The proxy (Envoy), the kernel (eBPF), the application process (OTel) — the same request leaves a different record depending on where you watch it from.
+One question ran through all three choices: where to put the instrumentation. The proxy (Envoy), the kernel (eBPF), the application process (OTel) — the same request leaves a different record depending on the point you observe it from.
 
-The proxy level showed the path a request travelled but not what that request did. The same reason explains the broken story at each service boundary: it could not hand trace context down to the application. The position you observe from turns out to be the resolution you observe at.
+At the proxy level we could confirm the path a request travelled, but not what that request actually did. The same reason explains the story breaking at each service boundary: it could not pass trace context down to the application. In the end, where you observe from decided the resolution you observe at.
 
-The second lesson is that a technology choice is settled by the operating environment, not by the documentation. eBPF had the exact answer in `BEYLA_BPF_TRACK_REQUEST_HEADERS`, and a single RHEL 4.18 kernel on the server closed the door on it. What runs on this server today decides the outcome more often than what the most advanced approach happens to be.
+The other thing this confirmed is that a technology choice is not settled by the right answer on paper alone. eBPF had a clear one in `BEYLA_BPF_TRACK_REQUEST_HEADERS`, and it ran into the constraint of the RHEL 4.18 kernel actually in use on the server. What actually runs on this server decides the outcome more often than what the most advanced approach happens to be.
 
 As noted at the outset, this rollout may sit some distance from a textbook setup. The aim, though, was clear from the start — to put traces to real use in bottleneck analysis, and to grow this into an architecture we can apply more rigorously on the next project. With application-level spans visible and traces carrying across service boundaries, that is where it starts.
