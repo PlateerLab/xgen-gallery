@@ -371,7 +371,7 @@ export const NAV_GROUPS: NavGroup[] = [
         ],
     },
     {
-        // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: 카테고리 4개 →
+        // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: 카테고리 3개 →
         // Lab Newsletter → Downloads. 카테고리는 /blog?cat=… 로 딥링크되어
         // BlogList가 초기 필터를 적용한다(blog-list.tsx의 CATEGORY_BY_KEY).
         // 글 목록 전체로 가는 링크는 그룹 라벨(Insight → /blog)이 맡는다.
@@ -387,8 +387,8 @@ export const NAV_GROUPS: NavGroup[] = [
             // 국문 GNB 는 한글 표기를 쓴다(labelKo) — 영문 표기는 label 이 그대로 맡는다.
             { label: "XGEN Preview", labelKo: "XGEN 프리뷰", id: "cat-product", route: "/blog?cat=product" },
             { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
-            { label: "Industry Note", labelKo: "인더스트리 노트", id: "cat-industry", route: "/blog?cat=industry" },
-            { label: "Field Note", labelKo: "필드 노트", id: "cat-field", route: "/blog?cat=field" },
+            // 표기는 "Field Note"지만 딥링크 키(cat=industry)와 저장 값은 그대로다.
+            { label: "Field Note", labelKo: "필드 노트", id: "cat-industry", route: "/blog?cat=industry" },
             // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
             // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
