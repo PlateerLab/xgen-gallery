@@ -35,6 +35,9 @@ jobs:
           # QA 콘솔 [실제 실행] 버튼(/api/qa-run)이 qa-smoke 워크플로우를 트리거하기 위한
           # GitHub PAT(actions:write). Repo Secrets에 QA_DISPATCH_TOKEN 등록 시 .env에 주입됨.
           GH_QA_DISPATCH_TOKEN: ${{ secrets.QA_DISPATCH_TOKEN }}
+          # 멤버 로스터 강제 갱신(/api/members/revalidate POST) 토큰. 없으면 그 라우트가
+          # 503으로 막혀, 멤버가 늘거나 제외 목록을 고쳐도 캐시 30분이 지나야 반영된다.
+          GH_MEMBERS_REVALIDATE_TOKEN: ${{ secrets.MEMBERS_REVALIDATE_TOKEN }}
         run: |
           set -euo pipefail
           cd ~/workspace/xgen-gallery
@@ -75,6 +78,7 @@ jobs:
           seed_env SMTP_PASS              "${GH_SMTP_PASS:-}"
           seed_env BLOG_NOTIFY_TOKEN      "${GH_BLOG_NOTIFY_TOKEN:-}"
           seed_env QA_DISPATCH_TOKEN      "${GH_QA_DISPATCH_TOKEN:-}"
+          seed_env MEMBERS_REVALIDATE_TOKEN "${GH_MEMBERS_REVALIDATE_TOKEN:-}"
           # 소개서: 전용 시크릿이 있으면 그 URL로. 없으면 .env에서 제거해
           # 브로셔 요청이 DEMO 웹앱으로 폴백되게 한다(라우트: BROCHURE_WEBHOOK_URL || DEMO_WEBHOOK_URL).
           if [ -n "${GH_BROCHURE_WEBHOOK_URL:-}" ]; then

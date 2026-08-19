@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
-import { inspectMembersCache } from "@/lib/members/cache";
+import { expireMembersDiskCache, inspectMembersCache } from "@/lib/members/cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +27,13 @@ export async function POST(req: Request) {
     if (got !== expected) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    // 태그 무효화만으로는 GitHub 를 다시 치지 않는다 — 디스크 캐시도 함께 만료시켜야
+    // 다음 로드가 실제로 원본을 읽는다(cache.ts 의 expireMembersDiskCache 주석 참고).
+    const diskExpired = await expireMembersDiskCache();
     revalidateTag("members");
-    return NextResponse.json({ revalidated: true, at: new Date().toISOString() });
+    return NextResponse.json({
+        revalidated: true,
+        diskExpired,
+        at: new Date().toISOString(),
+    });
 }

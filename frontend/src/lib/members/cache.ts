@@ -204,6 +204,28 @@ export async function getMemberDetail(login: string): Promise<MemberDetail> {
     }
 }
 
+/**
+ * 강제 갱신 — 다음 로드가 디스크 fast-path 를 건너뛰고 GitHub 를 다시 치게 한다.
+ *
+ * revalidateTag("members") 만으로는 부족하다. 태그를 무효화해도 곧바로 실행되는
+ * loadBundleWithFallback() 이 "디스크 캐시가 30분 이내면 그대로 쓴다"는 fast-path
+ * 로 빠져 GitHub 를 아예 호출하지 않기 때문이다(멤버가 늘거나 denylist 를 고쳐도
+ * 최대 30분간 옛 목록이 그대로 나온다).
+ *
+ * 파일을 지우지 않고 mtime 만 TTL 밖으로 밀어낸다 — 내용은 남아 있어야 라이브
+ * 페치가 실패했을 때 readDiskBundle() 이 옛 목록으로라도 화면을 지킬 수 있다.
+ */
+export async function expireMembersDiskCache(): Promise<boolean> {
+    try {
+        const past = new Date(Date.now() - (REVALIDATE_SECONDS + 60) * 1000);
+        await fs.utimes(LIST_CACHE, past, past);
+        return true;
+    } catch {
+        // 캐시 파일이 없으면 어차피 fast-path 를 타지 않는다 — 실패가 아니다.
+        return false;
+    }
+}
+
 /** Read-only inspection of the disk cache for debug endpoints. */
 export async function inspectMembersCache(): Promise<{
     listExists: boolean;
