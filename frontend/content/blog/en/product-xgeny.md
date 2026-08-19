@@ -99,6 +99,20 @@ extends into
 
 **request → execution → result produced → assets accumulated → reused in the next piece of work**.
 
+### Beyond personalisation
+
+XGEN already gave each user an independent **environment for building agents**. Everyone could create agents and design their work their own way.
+
+XGeny takes it a step further. Not only the build environment but **the tool set-up and the runtime itself are independent per agent**. Which tools are on hand, and what gets built and kept, now differ from user to user. Where personalisation meant "building it my way," this is closer to "having a working environment that is mine."
+
+### Independent, but not isolated
+
+What matters is that this independence does not stay locked inside one person.
+
+The agents and tools built in each workspace can be shared. The moment a tool someone built to solve their own task is shared, it stops being one person's output and becomes **an asset of the organisation**.
+
+Agents, tools, and everything produced along the way accumulating rather than disappearing means, in the end, that knowledge accumulates in the organisation. That is why the workspace is worth seeing not as personal storage but as **where the organisation's collective intelligence gathers**.
+
 ---
 
 ## 3. It finds the tools it needs
