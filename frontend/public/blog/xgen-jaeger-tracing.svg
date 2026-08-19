@@ -1,0 +1,54 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="분산 추적 워터폴 — istio-ingressgateway 부터 xgen-backend-gateway, xgen-core, API 핸들러, PostgreSQL 쿼리까지 중첩된 Span 막대. 프록시 레벨 Envoy 사이드카에서 애플리케이션 레벨 OTel Auto Instrumentation 으로 옮겨간 구성을 나타낸다">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b1c"/>
+      <stop offset="1" stop-color="#0d1633"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00acee"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="600" cy="338" r="300" fill="url(#glow)"/>
+
+  <!-- 타이틀 -->
+  <text x="600" y="118" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">DISTRIBUTED TRACING</text>
+  <text x="600" y="174" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="46" font-weight="700" fill="#ffffff">Jaeger + OpenTelemetry</text>
+
+  <!-- 트레이스 워터폴 — 중첩된 Span 이 아래로 깊어진다 -->
+  <g font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffff8f">
+    <text x="150" y="268">istio-ingressgateway</text>
+    <rect x="430" y="250" width="620" height="26" rx="6" fill="url(#brand)"/>
+
+    <text x="150" y="310">xgen-backend-gateway</text>
+    <rect x="470" y="292" width="540" height="26" rx="6" fill="#7dd3fc" opacity="0.85"/>
+
+    <text x="150" y="352">xgen-core</text>
+    <rect x="530" y="334" width="440" height="26" rx="6" fill="#7dd3fc" opacity="0.68"/>
+
+    <text x="150" y="394">GET /api/… handler</text>
+    <rect x="600" y="376" width="330" height="26" rx="6" fill="#7dd3fc" opacity="0.5"/>
+
+    <text x="150" y="436">SELECT postgresql</text>
+    <rect x="660" y="418" width="150" height="26" rx="6" fill="#34d399" opacity="0.75"/>
+    <rect x="830" y="418" width="100" height="26" rx="6" fill="#34d399" opacity="0.75"/>
+  </g>
+
+  <!-- 계측 지점의 이동 -->
+  <text x="600" y="512" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="21" fill="#ffffff8f">프록시 레벨 Span 에서, 애플리케이션 레벨 Span 으로</text>
+
+  <g font-family="system-ui,-apple-system,sans-serif" font-size="16">
+    <rect x="335" y="552" width="190" height="42" rx="21" fill="#ffffff0a" stroke="#ffffff1f"/>
+    <text x="430" y="579" text-anchor="middle" fill="#ffffff5c">Envoy Sidecar</text>
+    <path d="M539 573 h28" stroke="#7dd3fc" stroke-width="2.5" opacity="0.75"/>
+    <path d="M562 567 l7 6 -7 6" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+    <rect x="585" y="552" width="280" height="42" rx="21" fill="#ffffff14" stroke="#ffffff33"/>
+    <text x="725" y="579" text-anchor="middle" fill="#ffffffb3">OTel Auto Instrumentation</text>
+  </g>
+</svg>
