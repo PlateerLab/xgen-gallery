@@ -4,7 +4,7 @@ titleEn: "Building an ontology graph without an LLM"
 cover: /blog/llm-free-ontology-build.svg
 description: "문서를 넣는 단계에서 LLM을 걷어내고, 같은 결과가 나오는지 해시로 대조해본 과정과 그 방법으로는 끝내 안 됐던 것을 함께 정리합니다."
 descriptionEn: "We removed LLM calls from indexing and used hashes to check that the same documents produce the same graph. What that gave us, and where it stopped."
-date: "2026-08-19"
+date: "2026-08-25"
 author: "김동욱"
 authorGithub: "Createyouracccount"
 category: "Tech Note"
