@@ -48,11 +48,11 @@ export function HomePageContent({ locale }: { locale: Locale }) {
     });
     const featuredPost = newsPosts[0] ? toHeroPost(newsPosts[0]) : null;
     const productNews = newsPosts[1] ? toHeroPost(newsPosts[1]) : null;
-    // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나.
-    // 최신 5개를 넘겨 Hero가 방문마다 그중 하나를 무작위로 노출한다.
+    // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나. 최신 1건만 넘긴다
+    // (Hero가 techPosts[0]을 그대로 세운다).
     const techPosts = usable
         .filter((x) => x.category === "Tech Note")
-        .slice(0, 5)
+        .slice(0, 1)
         .map(toHeroPost);
     const iss = getIssues()[0];
     const issTitle = isKo ? iss?.title : iss?.titleEn;

@@ -317,16 +317,10 @@ export function Hero({
     const { locale } = useI18n();
     const [active, setActive] = useState(0);
 
-    // 헤드라인 뉴스의 Tech Note 슬롯: 방문할 때마다 최근 글 중 하나를 무작위로.
-    // 서버/최초 렌더는 최신 글로 고정해 하이드레이션 불일치를 피하고, 마운트 후
-    // 무작위로 교체한다(정적 빌드라 서버에서 뽑으면 값이 고정되어 버린다).
-    const [techIdx, setTechIdx] = useState(0);
-    useEffect(() => {
-        if (techPosts.length > 1) {
-            setTechIdx(Math.floor(Math.random() * techPosts.length));
-        }
-    }, [techPosts.length]);
-    const latestPost = techPosts[techIdx] ?? techPosts[0] ?? null;
+    // 헤드라인 뉴스의 Tech Note 슬롯: 항상 최신 글을 세운다.
+    // (예전에는 최근 5개 중 하나를 마운트 후 무작위로 바꿔 걸었는데, 새 글을 올려도
+    // 홈에서 보일지가 운에 달려 있어 최신글 고정으로 바꿨다.)
+    const latestPost = techPosts[0] ?? null;
 
     useEffect(() => {
         const id = setInterval(
