@@ -37,10 +37,18 @@ export async function POST(req: Request) {
         );
     }
 
-    // 구독 종류 — 뉴스레터 구독(newsletter) vs 블로그 새 글 구독(blog)을 시트에서 구분.
-    const kind = body.kind === "blog" ? "blog" : "newsletter";
+    // 시트에서 성격을 구분한다.
+    //   newsletter    — 뉴스레터 구독
+    //   blog          — 새 글 알림 구독(테크 노트 등)
+    //   field-report  — 현장 리포트 게이트. 약식 리드 정보를 함께 받는 구독이다
+    const KINDS = ["newsletter", "blog", "field-report"] as const;
+    const kind = (KINDS as readonly string[]).includes(String(body.kind))
+        ? String(body.kind)
+        : "newsletter";
     // 구독=Y / 해지=N. 시트에서 이메일 행을 찾아 이 값으로 갱신하도록 웹훅에 전달.
-    const subscribe = body.subscribe !== false; // default: subscribe
+    // 구독=Y / 해지=N. field-report 도 구독으로 잡되(리드 수집 + 구독), 유입 경로는
+    // kind 로 구분되어 시트에서 뉴스레터·새 글 알림과 따로 볼 수 있다.
+    const subscribe = body.subscribe !== false;
     const trim = (v: unknown) => String(v ?? "").trim();
     const record = {
         email,

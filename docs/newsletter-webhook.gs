@@ -32,6 +32,39 @@ const SENDER_NAME = "Plateer AI Labs";
 
 const HEADERS = ["이메일", "구독상태", "최초등록시각", "최종변경시각", "소스"];
 
+/**
+ * 구독 여부 조회용 토큰. 사이트의 서버 라우트(/api/newsletter/check)만 이 값을
+ * 알고 있어야 한다 — 브라우저로 내려가지 않는다. 아무 긴 문자열로 두고,
+ * 같은 값을 go244 .env 의 NEWSLETTER_CHECK_TOKEN 에 넣는다.
+ * 빈 문자열이면 조회 기능이 꺼진다(항상 false 를 돌려준다).
+ */
+const CHECK_TOKEN = "";
+
+/**
+ * 구독 여부 조회 — GET ?action=check&token=…&email=…
+ *
+ * 이미 구독한 독자가 다른 기기에서 현장 리포트를 열었을 때, 이메일만으로 게이트를
+ * 풀어주기 위한 경로다. 구독 여부(Y)만 돌려주고 그 밖의 정보는 내보내지 않는다.
+ */
+function doGet(e) {
+  const p = (e && e.parameter) || {};
+  if (p.action !== "check") return json_({ ok: false, error: "unknown action" });
+  if (!CHECK_TOKEN || p.token !== CHECK_TOKEN) {
+    return json_({ ok: false, error: "unauthorized" });
+  }
+  const email = String(p.email || "").trim().toLowerCase();
+  if (!email) return json_({ ok: false, error: "email required" });
+
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sh || sh.getLastRow() < 2) return json_({ ok: true, subscribed: false });
+
+  const rows = sh.getRange(2, 1, sh.getLastRow() - 1, 2).getValues();
+  const hit = rows.some(function (r) {
+    return String(r[0]).trim().toLowerCase() === email && String(r[1]).trim() === "Y";
+  });
+  return json_({ ok: true, subscribed: hit });
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);

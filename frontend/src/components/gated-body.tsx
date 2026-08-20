@@ -11,8 +11,11 @@ import { useI18n } from "@/components/i18n-provider";
  * AI 크롤러는 지금처럼 전문을 읽는다(검색 노출 손실 없음). 대신 개발자도구로는
  * 우회되므로, 이 장치의 목적은 콘텐츠 차단이 아니라 리드 수집이다.
  *
- * 해제는 쿠키 한 줄로 기억한다. 서버 세션이 없고 구독자 명단을 사이트가 조회할 수
- * 없는 구조라(구독은 웹훅 단방향) 이메일 진위까지 확인하지는 않는다.
+ * 여기서 받는 것은 약식 리드 정보(회사·담당자)를 겸한 구독이다. 시트에는
+ * kind="field-report" 로 쌓여 뉴스레터·새 글 알림과 유입 경로가 구분된다.
+ * 이미 구독 중인 독자는 이메일만 확인해 그대로 열어준다(/api/newsletter/check).
+ *
+ * 해제는 쿠키 한 줄로 기억한다.
  */
 const COOKIE = "xgen-fr-unlock";
 const MAX_AGE = 60 * 60 * 24 * 180; // 180일
@@ -20,9 +23,9 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const COPY = {
     ko: {
-        badge: "구독하면 이어서 읽을 수 있습니다",
+        badge: "구독하시면 이어서 읽을 수 있습니다",
         title: "현장 리포트 전문 보기",
-        desc: "고객사 미팅과 PoC 현장에서 확인한 내용을 정리해 보내드립니다. 이메일을 남기시면 이 글의 나머지가 바로 열립니다.",
+        desc: "고객사 미팅과 PoC 현장에서 확인한 내용입니다. 아래 정보를 남기시면 이 글의 나머지가 바로 열리고, 새 현장 리포트도 메일로 보내드립니다.",
         name: "담당자명",
         company: "회사명",
         jobTitle: "직급",
@@ -32,11 +35,17 @@ const COPY = {
         submitting: "처리 중…",
         error: "모든 항목과 동의 여부를 확인해 주세요",
         done: "구독이 접수되었습니다",
+        already: "뉴스레터를 구독 중이신가요?",
+        checkTitle: "구독자 확인",
+        checkDesc: "뉴스레터나 새 글 알림을 구독 중이시라면, 그 이메일 주소만으로 바로 이어서 읽으실 수 있습니다.",
+        checkSubmit: "확인하고 이어 읽기",
+        checkFail: "구독 내역을 찾지 못했습니다. 아래에 정보를 남기고 이어 읽어주세요",
+        back: "정보 남기고 읽기",
     },
     en: {
         badge: "Subscribe to keep reading",
         title: "Read the full field report",
-        desc: "We send what we learn from customer meetings and PoCs. Leave your email and the rest of this piece opens right away.",
+        desc: "What we learned from customer meetings and PoCs. Leave the details below to open the rest — and we will send new field reports as they come.",
         name: "Your name",
         company: "Company",
         jobTitle: "Job title",
@@ -46,6 +55,12 @@ const COPY = {
         submitting: "Working…",
         error: "Fill in every field and tick the consent box",
         done: "Subscription received",
+        already: "Already subscribed to the newsletter?",
+        checkTitle: "Subscriber check",
+        checkDesc: "If you subscribe to the newsletter or new-post alerts, that email alone opens the rest.",
+        checkSubmit: "Confirm and continue",
+        checkFail: "We could not find that subscription. Leave your details below to continue",
+        back: "Leave details instead",
     },
 };
 
@@ -61,6 +76,42 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
     });
     const [agree, setAgree] = useState(false);
     const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+    // 이미 구독한 독자용 — 이메일만 받아 구독자 시트에서 확인한다.
+    const [mode, setMode] = useState<"subscribe" | "check">("subscribe");
+    const [checkEmail, setCheckEmail] = useState("");
+    const [checkFailed, setCheckFailed] = useState(false);
+
+    function unlock() {
+        document.cookie = `${COOKIE}=1; path=/; max-age=${MAX_AGE}; samesite=lax`;
+        setUnlocked(true);
+    }
+
+    async function verify(e: React.FormEvent) {
+        e.preventDefault();
+        const value = checkEmail.trim();
+        if (!EMAIL_RE.test(value)) {
+            setCheckFailed(true);
+            return;
+        }
+        setStatus("sending");
+        setCheckFailed(false);
+        try {
+            const res = await fetch("/api/newsletter/check", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ email: value }),
+            });
+            const data = (await res.json()) as { subscribed?: boolean };
+            if (data.subscribed) {
+                unlock();
+                return;
+            }
+        } catch {
+            /* 확인 실패는 아래에서 안내한다 */
+        }
+        setStatus("idle");
+        setCheckFailed(true);
+    }
 
     const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -102,14 +153,13 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
             await fetch("/api/newsletter", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ...v, subscribe: true, kind: "blog" }),
+                body: JSON.stringify({ ...v, kind: "field-report" }),
             });
         } catch {
             // 전송이 실패해도 열어준다 — 웹훅이 비동기라 성공 여부가 즉시 확정되지
             // 않는데, 여기서 막으면 독자만 손해다.
         }
-        document.cookie = `${COOKIE}=1; path=/; max-age=${MAX_AGE}; samesite=lax`;
-        setUnlocked(true);
+        unlock();
     }
 
     return (
@@ -134,12 +184,51 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                                 {t.badge}
                             </span>
                             <p className="mt-3 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
-                                {t.title}
+                                {mode === "check" ? t.checkTitle : t.title}
                             </p>
                             <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {t.desc}
+                                {mode === "check" ? t.checkDesc : t.desc}
                             </p>
 
+                            {mode === "check" ? (
+                                <form onSubmit={verify} className="mt-5">
+                                    <input
+                                        type="email"
+                                        required
+                                        value={checkEmail}
+                                        onChange={(e) => {
+                                            setCheckEmail(e.target.value);
+                                            setCheckFailed(false);
+                                        }}
+                                        placeholder={t.email}
+                                        aria-label={t.email}
+                                        disabled={status === "sending"}
+                                        className="w-full rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[15px] outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 disabled:opacity-60"
+                                    />
+                                    {checkFailed && (
+                                        <p className="mt-2 text-[13px] font-semibold text-[#dc2626]">
+                                            {t.checkFail}
+                                        </p>
+                                    )}
+                                    <button
+                                        type="submit"
+                                        disabled={status === "sending"}
+                                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#6d28d9] px-5 py-3 text-[15px] font-bold text-white transition hover:bg-[#5b21b6] disabled:opacity-60"
+                                    >
+                                        {status === "sending" ? t.submitting : t.checkSubmit}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setMode("subscribe");
+                                            setCheckFailed(false);
+                                        }}
+                                        className="mt-3 w-full text-[13.5px] font-semibold text-[#6d28d9] transition hover:text-[#5b21b6]"
+                                    >
+                                        {t.back}
+                                    </button>
+                                </form>
+                            ) : (
                             <form onSubmit={submit} className="mt-5">
                                 <div className="grid gap-2.5 sm:grid-cols-2">
                                     {/* 회사 → 담당자 순. 2열이라 위 줄에 회사 정보,
@@ -196,7 +285,15 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                                         </>
                                     )}
                                 </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setMode("check")}
+                                    className="mt-3 w-full text-[13.5px] font-semibold text-[var(--color-ink-subtle)] transition hover:text-[#6d28d9]"
+                                >
+                                    {t.already}
+                                </button>
                             </form>
+                            )}
                         </div>
                     </div>
                 )}
