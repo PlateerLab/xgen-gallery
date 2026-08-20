@@ -27,7 +27,7 @@
   <rect x="696" y="430" width="120" height="30" rx="15" fill="#ffffff33"/>
   <text x="712" y="451" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#e4eeff">1등급</text>
   <circle cx="984" cy="392" r="86" fill="url(#badge)"/>
-  <circle cx="984" cy="392" r="70" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.65"/>
-  <path d="M948 392 l24 26 46 -54" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="984" cy="392" r="70" fill="none" stroke="#2f6fe4" stroke-width="4" opacity="0.32"/>
+  <path d="M948 392 l24 26 46 -54" fill="none" stroke="#2f6fe4" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M948 470 l12 40 24 -22 24 22 12 -40 z" fill="#e4eeff"/>
 </svg>

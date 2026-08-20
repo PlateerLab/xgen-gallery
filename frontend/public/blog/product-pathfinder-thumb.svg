@@ -17,6 +17,6 @@
   <path d="M920 336 L 976 336" stroke="#e4eeff" stroke-width="8" stroke-linecap="round"/>
   <path d="M960 316 L 982 336 L 960 356" fill="none" stroke="#e4eeff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
   <rect x="1006" y="216" width="150" height="240" rx="24" fill="url(#badge)"/>
-  <circle cx="1081" cy="300" r="34" fill="none" stroke="#ffffff" stroke-width="12"/>
-  <path d="M1081 334 v54 M1053 388 h56" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1081" cy="300" r="34" fill="none" stroke="#2f6fe4" stroke-width="12"/>
+  <path d="M1081 334 v54 M1053 388 h56" stroke="#2f6fe4" stroke-width="12" stroke-linecap="round"/>
 </svg>

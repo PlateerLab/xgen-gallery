@@ -17,8 +17,8 @@
   <!-- 우 40% — 라벨 없이도 형태로 읽히는 큰 인장 -->
   <circle cx="936" cy="330" r="182" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
   <circle cx="936" cy="330" r="146" fill="url(#badge)"/>
-  <circle cx="936" cy="330" r="120" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.6"/>
-  <path d="M876 330 l40 44 78 -92" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M876 486 l20 68 40 -38 40 38 20 -68 z" fill="#e4eeff"/>
+  <circle cx="936" cy="330" r="120" fill="none" stroke="#2f6fe4" stroke-width="5" opacity="0.32"/>
+  <path d="M876 330 l40 44 78 -92" fill="none" stroke="#2f6fe4" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M876 486 l20 68 40 -38 40 38 20 -68 z" fill="#cfe0fd"/>
   <text x="936" y="580" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="800" letter-spacing="3" fill="#ffffff">GRADE 1</text>
 </svg>

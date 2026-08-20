@@ -60,8 +60,8 @@
   <line x1="684" y1="293" x2="820" y2="293" stroke="#e4eeff" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.75"/>
   <g transform="translate(516 245)">
     <rect width="168" height="96" rx="22" fill="url(#brand)"/>
-    <path d="M56 48 h56 M92 32 l20 16 -20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M56 48 l-20 -16 M56 48 l-20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    <path d="M56 48 h56 M92 32 l20 16 -20 16" fill="none" stroke="#2f6fe4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M56 48 l-20 -16 M56 48 l-20 16" fill="none" stroke="#2f6fe4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
   </g>
   <text x="600" y="378" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#e4eeff">DeX Connector</text>
 
