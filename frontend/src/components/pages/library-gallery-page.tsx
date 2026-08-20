@@ -45,7 +45,10 @@ export function LibraryGalleryPageContent({
             </section>
             {/* 메인 페이지(키비주얼 제외)와 동일한 콘텐츠 구성 */}
             <main>
-                <ToolGrid initial={categoryFrom(cat)} />
+                {/* key — 갤러리에 머문 채 GNB 에서 다른 카테고리를 누르면 URL 만 바뀌고
+                    그리드의 useState 는 초기값을 다시 읽지 않는다. cat 이 바뀔 때 다시
+                    마운트시켜 딥링크가 항상 필터에 반영되게 한다. */}
+                <ToolGrid key={cat ?? "all"} initial={categoryFrom(cat)} />
                 {/* Runtime — Technology에서 이관. onepage Section과 동일한 컨테이너로 래핑 */}
                 <section
                     id="runtime"

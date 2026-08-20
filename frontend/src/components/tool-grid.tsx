@@ -37,7 +37,9 @@ export function ToolGrid({ initial = "all" }: { initial?: ToolCategory | "all" }
     }, []);
 
     return (
-        <section id="tools" className="mx-auto max-w-7xl px-6 py-28">
+        {/* scroll-mt — GNB 하위 메뉴가 #tools 로 내려보내므로 고정 헤더에 제목이
+            가리지 않도록 여유를 준다. */}
+        <section id="tools" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-28">
             <div className="flex flex-col items-center gap-8 text-center">
                 <div>
                     <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
