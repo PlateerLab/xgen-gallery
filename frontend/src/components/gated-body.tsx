@@ -142,12 +142,14 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
 
                             <form onSubmit={submit} className="mt-5">
                                 <div className="grid gap-2.5 sm:grid-cols-2">
+                                    {/* 회사 → 담당자 순. 2열이라 위 줄에 회사 정보,
+                                        아래 줄에 담당자 정보가 놓인다. */}
                                     {(
                                         [
-                                            ["name", t.name, "text"],
                                             ["company", t.company, "text"],
-                                            ["jobTitle", t.jobTitle, "text"],
                                             ["email", t.email, "email"],
+                                            ["name", t.name, "text"],
+                                            ["jobTitle", t.jobTitle, "text"],
                                         ] as const
                                     ).map(([key, label, type]) => (
                                         <input
