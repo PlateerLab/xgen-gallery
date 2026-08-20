@@ -296,7 +296,7 @@ export function SiteNav({
                     <span
                         className="text-[26px] font-extrabold leading-none tracking-tight text-[#00adee] transition-colors"
                     >
-                        LABS
+                        AI LABS
                     </span>
                 </Link>
 

@@ -250,7 +250,7 @@ export function SiteFooter() {
                             <BrandMark className="h-5 w-5" />
                             <span>
                                 © 2023{year > 2023 ? `–${year}` : ""} Plateer{" "}
-                                <span className="text-[#00adee]">Labs</span>
+                                <span className="text-[#00adee]">AI Labs</span>
                             </span>
                         </div>
                         <p className="line-clamp-4 max-w-xs text-[14px] leading-relaxed text-[var(--color-ink-subtle)]">
