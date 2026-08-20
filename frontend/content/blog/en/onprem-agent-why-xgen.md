@@ -3,6 +3,7 @@ title: "On-premise AI agents — why XGEN"
 description: "Once agents start executing inside core systems, the selection criteria change. Here is the on-premise agent platform that keeps data inside your boundary, connects to existing systems, and keeps execution controlled and traceable."
 date: "2026-08-12"
 cover: /blog/onprem-agent-why-xgen.svg
+thumb: /blog/onprem-agent-why-xgen-thumb.svg
 author: "Plateer Labs"
 category: "Industry Note"
 tags: ["On-premise", "Private Agent", "Data sovereignty", "AI governance", "XGEN", "Agentic AI"]

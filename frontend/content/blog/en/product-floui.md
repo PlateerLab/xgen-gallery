@@ -3,6 +3,7 @@ title: "FloUI — when the question becomes the screen"
 description: "The era of fitting data into a screen is over. Meet FloUI, a responsive UI that builds the screen in real time the moment a user asks."
 date: "2026-05-30"
 cover: /blog/product-floui.svg
+thumb: /blog/product-floui-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["FloUI", "Extensibility", "Hyper-personalization", "Product"]

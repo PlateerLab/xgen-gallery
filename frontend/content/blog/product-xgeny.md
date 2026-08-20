@@ -3,6 +3,7 @@ title: "XGeny — 답변하는 AI에서, 스스로 일하는 AI Agent로"
 description: "XGEN의 Agent가 한 단계 더 진화합니다. 메모리와 독립된 작업 공간을 갖고, 필요한 도구를 찾아 활용하며, 필요하면 직접 만들어 업무를 이어가는 새로운 Agent 실행 환경, XGeny를 소개합니다."
 date: "2026-08-19"
 cover: /blog/product-xgeny.svg
+thumb: /blog/product-xgeny-thumb.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["XGeny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "제품"]

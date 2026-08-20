@@ -3,6 +3,7 @@ title: "XGEN DeX — the execution layer that reaches the desktop"
 description: "The agent runs on the server; the user works with it from their own desktop. Central control stays where it is, and nobody has to change how they work."
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
+thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "On-premise", "Product"]

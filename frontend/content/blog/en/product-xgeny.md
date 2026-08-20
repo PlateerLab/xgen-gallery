@@ -3,6 +3,7 @@ title: "XGeny — from an AI that answers to an AI agent that works"
 description: "The XGEN agent takes another step forward. XGeny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward."
 date: "2026-08-19"
 cover: /blog/product-xgeny.svg
+thumb: /blog/product-xgeny-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["XGeny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "Product"]

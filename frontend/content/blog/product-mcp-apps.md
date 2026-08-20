@@ -5,6 +5,7 @@ description: "엔진을 감싸는 Wrapper 방식을 넘어, SDK로 워크플로�
 descriptionEn: "Package an agent workflow as a standard MCP app and run it wherever you need it, without rebuilding the integration each time."
 date: "2026-06-21"
 cover: /blog/product-mcp-apps.svg
+thumb: /blog/product-mcp-apps-thumb.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["MCP Apps", "독립", "제품"]

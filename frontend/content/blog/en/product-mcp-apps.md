@@ -3,6 +3,7 @@ title: "MCP Apps — build once, run anywhere"
 description: "Past wrapping an engine, XGEN's SDK compiles workflows and policies into code and exports them as a standalone MCP server."
 date: "2026-06-21"
 cover: /blog/product-mcp-apps.svg
+thumb: /blog/product-mcp-apps-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["MCP Apps", "Portability", "Product"]

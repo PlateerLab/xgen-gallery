@@ -3,6 +3,7 @@ title: "B2B 식품·유통에서 '고객 이탈 예측 AI'는 무엇을 봐야 �
 description: "B2C 이커머스의 고객 분석을 그대로 옮기기 어려운 이유, 예측에서 멈추지 않고 영업 대응까지 잇는 설계, 그리고 짧은 PoC에서 먼저 검증해야 할 질문을 정리했습니다."
 date: "2026-03-16"
 cover: /blog/b2b-churn-signal-field-note.svg
+thumb: /blog/b2b-churn-signal-field-note-thumb.svg
 author: "Plateer Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"

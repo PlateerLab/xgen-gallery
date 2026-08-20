@@ -3,6 +3,7 @@ title: "XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층"
 description: "AI Agent는 서버에서 실행되고, 사용자는 자기 데스크톱에서 그 Agent와 일합니다. 중앙 통제는 그대로 두고 업무 방식만 바꾸지 않는 연결 방식을 소개합니다."
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
+thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "온프레미스", "제품"]

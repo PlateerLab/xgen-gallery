@@ -5,6 +5,7 @@ description: "TTA GS 인증 시험을 통해 검증된 XGEN Agentic AI Platform�
 descriptionEn: "XGEN earned Grade 1 GS certification, Korea's highest national software quality grade. Here is what the platform actually does — the node canvas, the headless engine, knowledge and tools, and the governance layer around them."
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg
+thumb: /blog/product-xgen-v1-thumb.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["XGEN", "Agentic AI", "GS인증", "GraphRAG", "AI 거버넌스", "Enterprise AI"]

@@ -3,6 +3,7 @@ title: "What should churn-prediction AI actually look at in B2B food distributio
 description: "Why consumer e-commerce analytics do not transfer directly, how a design carries through from prediction to sales action, and which questions a short PoC should settle first."
 date: "2026-03-16"
 cover: /blog/b2b-churn-signal-field-note.svg
+thumb: /blog/b2b-churn-signal-field-note-thumb.svg
 author: "Plateer Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"

@@ -4,6 +4,7 @@ titleSeo: "PathFinder — legacy as agent tools"
 description: "Login, API wiring, tool registration, testing — not a line of code. PathFinder turns dormant legacy APIs into tools an agent can use."
 date: "2026-06-08"
 cover: /blog/product-pathfinder.svg
+thumb: /blog/product-pathfinder-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["PathFinder", "Integration", "No-Code", "Product"]
