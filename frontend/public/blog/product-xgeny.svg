@@ -1,15 +1,15 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGeny — 메모리·도구·스케줄을 담은 워크스페이스를 가진 에이전트가, 수많은 도구 가운데 필요한 것만 검색해 꺼내 쓰는 구조">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#070b1c"/>
-      <stop offset="1" stop-color="#0d1633"/>
+      <stop offset="0" stop-color="#101a33"/>
+      <stop offset="1" stop-color="#24355f"/>
     </linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#00acee"/>
       <stop offset="1" stop-color="#7c5cff"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.35"/>
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.4"/>
       <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
     </radialGradient>
   </defs>
