@@ -6,12 +6,8 @@
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="1010" cy="110" r="240" fill="#14b8a6" opacity="0.07"/>
   <circle cx="120" cy="620" r="180" fill="#0f766e" opacity="0.05"/>
-
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#0d9488">TECH NOTE · 온톨로지 5편</text>
-  <text x="88" y="272" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#0f172a">행은 줄이고</text>
-  <text x="88" y="378" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#0d9488">클래스는 지킨다</text>
-  <rect x="88" y="426" width="8" height="52" rx="4" fill="#0d9488"/>
-  <text x="114" y="466" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#475569">CSV 정제 · 가드</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#0f172a">행은 줄이고</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#0d9488">클래스는 지킨다</text>
 
   <circle cx="960" cy="336" r="186" fill="#ffffff" opacity="0.55"/>
   <circle cx="960" cy="336" r="150" fill="url(#badge)"/>

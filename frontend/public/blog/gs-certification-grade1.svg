@@ -1,33 +1,33 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN GS 인증 1등급 획득">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#24355f"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d7bf2"/><stop offset="1" stop-color="#639bfb"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
     <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#1e3a8a" flood-opacity="0.14"/></filter>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="1080" cy="90" r="220" fill="#38bdf8" opacity="0.1"/>
-  <circle cx="140" cy="620" r="180" fill="#818cf8" opacity="0.09"/>
+  <circle cx="1080" cy="90" r="220" fill="#ffffff" opacity="0.1"/>
+  <circle cx="140" cy="620" r="180" fill="#ffffff" opacity="0.09"/>
 
-  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#7dd3fc">XGEN 프리뷰 · GS 인증</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#e4eeff">XGEN 프리뷰 · GS 인증</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
-  <text x="140" y="214" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#ffffff">GS</text>
+  <text x="140" y="214" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#2f6fe4">GS</text>
   <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#ffffff">소프트웨어 품질</text>
-  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#7dd3fc">GS 인증 1등급</text>
-  <rect x="92" y="440" width="300" height="52" rx="26" fill="#ffffff0f"/>
-  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#7dd3fc">AI 품질을 증명하다</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#e4eeff">GS 인증 1등급</text>
+  <rect x="92" y="440" width="300" height="52" rx="26" fill="#ffffff33"/>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#e4eeff">AI 품질을 증명하다</text>
 
   <!-- motif: certificate + 1등급 seal -->
-  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff0d" stroke="#ffffff24"/></g>
-  <rect x="664" y="196" width="252" height="300" rx="16" fill="#ffffff0f" stroke="#ffffff26"/>
-  <rect x="696" y="236" width="150" height="20" rx="10" fill="#7dd3fcaa"/>
-  <rect x="696" y="282" width="188" height="14" rx="7" fill="#ffffff26"/>
-  <rect x="696" y="312" width="160" height="14" rx="7" fill="#ffffff26"/>
-  <rect x="696" y="342" width="176" height="14" rx="7" fill="#ffffff26"/>
-  <rect x="696" y="372" width="120" height="14" rx="7" fill="#ffffff26"/>
-  <rect x="696" y="430" width="120" height="30" rx="15" fill="#ffffff0f"/>
-  <text x="712" y="451" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">1등급</text>
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff2e" stroke="#ffffff8c"/></g>
+  <rect x="664" y="196" width="252" height="300" rx="16" fill="#ffffff33" stroke="#ffffff8c"/>
+  <rect x="696" y="236" width="150" height="20" rx="10" fill="#ffffffb3"/>
+  <rect x="696" y="282" width="188" height="14" rx="7" fill="#ffffff59"/>
+  <rect x="696" y="312" width="160" height="14" rx="7" fill="#ffffff59"/>
+  <rect x="696" y="342" width="176" height="14" rx="7" fill="#ffffff59"/>
+  <rect x="696" y="372" width="120" height="14" rx="7" fill="#ffffff59"/>
+  <rect x="696" y="430" width="120" height="30" rx="15" fill="#ffffff33"/>
+  <text x="712" y="451" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#e4eeff">1등급</text>
   <circle cx="984" cy="392" r="86" fill="url(#badge)"/>
   <circle cx="984" cy="392" r="70" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.65"/>
   <path d="M948 392 l24 26 46 -54" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M948 470 l12 40 24 -22 24 22 12 -40 z" fill="#7dd3fc"/>
+  <path d="M948 470 l12 40 24 -22 24 22 12 -40 z" fill="#e4eeff"/>
 </svg>

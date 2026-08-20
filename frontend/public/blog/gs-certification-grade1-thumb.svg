@@ -1,28 +1,24 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN GS 인증 1등급 획득 — Enterprise AI Platform 의 소프트웨어 품질 인증">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#24355f"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d7bf2"/><stop offset="1" stop-color="#639bfb"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.34"/>
-      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="940" cy="330" r="330" fill="url(#glow)"/>
 
   <!-- 좌 60% — 목록에서 이것만 읽혀도 글의 요지가 전달되게 -->
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#7dd3fc">XGEN 프리뷰</text>
-  <text x="88" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">GS 인증</text>
-  <text x="88" y="376" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7dd3fc">1등급 획득</text>
-  <rect x="88" y="424" width="8" height="52" rx="4" fill="#7dd3fc"/>
-  <text x="114" y="464" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#cbd5e1">Enterprise AI Platform</text>
-  <text x="88" y="562" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="500" fill="#94a3b8">소프트웨어 품질을 시험으로 증명했습니다</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">GS 인증</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">1등급 획득</text>
 
   <!-- 우 40% — 라벨 없이도 형태로 읽히는 큰 인장 -->
-  <circle cx="936" cy="330" r="182" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
+  <circle cx="936" cy="330" r="182" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
   <circle cx="936" cy="330" r="146" fill="url(#badge)"/>
   <circle cx="936" cy="330" r="120" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.6"/>
   <path d="M876 330 l40 44 78 -92" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M876 486 l20 68 40 -38 40 38 20 -68 z" fill="#7dd3fc"/>
+  <path d="M876 486 l20 68 40 -38 40 38 20 -68 z" fill="#e4eeff"/>
   <text x="936" y="580" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="800" letter-spacing="3" fill="#ffffff">GRADE 1</text>
 </svg>

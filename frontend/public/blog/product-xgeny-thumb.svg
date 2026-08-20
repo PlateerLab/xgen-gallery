@@ -1,28 +1,23 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGeny — 답변하는 AI 에서 스스로 도구를 만들어 일하는 Agent 로">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#24355f"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4d8dff" stop-opacity="0.34"/><stop offset="1" stop-color="#4d8dff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d7bf2"/><stop offset="1" stop-color="#639bfb"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#7dd3fc">XGEN 프리뷰 · XGeny</text>
-  <text x="88" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">답변에서</text>
-  <text x="88" y="376" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7dd3fc">실행으로</text>
-  <rect x="88" y="424" width="8" height="52" rx="4" fill="#7dd3fc"/>
-  <text x="114" y="464" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#cbd5e1">XGeny · Agent Runtime</text>
-  <text x="88" y="562" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="500" fill="#94a3b8">필요한 도구를 스스로 만들어 씁니다</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">답변에서</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">실행으로</text>
 
   <circle cx="840" cy="300" r="118" fill="url(#badge)"/>
-  <circle cx="840" cy="272" r="34" fill="#ffffff" opacity="0.94"/>
+  <circle cx="840" cy="272" r="34" fill="#eaf2ff" opacity="1"/>
   <circle cx="828" cy="267" r="5" fill="#16203a"/><circle cx="852" cy="267" r="5" fill="#16203a"/>
   <path d="M826 286 q14 12 28 0" fill="none" stroke="#16203a" stroke-width="5" stroke-linecap="round"/>
-  <text x="840" y="364" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="700" fill="#ffffff">XGeny</text>
-  <rect x="986" y="186" width="170" height="70" rx="18" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
-  <rect x="986" y="272" width="170" height="70" rx="18" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
-  <rect x="986" y="358" width="170" height="70" rx="18" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
-  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#cbd5e1" text-anchor="middle">
+  <text x="840" y="364" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="700" fill="#2f6fe4">XGeny</text>
+  <rect x="986" y="186" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <rect x="986" y="272" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <rect x="986" y="358" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" text-anchor="middle">
     <text x="1071" y="230">Memory</text><text x="1071" y="316">Workspace</text><text x="1071" y="402">Schedule</text>
   </g>
 </svg>

@@ -1,26 +1,21 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PathFinder — 레거시 시스템을 에이전트 도구로 바꾼다">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#24355f"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4d8dff" stop-opacity="0.34"/><stop offset="1" stop-color="#4d8dff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d7bf2"/><stop offset="1" stop-color="#639bfb"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">레거시를</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">에이전트로</text>
 
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#7dd3fc">XGEN 프리뷰 · PathFinder</text>
-  <text x="88" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">레거시를</text>
-  <text x="88" y="376" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7dd3fc">에이전트로</text>
-  <rect x="88" y="424" width="8" height="52" rx="4" fill="#7dd3fc"/>
-  <text x="114" y="464" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#cbd5e1">PathFinder · No-Code</text>
-  <text x="88" y="562" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="500" fill="#94a3b8">기존 시스템을 그대로 도구로 만듭니다</text>
-
-  <rect x="684" y="216" width="208" height="240" rx="24" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
-  <g fill="#ffffff26">
+  <rect x="684" y="216" width="208" height="240" rx="24" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <g fill="#ffffff59">
     <rect x="720" y="260" width="136" height="20" rx="10"/><rect x="720" y="300" width="104" height="20" rx="10"/>
     <rect x="720" y="340" width="136" height="20" rx="10"/><rect x="720" y="380" width="88" height="20" rx="10"/>
   </g>
-  <path d="M920 336 L 976 336" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round"/>
-  <path d="M960 316 L 982 336 L 960 356" fill="none" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M920 336 L 976 336" stroke="#e4eeff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M960 316 L 982 336 L 960 356" fill="none" stroke="#e4eeff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
   <rect x="1006" y="216" width="150" height="240" rx="24" fill="url(#badge)"/>
   <circle cx="1081" cy="300" r="34" fill="none" stroke="#ffffff" stroke-width="12"/>
   <path d="M1081 334 v54 M1053 388 h56" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>

@@ -6,13 +6,8 @@
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#7c3aed">FIELD NOTE</text>
-  <text x="88" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#111827">패턴이</text>
-  <text x="88" y="376" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
-  <rect x="88" y="424" width="8" height="52" rx="4" fill="#7c3aed"/>
-  <text x="114" y="464" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#4b5563">B2B 이탈 신호</text>
-  <text x="88" y="562" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="500" fill="#6b7280">누가 이탈하는가보다, 무엇이 달라졌는가</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#111827">패턴이</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
 
   <g>
     <rect x="700" y="212" width="52" height="196" rx="14" fill="#cdd2da"/>
