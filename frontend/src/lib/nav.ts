@@ -395,8 +395,10 @@ export const NAV_GROUPS: NavGroup[] = [
         ],
     },
     {
-        // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: 카테고리 3개 →
-        // Lab Newsletter. (Downloads 는 hidden 으로 감춰 둔 상태다.)
+        // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: XGEN Preview →
+        // Field Report → Lab Newsletter → Tech Note. (Downloads 는 hidden.)
+        // 목록 탭 순서(VISIBLE_BLOG_CATEGORIES)와 달리 뉴스레터가 사이에 끼므로
+        // 이 배열이 GNB 순서의 단일 출처다.
         // 카테고리는 /blog?cat=… 로 딥링크되어
         // BlogList가 초기 필터를 적용한다(blog-list.tsx의 CATEGORY_BY_KEY).
         // 글 목록 전체로 가는 링크는 그룹 라벨(Insight → /blog)이 맡는다.
@@ -413,11 +415,11 @@ export const NAV_GROUPS: NavGroup[] = [
             { label: "XGEN Preview", labelKo: "XGEN 프리뷰", id: "cat-product", route: "/blog?cat=product" },
             // 표기는 "Field Report"지만 딥링크 키(cat=industry)와 저장 값은 그대로다.
             { label: "Field Report", labelKo: "필드 리포트", id: "cat-industry", route: "/blog?cat=industry" },
-            { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
             // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
             // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
             { label: "Lab Newsletter", labelKo: "랩 뉴스레터", id: "newsletter", route: "/newsletter" },
+            { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
             {
                 // 메뉴에서만 감춘다 — /resources 페이지와 그 안의 소개서 다운로드는
                 // 그대로 살아 있고, 직접 주소로도 각 페이지 링크로도 접근된다.
