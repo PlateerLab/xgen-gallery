@@ -45,6 +45,14 @@ export interface PostMeta {
     category: string;
     tags: string[];
     cover?: string;
+    /**
+     * 목록 카드 전용 썸네일(선택). 없으면 cover 를 그대로 쓴다.
+     *
+     * cover 는 본문 히어로(768px)와 공유 이미지(1200px)를 함께 맡아 설명 요소가
+     * 많은데, 목록 카드는 288px 라 그 요소들이 3~6px 로 뭉갠다. 그래서 목록에서만
+     * 쓰는 큰 활자·큰 도형 버전을 따로 둘 수 있게 한다.
+     */
+    thumb?: string;
     draft?: boolean;
     featured?: boolean; // 키비주얼(히어로) 캐러셀 노출 — Decap에서 편집자가 선정
     /** TL;DR 요약 — 본문 상단 하이라이트 박스. AI 검색이 인용하기 쉬운 3~4문장 핵심. */
@@ -128,6 +136,7 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
         })(),
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         cover: data.cover ? String(data.cover) : undefined,
+        thumb: data.thumb ? String(data.thumb) : undefined,
         draft: Boolean(data.draft),
         featured: Boolean(data.featured),
         summary: data.summary ? String(data.summary) : undefined,

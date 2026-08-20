@@ -5,6 +5,7 @@ description: "XGEN Agentic AI Platform이 국가 공인 소프트웨어 품질�
 descriptionEn: "The XGEN Agentic AI Platform passed accredited third-party testing against the ISO/IEC 25000 standards and received Grade 1 — the highest grade in Korea's national software quality certification."
 date: "2026-07-06"
 cover: /blog/gs-certification-grade1.svg
+thumb: /blog/gs-certification-grade1-thumb.svg
 author: "Plateer Labs"
 category: "제품 소식"
 tags: ["GS인증", "소프트웨어 품질", "1등급", "XGEN", "Enterprise AI"]

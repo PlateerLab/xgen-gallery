@@ -124,13 +124,21 @@ export function fmtDate(d: string) {
     return d.replaceAll("-", ".");
 }
 
-/** 커버 이미지가 있으면 그대로, 없으면 카테고리 브랜드 썸네일을 렌더. */
+/**
+ * 목록 카드의 썸네일 — thumb 이 있으면 그것, 없으면 cover, 둘 다 없으면
+ * 카테고리 브랜드 썸네일을 렌더.
+ *
+ * thumb 을 따로 두는 이유는 크기 차이다. 목록 카드는 288px 라 cover 의 보조
+ * 텍스트가 3~6px 로 뭉개진다. 큰 활자·큰 도형만 남긴 목록 전용 이미지를
+ * 프론트매터의 thumb 에 지정하면 이 자리에서만 바뀐다(본문·공유는 cover 유지).
+ */
 export function Thumb({ post, className }: { post: PostMeta; className?: string }) {
-    if (post.cover) {
+    const src = post.thumb ?? post.cover;
+    if (src) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-                src={post.cover}
+                src={src}
                 alt=""
                 loading="lazy"
                 className={cn("h-full w-full object-cover", className)}

@@ -4,6 +4,7 @@ titleSeo: "XGEN awarded GS certification Grade 1"
 description: "The XGEN Agentic AI Platform received Grade 1 — the top grade in Korea's national software quality certification. What it means, and what it changes."
 date: "2026-07-06"
 cover: /blog/gs-certification-grade1.svg
+thumb: /blog/gs-certification-grade1-thumb.svg
 author: "Plateer Labs"
 category: "Product news"
 tags: ["GS Certification", "Software quality", "Grade 1", "XGEN", "Enterprise AI"]

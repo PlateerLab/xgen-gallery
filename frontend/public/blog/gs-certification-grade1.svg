@@ -1,28 +1,33 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN GS 인증 1등급 획득 — Enterprise AI Platform 의 소프트웨어 품질 인증">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN GS 인증 1등급 획득">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a33"/><stop offset="1" stop-color="#24355f"/></linearGradient>
     <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.34"/>
-      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#1e3a8a" flood-opacity="0.14"/></filter>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="940" cy="330" r="330" fill="url(#glow)"/>
+  <circle cx="1080" cy="90" r="220" fill="#38bdf8" opacity="0.1"/>
+  <circle cx="140" cy="620" r="180" fill="#818cf8" opacity="0.09"/>
 
-  <!-- 좌 60% — 목록에서 이것만 읽혀도 글의 요지가 전달되게 -->
-  <text x="88" y="132" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#7dd3fc">XGEN 프리뷰</text>
-  <text x="88" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">GS 인증</text>
-  <text x="88" y="376" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7dd3fc">1등급 획득</text>
-  <rect x="88" y="424" width="8" height="52" rx="4" fill="#7dd3fc"/>
-  <text x="114" y="464" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="600" fill="#cbd5e1">Enterprise AI Platform</text>
-  <text x="88" y="562" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="500" fill="#94a3b8">소프트웨어 품질을 시험으로 증명했습니다</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#7dd3fc">XGEN 프리뷰 · GS 인증</text>
+  <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
+  <text x="140" y="214" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#ffffff">GS</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#ffffff">소프트웨어 품질</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#7dd3fc">GS 인증 1등급</text>
+  <rect x="92" y="440" width="300" height="52" rx="26" fill="#ffffff0f"/>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#7dd3fc">AI 품질을 증명하다</text>
 
-  <!-- 우 40% — 라벨 없이도 형태로 읽히는 큰 인장 -->
-  <circle cx="936" cy="330" r="182" fill="#ffffff0a" stroke="#ffffff26" stroke-width="2"/>
-  <circle cx="936" cy="330" r="146" fill="url(#badge)"/>
-  <circle cx="936" cy="330" r="120" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.6"/>
-  <path d="M876 330 l40 44 78 -92" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M876 486 l20 68 40 -38 40 38 20 -68 z" fill="#7dd3fc"/>
-  <text x="936" y="580" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="800" letter-spacing="3" fill="#ffffff">GRADE 1</text>
+  <!-- motif: certificate + 1등급 seal -->
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff0d" stroke="#ffffff24"/></g>
+  <rect x="664" y="196" width="252" height="300" rx="16" fill="#ffffff0f" stroke="#ffffff26"/>
+  <rect x="696" y="236" width="150" height="20" rx="10" fill="#7dd3fcaa"/>
+  <rect x="696" y="282" width="188" height="14" rx="7" fill="#ffffff26"/>
+  <rect x="696" y="312" width="160" height="14" rx="7" fill="#ffffff26"/>
+  <rect x="696" y="342" width="176" height="14" rx="7" fill="#ffffff26"/>
+  <rect x="696" y="372" width="120" height="14" rx="7" fill="#ffffff26"/>
+  <rect x="696" y="430" width="120" height="30" rx="15" fill="#ffffff0f"/>
+  <text x="712" y="451" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">1등급</text>
+  <circle cx="984" cy="392" r="86" fill="url(#badge)"/>
+  <circle cx="984" cy="392" r="70" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.65"/>
+  <path d="M948 392 l24 26 46 -54" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M948 470 l12 40 24 -22 24 22 12 -40 z" fill="#7dd3fc"/>
 </svg>
