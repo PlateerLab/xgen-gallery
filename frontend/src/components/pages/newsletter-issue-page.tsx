@@ -170,7 +170,7 @@ const COPY: Record<
         cadence: "격주 발행",
         noticeTitle: "뉴스레터 안내",
         noticeA: "이 글은",
-        noticeBrand: "플래티어랩스",
+        noticeBrand: "플래티어 AI Labs",
         noticeB: "에서 격주로 발간하는 XGEN·AI 뉴스레터 콘텐츠입니다. 메일로 발행된 뉴스레터를 웹에서도 그대로 보실 수 있습니다.",
         releasesTitle: "XGEN 이번 호 릴리즈",
         releasesDesc: "이번 호에 배포된 새 기능·개선·수정입니다.",

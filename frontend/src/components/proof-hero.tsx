@@ -15,7 +15,7 @@ const COPY: Record<
         title: "실증 데모",
         lead: "백마디 말보다 실행으로 — XGEN의 핵심 기능이 실제로 실행되는 모습을 영상으로 확인하세요",
         play: "데모 영상 재생",
-        channel: "플래티어랩스 YouTube 채널",
+        channel: "플래티어 AI Labs YouTube 채널",
     },
     en: {
         title: "Proof in Action",
