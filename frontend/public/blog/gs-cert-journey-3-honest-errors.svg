@@ -8,13 +8,13 @@
   <circle cx="1080" cy="90" r="220" fill="#0ea5e9" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#2563eb" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">TECH NOTE · GS인증 3편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">TECH NOTE · GS인증 3편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="46" font-weight="800" fill="#ffffff">3</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">실패를 실패라고</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0284c7">말하게 만들다</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">실패를 실패라고</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0284c7">말하게 만들다</text>
   <rect x="92" y="440" width="256" height="52" rx="26" fill="#e0f2fe"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0369a1">오류 처리 · 검증</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#0369a1">오류 처리 · 검증</text>
 
   <!-- motif: separated error toast + success toast (no more mixed) -->
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>

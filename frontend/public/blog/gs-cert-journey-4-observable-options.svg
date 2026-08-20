@@ -8,17 +8,17 @@
   <circle cx="1080" cy="90" r="220" fill="#0ea5e9" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#2563eb" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">TECH NOTE · GS인증 4편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">TECH NOTE · GS인증 4편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="46" font-weight="800" fill="#ffffff">4</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">설정을 바꾸면</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0284c7">결과가 보이도록</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">설정을 바꾸면</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0284c7">결과가 보이도록</text>
   <rect x="92" y="440" width="316" height="52" rx="26" fill="#e0f2fe"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0369a1">관찰 가능성 · 파라미터</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#0369a1">관찰 가능성 · 파라미터</text>
 
   <!-- motif: slider control -> visibly different output -->
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
-  <text x="668" y="222" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="19" font-weight="700" fill="#64748b">최대 결과 수</text>
+  <text x="668" y="222" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="700" fill="#64748b">최대 결과 수</text>
   <text x="1072" y="222" text-anchor="end" font-family="ui-monospace,monospace" font-size="19" font-weight="700" fill="#0284c7">5</text>
   <rect x="668" y="242" width="404" height="10" rx="5" fill="#e2e8f0"/>
   <rect x="668" y="242" width="250" height="10" rx="5" fill="url(#badge)"/>

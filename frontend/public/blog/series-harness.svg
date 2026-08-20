@@ -8,7 +8,7 @@
   <circle cx="180" cy="780" r="200" fill="#818cf8" opacity="0.12"/>
 
   <text x="90" y="120" font-family="system-ui,'Segoe UI',sans-serif" font-size="30" font-weight="800" letter-spacing="8" fill="#a5b4fc">SERIES</text>
-  <text x="90" y="210" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="72" font-weight="800" fill="#ffffff">하네스 개발기</text>
+  <text x="90" y="210" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="72" font-weight="800" fill="#ffffff">하네스 개발기</text>
   <rect x="90" y="248" width="150" height="8" rx="4" fill="url(#sacc)"/>
 
   <!-- motif: 실행 루프 + 게이트 + 계층 -->

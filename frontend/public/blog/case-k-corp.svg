@@ -16,13 +16,13 @@
   <circle cx="1080" cy="90" r="220" fill="#94a3b8" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#94a3b8" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4338ca">CASE STUDY · 공공기관</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4338ca">CASE STUDY · 공공기관</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge4)"/>
   <text x="140" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">K</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">조달 업무를 처리하는</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4338ca">Actionable AI 챗봇</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">조달 업무를 처리하는</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4338ca">Actionable AI 챗봇</text>
   <rect x="92" y="440" width="360" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#3730a3">SRM 연동 · 상담 자동화</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#3730a3">SRM 연동 · 상담 자동화</text>
 
   <!-- motif: chatbot + procurement checklist -->
   <g filter="url(#sh4)">

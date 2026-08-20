@@ -8,16 +8,16 @@
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · Single Source</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · Single Source</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <rect x="122" y="170" width="36" height="46" rx="5" fill="#ffffff"/>
   <rect x="129" y="181" width="22" height="4" rx="2" fill="#6366f1"/>
   <rect x="129" y="191" width="22" height="4" rx="2" fill="#c7d2fe"/>
   <rect x="129" y="201" width="16" height="4" rx="2" fill="#c7d2fe"/>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">사용자 매뉴얼을</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">위키로 바꾸다</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">사용자 매뉴얼을</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">위키로 바꾸다</text>
   <rect x="92" y="440" width="372" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#4338ca">단일 원본 · 웹·Word·다국어</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">단일 원본 · 웹·Word·다국어</text>
 
   <!-- motif: 원본 하나(MD) → 산출물 여러 개(위키/Word/한글/영문) -->
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
@@ -30,10 +30,10 @@
   </g>
   <!-- source -->
   <rect x="672" y="300" width="154" height="92" rx="16" fill="#4338ca"/>
-  <text x="749" y="342" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="22" font-weight="800" fill="#ffffff">MD 원본</text>
+  <text x="749" y="342" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="22" font-weight="800" fill="#ffffff">MD 원본</text>
   <text x="749" y="368" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" font-weight="700" fill="#a5b4fc">.md</text>
   <!-- outputs -->
-  <g font-family="system-ui,'Malgun Gothic',sans-serif" font-size="19" font-weight="700">
+  <g font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="700">
     <rect x="908" y="206" width="164" height="52" rx="14" fill="#eef2ff" stroke="#c7d2fe"/><text x="930" y="239" fill="#4338ca">위키 사이트</text>
     <rect x="908" y="274" width="164" height="52" rx="14" fill="#eef2ff" stroke="#c7d2fe"/><text x="930" y="307" fill="#4338ca">Word(docx)</text>
     <rect x="908" y="366" width="164" height="52" rx="14" fill="#eef2ff" stroke="#c7d2fe"/><text x="930" y="399" fill="#4338ca">한글 문서</text>

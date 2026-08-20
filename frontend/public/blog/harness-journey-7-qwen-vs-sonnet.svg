@@ -7,18 +7,18 @@
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 7편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 7편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">H7</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">비교 전에</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">실행 조건 통제</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">비교 전에</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">실행 조건 통제</text>
   <rect x="92" y="440" width="300" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#4338ca">모델 비교 · 통제</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">모델 비교 · 통제</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <!-- 통제 패널(동일 조건) -->
   <rect x="672" y="200" width="396" height="96" rx="18" fill="#eef2ff" stroke="#c7d2fe"/>
-  <text x="696" y="238" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="17" font-weight="700" fill="#4338ca">동일 실행 조건</text>
+  <text x="696" y="238" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="700" fill="#4338ca">동일 실행 조건</text>
   <circle cx="900" cy="248" r="14" fill="#4338ca"/><rect x="880" y="241" width="40" height="14" rx="7" fill="#c7d2fe"/>
   <circle cx="990" cy="248" r="14" fill="#4338ca"/><rect x="970" y="241" width="40" height="14" rx="7" fill="#c7d2fe"/>
   <path d="M780 296 L 780 322 M980 296 L 980 322" stroke="#94a3d8" stroke-width="4" stroke-dasharray="4 5"/>

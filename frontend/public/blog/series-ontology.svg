@@ -8,7 +8,7 @@
   <circle cx="180" cy="780" r="200" fill="#5eead4" opacity="0.12"/>
 
   <text x="90" y="120" font-family="system-ui,'Segoe UI',sans-serif" font-size="30" font-weight="800" letter-spacing="8" fill="#99f6e4">SERIES</text>
-  <text x="90" y="210" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="72" font-weight="800" fill="#ffffff">온톨로지 개발기</text>
+  <text x="90" y="210" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="72" font-weight="800" fill="#ffffff">온톨로지 개발기</text>
   <rect x="90" y="248" width="150" height="8" rx="4" fill="url(#oacc)"/>
 
   <!-- motif: 지식그래프 — 노드·엣지, 중앙 개념 노드 강조 -->

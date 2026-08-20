@@ -20,15 +20,15 @@
   <circle cx="600" cy="400" r="330" fill="url(#glow)"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="106" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#fbbf24" letter-spacing="5">PRIVATE AGENT</text>
-  <text x="600" y="162" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="44" font-weight="700" fill="#ffffff">경계 안에서 실행되는 AI</text>
+  <text x="600" y="106" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="600" fill="#fbbf24" letter-spacing="5">PRIVATE AGENT</text>
+  <text x="600" y="162" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="44" font-weight="700" fill="#ffffff">경계 안에서 실행되는 AI</text>
 
   <!-- 기업 경계 -->
   <rect x="150" y="212" width="720" height="316" rx="22" fill="#ffffff08" stroke="#fbbf24" stroke-width="2" stroke-dasharray="10 8" opacity="0.85"/>
-  <text x="176" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="700" fill="#fbbf24" letter-spacing="2">ON-PREMISE — 기업 경계</text>
+  <text x="176" y="248" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#fbbf24" letter-spacing="2">ON-PREMISE — 기업 경계</text>
 
   <!-- 계층 스택 -->
-  <g font-family="system-ui,-apple-system,sans-serif">
+  <g font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif">
     <rect x="182" y="272" width="656" height="52" rx="12" fill="url(#brand)"/>
     <text x="206" y="304" font-size="18" font-weight="700" fill="#1a1206">XGEN — Agent 실행 · 오케스트레이션</text>
 
@@ -53,13 +53,13 @@
     <line x1="870" y1="370" x2="978" y2="370" stroke="#f87171" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.8"/>
     <circle cx="1024" cy="370" r="30" fill="none" stroke="#f87171" stroke-width="2.5" opacity="0.9"/>
     <line x1="1004" y1="350" x2="1044" y2="390" stroke="#f87171" stroke-width="2.5" opacity="0.9"/>
-    <text x="1024" y="428" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="600" fill="#f8717199">외부 반출 없음</text>
+    <text x="1024" y="428" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="600" fill="#f8717199">외부 반출 없음</text>
   </g>
 
   <!-- 하단 요약 -->
-  <text x="600" y="578" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#ffffff8f">데이터는 나가지 않고, 실행은 기록되며, 통제는 기업에 남습니다</text>
+  <text x="600" y="578" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="20" fill="#ffffff8f">데이터는 나가지 않고, 실행은 기록되며, 통제는 기업에 남습니다</text>
 
-  <g font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffff70">
+  <g font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" fill="#ffffff70">
     <rect x="352" y="608" width="150" height="38" rx="19" fill="#ffffff0f" stroke="#ffffff26"/>
     <text x="427" y="633" text-anchor="middle">데이터 주권</text>
     <rect x="518" y="608" width="164" height="38" rx="19" fill="#ffffff0f" stroke="#ffffff26"/>

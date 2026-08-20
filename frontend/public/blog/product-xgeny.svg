@@ -18,22 +18,22 @@
   <circle cx="600" cy="338" r="300" fill="url(#glow)"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="118" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">XGENY</text>
-  <text x="600" y="174" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="46" font-weight="700" fill="#ffffff">Agent with a Workspace</text>
+  <text x="600" y="118" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">XGENY</text>
+  <text x="600" y="174" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="700" fill="#ffffff">Agent with a Workspace</text>
 
   <!-- 좌: 워크스페이스 — 메모리·도구·스케줄 -->
   <g transform="translate(112 248)">
     <rect width="252" height="172" rx="16" fill="#ffffff0f" stroke="#ffffff2e" stroke-width="1.5"/>
     <rect x="24" y="24" width="204" height="34" rx="8" fill="#ffffff17"/>
     <circle cx="46" cy="41" r="6" fill="#34d399"/>
-    <text x="66" y="47" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffffa8">Memory</text>
+    <text x="66" y="47" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" fill="#ffffffa8">Memory</text>
     <rect x="24" y="69" width="204" height="34" rx="8" fill="#ffffff17"/>
     <circle cx="46" cy="86" r="6" fill="#34d399"/>
-    <text x="66" y="92" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffffa8">Tools</text>
+    <text x="66" y="92" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" fill="#ffffffa8">Tools</text>
     <rect x="24" y="114" width="204" height="34" rx="8" fill="#ffffff17"/>
     <circle cx="46" cy="131" r="6" fill="#34d399"/>
-    <text x="66" y="137" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#ffffffa8">Schedule</text>
-    <text x="126" y="204" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Workspace</text>
+    <text x="66" y="137" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" fill="#ffffffa8">Schedule</text>
+    <text x="126" y="204" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Workspace</text>
   </g>
 
   <!-- 중앙: XGeny 에이전트 -->
@@ -43,7 +43,7 @@
     <circle cx="92" cy="46" r="3.4" fill="#16203a"/>
     <circle cx="108" cy="46" r="3.4" fill="#16203a"/>
     <path d="M90 59 q10 8 20 0" fill="none" stroke="#16203a" stroke-width="3" stroke-linecap="round"/>
-    <text x="100" y="104" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="23" font-weight="700" fill="#ffffff">XGeny</text>
+    <text x="100" y="104" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="23" font-weight="700" fill="#ffffff">XGeny</text>
   </g>
 
   <!-- 우: 도구 선반 — 전부 주지 않고 검색해서 꺼낸다 -->
@@ -63,7 +63,7 @@
     </g>
     <rect x="82" y="70" width="46" height="34" rx="7" fill="#7dd3fc" opacity="0.9"/>
     <rect x="138" y="114" width="46" height="34" rx="7" fill="#7dd3fc" opacity="0.55"/>
-    <text x="126" y="204" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Tool Search</text>
+    <text x="126" y="204" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Tool Search</text>
   </g>
 
   <!-- 연결선 -->
@@ -71,9 +71,9 @@
   <line x1="700" y1="334" x2="836" y2="334" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.75"/>
 
   <!-- 하단 요약 -->
-  <text x="600" y="508" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="21" fill="#ffffff8f">필요한 도구를 스스로 만들고, 필요할 때만 꺼내 씁니다</text>
+  <text x="600" y="508" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="21" fill="#ffffff8f">필요한 도구를 스스로 만들고, 필요할 때만 꺼내 씁니다</text>
 
-  <g font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#ffffff70">
+  <g font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="16" fill="#ffffff70">
     <rect x="354" y="552" width="196" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>
     <text x="452" y="579" text-anchor="middle">Progressive Disclosure</text>
     <rect x="568" y="552" width="130" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>

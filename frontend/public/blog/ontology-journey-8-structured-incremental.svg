@@ -8,13 +8,13 @@
   <circle cx="1080" cy="90" r="220" fill="#14b8a6" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#0f766e" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 8편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 8편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">O8</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">열 개 클래스가</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f766e">네 개로</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">열 개 클래스가</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f766e">네 개로</text>
   <rect x="92" y="440" width="280" height="52" rx="26" fill="#ccfbf1"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0f766e">구조화 · 점진 반영</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#0f766e">구조화 · 점진 반영</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <g fill="#cbeee7">

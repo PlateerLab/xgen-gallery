@@ -25,7 +25,7 @@
     <rect x="28" y="39" width="132" height="6" rx="3" fill="#ffffff30"/>
     <rect x="28" y="52" width="104" height="6" rx="3" fill="#ffffff30"/>
     <rect x="76" y="78" width="58" height="6" rx="3" fill="#ffffff3d"/>
-    <text x="105" y="126" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#ffffffb3">Office Desktop</text>
+    <text x="105" y="126" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="18" font-weight="600" fill="#ffffffb3">Office Desktop</text>
   </g>
 
   <!-- 좌하: 홈 데스크톱 -->
@@ -36,7 +36,7 @@
     <rect x="28" y="39" width="118" height="6" rx="3" fill="#ffffff30"/>
     <rect x="28" y="52" width="92" height="6" rx="3" fill="#ffffff30"/>
     <rect x="76" y="78" width="58" height="6" rx="3" fill="#ffffff3d"/>
-    <text x="105" y="126" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#ffffffb3">Home Desktop</text>
+    <text x="105" y="126" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="18" font-weight="600" fill="#ffffffb3">Home Desktop</text>
   </g>
 
   <!-- 우: 서버 -->
@@ -51,7 +51,7 @@
     <rect x="26" y="106" width="178" height="30" rx="7" fill="#ffffff17"/>
     <circle cx="48" cy="121" r="6" fill="#34d399"/>
     <rect x="66" y="117" width="110" height="8" rx="4" fill="#ffffff45"/>
-    <text x="115" y="182" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">XGEN Server</text>
+    <text x="115" y="182" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">XGEN Server</text>
   </g>
 
   <!-- 중앙 커넥터 — 두 데스크톱이 하나의 커넥터로 모인다 -->
@@ -63,16 +63,16 @@
     <path d="M56 48 h56 M92 32 l20 16 -20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M56 48 l-20 -16 M56 48 l-20 16" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
   </g>
-  <text x="600" y="378" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">DeX Connector</text>
+  <text x="600" y="378" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">DeX Connector</text>
 
   <!-- 타이틀 -->
-  <text x="600" y="126" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">XGEN DeX</text>
-  <text x="600" y="182" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="46" font-weight="700" fill="#ffffff">Desktop Experience</text>
+  <text x="600" y="126" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" letter-spacing="5">XGEN DeX</text>
+  <text x="600" y="182" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="700" fill="#ffffff">Desktop Experience</text>
 
   <!-- 하단 요약 -->
-  <text x="600" y="500" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="21" fill="#ffffff8f">Agent는 서버에서 실행되고, 업무는 오피스에서도 집에서도 이어집니다</text>
+  <text x="600" y="500" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="21" fill="#ffffff8f">Agent는 서버에서 실행되고, 업무는 오피스에서도 집에서도 이어집니다</text>
 
-  <g font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#ffffff70">
+  <g font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="16" fill="#ffffff70">
     <rect x="331" y="544" width="164" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>
     <text x="413" y="571" text-anchor="middle">Local Apps</text>
     <rect x="513" y="544" width="174" height="42" rx="21" fill="#ffffff0f" stroke="#ffffff26"/>

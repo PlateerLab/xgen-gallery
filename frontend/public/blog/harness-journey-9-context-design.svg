@@ -7,29 +7,29 @@
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 9편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 9편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">H9</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">도구 공개와</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">출력 전달 설계</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">도구 공개와</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">출력 전달 설계</text>
   <rect x="92" y="440" width="270" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#4338ca">실행 컨텍스트</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">실행 컨텍스트</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <!-- 컨텍스트 윈도우 -->
   <rect x="700" y="216" width="340" height="260" rx="20" fill="#f8fafc" stroke="#c7d2fe" stroke-width="2"/>
-  <text x="870" y="256" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="17" font-weight="700" fill="#4338ca">실행 컨텍스트</text>
+  <text x="870" y="256" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="700" fill="#4338ca">실행 컨텍스트</text>
   <!-- 도구 in -->
   <rect x="726" y="284" width="130" height="40" rx="10" fill="#eef2ff" stroke="#c7d2fe"/>
-  <text x="791" y="310" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">도구 공개</text>
+  <text x="791" y="310" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">도구 공개</text>
   <rect x="726" y="336" width="130" height="40" rx="10" fill="#eef2ff" stroke="#c7d2fe"/>
-  <text x="791" y="362" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">관측 결과</text>
+  <text x="791" y="362" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">관측 결과</text>
   <!-- 출력 out -->
   <rect x="884" y="284" width="130" height="92" rx="10" fill="#4338ca"/>
-  <text x="949" y="322" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="15" font-weight="700" fill="#ffffff">출력 전달</text>
+  <text x="949" y="322" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#ffffff">출력 전달</text>
   <rect x="906" y="338" width="86" height="10" rx="5" fill="#a5b4fc"/>
   <rect x="906" y="356" width="64" height="10" rx="5" fill="#818cf8"/>
   <path d="M856 304 L 884 304 M856 356 L 884 330" stroke="#94a3d8" stroke-width="3" fill="none"/>
   <rect x="726" y="404" width="288" height="48" rx="12" fill="#e0e7ff"/>
-  <text x="870" y="434" text-anchor="middle" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="15" font-weight="700" fill="#4338ca">필요한 것만 컨텍스트에 담는다</text>
+  <text x="870" y="434" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#4338ca">필요한 것만 컨텍스트에 담는다</text>
 </svg>

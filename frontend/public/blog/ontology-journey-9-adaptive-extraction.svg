@@ -8,22 +8,22 @@
   <circle cx="1080" cy="90" r="220" fill="#14b8a6" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#0f766e" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 9편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 9편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">O9</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">한도에 맞춰</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f766e">배치를 조절</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">한도에 맞춰</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f766e">배치를 조절</text>
   <rect x="92" y="440" width="320" height="52" rx="26" fill="#ccfbf1"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0f766e">적응형 추출 · 토큰 한도</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#0f766e">적응형 추출 · 토큰 한도</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <line x1="676" y1="252" x2="1064" y2="252" stroke="#ef4444" stroke-width="4" stroke-dasharray="10 6"/>
-  <text x="1064" y="240" text-anchor="end" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="18" font-weight="800" fill="#ef4444">토큰 한도</text>
+  <text x="1064" y="240" text-anchor="end" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="18" font-weight="800" fill="#ef4444">토큰 한도</text>
   <g fill="#0d9488">
     <rect x="700" y="360" width="62" height="120" rx="8"/>
     <rect x="784" y="300" width="62" height="180" rx="8"/>
     <rect x="868" y="336" width="62" height="144" rx="8"/>
     <rect x="952" y="284" width="62" height="196" rx="8"/>
   </g>
-  <text x="700" y="512" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="19" font-weight="800" fill="#0f766e">배치 크기 조절</text>
+  <text x="700" y="512" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="800" fill="#0f766e">배치 크기 조절</text>
 </svg>

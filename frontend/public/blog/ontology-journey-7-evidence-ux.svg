@@ -8,13 +8,13 @@
   <circle cx="1080" cy="90" r="220" fill="#14b8a6" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#0f766e" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="system-ui,'Segoe UI','Malgun Gothic',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 7편</text>
+  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0d9488">TECH NOTE · 온톨로지 7편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <text x="140" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">O7</text>
-  <text x="92" y="330" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f172a">언급된 노드만</text>
-  <text x="92" y="388" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="46" font-weight="800" fill="#0f766e">강조하다</text>
+  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">언급된 노드만</text>
+  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f766e">강조하다</text>
   <rect x="92" y="440" width="290" height="52" rx="26" fill="#ccfbf1"/>
-  <text x="118" y="474" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="24" font-weight="700" fill="#0f766e">근거 UX · 하이라이트</text>
+  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#0f766e">근거 UX · 하이라이트</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <g stroke="#cbd5e1" stroke-width="4">
@@ -30,5 +30,5 @@
   <circle cx="944" cy="436" r="18" fill="#cbd5e1"/>
   <circle cx="884" cy="236" r="36" fill="#14b8a6" stroke="#99f6e4" stroke-width="9"/>
   <circle cx="806" cy="408" r="31" fill="#0d9488" stroke="#99f6e4" stroke-width="9"/>
-  <text x="700" y="506" font-family="system-ui,'Malgun Gothic',sans-serif" font-size="19" font-weight="800" fill="#0f766e">답변 근거 노드 강조</text>
+  <text x="700" y="506" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="800" fill="#0f766e">답변 근거 노드 강조</text>
 </svg>
