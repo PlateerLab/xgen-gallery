@@ -142,7 +142,7 @@ Rather than building dashboards and screens first, establish whether meaningful 
 
 ---
 
-## Field Note
+## Field Report
 
 The value of enterprise AI is not decided by the model itself.
 

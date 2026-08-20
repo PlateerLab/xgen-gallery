@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B2B 거래처의 반복 발주 패턴이 흔들리는 지점을 신호로 잡아, 이탈 판단과 근거, 영업 대응까지 잇는 흐름">
   <defs>
-    <!-- 필드 노트 전용 — 밝은 실버 그라디언트 바탕에 객체만 퍼플.
+    <!-- 필드 리포트 전용 — 밝은 실버 그라디언트 바탕에 객체만 퍼플.
          바탕에서 색을 빼 가볍게 두고, 퍼플은 신호가 되는 자리에만 쓴다. -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#fbfcfd"/>
@@ -26,7 +26,7 @@
   <circle cx="120" cy="620" r="180" fill="#7c3aed" opacity="0.05"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="106" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#7c3aed" letter-spacing="5">FIELD NOTE</text>
+  <text x="600" y="106" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#7c3aed" letter-spacing="5">FIELD REPORT</text>
   <text x="600" y="164" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#111827">패턴이 흔들리는 지점</text>
 
   <!-- 발주 패턴 — 일정하게 반복되다 뒤로 갈수록 낮아지고 간격이 벌어진다 -->

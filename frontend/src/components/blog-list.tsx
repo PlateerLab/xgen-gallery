@@ -112,11 +112,11 @@ const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
         ink: "#1f9d57",
         word: "CASE STUDY",
     },
-    // 저장 값은 Industry Note 지만 화면 표기는 Field Note 다(blog-categories.ts).
+    // 저장 값은 Industry Note 지만 화면 표기는 Field Report 다(blog-categories.ts).
     "Industry Note": {
         grad: "linear-gradient(135deg,#fff1e8 0%,#ffe0cc 100%)",
         ink: "#c2570d",
-        word: "FIELD NOTE",
+        word: "FIELD REPORT",
     },
 };
 

@@ -14,7 +14,7 @@ import type { Locale } from "@/lib/i18n";
  * "Industry Note"는 제품 발표도, 구현 기록도, 고객 사례도 아닌 글을 담는다 —
  * 시장이 어떻게 움직이는지, 고객 미팅·도입 현장에서 실제로 나온 질문이 무엇인지,
  * 그 안에서 저희가 무엇을 기준으로 판단하는지 쓰는 글. Tech Note 가 "어떻게
- * 만들었나"라면 이쪽은 "왜 그렇게 보는가"다. 화면에는 "Field Note"로 표기한다
+ * 만들었나"라면 이쪽은 "왜 그렇게 보는가"다. 화면에는 "Field Report"로 표기한다
  * (저장 값은 기존 글과 맞춰 그대로 둔다 — CATEGORY_LABEL 참고).
  *
  * 목록 탭에 보이는 것과는 다르다 — 노출 여부는 VISIBLE_BLOG_CATEGORIES 가 정한다.
@@ -36,8 +36,8 @@ export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
  */
 export const VISIBLE_BLOG_CATEGORIES = [
     "제품 소식",
-    "Tech Note",
     "Industry Note",
+    "Tech Note",
 ] as const;
 
 /**
@@ -65,13 +65,13 @@ export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
         "제품 소식": "XGEN 프리뷰",
         "Tech Note": "테크 노트",
         "Case Study": "케이스 스터디",
-        "Industry Note": "필드 노트",
+        "Industry Note": "필드 리포트",
     },
     en: {
         "제품 소식": "XGEN Preview",
         "Tech Note": "Tech Note",
         "Case Study": "Case Study",
-        "Industry Note": "Field Note",
+        "Industry Note": "Field Report",
     },
 };
 
