@@ -6,8 +6,8 @@
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#111827">패턴이</text>
-  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">패턴이</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
 
   <g>
     <rect x="700" y="212" width="52" height="196" rx="14" fill="#cdd2da"/>

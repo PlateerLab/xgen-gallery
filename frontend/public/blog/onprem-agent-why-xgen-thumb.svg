@@ -6,8 +6,8 @@
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#111827">경계 안에서</text>
-  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="84" font-weight="800" fill="#7c3aed">실행되는 AI</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">경계 안에서</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">실행되는 AI</text>
 
   <rect x="700" y="176" width="436" height="330" rx="28" fill="#ffffff" stroke="#a78bfa" stroke-width="3" stroke-dasharray="14 10"/>
   <rect x="744" y="228" width="348" height="76" rx="18" fill="url(#badge)"/>
