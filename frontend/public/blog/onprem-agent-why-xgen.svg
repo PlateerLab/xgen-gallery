@@ -1,16 +1,18 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온프레미스 AI Agent — 기업 경계 안에서 실행되고 감사되는 XGEN 운영 계층">
   <defs>
+    <!-- 필드 노트 전용 배경(그래파이트) — 현장 기록 계열의 색으로, 제품 소식
+         커버의 남색과 목록에서 갈라 보이게 한다(같은 카테고리 커버끼리 맞춘다). -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#070b1c"/>
-      <stop offset="1" stop-color="#0d1633"/>
+      <stop offset="0" stop-color="#10151b"/>
+      <stop offset="1" stop-color="#1e2833"/>
     </linearGradient>
-    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#00acee"/>
-      <stop offset="1" stop-color="#7c5cff"/>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#d97706"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.32"/>
-      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
@@ -18,17 +20,17 @@
   <circle cx="600" cy="400" r="330" fill="url(#glow)"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="106" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#7dd3fc" letter-spacing="5">PRIVATE AGENT</text>
+  <text x="600" y="106" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#fbbf24" letter-spacing="5">PRIVATE AGENT</text>
   <text x="600" y="162" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="44" font-weight="700" fill="#ffffff">경계 안에서 실행되는 AI</text>
 
   <!-- 기업 경계 -->
-  <rect x="150" y="212" width="720" height="316" rx="22" fill="#ffffff08" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="10 8" opacity="0.85"/>
-  <text x="176" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="700" fill="#7dd3fc" letter-spacing="2">ON-PREMISE — 기업 경계</text>
+  <rect x="150" y="212" width="720" height="316" rx="22" fill="#ffffff08" stroke="#fbbf24" stroke-width="2" stroke-dasharray="10 8" opacity="0.85"/>
+  <text x="176" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="700" fill="#fbbf24" letter-spacing="2">ON-PREMISE — 기업 경계</text>
 
   <!-- 계층 스택 -->
   <g font-family="system-ui,-apple-system,sans-serif">
     <rect x="182" y="272" width="656" height="52" rx="12" fill="url(#brand)"/>
-    <text x="206" y="304" font-size="18" font-weight="700" fill="#ffffff">XGEN — Agent 실행 · 오케스트레이션</text>
+    <text x="206" y="304" font-size="18" font-weight="700" fill="#1a1206">XGEN — Agent 실행 · 오케스트레이션</text>
 
     <rect x="182" y="336" width="318" height="50" rx="12" fill="#ffffff12" stroke="#ffffff26"/>
     <text x="206" y="367" font-size="16" font-weight="600" fill="#ffffffcc">RAG · 사내 데이터</text>
