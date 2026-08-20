@@ -15,7 +15,7 @@ import {
 export const metadata = pageMetadata({
     title: "Contributors",
     description:
-        "Meet the contributors behind Plateer Labs — the researchers and open-source engineers building XGEN.",
+        "Meet the contributors behind Plateer AI Labs — the researchers and open-source engineers building XGEN.",
     path: "/members",
 });
 

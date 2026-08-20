@@ -3,7 +3,7 @@ title: "Public agency K — an actionable AI chatbot that handles procurement it
 titleSeo: "An AI chatbot that does the procurement"
 description: "Suppliers wanted their requests finished, not explained. Public agency K validated an actionable AI chatbot that ties into SRM and completes the work."
 date: "2026-06-11"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["Public sector", "AI chatbot", "RAG", "Procurement", "Case Study"]
 cover: "/blog/case-k-corp.svg"

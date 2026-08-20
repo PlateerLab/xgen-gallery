@@ -12,7 +12,7 @@ const COPY: Record<Locale, { lead: string; orbitAria: string }> = {
             "Agentic AI·Knowledge Graph·GraphRAG·Ontology·MCP·Multi-Agent·AgenticOps·Guardrails 등 AI 연구 분야가 연결되는 애니메이션",
     },
     en: {
-        lead: "In an enterprise, whether AI succeeds is decided by the operating structure, not the model. Plateer Labs researches Agentic AI, knowledge graphs, MCP, and AgenticOps — and carries them through to the product and the customer's floor.",
+        lead: "In an enterprise, whether AI succeeds is decided by the operating structure, not the model. Plateer AI Labs researches Agentic AI, knowledge graphs, MCP, and AgenticOps — and carries them through to the product and the customer's floor.",
         orbitAria:
             "An animation connecting AI research areas — Agentic AI, Knowledge Graph, GraphRAG, Ontology, MCP, Multi-Agent, AgenticOps, and Guardrails",
     },

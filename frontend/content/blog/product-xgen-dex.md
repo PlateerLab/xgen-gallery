@@ -4,7 +4,7 @@ description: "AI Agent는 서버에서 실행되고, 사용자는 자기 데스�
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "온프레미스", "제품"]
 draft: false

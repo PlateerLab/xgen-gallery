@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "PoC Projects",
     description:
-        "Plateer Labs proof-of-concept projects — Enterprise AI validated with XGEN, starting from real pain points on the customer's floor.",
+        "Plateer AI Labs proof-of-concept projects — Enterprise AI validated with XGEN, starting from real pain points on the customer's floor.",
     path: "/poc-projects",
     locale: "en",
 });

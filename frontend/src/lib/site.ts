@@ -6,8 +6,8 @@
  * core GEO signal. See docs/GEO-OPTIMIZATION-GUIDE.md.
  */
 export const SITE = {
-    name: "Plateer Labs",
-    shortName: "Plateer Labs",
+    name: "Plateer AI Labs",
+    shortName: "Plateer AI Labs",
     // Canonical production origin. Override per-environment with NEXT_PUBLIC_SITE_URL.
     // (2026-07-23~) 운영 도메인이 gallery-xgen.x2bee.com → labs.plateer.com 으로 변경됨.
     url: (process.env.NEXT_PUBLIC_SITE_URL || "https://labs.plateer.com").replace(/\/$/, ""),
@@ -15,7 +15,7 @@ export const SITE = {
     description:
         "기업용 Agentic AI 플랫폼 XGEN. 원하는 LLM과 온프레미스·망분리 인프라에 보안·거버넌스를 갖춰 실제 업무에 적용합니다.",
     descriptionEn:
-        "Plateer Labs provides XGEN, an Agentic AI platform for enterprises. Build AI on your choice of LLM and on-premise or air-gapped infrastructure with built-in security and governance, then apply it to real business workflows for proven results.",
+        "Plateer AI Labs provides XGEN, an Agentic AI platform for enterprises. Build AI on your choice of LLM and on-premise or air-gapped infrastructure with built-in security and governance, then apply it to real business workflows for proven results.",
     github: "https://github.com/PlateerLab",
     githubOrg: "PlateerLab",
     youtube: "https://www.youtube.com/@PlateerLabs",

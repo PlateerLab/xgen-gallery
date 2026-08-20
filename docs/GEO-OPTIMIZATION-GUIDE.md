@@ -1,6 +1,6 @@
-# GEO·SEO 최적화 가이드 — Plateer Labs 연구소 홈페이지
+# GEO·SEO 최적화 가이드 — Plateer AI Labs 연구소 홈페이지
 
-> **이 문서는 강제 규칙입니다.** Plateer Labs(PLEX) 연구소 홈페이지의 모든 사이트/페이지는
+> **이 문서는 강제 규칙입니다.** Plateer AI Labs(PLEX) 연구소 홈페이지의 모든 사이트/페이지는
 > 반드시 **GEO(Generative Engine Optimization, 생성형 AI 검색 최적화)** 와
 > **SEO(Search Engine Optimization, 전통 검색 엔진 최적화)** 를 **모두 고려해** 제작·운영해야 합니다.
 > 두 최적화는 "사람에게 좋은 콘텐츠 + 기계가 명확히 파싱·인용·랭킹할 수 있는 구조"라는 공통 토대를

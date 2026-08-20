@@ -17,10 +17,10 @@ export const dynamic = "force-dynamic";
  */
 const SITE = "https://labs.plateer.com";
 const KINDS = {
-    blog: { word: "새 글", heading: "Plateer Labs 블로그에 새 글이 올라왔습니다." },
+    blog: { word: "새 글", heading: "Plateer AI Labs 블로그에 새 글이 올라왔습니다." },
     newsletter: {
         word: "새 뉴스레터",
-        heading: "Plateer Labs 뉴스레터 새 호가 나왔습니다.",
+        heading: "Plateer AI Labs 뉴스레터 새 호가 나왔습니다.",
     },
 } as const;
 

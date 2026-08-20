@@ -199,7 +199,7 @@ const COPY: Record<
         cadence: "Published fortnightly",
         noticeTitle: "About this newsletter",
         noticeA: "This is the XGEN and AI newsletter published fortnightly by",
-        noticeBrand: "Plateer Labs",
+        noticeBrand: "Plateer AI Labs",
         noticeB: ". The issue that goes out by email is readable here on the web, as it is.",
         releasesTitle: "Shipped in this issue",
         releasesDesc: "New capabilities, improvements, and fixes released this issue.",

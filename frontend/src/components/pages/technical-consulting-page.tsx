@@ -126,7 +126,7 @@ const COPY: Record<Locale, TcCopy> = {
         industriesTitle: "산업별 컨설팅",
         closingTitle: "연구로 검증하고, PoC로 입증합니다",
         closingLead:
-            "제품을 판매하기 위한 컨설팅이 아니라, 기술을 검증하고 고객에게 가장 적합한 Enterprise AI 아키텍처를 설계하는 연구 기반 컨설팅입니다. 도입 전략부터 기술 검증, 아키텍처 설계, 운영 체계 수립까지 Plateer Labs의 기술 전문성으로 함께합니다.",
+            "제품을 판매하기 위한 컨설팅이 아니라, 기술을 검증하고 고객에게 가장 적합한 Enterprise AI 아키텍처를 설계하는 연구 기반 컨설팅입니다. 도입 전략부터 기술 검증, 아키텍처 설계, 운영 체계 수립까지 Plateer AI Labs의 기술 전문성으로 함께합니다.",
         closingCta: "PoC · 기술 컨설팅 문의",
     },
     en: {
@@ -188,7 +188,7 @@ const COPY: Record<Locale, TcCopy> = {
         industriesTitle: "Consulting by industry",
         closingTitle: "Validated in research, proven in PoC",
         closingLead:
-            "This is not consulting that exists to sell a product. It is research-based work that validates the technology and designs the Enterprise AI architecture best suited to you — from adoption strategy through technical validation, architecture design, and the operating model, backed by the engineering depth of Plateer Labs.",
+            "This is not consulting that exists to sell a product. It is research-based work that validates the technology and designs the Enterprise AI architecture best suited to you — from adoption strategy through technical validation, architecture design, and the operating model, backed by the engineering depth of Plateer AI Labs.",
         closingCta: "Ask about a PoC or consulting",
     },
 };

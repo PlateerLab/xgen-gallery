@@ -4,7 +4,7 @@ description: "Agent가 사내 시스템을 직접 실행하는 단계에 들어�
 date: "2026-08-12"
 cover: /blog/onprem-agent-why-xgen.svg
 thumb: /blog/onprem-agent-why-xgen-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Industry Note"
 tags: ["온프레미스", "Private Agent", "데이터 주권", "AI 거버넌스", "XGEN", "Agentic AI"]
 faq:
@@ -107,7 +107,7 @@ AI가 실제 업무 프로세스에 참여할수록 모델 성능뿐 아니라 �
 
 XGEN은 권한 관리, 실행 이력, AI 통제 정책 등 기업이 AI를 지속적으로 운영하기 위해 필요한 거버넌스 체계를 플랫폼에 반영하고 있습니다.
 
-Plateer Labs는 이러한 기준을 제품 기능에만 적용하는 것이 아니라 [AI 품질 방침](/ai-quality-policy)과 운영 절차로 구체화하여 지속적으로 관리하고 있습니다.
+Plateer AI Labs는 이러한 기준을 제품 기능에만 적용하는 것이 아니라 [AI 품질 방침](/ai-quality-policy)과 운영 절차로 구체화하여 지속적으로 관리하고 있습니다.
 
 ### 6. 검증된 품질과 현장 중심의 구축
 

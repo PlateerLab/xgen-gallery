@@ -4,7 +4,7 @@ description: "로그인부터 API 연결, 도구 등록, 테스트까지 코드 
 date: "2026-06-08"
 cover: /blog/product-pathfinder.svg
 thumb: /blog/product-pathfinder-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["PathFinder", "연결", "No-Code", "제품"]
 draft: false

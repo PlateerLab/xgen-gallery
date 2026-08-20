@@ -128,7 +128,7 @@ const COPY: Record<Locale, EnCopy> = {
         curriculumHeaders: ["교육과정", "교육내용", "교육 시기", "대상"],
         heroTitle: "구축에서 끝나지 않고, 고객사에 정착시킵니다",
         heroLead:
-            "Plateer Labs의 Enablement는 구축 이후 고객사 현장을 직접 찾아 XGEN 기반 AI가 실제 업무에 정착할 수 있도록 교육, 운영 노하우, 활용 방법을 함께 제공합니다.",
+            "Plateer AI Labs의 Enablement는 구축 이후 고객사 현장을 직접 찾아 XGEN 기반 AI가 실제 업무에 정착할 수 있도록 교육, 운영 노하우, 활용 방법을 함께 제공합니다.",
         heroChip: "구축 → 인수인계 → 내재화까지",
         tracksTitle: "역할별 교육 프로그램",
         fdeTitle: "현장 FDE가 직접 교육합니다",
@@ -200,7 +200,7 @@ const COPY: Record<Locale, EnCopy> = {
         curriculumHeaders: ["Course", "Content", "When", "Audience"],
         heroTitle: "It doesn't end at the build — we land it inside your organization",
         heroLead:
-            "After the build, Plateer Labs Enablement comes to your site with the training, operating know-how, and usage practices that let XGEN-based AI settle into the real work.",
+            "After the build, Plateer AI Labs Enablement comes to your site with the training, operating know-how, and usage practices that let XGEN-based AI settle into the real work.",
         heroChip: "Build → handover → adoption",
         tracksTitle: "Training programs by role",
         fdeTitle: "Taught by the Forward Deployed Engineers themselves",

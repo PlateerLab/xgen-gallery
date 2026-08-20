@@ -26,7 +26,7 @@ export async function generateMetadata({
         title: `${d.ko} 고객사례`,
         description: hasCases
             ? `${d.blurb} ${cases.length}건을 소개합니다. XGEN·AI Code Assistant를 ${d.ko} 현장 업무에 적용해 검증한 도입 배경·구축 범위·성과를 확인하세요.`
-            : `${d.blurb}를 준비 중입니다. Plateer Labs는 ${d.ko} 업무 특성과 규제를 반영한 Enterprise AI를 연구하고 PoC로 실증합니다.`,
+            : `${d.blurb}를 준비 중입니다. Plateer AI Labs는 ${d.ko} 업무 특성과 규제를 반영한 Enterprise AI를 연구하고 PoC로 실증합니다.`,
         path: `/customers/${domain}`,
         ...(hasCases ? {} : { robots: { index: false, follow: true } }),
     });

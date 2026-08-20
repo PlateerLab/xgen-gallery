@@ -61,7 +61,7 @@ const CHALLENGES: Card[] = [
         title: "기업 데이터 주권",
         body: [
             "AI는 기업 내부 데이터 위에서 동작해야 합니다.",
-            "Plateer Labs는 클라우드 종속 없이 고객의 인프라 환경에서 AI를 운영할 수 있는 온프레미스 중심 아키텍처를 연구합니다.",
+            "Plateer AI Labs는 클라우드 종속 없이 고객의 인프라 환경에서 AI를 운영할 수 있는 온프레미스 중심 아키텍처를 연구합니다.",
             "금융, 공공, 제조 등 망분리 환경에서도 적용 가능한 운영 체계를 제공합니다.",
         ],
     },
@@ -119,7 +119,7 @@ const FIELDS: Field[] = [
         icon: Network,
         badge: "Core Focus",
         title: "Ontology & Graph Intelligence",
-        desc: "Plateer Labs의 핵심 연구 영역입니다. 단순 검색을 넘어 기업 데이터 간의 관계와 맥락을 이해하는 Ontology 기반 AI를 연구합니다.",
+        desc: "Plateer AI Labs의 핵심 연구 영역입니다. 단순 검색을 넘어 기업 데이터 간의 관계와 맥락을 이해하는 Ontology 기반 AI를 연구합니다.",
         tags: [
             "조직 지식의 구조화",
             "관계 기반 탐색",
@@ -228,7 +228,7 @@ const EN = {
             title: "Enterprise data sovereignty",
             body: [
                 "AI has to run on top of the enterprise's own data.",
-                "Plateer Labs researches an on-premise-first architecture that runs AI inside the customer's own infrastructure, with no dependence on a particular cloud.",
+                "Plateer AI Labs researches an on-premise-first architecture that runs AI inside the customer's own infrastructure, with no dependence on a particular cloud.",
                 "The same operating model applies in the network-separated environments found in finance, the public sector, and manufacturing.",
             ],
         },
@@ -265,7 +265,7 @@ const EN = {
             note: "We are building next-generation RAG that reads documents, images, tables, and scans as one.",
         },
         {
-            desc: "The core research area at Plateer Labs. Past plain search, we research ontology-based AI that understands the relationships and context between enterprise data.",
+            desc: "The core research area at Plateer AI Labs. Past plain search, we research ontology-based AI that understands the relationships and context between enterprise data.",
             tags: [
                 "Structuring organizational knowledge",
                 "Relationship-based traversal",
@@ -313,12 +313,12 @@ const EN = {
     headerLead:
         "Public agencies and large enterprises have to account for data sovereignty, security, audit trails, organizational governance, and operational stability — and AI has to move past experiment and into the actual work process",
     headerTitle:
-        "Plateer Labs researches Agentic AI technology and an operating model built for enterprise environments, to answer exactly those demands",
+        "Plateer AI Labs researches Agentic AI technology and an operating model built for enterprise environments, to answer exactly those demands",
     headerSub:
         "Our aim goes past simply using an LLM: an Enterprise AI Runtime where knowledge, reasoning, execution, and operations connect as one system",
     casesLead: "Research results become product, inside the XGEN technology stack",
     methodLead:
-        "Plateer Labs runs a reproducible validation regime, not a demo",
+        "Plateer AI Labs runs a reproducible validation regime, not a demo",
     methodNote: "Every research result is evaluated against quantitative measures",
     papersTitle: "Core AI technology with academic validation",
     papersLead:
@@ -554,7 +554,7 @@ export function ResearchContent({ locale = "ko" }: { locale?: Locale }) {
                     <h2 className="mt-5 text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[28px] md:leading-snug">
                         {en
                             ? EN.headerTitle
-                            : "Plateer Labs는 이러한 요구에 대응하기 위해 기업 환경에 최적화된 Agentic AI 기술과 운영 체계를 연구합니다"}
+                            : "Plateer AI Labs는 이러한 요구에 대응하기 위해 기업 환경에 최적화된 Agentic AI 기술과 운영 체계를 연구합니다"}
                     </h2>
                     <p className="mt-4 text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         {en
@@ -666,7 +666,7 @@ export function ResearchContent({ locale = "ko" }: { locale?: Locale }) {
                     <p className="mx-auto mt-3 max-w-2xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)]">
                         {en
                             ? EN.methodLead
-                            : "Plateer Labs는 단순 데모가 아닌 재현 가능한 검증 체계를 운영합니다"}
+                            : "Plateer AI Labs는 단순 데모가 아닌 재현 가능한 검증 체계를 운영합니다"}
                     </p>
                     <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 text-center">
                         <div className="flex items-center justify-center gap-3">

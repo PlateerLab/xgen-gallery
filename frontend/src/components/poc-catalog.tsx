@@ -137,7 +137,7 @@ const COPY: Record<
 > = {
     ko: {
         title: "검증된 산업·업무 영역",
-        lead: "Plateer Labs는 금융·커머스·IT·제조·공공·헬스 등 여러 산업 현장에서 XGEN을 실제 업무에 적용해 검증해 왔습니다. 아래는 산업별로 검증한 대표 업무 영역입니다",
+        lead: "Plateer AI Labs는 금융·커머스·IT·제조·공공·헬스 등 여러 산업 현장에서 XGEN을 실제 업무에 적용해 검증해 왔습니다. 아래는 산업별로 검증한 대표 업무 영역입니다",
         processTitle: "발굴부터 운영까지, 검증된 진행 방식",
         modelNote:
             "모델 중립(Model-Agnostic) 구조로 원하는 LLM을 선택하고, 클라우드는 물론 온프레미스·망분리 환경에서도 도입할 수 있습니다",
@@ -146,7 +146,7 @@ const COPY: Record<
     },
     en: {
         title: "Industries and workloads we have validated",
-        lead: "Plateer Labs has applied XGEN to real work across finance, commerce, IT, manufacturing, the public sector, and healthcare. Below are the workloads validated in each industry",
+        lead: "Plateer AI Labs has applied XGEN to real work across finance, commerce, IT, manufacturing, the public sector, and healthcare. Below are the workloads validated in each industry",
         processTitle: "From discovery to operations, a way of working that has been proven",
         modelNote:
             "A model-agnostic architecture lets you choose the LLM you want, and deployment works on cloud as well as on-premise and network-separated environments",

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
     description: SITE.descriptionEn,
     keywords: [
-        "Plateer Labs",
+        "Plateer AI Labs",
         "XGEN",
         "enterprise AI platform",
         "agentic AI",

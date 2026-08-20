@@ -14,9 +14,9 @@ const BROCHURE_TO = "swan@plateer.com, xgen@plateer.com, " + EXTRA_INTERNAL_TO;
 // 브랜드 주소(답장 주소). ⚠️ plateer.com은 Microsoft365라 xgen@plateer.com은 O365 SMTP
 //   별칭이고, Apps Script(MailApp)는 SMTP 별칭을 from으로 못 쓴다(구조적 한계 → 실제 발신은
 //   소유 계정 chat2plex로 나감). 그래서 from은 지정하지 않고, 모든 메일의 표시이름을
-//   "Plateer Labs"로, 답장주소(replyTo)를 이 주소로 통일한다. (진짜 xgen 발신은 앱+O365 SMTP 필요)
+//   "Plateer AI Labs"로, 답장주소(replyTo)를 이 주소로 통일한다. (진짜 xgen 발신은 앱+O365 SMTP 필요)
 const FROM_ADDR = "xgen@plateer.com";
-const FROM_NAME = "Plateer Labs";
+const FROM_NAME = "Plateer AI Labs";
 
 // 브로셔 종류 — 요청의 asset 값 → { 표시명, 다운로드 PDF }.
 // 새 종류가 생기면 여기 한 줄만 추가 + 해당 PDF를 /public/downloads 에 올리면 된다.
@@ -113,7 +113,7 @@ function brochureMailToUser(data, t){
   var text = [
     name + "님, 안녕하세요.",
     "",
-    "Plateer Labs " + t.name + "에 관심 가져 주셔서 감사합니다.",
+    "Plateer AI Labs " + t.name + "에 관심 가져 주셔서 감사합니다.",
     "요청하신 " + t.name + " 소개서는 아래 링크에서 바로 받으실 수 있습니다.",
     "",
     t.pdf,
@@ -122,12 +122,12 @@ function brochureMailToUser(data, t){
     "https://labs.plateer.com/contact 로 문의해 주세요.",
     "",
     "감사합니다.",
-    "Plateer Labs 드림"
+    "Plateer AI Labs 드림"
   ].join("\n");
   var html =
     '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
     "<p>" + name + "님, 안녕하세요.</p>" +
-    "<p>Plateer Labs " + t.name + "에 관심 가져 주셔서 감사합니다.<br>" +
+    "<p>Plateer AI Labs " + t.name + "에 관심 가져 주셔서 감사합니다.<br>" +
     "요청하신 <b>" + t.name + " 소개서</b>를 아래 버튼에서 바로 받으실 수 있습니다.</p>" +
     '<p style="margin:24px 0"><a href="' + t.pdf + '" ' +
     'style="display:inline-block;background:#2f7bff;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">' +
@@ -135,10 +135,10 @@ function brochureMailToUser(data, t){
     '<p style="color:#5b6472;font-size:13.5px">버튼이 열리지 않으면 아래 주소를 복사해 주세요.<br>' + t.pdf + "</p>" +
     "<p>도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나 " +
     '<a href="https://labs.plateer.com/contact">문의 페이지</a>를 이용해 주세요.</p>' +
-    "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
+    "<p>감사합니다.<br>Plateer AI Labs 드림</p></div>";
   sendMail_({
     to: to, name: FROM_NAME, replyTo: FROM_ADDR,
-    subject: "[Plateer Labs] 요청하신 " + t.name + " 소개서를 보내드립니다",
+    subject: "[Plateer AI Labs] 요청하신 " + t.name + " 소개서를 보내드립니다",
     body: text, htmlBody: html
   });
 }
@@ -151,7 +151,7 @@ function contactConfirmToUser_(data){
   var text = [
     name + "님, 안녕하세요.",
     "",
-    "Plateer Labs에 문의해 주셔서 감사합니다. 아래 내용으로 상담 신청이 접수되었습니다.",
+    "Plateer AI Labs에 문의해 주셔서 감사합니다. 아래 내용으로 상담 신청이 접수되었습니다.",
     "",
     "• 문의 유형: " + (data.inquiryType || ""),
     "• 상담 내용: " + (data.inquiry || ""),
@@ -159,20 +159,20 @@ function contactConfirmToUser_(data){
     "담당자가 영업일 기준 1~2일 내에 이메일 또는 전화로 연락드리겠습니다.",
     "",
     "감사합니다.",
-    "Plateer Labs 드림"
+    "Plateer AI Labs 드림"
   ].join("\n");
   var html =
     '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
     "<p>" + name + "님, 안녕하세요.</p>" +
-    "<p>Plateer Labs에 문의해 주셔서 감사합니다.<br>아래 내용으로 <b>상담 신청이 접수</b>되었습니다.</p>" +
+    "<p>Plateer AI Labs에 문의해 주셔서 감사합니다.<br>아래 내용으로 <b>상담 신청이 접수</b>되었습니다.</p>" +
     '<div style="margin:16px 0;padding:14px 16px;background:#f5f7fb;border-radius:10px">' +
     "<p style=\"margin:0 0 6px\"><b>문의 유형</b> · " + escapeHtml_(data.inquiryType || "") + "</p>" +
     "<p style=\"margin:0;color:#5b6472\">" + escapeHtml_(data.inquiry || "") + "</p></div>" +
     "<p>담당자가 <b>영업일 기준 1~2일 내</b>에 이메일 또는 전화로 연락드리겠습니다.</p>" +
-    "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
+    "<p>감사합니다.<br>Plateer AI Labs 드림</p></div>";
   sendMail_({
     to: to, name: FROM_NAME, replyTo: FROM_ADDR,
-    subject: "[Plateer Labs] 상담 신청이 접수되었습니다",
+    subject: "[Plateer AI Labs] 상담 신청이 접수되었습니다",
     body: text, htmlBody: html
   });
 }
@@ -183,10 +183,10 @@ function doPost(e){
 
   // 새 콘텐츠 발행 알림 — 해당 종류 구독중(Y) 구독자에게 요약 메일. 공개 /exec 남용 방지로 토큰 인증.
   if (data.kind === "blog-notify"){
-    return contentNotify_(data, "blog", "새 글", "Plateer Labs 블로그에 새 글이 올라왔습니다.");
+    return contentNotify_(data, "blog", "새 글", "Plateer AI Labs 블로그에 새 글이 올라왔습니다.");
   }
   if (data.kind === "newsletter-notify"){
-    return contentNotify_(data, "newsletter", "새 뉴스레터", "Plateer Labs 뉴스레터 새 호가 나왔습니다.");
+    return contentNotify_(data, "newsletter", "새 뉴스레터", "Plateer AI Labs 뉴스레터 새 호가 나왔습니다.");
   }
   // 구독자 명단 조회 — 앱(/api/content-notify)이 xgen 발송을 위해 명단만 가져간다. 발송은 앱이 함.
   // (발행 알림은 이제 앱이 xgen@plateer.com에서 보내므로 여기 contentNotify_는 호출되지 않는다 — 폴백용 보존)
@@ -251,8 +251,8 @@ function contentNotify_(d, kind, word, heading){
 
   var subs = subscribedEmails_(kind);            // 해당 종류 구독중(Y) 이메일(취소 N 자동 제외)
   var subject = posts.length === 1
-      ? "[Plateer Labs] " + word + ": " + posts[0].title
-      : "[Plateer Labs] " + word + " " + posts.length + "건이 올라왔어요";
+      ? "[Plateer AI Labs] " + word + ": " + posts[0].title
+      : "[Plateer AI Labs] " + word + " " + posts.length + "건이 올라왔어요";
   var sent = 0;
   for (var i=0;i<subs.length;i++){
     // 수신자별 해지 링크(/unsubscribe?kind=…&email=…)
@@ -287,7 +287,7 @@ function notifyText_(posts, unsub, heading){
     if (p.url) lines.push("  " + p.url);
     lines.push("");
   });
-  lines.push("— Plateer Labs");
+  lines.push("— Plateer AI Labs");
   lines.push("수신 해지: " + (unsub || "https://labs.plateer.com/unsubscribe?kind=blog"));
   return lines.join("\n");
 }

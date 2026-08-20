@@ -4,7 +4,7 @@ description: "데이터를 화면에 맞추는 시대는 끝났습니다. 사용
 date: "2026-05-30"
 cover: /blog/product-floui.svg
 thumb: /blog/product-floui-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["FloUI", "확장", "초개인화", "제품"]
 draft: false

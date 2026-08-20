@@ -47,7 +47,7 @@ const COPY: Record<
 > = {
     ko: {
         title: "오픈소스로 기술력을 검증합니다",
-        leadA: "Plateer Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python 라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,",
+        leadA: "Plateer AI Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python 라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,",
         leadB: "으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.",
         statLibs: "오픈소스 라이브러리",
         statLibsSuffix: "종",

@@ -11,11 +11,11 @@ import type { Locale } from "@/lib/i18n";
 const COPY: Record<Locale, { lead: string; sub: string }> = {
     ko: {
         lead: "고객 현장의 페인포인트에서 출발해 XGEN 기술로 검증한 Enterprise AI 실증 프로젝트",
-        sub: "고객이 마주한 문제를 Plateer Labs가 함께 파고들어, 검증된 결과로 만들어갑니다",
+        sub: "고객이 마주한 문제를 Plateer AI Labs가 함께 파고들어, 검증된 결과로 만들어갑니다",
     },
     en: {
         lead: "Enterprise AI proof-of-concept projects that start from a pain point on the customer's floor and are validated with XGEN",
-        sub: "Plateer Labs digs into the problem alongside the customer and turns it into a verified result",
+        sub: "Plateer AI Labs digs into the problem alongside the customer and turns it into a verified result",
     },
 };
 

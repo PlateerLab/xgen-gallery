@@ -65,9 +65,9 @@ interface AboutCopy {
 const COPY: Record<Locale, AboutCopy> = {
     ko: {
         hero: {
-            eyebrow: "About · Plateer Labs",
+            eyebrow: "About · Plateer AI Labs",
             title: "신뢰할 수 있는 Enterprise AI를 연구합니다",
-            desc: "Plateer Labs는 단순한 AI 기능 개발을 넘어, 기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다. 연구소가 만든 것을 제품으로 증명합니다.",
+            desc: "Plateer AI Labs는 단순한 AI 기능 개발을 넘어, 기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다. 연구소가 만든 것을 제품으로 증명합니다.",
         },
         mission: {
             eyebrow: "Mission",
@@ -157,13 +157,13 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         team: {
             members: {
-                title: "Plateer Labs를 만드는 사람들",
+                title: "Plateer AI Labs를 만드는 사람들",
                 desc: "연구·엔지니어링으로 Enterprise AI를 현실로 만드는 멤버들을 소개합니다.",
                 cta: "멤버 보러가기",
             },
             company: {
                 title: "Plateer",
-                desc: "Plateer Labs는 플래티어(Plateer)의 연구 조직입니다. 회사 소개를 확인하세요.",
+                desc: "Plateer AI Labs는 플래티어(Plateer)의 연구 조직입니다. 회사 소개를 확인하세요.",
             },
         },
         cta: {
@@ -175,9 +175,9 @@ const COPY: Record<Locale, AboutCopy> = {
     },
     en: {
         hero: {
-            eyebrow: "About · Plateer Labs",
+            eyebrow: "About · Plateer AI Labs",
             title: "We research Enterprise AI that companies can trust and run",
-            desc: "Plateer Labs works a step behind the feature race. We research the standards that make enterprise AI dependable enough to put into production — and we prove what the lab builds by shipping it as product.",
+            desc: "Plateer AI Labs works a step behind the feature race. We research the standards that make enterprise AI dependable enough to put into production — and we prove what the lab builds by shipping it as product.",
         },
         mission: {
             eyebrow: "Mission",
@@ -269,13 +269,13 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         team: {
             members: {
-                title: "The people behind Plateer Labs",
+                title: "The people behind Plateer AI Labs",
                 desc: "The researchers and engineers turning Enterprise AI into something you can actually deploy.",
                 cta: "View members",
             },
             company: {
                 title: "Plateer",
-                desc: "Plateer Labs is the research arm of Plateer. Visit the company site to learn more.",
+                desc: "Plateer AI Labs is the research arm of Plateer. Visit the company site to learn more.",
             },
         },
         cta: {

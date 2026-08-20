@@ -76,12 +76,12 @@ export function BlogIndexPageContent({
                         "@id": absoluteUrl(
                             `${localePath(locale, "/blog")}#blog`,
                         ),
-                        name: "Plateer Labs Blog",
+                        name: "Plateer AI Labs Blog",
                         url: absoluteUrl(localePath(locale, "/blog")),
                         inLanguage: locale,
                     },
                     itemListLd(
-                        "Plateer Labs Blog",
+                        "Plateer AI Labs Blog",
                         posts.map((p) => ({
                             name: p.title,
                             url: localePath(locale, `/blog/${p.slug}`),

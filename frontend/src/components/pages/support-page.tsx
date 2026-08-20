@@ -102,7 +102,7 @@ const COPY: Record<Locale, SupportCopy> = {
         processTitle: "장애 대응 프로세스",
         processLead:
             "장애 발생부터 접수·상태 파악·무상처리·종료까지, 담당 조직 간 협업으로 신속하게 처리합니다.",
-        flowAria: "장애 처리 프로세스 흐름도 — 고객사와 자사(Plateer Labs) 협업",
+        flowAria: "장애 처리 프로세스 흐름도 — 고객사와 자사(Plateer AI Labs) 협업",
         flow: {
             customer: "고객사 담당자",
             techSupport: "기술지원",
@@ -178,7 +178,7 @@ const COPY: Record<Locale, SupportCopy> = {
         processLead:
             "From the incident occurring through intake, assessment, remediation under warranty, and closure — handled quickly through collaboration between the responsible teams.",
         flowAria:
-            "Incident handling process flow — collaboration between the customer and Plateer Labs",
+            "Incident handling process flow — collaboration between the customer and Plateer AI Labs",
         flow: {
             customer: "Customer contact",
             techSupport: "Technical support",

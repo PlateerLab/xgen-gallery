@@ -26,7 +26,7 @@ const COPY: Record<
     }
 > = {
     ko: {
-        eyebrow: "Plateer Labs · 데모 · 무료 체험 · 기술 상담",
+        eyebrow: "Plateer AI Labs · 데모 · 무료 체험 · 기술 상담",
         title: "데모 · 체험 · 기술 상담",
         lead: (
             <>
@@ -62,7 +62,7 @@ const COPY: Record<
         trialCta: "체험 안내 자세히 보기",
     },
     en: {
-        eyebrow: "Plateer Labs · Demo · Free trial · Technical consultation",
+        eyebrow: "Plateer AI Labs · Demo · Free trial · Technical consultation",
         title: "Demo, trial, and technical consultation",
         lead: (
             <>

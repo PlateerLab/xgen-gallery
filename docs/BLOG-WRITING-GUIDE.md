@@ -1,6 +1,6 @@
-# 블로그 글쓰기 가이드 — Plateer Labs (B2B Enterprise)
+# 블로그 글쓰기 가이드 — Plateer AI Labs (B2B Enterprise)
 
-> **참조 규칙:** Plateer Labs 연구소 홈페이지의 Insight Blog 글을 쓰기 전에는
+> **참조 규칙:** Plateer AI Labs 연구소 홈페이지의 Insight Blog 글을 쓰기 전에는
 > **항상 이 문서를 먼저 읽는다.** 그리고 [GEO·SEO 최적화 가이드](./GEO-OPTIMIZATION-GUIDE.md)를
 > 함께 적용한다(둘 다 필수). 이 문서는 "사람이 쓴 것처럼 따뜻하고 읽기 쉽게"라는 요구와
 > "우리는 B2B 엔터프라이즈 솔루션 회사"라는 정체성을 **동시에** 만족시키기 위한 톤 기준이다.
@@ -76,7 +76,7 @@
 ## 6. 브랜드·표기 (일관성)
 
 - 제품 첫 등장은 **XGEN Agentic AI Platform**, 이후 **XGEN**
-- 화자/저자: **Plateer Labs** (팀 = "저희")
+- 화자/저자: **Plateer AI Labs** (팀 = "저희")
 - 표시용 카피·제목·소제목·태그라인에 **마침표(.) 없음**(설명형 본문 단락은 예외) — 사용자 지정 규칙
 - 나머지 표기·엔티티 일관성은 [GEO·SEO 가이드](./GEO-OPTIMIZATION-GUIDE.md) §1·§3 준수
 

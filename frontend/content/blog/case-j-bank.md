@@ -2,7 +2,7 @@
 title: "J은행 — 근거와 출처를 갖춘 금융 특화 AI 챗봇"
 description: "단순 FAQ 챗봇을 넘어, 내부 시스템과 연동되고 답변 근거를 출처로 제시하는 금융 특화 AI를 원한 J은행. RAG와 특화 sLLM 구축 PoC로 높은 정답률을 기록하며 금융권 특화 AI 역량을 입증한 사례."
 date: "2026-06-03"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["금융", "RAG", "sLLM", "AI 챗봇", "Case Study"]
 cover: "/blog/case-j-bank.svg"

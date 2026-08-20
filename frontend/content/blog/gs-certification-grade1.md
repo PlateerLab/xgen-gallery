@@ -6,7 +6,7 @@ descriptionEn: "The XGEN Agentic AI Platform passed accredited third-party testi
 date: "2026-07-06"
 cover: /blog/gs-certification-grade1.svg
 thumb: /blog/gs-certification-grade1-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["GS인증", "소프트웨어 품질", "1등급", "XGEN", "Enterprise AI"]
 draft: false

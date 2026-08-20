@@ -4,7 +4,7 @@ description: "The XGEN agent takes another step forward. XGeny is a new agent ru
 date: "2026-08-19"
 cover: /blog/product-xgeny.svg
 thumb: /blog/product-xgeny-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["XGeny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "Product"]
 draft: false
@@ -263,7 +263,7 @@ It is to change how enterprises hand work to agents in the first place.
 
 **An agent that keeps carrying out the work**
 
-With XGeny, Plateer Labs is extending the XGEN agent **from "AI that answers questions" to "AI you can hand real work to."**
+With XGeny, Plateer AI Labs is extending the XGEN agent **from "AI that answers questions" to "AI you can hand real work to."**
 
 XGeny has completed its main implementation and is now in stabilisation, with tool creation, memory, and other core capabilities under verification.
 

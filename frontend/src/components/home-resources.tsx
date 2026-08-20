@@ -38,7 +38,7 @@ const COPY: Record<Locale, { title: React.ReactNode; lead: string; more: string 
     ko: {
         title: (
             <>
-                Plateer Labs가 제공하는{" "}
+                Plateer AI Labs가 제공하는{" "}
                 <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                     기술 자산
                 </span>
@@ -53,7 +53,7 @@ const COPY: Record<Locale, { title: React.ReactNode; lead: string; more: string 
                 <span className="bg-gradient-to-r from-[#00acee] to-[#185aea] bg-clip-text text-transparent">
                     Technical resources
                 </span>{" "}
-                from Plateer Labs
+                from Plateer AI Labs
             </>
         ),
         lead: "Documentation and release notes for Enterprise AI, all in one place",

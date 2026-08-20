@@ -2,7 +2,7 @@
 title: "I사 — 검색·상담·코드 개선을 AI 하나로 풀어낸 이커머스"
 description: "상품 검색 누락과 문의 대응 부담, 코드 개선 지연을 AI 검색·상담 분석·코드 어시스턴트로 동시에 해결한 이커머스·미디어 기업 I사의 XGEN 도입 사례. 런칭 후 매출·트래픽이 전월 대비 약 20% 증가했습니다."
 date: "2026-05-20"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["이커머스", "AI 검색", "Agentic AI", "Case Study"]
 cover: "/blog/case-i-media.svg"

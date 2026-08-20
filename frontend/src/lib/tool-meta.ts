@@ -26,7 +26,7 @@ const SUFFIX: Record<Locale, (t: Tool) => string> = {
 };
 
 export function toolMetadata(tool: Tool, locale: Locale): Metadata {
-    // 60자 - " · Plateer Labs"(title template 접미사) = 태그라인에 쓸 수 있는 여유분.
+    // 60자 - " · Plateer AI Labs"(title template 접미사) = 태그라인에 쓸 수 있는 여유분.
     const room = 60 - ` · ${SITE.name}`.length - `${tool.name} — `.length;
     const tagline = clamp(tool.tagline, Math.max(room, 0));
     const title = tagline ? `${tool.name} — ${tagline}` : tool.name;

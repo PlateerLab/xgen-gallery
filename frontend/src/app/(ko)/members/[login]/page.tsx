@@ -24,7 +24,7 @@ export async function generateMetadata({
     if (!LOGIN_RE.test(login)) return { title: "Member" };
     return pageMetadata({
         title: `@${login} — Member`,
-        description: `GitHub profile, repositories, and stats for @${login} at Plateer Labs.`,
+        description: `GitHub profile, repositories, and stats for @${login} at Plateer AI Labs.`,
         path: `/members/${login}`,
         image: `https://github.com/${login}.png`,
         imageDims: { width: 460, height: 460 },

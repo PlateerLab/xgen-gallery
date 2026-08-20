@@ -4,7 +4,7 @@ description: "The agent runs on the server; the user works with it from their ow
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "On-premise", "Product"]
 draft: false

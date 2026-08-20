@@ -207,7 +207,7 @@ export const PRODUCT_EN = {
     faq: [
         {
             q: "What is XGEN?",
-            a: "XGEN is an on-premise Enterprise AI platform — an agent development environment for designing, deploying, operating, and governing Agentic AI services on the LLMs and infrastructure you choose. It is not a finished service delivered to you; you build and run the agents your organization's work needs on top of XGEN. It was designed and developed by the Plateer Labs AI research team.",
+            a: "XGEN is an on-premise Enterprise AI platform — an agent development environment for designing, deploying, operating, and governing Agentic AI services on the LLMs and infrastructure you choose. It is not a finished service delivered to you; you build and run the agents your organization's work needs on top of XGEN. It was designed and developed by the Plateer AI Labs AI research team.",
         },
         {
             q: "Which LLMs and foundation models can we use?",

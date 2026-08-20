@@ -4,7 +4,7 @@ description: "B2C 이커머스의 고객 분석을 그대로 옮기기 어려운
 date: "2026-03-16"
 cover: /blog/b2b-churn-signal-field-note.svg
 thumb: /blog/b2b-churn-signal-field-note-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"
 tags: ["B2B", "이탈 예측", "Sales Agent", "Agentic AI", "PoC", "식품·유통"]

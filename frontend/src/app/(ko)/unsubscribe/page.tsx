@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { UnsubscribeForm } from "@/components/unsubscribe-form";
 
 export const metadata: Metadata = {
-    title: "구독 해지 — Plateer Labs",
+    title: "구독 해지 — Plateer AI Labs",
     description: "뉴스레터·블로그 수신을 해지합니다.",
     robots: { index: false, follow: false },
 };

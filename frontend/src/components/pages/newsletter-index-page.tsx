@@ -37,7 +37,7 @@ const COPY: Record<
 > = {
     ko: {
         breadcrumb: "뉴스레터",
-        title: "Plateer Labs 뉴스레터",
+        title: "Plateer AI Labs 뉴스레터",
         lead: "Enterprise AI·Agentic AI 연구와 실무 인사이트, 제품 소식과 검증된 적용 사례를 정기적으로 받아보세요",
         benefits: [
             {
@@ -46,7 +46,7 @@ const COPY: Record<
             },
             {
                 title: "제품 소식·릴리스",
-                desc: "XGEN을 비롯한 Plateer Labs 제품의 새 기능과 릴리스 소식을 가장 먼저 알려드립니다",
+                desc: "XGEN을 비롯한 Plateer AI Labs 제품의 새 기능과 릴리스 소식을 가장 먼저 알려드립니다",
             },
             {
                 title: "검증된 적용 사례",
@@ -60,7 +60,7 @@ const COPY: Record<
     },
     en: {
         breadcrumb: "Newsletter",
-        title: "The Plateer Labs newsletter",
+        title: "The Plateer AI Labs newsletter",
         lead: "Research and practical insight on Enterprise and Agentic AI, product news, and cases proven in the field — delivered regularly",
         benefits: [
             {
@@ -69,7 +69,7 @@ const COPY: Record<
             },
             {
                 title: "Product news and releases",
-                desc: "New capabilities and releases across XGEN and other Plateer Labs products, first",
+                desc: "New capabilities and releases across XGEN and other Plateer AI Labs products, first",
             },
             {
                 title: "Cases proven in the field",

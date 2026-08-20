@@ -382,7 +382,7 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
                 figure: "XGEN Connector — your agent list on the left, quick chat below, an avatar on screen. Agents running on the server, called straight from the desktop.",
             },
             {
-                title: "Plateer Labs YouTube channel",
+                title: "Plateer AI Labs YouTube channel",
                 body: "XGEN demos and technical sessions go up here. Subscribe and you will see each new video as it lands.",
             },
         ],

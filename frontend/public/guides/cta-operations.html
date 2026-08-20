@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>CTA 운영 가이드 · Plateer Labs</title>
+<title>CTA 운영 가이드 · Plateer AI Labs</title>
 <style>
   @font-face{font-family:Pretendard;src:url(/fonts/PretendardVariable.woff2) format("woff2-variations");font-weight:45 920;font-display:swap;}
   :root{--ink:#16224a;--muted:#4a5878;--subtle:#7a89a8;--line:#e3e8f0;--surface:#f4f6fb;--accent:#2461d8;--accent-bg:#eef3ff;}
@@ -49,7 +49,7 @@
 <body>
 <div class="top"><div class="inner"><span class="brand">🛠️ 운영 가이드</span><a href="cta-operations.html" class="on">📮 CTA 운영 가이드</a><a href="operations.html" class="ghost">🛠️ 블로그 운영 방식</a><a href="blog-writing.html" class="ghost">📝 블로그 작성 가이드</a></div></div>
 <main><article class="doc">
-<h1>CTA 운영 가이드 — Plateer Labs</h1>
+<h1>CTA 운영 가이드 — Plateer AI Labs</h1>
 
 <div class="flow-note">
 <p class="lead">사이트의 모든 CTA(상담·소개서·구독·발행알림)가 어떻게 접수되고, 어디에 저장되며, 누구에게 어떤 주소로 발송되는지 한 문서로 정리합니다</p>
@@ -84,7 +84,7 @@
 <li>두 경로가 겹치지 않으므로 <strong>메일 1통 · 기록 1행</strong>이 보장됩니다.</li>
 </ul>
 <blockquote>
-<p><strong>발신 표시이름</strong>: 앱은 <code>"Plateer Labs" &lt;xgen@plateer.com&gt;</code>로 보내지만, O365가 사서함 계정 표시이름(<strong>"AI솔루션연구소"</strong>)으로 덮어써 그렇게 보일 수 있습니다. "Plateer Labs"로 통일하려면 <strong>M365 관리센터 → xgen@plateer.com → 표시 이름 변경</strong>이 필요합니다.</p>
+<p><strong>발신 표시이름</strong>: 앱은 <code>"Plateer AI Labs" &lt;xgen@plateer.com&gt;</code>로 보내지만, O365가 사서함 계정 표시이름(<strong>"AI솔루션연구소"</strong>)으로 덮어써 그렇게 보일 수 있습니다. "Plateer AI Labs"로 통일하려면 <strong>M365 관리센터 → xgen@plateer.com → 표시 이름 변경</strong>이 필요합니다.</p>
 </blockquote>
 
 <h2>3. 흐름도</h2>
@@ -216,7 +216,7 @@
 
 <h2>10. 롤백 (앱 발송 실패 시)</h2>
 <p>앱 O365 SMTP가 장애나면, Apps Script가 다시 메일을 보내도록 즉시 되돌릴 수 있습니다.
-<code>lead-webhook.gs</code> <code>doPost</code>의 상담·소개서 브랜치에 <strong>주석 처리된 발송 2줄을 해제</strong>하고 새 버전 배포하면 B모드(표시명 Plateer Labs + 답장 xgen)로 복구됩니다.
+<code>lead-webhook.gs</code> <code>doPost</code>의 상담·소개서 브랜치에 <strong>주석 처리된 발송 2줄을 해제</strong>하고 새 버전 배포하면 B모드(표시명 Plateer AI Labs + 답장 xgen)로 복구됩니다.
 단, 이 경우 발신은 chat2plex 계정으로 나갑니다.</p>
 
 <h2>관련 파일</h2>

@@ -4,7 +4,7 @@ description: "XGEN의 Agent가 한 단계 더 진화합니다. 메모리와 독�
 date: "2026-08-19"
 cover: /blog/product-xgeny.svg
 thumb: /blog/product-xgeny-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGeny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "제품"]
 draft: false
@@ -269,7 +269,7 @@ XGeny의 목표는 Agent에게 더 많은 기능을 붙이는 것만이 아닙�
 
 **지속적으로 업무를 수행하는 Agent**
 
-Plateer Labs는 XGeny를 통해 XGEN의 Agent를 **'질문에 답하는 AI'에서 '실제 업무를 맡길 수 있는 AI'로 확장**하고 있습니다.
+Plateer AI Labs는 XGeny를 통해 XGEN의 Agent를 **'질문에 답하는 AI'에서 '실제 업무를 맡길 수 있는 AI'로 확장**하고 있습니다.
 
 현재 XGeny는 주요 기능 구현을 마치고 안정화 작업을 진행하고 있으며, Tool 생성과 Memory를 포함한 주요 기능을 검증하고 있습니다.
 

@@ -16,7 +16,7 @@ export const CURATED_CONTRIBUTIONS: Record<string, ContributedRepo[]> = {
             fullName: "PlateerLab/xgen-gallery",
             htmlUrl: "https://github.com/PlateerLab/xgen-gallery",
             description:
-                "Plateer Labs 웹사이트 — Enterprise AI 갤러리·인사이트 블로그·멤버 허브.",
+                "Plateer AI Labs 웹사이트 — Enterprise AI 갤러리·인사이트 블로그·멤버 허브.",
             role: "Owner",
             language: "TypeScript",
         },

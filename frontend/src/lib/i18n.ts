@@ -173,9 +173,9 @@ export interface Dict {
 
 const FAQ_KO: FaqEntry[] = [
     {
-        question: "Plateer Labs는 어떤 곳인가요?",
+        question: "Plateer AI Labs는 어떤 곳인가요?",
         answer:
-            "Plateer Labs는 엔터프라이즈 AI를 연구하고, 기술을 제품으로 구현하는 AI 연구소입니다. 연구 성과를 오픈소스로 공개하고, 이를 XGEN Agentic AI Platform에 반영한 뒤, 실제 고객 환경에서 검증하며 지속적으로 고도화합니다. 연구부터 오픈소스, 제품, 고객 검증까지 이어지는 선순환 구조를 통해 기업이 신뢰하고 사용할 수 있는 AI 기술을 만들어갑니다.",
+            "Plateer AI Labs는 엔터프라이즈 AI를 연구하고, 기술을 제품으로 구현하는 AI 연구소입니다. 연구 성과를 오픈소스로 공개하고, 이를 XGEN Agentic AI Platform에 반영한 뒤, 실제 고객 환경에서 검증하며 지속적으로 고도화합니다. 연구부터 오픈소스, 제품, 고객 검증까지 이어지는 선순환 구조를 통해 기업이 신뢰하고 사용할 수 있는 AI 기술을 만들어갑니다.",
     },
     {
         question: "XGEN은 어떤 제품인가요?",
@@ -211,9 +211,9 @@ const FAQ_KO: FaqEntry[] = [
 
 const FAQ_EN: FaqEntry[] = [
     {
-        question: "What is Plateer Labs?",
+        question: "What is Plateer AI Labs?",
         answer:
-            "Plateer Labs is an enterprise-AI research lab that turns research into products. We open-source the building blocks, build the XGEN Agentic AI Platform on top of them, and validate everything through real customer PoCs — a research → open source → product → proof pipeline.",
+            "Plateer AI Labs is an enterprise-AI research lab that turns research into products. We open-source the building blocks, build the XGEN Agentic AI Platform on top of them, and validate everything through real customer PoCs — a research → open source → product → proof pipeline.",
     },
     {
         question: "What is XGEN?",
@@ -256,7 +256,7 @@ export const dict: Record<Locale, Dict> = {
             releases: "릴리스",
             github: "GitHub",
             star: "GitHub에서 별 주기",
-            tagline: "Plateer Labs for Enterprise AI·AX",
+            tagline: "Plateer AI Labs for Enterprise AI·AX",
             promo: "XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요",
             promoCta: "체험 신청",
             promoClose: "배너 닫기",
@@ -267,8 +267,8 @@ export const dict: Record<Locale, Dict> = {
             contact: "문의",
             explore: "Explore",
             about: "About",
-            blurb: "Plateer Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
-            members: "Lab Members",
+            blurb: "Plateer AI Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
+            members: "AI Lab Members",
             newsletter: "뉴스레터 구독",
             contribute: "블로그 기고",
             aiPolicy: "AI 품질 방침",
@@ -277,7 +277,7 @@ export const dict: Record<Locale, Dict> = {
             ctaTitleHighlight: "AI 솔루션",
             ctaTitleB: " 도입, 연구에서 실증까지 함께 설계합니다",
             ctaFde: "FDE(Forward Deployed Engineer)",
-            ctaLead: "Plateer Labs는 풍부한 연구 경험과 검증된 기술력으로 귀사의 AI 전환 여정을 성공적으로 지원합니다",
+            ctaLead: "Plateer AI Labs는 풍부한 연구 경험과 검증된 기술력으로 귀사의 AI 전환 여정을 성공적으로 지원합니다",
             ctaPrimary: "문의하기",
             ctaSecondary: "PoC 사례 보러가기",
             demoMore: "더 많은 영상 보기",
@@ -340,7 +340,7 @@ export const dict: Record<Locale, Dict> = {
         },
         membersPage: {
             eyebrow: "팀",
-            title: "Plateer Labs를 만드는 사람들.",
+            title: "Plateer AI Labs를 만드는 사람들.",
             descA: "XGEN 플랫폼과 그 라이브러리 생태계를 만드는 오픈소스 기여자들. 출처: ",
             descB: ".",
         },
@@ -353,7 +353,7 @@ export const dict: Record<Locale, Dict> = {
             releases: "Releases",
             github: "GitHub",
             star: "Star on GitHub",
-            tagline: "Plateer Labs for Enterprise AI·AX",
+            tagline: "Plateer AI Labs for Enterprise AI·AX",
             promo: "Try XGEN free for 15 days — nothing to install, runs in your browser",
             promoCta: "Start free trial",
             promoClose: "Dismiss banner",
@@ -365,8 +365,8 @@ export const dict: Record<Locale, Dict> = {
             contact: "Contact",
             explore: "Explore",
             about: "About",
-            blurb: "Plateer Labs researches and shares the core technologies behind AI platforms enterprises can trust. The document ingestion, knowledge graph, and agent frameworks that make up XGEN are published as open source, so anyone can install them, experiment, and put them into production.",
-            members: "Lab Members",
+            blurb: "Plateer AI Labs researches and shares the core technologies behind AI platforms enterprises can trust. The document ingestion, knowledge graph, and agent frameworks that make up XGEN are published as open source, so anyone can install them, experiment, and put them into production.",
+            members: "AI Lab Members",
             newsletter: "Newsletter",
             contribute: "Write for the blog",
             aiPolicy: "AI quality policy",
@@ -375,7 +375,7 @@ export const dict: Record<Locale, Dict> = {
             ctaTitleHighlight: "AI adoption",
             ctaTitleB: ", designed with you from research to proof",
             ctaFde: "Forward Deployed Engineers (FDE)",
-            ctaLead: "Plateer Labs brings deep research experience and proven engineering to your AI transformation.",
+            ctaLead: "Plateer AI Labs brings deep research experience and proven engineering to your AI transformation.",
             ctaPrimary: "Get in touch",
             ctaSecondary: "See PoC case studies",
             demoMore: "More videos",
@@ -438,7 +438,7 @@ export const dict: Record<Locale, Dict> = {
         },
         membersPage: {
             eyebrow: "Team",
-            title: "The people behind Plateer Labs.",
+            title: "The people behind Plateer AI Labs.",
             descA: "Open-source contributors building the XGEN platform and its ecosystem of libraries. Synced from ",
             descB: ".",
         },

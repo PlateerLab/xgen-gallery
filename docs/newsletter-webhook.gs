@@ -28,7 +28,7 @@ const SHEET_NAME = "newsletter";
 // 구독 알림을 받을 담당자(내부). 필요 없으면 빈 문자열("")로 두면 알림 메일을 건너뛴다.
 const NOTIFY = "chat2plex@gmail.com, swan@plateer.com";
 // 구독자에게 보내는 확인 메일의 발신자 표기
-const SENDER_NAME = "Plateer Labs";
+const SENDER_NAME = "Plateer AI Labs";
 
 const HEADERS = ["이메일", "구독상태", "최초등록시각", "최종변경시각", "소스"];
 
@@ -83,24 +83,24 @@ function upsertRow_(email, status, d) {
 function sendConfirm_(email, status) {
   const subscribing = status === "Y";
   const subject = subscribing
-    ? "[Plateer Labs] 뉴스레터 구독이 접수되었습니다"
-    : "[Plateer Labs] 뉴스레터 구독이 해지되었습니다";
+    ? "[Plateer AI Labs] 뉴스레터 구독이 접수되었습니다"
+    : "[Plateer AI Labs] 뉴스레터 구독이 해지되었습니다";
   const body = subscribing
     ? [
-        "안녕하세요, Plateer Labs 뉴스레터 구독을 신청해 주셔서 감사합니다.",
+        "안녕하세요, Plateer AI Labs 뉴스레터 구독을 신청해 주셔서 감사합니다.",
         "",
         "Enterprise AI 연구·제품 소식과 기술 노트를 정기적으로 보내드리겠습니다.",
         "구독을 원치 않으실 때는 언제든 뉴스레터 페이지에서 한 번의 클릭으로 해지하실 수 있습니다.",
         "",
-        "— Plateer Labs",
+        "— Plateer AI Labs",
       ].join("\n")
     : [
-        "Plateer Labs 뉴스레터 구독이 해지되었습니다.",
+        "Plateer AI Labs 뉴스레터 구독이 해지되었습니다.",
         "",
         "그동안 함께해 주셔서 감사합니다. 다시 소식을 받고 싶으시면",
         "언제든 뉴스레터 페이지에서 재구독하실 수 있습니다.",
         "",
-        "— Plateer Labs",
+        "— Plateer AI Labs",
       ].join("\n");
 
   MailApp.sendEmail({ to: email, subject: subject, body: body, name: SENDER_NAME });

@@ -3,7 +3,7 @@ title: "Home-shopping retailer L — an insight reporter that writes the market 
 titleSeo: "An insight reporter that writes itself"
 description: "Retail trends moved daily while the market report was written by hand. Home-shopping retailer L built an insight reporter that generates it automatically."
 date: "2026-05-27"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["E-commerce", "Insight reporter", "Data analysis", "Case Study"]
 cover: "/blog/case-l-homeshopping.svg"

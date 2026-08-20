@@ -2,7 +2,7 @@
 title: "S사 — 문서·이미지·표까지 읽는 멀티모달 RAG Editor"
 description: "구성원 간 솔루션 이해도 차이와 반복 질문으로 프로젝트 속도가 느려지던 IT 서비스 기업 S사. 기업 고유 데이터를 학습한 전용 AI 챗봇과 멀티모달 RAG Editor를 XGEN으로 구축해 반복 문의의 약 90%를 자동화한 사례."
 date: "2026-06-18"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["IT서비스", "멀티모달", "RAG", "AI 챗봇", "Case Study"]
 cover: "/blog/case-s-corp.svg"

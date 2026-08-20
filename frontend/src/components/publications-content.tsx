@@ -36,7 +36,7 @@ const COPY: Record<
 > = {
     ko: {
         heading: "구성원들의 연구 성과",
-        lead: "Plateer Labs 구성원들이 학회·저널에 발표한 논문입니다. 자연어처리, 딥러닝, 그래프·추천, 분산학습 등 Enterprise AI와 맞닿은 연구가 제품의 기술적 토대가 됩니다",
+        lead: "Plateer AI Labs 구성원들이 학회·저널에 발표한 논문입니다. 자연어처리, 딥러닝, 그래프·추천, 분산학습 등 Enterprise AI와 맞닿은 연구가 제품의 기술적 토대가 됩니다",
         tabsAria: "연구 카테고리",
         sourceAria: "원문 보기",
         tabs: [

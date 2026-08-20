@@ -13,7 +13,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * 홈 포지셔닝 서사 — "연구소가 만든 것을 제품으로 증명한다".
  * 연구(Research) → 오픈소스(Open Source) → 제품(Product) → 실증(Proof)의 한 방향
- * 파이프라인을 명시해 Plateer Labs의 정체성(연구소)을 사이트 전체 서사로 앵커한다.
+ * 파이프라인을 명시해 Plateer AI Labs의 정체성(연구소)을 사이트 전체 서사로 앵커한다.
  */
 interface Copy {
     title: React.ReactNode;
@@ -66,7 +66,7 @@ export function HomePositioning({ locale = "ko" }: { locale?: Locale }) {
         <section className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
                 <p className="font-mono text-[13px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                    Plateer Labs
+                    Plateer AI Labs
                 </p>
                 <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight text-[var(--color-ink)] md:text-5xl">
                     {t.title}

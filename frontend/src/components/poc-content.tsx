@@ -132,11 +132,11 @@ const ART: Record<Locale, Record<string, string>> = {
 const COPY: Record<Locale, { intro: string }> = {
     ko: {
         intro:
-            "엔터프라이즈 AI는 데모에서 끝나지 않습니다. Plateer Labs는 고객 현장의 실제 문제에서 출발해, 함께 연구한 기술로 검증 가능한 해결을 만듭니다",
+            "엔터프라이즈 AI는 데모에서 끝나지 않습니다. Plateer AI Labs는 고객 현장의 실제 문제에서 출발해, 함께 연구한 기술로 검증 가능한 해결을 만듭니다",
     },
     en: {
         intro:
-            "Enterprise AI does not end at the demo. Plateer Labs starts from a real problem on the customer's floor and builds a solution that can be verified, using technology researched together",
+            "Enterprise AI does not end at the demo. Plateer AI Labs starts from a real problem on the customer's floor and builds a solution that can be verified, using technology researched together",
     },
 };
 

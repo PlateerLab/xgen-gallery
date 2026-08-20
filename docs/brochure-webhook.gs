@@ -29,7 +29,7 @@ const SHEET_NAME = "brochure";
 //   대해 인증을 하드 차단("This app is blocked")한다. 링크 방식은 권한이
 //   Spreadsheet+Mail 뿐이라(리드 DEMO 웹훅과 동일) 승인이 정상 통과한다.
 const BROCHURE_PDF_URL = "https://labs.plateer.com/downloads/xgen-brochure.pdf";
-const FROM_NAME = "Plateer Labs";
+const FROM_NAME = "Plateer AI Labs";
 // 내부 접수 알림 수신자. (테스트 단계 — swan@plateer.com. 운영 전환 시 xgen@plateer.com 등)
 const INTERNAL_TO = "swan@plateer.com";
 
@@ -107,7 +107,7 @@ function sendBrochureEmail_(d) {
   const bodyText = [
     name + "님, 안녕하세요.",
     "",
-    "Plateer Labs XGEN에 관심 가져 주셔서 감사합니다.",
+    "Plateer AI Labs XGEN에 관심 가져 주셔서 감사합니다.",
     "요청하신 XGEN 소개서는 아래 링크에서 바로 받으실 수 있습니다.",
     "",
     BROCHURE_PDF_URL,
@@ -116,12 +116,12 @@ function sendBrochureEmail_(d) {
     "https://labs.plateer.com/contact 로 문의해 주세요.",
     "",
     "감사합니다.",
-    "Plateer Labs 드림",
+    "Plateer AI Labs 드림",
   ].join("\n");
   const htmlBody =
     '<div style="font-family:Apple SD Gothic Neo,Malgun Gothic,sans-serif;font-size:15px;line-height:1.7;color:#1a2233">' +
     "<p>" + name + "님, 안녕하세요.</p>" +
-    "<p>Plateer Labs XGEN에 관심 가져 주셔서 감사합니다.<br>" +
+    "<p>Plateer AI Labs XGEN에 관심 가져 주셔서 감사합니다.<br>" +
     "요청하신 <b>XGEN 소개서</b>를 아래 버튼에서 바로 받으실 수 있습니다.</p>" +
     '<p style="margin:24px 0">' +
     '<a href="' + BROCHURE_PDF_URL + '" style="display:inline-block;background:#2f7bff;' +
@@ -131,13 +131,13 @@ function sendBrochureEmail_(d) {
     BROCHURE_PDF_URL + "</p>" +
     "<p>도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나 " +
     '<a href="https://labs.plateer.com/contact">문의 페이지</a>를 이용해 주세요.</p>' +
-    "<p>감사합니다.<br>Plateer Labs 드림</p></div>";
+    "<p>감사합니다.<br>Plateer AI Labs 드림</p></div>";
 
   MailApp.sendEmail({
     to: to,
     name: FROM_NAME,
     replyTo: INTERNAL_TO,
-    subject: "[Plateer Labs] 요청하신 XGEN 소개서를 보내드립니다",
+    subject: "[Plateer AI Labs] 요청하신 XGEN 소개서를 보내드립니다",
     body: bodyText,
     htmlBody: htmlBody,
   });

@@ -2,7 +2,7 @@
 title: "L홈쇼핑 — 시장 리포트를 스스로 쓰는 인사이트 리포터"
 description: "급변하는 리테일·이커머스 트렌드를 사람이 손으로 정리하던 L홈쇼핑이, 내·외부 데이터를 통합 분석해 보고서를 자동 생성하는 인사이트 리포터(Automated Insight Reporter)를 XGEN으로 구축한 사례."
 date: "2026-05-27"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["이커머스", "인사이트 리포터", "데이터 분석", "Case Study"]
 cover: "/blog/case-l-homeshopping.svg"

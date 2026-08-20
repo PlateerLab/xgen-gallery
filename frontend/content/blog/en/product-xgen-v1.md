@@ -5,7 +5,7 @@ description: "The XGEN Agentic AI Platform passed GS certification testing at TT
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg
 thumb: /blog/product-xgen-v1-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["XGEN", "Agentic AI", "GS Certification", "GraphRAG", "AI Governance", "Enterprise AI"]
 draft: false
@@ -154,4 +154,4 @@ What is needed is a platform that operates AI safely, connects it to the systems
 
 This GS certification means XGEN has been objectively verified — in both function and quality — as that kind of Enterprise AI platform.
 
-Even now, Plateer Labs keeps advancing what [building and operating Enterprise AI](/en/product) requires: more than 80 agent nodes, system integration, knowledge management, and AI governance
+Even now, Plateer AI Labs keeps advancing what [building and operating Enterprise AI](/en/product) requires: more than 80 agent nodes, system integration, knowledge management, and AI governance

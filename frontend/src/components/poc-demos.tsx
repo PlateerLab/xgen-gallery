@@ -350,7 +350,7 @@ export function PocDemos({ locale = "ko" }: { locale?: Locale }) {
         thumbnailUrl: [`https://i.ytimg.com/vi/${d.id}/hqdefault.jpg`],
         embedUrl: `https://www.youtube-nocookie.com/embed/${d.id}`,
         contentUrl: `https://www.youtube.com/watch?v=${d.id}`,
-        publisher: { "@type": "Organization", name: "Plateer Labs" },
+        publisher: { "@type": "Organization", name: "Plateer AI Labs" },
     }));
 
     // 대표 영상은 페이지 상단 키 비주얼(ProofHero)로 노출하므로, 여기선 나머지만.

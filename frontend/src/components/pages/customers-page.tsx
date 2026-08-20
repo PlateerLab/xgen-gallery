@@ -37,7 +37,7 @@ const COPY: Record<
     }
 > = {
     ko: {
-        ldName: "Plateer Labs 고객사례",
+        ldName: "Plateer AI Labs 고객사례",
         breadcrumb: "고객사례",
         heroEyebrow: "Applied AI · 고객 사례",
         heroTitle: "Enterprise AI는 실제 업무에서 검증됩니다",
@@ -57,7 +57,7 @@ const COPY: Record<
         closingCta: "도입 문의",
     },
     en: {
-        ldName: "Plateer Labs customer cases",
+        ldName: "Plateer AI Labs customer cases",
         breadcrumb: "Customer cases",
         heroEyebrow: "Applied AI · Customer cases",
         heroTitle: "Enterprise AI proves itself in the actual work",

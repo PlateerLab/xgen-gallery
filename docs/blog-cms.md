@@ -19,7 +19,7 @@ title: "제목"
 description: "검색·AI 답변용 한 줄 요약(≤155자)"
 date: "2026-06-24"
 updated: "2026-06-25"   # 선택
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Tech Note"   # Case Study | Tech Note | 제품 소식
 tags: ["온톨로지", "GEO", "SEO"]   # 주제 엔티티 — 목록 주제 필터·SEO 키워드
 cover: "/blog/xxx.png"  # 선택
@@ -50,7 +50,7 @@ draft: false            # true면 운영 빌드에서 숨김
 
 - **GitHub에 직접 커밋(운영)**: Next 앱이 OAuth 제공자 역할(`/api/auth`, `/api/callback`).
 
-  1. **GitHub OAuth App** — ✅ 이미 생성됨: `PlateerLab` 조직 소유 "Plateer Labs Blog CMS"
+  1. **GitHub OAuth App** — ✅ 이미 생성됨: `PlateerLab` 조직 소유 "Plateer AI Labs Blog CMS"
        - **Client ID: `Ov23liv3gveHfTPsLH2Z`** · Callback: `https://labs.plateer.com/api/callback`
        - (재발급이 필요하면: GitHub → PlateerLab → Settings → Developer settings → OAuth Apps)
   2. **운영 서버 환경변수에 입력** 후 재배포:

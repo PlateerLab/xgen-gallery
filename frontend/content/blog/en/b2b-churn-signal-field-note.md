@@ -4,14 +4,14 @@ description: "Why consumer e-commerce analytics do not transfer directly, how a 
 date: "2026-03-16"
 cover: /blog/b2b-churn-signal-field-note.svg
 thumb: /blog/b2b-churn-signal-field-note-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"
 tags: ["B2B", "Churn prediction", "Sales Agent", "Agentic AI", "PoC", "Food distribution"]
 draft: false
 ---
 
-Enterprise conversations about AI are moving past chatbots and document search into sales work itself. Plateer Labs recently looked at how AI could be applied to B2B sales data together with **Company D**, a food distribution business.
+Enterprise conversations about AI are moving past chatbots and document search into sales work itself. Plateer AI Labs recently looked at how AI could be applied to B2B sales data together with **Company D**, a food distribution business.
 
 The task Company D wanted to examine first was **"an AI agent that spots accounts at risk of churning early, and goes on to propose what the sales rep should do about it."**
 
@@ -150,4 +150,4 @@ Especially in an area like B2B sales, where every company manages customers and 
 
 Which is why the first question of a good AI PoC is closer to **"what signals does the business watch, and how does it judge them?"** than to "which AI should we use?"
 
-Plateer Labs takes questions like these from the field, tests them against real data in short verification cycles, and works toward the form of agentic AI that fits the work a company actually does.
+Plateer AI Labs takes questions like these from the field, tests them against real data in short verification cycles, and works toward the form of agentic AI that fits the work a company actually does.

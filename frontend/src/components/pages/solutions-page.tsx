@@ -70,7 +70,7 @@ const COPY: Record<
         caseCta: "실제 고객사례 보러가기",
         agenticLead: (
             <>
-                Plateer Labs는 에이전트가 스스로 계획하고, 협업하고, 도구를 다루며,
+                Plateer AI Labs는 에이전트가 스스로 계획하고, 협업하고, 도구를 다루며,
                 <br />
                 신뢰성 있게 운영되도록 만드는{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">
@@ -175,7 +175,7 @@ const COPY: Record<
         caseCta: "Read the customer cases",
         agenticLead: (
             <>
-                Plateer Labs works on the{" "}
+                Plateer AI Labs works on the{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">
                     underlying technology and research
                 </strong>{" "}

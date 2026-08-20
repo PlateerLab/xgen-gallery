@@ -4,7 +4,7 @@ description: "Past wrapping an engine, XGEN's SDK compiles workflows and policie
 date: "2026-06-21"
 cover: /blog/product-mcp-apps.svg
 thumb: /blog/product-mcp-apps-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["MCP Apps", "Portability", "Product"]
 draft: false

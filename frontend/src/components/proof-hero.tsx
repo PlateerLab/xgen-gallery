@@ -21,7 +21,7 @@ const COPY: Record<
         title: "Proof in Action",
         lead: "Less telling, more running — watch XGEN's core capabilities work on the real product",
         play: "Play the demo",
-        channel: "Plateer Labs on YouTube",
+        channel: "Plateer AI Labs on YouTube",
     },
 };
 

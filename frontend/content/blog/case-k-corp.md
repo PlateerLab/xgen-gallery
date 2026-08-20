@@ -2,7 +2,7 @@
 title: "K공사 — 조달 업무를 직접 처리하는 Actionable AI 챗봇"
 description: "동일 질문 반복 대응과 담당자별 상이한 답변으로 공급자가 혼란을 겪던 공공기관 K공사. 조회에 그치지 않고 SRM과 연동해 요청을 실제로 처리하는 Actionable AI CS 챗봇을 PoC로 검증한 사례."
 date: "2026-06-11"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["공공기관", "AI 챗봇", "RAG", "조달", "Case Study"]
 cover: "/blog/case-k-corp.svg"

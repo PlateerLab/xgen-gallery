@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Resources",
     description:
-        "The Plateer Labs resource library — request the XGEN brochure for the platform's core capabilities, architecture, and adoption path.",
+        "The Plateer AI Labs resource library — request the XGEN brochure for the platform's core capabilities, architecture, and adoption path.",
     path: "/resources",
     locale: "en",
 });

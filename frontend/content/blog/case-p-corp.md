@@ -4,7 +4,7 @@ titleEn: "Company P — an internal HR chatbot that answers before you ask"
 description: "반복·단순 HR 문의가 HR팀에 몰리고, 규정 변경이 전사에 제때 닿지 않아 정보 격차가 생기던 P사. 사내 HR 문서를 학습한 RAG 기반 챗봇을 XGEN으로 구축해 24/7 자동 응대 체계를 만든 기업 내부 업무 사례."
 descriptionEn: "An HR assistant grounded in internal policy documents, built so employees get an answer without knowing which document to open."
 date: "2026-06-25"
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["기업 내부 업무", "HR", "AI 챗봇", "RAG", "Case Study"]
 cover: "/blog/case-p-corp.svg"

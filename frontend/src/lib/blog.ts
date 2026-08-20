@@ -31,7 +31,7 @@ export interface PostMeta {
     descriptionEn?: string;
     /**
      * 검색 결과용 짧은 제목(선택). `<title>`에만 쓰고 화면의 h1은 `title`을 그대로 쓴다.
-     * `<title>`은 브랜드 접미사(` · Plateer Labs`, 15자)가 붙어 60자에서 잘리는데,
+     * `<title>`은 브랜드 접미사(` · Plateer AI Labs`, 15자)가 붙어 60자에서 잘리는데,
      * 서술적인 영문 기사 헤드라인은 그 한도를 넘기 쉽다. 헤드라인의 정보량은 지키고
      * 검색 결과에서만 결론이 잘리지 않게 하려는 필드다(45자 이하 권장).
      */
@@ -124,7 +124,7 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
         descriptionEn: data.descriptionEn ? String(data.descriptionEn) : undefined,
         date: toISODate(data.date),
         updated: data.updated ? toISODate(data.updated) : undefined,
-        author: String(data.author ?? "Plateer Labs"),
+        author: String(data.author ?? "Plateer AI Labs"),
         authorGithub: data.authorGithub
             ? String(data.authorGithub).replace(/^@/, "")
             : undefined,

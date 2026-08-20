@@ -6,7 +6,7 @@ descriptionEn: "XGEN earned Grade 1 GS certification, Korea's highest national s
 date: "2026-08-05"
 cover: /blog/product-xgen-v1.svg
 thumb: /blog/product-xgen-v1-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN", "Agentic AI", "GS인증", "GraphRAG", "AI 거버넌스", "Enterprise AI"]
 draft: false

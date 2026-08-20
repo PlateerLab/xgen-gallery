@@ -5,7 +5,7 @@ description: "Login, API wiring, tool registration, testing — not a line of co
 date: "2026-06-08"
 cover: /blog/product-pathfinder.svg
 thumb: /blog/product-pathfinder-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["PathFinder", "Integration", "No-Code", "Product"]
 draft: false

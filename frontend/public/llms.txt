@@ -1,6 +1,6 @@
-# Plateer Labs
+# Plateer AI Labs
 
-> Plateer Labs is an AI research lab building trustworthy Enterprise AI. It
+> Plateer AI Labs is an AI research lab building trustworthy Enterprise AI. It
 > researches the technology behind autonomous agents, proves it through
 > open-source Python libraries, and delivers it as products: XGEN (an on-premise
 > Agentic AI Platform), Polar (a commerce-specialized private sLLM), and AI Code

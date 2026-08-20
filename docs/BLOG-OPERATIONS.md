@@ -1,6 +1,6 @@
 # 블로그 운영 방식 — 기고부터 발행까지
 
-Plateer Labs Insight 블로그는 **DB 없이 git 저장소의 마크다운 파일**로 운영됩니다.
+Plateer AI Labs Insight 블로그는 **DB 없이 git 저장소의 마크다운 파일**로 운영됩니다.
 글 1개는 `frontend/content/blog/<slug>.md` 파일 1개이고, `main`에 머지되면 자동 배포됩니다.
 개발자는 각자 **자기 GitHub 계정**으로 글을 올리고, 편집자가 **리뷰·머지**하면 발행됩니다.
 

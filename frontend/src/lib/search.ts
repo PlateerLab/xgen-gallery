@@ -26,7 +26,7 @@ const PAGES: SearchDoc[] = [
     { title: "Documentation", subtitle: "XGEN 사용자 매뉴얼·가이드", url: "/documentation", type: "페이지", keywords: "문서 매뉴얼 manual" },
     { title: "Library Gallery", subtitle: "오픈소스 라이브러리 갤러리", url: "/library-gallery", type: "페이지", keywords: "라이브러리 오픈소스" },
     { title: "Release Notes", subtitle: "변경 이력·업데이트", url: "/releases", type: "페이지", keywords: "릴리즈 변경 이력 changelog" },
-    { title: "Lab Members", subtitle: "연구 멤버 프로필·기여 활동", url: "/members", type: "페이지", keywords: "멤버 팀 team lab members 랩" },
+    { title: "AI Lab Members", subtitle: "연구 멤버 프로필·기여 활동", url: "/members", type: "페이지", keywords: "멤버 팀 team lab members 랩" },
     { title: "PoC Projects", subtitle: "산업별 PoC 실증 사례", url: "/poc-projects", type: "페이지", keywords: "poc 실증 사례" },
     { title: "Technical Consulting", subtitle: "AI 도입 전략·PoC·아키텍처 컨설팅", url: "/technical-consulting", type: "페이지", keywords: "컨설팅 consulting" },
     { title: "PoC · 기술 상담", subtitle: "문의·상담 신청", url: "/contact", type: "페이지", keywords: "문의 상담 contact 데모" },

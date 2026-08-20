@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Architecture",
     description:
-        "The Plateer Labs Enterprise AI reference architecture — a layered design holding data sovereignty, security, and governance end to end.",
+        "The Plateer AI Labs Enterprise AI reference architecture — a layered design holding data sovereignty, security, and governance end to end.",
     path: "/architecture",
     locale: "en",
 });

@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         subscribed: subscribe ? "Y" : "N",
         kind,
         receivedAt: new Date().toISOString(),
-        source: `Plateer Labs/${kind}`,
+        source: `Plateer AI Labs/${kind}`,
     };
 
     // 통합 리드 웹훅(컨택·소개서·구독을 한 스프레드시트 탭으로 관리). 별도 운영 시

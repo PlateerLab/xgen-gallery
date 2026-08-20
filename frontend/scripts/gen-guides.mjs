@@ -46,7 +46,7 @@ function template({ title, emoji, body, currentOut }) {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>${title} · Plateer Labs</title>
+<title>${title} · Plateer AI Labs</title>
 <style>
   @font-face{font-family:Pretendard;src:url(/fonts/PretendardVariable.woff2) format("woff2-variations");font-weight:45 920;font-display:swap;}
   :root{--ink:#16224a;--muted:#4a5878;--subtle:#7a89a8;--line:#e3e8f0;--surface:#f4f6fb;--accent:#2461d8;--accent-bg:#eef3ff;}

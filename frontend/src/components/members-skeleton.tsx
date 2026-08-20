@@ -1,5 +1,5 @@
 /**
- * Loading placeholders for the Lab Members grid. Rendered as the <Suspense>
+ * Loading placeholders for the AI Lab Members grid. Rendered as the <Suspense>
  * fallback while the server component fetches the roster, so the hero paints
  * immediately and the grid area never collapses (no layout shift).
  */

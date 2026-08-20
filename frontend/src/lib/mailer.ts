@@ -15,7 +15,7 @@ const PORT = Number(process.env.SMTP_PORT || 587);
 const USER = process.env.SMTP_USER || "xgen@plateer.com";
 const PASS = process.env.SMTP_PASS || ""; // 시크릿 — 이것만 설정하면 됨
 const FROM_ADDR = process.env.MAIL_FROM || USER || "xgen@plateer.com";
-const FROM_NAME = "Plateer Labs";
+const FROM_NAME = "Plateer AI Labs";
 /**
  * 내부 알림 수신처 — 상담/소개서 각각(둘 다 xgen 포함). env로 오버라이드 가능.
  * 상담·소개서 양쪽에 공통으로 받는 담당자는 EXTRA_INTERNAL_TO에 한 줄만 넣으면 된다.
@@ -116,11 +116,11 @@ export function contactConfirmMail(d: ContactLead): Mail {
     const name = d.name || "고객";
     return {
         to: String(d.email || "").trim(),
-        subject: "[Plateer Labs] 상담 신청이 접수되었습니다",
+        subject: "[Plateer AI Labs] 상담 신청이 접수되었습니다",
         text: [
             `${name}님, 안녕하세요.`,
             "",
-            "Plateer Labs에 문의해 주셔서 감사합니다. 아래 내용으로 상담 신청이 접수되었습니다.",
+            "Plateer AI Labs에 문의해 주셔서 감사합니다. 아래 내용으로 상담 신청이 접수되었습니다.",
             "",
             `• 문의 유형: ${d.inquiryType || ""}`,
             `• 상담 내용: ${d.inquiry || ""}`,
@@ -128,16 +128,16 @@ export function contactConfirmMail(d: ContactLead): Mail {
             "담당자가 영업일 기준 1~2일 내에 이메일 또는 전화로 연락드리겠습니다.",
             "",
             "감사합니다.",
-            "Plateer Labs 드림",
+            "Plateer AI Labs 드림",
         ].join("\n"),
         html: wrap(
             `<p>${esc(name)}님, 안녕하세요.</p>` +
-                "<p>Plateer Labs에 문의해 주셔서 감사합니다.<br>아래 내용으로 <b>상담 신청이 접수</b>되었습니다.</p>" +
+                "<p>Plateer AI Labs에 문의해 주셔서 감사합니다.<br>아래 내용으로 <b>상담 신청이 접수</b>되었습니다.</p>" +
                 `<div style="margin:16px 0;padding:14px 16px;background:#f5f7fb;border-radius:10px">` +
                 `<p style="margin:0 0 6px"><b>문의 유형</b> · ${esc(d.inquiryType || "")}</p>` +
                 `<p style="margin:0;color:#5b6472">${esc(d.inquiry || "")}</p></div>` +
                 "<p>담당자가 <b>영업일 기준 1~2일 내</b>에 이메일 또는 전화로 연락드리겠습니다.</p>" +
-                "<p>감사합니다.<br>Plateer Labs 드림</p>",
+                "<p>감사합니다.<br>Plateer AI Labs 드림</p>",
         ),
     };
 }
@@ -191,11 +191,11 @@ export function brochureMail(d: BrochureLead, b: BrochureInfo): Mail {
     const pdf = SITE + b.file;
     return {
         to: String(d.email || "").trim(),
-        subject: `[Plateer Labs] 요청하신 ${b.name} 소개서를 보내드립니다`,
+        subject: `[Plateer AI Labs] 요청하신 ${b.name} 소개서를 보내드립니다`,
         text: [
             `${name}님, 안녕하세요.`,
             "",
-            `Plateer Labs ${b.name}에 관심 가져 주셔서 감사합니다.`,
+            `Plateer AI Labs ${b.name}에 관심 가져 주셔서 감사합니다.`,
             `요청하신 ${b.name} 소개서는 아래 링크에서 바로 받으실 수 있습니다.`,
             "",
             pdf,
@@ -204,15 +204,15 @@ export function brochureMail(d: BrochureLead, b: BrochureInfo): Mail {
             `${SITE}/contact 로 문의해 주세요.`,
             "",
             "감사합니다.",
-            "Plateer Labs 드림",
+            "Plateer AI Labs 드림",
         ].join("\n"),
         html: wrap(
             `<p>${esc(name)}님, 안녕하세요.</p>` +
-                `<p>Plateer Labs ${esc(b.name)}에 관심 가져 주셔서 감사합니다.<br>요청하신 <b>${esc(b.name)} 소개서</b>를 아래 버튼에서 바로 받으실 수 있습니다.</p>` +
+                `<p>Plateer AI Labs ${esc(b.name)}에 관심 가져 주셔서 감사합니다.<br>요청하신 <b>${esc(b.name)} 소개서</b>를 아래 버튼에서 바로 받으실 수 있습니다.</p>` +
                 `<p style="margin:24px 0"><a href="${pdf}" style="display:inline-block;background:#2f7bff;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">${esc(b.name)} 소개서 다운로드 (PDF)</a></p>` +
                 `<p style="color:#5b6472;font-size:13.5px">버튼이 열리지 않으면 아래 주소를 복사해 주세요.<br>${pdf}</p>` +
                 `<p>도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신하시거나 <a href="${SITE}/contact">문의 페이지</a>를 이용해 주세요.</p>` +
-                "<p>감사합니다.<br>Plateer Labs 드림</p>",
+                "<p>감사합니다.<br>Plateer AI Labs 드림</p>",
         ),
     };
 }
@@ -234,8 +234,8 @@ export function contentNotifyMail(
 ): Mail {
     const subject =
         posts.length === 1
-            ? `[Plateer Labs] ${word}: ${posts[0].title || ""}`
-            : `[Plateer Labs] ${word} ${posts.length}건이 올라왔어요`;
+            ? `[Plateer AI Labs] ${word}: ${posts[0].title || ""}`
+            : `[Plateer AI Labs] ${word} ${posts.length}건이 올라왔어요`;
     const text = [
         heading,
         "",
@@ -245,7 +245,7 @@ export function contentNotifyMail(
             ...(p.url ? [`  ${p.url}`] : []),
             "",
         ]),
-        "— Plateer Labs",
+        "— Plateer AI Labs",
         `수신 해지: ${unsubUrl}`,
     ].join("\n");
     const items = posts
@@ -286,11 +286,11 @@ export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
     // 서명 링크가 없으면(시크릿 미설정) 링크를 넣지 않는다 — 어차피 403이 나서
     // 요청자만 헛걸음한다. 그 경우 담당자가 파일을 직접 첨부하도록 안내한다.
     const pdf = b.signedPath ? SITE + b.signedPath : null;
-    const replySubject = `[Plateer Labs] 요청하신 ${b.name} 소개서를 보내드립니다`;
+    const replySubject = `[Plateer AI Labs] 요청하신 ${b.name} 소개서를 보내드립니다`;
     const replyBody = [
         `${name}님, 안녕하세요.`,
         "",
-        `Plateer Labs ${b.name}에 관심 가져 주셔서 감사합니다.`,
+        `Plateer AI Labs ${b.name}에 관심 가져 주셔서 감사합니다.`,
         ...(pdf
             ? [
                   `요청하신 ${b.name} 소개서는 아래 링크에서 받으실 수 있습니다.`,
@@ -304,7 +304,7 @@ export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
         "도입 검토·PoC·보안 요건 상담이 필요하시면 본 메일에 회신해 주세요.",
         "",
         "감사합니다.",
-        "Plateer Labs 드림",
+        "Plateer AI Labs 드림",
     ].join("\n");
     const mailto =
         `mailto:${encodeURIComponent(to)}` +

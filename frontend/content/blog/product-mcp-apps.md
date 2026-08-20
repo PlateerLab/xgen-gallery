@@ -6,7 +6,7 @@ descriptionEn: "Package an agent workflow as a standard MCP app and run it where
 date: "2026-06-21"
 cover: /blog/product-mcp-apps.svg
 thumb: /blog/product-mcp-apps-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["MCP Apps", "독립", "제품"]
 draft: false

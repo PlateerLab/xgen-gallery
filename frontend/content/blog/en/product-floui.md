@@ -4,7 +4,7 @@ description: "The era of fitting data into a screen is over. Meet FloUI, a respo
 date: "2026-05-30"
 cover: /blog/product-floui.svg
 thumb: /blog/product-floui-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Product news"
 tags: ["FloUI", "Extensibility", "Hyper-personalization", "Product"]
 draft: false

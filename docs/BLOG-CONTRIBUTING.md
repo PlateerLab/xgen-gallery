@@ -1,6 +1,6 @@
 # 블로그 기여 가이드 — 개발자가 글을 올리는 법
 
-Plateer Labs Insight 블로그는 **DB 없이 git 리포의 마크다운 파일**로 운영됩니다.
+Plateer AI Labs Insight 블로그는 **DB 없이 git 리포의 마크다운 파일**로 운영됩니다.
 글 1개 = `frontend/content/blog/<slug>.md` 파일 1개이고, 머지되면 자동 배포됩니다.
 
 개발자 각자 **자기 GitHub 계정으로 로그인**해 글을 올리고, 편집자가 **PR을 리뷰·머지**하면 발행됩니다.

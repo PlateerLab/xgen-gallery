@@ -454,8 +454,8 @@ export const ABOUT_GROUP: NavGroup = {
     key: "about",
     label: "About",
     concept: "about",
-    blurb: "Plateer Labs를 만드는 미션과 사람들.",
-        blurbEn: "The mission and the people behind Plateer Labs.",
+    blurb: "Plateer AI Labs를 만드는 미션과 사람들.",
+        blurbEn: "The mission and the people behind Plateer AI Labs.",
     items: [
         { label: "Company", id: "company", external: "https://www.plateer.com/" },
         {

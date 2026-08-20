@@ -14,7 +14,7 @@ import { languageAlternates, localePath } from "./locale-path";
  * 신규 페이지 생성 체크리스트는 docs/GEO-OPTIMIZATION-GUIDE.md 참고.
  */
 export interface PageMetaInput {
-    /** 페이지 제목(브랜드 접미사 제외 — <title>은 루트 template이 `· Plateer Labs`를 붙임). */
+    /** 페이지 제목(브랜드 접미사 제외 — <title>은 루트 template이 `· Plateer AI Labs`를 붙임). */
     title: string;
     /** 페이지 설명 — meta description·og:description·twitter description에 공통 사용. */
     description: string;

@@ -1,5 +1,5 @@
 /**
- * Plateer Labs 구성원들의 대외 게재·발표물(Publications).
+ * Plateer AI Labs 구성원들의 대외 게재·발표물(Publications).
  * Research & Technology › Publications 섹션(/research#publications)과 JSON-LD의 단일 소스.
  *
  * 분류(category):
@@ -36,7 +36,7 @@ export const PUB_AWARD_EN: Record<string, string> = {
 export interface Publication {
     title: string;
     authors: string;
-    /** 저자 중 Plateer Labs 구성원(멤버 프로필 로그인). */
+    /** 저자 중 Plateer AI Labs 구성원(멤버 프로필 로그인). */
     memberLogins: string[];
     venue: string;
     year: number;

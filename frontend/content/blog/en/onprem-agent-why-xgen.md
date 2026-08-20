@@ -4,7 +4,7 @@ description: "Once agents start executing inside core systems, the selection cri
 date: "2026-08-12"
 cover: /blog/onprem-agent-why-xgen.svg
 thumb: /blog/onprem-agent-why-xgen-thumb.svg
-author: "Plateer Labs"
+author: "Plateer AI Labs"
 category: "Industry Note"
 tags: ["On-premise", "Private Agent", "Data sovereignty", "AI governance", "XGEN", "Agentic AI"]
 faq:
@@ -105,7 +105,7 @@ The more AI participates in real business processes, the more operating standard
 
 XGEN builds the governance an enterprise needs for continuous AI operation into the platform — permission management, execution history, and AI control policy.
 
-Plateer Labs applies these standards not only to product features but also codifies them as an [AI quality policy](/en/ai-quality-policy) and operating procedures that we manage on an ongoing basis.
+Plateer AI Labs applies these standards not only to product features but also codifies them as an [AI quality policy](/en/ai-quality-policy) and operating procedures that we manage on an ongoing basis.
 
 ### 6. Verified quality and field-led implementation
 

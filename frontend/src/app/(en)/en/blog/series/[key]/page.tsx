@@ -25,7 +25,7 @@ export async function generateMetadata({
             languages: languageAlternates(`/blog/series/${def.key}`),
         },
         openGraph: {
-            title: `${def.titleEn} · Plateer Labs`,
+            title: `${def.titleEn} · Plateer AI Labs`,
             description: def.descriptionEn,
             type: "website",
             locale: "en_US",

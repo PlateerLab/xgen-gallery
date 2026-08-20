@@ -372,7 +372,7 @@ const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }
 const FAQ: { q: string; a: string }[] = [
     {
         q: "XGEN은 무엇인가요?",
-        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer Labs AI 연구소가 직접 설계·개발했습니다.",
+        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer AI Labs AI 연구소가 직접 설계·개발했습니다.",
     },
     {
         q: "어떤 LLM·파운데이션 모델을 사용할 수 있나요?",
