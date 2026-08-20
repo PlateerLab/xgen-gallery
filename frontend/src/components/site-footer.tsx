@@ -87,7 +87,8 @@ export function SiteFooter() {
         })),
         // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
         { key: "members", label: t.footer.members, href: "/members" },
-        { key: "newsletter", label: t.footer.newsletter, href: "/newsletter" },
+        // 뉴스레터 구독은 여기서 뺐다 — GNB Insight 의 "랩 뉴스레터"와 각 목록의
+        // 구독 위젯(SubscribeCta)이 이미 같은 자리를 맡고 있어 중복이었다.
         // AI 품질 방침 — 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지
         // 인증·품질 섹션이 제자리다. 주소는 lib/ai-policy-link.ts 가 단일 출처다.
         // 대외 공개가 AI-MASTER NEW1 증빙 요건이므로 이 진입 링크를 지우지 않는다.
@@ -96,8 +97,9 @@ export function SiteFooter() {
             label: t.footer.aiPolicy,
             href: AI_POLICY_HREF[locale],
         },
-        // Decap CMS 진입점 — GitHub 로그인 후 글 기고(Open Authoring)
-        { key: "contribute", label: t.footer.contribute, href: "/admin", plain: true },
+        // 블로그 기고(/admin) 진입점도 뺐다 — 기고자용 경로라 일반 방문자에게
+        // 노출할 자리가 아니다. 주소는 그대로 살아 있고, 안내는 기여 가이드
+        // (docs/BLOG-CONTRIBUTING.md)가 맡는다.
     ];
     // 저작권 끝 연도는 현재 연도로 자동 갱신 (2027년이면 2023–2027).
     const year = new Date().getFullYear();
