@@ -16,13 +16,13 @@
   <circle cx="1080" cy="90" r="220" fill="#94a3b8" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#94a3b8" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#6d28d9">CASE STUDY · 이커머스</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#6d28d9">CASE STUDY · 이커머스</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge2)"/>
-  <text x="140" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">L</text>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">인사이트 리포트를</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#6d28d9">스스로 쓰는 AI</text>
+  <text x="140" y="216" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="56" font-weight="800" fill="#ffffff">L</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">인사이트 리포트를</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#6d28d9">스스로 쓰는 AI</text>
   <rect x="92" y="440" width="330" height="52" rx="26" fill="#ede9fe"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#5b21b6">보고서 작성 자동화</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#5b21b6">보고서 작성 자동화</text>
 
   <!-- motif: report window -->
   <g filter="url(#sh2)">
@@ -30,7 +30,7 @@
   </g>
   <rect x="628" y="150" width="484" height="60" rx="28" fill="#7c3aed"/>
   <rect x="628" y="182" width="484" height="28" fill="#7c3aed"/>
-  <text x="660" y="189" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="21" font-weight="700" fill="#ffffff">트렌드 · 인사이트 보고서</text>
+  <text x="660" y="189" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#ffffff">트렌드 · 인사이트 보고서</text>
   <!-- bars + trend line -->
   <g>
     <rect x="664" y="360" width="44" height="120" rx="8" fill="#ddd6fe"/>

@@ -8,21 +8,21 @@
   <circle cx="1080" cy="90" r="220" fill="#f59e0b" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#b45309" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#b45309">TECH NOTE · 분산 추적</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#b45309">TECH NOTE · 분산 추적</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <rect x="112" y="176" width="56" height="10" rx="5" fill="#ffffff"/>
   <rect x="122" y="193" width="44" height="10" rx="5" fill="#ffffff" opacity="0.78"/>
   <rect x="132" y="210" width="34" height="10" rx="5" fill="#ffffff" opacity="0.56"/>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">Envoy에서</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#b45309">OTel 계측으로</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">Envoy에서</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#b45309">OTel 계측으로</text>
   <rect x="92" y="440" width="336" height="52" rx="26" fill="#fef3c7"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#92400e">Jaeger · OpenTelemetry</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#92400e">Jaeger · OpenTelemetry</text>
 
   <!-- motif: 중첩된 Span 워터폴 — 프록시 레벨에서 애플리케이션 레벨까지 -->
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
-  <text x="668" y="200" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="19" font-weight="700" fill="#64748b">Service &amp; Operation</text>
+  <text x="668" y="200" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="700" fill="#64748b">Service &amp; Operation</text>
   <line x1="668" y1="220" x2="1072" y2="220" stroke="#e2e8f0" stroke-width="2"/>
-  <g font-family="system-ui,'Segoe UI',sans-serif" font-size="16" font-weight="600" fill="#334155">
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" font-weight="600" fill="#334155">
     <text x="668" y="260">istio-ingressgateway</text>
     <rect x="880" y="248" width="192" height="16" rx="8" fill="#b45309"/>
     <text x="668" y="308">xgen-backend-gateway</text>
@@ -36,5 +36,5 @@
     <rect x="1024" y="440" width="40" height="16" rx="8" fill="#fcd34d"/>
   </g>
   <rect x="668" y="490" width="404" height="30" rx="15" fill="#ecfdf5"/>
-  <text x="688" y="511" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="700" fill="#1f8f52">애플리케이션 레벨 Span까지 이어진다</text>
+  <text x="688" y="511" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="17" font-weight="700" fill="#1f8f52">애플리케이션 레벨 Span까지 이어진다</text>
 </svg>

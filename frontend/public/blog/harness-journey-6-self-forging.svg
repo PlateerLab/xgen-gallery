@@ -7,16 +7,16 @@
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 6편</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 6편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
-  <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#ffffff">H6</text>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">판정 점수로</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">설정을 탐색</text>
+  <text x="140" y="214" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="38" font-weight="800" fill="#ffffff">H6</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">판정 점수로</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">설정을 탐색</text>
   <rect x="92" y="440" width="300" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">셀프 포징 · 탐색</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#4338ca">셀프 포징 · 탐색</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
-  <text x="700" y="222" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="700" fill="#4338ca">설정 후보 · 판정 점수</text>
+  <text x="700" y="222" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="17" font-weight="700" fill="#4338ca">설정 후보 · 판정 점수</text>
   <!-- score bars -->
   <rect x="684" y="410" width="70" height="60" rx="8" fill="#c7d2fe"/>
   <rect x="770" y="360" width="70" height="110" rx="8" fill="#a5b4fc"/>

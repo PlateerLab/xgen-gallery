@@ -16,13 +16,13 @@
   <circle cx="1080" cy="90" r="220" fill="#94a3b8" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#94a3b8" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#059669">CASE STUDY · 기업 내부 업무</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#059669">CASE STUDY · 기업 내부 업무</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge6)"/>
-  <text x="140" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">P</text>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">묻지 않아도 알려주는</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#059669">사내 HR 챗봇</text>
+  <text x="140" y="216" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="56" font-weight="800" fill="#ffffff">P</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">묻지 않아도 알려주는</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#059669">사내 HR 챗봇</text>
   <rect x="92" y="440" width="330" height="52" rx="26" fill="#d1fae5"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#047857">24/7 자동 응대</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#047857">24/7 자동 응대</text>
 
   <!-- motif: Teams-like HR chat -->
   <g filter="url(#sh6)">
@@ -31,14 +31,14 @@
   <rect x="628" y="150" width="484" height="62" rx="28" fill="#10b981"/>
   <rect x="628" y="184" width="484" height="28" fill="#10b981"/>
   <circle cx="668" cy="181" r="16" fill="#ffffff"/>
-  <text x="668" y="187" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="800" fill="#10b981">HR</text>
-  <text x="696" y="188" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="21" font-weight="700" fill="#ffffff">사내 HR 챗봇</text>
+  <text x="668" y="187" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" font-weight="800" fill="#10b981">HR</text>
+  <text x="696" y="188" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#ffffff">사내 HR 챗봇</text>
   <!-- user bubble -->
   <rect x="812" y="238" width="266" height="50" rx="16" fill="#d1fae5"/>
   <rect x="836" y="256" width="216" height="14" rx="7" fill="#6ee7b7"/>
   <!-- bot bubble -->
   <circle cx="676" cy="322" r="20" fill="#10b981"/>
-  <text x="676" y="328" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="800" fill="#ffffff">HR</text>
+  <text x="676" y="328" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" font-weight="800" fill="#ffffff">HR</text>
   <rect x="708" y="300" width="332" height="120" rx="16" fill="#f0fdf4" stroke="#dcfce7"/>
   <rect x="730" y="322" width="286" height="13" rx="6" fill="#bbf7d0"/>
   <rect x="730" y="346" width="252" height="13" rx="6" fill="#bbf7d0"/>

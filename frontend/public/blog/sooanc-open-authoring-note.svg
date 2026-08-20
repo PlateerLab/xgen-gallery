@@ -8,13 +8,13 @@
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
 
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · Open Authoring</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · Open Authoring</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
   <path d="M140 168 a30 30 0 0 0 -9.5 58.5 c1.5 .3 2-.7 2-1.5 v-5.6 c-8.3 1.8-10-4-10-4 -1.4-3.4-3.3-4.3-3.3-4.3 -2.7-1.8 .2-1.8 .2-1.8 3 .2 4.5 3 4.5 3 2.6 4.5 6.9 3.2 8.6 2.4 .3-1.9 1-3.2 1.9-4 -6.6-.7-13.6-3.3-13.6-14.7 0-3.2 1.2-5.9 3-8 -.3-.8-1.3-3.8 .3-7.9 0 0 2.5-.8 8 3 2.3-.6 4.8-1 7.3-1 2.5 0 5 .3 7.3 1 5.5-3.8 8-3 8-3 1.6 4.1 .6 7.1 .3 7.9 1.9 2 3 4.8 3 8 0 11.4-7 14-13.6 14.7 1 .9 2 2.6 2 5.3 v7.8 c0 .8 .5 1.8 2 1.5 A30 30 0 0 0 140 168 z" fill="#ffffff"/>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">개발자를 위한</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">기고 환경 구축</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">개발자를 위한</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">기고 환경 구축</text>
   <rect x="92" y="440" width="300" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">Open Authoring · PR</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#4338ca">Open Authoring · PR</text>
 
   <!-- motif: fork -> PR -> merge -->
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
@@ -24,17 +24,17 @@
 
   <g>
     <circle cx="726" cy="272" r="26" fill="#4338ca"/>
-    <text x="726" y="279" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="17" font-weight="700" fill="#ffffff">Fork</text>
-    <text x="770" y="278" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="20" font-weight="700" fill="#475569">기고자 저장소</text>
+    <text x="726" y="279" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="17" font-weight="700" fill="#ffffff">Fork</text>
+    <text x="770" y="278" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" font-weight="700" fill="#475569">기고자 저장소</text>
   </g>
   <g>
     <circle cx="984" cy="360" r="26" fill="#6366f1"/>
-    <text x="984" y="366" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="18" font-weight="700" fill="#ffffff">PR</text>
-    <text x="770" y="366" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="20" font-weight="700" fill="#475569">리뷰 대기</text>
+    <text x="984" y="366" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#ffffff">PR</text>
+    <text x="770" y="366" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" font-weight="700" fill="#475569">리뷰 대기</text>
   </g>
   <g>
     <circle cx="726" cy="452" r="26" fill="#1f9d57"/>
     <path d="M714 452 l8 9 15 -17" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="770" y="458" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="20" font-weight="700" fill="#475569">머지 · 발행</text>
+    <text x="770" y="458" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" font-weight="700" fill="#475569">머지 · 발행</text>
   </g>
 </svg>

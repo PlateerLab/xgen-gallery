@@ -7,13 +7,13 @@
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="1080" cy="90" r="220" fill="#6366f1" opacity="0.06"/>
   <circle cx="140" cy="620" r="180" fill="#4338ca" opacity="0.05"/>
-  <text x="92" y="120" font-family="'Pretendard Variable',Pretendard,system-ui,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 10편</text>
+  <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#4f46e5">TECH NOTE · 하네스 10편</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
-  <text x="140" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="34" font-weight="800" fill="#ffffff">H10</text>
-  <text x="92" y="330" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#0f172a">교훈을 최신</text>
-  <text x="92" y="388" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">상태로 이월</text>
+  <text x="140" y="214" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="800" fill="#ffffff">H10</text>
+  <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#0f172a">교훈을 최신</text>
+  <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#4f46e5">상태로 이월</text>
   <rect x="92" y="440" width="320" height="52" rx="26" fill="#e0e7ff"/>
-  <text x="118" y="474" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="24" font-weight="700" fill="#4338ca">피드백 · 프레시니스</text>
+  <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#4338ca">피드백 · 프레시니스</text>
 
   <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff"/></g>
   <!-- 실행 타임라인 -->
@@ -28,13 +28,13 @@
   <text x="1030" y="460" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" font-weight="700" fill="#4338ca">now</text>
   <!-- 최신 교훈 카드가 앞으로 이월 -->
   <rect x="700" y="230" width="150" height="96" rx="16" fill="#eef2ff" stroke="#c7d2fe"/>
-  <text x="775" y="266" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">이전 교훈</text>
+  <text x="775" y="266" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#4f46e5">이전 교훈</text>
   <rect x="722" y="284" width="106" height="10" rx="5" fill="#c7d2fe"/>
   <rect x="722" y="302" width="80" height="10" rx="5" fill="#dbe4f2"/>
   <path d="M850 278 C 920 278 960 300 990 340" fill="none" stroke="#6366f1" stroke-width="5" stroke-linecap="round"/>
   <path d="M980 326 l 14 18 l -22 4 z" fill="#6366f1"/>
   <rect x="924" y="238" width="150" height="96" rx="16" fill="#4338ca"/>
-  <text x="999" y="274" text-anchor="middle" font-family="'Pretendard Variable',Pretendard,system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif" font-size="15" font-weight="700" fill="#ffffff">최신 교훈</text>
+  <text x="999" y="274" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#ffffff">최신 교훈</text>
   <rect x="946" y="292" width="106" height="10" rx="5" fill="#a5b4fc"/>
   <rect x="946" y="310" width="80" height="10" rx="5" fill="#818cf8"/>
 </svg>
