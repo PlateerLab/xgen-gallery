@@ -1,26 +1,26 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B2B 거래처의 반복 발주 패턴이 흔들리는 지점을 신호로 잡아, 이탈 판단과 근거, 영업 대응까지 잇는 흐름">
   <defs>
-    <!-- 필드 노트 전용 — 따뜻한 잉크빛 검정에 앰버 단색 강조.
-         제품 소식 커버의 남색 계열과 목록에서 확실히 갈라 보이게 한다. -->
+    <!-- 필드 노트 전용 — 딥 인디고바이올렛 배경에 바이올렛·푸시아 강조.
+         XGEN 프리뷰 커버(남색·시안)와 목록에서 구분되게 한다. -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#12100e"/>
-      <stop offset="1" stop-color="#241c15"/>
+      <stop offset="0" stop-color="#0d0820"/>
+      <stop offset="1" stop-color="#1e1338"/>
     </linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#fbbf24"/>
-      <stop offset="1" stop-color="#f59e0b"/>
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#d946ef"/>
     </linearGradient>
     <linearGradient id="steady" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d6d3d1" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#a8a29e" stop-opacity="0.5"/>
+      <stop offset="0" stop-color="#cbd5e1" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#94a3b8" stop-opacity="0.5"/>
     </linearGradient>
     <linearGradient id="warn" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fbbf24"/>
-      <stop offset="1" stop-color="#d97706"/>
+      <stop offset="0" stop-color="#e879f9"/>
+      <stop offset="1" stop-color="#a21caf"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.2"/>
-      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
@@ -28,11 +28,11 @@
   <circle cx="430" cy="330" r="360" fill="url(#glow)"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="106" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="600" fill="#fcd34d" letter-spacing="5">FIELD NOTE</text>
-  <text x="600" y="164" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="700" fill="#fafaf9">패턴이 흔들리는 지점</text>
+  <text x="600" y="106" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="600" fill="#c4b5fd" letter-spacing="5">FIELD NOTE</text>
+  <text x="600" y="164" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="700" fill="#ffffff">패턴이 흔들리는 지점</text>
 
   <!-- 발주 패턴 — 일정하게 반복되다 뒤로 갈수록 낮아지고 간격이 벌어진다 -->
-  <text x="152" y="242" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="14" font-weight="600" fill="#a8a29e" letter-spacing="2">거래처 발주 패턴</text>
+  <text x="152" y="242" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="14" font-weight="600" fill="#94a3b8" letter-spacing="2">거래처 발주 패턴</text>
   <g>
     <rect x="152" y="266" width="38" height="98" rx="10" fill="url(#steady)"/>
     <rect x="208" y="278" width="38" height="86" rx="10" fill="url(#steady)"/>
@@ -40,38 +40,38 @@
     <rect x="320" y="280" width="38" height="84" rx="10" fill="url(#steady)"/>
     <rect x="384" y="304" width="38" height="60" rx="10" fill="url(#warn)" opacity="0.45"/>
     <rect x="460" y="320" width="38" height="44" rx="10" fill="url(#warn)" opacity="0.75"/>
-    <rect x="548" y="334" width="38" height="30" rx="10" fill="#f87171"/>
-    <line x1="152" y1="376" x2="606" y2="376" stroke="#fafaf922" stroke-width="2" stroke-linecap="round"/>
-    <text x="152" y="404" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="13" fill="#a8a29e99">일정한 주기</text>
-    <text x="606" y="404" text-anchor="end" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="13" font-weight="600" fill="#fbbf24">주기 지연 · 물량 감소</text>
+    <rect x="548" y="334" width="38" height="30" rx="10" fill="#fb7185"/>
+    <line x1="152" y1="376" x2="606" y2="376" stroke="#ffffff22" stroke-width="2" stroke-linecap="round"/>
+    <text x="152" y="404" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="13" fill="#94a3b899">일정한 주기</text>
+    <text x="606" y="404" text-anchor="end" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="13" font-weight="600" fill="#c4b5fd">주기 지연 · 물량 감소</text>
   </g>
 
   <!-- 신호 → 판단 → 근거 → 대응 -->
   <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
     <rect x="672" y="250" width="384" height="54" rx="14" fill="url(#brand)"/>
-    <text x="698" y="284" font-size="18" font-weight="700" fill="#1c1408">이상 변화 탐지</text>
+    <text x="698" y="284" font-size="18" font-weight="700" fill="#ffffff">이상 변화 탐지</text>
 
-    <rect x="672" y="316" width="384" height="50" rx="14" fill="#fafaf90a" stroke="#fafaf920"/>
-    <text x="698" y="347" font-size="16" font-weight="500" fill="#e7e5e4">이탈 가능성 판단</text>
+    <rect x="672" y="316" width="384" height="50" rx="14" fill="#ffffff0a" stroke="#ffffff20"/>
+    <text x="698" y="347" font-size="16" font-weight="500" fill="#e2e8f0">이탈 가능성 판단</text>
 
-    <rect x="672" y="378" width="384" height="50" rx="14" fill="#fafaf90a" stroke="#fafaf920"/>
-    <text x="698" y="409" font-size="16" font-weight="500" fill="#e7e5e4">판단 근거 제시</text>
+    <rect x="672" y="378" width="384" height="50" rx="14" fill="#ffffff0a" stroke="#ffffff20"/>
+    <text x="698" y="409" font-size="16" font-weight="500" fill="#e2e8f0">판단 근거 제시</text>
 
-    <rect x="672" y="440" width="384" height="54" rx="14" fill="#fbbf2416" stroke="#fbbf2466" stroke-width="1.5"/>
-    <text x="698" y="474" font-size="17" font-weight="700" fill="#fcd34d">영업 대응 전략 추천</text>
+    <rect x="672" y="440" width="384" height="54" rx="14" fill="#8b5cf620" stroke="#a78bfa66" stroke-width="1.5"/>
+    <text x="698" y="474" font-size="17" font-weight="700" fill="#c4b5fd">영업 대응 전략 추천</text>
   </g>
-  <path d="M622 340 L656 340" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="6 7" opacity="0.55" stroke-linecap="round"/>
-  <path d="M650 334 L657 340 L650 346" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <path d="M622 340 L656 340" stroke="#a78bfa" stroke-width="2.5" stroke-dasharray="6 7" opacity="0.55" stroke-linecap="round"/>
+  <path d="M650 334 L657 340 L650 346" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
 
   <!-- 하단 요약 -->
-  <text x="600" y="562" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" fill="#d6d3d1b3">누가 이탈하는가보다, 무엇이 달라졌고 무엇을 할 것인가</text>
+  <text x="600" y="562" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" fill="#cbd5e1b3">누가 이탈하는가보다, 무엇이 달라졌고 무엇을 할 것인가</text>
 
-  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#a8a29e">
-    <rect x="336" y="600" width="164" height="38" rx="19" fill="#fafaf908" stroke="#fafaf91f"/>
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#94a3b8">
+    <rect x="336" y="600" width="164" height="38" rx="19" fill="#ffffff08" stroke="#ffffff1f"/>
     <text x="418" y="625" text-anchor="middle">B2B 거래 패턴</text>
-    <rect x="516" y="600" width="168" height="38" rx="19" fill="#fafaf908" stroke="#fafaf91f"/>
+    <rect x="516" y="600" width="168" height="38" rx="19" fill="#ffffff08" stroke="#ffffff1f"/>
     <text x="600" y="625" text-anchor="middle">Prediction → Action</text>
-    <rect x="700" y="600" width="164" height="38" rx="19" fill="#fafaf908" stroke="#fafaf91f"/>
+    <rect x="700" y="600" width="164" height="38" rx="19" fill="#ffffff08" stroke="#ffffff1f"/>
     <text x="782" y="625" text-anchor="middle">Enterprise AI PoC</text>
   </g>
 </svg>

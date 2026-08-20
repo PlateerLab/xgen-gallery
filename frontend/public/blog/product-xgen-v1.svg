@@ -10,7 +10,7 @@
   <circle cx="150" cy="630" r="190" fill="#2563eb" opacity="0.05"/>
 
   <!-- 텍스트 -->
-  <text x="92" y="122" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">제품 소식 · XGEN v1.0</text>
+  <text x="92" y="122" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0284c7">XGEN 프리뷰 · XGEN v1.0</text>
   <text x="92" y="228" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="52" font-weight="800" fill="#0f172a">GS 인증으로 검증된</text>
   <text x="92" y="296" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="52" font-weight="800" fill="#1d4ed8">XGEN 핵심 기능</text>
   <text x="92" y="360" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="25" font-weight="500" fill="#475569">Agent Node · 시스템 연동 · GraphRAG</text>
