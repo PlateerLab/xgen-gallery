@@ -10,7 +10,7 @@
  * footer are all driven from here.
  */
 import type { ConceptId } from "@/lib/backgrounds";
-import { CATEGORIES } from "@/lib/tools";
+import { CATEGORIES, toolCountFor } from "@/lib/tools";
 
 export interface NavLeaf {
     /** display label */
@@ -122,14 +122,17 @@ export function sectionHref(groupKey: string, id: string): string {
  *
  * 카테고리가 늘면 이 메뉴도 같이 늘어난다(메뉴를 손으로 고칠 필요가 없다).
  * "all" 은 갤러리 첫 화면이라 상위 항목(Library Gallery)이 이미 맡고 있어 뺀다.
- * 링크는 /library-gallery?cat=…#tools — 쿼리로 초기 필터를 잡고, 앵커로 카드
+ * 링크는 /library-gallery?cat=…#tools — 쿼리로 필터를 정하고, 앵커로 카드
  * 그리드까지 내려준다(히어로만 보이고 끝나지 않게).
+ *
+ * 라벨 뒤 숫자는 그 카테고리의 라이브러리 수다. 갤러리 필터 칩과 같은 함수를
+ * 쓰므로 라이브러리를 추가하면 메뉴의 숫자도 함께 바뀐다.
  */
 const LIBRARY_CATEGORY_ITEMS: NavLeaf[] = CATEGORIES.filter(
     (c) => c.id !== "all",
 ).map((c) => ({
-    label: c.label,
-    labelKo: c.labelKo,
+    label: `${c.label} ${toolCountFor(c.id)}`,
+    labelKo: `${c.labelKo} ${toolCountFor(c.id)}`,
     id: `lib-${c.id}`,
     route: `/library-gallery?cat=${c.id}#tools`,
 }));

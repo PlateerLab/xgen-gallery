@@ -246,3 +246,8 @@ export function getToolsByCategory(category: ToolCategory | "all") {
     if (category === "all") return TOOLS;
     return TOOLS.filter((t) => t.category === category);
 }
+
+/** 카테고리별 라이브러리 수 — 갤러리 필터 칩과 GNB 하위 메뉴가 같은 값을 쓴다. */
+export function toolCountFor(id: ToolCategory | "all"): number {
+    return getToolsByCategory(id).length;
+}
