@@ -78,12 +78,3 @@ export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
 export function categoryLabel(category: string, locale: Locale): string {
     return CATEGORY_LABEL[locale][category] ?? category;
 }
-
-/**
- * 목록 카드에서 썸네일을 넓게 세우는 카테고리(저장 값 기준).
- *
- * 필드 노트는 현장에서 본 것을 옮긴 글이라 일러스트가 곁들임이 아니라 내용의
- * 일부다. 기본 카드는 썸네일이 폭의 1/5쯤인데, 이 카테고리만 2/5로 키운다.
- * 표기("필드 노트")가 또 바뀌어도 저장 값은 그대로이므로 여기서 값으로 잡는다.
- */
-export const WIDE_THUMB_CATEGORIES: readonly string[] = ["Industry Note"];

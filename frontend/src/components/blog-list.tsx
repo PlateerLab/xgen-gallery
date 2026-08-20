@@ -15,7 +15,6 @@ import type { PostMeta } from "@/lib/blog";
 import {
     categoryLabel,
     VISIBLE_BLOG_CATEGORIES,
-    WIDE_THUMB_CATEGORIES,
 } from "@/lib/blog-categories";
 import { localeHref } from "@/lib/locale-path";
 import { useI18n } from "@/components/i18n-provider";
@@ -589,16 +588,10 @@ export function BlogList({
                                             href={localeHref(locale, `/blog/${p.slug}`)}
                                             className="group flex gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-3 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-20px_rgba(20,40,80,0.28)]"
                                         >
-                                            {/* 필드 노트는 일러스트가 내용의 일부라 데스크톱에서 폭을
-                                                넓게 준다(1/5 → 2/5). 모바일은 이미 그 비율이라 그대로. */}
-                                            <div
-                                                className={cn(
-                                                    "relative aspect-[4/3] w-[128px] flex-none overflow-hidden rounded-xl",
-                                                    WIDE_THUMB_CATEGORIES.includes(p.category)
-                                                        ? "sm:w-[300px]"
-                                                        : "sm:w-[176px]",
-                                                )}
-                                            >
+                                            {/* 목록 카드의 썸네일 — 일러스트가 곁들임이 아니라 글을
+                                                고르는 단서라 데스크톱에서 폭을 넉넉히 준다(카드 폭의
+                                                1/3 남짓). 모바일은 이미 그 비율이라 그대로 둔다. */}
+                                            <div className="relative aspect-[4/3] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[248px]">
                                                 <Thumb
                                                     post={p}
                                                     className="transition duration-500 group-hover:scale-[1.04]"

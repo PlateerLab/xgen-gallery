@@ -3,8 +3,8 @@
     <!-- 필드 노트 전용 — 딥 인디고바이올렛 배경에 바이올렛·푸시아 강조.
          XGEN 프리뷰 커버(남색·시안)와 목록에서 구분되게 한다. -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#150d2b"/>
-      <stop offset="1" stop-color="#2c1c4e"/>
+      <stop offset="0" stop-color="#20153f"/>
+      <stop offset="1" stop-color="#3d2a68"/>
     </linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#8b5cf6"/>
