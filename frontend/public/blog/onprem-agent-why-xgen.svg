@@ -1,8 +1,8 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온프레미스 AI Agent — 기업 경계 안에서 실행되고 감사되는 XGEN 운영 계층">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0d0820"/>
-      <stop offset="1" stop-color="#1e1338"/>
+      <stop offset="0" stop-color="#150d2b"/>
+      <stop offset="1" stop-color="#2c1c4e"/>
     </linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#8b5cf6"/>
