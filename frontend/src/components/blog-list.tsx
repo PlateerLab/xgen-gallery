@@ -591,7 +591,7 @@ export function BlogList({
                                             {/* 목록 카드의 썸네일 — 일러스트가 곁들임이 아니라 글을
                                                 고르는 단서라 데스크톱에서 폭을 넉넉히 준다(카드 폭의
                                                 1/3 남짓). 모바일은 이미 그 비율이라 그대로 둔다. */}
-                                            <div className="relative aspect-[16/9] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[248px]">
+                                            <div className="relative aspect-[16/9] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[288px]">
                                                 <Thumb
                                                     post={p}
                                                     className="transition duration-500 group-hover:scale-[1.04]"
