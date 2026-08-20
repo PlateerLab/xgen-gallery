@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Insight",
     description:
-        "Plateer AI Labs Insight — XGEN 프리뷰, 필드 리포트, 테크 노트 등 Enterprise AI 연구·실무 인사이트를 공유합니다.",
+        "Plateer AI Labs Insight — XGEN 프리뷰, 현장 리포트, 테크 노트 등 Enterprise AI 연구·실무 인사이트를 공유합니다.",
     path: "/blog",
 });
 

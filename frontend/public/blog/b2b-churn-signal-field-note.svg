@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B2B 거래처의 반복 발주 패턴이 흔들리는 지점을 신호로 잡아, 이탈 판단과 근거, 영업 대응까지 잇는 흐름">
   <defs>
-    <!-- 필드 리포트 전용 — 밝은 실버 그라디언트 바탕에 객체만 퍼플.
+    <!-- 현장 리포트 전용 — 밝은 실버 그라디언트 바탕에 객체만 퍼플.
          바탕에서 색을 빼 가볍게 두고, 퍼플은 신호가 되는 자리에만 쓴다. -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#fbfcfd"/>

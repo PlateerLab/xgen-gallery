@@ -414,7 +414,7 @@ export const NAV_GROUPS: NavGroup[] = [
             // 국문 GNB 는 한글 표기를 쓴다(labelKo) — 영문 표기는 label 이 그대로 맡는다.
             { label: "XGEN Preview", labelKo: "XGEN 프리뷰", id: "cat-product", route: "/blog?cat=product" },
             // 표기는 "Field Report"지만 딥링크 키(cat=industry)와 저장 값은 그대로다.
-            { label: "Field Report", labelKo: "필드 리포트", id: "cat-industry", route: "/blog?cat=industry" },
+            { label: "Field Report", labelKo: "현장 리포트", id: "cat-industry", route: "/blog?cat=industry" },
             // Case Study 는 목록 탭과 함께 감췄다(lib/blog-categories.ts의
             // VISIBLE_BLOG_CATEGORIES). 되살릴 때 이 줄도 같이 살린다.
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },

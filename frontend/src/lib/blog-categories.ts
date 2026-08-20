@@ -65,7 +65,7 @@ export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
         "제품 소식": "XGEN 프리뷰",
         "Tech Note": "테크 노트",
         "Case Study": "케이스 스터디",
-        "Industry Note": "필드 리포트",
+        "Industry Note": "현장 리포트",
     },
     en: {
         "제품 소식": "XGEN Preview",
