@@ -23,22 +23,28 @@ const COPY = {
         badge: "구독하면 이어서 읽을 수 있습니다",
         title: "현장 리포트 전문 보기",
         desc: "고객사 미팅과 PoC 현장에서 확인한 내용을 정리해 보내드립니다. 이메일을 남기시면 이 글의 나머지가 바로 열립니다.",
-        placeholder: "이메일 주소를 입력하세요",
+        name: "담당자명",
+        company: "회사명",
+        jobTitle: "직급",
+        email: "회사 이메일",
         agree: "구독 및 개인정보 수집·이용에 동의합니다",
         submit: "구독하고 이어 읽기",
         submitting: "처리 중…",
-        error: "이메일 주소와 동의 여부를 확인해 주세요",
+        error: "모든 항목과 동의 여부를 확인해 주세요",
         done: "구독이 접수되었습니다",
     },
     en: {
         badge: "Subscribe to keep reading",
         title: "Read the full field report",
         desc: "We send what we learn from customer meetings and PoCs. Leave your email and the rest of this piece opens right away.",
-        placeholder: "Enter your email address",
+        name: "Your name",
+        company: "Company",
+        jobTitle: "Job title",
+        email: "Work email",
         agree: "I agree to the subscription and to the use of my personal data",
         submit: "Subscribe and continue",
         submitting: "Working…",
-        error: "Check the email address and the consent box",
+        error: "Fill in every field and tick the consent box",
         done: "Subscription received",
     },
 };
@@ -47,9 +53,19 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
     const { locale } = useI18n();
     const t = COPY[locale === "en" ? "en" : "ko"];
     const [unlocked, setUnlocked] = useState(false);
-    const [email, setEmail] = useState("");
+    const [form, setForm] = useState({
+        name: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+    });
     const [agree, setAgree] = useState(false);
     const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+
+    const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setForm((f) => ({ ...f, [k]: e.target.value }));
+        if (status === "error") setStatus("idle");
+    };
 
     // 서버 렌더는 항상 잠긴 상태로 두고, 마운트 후 쿠키를 보고 연다
     // (초기 상태를 쿠키로 잡으면 하이드레이션이 어긋난다).
@@ -59,10 +75,25 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
         }
     }, []);
 
+    // 이 글에는 게이트 카드가 이미 구독 폼이라, 화면 우하단의 플로팅 구독
+    // 위젯(SubscribeCta)까지 뜨면 같은 요청이 두 번 나온다. body 에 표시를 남겨
+    // 그 위젯이 스스로 빠지게 한다(해제 후에도 이미 구독한 독자라 계속 감춘다).
+    useEffect(() => {
+        document.body.dataset.blogGate = "on";
+        return () => {
+            delete document.body.dataset.blogGate;
+        };
+    }, []);
+
     async function submit(e: React.FormEvent) {
         e.preventDefault();
-        const value = email.trim();
-        if (!EMAIL_RE.test(value) || !agree) {
+        const v = {
+            name: form.name.trim(),
+            company: form.company.trim(),
+            jobTitle: form.jobTitle.trim(),
+            email: form.email.trim(),
+        };
+        if (!EMAIL_RE.test(v.email) || !v.name || !v.company || !v.jobTitle || !agree) {
             setStatus("error");
             return;
         }
@@ -71,7 +102,7 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
             await fetch("/api/newsletter", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ email: value, subscribe: true, kind: "blog" }),
+                body: JSON.stringify({ ...v, subscribe: true, kind: "blog" }),
             });
         } catch {
             // 전송이 실패해도 열어준다 — 웹훅이 비동기라 성공 여부가 즉시 확정되지
@@ -110,19 +141,28 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                             </p>
 
                             <form onSubmit={submit} className="mt-5">
-                                <input
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => {
-                                        setEmail(e.target.value);
-                                        if (status === "error") setStatus("idle");
-                                    }}
-                                    placeholder={t.placeholder}
-                                    aria-label={t.placeholder}
-                                    disabled={status === "sending"}
-                                    className="w-full rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[15px] outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 disabled:opacity-60"
-                                />
+                                <div className="grid gap-2.5 sm:grid-cols-2">
+                                    {(
+                                        [
+                                            ["name", t.name, "text"],
+                                            ["company", t.company, "text"],
+                                            ["jobTitle", t.jobTitle, "text"],
+                                            ["email", t.email, "email"],
+                                        ] as const
+                                    ).map(([key, label, type]) => (
+                                        <input
+                                            key={key}
+                                            type={type}
+                                            required
+                                            value={form[key]}
+                                            onChange={set(key)}
+                                            placeholder={label}
+                                            aria-label={label}
+                                            disabled={status === "sending"}
+                                            className="w-full rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[15px] outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 disabled:opacity-60"
+                                        />
+                                    ))}
+                                </div>
                                 <label className="mt-3 flex cursor-pointer items-center gap-2 text-[13.5px] text-[var(--color-ink-muted)]">
                                     <input
                                         type="checkbox"

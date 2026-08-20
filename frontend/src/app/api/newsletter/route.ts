@@ -13,7 +13,16 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * submissions are logged server-side so they're not lost.
  */
 export async function POST(req: Request) {
-    let body: { email?: string; subscribe?: boolean; kind?: string };
+    let body: {
+        email?: string;
+        subscribe?: boolean;
+        kind?: string;
+        // 구독 게이트(현장 리포트)는 리드 정보까지 함께 받는다. 없으면 그냥 빠진다 —
+        // 기존 구독 위젯은 이메일만 보내므로 선택 필드다.
+        name?: string;
+        company?: string;
+        jobTitle?: string;
+    };
     try {
         body = await req.json();
     } catch {
@@ -32,10 +41,15 @@ export async function POST(req: Request) {
     const kind = body.kind === "blog" ? "blog" : "newsletter";
     // 구독=Y / 해지=N. 시트에서 이메일 행을 찾아 이 값으로 갱신하도록 웹훅에 전달.
     const subscribe = body.subscribe !== false; // default: subscribe
+    const trim = (v: unknown) => String(v ?? "").trim();
     const record = {
         email,
         subscribed: subscribe ? "Y" : "N",
         kind,
+        // 리드 필드는 값이 있을 때만 실어 보낸다(빈 열이 시트에 쌓이지 않게).
+        ...(trim(body.name) ? { name: trim(body.name) } : {}),
+        ...(trim(body.company) ? { company: trim(body.company) } : {}),
+        ...(trim(body.jobTitle) ? { jobTitle: trim(body.jobTitle) } : {}),
         receivedAt: new Date().toISOString(),
         source: `Plateer AI Labs/${kind}`,
     };

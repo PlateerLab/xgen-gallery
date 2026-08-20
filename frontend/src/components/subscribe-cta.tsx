@@ -66,8 +66,14 @@ export function SubscribeCta() {
           ? "blog"
           : null;
 
+    // 구독 게이트가 걸린 글에서는 이 위젯을 띄우지 않는다 — 본문 가운데의 게이트
+    // 카드가 이미 같은 구독 폼이라 화면에 구독 요청이 두 번 뜬다. 표시는 게이트가
+    // body 에 남긴다(components/gated-body.tsx).
+    const [gated, setGated] = useState(false);
+
     useEffect(() => {
         setMounted(true);
+        setGated(document.body.dataset.blogGate === "on");
         if (!kind) return;
         // 사용자가 한 번 접었으면 접힌 채 시작, 아니면 잠시 뒤 자동으로 펼쳐 안내한다.
         if (localStorage.getItem(`${CLOSED_PREFIX}${kind}`) === "1") return;
@@ -75,7 +81,7 @@ export function SubscribeCta() {
         return () => clearTimeout(t);
     }, [kind]);
 
-    if (!mounted || !kind) return null;
+    if (!mounted || !kind || gated) return null;
 
     const cfg = CONFIG[kind];
 

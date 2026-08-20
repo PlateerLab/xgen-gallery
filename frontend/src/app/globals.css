@@ -504,7 +504,7 @@ img {
    본문 HTML 은 그대로 내려가므로(검색 노출 유지) 여기서 시각적으로만 잠근다. */
 .blog-gate {
     position: relative;
-    max-height: 460px;
+    max-height: 560px;
     overflow: hidden;
 }
 .blog-gate > article {
@@ -531,6 +531,6 @@ img {
     left: 50%;
     bottom: 0;
     z-index: 1;
-    width: min(460px, 100%);
+    width: min(560px, 100%);
     transform: translateX(-50%);
 }
