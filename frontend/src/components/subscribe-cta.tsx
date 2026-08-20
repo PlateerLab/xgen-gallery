@@ -100,6 +100,10 @@ export function SubscribeCta() {
                 body: JSON.stringify({ email: value, subscribe: true, kind }),
             });
             if (!res.ok) throw new Error("request failed");
+            // 이 위젯으로 구독한 사람은 구독 게이트도 열어준다 — 같은 사이트에서
+            // 이미 구독했는데 현장 리포트에서 다시 막히면 앞뒤가 안 맞는다.
+            // (게이트와 같은 쿠키: components/gated-body.tsx)
+            document.cookie = `xgen-fr-unlock=1; path=/; max-age=${60 * 60 * 24 * 180}; samesite=lax`;
             setStatus("done");
         } catch {
             setStatus("error");
