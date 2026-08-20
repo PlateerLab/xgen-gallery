@@ -3,6 +3,7 @@ title: "실패를 실패라고 말하게 만드는 오류 처리 정비(3편)"
 description: "GS인증에서 성공 메시지와 오류 로그가 한 화면에 뜨는 결함을 받았습니다. 필수값 검증, 오류 문구 구체화, silent 실패 차단까지 오류 처리를 정비한 과정입니다."
 date: "2026-05-30"
 cover: /blog/gs-cert-journey-3-honest-errors.svg
+thumb: /blog/gs-cert-journey-3-honest-errors-thumb.svg
 author: "유지수"
 authorGithub: master0419
 category: "Tech Note"

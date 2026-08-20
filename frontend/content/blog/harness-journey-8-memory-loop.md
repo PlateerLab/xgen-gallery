@@ -5,6 +5,7 @@ description: "한 실행의 작업 메모와 다음 실행에 남길 교훈을 �
 descriptionEn: "Memory that persists across executions needs a scope and a priority order, or it quietly turns into noise."
 date: "2026-06-22"
 cover: /blog/harness-journey-8-memory-loop.svg
+thumb: /blog/harness-journey-8-memory-loop-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

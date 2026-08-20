@@ -4,6 +4,7 @@ titleSeo: "The validation loop as states (Part 1)"
 description: Designing generation, validation, tool execution, and retry as explicit states and transitions instead of hiding them inside one loop.
 date: "2026-04-20"
 cover: /blog/harness-journey-1-rust-to-python.svg
+thumb: /blog/harness-journey-1-rust-to-python-thumb.svg
 author: 김진수
 authorGithub: jinsoo96
 category: Tech Note

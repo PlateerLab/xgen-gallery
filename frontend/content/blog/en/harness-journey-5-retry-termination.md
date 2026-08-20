@@ -4,6 +4,7 @@ titleSeo: "Retry vs termination (Part 5)"
 description: "Separating the meanings of transport recovery, progress through a tool, and quality rewriting, and making a terminal tool end exactly the current round."
 date: "2026-05-26"
 cover: /blog/harness-journey-5-retry-termination.svg
+thumb: /blog/harness-journey-5-retry-termination-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

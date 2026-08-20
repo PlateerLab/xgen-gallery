@@ -5,6 +5,7 @@ description: "하나의 Markdown 원본으로 웹 위키·Word·한글·영문 �
 descriptionEn: "A product manual answers \"what does this button do.\" A solution guide answers \"how do I get this job done.\" Notes from making that switch."
 date: "2026-07-16"
 cover: /blog/sooanc-manual-to-wiki.svg
+thumb: /blog/sooanc-manual-to-wiki-thumb.svg
 author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"

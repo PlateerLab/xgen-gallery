@@ -1,6 +1,7 @@
 ---
 title: "트리플 수로는 지식그래프 품질을 알 수 없었습니다(4편)"
 cover: "/blog/ontology-journey-4-quality-baseline.svg"
+thumb: "/blog/ontology-journey-4-quality-baseline-thumb.svg"
 description: "적재량, 구조 무결성, 출처, 검색, 답변을 분리해 그래프 품질이 어느 경계에서 달라지는지 측정합니다."
 date: "2026-05-21"
 author: "김진수"

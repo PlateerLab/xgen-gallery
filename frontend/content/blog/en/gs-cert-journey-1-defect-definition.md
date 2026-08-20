@@ -4,6 +4,7 @@ titleSeo: "What 80 defects taught me (Part 1)"
 description: "Three weeks of GS certification testing produced 80 defects, but fewer than half were code bugs. The rest were behaviours a user could not confirm."
 date: "2026-05-08"
 cover: /blog/gs-cert-journey-1-defect-definition.svg
+thumb: /blog/gs-cert-journey-1-defect-definition-thumb.svg
 author: "유지수"
 authorGithub: master0419
 category: "Tech Note"

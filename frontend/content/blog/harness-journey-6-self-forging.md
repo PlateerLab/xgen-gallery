@@ -3,6 +3,7 @@ title: "판정 점수로 설정 후보를 탐색하는 방법(6편)"
 description: "한 번에 한 항목만 바꾸고 승격 조건과 실행 상한을 두되, 현재 검증셋 분리의 한계까지 확인한 설정 탐색 과정을 다룹니다."
 date: "2026-06-04"
 cover: /blog/harness-journey-6-self-forging.svg
+thumb: /blog/harness-journey-6-self-forging-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

@@ -2,6 +2,7 @@
 title: "Treating an ontology build that takes hours as a job (Part 3)"
 titleSeo: "An hours-long build as a job (Part 3)"
 cover: "/blog/ontology-journey-3-build-service.svg"
+thumb: "/blog/ontology-journey-3-build-service-thumb.svg"
 description: "Separating progress state from the graph, and making input screening and structured-versus-unstructured paths explicit, turns a long build controllable."
 date: "2026-05-12"
 author: "김진수"

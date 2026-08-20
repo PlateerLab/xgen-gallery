@@ -3,6 +3,7 @@ title: "XGEN을 위한 Jaeger 도입기: Envoy 사이드카부터 OTel Auto Inst
 description: "XGEN 서비스 이전과 함께 Jaeger Tracing을 도입하며, Envoy 사이드카의 한계를 넘고 OpenTelemetry Auto Instrumentation으로 분산 추적을 구성한 과정을 정리합니다."
 date: "2026-08-18"
 cover: /blog/xgen-jaeger-tracing.svg
+thumb: /blog/xgen-jaeger-tracing-thumb.svg
 author: "전인수"
 authorGithub: "mumberrymountain"
 category: "Tech Note"

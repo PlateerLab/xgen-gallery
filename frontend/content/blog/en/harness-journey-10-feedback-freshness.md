@@ -4,6 +4,7 @@ titleSeo: "Keeping lessons fresh (Part 10)"
 description: "Making validation feedback, answer candidates, judgement scores, and tool discovery carry into the next action without mixing state from different rounds."
 date: "2026-07-10"
 cover: /blog/harness-journey-10-feedback-freshness.svg
+thumb: /blog/harness-journey-10-feedback-freshness-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

@@ -4,6 +4,7 @@ titleSeo: "A blog workflow developers will use"
 description: "Letting developers publish from their own GitHub account without opening the main repository — lowering the cost of participation with Open Authoring."
 date: "2026-07-14"
 cover: /blog/sooanc-open-authoring-note.svg
+thumb: /blog/sooanc-open-authoring-note-thumb.svg
 author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"

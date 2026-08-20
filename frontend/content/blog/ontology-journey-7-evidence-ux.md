@@ -1,6 +1,7 @@
 ---
 title: "답변에 언급된 그래프 노드만 강조하기(7편)"
 cover: "/blog/ontology-journey-7-evidence-ux.svg"
+thumb: "/blog/ontology-journey-7-evidence-ux-thumb.svg"
 description: "키워드 부분 일치와 이웃 부풀리기를 제거하고, 답변 텍스트에 등장한 후보 라벨만 2D·3D 화면에 강조합니다."
 date: "2026-06-16"
 author: "김진수"

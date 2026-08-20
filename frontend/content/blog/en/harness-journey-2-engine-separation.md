@@ -4,6 +4,7 @@ titleSeo: "Engine core vs product layer (Part 2)"
 description: "How the generic execution order and XGEN's data, permission, and canvas translation were divided across ServiceProvider, a registry, and a product bridge."
 date: "2026-04-29"
 cover: /blog/harness-journey-2-engine-separation.svg
+thumb: /blog/harness-journey-2-engine-separation-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

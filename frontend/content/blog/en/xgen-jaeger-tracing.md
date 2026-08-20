@@ -3,6 +3,7 @@ title: "Bringing Jaeger to XGEN: from Envoy sidecars to OTel auto instrumentatio
 description: "Introducing Jaeger tracing alongside an XGEN service migration — running into the limits of the Envoy sidecar, and building distributed tracing with OpenTelemetry auto instrumentation instead."
 date: "2026-08-18"
 cover: /blog/xgen-jaeger-tracing.svg
+thumb: /blog/xgen-jaeger-tracing-thumb.svg
 author: "Insoo Jeon"
 authorGithub: "mumberrymountain"
 category: "Tech Note"

@@ -2,6 +2,7 @@
 title: "열 개 CSV 클래스가 네 개가 된 이유(8편)"
 titleEn: "Why ten CSV classes became four (part 8)"
 cover: "/blog/ontology-journey-8-structured-incremental.svg"
+thumb: "/blog/ontology-journey-8-structured-incremental-thumb.svg"
 description: "후처리가 정형 스키마를 바꾸지 않게 생성 출처를 영속화하고, 최근 완료 빌드의 청크 집합으로 문서 재처리 범위를 계산합니다."
 descriptionEn: "Structured sources tempt you into one class per file. Collapsing them into real entities made the graph far more useful."
 date: "2026-06-24"

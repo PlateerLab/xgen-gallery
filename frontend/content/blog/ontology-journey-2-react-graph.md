@@ -1,6 +1,7 @@
 ---
 title: "멀티턴 GraphRAG는 왜 필요했고 무엇이 한계였나(2편)"
 cover: "/blog/ontology-journey-2-react-graph.svg"
+thumb: "/blog/ontology-journey-2-react-graph-thumb.svg"
 description: "한 번의 조회로 풀기 어려운 질문을 위해 그래프 탐색, 원문 검색, 정형 질의를 하나의 제한된 도구 루프로 묶습니다."
 date: "2026-05-03"
 author: "김진수"

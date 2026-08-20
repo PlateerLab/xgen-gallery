@@ -5,6 +5,7 @@ description: "검증 피드백, 답 후보, 판정 점수, 도구 탐색이 서�
 descriptionEn: "Carrying feedback forward is easy; keeping it current is not. How we stopped stale lessons from steering new executions."
 date: "2026-07-10"
 cover: /blog/harness-journey-10-feedback-freshness.svg
+thumb: /blog/harness-journey-10-feedback-freshness-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

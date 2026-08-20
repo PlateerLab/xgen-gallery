@@ -2,6 +2,7 @@
 title: "SELECT 결과를 안전하게 그래프로 교체하는 방법(10편)"
 titleEn: "Safely replacing a graph with the results of a SELECT (part 10)"
 cover: "/blog/ontology-journey-10-rdb-ingest.svg"
+thumb: "/blog/ontology-journey-10-rdb-ingest-thumb.svg"
 description: "DB의 타입과 기본키를 그래프 정체성으로 사용하고, RDF staging 교체와 복합 커서로 전체·증분 색인의 무결성을 지킵니다."
 descriptionEn: "Ingesting a relational table into a knowledge graph is a replace, not an append. How we made that swap atomic and reversible."
 date: "2026-07-06"

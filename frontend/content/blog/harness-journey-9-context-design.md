@@ -5,6 +5,7 @@ description: "연결 도구를 검색 우선으로 공개하고, 출력 목적�
 descriptionEn: "Which tools an agent can see, and how results move between steps, is a context design problem — not a prompt problem."
 date: "2026-07-01"
 cover: /blog/harness-journey-9-context-design.svg
+thumb: /blog/harness-journey-9-context-design-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

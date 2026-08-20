@@ -5,6 +5,7 @@ description: "메인 저장소 권한을 열지 않고도 개발자가 자신의
 descriptionEn: "GitHub login, open authoring, and a CMS that commits straight to the repo — how we removed the friction between writing and publishing."
 date: "2026-07-14"
 cover: /blog/sooanc-open-authoring-note.svg
+thumb: /blog/sooanc-open-authoring-note-thumb.svg
 author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"

@@ -3,6 +3,7 @@ title: "매뉴얼도 제품이었습니다, GS인증 3주가 남긴 기준(5편)
 description: "GS인증 사용성 결함 30건의 상당수는 코드가 아니라 매뉴얼이었습니다. PDF 매뉴얼을 MkDocs 위키로 전환하고 한글 IME, 언어 설정까지 정비한 마지막 기록입니다."
 date: "2026-06-16"
 cover: /blog/gs-cert-journey-5-manual-is-product.svg
+thumb: /blog/gs-cert-journey-5-manual-is-product-thumb.svg
 author: "유지수"
 authorGithub: master0419
 category: "Tech Note"

@@ -4,6 +4,7 @@ titleSeo: "Splitting generate and judge (Part 4)"
 description: "Rebuilding Company L's QA on the harness: separating generation logic from business judgement, and feeding per-criterion feedback back into the next run."
 date: "2026-05-17"
 cover: /blog/harness-journey-4-canvas-node-judge.svg
+thumb: /blog/harness-journey-4-canvas-node-judge-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"

@@ -1,6 +1,7 @@
 ---
 title: "CSV 행은 줄이고 정상 클래스는 지키는 방법(5편)"
 cover: "/blog/ontology-journey-5-csv-cleanup-guards.svg"
+thumb: "/blog/ontology-journey-5-csv-cleanup-guards-thumb.svg"
 description: "사실 테이블 행을 생략하는 모델링과 고아 클래스 탐지·삭제를 분리해, 크기 최적화가 의미 손실로 이어지지 않게 합니다."
 date: "2026-05-30"
 author: "김진수"

@@ -4,6 +4,7 @@ titleSeo: "Control the run, then compare (Part 7)"
 description: "Comparing Qwen3.6-27B and Claude Sonnet 4.6 meant first separating iteration count, output length, the judge, and tool conditions."
 date: "2026-06-13"
 cover: /blog/harness-journey-7-qwen-vs-sonnet.svg
+thumb: /blog/harness-journey-7-qwen-vs-sonnet-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
