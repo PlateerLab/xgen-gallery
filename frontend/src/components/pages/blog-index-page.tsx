@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/json-ld";
 import { BlogList } from "@/components/blog-list";
 import { FeaturedHero } from "@/components/featured-hero";
 import { getAllPosts, type PostMeta } from "@/lib/blog";
+import { visibleInList } from "@/lib/blog-categories";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import { absoluteUrl } from "@/lib/site";
 
@@ -22,8 +23,8 @@ function pickHeroPosts(posts: PostMeta[]): PostMeta[] {
     if (pinned.length) return pinned.slice(0, 5);
 
     const picked: PostMeta[] = [];
-    // 제품 소식 · Case Study — 카테고리별 최신 1편.
-    for (const cat of ["제품 소식", "Case Study"]) {
+    // 카테고리별 최신 1편. 감춘 카테고리는 애초에 posts 에서 빠져 있다.
+    for (const cat of ["제품 소식", "Industry Note"]) {
         const p = byNew.find((x) => x.category === cat);
         if (p) picked.push(p);
     }
@@ -58,7 +59,8 @@ export function BlogIndexPageContent({
     locale: Locale;
     params?: BlogListParams;
 }) {
-    const posts = getAllPosts(locale);
+    // 감춘 카테고리는 목록·캐러셀에서 뺀다(글은 지우지 않고 개별 URL 은 그대로 산다).
+    const posts = visibleInList(getAllPosts(locale));
     const t = COPY[locale];
     // 키비주얼 캐러셀 — 카테고리별 최신 1편 + Tech Note는 작성자 다른 2편(규칙: pickHeroPosts).
     const heroPosts = pickHeroPosts(posts);

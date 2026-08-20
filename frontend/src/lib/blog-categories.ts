@@ -78,3 +78,17 @@ export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
 export function categoryLabel(category: string, locale: Locale): string {
     return CATEGORY_LABEL[locale][category] ?? category;
 }
+
+/**
+ * 목록에서 감추는 카테고리(저장 값 기준).
+ *
+ * 글을 지우지 않고 노출만 내린다 — 개별 URL 과 검색 색인은 그대로 살아 있고,
+ * 기존 링크도 깨지지 않는다. 목록의 "전체" 피드, 카테고리 탭, 상단 키비주얼
+ * 캐러셀에서만 빠진다. 되살리려면 이 배열에서 값을 지우면 된다.
+ */
+export const HIDDEN_BLOG_CATEGORIES: readonly string[] = ["Case Study"];
+
+/** 목록에 노출할 글만 남긴다(감춘 카테고리 제외). */
+export function visibleInList<T extends { category: string }>(posts: T[]): T[] {
+    return posts.filter((p) => !HIDDEN_BLOG_CATEGORIES.includes(p.category));
+}
