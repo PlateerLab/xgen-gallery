@@ -7,6 +7,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
+import { GatedBody } from "@/components/gated-body";
 import { ViewCount } from "@/components/view-count";
 import { getAllPosts, getAllSlugs, getPost } from "@/lib/blog";
 import { seriesOf, seriesPosts } from "@/lib/series";
@@ -206,10 +207,25 @@ export async function BlogPostPageContent({
                     </aside>
                 )}
 
-                <article
-                    className="blog-prose"
-                    dangerouslySetInnerHTML={{ __html: post.html }}
-                />
+                {(() => {
+                    // 구독 게이트가 켜진 글은 첫 h2 앞(도입부)까지만 열어두고 그 뒤를
+                    // 흐리게 덮는다. 자를 지점이 없으면(소제목 없는 글) 그냥 전문을 쓴다.
+                    const cut = post.gated ? post.html.search(/<h2[\s>]/) : -1;
+                    if (cut > 0) {
+                        return (
+                            <GatedBody
+                                teaser={post.html.slice(0, cut)}
+                                rest={post.html.slice(cut)}
+                            />
+                        );
+                    }
+                    return (
+                        <article
+                            className="blog-prose"
+                            dangerouslySetInnerHTML={{ __html: post.html }}
+                        />
+                    );
+                })()}
 
                 {post.tags.length > 0 && (
                     <div className="mt-10 flex flex-wrap gap-2 border-t border-[var(--color-line)] pt-6">

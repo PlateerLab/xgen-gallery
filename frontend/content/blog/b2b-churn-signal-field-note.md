@@ -8,6 +8,7 @@ author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"
 tags: ["B2B", "이탈 예측", "Sales Agent", "Agentic AI", "PoC", "식품·유통"]
+gated: true
 draft: false
 ---
 

@@ -499,3 +499,38 @@ img {
     .cosmic-guide { animation: none; }
     .cosmic-scan { opacity: 0; }
 }
+
+/* 구독 게이트 — 본론을 흐리게 덮고 그 위에 구독 카드를 띄운다.
+   본문 HTML 은 그대로 내려가므로(검색 노출 유지) 여기서 시각적으로만 잠근다. */
+.blog-gate {
+    position: relative;
+    max-height: 460px;
+    overflow: hidden;
+}
+.blog-gate > article {
+    filter: blur(5px);
+    opacity: 0.55;
+    user-select: none;
+    pointer-events: none;
+}
+/* 아래로 갈수록 흰색으로 사라지게 — 잘린 느낌 대신 이어지는 느낌을 준다 */
+.blog-gate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.75) 42%,
+        var(--color-surface, #fff) 78%
+    );
+    pointer-events: none;
+}
+.blog-gate__panel {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 1;
+    width: min(460px, 100%);
+    transform: translateX(-50%);
+}

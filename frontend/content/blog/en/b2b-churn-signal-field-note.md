@@ -8,6 +8,7 @@ author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "Enterprise AI PoC"
 tags: ["B2B", "Churn prediction", "Sales Agent", "Agentic AI", "PoC", "Food distribution"]
+gated: true
 draft: false
 ---
 

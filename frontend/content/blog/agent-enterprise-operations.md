@@ -8,6 +8,7 @@ author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "컨설팅·커머스 운영"
 tags: ["Agentic AI", "Enterprise AI", "AI 거버넌스", "온톨로지", "커머스", "레거시 연동"]
+gated: true
 draft: false
 ---
 

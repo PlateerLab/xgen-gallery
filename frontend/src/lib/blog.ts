@@ -53,6 +53,14 @@ export interface PostMeta {
      * 쓰는 큰 활자·큰 도형 버전을 따로 둘 수 있게 한다.
      */
     thumb?: string;
+    /**
+     * 구독 게이트(선택). 켜면 도입부만 열어두고 본론(첫 h2)부터 흐리게 덮은 뒤
+     * 구독 카드를 띄운다. 카테고리 전체가 아니라 **글 단위로** 지정한다 —
+     * 같은 현장 리포트라도 공개로 두고 싶은 글이 있다.
+     *
+     * 본문 HTML 은 그대로 내려가므로 검색 노출에는 영향이 없다(가림은 화면에서만).
+     */
+    gated?: boolean;
     draft?: boolean;
     featured?: boolean; // 키비주얼(히어로) 캐러셀 노출 — Decap에서 편집자가 선정
     /** TL;DR 요약 — 본문 상단 하이라이트 박스. AI 검색이 인용하기 쉬운 3~4문장 핵심. */
@@ -137,6 +145,7 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         cover: data.cover ? String(data.cover) : undefined,
         thumb: data.thumb ? String(data.thumb) : undefined,
+        gated: Boolean(data.gated),
         draft: Boolean(data.draft),
         featured: Boolean(data.featured),
         summary: data.summary ? String(data.summary) : undefined,

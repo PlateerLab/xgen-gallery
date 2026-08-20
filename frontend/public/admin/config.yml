@@ -67,6 +67,7 @@ collections:
           - { name: tags, label: "태그(주제)", widget: list, required: false, hint: "주제 엔티티를 태그로. 예: 온톨로지, 하네스, 인프라, RAG, 보안 — 목록 주제 필터·SEO 키워드·GEO 엔티티 커버리지로 쓰임" }
           - { name: cover, label: "커버 이미지", widget: image, required: false, choose_url: false, hint: "SNS 공유·검색 썸네일(OG image). 1200×630 권장" }
           - { name: thumb, label: "목록 썸네일(선택)", widget: image, required: false, choose_url: false, hint: "목록 카드에서만 쓰는 이미지. 카드가 288px 라 커버의 작은 글자는 뭉개집니다 — 큰 제목 위주 버전을 따로 넣을 때만 지정하세요. 비우면 커버를 그대로 씁니다" }
+          - { name: gated, label: "구독 게이트(체크 시 본론 가림)", widget: boolean, default: false, hint: "도입부만 공개하고 첫 소제목부터 흐리게 덮어 구독 카드를 띄웁니다. 검색 노출에는 영향이 없습니다" }
           - { name: draft, label: "초안(체크 시 비공개)", widget: boolean, default: false }
           - { name: featured, label: "키비주얼(히어로) 노출", widget: boolean, default: false, required: false, hint: "체크하면 인사이트 상단 키비주얼 캐러셀에 노출됩니다(여러 개 선택 가능, 최신순 정렬). 아무 것도 선택 안 하면 최신 글이 자동 노출" }
           - { name: summary, label: "핵심 요약(선택)", widget: text, required: false, hint: "본문 상단 하이라이트 박스. 핵심 결론 3~4문장 — AI 검색(ChatGPT·Perplexity)이 인용하기 좋음(GEO)" }

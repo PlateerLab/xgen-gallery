@@ -8,6 +8,7 @@ author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "Consulting and commerce operations"
 tags: ["Agentic AI", "Enterprise AI", "AI governance", "Ontology", "Commerce", "Legacy integration"]
+gated: true
 draft: false
 ---
 
