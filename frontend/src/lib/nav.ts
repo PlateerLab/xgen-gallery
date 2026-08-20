@@ -10,6 +10,7 @@
  * footer are all driven from here.
  */
 import type { ConceptId } from "@/lib/backgrounds";
+import { CATEGORIES } from "@/lib/tools";
 
 export interface NavLeaf {
     /** display label */
@@ -115,6 +116,22 @@ export interface NavGroup {
 export function sectionHref(groupKey: string, id: string): string {
     return `/${groupKey}#${id}`;
 }
+
+/**
+ * Library Gallery 하위 메뉴 — lib/tools.ts 의 CATEGORIES 에서 그대로 만든다.
+ *
+ * 카테고리가 늘면 이 메뉴도 같이 늘어난다(메뉴를 손으로 고칠 필요가 없다).
+ * "all" 은 갤러리 첫 화면이라 상위 항목(Library Gallery)이 이미 맡고 있어 뺀다.
+ * 링크는 /library-gallery?cat=… 로 걸고, 페이지가 그 값으로 초기 필터를 잡는다.
+ */
+const LIBRARY_CATEGORY_ITEMS: NavLeaf[] = CATEGORIES.filter(
+    (c) => c.id !== "all",
+).map((c) => ({
+    label: c.label,
+    labelKo: c.labelKo,
+    id: `lib-${c.id}`,
+    route: `/library-gallery?cat=${c.id}`,
+}));
 
 export const NAV_GROUPS: NavGroup[] = [
     {
@@ -350,9 +367,12 @@ export const NAV_GROUPS: NavGroup[] = [
         blurbEn: "The open-source libraries behind XGEN, plus recipes for putting them to work.",
         items: [
             {
+                // 라벨 클릭은 갤러리 전체, 하위는 카테고리 딥링크(?cat=…).
+                // 하위 항목은 CATEGORIES 에서 자동 생성된다 — 위 주석 참고.
                 label: "Library Gallery",
                 id: "library-gallery",
                 route: "/library-gallery",
+                children: LIBRARY_CATEGORY_ITEMS,
             },
             {
                 // Runtime — 독립 MCP 런타임. 단일 열이라 Library 항목들과 함께

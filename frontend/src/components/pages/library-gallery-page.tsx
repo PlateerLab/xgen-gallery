@@ -8,8 +8,22 @@ import { ToolGrid } from "@/components/tool-grid";
 import { RuntimeContent } from "@/components/technology-sections";
 import { localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
+import { CATEGORIES, type ToolCategory } from "@/lib/tools";
 
-export function LibraryGalleryPageContent({ locale }: { locale: Locale }) {
+/** GNB 하위 메뉴 딥링크(?cat=…) → 그리드 초기 필터. 모르는 값은 전체로 떨어뜨린다. */
+function categoryFrom(cat: string | undefined): ToolCategory | "all" {
+    const hit = CATEGORIES.find((c) => c.id === cat);
+    return hit ? hit.id : "all";
+}
+
+export function LibraryGalleryPageContent({
+    locale,
+    cat,
+}: {
+    locale: Locale;
+    /** /library-gallery?cat=… — 페이지(서버)가 읽어 넘긴다. */
+    cat?: string;
+}) {
     return (
         <>
             <SiteNav overlay />
@@ -31,7 +45,7 @@ export function LibraryGalleryPageContent({ locale }: { locale: Locale }) {
             </section>
             {/* 메인 페이지(키비주얼 제외)와 동일한 콘텐츠 구성 */}
             <main>
-                <ToolGrid />
+                <ToolGrid initial={categoryFrom(cat)} />
                 {/* Runtime — Technology에서 이관. onepage Section과 동일한 컨테이너로 래핑 */}
                 <section
                     id="runtime"

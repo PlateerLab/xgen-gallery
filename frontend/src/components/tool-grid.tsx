@@ -6,9 +6,19 @@ import { ToolCard } from "./tool-card";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
 
-export function ToolGrid() {
-    const { t } = useI18n();
-    const [active, setActive] = useState<ToolCategory | "all">("all");
+/**
+ * 라이브러리 카드 그리드 + 카테고리 필터.
+ *
+ * 칩 목록과 라벨은 lib/tools.ts 의 CATEGORIES 가 단일 출처다(GNB 하위 메뉴도 같은
+ * 배열을 쓴다). 카테고리를 늘려도 이 파일은 손대지 않는다.
+ *
+ * initial 은 GNB 딥링크(/library-gallery?cat=…)에서 온 초기 필터다. 서버(페이지)에서
+ * 읽어 넘긴다 — 여기서 useSearchParams() 로 읽으면 정적 렌더가 CSR 로 이탈해 카드가
+ * 서버 HTML 에서 통째로 빠진다(블로그 목록과 같은 이유).
+ */
+export function ToolGrid({ initial = "all" }: { initial?: ToolCategory | "all" }) {
+    const { t, locale } = useI18n();
+    const [active, setActive] = useState<ToolCategory | "all">(initial);
 
     const filtered = useMemo(
         () => (active === "all" ? TOOLS : TOOLS.filter((t) => t.category === active)),
@@ -16,13 +26,14 @@ export function ToolGrid() {
     );
 
     const counts = useMemo(() => {
-        return {
-            all: TOOLS.length,
-            ingestion: TOOLS.filter((t) => t.category === "ingestion").length,
-            knowledge: TOOLS.filter((t) => t.category === "knowledge").length,
-            agent: TOOLS.filter((t) => t.category === "agent").length,
-            utility: TOOLS.filter((t) => t.category === "utility").length,
-        } as Record<ToolCategory | "all", number>;
+        const map = {} as Record<ToolCategory | "all", number>;
+        for (const c of CATEGORIES) {
+            map[c.id] =
+                c.id === "all"
+                    ? TOOLS.length
+                    : TOOLS.filter((t) => t.category === c.id).length;
+        }
+        return map;
     }, []);
 
     return (
@@ -53,7 +64,7 @@ export function ToolGrid() {
                                     : "border-[var(--color-line)] bg-white text-[var(--color-ink-muted)] hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]",
                             )}
                         >
-                            {t.categories[c.id as keyof typeof t.categories]}
+                            {locale === "ko" ? c.labelKo : c.label}
                             <span
                                 className={cn(
                                     "font-mono text-[12px]",

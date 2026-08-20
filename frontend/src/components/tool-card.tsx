@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, Copy, Play } from "lucide-react";
 import { useState } from "react";
-import type { Tool } from "@/lib/tools";
+import { CATEGORIES, type Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
 import { TOOL_I18N } from "@/lib/i18n";
@@ -21,9 +21,13 @@ export function ToolCard({ tool }: { tool: Tool }) {
     const { locale, t } = useI18n();
     const [copied, setCopied] = useState(false);
     const desc = TOOL_I18N[tool.id]?.[locale]?.description ?? tool.description;
+    // 카테고리 라벨도 CATEGORIES(lib/tools.ts)를 따른다 — 필터 칩·GNB 하위 메뉴와
+    // 같은 문구를 쓰고, 카테고리가 늘어도 사전을 함께 고칠 필요가 없다.
     const categoryLabel =
-        t.categories[tool.category as keyof typeof t.categories] ??
-        tool.category;
+        (() => {
+            const c = CATEGORIES.find((x) => x.id === tool.category);
+            return c ? (locale === "ko" ? c.labelKo : c.label) : tool.category;
+        })();
     const curated = hasCuratedDemo(tool.repo);
 
     const copy = async (e: React.MouseEvent) => {

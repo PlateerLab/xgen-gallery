@@ -220,11 +220,26 @@ export const TOOLS: Tool[] = [
     },
 ];
 
-export const CATEGORIES: { id: ToolCategory | "all"; label: string }[] = [
-    { id: "all", label: "All" },
-    { id: "ingestion", label: "Ingestion" },
-    { id: "knowledge", label: "Knowledge" },
-    { id: "agent", label: "Agent" },
+/**
+ * 라이브러리 카테고리 — 갤러리 필터 칩과 GNB 하위 메뉴가 함께 쓰는 단일 출처.
+ *
+ * 카테고리를 늘릴 때는 이 배열에 한 줄만 추가하면 된다. 갤러리의 필터 칩과
+ * GNB "Library Gallery" 하위 메뉴가 이 배열을 그대로 그리므로 양쪽에 자동으로
+ * 반영된다(lib/nav.ts 의 LIBRARY_CATEGORY_ITEMS). ToolCategory 타입에도 값을
+ * 추가해야 타입이 맞는다.
+ *
+ * "all" 은 갤러리 첫 화면(전체 보기)이라 메뉴에서는 제외된다.
+ */
+export const CATEGORIES: {
+    id: ToolCategory | "all";
+    label: string;
+    labelKo: string;
+}[] = [
+    { id: "all", label: "All", labelKo: "전체" },
+    { id: "ingestion", label: "Ingestion", labelKo: "인제스션" },
+    { id: "knowledge", label: "Knowledge", labelKo: "지식" },
+    { id: "agent", label: "Agent", labelKo: "에이전트" },
+    { id: "utility", label: "Utility", labelKo: "유틸리티" },
 ];
 
 export function getToolsByCategory(category: ToolCategory | "all") {
