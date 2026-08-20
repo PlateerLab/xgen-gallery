@@ -85,7 +85,7 @@ export async function SeriesPageContent({
                                 {COPY[locale].count(posts.length)}
                             </span>
                         </div>
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--color-line)]">
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--color-line)]">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={def.cover}
@@ -109,7 +109,7 @@ export async function SeriesPageContent({
                                 <span className="flex h-9 w-9 flex-none items-center justify-center self-start rounded-full bg-[#eef2ff] text-[15px] font-bold text-[#4f46e5]">
                                     {i + 1}
                                 </span>
-                                <div className="relative hidden aspect-[4/3] w-[168px] flex-none overflow-hidden rounded-xl sm:block">
+                                <div className="relative hidden aspect-[16/9] w-[168px] flex-none overflow-hidden rounded-xl sm:block">
                                     <Thumb
                                         post={p}
                                         className="transition duration-500 group-hover:scale-[1.04]"

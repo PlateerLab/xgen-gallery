@@ -107,7 +107,7 @@ export function FeaturedHero({ posts }: { posts: PostMeta[] }) {
                 href={localeHref(locale, `/blog/${post.slug}`)}
                 className="group order-1 block md:order-2"
             >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <Thumb
                         post={post}
                         className="transition duration-500 group-hover:scale-[1.03]"

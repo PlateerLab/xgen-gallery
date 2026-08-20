@@ -548,7 +548,7 @@ export function BlogList({
                                         href={localeHref(locale, `/blog/series/${g.def.key}`)}
                                         className="group flex flex-col rounded-2xl bg-[var(--color-surface-alt)] p-3 transition hover:bg-[#eef2f9] hover:shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)]"
                                     >
-                                        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                                        <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={g.def.cover}
@@ -591,7 +591,7 @@ export function BlogList({
                                             {/* 목록 카드의 썸네일 — 일러스트가 곁들임이 아니라 글을
                                                 고르는 단서라 데스크톱에서 폭을 넉넉히 준다(카드 폭의
                                                 1/3 남짓). 모바일은 이미 그 비율이라 그대로 둔다. */}
-                                            <div className="relative aspect-[4/3] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[248px]">
+                                            <div className="relative aspect-[16/9] w-[128px] flex-none overflow-hidden rounded-xl sm:w-[248px]">
                                                 <Thumb
                                                     post={p}
                                                     className="transition duration-500 group-hover:scale-[1.04]"
