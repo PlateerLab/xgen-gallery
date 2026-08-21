@@ -40,9 +40,8 @@ export async function POST(req: Request) {
     // 시트에서 성격을 구분한다.
     //   newsletter    — 뉴스레터 구독
     //   blog          — 새 글 알림 구독(전 카테고리·현재 화면에서는 감춰 둠)
-    //   xgen-preview  — XGEN 프리뷰 카테고리 구독
     //   field-report  — 현장 리포트 게이트. 약식 리드 정보를 함께 받는 구독이다
-    const KINDS = ["newsletter", "blog", "xgen-preview", "field-report"] as const;
+    const KINDS = ["newsletter", "blog", "field-report"] as const;
     const kind = (KINDS as readonly string[]).includes(String(body.kind))
         ? String(body.kind)
         : "newsletter";

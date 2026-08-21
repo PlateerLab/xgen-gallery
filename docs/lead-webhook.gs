@@ -213,8 +213,7 @@ function doPost(e){
   try {
 
   // field-report — 현장 리포트 게이트. 리드 정보를 겸한 구독이라 subscribers 탭에 함께 쌓는다.
-  if (data.kind === "newsletter" || data.kind === "blog" ||
-      data.kind === "xgen-preview" || data.kind === "field-report"){
+  if (data.kind === "newsletter" || data.kind === "blog" || data.kind === "field-report"){
     upsertSubscriber(data);                          // 구독 → subscribers 탭(메일 없음)
 
   } else if (!!data.asset || (data.source||"").indexOf("resources") >= 0){

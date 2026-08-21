@@ -7,7 +7,6 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
-import { BodyFlag } from "@/components/body-flag";
 import { GatedBody } from "@/components/gated-body";
 import { ViewCount } from "@/components/view-count";
 import { getAllPosts, getAllSlugs, getPost } from "@/lib/blog";
@@ -88,8 +87,6 @@ export async function BlogPostPageContent({
     return (
         <>
             <SiteNav overlay />
-            {/* 우하단 구독 위젯이 이 글의 카테고리를 보고 종류를 고른다. */}
-            <BodyFlag name="postCategory" value={post.category} />
             <JsonLd
                 data={[
                     blogPostingLd(post),
