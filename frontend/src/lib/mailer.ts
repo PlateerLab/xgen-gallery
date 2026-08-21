@@ -232,10 +232,16 @@ export function contentNotifyMail(
     heading: string,
     word: string,
 ): Mail {
+    // 같은 글의 국문·영문이 각각 한 항목으로 실린다. 본문에는 둘 다 싣되 제목의
+    // 건수는 글 수로 센다 — 한 글을 발행하고 "2건"이라고 하면 사실과 다르다.
+    // 국문 /blog/<slug> 와 영문 /en/blog/<slug> 의 마지막 조각이 같은 slug 다.
+    const slugOf = (p: NotifyPost) =>
+        (p.url || p.title || "").replace(/[?#].*$/, "").replace(/\/$/, "").split("/").pop() || "";
+    const count = new Set(posts.map(slugOf).filter(Boolean)).size || posts.length;
     const subject =
-        posts.length === 1
+        count === 1
             ? `[Plateer AI Labs] ${word}: ${posts[0].title || ""}`
-            : `[Plateer AI Labs] ${word} ${posts.length}건이 올라왔어요`;
+            : `[Plateer AI Labs] ${word} ${count}건이 올라왔어요`;
     const text = [
         heading,
         "",
