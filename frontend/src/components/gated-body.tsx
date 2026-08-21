@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Check, Lock } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
-import { SubscriberProfileForm } from "@/components/subscriber-profile-form";
 
 /**
  * 구독 게이트 — 도입부는 열어두고 본론부터 가린다.
@@ -12,8 +11,7 @@ import { SubscriberProfileForm } from "@/components/subscriber-profile-form";
  * AI 크롤러는 지금처럼 전문을 읽는다(검색 노출 손실 없음). 대신 개발자도구로는
  * 우회되므로, 이 장치의 목적은 콘텐츠 차단이 아니라 리드 수집이다.
  *
- * 받는 것은 이메일 하나뿐이다 — 뉴스레터 구독과 같은 양식이다. 회사·담당자·직급은
- * 게이트를 연 **다음**에 선택으로 묻는다(SubscriberProfileForm). 시트에는
+ * 여기서 받는 것은 약식 리드 정보(회사·담당자)를 겸한 구독이다. 시트에는
  * kind="field-report" 로 쌓여 뉴스레터·새 글 알림과 유입 경로가 구분된다.
  * 이미 구독 중인 독자는 이메일만 확인해 그대로 열어준다(/api/newsletter/check).
  *
@@ -31,7 +29,7 @@ const COPY = {
     ko: {
         badge: "구독하시면 이어서 읽을 수 있습니다",
         title: "현장 리포트 전문 보기",
-        desc: "고객사 미팅과 PoC 현장에서 확인한 내용입니다. 이메일 주소만 남기시면 이 글의 나머지가 바로 열리고, 새 현장 리포트가 나올 때 메일로 알려드립니다.",
+        desc: "고객사 미팅과 PoC 현장에서 확인한 내용입니다. 아래 정보를 남기시면 이 글의 나머지가 바로 열리고, 새 현장 리포트가 나올 때 메일로 알려드립니다.",
         name: "담당자명",
         company: "회사명",
         jobTitle: "직급",
@@ -40,7 +38,7 @@ const COPY = {
         alsoNews: "뉴스레터도 함께 받아볼게요 (선택)",
         submit: "구독하고 이어 읽기",
         submitting: "처리 중…",
-        error: "이메일 주소와 동의 여부를 확인해 주세요",
+        error: "모든 항목과 동의 여부를 확인해 주세요",
         done: "구독이 접수되었습니다",
         already: "현장 리포트를 구독 중이신가요?",
         checkTitle: "구독자 확인",
@@ -52,7 +50,7 @@ const COPY = {
     en: {
         badge: "Subscribe to keep reading",
         title: "Read the full field report",
-        desc: "What we learned from customer meetings and PoCs. Leave your email to open the rest — and we will let you know when a new field report lands.",
+        desc: "What we learned from customer meetings and PoCs. Leave the details below to open the rest — and we will let you know when a new field report lands.",
         name: "Your name",
         company: "Company",
         jobTitle: "Job title",
@@ -61,7 +59,7 @@ const COPY = {
         alsoNews: "Send me the newsletter too (optional)",
         submit: "Subscribe and continue",
         submitting: "Working…",
-        error: "Check the email address and tick the consent box",
+        error: "Fill in every field and tick the consent box",
         done: "Subscription received",
         already: "Already subscribed to field reports?",
         checkTitle: "Subscriber check",
@@ -76,10 +74,12 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
     const { locale } = useI18n();
     const t = COPY[locale === "en" ? "en" : "ko"];
     const [unlocked, setUnlocked] = useState(false);
-    const [email, setEmail] = useState("");
-    // 폼으로 막 연 경우에만 뒤이어 선택 정보를 묻는다 — 쿠키·구독확인으로 열린
-    // 독자는 이미 남겼거나 남길 이유가 없다.
-    const [justSubscribed, setJustSubscribed] = useState(false);
+    const [form, setForm] = useState({
+        name: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+    });
     const [agree, setAgree] = useState(false);
     // 뉴스레터는 별개 구독이다 — 원하는 사람만 함께 신청한다.
     const [alsoNews, setAlsoNews] = useState(false);
@@ -89,11 +89,11 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
     const [checkEmail, setCheckEmail] = useState("");
     const [checkFailed, setCheckFailed] = useState(false);
 
-    function unlock(addr?: string) {
+    function unlock(email?: string) {
         document.cookie = `${COOKIE}=1; path=/; max-age=${MAX_AGE}; samesite=lax`;
-        if (addr) {
+        if (email) {
             try {
-                localStorage.setItem(EMAIL_KEY, addr.toLowerCase());
+                localStorage.setItem(EMAIL_KEY, email.toLowerCase());
             } catch {
                 /* 저장이 막힌 브라우저면 쿠키만으로 기억한다 */
             }
@@ -127,6 +127,11 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
         setStatus("idle");
         setCheckFailed(true);
     }
+
+    const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setForm((f) => ({ ...f, [k]: e.target.value }));
+        if (status === "error") setStatus("idle");
+    };
 
     // 서버 렌더는 항상 잠긴 상태로 두고, 마운트 후 쿠키를 보고 연다
     // (초기 상태를 쿠키로 잡으면 하이드레이션이 어긋난다).
@@ -176,8 +181,13 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
 
     async function submit(e: React.FormEvent) {
         e.preventDefault();
-        const value = email.trim();
-        if (!EMAIL_RE.test(value) || !agree) {
+        const v = {
+            name: form.name.trim(),
+            company: form.company.trim(),
+            jobTitle: form.jobTitle.trim(),
+            email: form.email.trim(),
+        };
+        if (!EMAIL_RE.test(v.email) || !v.name || !v.company || !v.jobTitle || !agree) {
             setStatus("error");
             return;
         }
@@ -186,7 +196,7 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
             await fetch("/api/newsletter", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ email: value, kind: "field-report" }),
+                body: JSON.stringify({ ...v, kind: "field-report" }),
             });
             // 뉴스레터는 종류가 달라 시트에서도 다른 행으로 관리된다.
             // 한쪽만 해지해도 다른 쪽이 유지되도록 요청을 나눠 보낸다.
@@ -194,15 +204,14 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                 await fetch("/api/newsletter", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ email: value, kind: "newsletter" }),
+                    body: JSON.stringify({ email: v.email, kind: "newsletter" }),
                 });
             }
         } catch {
             // 전송이 실패해도 열어준다 — 웹훅이 비동기라 성공 여부가 즉시 확정되지
             // 않는데, 여기서 막으면 독자만 손해다.
         }
-        setJustSubscribed(true);
-        unlock(value);
+        unlock(v.email);
     }
 
     return (
@@ -211,15 +220,6 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                 className="blog-prose"
                 dangerouslySetInnerHTML={{ __html: teaser }}
             />
-
-            {/* 게이트가 있던 자리에 2단계를 놓는다 — 본문은 이미 아래로 열려 있다. */}
-            {justSubscribed && (
-                <SubscriberProfileForm
-                    email={email.trim()}
-                    kind="field-report"
-                    className="my-6 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-6 py-5"
-                />
-            )}
 
             <div className={unlocked ? undefined : "blog-gate"}>
                 <article
@@ -282,21 +282,30 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                                 </form>
                             ) : (
                             <form onSubmit={submit} className="mt-5">
-                                {/* 뉴스레터 구독과 같은 양식 — 이메일 한 칸.
-                                    회사·담당자·직급은 연 다음에 선택으로 묻는다. */}
-                                <input
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => {
-                                        setEmail(e.target.value);
-                                        if (status === "error") setStatus("idle");
-                                    }}
-                                    placeholder={t.email}
-                                    aria-label={t.email}
-                                    disabled={status === "sending"}
-                                    className="w-full rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[15px] outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 disabled:opacity-60"
-                                />
+                                <div className="grid gap-2.5 sm:grid-cols-2">
+                                    {/* 회사 → 담당자 순. 2열이라 위 줄에 회사 정보,
+                                        아래 줄에 담당자 정보가 놓인다. */}
+                                    {(
+                                        [
+                                            ["company", t.company, "text"],
+                                            ["email", t.email, "email"],
+                                            ["name", t.name, "text"],
+                                            ["jobTitle", t.jobTitle, "text"],
+                                        ] as const
+                                    ).map(([key, label, type]) => (
+                                        <input
+                                            key={key}
+                                            type={type}
+                                            required
+                                            value={form[key]}
+                                            onChange={set(key)}
+                                            placeholder={label}
+                                            aria-label={label}
+                                            disabled={status === "sending"}
+                                            className="w-full rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[15px] outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 disabled:opacity-60"
+                                        />
+                                    ))}
+                                </div>
                                 <label className="mt-3 flex cursor-pointer items-center gap-2 text-[13.5px] text-[var(--color-ink-muted)]">
                                     <input
                                         type="checkbox"
