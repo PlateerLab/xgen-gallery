@@ -1,20 +1,20 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온프레미스 — 기업 경계 안에서 실행되고 기록되는 AI Agent">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="점선 경계 안에서 실행되고 기록되는 AI Agent">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfcfd"/><stop offset="1" stop-color="#e8eaef"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.12"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.10"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">경계 안에서</text>
-  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">실행되는 AI</text>
+  <circle cx="600" cy="486" r="330" fill="url(#glow)"/>
 
-  <rect x="700" y="176" width="436" height="330" rx="28" fill="#ffffff" stroke="#a78bfa" stroke-width="3" stroke-dasharray="14 10"/>
-  <rect x="744" y="228" width="348" height="76" rx="18" fill="url(#badge)"/>
-  <text x="918" y="276" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="32" font-weight="700" fill="#ffffff">XGEN Agent</text>
-  <rect x="744" y="326" width="164" height="64" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
-  <rect x="928" y="326" width="164" height="64" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
-  <text x="826" y="366" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#6d28d9">사내 데이터</text>
-  <text x="1010" y="366" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#6d28d9">감사 로그</text>
-  <text x="918" y="464" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="700" fill="#7c3aed">외부 반출 없음</text>
+  <text x="600" y="170" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">경계 안에서</text>
+  <text x="600" y="276" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">실행되는 AI</text>
+  <rect x="290" y="336" width="620" height="248" rx="28" fill="#ffffff" stroke="#a78bfa" stroke-width="3" stroke-dasharray="14 10"/>
+  <rect x="340" y="372" width="520" height="76" rx="20" fill="url(#brand)"/>
+  <text x="600" y="421" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="32" font-weight="700" fill="#ffffff">XGEN Agent</text>
+  <rect x="340" y="474" width="250" height="64" rx="18" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="2"/>
+  <rect x="610" y="474" width="250" height="64" rx="18" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="2"/>
+  <text x="465" y="514" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#6d28d9">사내 데이터</text>
+  <text x="735" y="514" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#6d28d9">감사 로그</text>
+  <text x="600" y="638" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="700" fill="#7c3aed">외부 반출 없음</text>
 </svg>

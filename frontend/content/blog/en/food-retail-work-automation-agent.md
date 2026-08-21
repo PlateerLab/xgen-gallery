@@ -28,7 +28,7 @@ Plateer AI Labs recently validated the applicability of AI agents to repetitive 
 
 It started from automating one specific task, but as we looked at real deployment, attention moved naturally to **system integration, performance, use by business teams, model selection, and how it extends**.
 
-Rather than disclosing a particular company's work or systems, this field report sets out **the conditions a food and retail company should look at alongside the agent itself** when evaluating work automation.
+Rather than disclosing a particular company's work or systems, this field report lays out **the conditions a food and retail company should look at alongside the agent itself** when evaluating work automation.
 
 ---
 

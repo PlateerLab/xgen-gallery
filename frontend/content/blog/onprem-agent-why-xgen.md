@@ -1,6 +1,6 @@
 ---
 title: "온프레미스 AI Agent, 왜 XGEN인가"
-description: "Agent가 사내 시스템을 직접 실행하는 단계에 들어서면 선택 기준이 달라집니다. 보안 경계 안에서 데이터를 지키고, 기존 시스템과 연결하고, 실행을 통제·추적하는 온프레미스 Agent 플랫폼을 정리했습니다."
+description: "Agent가 사내 시스템을 직접 실행하는 단계에 들어서면 선택 기준이 달라집니다. 보안 경계 안에서 데이터를 지키고, 기존 시스템과 연결하고, 실행을 통제·추적하는 온프레미스 Agent 플랫폼의 조건을 따져봤습니다."
 date: "2026-08-12"
 cover: /blog/onprem-agent-why-xgen.svg
 thumb: /blog/onprem-agent-why-xgen-thumb.svg

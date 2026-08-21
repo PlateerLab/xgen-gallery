@@ -1,6 +1,6 @@
 ---
 title: "유통 현장의 AI Agent, 문서를 읽는 것에서 업무를 실행하는 것까지"
-description: "유통·미디어 H사와 나눈 AI Agent 도입 논의 — 문서 OCR을 업무 데이터로 잇는 법, 상품코드 생성이 추론 과제인 이유, 파인튜닝 없이 가는 선택지, 그리고 PoC를 본사업으로 이어가는 구조를 정리했습니다."
+description: "유통·미디어 H사와 나눈 AI Agent 도입 논의 — 문서 OCR을 업무 데이터로 잇는 법, 상품코드 생성이 추론 과제인 이유, 파인튜닝 없이 가는 선택지, 그리고 PoC를 본사업으로 이어가는 구조를 되짚었습니다."
 date: "2026-06-23"
 cover: /blog/retail-agent-document-to-execution.svg
 thumb: /blog/retail-agent-document-to-execution-thumb.svg

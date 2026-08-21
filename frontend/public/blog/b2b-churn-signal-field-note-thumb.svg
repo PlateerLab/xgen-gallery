@@ -1,22 +1,20 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B2B 거래처의 반복 발주 패턴이 무너지는 지점을 신호로 잡는다">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="반복 발주의 막대가 뒤로 갈수록 낮아지며 신호가 되는 모습">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfcfd"/><stop offset="1" stop-color="#e8eaef"/></linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.12"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.10"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
-  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">패턴이</text>
-  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
+  <circle cx="600" cy="486" r="330" fill="url(#glow)"/>
 
-  <g>
-    <rect x="700" y="212" width="52" height="196" rx="14" fill="#cdd2da"/>
-    <rect x="772" y="236" width="52" height="172" rx="14" fill="#cdd2da"/>
-    <rect x="844" y="222" width="52" height="186" rx="14" fill="#cdd2da"/>
-    <rect x="916" y="278" width="52" height="130" rx="14" fill="#a78bfa"/>
-    <rect x="996" y="320" width="52" height="88" rx="14" fill="#8b5cf6"/>
-    <rect x="1084" y="356" width="52" height="52" rx="14" fill="#6d28d9"/>
-    <line x1="700" y1="424" x2="1136" y2="424" stroke="#d3d7de" stroke-width="3" stroke-linecap="round"/>
-  </g>
-  <text x="1136" y="474" text-anchor="end" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="700" fill="#7c3aed">주기 지연 · 물량 감소</text>
+  <text x="600" y="170" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">패턴이</text>
+  <text x="600" y="276" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">흔들리는 지점</text>
+  <rect x="308" y="382" width="64" height="210" rx="16" fill="#cdd2da"/>
+  <rect x="412" y="406" width="64" height="186" rx="16" fill="#cdd2da"/>
+  <rect x="516" y="392" width="64" height="200" rx="16" fill="#cdd2da"/>
+  <rect x="620" y="452" width="64" height="140" rx="16" fill="#a78bfa"/>
+  <rect x="724" y="496" width="64" height="96" rx="16" fill="#8b5cf6"/>
+  <rect x="828" y="536" width="64" height="56" rx="16" fill="#6d28d9"/>
+  <line x1="288" y1="600" x2="912" y2="600" stroke="#d3d7de" stroke-width="3" stroke-linecap="round"/>
+  <text x="600" y="648" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="700" fill="#7c3aed">주기 지연 · 물량 감소</text>
 </svg>
