@@ -68,12 +68,19 @@ for (const f of added) {
         continue;
     }
     const slug = path.basename(f, ".md");
+    // 같은 글의 국문·영문이 한 푸시에 함께 올라온다. 영문은 /en/blog/… 로 링크해야
+    // 영문 요약을 읽고 누른 사람이 국문 페이지로 떨어지지 않는다.
+    const isEn = f.startsWith(`${BLOG_DIR}/en/`); // git diff 경로는 항상 슬래시다
     posts.push({
+        locale: isEn ? "en" : "ko",
         title: fm.title || slug,
         description: fm.description || "",
-        url: `${SITE}/blog/${slug}`,
+        url: isEn ? `${SITE}/en/blog/${slug}` : `${SITE}/blog/${slug}`,
     });
 }
+
+// 국문 구독자가 대부분이라 국문을 먼저 싣는다(같은 언어 안에서는 원래 순서 유지).
+posts.sort((a, b) => (a.locale === b.locale ? 0 : a.locale === "ko" ? -1 : 1));
 
 if (!posts.length) {
     console.log("발행 대상 글 없음(초안만) — 알림 생략");
