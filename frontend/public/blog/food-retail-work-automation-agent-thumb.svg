@@ -1,31 +1,54 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="첫 Agent 에서 재사용을 거쳐 조직 확산으로 이어지는 흐름">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="첫 Agent 하나에서 갈라져 여러 조직의 업무로 퍼져 나가는 모습">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfcfd"/><stop offset="1" stop-color="#e8eaef"/></linearGradient>
-    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#2b3138" flood-opacity="0.1"/></filter>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.12"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="1060" cy="110" r="240" fill="#a78bfa" opacity="0.08"/>
-  <circle cx="120" cy="620" r="180" fill="#7c3aed" opacity="0.05"/>
+  <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
 
   <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#111827">동작하는가보다</text>
   <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#7c3aed">확장되는가</text>
 
-  <g filter="url(#sh)">
-    <rect x="792" y="140" width="330" height="98" rx="24" fill="#ffffff"/>
-    <rect x="792" y="264" width="330" height="98" rx="24" fill="#ffffff"/>
-  </g>
-  <rect x="792" y="140" width="330" height="98" rx="24" fill="none" stroke="#e3e6eb"/>
-  <rect x="792" y="264" width="330" height="98" rx="24" fill="none" stroke="#e3e6eb"/>
-  <rect x="792" y="388" width="330" height="98" rx="24" fill="url(#brand)"/>
-
-  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" text-anchor="middle">
-    <text x="957" y="200" fill="#374151">첫 Agent</text>
-    <text x="957" y="324" fill="#6d28d9">재사용</text>
-    <text x="957" y="448" fill="#ffffff">조직 확산</text>
-  </g>
+  <!-- 하나에서 갈라져 나가는 가지 -->
   <g stroke="#a78bfa" stroke-width="4" stroke-linecap="round" fill="none">
-    <path d="M957 246 v10"/><path d="M949 250 l8 10 8 -10"/>
-    <path d="M957 370 v10"/><path d="M949 374 l8 10 8 -10"/>
+    <path d="M846 308 h38"/>
+    <path d="M884 230 v156"/>
+    <path d="M884 230 h32"/>
+    <path d="M884 308 h32"/>
+    <path d="M884 386 h32"/>
+    <path d="M1016 230 h20"/>
+    <path d="M1016 308 h20"/>
+    <path d="M1016 386 h20"/>
   </g>
+
+  <!-- 첫 Agent — 여기서 만든 것이 다음으로 이어진다 -->
+  <rect x="700" y="238" width="146" height="140" rx="34" fill="url(#brand)"/>
+  <g fill="#ffffff">
+    <circle cx="748" cy="292" r="11"/>
+    <circle cx="798" cy="292" r="11"/>
+    <rect x="742" y="326" width="62" height="12" rx="6" opacity="0.9"/>
+  </g>
+
+  <!-- 이어받은 업무들 -->
+  <g>
+    <rect x="916" y="192" width="100" height="76" rx="20" fill="#ede9fe" stroke="#c4b5fd" stroke-width="2"/>
+    <rect x="916" y="270" width="100" height="76" rx="20" fill="#ede9fe" stroke="#c4b5fd" stroke-width="2"/>
+    <rect x="916" y="348" width="100" height="76" rx="20" fill="#ede9fe" stroke="#c4b5fd" stroke-width="2"/>
+    <rect x="1036" y="192" width="100" height="76" rx="20" fill="#ffffff" stroke="#e3e6eb" stroke-width="2"/>
+    <rect x="1036" y="270" width="100" height="76" rx="20" fill="#ffffff" stroke="#e3e6eb" stroke-width="2"/>
+    <rect x="1036" y="348" width="100" height="76" rx="20" fill="#ffffff" stroke="#e3e6eb" stroke-width="2"/>
+  </g>
+  <g fill="#a78bfa">
+    <rect x="944" y="224" width="44" height="12" rx="6"/>
+    <rect x="944" y="302" width="44" height="12" rx="6"/>
+    <rect x="944" y="380" width="44" height="12" rx="6"/>
+  </g>
+  <g fill="#cdd2da">
+    <rect x="1064" y="224" width="44" height="12" rx="6"/>
+    <rect x="1064" y="302" width="44" height="12" rx="6"/>
+    <rect x="1064" y="380" width="44" height="12" rx="6"/>
+  </g>
+
+  <text x="1136" y="486" text-anchor="end" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="700" fill="#7c3aed">자산화 · 재사용 · 확산</text>
 </svg>
