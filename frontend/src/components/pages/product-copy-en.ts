@@ -7,6 +7,8 @@
  *
  * 배열 순서는 한국어 상수와 1:1로 맞춘다(아이콘·이미지·수치는 인덱스로 매칭된다).
  */
+import { TOOLS } from "@/lib/tools";
+
 export const PRODUCT_EN = {
     ldDescription:
         "An on-premise Enterprise AI platform for designing, deploying, and governing Agentic AI services on the LLMs and infrastructure you choose. Made up of an agentflow canvas, knowledge (RAG), tools (MCP), deployment, governance, and a dashboard.",
@@ -48,7 +50,8 @@ export const PRODUCT_EN = {
         ["100%", "On-premise operation", "Network separation · data sovereignty"],
         ["80+", "Built-in tools and plugins", "Extensible with your own"],
         ["Grade 1", "National GS certification", "Verified by third-party testing"],
-        ["11", "Open-source libraries", "MIT · install with pip"],
+        // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생.
+        [String(TOOLS.length), "Open-source libraries", "MIT · install with pip"],
     ] as [string, string, string][],
 
     sections: [

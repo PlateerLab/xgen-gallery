@@ -64,3 +64,30 @@ cd frontend && npm run demo:coverage
 | `frontend/src/lib/demo-i18n.ts` | 매니페스트 문구 영문화 사전 |
 | `frontend/src/components/tool-demo-client.tsx` | 데모 실행기 |
 | `frontend/scripts/demo-coverage.mjs` | 폴백으로 나가는 라이브러리 점검 |
+
+## 개수 문구 — `TOOLS.length` 단일 출처
+
+사이트에 노출되는 "오픈소스 라이브러리 N종" 류의 숫자는 **전부 `TOOLS.length` 에서
+파생**시킨다. 숫자를 문자열로 박아 두면 `TOOLS` 에 항목이 늘어난 뒤에도 옛 숫자가
+남아 제품 페이지만 뒤처진다(실제로 제품 페이지 통계 밴드가 `11` 로 굳어 있었다).
+
+`TOOLS` 에 항목을 추가·삭제한 뒤에는 아래로 잔여 하드코딩을 확인한다.
+
+```bash
+cd frontend && grep -rnE "라이브러리 [0-9]+|[0-9]+종|[0-9]+ (open-source )?librar" src
+```
+
+숫자가 걸리면 그 자리를 `TOOLS.length`(문자열 자리면 `String(TOOLS.length)`)로 바꾼다.
+국문·영문 카피가 분리된 페이지는 **양쪽 다** 고쳐야 한다 — 영문 카피 파일이 따로
+있으면 국문만 고치고 지나치기 쉽다.
+
+### 개수를 노출하는 자리
+
+| 파일 | 자리 |
+|---|---|
+| `frontend/src/components/hero.tsx` | 홈 히어로 배지·설명 |
+| `frontend/src/components/home-open-source.tsx` | 홈 오픈소스 섹션 통계·CTA |
+| `frontend/src/components/tool-grid.tsx` | 갤러리 섹션 제목 |
+| `frontend/src/components/pages/documentation-page.tsx` | 문서 페이지 라이브러리 카운트 |
+| `frontend/src/components/pages/product-page.tsx` | 제품 페이지 통계 밴드(`STATS`) — 국문 |
+| `frontend/src/components/pages/product-copy-en.ts` | 제품 페이지 통계 밴드(`stats`) — 영문 |

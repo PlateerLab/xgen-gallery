@@ -38,6 +38,7 @@ import { localeHref } from "@/lib/locale-path";
 import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
 import type { Locale } from "@/lib/i18n";
+import { TOOLS } from "@/lib/tools";
 
 /** 히어로 직후 트러스트 바 — 인증·운영·도입 실적(대외 공개 사실만). */
 const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
@@ -74,7 +75,8 @@ const STATS: { n: string; label: string; sub: string }[] = [
     { n: "100%", label: "온프레미스 운영", sub: "망분리·데이터 주권" },
     { n: "80+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
     { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
-    { n: "11", label: "오픈소스 라이브러리", sub: "MIT · pip 설치" },
+    // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생 — 라이브러리를 추가·삭제하면 자동 반영된다.
+    { n: String(TOOLS.length), label: "오픈소스 라이브러리", sub: "MIT · pip 설치" },
 ];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
