@@ -9,7 +9,7 @@
       <stop offset="1" stop-color="#cfe0fd"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.4"/>
       <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -23,17 +23,17 @@
 
   <!-- 좌: 워크스페이스 — 메모리·도구·스케줄 -->
   <g transform="translate(112 248)">
-    <rect width="252" height="172" rx="16" fill="#ffffff33" stroke="#ffffff2e" stroke-width="1.5"/>
-    <rect x="24" y="24" width="204" height="34" rx="8" fill="#ffffff17"/>
+    <rect width="252" height="172" rx="16" fill="#ffffff42" stroke="#ffffff3d" stroke-width="1.5"/>
+    <rect x="24" y="24" width="204" height="34" rx="8" fill="#ffffff24"/>
     <circle cx="46" cy="41" r="6" fill="#34d399"/>
-    <text x="66" y="47" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffa8">Memory</text>
-    <rect x="24" y="69" width="204" height="34" rx="8" fill="#ffffff17"/>
+    <text x="66" y="47" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffb3">Memory</text>
+    <rect x="24" y="69" width="204" height="34" rx="8" fill="#ffffff24"/>
     <circle cx="46" cy="86" r="6" fill="#34d399"/>
-    <text x="66" y="92" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffa8">Tools</text>
-    <rect x="24" y="114" width="204" height="34" rx="8" fill="#ffffff17"/>
+    <text x="66" y="92" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffb3">Tools</text>
+    <rect x="24" y="114" width="204" height="34" rx="8" fill="#ffffff24"/>
     <circle cx="46" cy="131" r="6" fill="#34d399"/>
-    <text x="66" y="137" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffa8">Schedule</text>
-    <text x="126" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Workspace</text>
+    <text x="66" y="137" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#ffffffb3">Schedule</text>
+    <text x="126" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="600" fill="#ffffffbd">Workspace</text>
   </g>
 
   <!-- 중앙: XGeny 에이전트 -->
@@ -43,12 +43,12 @@
     <circle cx="92" cy="46" r="3.4" fill="#16203a"/>
     <circle cx="108" cy="46" r="3.4" fill="#16203a"/>
     <path d="M90 59 q10 8 20 0" fill="none" stroke="#16203a" stroke-width="3" stroke-linecap="round"/>
-    <text x="100" y="104" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="700" fill="#2f6fe4">XGeny</text>
+    <text x="100" y="104" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="700" fill="#2461d8">XGeny</text>
   </g>
 
   <!-- 우: 도구 선반 — 전부 주지 않고 검색해서 꺼낸다 -->
   <g transform="translate(836 248)">
-    <rect width="252" height="172" rx="16" fill="#ffffff33" stroke="#ffffff2e" stroke-width="1.5"/>
+    <rect width="252" height="172" rx="16" fill="#ffffff42" stroke="#ffffff3d" stroke-width="1.5"/>
     <g fill="#ffffff1f">
       <rect x="26" y="26" width="46" height="34" rx="7"/>
       <rect x="82" y="26" width="46" height="34" rx="7"/>
@@ -63,7 +63,7 @@
     </g>
     <rect x="82" y="70" width="46" height="34" rx="7" fill="#e4eeff" opacity="0.9"/>
     <rect x="138" y="114" width="46" height="34" rx="7" fill="#e4eeff" opacity="0.55"/>
-    <text x="126" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="600" fill="#ffffffb3">Tool Search</text>
+    <text x="126" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="600" fill="#ffffffbd">Tool Search</text>
   </g>
 
   <!-- 연결선 -->
@@ -71,14 +71,14 @@
   <line x1="700" y1="334" x2="836" y2="334" stroke="#e4eeff" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.75"/>
 
   <!-- 하단 요약 -->
-  <text x="600" y="508" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" fill="#ffffff8f">필요한 도구를 스스로 만들고, 필요할 때만 꺼내 씁니다</text>
+  <text x="600" y="508" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" fill="#ffffff9c">필요한 도구를 스스로 만들고, 필요할 때만 꺼내 씁니다</text>
 
-  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#ffffff70">
-    <rect x="354" y="552" width="196" height="42" rx="21" fill="#ffffff33" stroke="#ffffff8c"/>
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#ffffff80">
+    <rect x="354" y="552" width="196" height="42" rx="21" fill="#ffffff42" stroke="#ffffff99"/>
     <text x="452" y="579" text-anchor="middle">Progressive Disclosure</text>
-    <rect x="568" y="552" width="130" height="42" rx="21" fill="#ffffff33" stroke="#ffffff8c"/>
+    <rect x="568" y="552" width="130" height="42" rx="21" fill="#ffffff42" stroke="#ffffff99"/>
     <text x="633" y="579" text-anchor="middle">Self-built Tools</text>
-    <rect x="716" y="552" width="130" height="42" rx="21" fill="#ffffff33" stroke="#ffffff8c"/>
+    <rect x="716" y="552" width="130" height="42" rx="21" fill="#ffffff42" stroke="#ffffff99"/>
     <text x="781" y="579" text-anchor="middle">Built-in Memory</text>
   </g>
 </svg>

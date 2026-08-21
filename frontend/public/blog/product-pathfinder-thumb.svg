@@ -2,21 +2,21 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#1b4fb0"/></linearGradient>
     <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.34"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
   <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">레거시를</text>
   <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">에이전트로</text>
 
-  <rect x="684" y="216" width="208" height="240" rx="24" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
-  <g fill="#ffffff59">
+  <rect x="684" y="216" width="208" height="240" rx="24" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <g fill="#ffffff6b">
     <rect x="720" y="260" width="136" height="20" rx="10"/><rect x="720" y="300" width="104" height="20" rx="10"/>
     <rect x="720" y="340" width="136" height="20" rx="10"/><rect x="720" y="380" width="88" height="20" rx="10"/>
   </g>
   <path d="M920 336 L 976 336" stroke="#e4eeff" stroke-width="8" stroke-linecap="round"/>
   <path d="M960 316 L 982 336 L 960 356" fill="none" stroke="#e4eeff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
   <rect x="1006" y="216" width="150" height="240" rx="24" fill="url(#badge)"/>
-  <circle cx="1081" cy="300" r="34" fill="none" stroke="#2f6fe4" stroke-width="12"/>
-  <path d="M1081 334 v54 M1053 388 h56" stroke="#2f6fe4" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1081" cy="300" r="34" fill="none" stroke="#2461d8" stroke-width="12"/>
+  <path d="M1081 334 v54 M1053 388 h56" stroke="#2461d8" stroke-width="12" stroke-linecap="round"/>
 </svg>

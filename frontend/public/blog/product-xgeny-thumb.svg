@@ -2,7 +2,7 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#1b4fb0"/></linearGradient>
     <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.34"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
@@ -12,16 +12,16 @@
   <!-- Agent 코어 — 실행 주체를 뜻하는 스파크 마크. 세 자원(Memory·Workspace·
        Schedule)으로 뻗는 선이 "붙들고 일한다"를 나타낸다. -->
   <rect x="752" y="212" width="176" height="176" rx="44" fill="url(#badge)"/>
-  <path d="M840 246 C 852 288 862 298 904 300 C 862 302 852 312 840 354 C 828 312 818 302 776 300 C 818 298 828 288 840 246 Z" fill="#2f6fe4"/>
-  <path d="M894 244 C 899 261 903 265 920 268 C 903 271 899 275 894 292 C 889 275 885 271 868 268 C 885 265 889 261 894 244 Z" fill="#2f6fe4" opacity="0.55"/>
+  <path d="M840 246 C 852 288 862 298 904 300 C 862 302 852 312 840 354 C 828 312 818 302 776 300 C 818 298 828 288 840 246 Z" fill="#2461d8"/>
+  <path d="M894 244 C 899 261 903 265 920 268 C 903 271 899 275 894 292 C 889 275 885 271 868 268 C 885 265 889 261 894 244 Z" fill="#2461d8" opacity="0.55"/>
   <g fill="none" stroke="#ffffff" stroke-width="4" opacity="0.85">
     <path d="M928 288 C 958 288 956 221 986 221"/>
     <path d="M928 300 L 986 300"/>
     <path d="M928 312 C 958 312 956 393 986 393"/>
   </g>
-  <rect x="986" y="186" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
-  <rect x="986" y="272" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
-  <rect x="986" y="358" width="170" height="70" rx="18" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <rect x="986" y="186" width="170" height="70" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <rect x="986" y="272" width="170" height="70" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <rect x="986" y="358" width="170" height="70" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
   <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" text-anchor="middle">
     <text x="1071" y="230">Memory</text><text x="1071" y="316">Workspace</text><text x="1071" y="402">Schedule</text>
   </g>

@@ -10,27 +10,27 @@
 
   <text x="92" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#e4eeff">XGEN 프리뷰 · PathFinder</text>
   <rect x="92" y="150" width="96" height="96" rx="24" fill="url(#badge)"/>
-  <text x="140" y="216" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="50" font-weight="800" fill="#2f6fe4">P</text>
+  <text x="140" y="216" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="50" font-weight="800" fill="#2461d8">P</text>
   <text x="92" y="330" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#ffffff">레거시를</text>
   <text x="92" y="388" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="800" fill="#e4eeff">에이전트 도구로</text>
-  <rect x="92" y="440" width="270" height="52" rx="26" fill="#ffffff33"/>
+  <rect x="92" y="440" width="270" height="52" rx="26" fill="#ffffff42"/>
   <text x="118" y="474" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#e4eeff">No-Code · 도구화</text>
 
   <!-- motif: legacy code -> tool(gear) -->
-  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff2e" stroke="#ffffff8c"/></g>
-  <rect x="664" y="256" width="200" height="180" rx="16" fill="#ffffff33" stroke="#ffffff8c"/>
+  <g filter="url(#sh)"><rect x="628" y="150" width="484" height="392" rx="28" fill="#ffffff3d" stroke="#ffffff99"/></g>
+  <rect x="664" y="256" width="200" height="180" rx="16" fill="#ffffff42" stroke="#ffffff99"/>
   <rect x="686" y="286" width="120" height="12" rx="6" fill="#ffffff"/>
   <rect x="686" y="312" width="150" height="12" rx="6" fill="#cfe0fd"/>
   <rect x="706" y="338" width="120" height="12" rx="6" fill="#cfe0fd"/>
   <rect x="706" y="364" width="96" height="12" rx="6" fill="#cfe0fd"/>
   <rect x="686" y="390" width="140" height="12" rx="6" fill="#eef4ff"/>
-  <path d="M872 346 L 946 346" fill="none" stroke="#ffffffb3" stroke-width="5" stroke-linecap="round"/>
-  <path d="M930 332 L 948 346 L 930 360" fill="none" stroke="#ffffffb3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M872 346 L 946 346" fill="none" stroke="#ffffffbd" stroke-width="5" stroke-linecap="round"/>
+  <path d="M930 332 L 948 346 L 930 360" fill="none" stroke="#ffffffbd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
   <g transform="translate(994 346)">
-    <circle r="66" fill="#ffffff33" stroke="#ffffff8c" stroke-width="3"/>
+    <circle r="66" fill="#ffffff42" stroke="#ffffff99" stroke-width="3"/>
     <g fill="#e4eeff">
       <circle r="26"/>
-      <circle r="12" fill="#ffffff33"/>
+      <circle r="12" fill="#ffffff42"/>
       <g>
         <rect x="-7" y="-58" width="14" height="20" rx="4"/>
         <rect x="-7" y="38" width="14" height="20" rx="4"/>

@@ -2,7 +2,7 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#1b4fb0"/></linearGradient>
     <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.34"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
@@ -10,13 +10,13 @@
   <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">어디서나 실행</text>
 
   <rect x="688" y="256" width="200" height="148" rx="28" fill="url(#badge)"/>
-  <text x="788" y="348" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#2f6fe4">MCP</text>
+  <text x="788" y="348" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#2461d8">MCP</text>
   <g fill="none" stroke="#e4eeff" stroke-width="5" opacity="0.75">
     <path d="M888 306 C 940 306 936 196 988 196"/>
     <path d="M888 330 L 988 330"/>
     <path d="M888 354 C 940 354 936 464 988 464"/>
   </g>
-  <rect x="988" y="150" width="168" height="92" rx="20" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
-  <rect x="988" y="284" width="168" height="92" rx="20" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
-  <rect x="988" y="418" width="168" height="92" rx="20" fill="#ffffff2e" stroke="#ffffff8c" stroke-width="2"/>
+  <rect x="988" y="150" width="168" height="92" rx="20" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <rect x="988" y="284" width="168" height="92" rx="20" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <rect x="988" y="418" width="168" height="92" rx="20" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
 </svg>
