@@ -47,7 +47,10 @@ var BROCHURE_COLS = [
   ["agreeMarketing","마케팅 수신 동의"]
 ];
 var SUB_COLS = [
-  ["receivedAt","수신시각"], ["kind","구분"], ["email","이메일"], ["subscribed","구독여부"]
+  ["receivedAt","수신시각"], ["kind","구분"], ["email","이메일"], ["subscribed","구독여부"],
+  // 현장 리포트 게이트(kind="field-report")는 리드 정보를 함께 받는다.
+  // 뉴스레터·새 글 알림 구독은 이 세 칸이 비어 있다.
+  ["company","회사"], ["name","성함"], ["jobTitle","직급"]
 ];
 
 /** UTC ISO(receivedAt)를 한국(서울) 시간 문자열로. 없으면 현재 시각. */
@@ -93,6 +96,11 @@ function upsertSubscriber(data){       // 구독은 이메일+구분 기준 upse
       if (vals[i][2] === data.email && vals[i][1] === data.kind){
         sh.getRange(i+2,1).setValue(fmt(data.receivedAt));
         sh.getRange(i+2,4).setValue(fmt(data.subscribed));
+        // 리드 칸은 값이 있을 때만 갱신한다 — 이메일만 보내는 구독 요청이
+        // 기존에 받아둔 회사·성함·직급을 지우지 않도록.
+        if (data.company)  sh.getRange(i+2,5).setValue(fmt(data.company));
+        if (data.name)     sh.getRange(i+2,6).setValue(fmt(data.name));
+        if (data.jobTitle) sh.getRange(i+2,7).setValue(fmt(data.jobTitle));
         return;
       }
     }
@@ -204,7 +212,8 @@ function doPost(e){
   try { lock.waitLock(15000); } catch (e) {}
   try {
 
-  if (data.kind === "newsletter" || data.kind === "blog"){
+  // field-report — 현장 리포트 게이트. 리드 정보를 겸한 구독이라 subscribers 탭에 함께 쌓는다.
+  if (data.kind === "newsletter" || data.kind === "blog" || data.kind === "field-report"){
     upsertSubscriber(data);                          // 구독 → subscribers 탭(메일 없음)
 
   } else if (!!data.asset || (data.source||"").indexOf("resources") >= 0){
