@@ -60,9 +60,15 @@ export function SubscribeCta() {
     const [agree, setAgree] = useState(false);
     const [status, setStatus] = useState<Status>("idle");
 
+    /**
+     * 구독의 기준은 뉴스레터 하나다. 블로그(테크 노트) 새 글 알림 구독은 화면에서
+     * 감춘다 — 기능과 시트(kind="blog")는 그대로 살아 있어 되살릴 때는 아래
+     * SHOW_BLOG 만 true 로 바꾸면 된다.
+     */
+    const SHOW_BLOG = false;
     const kind: Kind | null = pathname.startsWith("/newsletter")
         ? "newsletter"
-        : pathname === "/blog" || pathname.startsWith("/blog/")
+        : SHOW_BLOG && (pathname === "/blog" || pathname.startsWith("/blog/"))
           ? "blog"
           : null;
 
