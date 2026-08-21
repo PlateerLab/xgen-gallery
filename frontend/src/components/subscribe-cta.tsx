@@ -36,7 +36,7 @@ const CONFIG: Record<
                 <span className="text-[#2461d8]">XGEN·AI 소식</span>을 받아보세요
             </>
         ),
-        desc: "제품 릴리스·기술 뉴스·논문까지, 연구소가 큐레이션해 한 번에 정리해 드립니다",
+        desc: "제품 릴리스·기술 뉴스·논문까지, AI 연구소가 큐레이션해 한 번에 정리해 드립니다",
         doneDesc: "다음 호가 나오면 메일로 가장 먼저 보내드릴게요",
     },
     blog: {
