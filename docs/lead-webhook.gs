@@ -201,7 +201,11 @@ function doPost(e){
   if (data.kind === "subscribers"){
     var subTk = PropertiesService.getScriptProperties().getProperty("BLOG_NOTIFY_TOKEN");
     if (!subTk || String(data.token||"") !== subTk) return jsonOut_({ ok:false, error:"unauthorized" });
-    return jsonOut_({ ok:true, emails: subscribedEmails_(data.subKind === "newsletter" ? "newsletter" : "blog") });
+    // subKind 는 subscribers 탭의 '구분' 값 그대로다. 모르는 값이면 blog 로 떨어뜨린다.
+    // (field-report — 현장 리포트 게이트 통과 확인에 쓴다)
+    var known = { newsletter:1, blog:1, "field-report":1 };
+    var subKind = known[String(data.subKind||"")] ? String(data.subKind) : "blog";
+    return jsonOut_({ ok:true, emails: subscribedEmails_(subKind) });
   }
 
   // 모든 탭 공통 — 수신시각을 한국(서울) 시간으로 통일
