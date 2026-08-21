@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX — 서버에서 실행되는 Agent 를 내 데스크톱까지 잇는다">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f83d6"/><stop offset="1" stop-color="#4cc4e4"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d7bf2"/><stop offset="1" stop-color="#639bfb"/></linearGradient>
     <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
   </defs>
