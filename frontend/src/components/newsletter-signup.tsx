@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "@/components/i18n-provider";
+import { SubscriberProfileForm } from "@/components/subscriber-profile-form";
 import { ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -72,15 +73,24 @@ export function NewsletterSignup() {
 
     if (status === "done") {
         return (
-            <div className="flex items-center gap-3 rounded-2xl border border-[#cce6d7] bg-[#ecf8f1] px-5 py-4">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1f9d57] text-white">
-                    <Check className="h-5 w-5" />
-                </span>
-                <p className="text-[15.5px] font-medium text-[var(--color-ink)]">
-                    {subscribing
-                        ? c.okSub
-                        : c.okUnsub}
-                </p>
+            <div>
+                <div className="flex items-center gap-3 rounded-2xl border border-[#cce6d7] bg-[#ecf8f1] px-5 py-4">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1f9d57] text-white">
+                        <Check className="h-5 w-5" />
+                    </span>
+                    <p className="text-[15.5px] font-medium text-[var(--color-ink)]">
+                        {subscribing
+                            ? c.okSub
+                            : c.okUnsub}
+                    </p>
+                </div>
+                {/* 구독은 위에서 이미 끝났다 — 아래는 선택 정보(2단계). 해지에는 묻지 않는다. */}
+                {subscribing && (
+                    <SubscriberProfileForm
+                        email={email.trim()}
+                        className="mt-4 rounded-2xl border border-[var(--color-line)] bg-white px-5 py-4"
+                    />
+                )}
             </div>
         );
     }

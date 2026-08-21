@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUp, Check, ChevronDown, Flame } from "lucide-react";
+import { SubscriberProfileForm } from "@/components/subscriber-profile-form";
 import { cn } from "@/lib/cn";
 
 /**
@@ -127,7 +128,7 @@ export function SubscribeCta() {
             {open && (
                 <div className="cta-enter w-full overflow-hidden rounded-3xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-14px_rgba(20,40,80,0.32)]">
                     {status === "done" ? (
-                        <div className="flex flex-col items-center gap-3 px-7 py-9 text-center">
+                        <div className="flex flex-col items-center gap-3 px-7 py-8 text-center">
                             <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1f9d57] text-white">
                                 <Check className="h-6 w-6" />
                             </span>
@@ -137,6 +138,12 @@ export function SubscribeCta() {
                             <p className="text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
                                 {cfg.doneDesc}
                             </p>
+                            {/* 구독은 확정됐다 — 이어서 선택 정보를 묻는다(2단계). */}
+                            <SubscriberProfileForm
+                                email={email.trim()}
+                                kind={kind}
+                                className="mt-2 border-t border-[var(--color-line)] pt-4"
+                            />
                             <button
                                 type="button"
                                 onClick={collapse}
