@@ -15,22 +15,27 @@ import { useI18n } from "@/components/i18n-provider";
  * kind="field-report" 로 쌓여 뉴스레터·새 글 알림과 유입 경로가 구분된다.
  * 이미 구독 중인 독자는 이메일만 확인해 그대로 열어준다(/api/newsletter/check).
  *
- * 해제는 쿠키 한 줄로 기억한다.
+ * 한 번 정보를 남긴 사람은 현장 리포트 **전체**를 계속 읽는다. 해제는 글 단위가
+ * 아니라 사이트 전체에 걸리는 쿠키 한 줄로 기억하고(path=/), 쿠키가 지워지거나
+ * 만료돼도 남겨둔 이메일로 조용히 다시 확인해 그대로 연다.
  */
 const COOKIE = "xgen-fr-unlock";
-const MAX_AGE = 60 * 60 * 24 * 180; // 180일
+const MAX_AGE = 60 * 60 * 24 * 365; // 1년
+/** 쿠키가 사라졌을 때 다시 확인할 근거 — 재입력을 요구하지 않기 위해 남긴다. */
+const EMAIL_KEY = "xgen-fr-email";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const COPY = {
     ko: {
         badge: "구독하시면 이어서 읽을 수 있습니다",
         title: "현장 리포트 전문 보기",
-        desc: "고객사 미팅과 PoC 현장에서 확인한 내용입니다. 아래 정보를 남기시면 이 글의 나머지가 바로 열리고, 새 현장 리포트도 메일로 보내드립니다.",
+        desc: "고객사 미팅과 PoC 현장에서 확인한 내용입니다. 아래 정보를 남기시면 이 글의 나머지가 바로 열리고, 새 현장 리포트가 나올 때 메일로 알려드립니다.",
         name: "담당자명",
         company: "회사명",
         jobTitle: "직급",
         email: "회사 이메일",
-        agree: "구독 및 개인정보 수집·이용에 동의합니다",
+        agree: "개인정보 수집·이용 및 현장 리포트 수신에 동의합니다",
+        alsoNews: "뉴스레터도 함께 받아볼게요 (선택)",
         submit: "구독하고 이어 읽기",
         submitting: "처리 중…",
         error: "모든 항목과 동의 여부를 확인해 주세요",
@@ -45,12 +50,13 @@ const COPY = {
     en: {
         badge: "Subscribe to keep reading",
         title: "Read the full field report",
-        desc: "What we learned from customer meetings and PoCs. Leave the details below to open the rest — and we will send new field reports as they come.",
+        desc: "What we learned from customer meetings and PoCs. Leave the details below to open the rest — and we will let you know when a new field report lands.",
         name: "Your name",
         company: "Company",
         jobTitle: "Job title",
         email: "Work email",
-        agree: "I agree to the subscription and to the use of my personal data",
+        agree: "I agree to the use of my personal data and to receiving field reports",
+        alsoNews: "Send me the newsletter too (optional)",
         submit: "Subscribe and continue",
         submitting: "Working…",
         error: "Fill in every field and tick the consent box",
@@ -75,14 +81,23 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
         email: "",
     });
     const [agree, setAgree] = useState(false);
+    // 뉴스레터는 별개 구독이다 — 원하는 사람만 함께 신청한다.
+    const [alsoNews, setAlsoNews] = useState(false);
     const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
     // 이미 구독한 독자용 — 이메일만 받아 구독자 시트에서 확인한다.
     const [mode, setMode] = useState<"subscribe" | "check">("subscribe");
     const [checkEmail, setCheckEmail] = useState("");
     const [checkFailed, setCheckFailed] = useState(false);
 
-    function unlock() {
+    function unlock(email?: string) {
         document.cookie = `${COOKIE}=1; path=/; max-age=${MAX_AGE}; samesite=lax`;
+        if (email) {
+            try {
+                localStorage.setItem(EMAIL_KEY, email.toLowerCase());
+            } catch {
+                /* 저장이 막힌 브라우저면 쿠키만으로 기억한다 */
+            }
+        }
         setUnlocked(true);
     }
 
@@ -103,7 +118,7 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
             });
             const data = (await res.json()) as { subscribed?: boolean };
             if (data.subscribed) {
-                unlock();
+                unlock(value);
                 return;
             }
         } catch {
@@ -123,7 +138,35 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
     useEffect(() => {
         if (document.cookie.split("; ").some((c) => c.startsWith(`${COOKIE}=`))) {
             setUnlocked(true);
+            return;
         }
+        // 쿠키가 지워졌거나 만료됐어도, 전에 정보를 남긴 사람에게 같은 폼을 다시
+        // 내밀지 않는다 — 남겨둔 주소로 명단을 확인해 조용히 연다.
+        let stale = false;
+        const saved = (() => {
+            try {
+                return localStorage.getItem(EMAIL_KEY);
+            } catch {
+                return null;
+            }
+        })();
+        if (!saved) return;
+        (async () => {
+            try {
+                const res = await fetch("/api/newsletter/check", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({ email: saved }),
+                });
+                const data = (await res.json()) as { subscribed?: boolean };
+                if (!stale && data.subscribed) unlock(saved);
+            } catch {
+                /* 확인이 안 되면 평소대로 게이트를 보여준다 */
+            }
+        })();
+        return () => {
+            stale = true;
+        };
     }, []);
 
     // 이 글에는 게이트 카드가 이미 구독 폼이라, 화면 우하단의 플로팅 구독
@@ -155,11 +198,20 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({ ...v, kind: "field-report" }),
             });
+            // 뉴스레터는 종류가 달라 시트에서도 다른 행으로 관리된다.
+            // 한쪽만 해지해도 다른 쪽이 유지되도록 요청을 나눠 보낸다.
+            if (alsoNews) {
+                await fetch("/api/newsletter", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({ email: v.email, kind: "newsletter" }),
+                });
+            }
         } catch {
             // 전송이 실패해도 열어준다 — 웹훅이 비동기라 성공 여부가 즉시 확정되지
             // 않는데, 여기서 막으면 독자만 손해다.
         }
-        unlock();
+        unlock(v.email);
     }
 
     return (
@@ -265,6 +317,15 @@ export function GatedBody({ teaser, rest }: { teaser: string; rest: string }) {
                                         className="h-4 w-4 rounded border-[var(--color-line-strong)] accent-[#8b5cf6]"
                                     />
                                     <span>{t.agree}</span>
+                                </label>
+                                <label className="mt-2 flex cursor-pointer items-center gap-2 text-[13.5px] text-[var(--color-ink-muted)]">
+                                    <input
+                                        type="checkbox"
+                                        checked={alsoNews}
+                                        onChange={(e) => setAlsoNews(e.target.checked)}
+                                        className="h-4 w-4 rounded border-[var(--color-line-strong)] accent-[#8b5cf6]"
+                                    />
+                                    <span>{t.alsoNews}</span>
                                 </label>
                                 {status === "error" && (
                                     <p className="mt-2 text-[13px] font-semibold text-[#dc2626]">
