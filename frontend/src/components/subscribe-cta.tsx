@@ -15,7 +15,7 @@ import { cn } from "@/lib/cn";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CLOSED_PREFIX = "ailabs-subscribe-cta-closed:";
 
-type Kind = "newsletter" | "blog";
+type Kind = "newsletter" | "blog" | "xgen-preview";
 type Status = "idle" | "submitting" | "done" | "error";
 
 const CONFIG: Record<
@@ -37,6 +37,17 @@ const CONFIG: Record<
         ),
         desc: "제품 릴리스·기술 뉴스·논문까지, 연구소가 큐레이션해 한 번에 정리해 드립니다",
         doneDesc: "다음 호가 나오면 메일로 가장 먼저 보내드릴게요",
+    },
+    "xgen-preview": {
+        pill: "XGEN 프리뷰 구독하기",
+        title: (
+            <>
+                XGEN의 새 소식을 <span className="text-[#2461d8]">가장 먼저</span>{" "}
+                받아보세요
+            </>
+        ),
+        desc: "새 기능과 출시 예정 제품 소식을 정리해 메일로 알려드립니다",
+        doneDesc: "새 소식이 나오면 메일로 알려드릴게요",
     },
     blog: {
         pill: "블로그 구독하기",
@@ -66,11 +77,17 @@ export function SubscribeCta() {
      * SHOW_BLOG 만 true 로 바꾸면 된다.
      */
     const SHOW_BLOG = false;
+    // XGEN 프리뷰 글에서는 그 카테고리 전용 구독을 권한다. 카테고리는 글 화면이
+    // body 에 남겨준다(components/body-flag.tsx) — 전역 위젯이라 경로만으로는
+    // 지금 보는 글이 무엇인지 알 수 없다.
+    const [preview, setPreview] = useState(false);
     const kind: Kind | null = pathname.startsWith("/newsletter")
         ? "newsletter"
-        : SHOW_BLOG && (pathname === "/blog" || pathname.startsWith("/blog/"))
-          ? "blog"
-          : null;
+        : preview
+          ? "xgen-preview"
+          : SHOW_BLOG && (pathname === "/blog" || pathname.startsWith("/blog/"))
+            ? "blog"
+            : null;
 
     // 구독 게이트가 걸린 글에서는 이 위젯을 띄우지 않는다 — 본문 가운데의 게이트
     // 카드가 이미 같은 구독 폼이라 화면에 구독 요청이 두 번 뜬다. 표시는 게이트가
@@ -80,6 +97,7 @@ export function SubscribeCta() {
     useEffect(() => {
         setMounted(true);
         setGated(document.body.dataset.blogGate === "on");
+        setPreview(document.body.dataset.postCategory === "제품 소식");
         if (!kind) return;
         // 사용자가 한 번 접었으면 접힌 채 시작, 아니면 잠시 뒤 자동으로 펼쳐 안내한다.
         if (localStorage.getItem(`${CLOSED_PREFIX}${kind}`) === "1") return;

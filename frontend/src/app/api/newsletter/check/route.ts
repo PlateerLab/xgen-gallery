@@ -19,10 +19,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 /**
  * 게이트를 여는 근거가 되는 명단.
  *   newsletter   — 뉴스레터 구독자
+ *   xgen-preview — XGEN 프리뷰 구독자
  *   field-report — 현장 리포트에서 이미 리드 정보를 남긴 사람(재입력 없이 통과)
- * 새 글 알림(blog)은 성격이 달라 근거로 삼지 않는다.
+ * 전 카테고리 새 글 알림(blog)은 성격이 달라 근거로 삼지 않는다.
  */
-const KINDS = ["newsletter", "field-report"] as const;
+const KINDS = ["newsletter", "xgen-preview", "field-report"] as const;
 
 /** 명단은 자주 바뀌지 않는다 — 확인마다 시트를 긁지 않도록 잠깐 들고 있는다. */
 let cache: { at: number; emails: Set<string> } | null = null;
