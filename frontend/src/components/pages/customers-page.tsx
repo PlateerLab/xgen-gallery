@@ -44,14 +44,14 @@ const COPY: Record<
         heroLead:
             "XGEN과 AI Code Assistant를 금융, 커머스, 공공, IT·제조 등 다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과 산업별로 원하는 사례를 찾아보세요.",
         ctaReview: "우리 업무에 적용 검토",
-        ctaStories: "사례 스토리 보기",
+        ctaStories: "현장 리포트 보기",
         sliderLabel: "최근 사례",
         anonNote:
             "※ 일부 사례는 업종·규모로 익명 표기하며, 공개 레퍼런스만 실명으로 소개합니다.",
-        storyTitle: "사례를 더 깊이 — 사례 스토리",
+        storyTitle: "사례를 더 깊이 — 현장 리포트",
         storyLead:
-            "과제·접근·성과를 자세히 풀어낸 심층 사례 스토리를 인사이트 블로그에서 읽어보세요.",
-        storyCta: "사례 스토리 보기",
+            "고객 미팅과 도입 현장에서 확인한 과제·접근·성과를 자세히 풀어낸 현장 리포트를 인사이트 블로그에서 읽어보세요.",
+        storyCta: "현장 리포트 보기",
         closingTitle: "우리 업무에도 적용할 수 있을까요",
         closingLead: "업무 특성에 맞는 Enterprise AI 적용 방안을 함께 검토해 드립니다.",
         closingCta: "도입 문의",
@@ -64,14 +64,14 @@ const COPY: Record<
         heroLead:
             "Cases where XGEN and AI Code Assistant were built and operated across finance, commerce, public sector, and IT and manufacturing. Browse by product or by industry.",
         ctaReview: "Discuss applying this to your work",
-        ctaStories: "Read the case stories",
+        ctaStories: "Read the field reports",
         sliderLabel: "Recent cases",
         anonNote:
             "Note: some cases are identified only by industry and scale. Only public references are named.",
-        storyTitle: "Going deeper — case stories",
+        storyTitle: "Going deeper — field reports",
         storyLead:
-            "In-depth stories covering the problem, the approach, and the outcome are on the insights blog.",
-        storyCta: "Read the case stories",
+            "In-depth field reports covering the problem, the approach, and the outcome are on the insights blog.",
+        storyCta: "Read the field reports",
         closingTitle: "Could this work for us?",
         closingLead:
             "We will review with you how Enterprise AI applies to the specifics of your work.",
@@ -144,7 +144,7 @@ export async function CustomersPageContent({
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <Link
-                                href={localeHref(locale, "/blog") + "?cat=case"}
+                                href={localeHref(locale, "/blog") + "?cat=industry"}
                                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
                                 {t.ctaStories}
@@ -164,7 +164,7 @@ export async function CustomersPageContent({
                     {t.anonNote}
                 </p>
 
-                {/* 티어 연결 — 허브(한눈에) → 심층 사례 스토리(블로그) */}
+                {/* 티어 연결 — 허브(한눈에) → 현장 리포트(블로그) */}
                 <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-7 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <h2 className="text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
@@ -175,7 +175,7 @@ export async function CustomersPageContent({
                         </p>
                     </div>
                     <Link
-                        href={localeHref(locale, "/blog") + "?cat=case"}
+                        href={localeHref(locale, "/blog") + "?cat=industry"}
                         className="inline-flex shrink-0 items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                     >
                         {t.storyCta}
