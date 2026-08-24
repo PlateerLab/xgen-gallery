@@ -2,6 +2,7 @@
 title: "LLM 없이 온톨로지 그래프를 빌드해봤습니다"
 titleEn: "Building an ontology graph without an LLM"
 cover: /blog/llm-free-ontology-build.svg
+thumb: /blog/llm-free-ontology-build-thumb.svg
 description: "기업의 지식그래프를 구축할 때 생성형 LLM은 반드시 필요할까요? 문서를 넣는 단계에서 LLM을 걷어내고, 같은 문서에서 같은 그래프가 만들어지는지 해시로 검증한 과정과 그 한계를 정리합니다."
 descriptionEn: "We removed LLM calls from indexing and used hashes to check that the same documents produce the same graph. What that gave us, and where it stopped."
 date: "2026-08-25"
