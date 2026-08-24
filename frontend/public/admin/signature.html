@@ -56,6 +56,21 @@
   [contenteditable]{outline:none;border-radius:3px}
   [contenteditable]:hover{outline:1px dashed #B9E3F8}
   [contenteditable]:focus{outline:2px solid var(--brand)}
+  /* 가이드 스크린샷 — 실제 Outlook 화면. 캡션이 각 단계를 가리킨다. */
+  .shot{margin:14px 0 4px}
+  .shot img{
+    display:block;width:100%;height:auto;
+    border:1px solid var(--line);border-radius:8px;background:#fff;
+  }
+  .shot figcaption{
+    margin:7px 2px 0;font-size:12px;color:#6B7378;line-height:1.7;
+  }
+  .shot figcaption b{color:var(--brand)}
+  .step{
+    display:inline-block;min-width:19px;height:19px;line-height:19px;text-align:center;
+    background:var(--brand);color:#fff;border-radius:5px;font-size:11px;
+    font-weight:700;margin-right:7px;padding:0 4px;
+  }
   .hint{font-size:12px;color:#7E868C;margin:24px 0 0;line-height:1.85}
   .hint b{color:#4A5157}
   .hint code{background:#EEF1F3;padding:1px 5px;border-radius:4px}
@@ -72,14 +87,28 @@
 
   <div class="howto">
     <b>1 · 새 Outlook (Windows 11 기본)</b>
-    <ol>
-      <li>이 페이지에서 수정할 항목을 클릭해 내용을 바꿉니다. 이메일을 바꾸면 <code>mailto:</code> 링크도 자동으로 따라갑니다.</li>
-      <li><b>[서명 복사]</b> 클릭 — 색상·굵기·구분선·링크가 모두 포함된 상태로 복사됩니다.</li>
-      <li>Outlook 우측 상단 <b>⚙ 설정</b> → <code>계정 › 서명</code></li>
-      <li><b>이 설정 적용 대상</b>에서 서명을 넣을 계정을 고릅니다. 계정이 여러 개면 계정마다 따로 등록해야 합니다.</li>
-      <li><b>+ 서명 추가</b> → 맨 위 칸에 서명 이름(예: 본인 이름)을 적고, 아래 편집 영역에 <code>Ctrl+V</code>.</li>
-      <li>아래 <b>새 메시지에 대한 기본값 설정</b>을 체크하고 <b>저장</b>.</li>
-    </ol>
+    <p style="margin:6px 0 0"><span class="step">1</span>이 페이지에서 내용을 고친 뒤 <b>[서명 복사]</b>를 누릅니다.
+      색상·굵기·구분선·링크가 모두 포함된 상태로 복사됩니다.</p>
+
+    <figure class="shot">
+      <img src="guide/outlook-1-signature-settings.png"
+           alt="Outlook 설정 창의 서명 화면. 왼쪽에서 계정을 고르고, 오른쪽에 '이 설정 적용 대상' 계정 선택과 '새 메시지 기본값', '회신 및 전달의 기본값' 드롭다운, 우측 상단에 '서명 추가' 버튼이 있다.">
+      <figcaption>
+        <span class="step">2</span>Outlook <b>⚙ 설정 › 계정 › 서명</b>.
+        <b>이 설정 적용 대상</b>에서 서명을 넣을 계정을 먼저 고릅니다 — 계정이 여러 개면 계정마다 따로 등록해야 합니다.
+        그다음 우측 상단 <b>+ 서명 추가</b>.
+      </figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="guide/outlook-2-signature-edit.png"
+           alt="서명 편집 대화상자. 위쪽 칸에 서명 이름, 아래 편집 영역에 붙여넣은 서명이 보이고, 하단에 '새 메시지에 대한 기본값 설정' 체크박스와 저장 버튼이 있다.">
+      <figcaption>
+        <span class="step">3</span>맨 위 칸에 서명 이름(본인 이름)을 적고, 아래 편집 영역에 <code>Ctrl+V</code>.
+        하단 <b>새 메시지에 대한 기본값 설정</b>을 체크하고 <b>저장</b>.
+        회신·전달에도 넣으려면 <b>회신 및 전달에 대한 기본값 설정</b>도 함께 체크합니다.
+      </figcaption>
+    </figure>
 
     <b>2 · 클래식 Outlook (파일 메뉴가 있는 버전)</b>
     <ol>
@@ -96,8 +125,9 @@
       <li>직책·전화번호 끝에 <b>밑줄이 없는지</b>.</li>
       <li>배경이 <b>흰색</b>인지 (회색 블록이면 붙여넣기가 덜 된 것 — 지우고 다시 복사).</li>
       <li>구분선이 <b>하늘색 실선</b>인지, 하단 링크 두 개가 <b>파란색</b>인지.</li>
-      <li><b>회신·전달에도 서명을 넣으려면</b> 서명 화면의 <b>회신 및 전달의 기본값</b>을
-        <code>(서명 없음)</code>에서 방금 만든 서명으로 바꿔야 합니다. 기본값은 서명 없음입니다.</li>
+      <li>서명 화면의 <b>새 메시지 기본값</b>에 방금 만든 서명이 잡혔는지.
+        <b>회신 및 전달의 기본값</b>은 초기값이 <code>(서명 없음)</code>이라,
+        회신·전달에도 붙이려면 여기도 바꿔야 합니다.</li>
     </ol>
 
     <b>4 · 자주 나오는 질문</b>
