@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>PLATEER AI LABS · Outlook 서명 생성기</title>
+<style>
+  :root{ --brand:#00ABEF; --ink:#1A1A1A; --line:#E3E6E8; --bg:#F7F8F9; }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:32px 24px 80px; background:var(--bg);
+    font-family:"맑은 고딕","Malgun Gothic",-apple-system,"Segoe UI",Roboto,sans-serif;
+    color:var(--ink);
+  }
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 6px}
+  .sub{font-size:13px;color:#666;margin:0 0 22px;line-height:1.7}
+  .sub b{color:var(--brand)}
+  .howto{
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;margin-bottom:20px;font-size:13px;line-height:1.8;color:#333;
+  }
+  .howto ol{margin:8px 0 0;padding-left:20px}
+  .howto code{background:#F0F2F4;padding:1px 5px;border-radius:4px;font-size:12px}
+  .howto b{color:var(--brand)}
+  .toolbar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin:0 0 22px;font-size:12.5px;color:#666;
+  }
+  .toolbar input{
+    flex:1 1 220px;min-width:180px;padding:8px 12px;font-size:13px;font-family:inherit;
+    border:1px solid var(--line);border-radius:7px;outline:none;
+  }
+  .toolbar input:focus{border-color:var(--brand)}
+  .count{font-weight:700;color:#444;white-space:nowrap}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+  .card.hide{display:none}
+  .card-head{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 18px;border-bottom:1px solid var(--line);background:#FCFCFD;
+  }
+  .card-title{font-size:13px;font-weight:700;color:#555}
+  .card-title .num{
+    display:inline-block;min-width:22px;height:20px;line-height:20px;text-align:center;
+    background:var(--brand);color:#fff;border-radius:5px;font-size:11px;margin-right:8px;padding:0 4px;
+  }
+  .card-title .tag{font-weight:400;color:#98A0A6;margin-left:8px;font-size:12px}
+  .btn{
+    border:0;border-radius:7px;padding:8px 16px;font-size:12.5px;font-weight:700;
+    background:var(--brand);color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap;
+    transition:filter .15s;
+  }
+  .btn:hover{filter:brightness(.92)}
+  .btn.ok{background:#12A150}
+  .btn.no{background:#D93A3A}
+  .stage{padding:24px 20px}
+  [contenteditable]{outline:none;border-radius:3px}
+  [contenteditable]:hover{outline:1px dashed #B9E3F8}
+  [contenteditable]:focus{outline:2px solid var(--brand)}
+  .hint{font-size:12px;color:#7E868C;margin:24px 0 0;line-height:1.85}
+  .hint b{color:#4A5157}
+  .hint code{background:#EEF1F3;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>PLATEER AI LABS · Outlook 서명</h1>
+  <p class="sub">
+    파란 점선이 보이는 곳은 <b>클릭해서 바로 수정</b>할 수 있습니다.
+    수정한 뒤 <b>[서명 복사]</b> → Outlook 서명 편집기에 <code>Ctrl+V</code>.
+  </p>
+
+  <div class="howto">
+    <b>1 · 새 Outlook (Windows 11 기본)</b>
+    <ol>
+      <li>이 페이지에서 수정할 항목을 클릭해 내용을 바꿉니다. 이메일을 바꾸면 <code>mailto:</code> 링크도 자동으로 따라갑니다.</li>
+      <li><b>[서명 복사]</b> 클릭 — 색상·굵기·구분선·링크가 모두 포함된 상태로 복사됩니다.</li>
+      <li>Outlook 우측 상단 <b>⚙ 설정</b> → <code>계정 › 서명</code></li>
+      <li><b>이 설정 적용 대상</b>에서 서명을 넣을 계정을 고릅니다. 계정이 여러 개면 계정마다 따로 등록해야 합니다.</li>
+      <li><b>+ 서명 추가</b> → 맨 위 칸에 서명 이름(예: 본인 이름)을 적고, 아래 편집 영역에 <code>Ctrl+V</code>.</li>
+      <li>아래 <b>새 메시지에 대한 기본값 설정</b>을 체크하고 <b>저장</b>.</li>
+    </ol>
+
+    <b>2 · 클래식 Outlook (파일 메뉴가 있는 버전)</b>
+    <ol>
+      <li><code>파일 › 옵션 › 메일 › 서명</code></li>
+      <li><b>새로 만들기</b>로 서명을 추가하고 편집 영역에 <code>Ctrl+V</code>.</li>
+      <li>붙여넣기 직후 서식 옵션이 뜨면 <b>원본 서식 유지</b>를 선택합니다.
+        (새 Outlook에서는 이 옵션이 뜨지 않습니다 — 그냥 <code>Ctrl+V</code> 하면 됩니다.)</li>
+      <li>우측 <b>새 메시지</b> 드롭다운에서 방금 만든 서명을 선택하고 <b>확인</b>.</li>
+    </ol>
+
+    <b>3 · 붙여넣은 뒤 확인할 것</b>
+    <ol>
+      <li><b>M · T · E</b> 라벨이 굵게 나오는지.</li>
+      <li>직책·전화번호 끝에 <b>밑줄이 없는지</b>.</li>
+      <li>배경이 <b>흰색</b>인지 (회색 블록이면 붙여넣기가 덜 된 것 — 지우고 다시 복사).</li>
+      <li>구분선이 <b>하늘색 실선</b>인지, 하단 링크 두 개가 <b>파란색</b>인지.</li>
+      <li><b>회신·전달에도 서명을 넣으려면</b> 서명 화면의 <b>회신 및 전달의 기본값</b>을
+        <code>(서명 없음)</code>에서 방금 만든 서명으로 바꿔야 합니다. 기본값은 서명 없음입니다.</li>
+    </ol>
+
+    <b>4 · 자주 나오는 질문</b>
+    <ol>
+      <li><b>M·E 아래 빨간 물결선이 보입니다.</b> Outlook 맞춤법 검사기가 한 글자를 단어로
+        인식해 표시하는 것으로, <b>작성 창에서만 보이고 수신자가 받는 메일에는 나타나지 않습니다.</b>
+        작성 중에도 숨기려면 Outlook의 <code>검토 › 언어 › 자동 맞춤법 검사</code>를 끄세요.</li>
+      <li><b>모바일 Outlook에서 서명이 다릅니다.</b> 모바일 앱은 PC 서명과 별도로 저장됩니다.
+        앱 설정에서 따로 붙여넣어야 합니다.</li>
+      <li><b>글자가 커지거나 작아집니다.</b> 붙여넣은 뒤 서명 전체를 선택해 글꼴 크기를
+        바꾸지 마세요 — 줄마다 크기가 다르게 지정돼 있어 한꺼번에 바꾸면 균형이 깨집니다.</li>
+    </ol>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="이름 · 이메일 · 파트로 검색">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="cards"></div>
+
+  <p class="hint">
+    <b>서식이 걸러지지 않도록 적용한 것</b><br>
+    · 레이아웃 전체를 <code>&lt;table&gt;</code> + 인라인 스타일로만 구성 — Outlook은 Word 렌더링 엔진을 쓰므로 <code>div</code>/<code>flex</code>/외부 CSS는 무시됩니다.<br>
+    · 굵기는 <code>font-weight</code> 대신 <code>&lt;b&gt;</code> 태그로 지정 — 스타일이 제거돼도 굵기가 남습니다.<br>
+    · 색상은 <code>&lt;a&gt;</code>와 내부 <code>&lt;span&gt;</code>에 <b>이중 지정</b> — Outlook이 링크색을 기본 파랑/보라로 덮어쓰는 것을 막습니다.<br>
+    · 구분선은 <code>━</code> 문자가 아니라 <b>1행 1열 표의 아래 테두리</b>(<code>#00ABEF</code> 1.5pt) — 폰트·환경에 따라 두께가 변하지 않습니다.<br>
+    · <code>letter-spacing</code>·<code>flex</code>·<code>margin</code> 등 Word가 버리는 속성은 쓰지 않았습니다. 여백은 <code>padding</code>과 표 구조로만 만들었습니다.<br>
+    · 글꼴은 <code>맑은 고딕</code> → <code>Malgun Gothic</code> → <code>Arial</code> 순으로 대체 지정했습니다.<br><br>
+    <b>혹시 색이 사라졌다면</b> — Outlook 서명 편집기에서 해당 텍스트를 선택 후 글꼴 색 › <b>사용자 지정</b> › <b>R 0 / G 171 / B 239</b>.
+  </p>
+
+</div>
+
+<script>
+/* ===================== 공통 값 ===================== */
+var TAG_A = "기업 AI의 연구와 기술, 그리고 XGEN의 기술적 진화를 공유합니다.";
+var TAG_B = "기업 AI의 기술과 XGEN의 새로운 변화를 공유합니다.";
+var TEL   = "+82 2 554 4668";
+var NL_A  = "Labs Newsletter 받아보기 ↗";
+var NL_B  = "Labs Newsletter 구독하기 ↗";
+
+var LAB   = "AI 솔루션 연구소";
+var AE    = "아키텍쳐엔지니어링 파트";
+var RD    = "AI R&D 팀";
+
+/* ===================== 헬퍼 ===================== */
+function P(name, role, team, mobile, email, o){
+  o = o || {};
+  return {
+    name:name, role:role, team:team,
+    mobile:mobile, tel:(o.tel !== undefined ? o.tel : TEL),
+    email:email,
+    tagline:(o.tagline || TAG_B),
+    nl:(o.nl || NL_A)
+  };
+}
+function LEAD(name, team, mobile, email, o){ return P(name, "리더, "+LAB, team, mobile, email, o); }
+function PRO (name, team, mobile, email, o){ return P(name, "프로, "+LAB, team, mobile, email, o); }
+
+/* ===================== 인원 ===================== */
+var PEOPLE = [
+  P("남덕현 전무 (CTO)", "전무 / 연구소장, "+LAB, "프로젝트매니저, SW아키텍트", "+82 010-9341-7470", "ndh6913@plateer.com"),
+  LEAD("정우문", RD,                    "+82 010-6267-5248", "woomun_jung@plateer.com"),
+  LEAD("최수안", "제품전략 파트",        "+82 010-3949-8695", "swan@plateer.com"),
+  LEAD("손성준", "제품기술/컨설팅 파트", "+82 010-2818-4783", "sonsj97@plateer.com"),
+  LEAD("장하렴", "제품 개발 파트",       "+82 010-3785-6768", "gkfua00@plateer.com"),
+  LEAD("최종민", AE,                    "+82 010-7131-7707", "kirious@plateer.com"),
+
+  PRO("박예원", AE, "+82 010-4257-8827", "yedong4540@plateer.com"),
+  PRO("전인수", AE, "+82 010-8820-1758", "mumberrymountain@plateer.com"),
+  PRO("채희철", AE, "+82 010-8217-3000", "hcche@plateer.com"),
+
+  PRO("이다운", RD, "+82 010-4921-2048", "dlekdns07@plateer.com"),
+  PRO("김해수", RD, "+82 010-9379-2378", "haesookim0106@plateer.com"),
+  PRO("김동욱", RD, "+82 010-6668-4371", "donguk08@plateer.com"),
+  PRO("김대희", RD, "+82 010-7101-7094", "eet43@plateer.com"),
+  PRO("김진수", RD, "+82 010-6245-3323", "wlstn010203@plateer.com"),
+  PRO("유지수", RD, "+82 010-3536-0816", "jsyoo@plateer.com"),
+  PRO("박소민", RD, "+82 010-3615-6955", "sompark@plateer.com"),
+  PRO("권오영", RD, "+82 010-2590-5020", "kwnoyng@plateer.com"),
+  PRO("박태준", RD, "+82 010-2285-2562", "imagine@plateer.com")
+];
+
+/* ===================== 서명 마크업 ===================== */
+var FONT  = "'맑은 고딕','Malgun Gothic',Arial,sans-serif";
+var BRAND = "#00ABEF";
+var INK   = "#1A1A1A";
+var INK2  = "#3C3C3C";
+var DIM   = "#C9CFD3";
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function sigHTML(p){
+  var F = 'font-family:'+FONT+';';
+  // 붙여넣기 방어용 공통 선언.
+  //  NP  — 교정 표시 끄기(Word 전용). "연구소"·"8695" 밑의 직선과 M·E 밑의
+  //        빨간 물결은 CSS 밑줄이 아니라 Outlook 맞춤법·문법 검사기가 그리는
+  //        표시다. text-decoration 으로는 지워지지 않고 mso-no-proof 가 듣는다.
+  //        (table 의 spellcheck 속성만으로는 Word 엔진이 무시하는 경우가 있다)
+  //  ND  — 밑줄 제거. Outlook 은 text-decoration 이 없는 span 에 임의로 밑줄을
+  //        붙인다. 링크가 아닌 span 까지 전부 명시한다.
+  //  BGW — 흰 배경 고정. 지정이 없으면 편집기 배경(회색)이 그대로 비친다.
+  var NP  = 'mso-no-proof:yes;';
+  var ND  = 'text-decoration:none;' + NP;
+  var BGW = 'background-color:#ffffff;' + NP;
+  // 라벨(M·T·E)은 볼드. ND(=text-decoration:none)를 모든 span에 붙인다 —
+  // 빼먹은 span 은 Outlook 이 붙여넣을 때 밑줄을 그린다(연구소·번호 끝에 실선).
+  var contact =
+      '<b><span style="color:'+INK2+';'+ND+'">M </span></b><span class="ed" data-k="mobile" style="color:'+INK2+';'+ND+'">'+esc(p.mobile)+'</span>';
+  if (p.tel) {
+    contact += '<span style="color:'+DIM+';'+ND+'">&nbsp;&nbsp;·&nbsp;&nbsp;</span>'
+             + '<b><span style="color:'+INK2+';'+ND+'">T </span></b><span class="ed" data-k="tel" style="color:'+INK2+';'+ND+'">'+esc(p.tel)+'</span>';
+  }
+  return ''
+  + '<table cellpadding="0" cellspacing="0" border="0" width="430" spellcheck="false" style="border-collapse:collapse;width:430px;'+BGW+F+'">'
+  + '<tr><td align="left" style="padding:0;'+BGW+F+'font-size:12pt;color:'+INK+';line-height:130%;">'
+  +   '<b><span class="ed" data-k="name" style="color:'+INK+';'+ND+'">'+esc(p.name)+'</span></b>'
+  + '</td></tr>'
+  + '<tr><td align="left" style="padding:3px 0 0;'+BGW+F+'font-size:9.5pt;color:'+INK2+';line-height:145%;">'
+  +   '<span class="ed" data-k="role" style="color:'+INK2+';'+ND+'">'+esc(p.role)+'</span>'
+  +   '<span style="color:'+DIM+';'+ND+'">&nbsp;&nbsp;|&nbsp;&nbsp;</span>'
+  +   '<span class="ed" data-k="team" style="color:'+INK2+';'+ND+'">'+esc(p.team)+'</span>'
+  + '</td></tr>'
+  + '<tr><td align="left" style="padding:10px 0 0;'+BGW+F+'font-size:9.5pt;color:'+INK2+';line-height:160%;">'
+  +   contact + '<br>'
+  +   '<b><span style="color:'+INK2+';'+ND+'">E </span></b>'
+  +   '<a href="mailto:'+esc(p.email)+'" style="color:'+INK2+';'+ND+'">'
+  +     '<span class="ed" data-k="email" style="color:'+INK2+';'+ND+'">'+esc(p.email)+'</span></a>'
+  + '</td></tr>'
+  + '<tr><td style="padding:15px 0 14px;'+BGW+'">'
+  +   '<table cellpadding="0" cellspacing="0" border="0" width="430" style="border-collapse:collapse;width:430px;'+BGW+'">'
+  +     '<tr><td style="'+BGW+'border-bottom:1.5pt solid '+BRAND+';font-size:1pt;line-height:1pt;mso-line-height-rule:exactly;">&nbsp;</td></tr>'
+  +   '</table>'
+  + '</td></tr>'
+  + '<tr><td align="left" style="padding:0;'+BGW+F+'font-size:10.5pt;color:'+INK+';line-height:130%;">'
+  +   '<b><span style="color:'+INK+';'+ND+'">PLATEER AI LABS</span></b>'
+  + '</td></tr>'
+  + '<tr><td align="left" style="padding:5px 0 0;'+BGW+F+'font-size:9pt;color:'+INK2+';line-height:155%;">'
+  +   '<span class="ed" data-k="tagline" style="color:'+INK2+';'+ND+'">'+esc(p.tagline)+'</span>'
+  + '</td></tr>'
+  + '<tr><td align="left" style="padding:9px 0 0;'+BGW+F+'font-size:9.5pt;line-height:150%;">'
+  +   '<a href="https://labs.plateer.com/" style="color:'+BRAND+';'+ND+'">'
+  +     '<b><span style="color:'+BRAND+';'+ND+'">AI Labs 둘러보기 ↗</span></b></a>'
+  +   '<span style="color:'+DIM+';'+ND+'">&nbsp;&nbsp;·&nbsp;&nbsp;</span>'
+  +   '<a href="https://labs.plateer.com/newsletter" style="color:'+BRAND+';'+ND+'">'
+  +     '<b><span class="ed" data-k="nl" style="color:'+BRAND+';'+ND+'">'+esc(p.nl)+'</span></b></a>'
+  + '</td></tr>'
+  + '</table>';
+}
+
+/* ===================== 렌더 ===================== */
+var cards = document.getElementById('cards');
+
+PEOPLE.forEach(function(p, i){
+  var card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.find = (p.name+' '+p.email+' '+p.team+' '+p.role).toLowerCase();
+  card.innerHTML =
+      '<div class="card-head">'
+    +   '<span class="card-title"><span class="num">'+(i+1)+'</span>'
+    +     '<span class="who">'+esc(p.name)+'</span>'
+    +     '<span class="tag">'+esc(p.team)+'</span></span>'
+    +   '<button class="btn" type="button">서명 복사</button>'
+    + '</div>'
+    + '<div class="stage"><div class="sig">'+sigHTML(p)+'</div></div>';
+  cards.appendChild(card);
+
+  var sig = card.querySelector('.sig');
+  var who = card.querySelector('.who');
+
+  sig.querySelectorAll('.ed').forEach(function(el){
+    el.setAttribute('contenteditable','true');
+    el.setAttribute('spellcheck','false');
+    el.addEventListener('input', function(){
+      if (el.dataset.k === 'name')  who.textContent = el.textContent || '(이름)';
+      if (el.dataset.k === 'email') {
+        var a = el.closest('a');
+        if (a) a.setAttribute('href','mailto:'+el.textContent.trim());
+      }
+    });
+    el.addEventListener('paste', function(e){
+      e.preventDefault();
+      var t = (e.clipboardData || window.clipboardData).getData('text');
+      document.execCommand('insertText', false, t.replace(/\s+/g,' ').trim());
+    });
+    el.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault(); });
+  });
+
+  card.querySelector('.btn').addEventListener('click', function(){
+    var btn = this;
+    var clone = sig.firstChild.cloneNode(true);
+    clone.querySelectorAll('[contenteditable]').forEach(function(n){
+      n.removeAttribute('contenteditable');
+      n.removeAttribute('spellcheck');
+      n.removeAttribute('class');
+      n.removeAttribute('data-k');
+    });
+    var holder = document.createElement('div');
+    holder.setAttribute('style','position:fixed;left:-9999px;top:0;');
+    holder.appendChild(clone);
+    document.body.appendChild(holder);
+
+    var range = document.createRange();
+    range.selectNode(clone);
+    var sel = window.getSelection();
+    sel.removeAllRanges(); sel.addRange(range);
+
+    var done = false;
+    try { done = document.execCommand('copy'); } catch(err) { done = false; }
+    sel.removeAllRanges();
+    document.body.removeChild(holder);
+
+    btn.textContent = done ? '복사 완료 ✓' : '복사 실패 — 직접 선택하세요';
+    btn.classList.add(done ? 'ok' : 'no');
+    setTimeout(function(){
+      btn.textContent = '서명 복사';
+      btn.classList.remove('ok','no');
+    }, 2200);
+  });
+});
+
+/* ===================== 검색 ===================== */
+var q = document.getElementById('q');
+var countEl = document.getElementById('count');
+function applyFilter(){
+  var v = q.value.trim().toLowerCase();
+  var shown = 0;
+  Array.prototype.forEach.call(cards.children, function(c){
+    var hit = !v || c.dataset.find.indexOf(v) !== -1;
+    c.classList.toggle('hide', !hit);
+    if (hit) shown++;
+  });
+  countEl.textContent = v ? (shown + ' / ' + PEOPLE.length + '명') : (PEOPLE.length + '명');
+}
+q.addEventListener('input', applyFilter);
+applyFilter();
+</script>
+</body>
+</html>

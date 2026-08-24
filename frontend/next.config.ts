@@ -33,6 +33,27 @@ const nextConfig: NextConfig = {
                     },
                 ],
             },
+            // 내부용 어드민(Decap CMS · 서명 생성기) — 색인 금지.
+            // robots.ts 의 PRIVATE_PATHS 는 '/admin/' 이라 '/admin' 정확히는
+            // 걸리지 않으므로, 양쪽 source 를 모두 두어 헤더로 못 박는다.
+            {
+                source: '/admin',
+                headers: [
+                    {
+                        key: 'X-Robots-Tag',
+                        value: 'noindex, nofollow, noarchive, nosnippet',
+                    },
+                ],
+            },
+            {
+                source: '/admin/:path*',
+                headers: [
+                    {
+                        key: 'X-Robots-Tag',
+                        value: 'noindex, nofollow, noarchive, nosnippet',
+                    },
+                ],
+            },
         ];
     },
     async redirects() {
