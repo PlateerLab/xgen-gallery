@@ -1,0 +1,75 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="흩어진 기업 데이터가 온톨로지를 거쳐 지식과 Agent, 업무로 이어지는 흐름, 그 아래 현장에서 반복된 다섯 가지 질문">
+  <defs>
+    <!-- 현장 리포트 전용 — 밝은 실버 바탕에 객체만 퍼플. -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfcfd"/>
+      <stop offset="1" stop-color="#e8eaef"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#2b3138" flood-opacity="0.1"/></filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1090" cy="80" r="220" fill="#a78bfa" opacity="0.07"/>
+  <circle cx="120" cy="620" r="180" fill="#7c3aed" opacity="0.05"/>
+
+  <text x="600" y="106" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="24" font-weight="700" fill="#7c3aed" letter-spacing="5">FIELD REPORT</text>
+  <text x="600" y="164" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="44" font-weight="800" fill="#111827">데이터가 아니라, 관계를 연결합니다</text>
+
+  <!-- Data → Knowledge → Agent → Business — 마지막 칸만 퍼플로 강조 -->
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+    <g filter="url(#sh)">
+      <rect x="56" y="240" width="240" height="96" rx="20" fill="#ffffff"/>
+      <rect x="340" y="240" width="240" height="96" rx="20" fill="#ffffff"/>
+      <rect x="624" y="240" width="240" height="96" rx="20" fill="#ffffff"/>
+    </g>
+    <rect x="56" y="240" width="240" height="96" rx="20" fill="none" stroke="#e3e6eb"/>
+    <rect x="340" y="240" width="240" height="96" rx="20" fill="none" stroke="#e3e6eb"/>
+    <rect x="624" y="240" width="240" height="96" rx="20" fill="none" stroke="#e3e6eb"/>
+    <rect x="908" y="240" width="240" height="96" rx="20" fill="url(#brand)"/>
+
+    <text x="176" y="288" text-anchor="middle" font-size="21" font-weight="600" fill="#374151">Data</text>
+    <text x="176" y="313" text-anchor="middle" font-size="15" fill="#6b7280">문서 · RDB · DW</text>
+    <text x="460" y="288" text-anchor="middle" font-size="21" font-weight="600" fill="#374151">Knowledge</text>
+    <text x="460" y="313" text-anchor="middle" font-size="15" fill="#6b7280">온톨로지 · 지식 그래프</text>
+    <text x="744" y="288" text-anchor="middle" font-size="21" font-weight="700" fill="#6d28d9">Agent</text>
+    <text x="744" y="313" text-anchor="middle" font-size="15" fill="#8b5cf6">관계 기반 탐색</text>
+    <text x="1028" y="288" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">Business</text>
+    <text x="1028" y="313" text-anchor="middle" font-size="15" fill="#ede9fe">개인화 · 분석 · 업무지원</text>
+
+    <g stroke="#a78bfa" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M304 288 h24"/><path d="M320 281 l8 7 -8 7"/>
+      <path d="M588 288 h24"/><path d="M604 281 l8 7 -8 7"/>
+      <path d="M872 288 h24"/><path d="M888 281 l8 7 -8 7"/>
+    </g>
+  </g>
+
+  <!-- 현장에서 반복된 질문 -->
+  <text x="56" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#6b7280" letter-spacing="2">현장에서 반복된 질문</text>
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="600" fill="#6d28d9">
+    <rect x="56" y="436" width="196" height="52" rx="26" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="154" y="469" text-anchor="middle">문서 자동 추출</text>
+    <rect x="268" y="436" width="196" height="52" rx="26" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="366" y="469" text-anchor="middle">RDB 연결</text>
+    <rect x="480" y="436" width="196" height="52" rx="26" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="578" y="469" text-anchor="middle">데이터 경계</text>
+    <rect x="692" y="436" width="196" height="52" rx="26" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="790" y="469" text-anchor="middle">최신화 주기</text>
+    <rect x="904" y="436" width="196" height="52" rx="26" fill="#ede9fe" stroke="#c4b5fd"/>
+    <text x="1002" y="469" text-anchor="middle" font-weight="700">어디서 시작</text>
+  </g>
+
+  <text x="600" y="562" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" fill="#4b5563">데이터는 쌓여 있는데, AI가 그 사이의 관계를 모른다면</text>
+
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" fill="#6b7280">
+    <rect x="336" y="600" width="164" height="38" rx="19" fill="#ffffff" stroke="#e3e6eb"/>
+    <text x="418" y="625" text-anchor="middle">도메인 용어 사전</text>
+    <rect x="516" y="600" width="168" height="38" rx="19" fill="#ffffff" stroke="#e3e6eb"/>
+    <text x="600" y="625" text-anchor="middle">스키마 의미 추론</text>
+    <rect x="700" y="600" width="164" height="38" rx="19" fill="#ffffff" stroke="#e3e6eb"/>
+    <text x="782" y="625" text-anchor="middle">단계적 확장</text>
+  </g>
+</svg>
