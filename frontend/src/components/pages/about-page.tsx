@@ -240,7 +240,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 { value: `${TOOLS.length}`, label: "오픈소스 라이브러리", note: "설치·브라우저 체험 제공" },
                 { value: `${PUBLICATIONS.length}`, label: "논문·저서", note: "학회·저널 게재와 감수 도서" },
-                { value: `${CUSTOMER_COUNT}`, label: "실증 고객사", note: "XGEN·X2BEE 구축·운영 — 금융·공공·커머스·유통" },
+                { value: `${CUSTOMER_COUNT}`, label: "고객 검증", note: "XGEN·X2BEE 구축·운영 — 금융·공공·커머스·유통" },
             ],
         },
         stack: {
@@ -424,7 +424,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 { value: `${TOOLS.length}`, label: "Open-source libraries", note: "Installable, with in-browser demos" },
                 { value: `${PUBLICATIONS.length}`, label: "Papers and books", note: "Journals, conferences, and edited volumes" },
-                { value: `${CUSTOMER_COUNT}`, label: "Enterprise customers", note: "XGEN and X2BEE deployments across finance, public, commerce, and retail" },
+                { value: `${CUSTOMER_COUNT}`, label: "Validated with customers", note: "XGEN and X2BEE deployments across finance, public, commerce, and retail" },
             ],
         },
         stack: {
