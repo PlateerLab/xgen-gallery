@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { MilestoneRoadmap } from "@/components/milestone-roadmap";
+import { AboutHeroVisual } from "@/components/about-hero-visual";
+import { PATENTS } from "@/lib/patents";
+import { CERTIFICATIONS } from "@/lib/certifications";
+import { TOOLS } from "@/lib/tools";
+import { PUBLICATIONS } from "@/lib/publications";
 import {
     ShieldCheck,
     Server,
@@ -8,6 +13,7 @@ import {
     Boxes,
     Layers,
     BadgeCheck,
+    MessagesSquare,
     Award,
     BookOpen,
     Users,
@@ -17,7 +23,6 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { SceneBackground } from "@/components/scene-background";
 import { JsonLd } from "@/components/json-ld";
 import { organizationLd, breadcrumbLd } from "@/lib/structured-data";
 import { localeHref } from "@/lib/locale-path";
@@ -54,6 +59,29 @@ interface AboutCopy {
         title: string;
         more: string;
         items: { icon: LucideIcon; title: string; desc: string; href: string }[];
+    };
+    /** 한눈에 — 스크롤 없이 규모를 먼저 보여주는 숫자 밴드 */
+    glance: {
+        title: string;
+        lead: string;
+        stats: { value: string; label: string; note: string }[];
+    };
+    /** 4.1 자체 기술 · 특허 보유현황 */
+    patents: {
+        title: string;
+        lead: string;
+        cols: { no: string; title: string; app: string; reg: string; country: string };
+        note: string;
+        certAlt: string;
+        /** 특허증 이미지가 없는 건을 묶는 목록 카드 제목 */
+        restTitle: string;
+    };
+    /** 4.2 국내 품질인증 획득 내용 */
+    certs: {
+        title: string;
+        lead: string;
+        cols: { agency: string; date: string };
+        certAlt: string;
     };
     milestones: { title: string; items: { when: string; what: string }[] };
     team: {
@@ -92,8 +120,8 @@ const COPY: Record<Locale, AboutCopy> = {
             ],
         },
         pipeline: {
-            title: "AI 연구소가 만든 것을, 제품으로 증명합니다",
-            desc: "기초 연구에서 시작해 오픈소스로 검증하고, 제품으로 잇고, 고객 현장과 인증으로 증명하는 한 방향의 흐름으로 일합니다.",
+            title: "연구에서 시작해, 다시 연구로 돌아옵니다",
+            desc: "기초 연구를 오픈소스로 공개해 검증하고, 제품으로 잇고, 고객 현장에 적용합니다. 거기서 나온 피드백과 운영 데이터가 다음 연구의 출발점이 됩니다.",
             items: [
                 {
                     icon: FlaskConical,
@@ -106,22 +134,29 @@ const COPY: Record<Locale, AboutCopy> = {
                     icon: Boxes,
                     title: "오픈소스",
                     sub: "Open Source",
-                    desc: "연구를 떠받치는 검증된 라이브러리 공개",
+                    desc: "MIT 라이선스로 공개해 누구나 검증할 수 있게",
                     href: "/library-gallery",
                 },
                 {
                     icon: Layers,
-                    title: "제품",
-                    sub: "Product",
-                    desc: "XGEN·Polar·AI Code Assistant로 현장 적용",
+                    title: "XGEN 플랫폼",
+                    sub: "AI Platform",
+                    desc: "연구 성과를 Enterprise AI 플랫폼으로 제품화",
                     href: "/product",
                 },
                 {
                     icon: BadgeCheck,
-                    title: "실증",
-                    sub: "Proof",
-                    desc: "고객사례와 국가 공인 인증으로 성과 증명",
+                    title: "고객사 적용",
+                    sub: "Customers",
+                    desc: "현장에 적용해 비즈니스 가치로 연결",
                     href: "/customers",
+                },
+                {
+                    icon: MessagesSquare,
+                    title: "피드백",
+                    sub: "Feedback",
+                    desc: "사용자 피드백과 운영 데이터가 다음 연구로",
+                    href: "/research",
                 },
             ],
         },
@@ -149,13 +184,47 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
             ],
         },
+        glance: {
+            title: "한눈에",
+            lead: "연구소가 쌓아온 것을 숫자로 먼저 봅니다.",
+            /*
+             * 숫자는 데이터에서 직접 센다 — 손으로 적으면 항목이 늘어도 화면이
+             * 그대로라 조용히 틀린 값이 남는다. GS 등급만 집계 대상이 아니다.
+             */
+            stats: [
+                { value: `${PATENTS.length}`, label: "등록 특허", note: "추천·검색 중심으로 축적" },
+                { value: `${TOOLS.length}`, label: "오픈소스 라이브러리", note: "설치·브라우저 체험 제공" },
+                { value: `${PUBLICATIONS.length}`, label: "논문·저서", note: "학회·저널 게재와 감수 도서" },
+                { value: "1등급", label: "GS 인증", note: "XGEN · X2BEE, 소프트웨어 품질 최고 등급" },
+            ],
+        },
+        patents: {
+            title: "특허로 축적한 기술",
+            lead: "2014년 영상 처리에서 시작해 추천과 검색으로 이어졌고, 2024년 AI 대화형 추천까지 닿았습니다. 등록 특허 8건이 그 궤적을 그대로 보여줍니다.",
+            cols: {
+                no: "번호",
+                title: "발명의 명칭",
+                app: "출원일",
+                reg: "등록일",
+                country: "출원국",
+            },
+            note: "권리자 ㈜플래티어 · 출원국 대한민국. 등록일 최신순으로 정리했습니다.",
+            certAlt: "특허청이 발급한 특허증",
+            restTitle: "그 밖의 등록 특허",
+        },
+        certs: {
+            title: "국내 품질인증 획득 내용",
+            lead: "체계적인 품질 관리와 지속적인 고도화를 바탕으로 소프트웨어품질인증(GS) 1등급을 세 차례 획득했습니다. 공인 시험기관이 국제표준에 따라 시험한 결과입니다.",
+            cols: { agency: "인증기관", date: "인증일" },
+            certAlt: "공인 시험기관이 발급한 소프트웨어품질인증서",
+        },
         /**
          * 이정표 — 커머스 플랫폼에서 Enterprise AI 플랫폼으로 넘어온 변곡점만 남긴다.
          * 버전 단위 릴리스 이력(V3.0·V3.5·V3.6…)과 프로젝트 산출물은 넣지 않는다.
          * 계보를 보여주는 자리이지 릴리스 노트가 아니다.
          */
         milestones: {
-            title: "이정표",
+            title: "걸어온 길",
             items: [
                 { when: "2026.07", what: "XGEN, GS(Good Software) 인증 1등급 획득" },
                 { when: "2026.06", what: "AI 신뢰성 인증 AI-MASTER 인증 시험 착수" },
@@ -274,8 +343,38 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
             ],
         },
+        glance: {
+            title: "At a glance",
+            lead: "What the lab has built, in numbers.",
+            stats: [
+                { value: `${PATENTS.length}`, label: "Registered patents", note: "Concentrated in recommendation and search" },
+                { value: `${TOOLS.length}`, label: "Open-source libraries", note: "Installable, with in-browser demos" },
+                { value: `${PUBLICATIONS.length}`, label: "Papers and books", note: "Journals, conferences, and edited volumes" },
+                { value: "Grade 1", label: "GS certification", note: "XGEN and X2BEE, the top software quality grade" },
+            ],
+        },
+        patents: {
+            title: "Technology built up through patents",
+            lead: "It began with image processing in 2014, moved through recommendation and search, and reached conversational AI recommendation in 2024. Eight registered patents trace that path.",
+            cols: {
+                no: "No.",
+                title: "Title of invention",
+                app: "Filed",
+                reg: "Registered",
+                country: "Country",
+            },
+            note: "Rights held by Plateer Co., Ltd. · Republic of Korea. Ordered by most recent registration.",
+            certAlt: "Certificate of patent issued by the Korean Intellectual Property Office",
+            restTitle: "Other registered patents",
+        },
+        certs: {
+            title: "Software quality certifications",
+            lead: "Systematic quality management and continuous improvement have earned Grade 1 GS software quality certification three times — tested by accredited labs against international standards.",
+            cols: { agency: "Certified by", date: "Certified on" },
+            certAlt: "Certificate of software quality issued by an accredited testing laboratory",
+        },
         milestones: {
-            title: "Milestones",
+            title: "Our journey",
             items: [
                 {
                     when: "2026.07",
@@ -326,6 +425,7 @@ const COPY: Record<Locale, AboutCopy> = {
 
 export function AboutPageContent({ locale }: { locale: Locale }) {
     const t = COPY[locale];
+    const en = locale === "en";
     const href = (path: string) => localeHref(locale, path);
 
     return (
@@ -344,30 +444,89 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                 ]}
             />
 
+            {/*
+              히어로와 본문을 하나의 사진 위에 올린다 — 둘을 다른 배경으로 나누면
+              스크롤할 때 페이지가 두 장으로 끊겨 읽힌다. 사진은 뷰포트에 고정되어
+              본문이 그 위를 지나간다.
+            */}
+            <div
+                className="photo-bg photo-bg-page"
+                style={
+                    {
+                        "--photo": "url(/bg/bg-research-brain.webp)",
+                    } as React.CSSProperties
+                }
+            >
             {/* Hero */}
-            <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
-                <SceneBackground concept="about" />
+            {/* 배경·베일은 바깥 래퍼가 전담한다 — 여기서 따로 덮으면 경계가 생긴다 */}
+            <section className="relative flex min-h-[520px] items-center overflow-hidden py-28 text-white">
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
-                    <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
-                        {t.hero.eyebrow}
-                    </p>
-                    <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        {t.hero.title}
-                    </h1>
-                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                        {t.hero.desc}
-                    </p>
+                    <div className="grid items-center gap-10 lg:grid-cols-[1.06fr_0.94fr]">
+                        <div>
+                            <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
+                                {t.hero.eyebrow}
+                            </p>
+                            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                                {t.hero.title}
+                            </h1>
+                            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                                {t.hero.desc}
+                            </p>
+                        </div>
+                        {/*
+                          좁은 화면에서는 감춘다 — 성좌가 줄어들면 라벨이 뭉개져
+                          장식만 남고, 본문 파이프라인 섹션이 같은 내용을 글로 전한다.
+                        */}
+                        <AboutHeroVisual className="hidden h-[520px] w-full lg:block" />
+                    </div>
                 </div>
             </section>
 
+            {/*
+              각 섹션이 저마다 불투명한 배경색을 가지면 사진이 가려지므로, 색은
+              걷어내고 구분은 border-t 에 맡긴다.
+            */}
             <main>
+                {/*
+                  한눈에 — Executive Summary 의 첫 화면. 3분 안에 이해시켜야 하므로
+                  서사보다 규모를 먼저 보여준다. 카드로 감싸지 않고 사진 위에 숫자만
+                  올려 아래 카드 섹션들과 강약을 만든다.
+                */}
+                <section>
+                    <div className="mx-auto max-w-7xl px-6 pb-4 pt-16">
+                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            {t.glance.title}
+                        </p>
+                        <p className="mt-3 text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.glance.lead}
+                        </p>
+                        <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+                            {t.glance.stats.map((s) => (
+                                <div key={s.label} className="text-center">
+                                    <dt className="text-[40px] font-bold leading-none tracking-tight text-[var(--color-ink)] md:text-[52px]">
+                                        {s.value}
+                                    </dt>
+                                    <dd className="mt-3">
+                                        <span className="block text-[15px] font-bold text-[var(--color-ink)]">
+                                            {s.label}
+                                        </span>
+                                        <span className="mt-1 block text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {s.note}
+                                        </span>
+                                    </dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </div>
+                </section>
+
                 {/* Mission */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             {t.mission.eyebrow}
                         </p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="mt-3 mx-auto max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             {t.mission.title}
                         </h2>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -392,12 +551,12 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                 </section>
 
                 {/* 우리가 하는 일 — 파이프라인 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             {t.pipeline.title}
                         </h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.pipeline.desc}
                         </p>
                         <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -444,10 +603,23 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
+                {/*
+                  후반부는 두 번째 사진으로 넘어간다 — 미션·연구 이야기(두뇌·데이터)에서
+                  증거와 기록(문서·체크리스트)으로 내용이 바뀌는 지점이라 배경도 함께
+                  바꾼다. 위 배경 위에 겹쳐 깔리므로 경계에서 자연스럽게 교체된다.
+                */}
+                <div
+                    className="photo-bg photo-bg-page photo-bg-body"
+                    style={
+                        {
+                            "--photo": "url(/bg/bg-research-docs.webp)",
+                        } as React.CSSProperties
+                    }
+                >
                 {/* 신뢰의 근거 + 연혁 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                        <h2 className="text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             {t.proof.title}
                         </h2>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -474,8 +646,158 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                             ))}
                         </div>
 
+                        {/*
+                          4.1 자체 기술 · 특허 보유현황 — 특허증 실물을 함께 보여준다.
+                          번호와 날짜만 나열하면 목록이지만, 증서가 붙으면 근거가 된다.
+                        */}
+                        <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-white/75 p-7 backdrop-blur-sm">
+                            <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                {t.patents.title}
+                            </h3>
+                            <p className="mt-2.5 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {t.patents.lead}
+                            </p>
+
+                            {/*
+                              특허증 이미지가 있는 건만 카드로 편다. 이미지가 없는 건을
+                              같은 형태로 두면 빈 자리가 생겨 "빠뜨렸나" 싶게 읽힌다.
+                              그래서 나머지는 아래 목록 카드 하나로 묶는다.
+                            */}
+                            <ul className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                {PATENTS.filter((p) => p.cert).map((p) => (
+                                    <li
+                                        key={p.regNo}
+                                        className="flex flex-col rounded-xl border border-[var(--color-line)] bg-white p-5"
+                                    >
+                                        <span className="font-mono text-[12px] font-bold text-[#1f4fa8]">
+                                            {p.regNo.replace(/-00-00$/, "")}
+                                        </span>
+                                        <h4 className="mt-1.5 text-[15px] font-bold leading-snug text-[var(--color-ink)]">
+                                            {en ? p.titleEn : p.title}
+                                        </h4>
+                                        <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {en ? p.descEn : p.desc}
+                                        </p>
+
+                                        <img
+                                            src={p.cert}
+                                            alt={t.patents.certAlt}
+                                            loading="lazy"
+                                            className="mt-4 w-full rounded-lg border border-[var(--color-line)] bg-white"
+                                        />
+
+                                        <dl className="mt-4 space-y-1 border-t border-[var(--color-line)] pt-3 text-[12px] text-[var(--color-ink-muted)]">
+                                            <div className="flex gap-2">
+                                                <dt className="w-12 flex-none font-semibold">
+                                                    {t.patents.cols.app}
+                                                </dt>
+                                                <dd className="font-mono">{p.appDate}</dd>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <dt className="w-12 flex-none font-semibold">
+                                                    {t.patents.cols.reg}
+                                                </dt>
+                                                <dd className="font-mono">{p.regDate}</dd>
+                                            </div>
+                                        </dl>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {PATENTS.some((p) => !p.cert) && (
+                                <div className="mt-4 rounded-xl border border-[var(--color-line)] bg-white p-5">
+                                    <h4 className="text-[14px] font-bold text-[var(--color-ink)]">
+                                        {t.patents.restTitle}
+                                    </h4>
+                                    <ul className="mt-3 divide-y divide-[var(--color-line)]">
+                                        {PATENTS.filter((p) => !p.cert).map((p) => (
+                                            <li
+                                                key={p.regNo}
+                                                className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:gap-4"
+                                            >
+                                                <span className="w-28 flex-none font-mono text-[12px] font-bold text-[#1f4fa8]">
+                                                    {p.regNo.replace(/-00-00$/, "")}
+                                                </span>
+                                                <span className="flex-1 text-[14px] font-semibold leading-snug text-[var(--color-ink)]">
+                                                    {en ? p.titleEn : p.title}
+                                                </span>
+                                                <span className="flex-none font-mono text-[12px] text-[var(--color-ink-muted)]">
+                                                    {p.regDate}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            <p className="mt-4 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                {t.patents.note}
+                            </p>
+                        </div>
+
+                        {/* 4.2 국내 품질인증 획득 내용 */}
+                        <div className="mt-6 rounded-2xl border border-[var(--color-line)] bg-white/75 p-7 backdrop-blur-sm">
+                            <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                {t.certs.title}
+                            </h3>
+                            <p className="mt-2.5 max-w-3xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {t.certs.lead}
+                            </p>
+
+                            <ul className="mt-7 grid gap-4 md:grid-cols-3">
+                                {CERTIFICATIONS.map((c) => (
+                                    <li
+                                        key={c.no}
+                                        className="flex flex-col rounded-xl border border-[var(--color-line)] bg-white p-5"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span className="rounded-full bg-[#2f7bff] px-2.5 py-0.5 text-[11px] font-bold text-white">
+                                                {en ? c.gradeEn : c.grade}
+                                            </span>
+                                            <span className="font-mono text-[12px] font-bold text-[#1f4fa8]">
+                                                {c.no}
+                                            </span>
+                                        </div>
+                                        <h4 className="mt-3 text-[15px] font-bold leading-snug text-[var(--color-ink)]">
+                                            {en ? c.nameEn : c.name}
+                                        </h4>
+                                        <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {en ? c.descEn : c.desc}
+                                        </p>
+
+                                        <img
+                                            src={c.cert}
+                                            alt={t.certs.certAlt}
+                                            loading="lazy"
+                                            className="mt-4 w-full rounded-lg border border-[var(--color-line)] bg-white"
+                                        />
+
+                                        <dl className="mt-4 space-y-1 border-t border-[var(--color-line)] pt-3 text-[12px] text-[var(--color-ink-muted)]">
+                                            <div className="flex gap-2">
+                                                <dt className="w-12 flex-none font-semibold">
+                                                    {t.certs.cols.agency}
+                                                </dt>
+                                                <dd>{en ? c.agencyEn : c.agency}</dd>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <dt className="w-12 flex-none font-semibold">
+                                                    {t.certs.cols.date}
+                                                </dt>
+                                                <dd className="font-mono">{c.date}</dd>
+                                            </div>
+                                        </dl>
+                                        {(en ? c.noteEn : c.note) && (
+                                            <p className="mt-2 text-[11.5px] leading-relaxed text-[var(--color-ink-subtle)]">
+                                                {en ? c.noteEn : c.note}
+                                            </p>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
                         {/* 연혁 */}
-                        <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7">
+                        {/* 배경 사진은 main 전체에 깔린다 — 여기서는 흰 카드로 로드맵을 띄운다 */}
+                        <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-white/75 p-7 backdrop-blur-sm">
                             <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
                                 {t.milestones.title}
                             </h3>
@@ -491,7 +813,7 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                 </section>
 
                 {/* 팀 + Company + CTA */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid gap-4 md:grid-cols-2">
                             <Link
@@ -563,7 +885,9 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                         </div>
                     </div>
                 </section>
+                </div>
             </main>
+            </div>
 
             <SiteFooter />
         </>
