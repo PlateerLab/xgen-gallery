@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MilestoneRoadmap } from "@/components/milestone-roadmap";
 import {
     ShieldCheck,
     Server,
@@ -148,11 +149,30 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
             ],
         },
+        /**
+         * 이정표 — 커머스 플랫폼에서 Enterprise AI 플랫폼으로 넘어온 변곡점만 남긴다.
+         * 버전 단위 릴리스 이력(V3.0·V3.5·V3.6…)과 프로젝트 산출물은 넣지 않는다.
+         * 계보를 보여주는 자리이지 릴리스 노트가 아니다.
+         */
         milestones: {
-            title: "최근 이정표",
+            title: "이정표",
             items: [
                 { when: "2026.07", what: "XGEN, GS(Good Software) 인증 1등급 획득" },
                 { when: "2026.06", what: "AI 신뢰성 인증 AI-MASTER 인증 시험 착수" },
+                {
+                    when: "2025",
+                    what: "XGEN AI 플랫폼 v1.0 — AI Agent를 만들고 운영하는 플랫폼으로",
+                },
+                {
+                    when: "2024",
+                    what: "X2BEE AI — LLM·생성형 AI를 커머스에 적용, AI Search와 AI Code Assistant 출시",
+                },
+                {
+                    when: "2021",
+                    what: "X2BEE로 전환 — Headless·MSA 아키텍처를 갖춘 커머스 플랫폼",
+                },
+                { when: "2010", what: "X2Commerce V1.0 — 커머스 플랫폼 사업 시작" },
+                { when: "2005", what: "플래티어 설립" },
             ],
         },
         team: {
@@ -255,7 +275,7 @@ const COPY: Record<Locale, AboutCopy> = {
             ],
         },
         milestones: {
-            title: "Recent milestones",
+            title: "Milestones",
             items: [
                 {
                     when: "2026.07",
@@ -265,6 +285,23 @@ const COPY: Record<Locale, AboutCopy> = {
                     when: "2026.06",
                     what: "Entered testing for AI-MASTER AI reliability certification",
                 },
+                {
+                    when: "2025",
+                    what: "XGEN AI Platform v1.0 — a platform for building and running AI agents",
+                },
+                {
+                    when: "2024",
+                    what: "X2BEE AI — LLMs and generative AI applied to commerce, with AI Search and AI Code Assistant",
+                },
+                {
+                    when: "2021",
+                    what: "Moved to X2BEE — a commerce platform on headless, MSA architecture",
+                },
+                {
+                    when: "2010",
+                    what: "X2Commerce V1.0 — the commerce platform business begins",
+                },
+                { when: "2005", what: "Plateer founded" },
             ],
         },
         team: {
@@ -442,18 +479,13 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                             <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
                                 {t.milestones.title}
                             </h3>
-                            <ul className="mt-4 space-y-3">
-                                {t.milestones.items.map((m) => (
-                                    <li key={m.when} className="flex items-start gap-4">
-                                        <span className="w-16 flex-none font-mono text-[14px] font-bold text-[#2461d8]">
-                                            {m.when}
-                                        </span>
-                                        <span className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {m.what}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+                            {/*
+                              데이터는 최신순으로 두되(다른 화면과 정렬 기준을 맞춘다),
+                              로드맵은 왼쪽이 과거이므로 뒤집어 넘긴다.
+                            */}
+                            <MilestoneRoadmap
+                                items={[...t.milestones.items].reverse()}
+                            />
                         </div>
                     </div>
                 </section>
