@@ -505,7 +505,7 @@ export function PolarPageContent({ locale }: { locale: Locale }) {
                                     <li
                                         key={s.phase}
                                         className={[
-                                            "relative flex flex-col rounded-2xl border p-7",
+                                            "relative flex flex-col items-center rounded-2xl border p-7 text-center",
                                             next
                                                 ? "border-[#2f7bff] bg-white shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)]"
                                                 : now
@@ -513,7 +513,7 @@ export function PolarPageContent({ locale }: { locale: Locale }) {
                                                   : "border-[var(--color-line)] bg-[var(--color-surface-alt)]",
                                         ].join(" ")}
                                     >
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center justify-center gap-2">
                                             <span
                                                 className={[
                                                     "inline-flex items-center rounded-full px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider",
@@ -556,7 +556,7 @@ export function PolarPageContent({ locale }: { locale: Locale }) {
                                             {s.desc}
                                         </p>
 
-                                        <ul className="mt-5 flex flex-wrap gap-2">
+                                        <ul className="mt-5 flex flex-wrap justify-center gap-2">
                                             {s.items.map((it) => (
                                                 <li
                                                     key={it}
