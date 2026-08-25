@@ -1,25 +1,25 @@
 ---
-title: "XGEN Connector — bringing enterprise AI agents into the actual desktop"
-titleSeo: "XGEN Connector — agents in the real desktop"
+title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
+titleSeo: "XGEN DeX — agents in the real desktop"
 description: "The environment AI thinks in and the environment people work in are separate. A desktop interface that lets an agent built in XGEN handle files and applications on your own machine and produce real deliverables."
 date: "2026-08-26"
 cover: /blog/xgen-connector-preview.svg
 thumb: /blog/xgen-connector-preview-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN Connector", "XGEN DeX", "Agentic AI", "Desktop Experience", "AI governance", "Product"]
+tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI governance", "Product"]
 draft: true
 faq:
-  - q: "Is XGEN Connector a desktop chat app for XGEN?"
-    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. Connector is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
-  - q: "How does XGEN DeX relate to XGEN Connector?"
-    a: "DeX is the direction — extending enterprise AI down to the desktop. Connector is the installable touchpoint that implements it, linking agent resources on the server with the local execution environment."
+  - q: "Is XGEN DeX a desktop chat app for XGEN?"
+    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. DeX is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
+  - q: "How does this relate to the earlier XGEN DeX piece?"
+    a: "That piece set out the direction — extending enterprise AI down to the desktop. This one covers the installable touchpoint that implements it, linking agent resources on the server with the local execution environment."
   - q: "Does this hand my whole PC over to the AI?"
-    a: "No. What Connector aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
+    a: "No. What DeX aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
   - q: "Which work should we start with?"
     a: "Work where a person repeatedly moves between several programs and files. If someone opens, copies, searches, and moves files between programs many times a day, that work is worth trying first."
   - q: "Does it replace Excel or PowerPoint?"
-    a: "No. Companies already have systems and SaaS that work well. Connector does not replace them — it lets an agent use those existing tools more easily."
+    a: "No. Companies already have systems and SaaS that work well. DeX does not replace them — it lets an agent use those existing tools more easily."
 ---
 
 Suppose you ask a generative AI to "analyze this Excel file and write it up as a report."
@@ -32,31 +32,33 @@ Find and upload the file, download the result, open Excel or PowerPoint to revis
 
 The reason is simple: **the environment the AI thinks in and the environment people work in are separate.**
 
-XGEN Connector is being built to close that gap.
+XGEN DeX is being built to close that gap.
 
-> This is a follow-up to [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex). Where DeX covered why enterprise AI has to reach the desktop at all, this piece covers Connector, the touchpoint that actually reaches it.
+> This is a follow-up to [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach the desktop at all, this one covers the installable touchpoint that actually reaches it.
 
 ---
 
-## What is XGEN Connector?
+## What is XGEN DeX?
 
-XGEN Connector is a **desktop interface that connects the AI agents created and managed in XGEN with the working environment on a user's own PC.**
+XGEN DeX is a **desktop interface that connects the AI agents created and managed in XGEN with the working environment on a user's own PC.**
 
-If XGEN is where you build and manage agents for work, Connector is what lets those agents carry that work out on the user's machine.
+If XGEN is where you build and manage agents for work, DeX is what lets those agents carry that work out on the user's machine.
 
 Its purpose differs from a desktop app that simply makes XGEN chat available on a PC.
 
-Through Connector, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
+Through DeX, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
 
 Put simply:
 
 **XGEN is where agents are built and managed.**
 
-**XGEN Connector is where those agents connect to the user's environment so the work can actually happen.**
+**XGEN DeX is where those agents connect to the user's environment so the work can actually happen.**
+
+The product is named **XGEN DeX** (Desktop Experience), and what it does is act as the connector between agents on the server and the local working environment. That is why `xgen-connector` still appears in the installer and repository names.
 
 ---
 
-## Why is Connector needed?
+## Why is DeX needed?
 
 Enterprise work does not end inside a single chat window.
 
@@ -66,7 +68,7 @@ People move across many environments to get something done.
 
 For AI to take over real work, it has to reach into those environments.
 
-So the way of working that Connector aims at goes a step beyond
+So the way of working that DeX aims at goes a step beyond
 
 **question → answer**
 
@@ -84,13 +86,13 @@ That is, you ask for **a unit of work that ends in a deliverable.**
 
 ## How do you use it?
 
-Connector aims to be simpler to use than most AI tools for work, not more complex.
+DeX aims to be simpler to use than most AI tools for work, not more complex.
 
 The overall flow is six steps.
 
 | Step | What happens |
 | --- | --- |
-| 1 | Install Connector |
+| 1 | Install DeX |
 | 2 | Connect to XGEN |
 | 3 | Pick the agent for the task |
 | 4 | Connect the execution permissions it needs |
@@ -99,7 +101,7 @@ The overall flow is six steps.
 
 The install screens and the detail of each step live in a separate guide.
 
-**→ [Installing and using XGEN Connector](/en/xgen-connector)**
+**→ [Installing and using XGEN DeX](/en/xgen-connector)**
 
 Here we will look only at why each step is designed the way it is.
 
@@ -107,9 +109,9 @@ Here we will look only at why each step is designed the way it is.
 
 Not everything is handed to one general-purpose AI.
 
-Different work in a company uses different data, tools, and permissions. So you configure agents in XGEN for each purpose, and in Connector you select the one you need.
+Different work in a company uses different data, tools, and permissions. So you configure agents in XGEN for each purpose, and in DeX you select the one you need.
 
-A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — chosen from one Connector.
+A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — chosen from one DeX.
 
 ### Why execution permissions are connected separately
 
@@ -129,11 +131,11 @@ XGEN treats an agent not as a single LLM call but as a unit of work combining **
 
 ## Which work should you start with?
 
-Connector does not need to be applied everywhere.
+DeX does not need to be applied everywhere.
 
 The most effective starting point is **work where a person repeatedly moves between several programs and files.**
 
-| Existing work | With Connector |
+| Existing work | With DeX |
 | --- | --- |
 | Cleaning up Excel data | Check the file → analyze → produce a result file |
 | Recurring reporting | Gather sources → analyze → produce the report |
@@ -148,7 +150,7 @@ A simple test helps when choosing what to try first.
 
 > **"To do this work, does someone open, copy, search, and move files between programs several times a day?"**
 
-If so, it is worth trying Connector there.
+If so, it is worth trying DeX there.
 
 ---
 
@@ -156,11 +158,11 @@ If so, it is worth trying Connector there.
 
 One principle matters here.
 
-Connector is not rebuilding Excel, PowerPoint, the browser, or SharePoint.
+DeX is not rebuilding Excel, PowerPoint, the browser, or SharePoint.
 
 Companies already have systems, SaaS, and applications that work well.
 
-Connector's role is not to replace them but **to let an agent use those existing tools more easily.**
+DeX's role is not to replace them but **to let an agent use those existing tools more easily.**
 
 It is less about adding one more tool and more about **adding execution ability to the environment that already exists.**
 
@@ -174,7 +176,7 @@ Work that touches files or applications on a PC naturally belongs in a local exe
 
 Shared company data, centrally managed AI models, and agent assets, on the other hand, belong on the server.
 
-Connector is built around that split: **it connects agent resources on the server with the user's local execution environment.**
+DeX is built around that split: **it connects agent resources on the server with the user's local execution environment.**
 
 That way a company can manage agents and key assets centrally while connecting the execution that genuinely has to happen locally.
 
@@ -190,7 +192,7 @@ Who can use which agent, which data an agent can reach, which tools it can run, 
 
 In finance, the public sector, and large enterprises especially, that control matters as much as the convenience.
 
-So the direction Connector takes is not
+So the direction DeX takes is not
 
 **"hand my PC to the AI."**
 
@@ -198,7 +200,7 @@ It is closer to
 
 **"connect an enterprise-managed agent to a permitted working environment and toolset."**
 
-That is why Connector has to grow together with XGEN's agent management and AI governance.
+That is why DeX has to grow together with XGEN's agent management and AI governance.
 
 ---
 
@@ -210,12 +212,12 @@ Agentic AI needs one more step.
 
 The AI does not stop at generating an answer — **it has to use the tools it needs and produce an actual result.**
 
-Connector closes that last gap between XGEN's agents and the real working environment.
+DeX closes that last gap between XGEN's agents and the real working environment.
 
 **Build an agent in XGEN
 → connect enterprise data and systems
 → provide the tools and skills it needs
-→ execute it in the real working environment through Connector.**
+→ execute it in the real working environment through DeX.**
 
 Enterprise AI moves from
 
@@ -225,15 +227,15 @@ to
 
 **Request → Understand → Execute → Deliver**
 
-What Connector sets out to build is not another AI chat program.
+What DeX sets out to build is not another AI chat program.
 
 > **The execution touchpoint that lets an enterprise's own AI agents work alongside employees in their real environment.**
 
-That is why XGEN Connector exists.
+That is why XGEN DeX exists.
 
 ---
 
 ## Read next
 
-- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the piece that laid out where Connector sits
-- [Installing and using XGEN Connector](/en/xgen-connector) — the six steps, with install screens
+- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the piece that laid out where DeX sits (read first)
+- [Installing and using XGEN DeX](/en/xgen-connector) — the six steps, with install screens

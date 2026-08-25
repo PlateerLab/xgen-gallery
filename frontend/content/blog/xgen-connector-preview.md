@@ -1,25 +1,25 @@
 ---
 title: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다"
-titleSeo: "XGEN Connector — Agent를 업무환경에 연결"
+titleSeo: "XGEN DeX — Agent를 업무환경에 연결"
 description: "AI가 생각하는 환경과 사람이 일하는 환경은 분리되어 있습니다. XGEN에서 만든 Agent가 사용자의 PC에서 파일과 애플리케이션을 다루고 실제 결과물을 만들도록 잇는 Desktop Interface를 소개합니다."
 date: "2026-08-26"
 cover: /blog/xgen-connector-preview.svg
 thumb: /blog/xgen-connector-preview-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN Connector", "XGEN DeX", "Agentic AI", "Desktop Experience", "AI 거버넌스", "제품"]
+tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]
 draft: true
 faq:
-  - q: "XGEN Connector는 데스크톱용 XGEN 채팅 앱인가요?"
-    a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. Connector는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
-  - q: "XGEN DeX와 XGEN Connector는 어떤 관계인가요?"
-    a: "DeX가 Enterprise AI를 데스크톱까지 잇는다는 방향이라면, Connector는 그 방향을 실제로 구현한 설치형 접점입니다. 서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 역할을 맡습니다."
+  - q: "XGEN DeX는 데스크톱용 XGEN 채팅 앱인가요?"
+    a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. DeX는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
+  - q: "이전에 소개한 XGEN DeX 글과 어떤 관계인가요?"
+    a: "앞선 글이 Enterprise AI를 데스크톱까지 잇는다는 방향을 다뤘다면, 이 글은 그 방향을 실제로 구현한 설치형 접점을 다룹니다. 서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 커넥터 역할을 맡습니다."
   - q: "AI에게 제 PC를 통째로 맡기는 것인가요?"
-    a: "아닙니다. Connector가 지향하는 것은 기업이 관리하는 Agent에게 허용된 업무환경과 도구를 연결하는 것입니다. 어떤 Agent가 어떤 데이터에 접근하고 어떤 Tool을 실행할 수 있는지는 XGEN의 Agent 관리·거버넌스 체계 안에서 통제됩니다."
+    a: "아닙니다. DeX가 지향하는 것은 기업이 관리하는 Agent에게 허용된 업무환경과 도구를 연결하는 것입니다. 어떤 Agent가 어떤 데이터에 접근하고 어떤 Tool을 실행할 수 있는지는 XGEN의 Agent 관리·거버넌스 체계 안에서 통제됩니다."
   - q: "어떤 업무부터 적용하면 좋을까요?"
     a: "사람이 여러 프로그램과 파일을 반복적으로 오가는 업무가 가장 효과적입니다. 직원이 하루에도 여러 번 파일을 열고 복사하고 검색해 다른 프로그램으로 옮기고 있다면 적용 가치가 높습니다."
   - q: "기존 Excel이나 PowerPoint를 대체하나요?"
-    a: "아닙니다. 기업에는 이미 잘 쓰고 있는 업무 시스템과 SaaS가 있습니다. Connector는 이를 대체하지 않고, Agent가 기존 도구를 더 쉽게 활용하도록 연결합니다."
+    a: "아닙니다. 기업에는 이미 잘 쓰고 있는 업무 시스템과 SaaS가 있습니다. DeX는 이를 대체하지 않고, Agent가 기존 도구를 더 쉽게 활용하도록 연결합니다."
 ---
 
 생성형 AI에게 "이 Excel 파일을 분석해서 보고서로 정리해줘"라고 요청했다고 생각해 보겠습니다.
@@ -32,21 +32,21 @@ AI는 분석 방법과 보고서 내용을 훌륭하게 제안할 수 있습니�
 
 결국 **AI가 생각하는 환경과 사람이 일하는 환경이 분리되어 있기 때문**입니다.
 
-XGEN Connector는 이 간극을 연결하기 위해 만들어지고 있습니다.
+XGEN DeX는 이 간극을 연결하기 위해 만들어지고 있습니다.
 
-> 이 글은 [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex)의 후속입니다. DeX가 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 실제로 잇는 접점인 Connector를 다룹니다.
+> 이 글은 [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex)의 후속입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 실제로 잇는 설치형 접점을 다룹니다.
 
 ---
 
-## XGEN Connector란?
+## XGEN DeX란?
 
-XGEN Connector는 **XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 PC 업무환경을 연결하는 Desktop Interface**입니다.
+XGEN DeX는 **XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 PC 업무환경을 연결하는 Desktop Interface**입니다.
 
-XGEN에서 업무용 Agent를 만들고 관리한다면, Connector는 해당 Agent가 사용자의 PC 환경에서 필요한 업무를 수행할 수 있도록 연결합니다.
+XGEN에서 업무용 Agent를 만들고 관리한다면, DeX는 해당 Agent가 사용자의 PC 환경에서 필요한 업무를 수행할 수 있도록 연결합니다.
 
 단순히 PC에서 XGEN 채팅을 사용할 수 있게 만드는 데스크톱 앱과는 목적이 다릅니다.
 
-Connector를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이션을 활용하거나 브라우저를 사용하고, 필요한 Tool과 Skill을 실행하여 실제 결과물을 만들어낼 수 있습니다.
+DeX를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이션을 활용하거나 브라우저를 사용하고, 필요한 Tool과 Skill을 실행하여 실제 결과물을 만들어낼 수 있습니다.
 
 즉,
 
@@ -54,13 +54,15 @@ Connector를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리�
 
 이라면,
 
-**XGEN Connector = Agent가 실제 업무를 수행할 수 있도록 사용자 환경과 연결하는 곳**
+**XGEN DeX = Agent가 실제 업무를 수행할 수 있도록 사용자 환경과 연결하는 곳**
 
 이라고 이해하면 쉽습니다.
 
+이름은 **XGEN DeX**(Desktop Experience)이고, 하는 일은 서버의 Agent와 로컬 업무환경을 잇는 **커넥터** 역할입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
+
 ---
 
-## 왜 Connector가 필요할까요?
+## 왜 DeX가 필요할까요?
 
 기업의 업무는 하나의 AI 채팅창 안에서 끝나지 않습니다.
 
@@ -70,7 +72,7 @@ Connector를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리�
 
 AI가 실제 업무를 대신하려면 이러한 환경과 연결될 수 있어야 합니다.
 
-그래서 XGEN Connector가 지향하는 AI 활용 방식은 기존의
+그래서 XGEN DeX가 지향하는 AI 활용 방식은 기존의
 
 **질문 → 답변**
 
@@ -88,13 +90,13 @@ AI가 실제 업무를 대신하려면 이러한 환경과 연결될 수 있어�
 
 ## 어떻게 사용하나요?
 
-Connector의 사용 방식은 일반적인 업무용 AI보다 오히려 단순하게 만드는 것을 목표로 합니다.
+DeX의 사용 방식은 일반적인 업무용 AI보다 오히려 단순하게 만드는 것을 목표로 합니다.
 
 큰 흐름은 여섯 단계입니다.
 
 | 단계 | 하는 일 |
 | --- | --- |
-| 1 | Connector 설치 |
+| 1 | DeX 설치 |
 | 2 | XGEN에 연결 |
 | 3 | 업무에 필요한 Agent 선택 |
 | 4 | 필요한 실행 권한 연결 |
@@ -103,7 +105,7 @@ Connector의 사용 방식은 일반적인 업무용 AI보다 오히려 단순�
 
 설치 화면과 각 단계의 자세한 설명은 별도 가이드에 정리했습니다.
 
-**→ [XGEN Connector 설치·활용 가이드](/xgen-connector)**
+**→ [XGEN DeX 설치·활용 가이드](/xgen-connector)**
 
 여기서는 각 단계가 왜 그렇게 설계되었는지만 짚어보겠습니다.
 
@@ -111,9 +113,9 @@ Connector의 사용 방식은 일반적인 업무용 AI보다 오히려 단순�
 
 모든 업무를 하나의 범용 AI에게 맡기지 않습니다.
 
-기업에서는 업무마다 사용하는 데이터와 도구, 권한이 다릅니다. 따라서 XGEN에서 각각의 업무 목적에 맞는 Agent를 구성하고, Connector에서는 필요한 Agent를 선택해 사용하는 방식이 적합합니다.
+기업에서는 업무마다 사용하는 데이터와 도구, 권한이 다릅니다. 따라서 XGEN에서 각각의 업무 목적에 맞는 Agent를 구성하고, DeX에서는 필요한 Agent를 선택해 사용하는 방식이 적합합니다.
 
-업무지원 Agent, 데이터 분석 Agent, 문서 작성 Agent, 개발지원 Agent, 부서별 전문 Agent를 하나의 Connector에서 골라 쓰는 형태입니다.
+업무지원 Agent, 데이터 분석 Agent, 문서 작성 Agent, 개발지원 Agent, 부서별 전문 Agent를 하나의 DeX에서 골라 쓰는 형태입니다.
 
 ### 실행 권한을 따로 연결하는 이유
 
@@ -133,11 +135,11 @@ XGEN은 Agent를 단순한 LLM 호출 단위가 아니라 **LLM + Memory + Works
 
 ## 어떤 업무부터 적용하면 좋을까요?
 
-Connector를 모든 업무에 적용할 필요는 없습니다.
+DeX를 모든 업무에 적용할 필요는 없습니다.
 
 가장 효과적인 시작점은 **사람이 여러 프로그램과 파일을 반복적으로 오가는 업무**입니다.
 
-| 기존 업무 | Connector 활용 방식 |
+| 기존 업무 | DeX 활용 방식 |
 | --- | --- |
 | Excel 데이터 정리 | 파일 확인 → 데이터 분석 → 결과 파일 생성 |
 | 정기 보고 업무 | 자료 취합 → 분석 → 보고자료 생성 |
@@ -152,7 +154,7 @@ Connector를 모든 업무에 적용할 필요는 없습니다.
 
 > **"이 업무를 수행하기 위해 직원이 하루에도 여러 번 파일을 열고, 복사하고, 검색하고, 다른 프로그램으로 옮기고 있는가?"**
 
-그렇다면 Connector를 적용해 볼 가치가 높은 업무입니다.
+그렇다면 DeX를 적용해 볼 가치가 높은 업무입니다.
 
 ---
 
@@ -160,11 +162,11 @@ Connector를 모든 업무에 적용할 필요는 없습니다.
 
 여기서 중요한 원칙이 하나 있습니다.
 
-XGEN Connector가 Excel이나 PowerPoint, 브라우저, SharePoint 같은 기존 업무 도구를 새로 만드는 것은 아닙니다.
+XGEN DeX가 Excel이나 PowerPoint, 브라우저, SharePoint 같은 기존 업무 도구를 새로 만드는 것은 아닙니다.
 
 기업에는 이미 잘 사용하고 있는 업무 시스템과 SaaS, 애플리케이션이 있습니다.
 
-Connector의 역할은 이를 대체하는 것이 아니라 **Agent가 기존 업무 도구를 더 쉽게 활용할 수 있도록 연결하는 것**입니다.
+DeX의 역할은 이를 대체하는 것이 아니라 **Agent가 기존 업무 도구를 더 쉽게 활용할 수 있도록 연결하는 것**입니다.
 
 즉, 새로운 업무 도구를 하나 더 만드는 것이 아니라 **기존 업무환경에 AI Agent의 실행 능력을 더하는 것**에 가깝습니다.
 
@@ -178,13 +180,13 @@ PC에 존재하는 파일이나 애플리케이션을 다뤄야 하는 업무는
 
 반대로 기업의 공통 데이터나 중앙에서 관리해야 하는 AI 모델, Agent 자산 등은 서버에서 관리하는 것이 적합합니다.
 
-XGEN Connector는 이러한 특성을 고려해 **서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 구조**를 지향합니다.
+XGEN DeX는 이러한 특성을 고려해 **서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 구조**를 지향합니다.
 
 이를 통해 기업은 중앙에서 Agent와 주요 자산을 관리하면서, 실제 실행이 필요한 업무는 사용자의 업무환경과 연결할 수 있습니다.
 
 ---
 
-## 기업용 Connector라면 통제가 함께 필요합니다
+## 기업용 DeX라면 통제가 함께 필요합니다
 
 AI가 PC와 기업 데이터에 접근할 수 있게 되면 반드시 함께 고려해야 하는 것이 있습니다.
 
@@ -194,7 +196,7 @@ AI가 PC와 기업 데이터에 접근할 수 있게 되면 반드시 함께 고
 
 특히 금융·공공·대기업에서는 Agent의 편리함만큼 이러한 관리 체계가 중요합니다.
 
-따라서 XGEN Connector가 지향하는 방향은
+따라서 XGEN DeX가 지향하는 방향은
 
 **"AI에게 내 PC를 맡긴다"**
 
@@ -204,7 +206,7 @@ AI가 PC와 기업 데이터에 접근할 수 있게 되면 반드시 함께 고
 
 에 가깝습니다.
 
-XGEN의 Agent 관리 및 AI 거버넌스 체계와 Connector가 함께 발전해야 하는 이유입니다.
+XGEN의 Agent 관리 및 AI 거버넌스 체계와 DeX가 함께 발전해야 하는 이유입니다.
 
 ---
 
@@ -216,12 +218,12 @@ XGEN의 Agent 관리 및 AI 거버넌스 체계와 Connector가 함께 발전해
 
 AI가 답변을 생성하는 것에서 끝나는 것이 아니라 **필요한 도구를 사용하고 실제 업무 결과물을 만들어야 합니다.**
 
-XGEN Connector는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 이 마지막 간극을 연결합니다.
+XGEN DeX는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 이 마지막 간극을 연결합니다.
 
 **XGEN에서 Agent를 만들고
 → 기업의 데이터와 시스템을 연결하고
 → 필요한 Tool과 Skill을 제공하고
-→ Connector를 통해 실제 업무환경에서 실행합니다.**
+→ DeX를 통해 실제 업무환경에서 실행합니다.**
 
 결국 기업의 AI 활용 방식은
 
@@ -233,15 +235,15 @@ XGEN Connector는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 �
 
 로 확장됩니다.
 
-XGEN Connector가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 아닙니다.
+XGEN DeX가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 아닙니다.
 
 > **기업이 만든 AI Agent가 직원의 실제 업무환경에서 함께 일할 수 있도록 만드는 실행 접점.**
 
-그것이 XGEN Connector가 필요한 이유입니다.
+그것이 XGEN DeX가 필요한 이유입니다.
 
 ---
 
 ## 함께 읽기
 
-- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — Connector가 놓이는 자리를 먼저 설명한 글
-- [XGEN Connector 설치·활용 가이드](/xgen-connector) — 설치 화면과 여섯 단계를 화면과 함께 안내
+- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — DeX가 놓이는 자리를 먼저 설명한 글(선행 글)
+- [XGEN DeX 설치·활용 가이드](/xgen-connector) — 설치 화면과 여섯 단계를 화면과 함께 안내

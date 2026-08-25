@@ -9,7 +9,7 @@ import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * XGEN Connector 설치·활용 가이드.
+ * XGEN DeX 설치·활용 가이드.
  *
  * 블로그 글(/blog/xgen-connector-preview)에서 분리한 페이지다 — 설치 화면 일곱 장과
  * 여섯 단계를 본문에 그대로 담으면 글이 읽히지 않는다. 글은 "왜 필요한가"를,
@@ -54,10 +54,10 @@ interface Copy {
 
 const COPY: Record<Locale, Copy> = {
     ko: {
-        eyebrow: "Guide · XGEN Connector",
-        title: "XGEN Connector 설치·활용 가이드",
+        eyebrow: "Guide · XGEN DeX",
+        title: "XGEN DeX 설치·활용 가이드",
         lead: "XGEN에서 만든 Agent를 내 PC 업무환경에 연결하는 과정을 화면과 함께 안내합니다. 설치부터 첫 업무 지시까지 여섯 단계입니다.",
-        backToPost: "Connector가 왜 필요한지 먼저 읽기",
+        backToPost: "DeX가 왜 필요한지 먼저 읽기",
         downloadTitle: "내려받기",
         downloadDesc:
             "설치 파일은 GitHub 저장소에서 받습니다. Windows 설치 파일 기준으로 안내하며, 용량은 약 280MB입니다.",
@@ -147,7 +147,7 @@ const COPY: Record<Locale, Copy> = {
                 n: "6",
                 title: "설치 완료",
                 body: [
-                    "로컬 런타임과 파이썬 패키지가 복사되면서 시간이 걸립니다. 완료되면 Connector를 실행해 XGEN에 로그인합니다.",
+                    "로컬 런타임과 파이썬 패키지가 복사되면서 시간이 걸립니다. 완료되면 DeX를 실행해 XGEN에 로그인합니다.",
                 ],
                 shots: [
                     {
@@ -162,7 +162,7 @@ const COPY: Record<Locale, Copy> = {
         tips: [
             {
                 q: "XGEN에 연결하기",
-                a: "Connector에서 기업의 XGEN 환경에 로그인합니다. 로그인하면 내가 만들었거나 공유받은 Agent를 Connector에서 불러올 수 있습니다.",
+                a: "DeX에서 기업의 XGEN 환경에 로그인합니다. 로그인하면 내가 만들었거나 공유받은 Agent를 DeX에서 불러올 수 있습니다.",
             },
             {
                 q: "Agent 고르기",
@@ -187,10 +187,10 @@ const COPY: Record<Locale, Copy> = {
         nextCta: "도입·PoC 상담",
     },
     en: {
-        eyebrow: "Guide · XGEN Connector",
-        title: "Installing and using XGEN Connector",
+        eyebrow: "Guide · XGEN DeX",
+        title: "Installing and using XGEN DeX",
         lead: "A walkthrough, with screens, of connecting an agent built in XGEN to your own desktop. Six steps from install to the first request.",
-        backToPost: "Read why Connector exists first",
+        backToPost: "Read why DeX exists first",
         downloadTitle: "Download",
         downloadDesc:
             "The installer is on GitHub. These steps follow the Windows installer, which is roughly 280MB.",
@@ -280,7 +280,7 @@ const COPY: Record<Locale, Copy> = {
                 n: "6",
                 title: "Finish",
                 body: [
-                    "Copying the local runtime and its Python packages takes a while. When it finishes, launch Connector and sign in to XGEN.",
+                    "Copying the local runtime and its Python packages takes a while. When it finishes, launch DeX and sign in to XGEN.",
                 ],
                 shots: [
                     {
@@ -295,7 +295,7 @@ const COPY: Record<Locale, Copy> = {
         tips: [
             {
                 q: "Connect to XGEN",
-                a: "Sign in to your organization's XGEN environment from Connector. Once signed in, the agents you built or were given access to appear in Connector.",
+                a: "Sign in to your organization's XGEN environment from DeX. Once signed in, the agents you built or were given access to appear in DeX.",
             },
             {
                 q: "Pick an agent",
@@ -340,7 +340,7 @@ export function XgenConnectorPageContent({ locale }: { locale: Locale }) {
                     breadcrumbLd([
                         { name: "Home", path: locale === "en" ? "/en" : "/" },
                         {
-                            name: "XGEN Connector",
+                            name: "XGEN DeX",
                             path:
                                 locale === "en"
                                     ? "/en/xgen-connector"
