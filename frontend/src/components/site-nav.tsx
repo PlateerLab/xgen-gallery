@@ -299,6 +299,25 @@ export function SiteNav({
                         AI Labs
                     </span>
                 </Link>
+                {/* 안3 시안 — 로고 옆 브랜드 링크 */}
+                <span
+                    className={cn(
+                        "mx-3.5 hidden h-5 w-px lg:block",
+                        light ? "bg-white/25" : "bg-[var(--color-line)]",
+                    )}
+                />
+                <Link
+                    href="/about"
+                    className={cn(
+                        "hidden text-[15px] font-semibold transition lg:inline-flex",
+                        light
+                            ? "text-white/85 hover:text-white"
+                            : "text-[var(--color-ink-muted)] hover:text-[#2461d8]",
+                    )}
+                >
+                    {/* 다른 최상위 메뉴가 모두 영문이라 국문 화면에서도 영문을 쓴다 */}
+                    About
+                </Link>
 
                 {/* desktop groups */}
                 <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-medium xl:ml-24 xl:flex 2xl:ml-28">
