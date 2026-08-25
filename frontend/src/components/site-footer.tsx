@@ -79,6 +79,8 @@ export function SiteFooter() {
         /** Next 라우터 밖의 정적 경로 — 같은 탭이되 클라이언트 내비게이션은 쓰지 않는다 */
         plain?: boolean;
     }[] = [
+        // 연구소 소개 — 이 열의 첫 항목. GNB 로고 옆 About 과 같은 곳을 가리킨다.
+        { key: "about", label: "About", href: "/about" },
         ...ABOUT_GROUP.items.map((it) => ({
             key: it.id,
             label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
