@@ -80,28 +80,14 @@ export function SiteFooter() {
         plain?: boolean;
     }[] = [
         // About 은 여기에 두지 않는다 — GNB 로고 옆 About 이 그 자리를 맡는다.
-        //
-        // 순서: 본사 → 사람 → 코드 → 정책. ABOUT_GROUP 을 통째로 펼치면 GitHub 이
-        // Members 앞에 오므로, 회사(company)만 먼저 꺼내고 Members 를 끼운 뒤
-        // 나머지를 잇는다.
-        ...ABOUT_GROUP.items
-            .filter((it) => it.id === "company")
-            .map((it) => ({
-                key: it.id,
-                label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
-                href: it.external ?? it.route ?? sectionHref(ABOUT_GROUP.key, it.id),
-                external: !!it.external,
-            })),
+        ...ABOUT_GROUP.items.map((it) => ({
+            key: it.id,
+            label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
+            href: it.external ?? it.route ?? sectionHref(ABOUT_GROUP.key, it.id),
+            external: !!it.external,
+        })),
         // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
         { key: "members", label: t.footer.members, href: "/members" },
-        ...ABOUT_GROUP.items
-            .filter((it) => it.id !== "company")
-            .map((it) => ({
-                key: it.id,
-                label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
-                href: it.external ?? it.route ?? sectionHref(ABOUT_GROUP.key, it.id),
-                external: !!it.external,
-            })),
         // 뉴스레터 구독은 여기서 뺐다 — GNB Insight 의 "랩 뉴스레터"와 각 목록의
         // 구독 위젯(SubscribeCta)이 이미 같은 자리를 맡고 있어 중복이었다.
         // AI 품질 방침 — 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지
