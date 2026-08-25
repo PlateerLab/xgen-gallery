@@ -45,6 +45,29 @@ interface PolarCopy {
     ldDescription: string;
     ldFeatures: string[];
     pillars: [string, string][];
+    /**
+     * 커머스 AI가 개별 기능에서 플랫폼으로, 다시 통합 Ops로 넘어온 흐름.
+     * 단계마다 무엇이 달라졌는지를 보여주는 자리다 — 연도별 릴리스 이력이 아니다.
+     */
+    journey: {
+        title: string;
+        lead: string;
+        stages: {
+            phase: string;
+            when: string;
+            /**
+             * 그 단계가 무엇이었는지 한 줄로 말하는 핵심 메시지. 카드의 제목 자리다.
+             * 세 카드의 이 줄만 훑어도 기능 → 플랫폼 → 운영 최적화 흐름이 읽혀야 한다.
+             */
+            headline: string;
+            /** 그 단계를 부르는 이름(제품명·사업명). 핵심 메시지를 받치는 라벨이다. */
+            name: string;
+            desc: string;
+            items: string[];
+        }[];
+        note: string;
+        footnote: string;
+    };
     tech: { title: string; desc: string; imgAlt: string }[];
     usecases: { ko: string; desc: string; items: string[]; imgAlt: string }[];
     faq: { q: string; a: string }[];
@@ -84,6 +107,53 @@ const COPY: Record<Locale, PolarCopy> = {
             ["온프레미스 보안", "기업 핵심 데이터를 내부에서 관리해 민감 데이터의 외부 유출을 방지합니다."],
             ["고객사 최적화", "고객사별로 유연하게 파운데이션 모델을 적용하고, 고유 데이터를 학습(RAG)해 맞춤화합니다."],
         ],
+        journey: {
+            title: "AI는 기능에서 플랫폼으로 진화하고 있습니다",
+            lead: "개별 AI 기능을 도입하던 단계에서, 하나의 Enterprise AI Platform으로 통합되는 단계로 옮겨가고 있습니다.",
+            stages: [
+                {
+                    phase: "As-Was",
+                    when: "이전",
+                    headline: "업무별 AI 기능을 개별 도입",
+                    name: "이커머스를 위한 AI",
+                    desc: "업무별 AI 기능을 개별적으로 도입하여 운영 효율을 높이는 단계였습니다. 요약과 분석, 콘텐츠 생성, 수요 예측이 각각의 도구로 존재했습니다.",
+                    items: [
+                        "비즈니스 데이터 요약·분석",
+                        "제품·마케팅 콘텐츠 생성",
+                        "재고·매출 예측 및 제안",
+                    ],
+                },
+                {
+                    phase: "As-Is",
+                    when: "현재",
+                    headline: "커머스 전용 AI 플랫폼 구축",
+                    name: "POLAR — 커머스 특화 Enterprise AI Platform",
+                    desc: "커머스 데이터를 이해하는 Private LLM을 기반으로 검색, 추천, 콘텐츠 생성 등 다양한 AI 서비스를 하나의 플랫폼에서 제공합니다.",
+                    items: [
+                        "챗봇",
+                        "시맨틱·이미지 검색",
+                        "Commerce+",
+                        "Code Assistant",
+                    ],
+                },
+                {
+                    phase: "To-Be",
+                    when: "2025~",
+                    headline: "AI가 운영을 지속적으로 최적화",
+                    name: "AI-Driven Commerce Operations",
+                    desc: "고객 데이터와 운영 데이터를 하나의 AI 플랫폼에서 연결하여 개인화, 운영 자동화, 의사결정 지원을 제공합니다.",
+                    items: [
+                        "개인화",
+                        "업무 자동화",
+                        "운영 최적화",
+                        "AI 의사결정",
+                    ],
+                },
+            ],
+            note: "성공적인 커머스 AI는 AI 모델만으로 완성되지 않습니다. 고객 데이터와 업무 프로세스, 운영 환경을 함께 이해하는 플랫폼과 도메인 전문성이 갖춰질 때 비로소 실제 비즈니스 성과로 이어집니다.",
+            footnote:
+                "POLAR — Plateer's Optimized LLM and Applications with Reliability",
+        },
         tech: [
             {
                 title: "도메인 최적화 모델",
@@ -172,6 +242,53 @@ const COPY: Record<Locale, PolarCopy> = {
             ["On-premise security", "Core enterprise data stays under internal control, so sensitive data never leaves."],
             ["Tuned per customer", "Apply the foundation model flexibly per customer and adapt it to their own data through RAG."],
         ],
+        journey: {
+            title: "AI is moving from features to a platform",
+            lead: "Commerce is shifting from adopting individual AI features to consolidating them into a single enterprise AI platform.",
+            stages: [
+                {
+                    phase: "As-Was",
+                    when: "Before",
+                    headline: "AI adopted feature by feature",
+                    name: "AI for e-commerce",
+                    desc: "Teams adopted AI one function at a time to raise operational efficiency. Summarization, content generation, and demand forecasting each existed as a separate tool.",
+                    items: [
+                        "Business data summaries and analysis",
+                        "Product and marketing content generation",
+                        "Inventory and revenue forecasting",
+                    ],
+                },
+                {
+                    phase: "As-Is",
+                    when: "Today",
+                    headline: "A commerce-specific AI platform",
+                    name: "POLAR — an enterprise AI platform built for commerce",
+                    desc: "Built on a private LLM that understands commerce data, it delivers search, recommendation, content generation, and other AI services from a single platform.",
+                    items: [
+                        "Chatbot",
+                        "Semantic and image search",
+                        "Commerce+",
+                        "Code Assistant",
+                    ],
+                },
+                {
+                    phase: "To-Be",
+                    when: "2025 onward",
+                    headline: "AI that keeps optimizing operations",
+                    name: "AI-Driven Commerce Operations",
+                    desc: "Customer data and operational data connect on one AI platform to deliver personalization, operational automation, and decision support.",
+                    items: [
+                        "Personalization",
+                        "Automation",
+                        "Operational optimization",
+                        "Decision intelligence",
+                    ],
+                },
+            ],
+            note: "Successful commerce AI is not finished by the model alone. It turns into business results when a platform that understands customer data, work processes, and the operating environment comes together with domain expertise.",
+            footnote:
+                "POLAR — Plateer's Optimized LLM and Applications with Reliability",
+        },
         tech: [
             {
                 title: "Domain-optimized model",
@@ -364,6 +481,107 @@ export function PolarPageContent({ locale }: { locale: Locale }) {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* 커머스 AI의 이동 (As-Was → As-Is → To-Be) */}
+                <section id="journey" className="scroll-mt-24 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
+                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                            Evolution
+                        </p>
+                        <h2 className="mt-3 mx-auto text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            {t.journey.title}
+                        </h2>
+                        <p className="mt-4 mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.journey.lead}
+                        </p>
+
+                        <ol className="mt-10 grid gap-4 md:grid-cols-3">
+                            {t.journey.stages.map((s, i) => {
+                                const now = i === 1;
+                                const next = i === 2;
+                                return (
+                                    <li
+                                        key={s.phase}
+                                        className={[
+                                            "relative flex flex-col rounded-2xl border p-7",
+                                            next
+                                                ? "border-[#2f7bff] bg-white shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)]"
+                                                : now
+                                                  ? "border-[#bcd0f5] bg-white"
+                                                  : "border-[var(--color-line)] bg-[var(--color-surface-alt)]",
+                                        ].join(" ")}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span
+                                                className={[
+                                                    "inline-flex items-center rounded-full px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider",
+                                                    next
+                                                        ? "bg-[#2f7bff] text-white"
+                                                        : now
+                                                          ? "bg-[#2f7bff]/10 text-[#2f7bff]"
+                                                          : "bg-[var(--color-line)] text-[var(--color-ink-subtle)]",
+                                                ].join(" ")}
+                                            >
+                                                {s.phase}
+                                            </span>
+                                            <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
+                                                {s.when}
+                                            </span>
+                                        </div>
+
+                                        {/* 핵심 메시지가 제목이다 — 세 카드의 이 줄만 훑어도 흐름이 읽힌다 */}
+                                        <h3
+                                            className={[
+                                                "mt-4 text-[20px] font-bold leading-snug tracking-tight",
+                                                next || now
+                                                    ? "text-[var(--color-ink)]"
+                                                    : "text-[var(--color-ink-muted)]",
+                                            ].join(" ")}
+                                        >
+                                            {s.headline}
+                                        </h3>
+                                        <p
+                                            className={[
+                                                "mt-2 text-[14px] font-semibold leading-snug",
+                                                next || now
+                                                    ? "text-[#2f7bff]"
+                                                    : "text-[var(--color-ink-subtle)]",
+                                            ].join(" ")}
+                                        >
+                                            {s.name}
+                                        </p>
+                                        <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {s.desc}
+                                        </p>
+
+                                        <ul className="mt-5 flex flex-wrap gap-2">
+                                            {s.items.map((it) => (
+                                                <li
+                                                    key={it}
+                                                    className={[
+                                                        "rounded-full border px-3 py-1.5 text-[13px] font-medium",
+                                                        next || now
+                                                            ? "border-[#bcd0f5] bg-[#2f7bff]/[0.06] text-[#1f4fa8]"
+                                                            : "border-[var(--color-line)] bg-white text-[var(--color-ink-muted)]",
+                                                    ].join(" ")}
+                                                >
+                                                    {it}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </li>
+                                );
+                            })}
+                        </ol>
+
+                        <p className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.journey.note}
+                        </p>
+                        <p className="mt-4 text-center font-mono text-[12px] text-[var(--color-ink-subtle)]">
+                            {t.journey.footnote}
+                        </p>
                     </div>
                 </section>
 
