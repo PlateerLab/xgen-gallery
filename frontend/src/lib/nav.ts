@@ -461,12 +461,7 @@ export const ABOUT_GROUP: NavGroup = {
     items: [
         // 열 제목이 Company 라 항목은 본사 이름으로 부른다 — 같은 이름이 겹치면
         // 제목인지 링크인지 구분이 안 된다.
-        {
-            label: "Plateer",
-            labelKo: "플래티어 (본사)",
-            id: "company",
-            external: "https://www.plateer.com/",
-        },
+        { label: "Plateer", id: "company", external: "https://www.plateer.com/" },
         {
             label: "GitHub",
             labelKo: "깃허브 바로가기",
