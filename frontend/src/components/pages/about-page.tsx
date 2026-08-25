@@ -3,6 +3,9 @@ import { MilestoneRoadmap } from "@/components/milestone-roadmap";
 import { AboutHeroVisual } from "@/components/about-hero-visual";
 import { PATENTS } from "@/lib/patents";
 import { CERTIFICATIONS } from "@/lib/certifications";
+import { CustomerStrip, CUSTOMER_COUNT } from "@/components/customer-strip";
+import { INDUSTRIES, PRODUCTS } from "@/lib/customers";
+import { IndustryIcon } from "@/components/industry-icon";
 import { TOOLS } from "@/lib/tools";
 import { PUBLICATIONS } from "@/lib/publications";
 import {
@@ -38,14 +41,21 @@ import type { Locale } from "@/lib/i18n";
  */
 interface AboutCopy {
     hero: { eyebrow: string; title: string; desc: string };
+    /**
+     * 원칙 — 무엇을 푸는가가 아니라 어떤 기준으로 설계하는가를 말하는 자리다.
+     * 연구소의 방향성을 먼저 보여주고, 뒤이어 오는 파이프라인·제품이 그 근거가 된다.
+     */
     mission: {
         eyebrow: string;
         title: string;
+        lead: string;
         items: { icon: LucideIcon; title: string; desc: string }[];
     };
     pipeline: {
         title: string;
         desc: string;
+        /** 마지막 단계에서 첫 단계로 되돌아오는 화살표에 붙는 라벨 */
+        loop: string;
         items: {
             icon: LucideIcon;
             title: string;
@@ -55,10 +65,21 @@ interface AboutCopy {
             href: string;
         }[];
     };
+    /**
+     * 왜 믿을 수 있는가 — 앞 섹션들이 "누구인가·무엇을 만드는가"를 말했다면
+     * 여기는 그 근거를 댄다. 세 카드는 같은 층위로 맞춘다: 검증된 것 / 공개된 것 /
+     * 축적된 것. 카드마다 근거 태그를 달아 주장이 아니라 사실로 읽히게 한다.
+     */
     proof: {
         title: string;
         more: string;
-        items: { icon: LucideIcon; title: string; desc: string; href: string }[];
+        items: {
+            icon: LucideIcon;
+            title: string;
+            desc: string;
+            tags: string[];
+            href: string;
+        }[];
     };
     /** 한눈에 — 스크롤 없이 규모를 먼저 보여주는 숫자 밴드 */
     glance: {
@@ -66,6 +87,10 @@ interface AboutCopy {
         lead: string;
         stats: { value: string; label: string; note: string }[];
     };
+    /** 무엇을 만드는가 — 제품 라인업 */
+    stack: { title: string; lead: string; more: string; core: string };
+    /** 어디에 적용하는가 — 산업별 */
+    deliver: { title: string; lead: string };
     /** 4.1 자체 기술 · 특허 보유현황 */
     patents: {
         title: string;
@@ -94,34 +119,37 @@ interface AboutCopy {
 const COPY: Record<Locale, AboutCopy> = {
     ko: {
         hero: {
-            eyebrow: "About · Plateer AI Labs",
-            title: "신뢰할 수 있는 Enterprise AI를 연구합니다",
-            desc: "Plateer AI Labs는 단순한 AI 기능 개발을 넘어, 기업이 신뢰하고 운영할 수 있는 Enterprise AI의 표준을 연구합니다. 연구소가 만든 것을 제품으로 증명합니다.",
+            /* 영문 슬로건이 한글 제목 위에 얹힌다 — 세 단어가 곧 아래 순환 구조다 */
+            eyebrow: "Research. Build. Deliver.",
+            title: "연구를 넘어, Enterprise AI를 완성합니다",
+            desc: "Plateer AI Labs는 핵심 기술을 연구하는 데 그치지 않습니다. 오픈소스와 XGEN으로 제품화하고, 고객 환경에 적용하며, 운영 경험을 다시 연구에 반영합니다. 우리는 Enterprise AI의 전 과정을 직접 만들어 갑니다.",
         },
         mission: {
-            eyebrow: "Mission",
-            title: "우리가 푸는 세 가지 문제",
+            eyebrow: "Principles",
+            title: "Enterprise AI를 위한 세 가지 핵심 원칙",
+            lead: "기업이 AI를 도입할 때 가장 중요한 것은 모델이 아니라 운영 환경입니다. Plateer AI Labs는 기업 환경에서 반드시 해결해야 하는 세 가지 과제를 중심으로 Enterprise AI를 연구합니다.",
             items: [
+                {
+                    icon: Server,
+                    title: "데이터 주권과 보안",
+                    desc: "기업 데이터는 기업 안에서 안전하게 관리되어야 합니다. 온프레미스와 망분리 환경에서도 운영 가능한 AI 아키텍처를 연구합니다.",
+                },
                 {
                     icon: ShieldCheck,
                     title: "신뢰할 수 있는 AI",
-                    desc: "기업이 보유한 지식과 데이터에 근거해 답하고, 근거가 없으면 판단 불가를 선언합니다. 환각을 최소화하고 설명 가능한 AI를 만듭니다.",
-                },
-                {
-                    icon: Server,
-                    title: "기업 데이터 주권",
-                    desc: "클라우드 종속 없이 고객 인프라에서 운영되는 온프레미스 중심 아키텍처를 연구합니다. 금융·공공·제조의 망분리 환경까지 대응합니다.",
+                    desc: "기업 데이터에 근거한 답변과 출처를 제공하고, 충분한 근거가 없을 때는 추측 대신 판단을 보류하는 AI를 지향합니다.",
                 },
                 {
                     icon: Blocks,
-                    title: "조합하고 확장하는 AI",
-                    desc: "Agent·Workflow·Knowledge·Tool을 모듈화해 업무 목적에 맞게 재조합하는 Composable AI를 연구합니다. 특정 벤더·모델에 종속되지 않습니다.",
+                    title: "확장 가능한 AI Platform",
+                    desc: "Agent와 Workflow, Knowledge, Tool을 유연하게 조합해 다양한 업무와 시스템에 적용할 수 있는 개방형 AI 플랫폼을 연구합니다.",
                 },
             ],
         },
         pipeline: {
             title: "연구에서 시작해, 다시 연구로 돌아옵니다",
             desc: "기초 연구를 오픈소스로 공개해 검증하고, 제품으로 잇고, 고객 현장에 적용합니다. 거기서 나온 피드백과 운영 데이터가 다음 연구의 출발점이 됩니다.",
+            loop: "다시 연구로",
             items: [
                 {
                     icon: FlaskConical,
@@ -161,25 +189,38 @@ const COPY: Record<Locale, AboutCopy> = {
             ],
         },
         proof: {
-            title: "신뢰의 근거",
+            title: "Plateer AI Labs를 신뢰하는 이유",
             more: "자세히 보기",
             items: [
                 {
                     icon: Award,
-                    title: "인증·품질",
-                    desc: "XGEN GS인증 1등급(최고 등급) 획득, AI 신뢰성 인증 AI-MASTER 진행 중",
+                    title: "검증된 품질",
+                    desc: "GS 인증 1등급과 AI 신뢰성 인증을 통해 Enterprise AI 플랫폼의 품질을 객관적으로 검증받고 있습니다.",
+                    tags: [
+                        `GS 인증 1등급 ${CERTIFICATIONS.length}건`,
+                        "AI-MASTER 진행 중",
+                    ],
                     href: "/product#certification",
                 },
                 {
                     icon: Boxes,
-                    title: "오픈소스",
-                    desc: "XGEN을 떠받치는 라이브러리를 오픈소스로 공개 — 설치·브라우저 체험 제공",
+                    title: "공개된 기술",
+                    desc: "XGEN의 핵심 기술을 오픈소스로 공개하여 누구나 설치하고 체험할 수 있도록 제공합니다.",
+                    tags: [
+                        `오픈소스 ${TOOLS.length}개`,
+                        "GitHub",
+                        "브라우저 데모",
+                    ],
                     href: "/library-gallery",
                 },
                 {
                     icon: BookOpen,
-                    title: "연구 성과",
-                    desc: "구성원들이 학회·저널에 발표한 논문과 저서·감수 도서",
+                    title: "축적된 전문성",
+                    desc: "논문과 저서, 학회 발표, 등록 특허로 Enterprise AI 연구 성과를 지속적으로 공유하고 있습니다.",
+                    tags: [
+                        `논문·저서 ${PUBLICATIONS.length}건`,
+                        `등록 특허 ${PATENTS.length}건`,
+                    ],
                     href: "/research#publications",
                 },
             ],
@@ -192,11 +233,25 @@ const COPY: Record<Locale, AboutCopy> = {
              * 그대로라 조용히 틀린 값이 남는다. GS 등급만 집계 대상이 아니다.
              */
             stats: [
-                { value: `${PATENTS.length}`, label: "등록 특허", note: "추천·검색 중심으로 축적" },
+                {
+                    value: `${PATENTS.length + CERTIFICATIONS.length}`,
+                    label: "등록 특허 및 인증",
+                    note: `특허 ${PATENTS.length}건 · GS 인증 1등급 ${CERTIFICATIONS.length}건`,
+                },
                 { value: `${TOOLS.length}`, label: "오픈소스 라이브러리", note: "설치·브라우저 체험 제공" },
                 { value: `${PUBLICATIONS.length}`, label: "논문·저서", note: "학회·저널 게재와 감수 도서" },
-                { value: "1등급", label: "GS 인증", note: "XGEN · X2BEE, 소프트웨어 품질 최고 등급" },
+                { value: `${CUSTOMER_COUNT}`, label: "실증 고객사", note: "XGEN·X2BEE 구축·운영 — 금융·공공·커머스·유통" },
             ],
+        },
+        stack: {
+            title: "무엇을 만드는가",
+            lead: "연구 성과는 세 갈래 제품으로 이어집니다. 각각 다른 문제를 풀지만 같은 연구 기반 위에 서 있습니다.",
+            more: "자세히 보기",
+            core: "공통 연구 기반",
+        },
+        deliver: {
+            title: "어디에 적용하는가",
+            lead: "금융과 공공, 커머스, IT·제조 현장에 적용했습니다. 산업마다 데이터와 규제가 달라 적용 방식도 달라집니다.",
         },
         patents: {
             title: "특허로 축적한 기술",
@@ -265,33 +320,35 @@ const COPY: Record<Locale, AboutCopy> = {
     en: {
         hero: {
             eyebrow: "About · Plateer AI Labs",
-            title: "We research Enterprise AI that companies can trust and run",
-            desc: "Plateer AI Labs works a step behind the feature race. We research the standards that make enterprise AI dependable enough to put into production — and we prove what the lab builds by shipping it as product.",
+            title: "Research. Build. Deliver.",
+            desc: "Plateer AI Labs does not stop at researching core technology. We turn it into product through open source and XGEN, apply it in customer environments, and feed what we learn in operation back into research. We build the whole arc of enterprise AI ourselves.",
         },
         mission: {
             eyebrow: "Mission",
-            title: "Three problems we work on",
+            title: "Three principles for enterprise AI",
+            lead: "What matters most when a company adopts AI is not the model but the environment it runs in. Plateer AI Labs researches enterprise AI around the three problems every enterprise environment has to solve.",
             items: [
+                {
+                    icon: Server,
+                    title: "Data sovereignty and security",
+                    desc: "Enterprise data should stay under enterprise control. We research AI architecture that runs on-premise, including the network-separated environments many organizations operate in.",
+                },
                 {
                     icon: ShieldCheck,
                     title: "AI you can trust",
-                    desc: "Answers grounded in your own knowledge and data — and an explicit “insufficient evidence” when that grounding isn't there. We minimize hallucination and keep the reasoning inspectable.",
-                },
-                {
-                    icon: Server,
-                    title: "Data sovereignty",
-                    desc: "On-premise-first architecture that runs inside your own infrastructure, with no cloud lock-in. That includes the network-separated environments finance, public sector, and manufacturing actually operate in.",
+                    desc: "Answers grounded in your own data, with sources attached — and a held judgment rather than a guess when the grounding is not there.",
                 },
                 {
                     icon: Blocks,
-                    title: "Composable, extensible AI",
-                    desc: "Agents, workflows, knowledge, and tools as modules you recombine for the job in front of you. No lock-in to a single vendor or model.",
+                    title: "An extensible AI platform",
+                    desc: "Agents, workflows, knowledge, and tools combined freely, so the platform stays open to different kinds of work and different systems.",
                 },
             ],
         },
         pipeline: {
             title: "What the lab builds, the product proves",
             desc: "One direction of travel: start with foundational research, validate it in the open, ship it as product, and prove it in customer environments and certification.",
+            loop: "Back to research",
             items: [
                 {
                     icon: FlaskConical,
@@ -320,25 +377,38 @@ const COPY: Record<Locale, AboutCopy> = {
             ],
         },
         proof: {
-            title: "Grounds for trust",
+            title: "Why customers trust Plateer AI Labs",
             more: "Read more",
             items: [
                 {
                     icon: Award,
-                    title: "Certification and quality",
-                    desc: "XGEN holds Grade 1 GS (Good Software) certification, the highest grade in Korea's national software quality scheme. AI-MASTER reliability certification is in testing",
+                    title: "Verified quality",
+                    desc: "Grade 1 GS certification and AI reliability certification put the platform's quality through independent, accredited testing.",
+                    tags: [
+                        `${CERTIFICATIONS.length} Grade 1 GS certifications`,
+                        "AI-MASTER in testing",
+                    ],
                     href: "/product#certification",
                 },
                 {
                     icon: Boxes,
-                    title: "Open source",
-                    desc: "The libraries that power XGEN are public — install them with pip or run them in the browser gallery",
+                    title: "Technology in the open",
+                    desc: "The core technology behind XGEN is published as open source, so anyone can install it and try it.",
+                    tags: [
+                        `${TOOLS.length} open-source libraries`,
+                        "GitHub",
+                        "Browser demos",
+                    ],
                     href: "/library-gallery",
                 },
                 {
                     icon: BookOpen,
-                    title: "Published research",
-                    desc: "Papers our members have presented at conferences and journals, plus books authored and reviewed",
+                    title: "Accumulated expertise",
+                    desc: "Papers, books, conference talks, and registered patents keep the research in public view.",
+                    tags: [
+                        `${PUBLICATIONS.length} papers and books`,
+                        `${PATENTS.length} registered patents`,
+                    ],
                     href: "/research#publications",
                 },
             ],
@@ -347,11 +417,25 @@ const COPY: Record<Locale, AboutCopy> = {
             title: "At a glance",
             lead: "What the lab has built, in numbers.",
             stats: [
-                { value: `${PATENTS.length}`, label: "Registered patents", note: "Concentrated in recommendation and search" },
+                {
+                    value: `${PATENTS.length + CERTIFICATIONS.length}`,
+                    label: "Patents and certifications",
+                    note: `${PATENTS.length} patents · ${CERTIFICATIONS.length} Grade 1 GS certifications`,
+                },
                 { value: `${TOOLS.length}`, label: "Open-source libraries", note: "Installable, with in-browser demos" },
                 { value: `${PUBLICATIONS.length}`, label: "Papers and books", note: "Journals, conferences, and edited volumes" },
-                { value: "Grade 1", label: "GS certification", note: "XGEN and X2BEE, the top software quality grade" },
+                { value: `${CUSTOMER_COUNT}`, label: "Enterprise customers", note: "XGEN and X2BEE deployments across finance, public, commerce, and retail" },
             ],
+        },
+        stack: {
+            title: "What we build",
+            lead: "Research turns into three products. They solve different problems but stand on the same research base.",
+            more: "Learn more",
+            core: "Shared research foundation",
+        },
+        deliver: {
+            title: "Where we deliver",
+            lead: "Applied in finance, the public sector, commerce, and IT and manufacturing. Data and regulation differ by industry, so the approach does too.",
         },
         patents: {
             title: "Technology built up through patents",
@@ -463,13 +547,24 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <div className="grid items-center gap-10 lg:grid-cols-[1.06fr_0.94fr]">
                         <div>
-                            <p className="text-[16px] font-semibold tracking-tight text-[#7dd3fc]">
+                            {/*
+                              국문 화면에서는 이 줄이 영문 슬로건이라 제목만큼 크게
+                              둔다. 영문 화면에서는 같은 문구가 h1 로 내려가므로 이
+                              줄은 원래대로 작은 라벨이다.
+                            */}
+                            <p
+                                className={
+                                    en
+                                        ? "text-[16px] font-semibold tracking-tight text-[#7dd3fc]"
+                                        : "text-[22px] font-bold tracking-tight text-[#7dd3fc] md:text-[28px]"
+                                }
+                            >
                                 {t.hero.eyebrow}
                             </p>
-                            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                            <h1 className="mt-2 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                                 {t.hero.title}
                             </h1>
-                            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/75">
                                 {t.hero.desc}
                             </p>
                         </div>
@@ -487,6 +582,13 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
               걷어내고 구분은 border-t 에 맡긴다.
             */}
             <main>
+                {/*
+                  Trusted by — 히어로 바로 다음에 고객사 로고를 둔다. 처음 온 사람이
+                  "누가 쓰는가"를 미션보다 먼저 확인한다. 메인에서 쓰는 컴포넌트를
+                  그대로 재사용해 명단이 갈라지지 않게 한다.
+                */}
+                <CustomerStrip locale={locale} />
+
                 {/*
                   한눈에 — Executive Summary 의 첫 화면. 3분 안에 이해시켜야 하므로
                   서사보다 규모를 먼저 보여준다. 카드로 감싸지 않고 사진 위에 숫자만
@@ -529,7 +631,10 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                         <h2 className="mt-3 mx-auto max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                             {t.mission.title}
                         </h2>
-                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                        <p className="mt-4 mx-auto max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.mission.lead}
+                        </p>
+                        <div className="mt-10 grid gap-4 md:grid-cols-3">
                             {t.mission.items.map((m) => (
                                 <div
                                     key={m.title}
@@ -559,47 +664,80 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                         <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.pipeline.desc}
                         </p>
-                        <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                            {t.pipeline.items.map((p, i) => (
-                                <li key={p.title} className="relative">
-                                    <Link
-                                        href={href(p.href)}
-                                        className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                                <p.icon className="h-5 w-5" />
-                                            </span>
-                                            <span className="font-mono text-[13px] font-bold text-[var(--color-ink-subtle)]">
-                                                0{i + 1}
-                                            </span>
-                                        </div>
-                                        <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {p.title}
-                                            {p.sub && (
-                                                <>
-                                                    {" "}
-                                                    <span className="text-[13px] font-semibold text-[var(--color-ink-subtle)]">
-                                                        {p.sub}
-                                                    </span>
-                                                </>
-                                            )}
-                                        </h3>
-                                        <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {p.desc}
-                                        </p>
-                                    </Link>
-                                    {i < t.pipeline.items.length - 1 && (
-                                        <span
-                                            aria-hidden
-                                            className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 text-[var(--color-line-strong)] lg:inline-flex"
+                        {/*
+                          다섯 단계를 한 줄로 세우고 아래로 되돌아오는 화살표를 그린다.
+                          5개를 4열 그리드에 넣으면 마지막 하나만 다음 줄로 떨어져
+                          흐름이 끊긴다. 고리라는 사실도 보이지 않는다.
+                        */}
+                        <div className="relative mt-12">
+                            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-7">
+                                {t.pipeline.items.map((p, i) => (
+                                    <li key={p.title} className="relative">
+                                        <Link
+                                            href={href(p.href)}
+                                            className="group flex h-full flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white px-4 py-6 text-center transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
                                         >
-                                            <ArrowRight className="h-5 w-5" />
-                                        </span>
-                                    )}
-                                </li>
-                            ))}
-                        </ol>
+                                            <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                <p.icon className="h-6 w-6" />
+                                                <span className="absolute -right-1.5 -top-1.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#2f7bff] font-mono text-[10px] font-bold text-white">
+                                                    {i + 1}
+                                                </span>
+                                            </span>
+                                            <h3 className="mt-4 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {p.title}
+                                            </h3>
+                                            {p.sub && (
+                                                <span className="mt-0.5 font-mono text-[11px] font-semibold text-[#2461d8]">
+                                                    {p.sub}
+                                                </span>
+                                            )}
+                                            <p className="mt-2.5 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                {p.desc}
+                                            </p>
+                                        </Link>
+                                        {i < t.pipeline.items.length - 1 && (
+                                            <span
+                                                aria-hidden
+                                                className="absolute -right-6 top-1/2 z-10 hidden -translate-y-1/2 text-[#2f7bff] lg:inline-flex"
+                                            >
+                                                <ArrowRight className="h-6 w-6" strokeWidth={2.5} />
+                                            </span>
+                                        )}
+                                    </li>
+                                ))}
+                            </ol>
+
+                            {/* 되돌아오는 길 — 마지막 단계에서 첫 단계로 */}
+                            <div
+                                aria-hidden
+                                className="pointer-events-none relative mt-3 hidden h-14 lg:block"
+                            >
+                                <svg
+                                    className="h-full w-full"
+                                    viewBox="0 0 1000 56"
+                                    preserveAspectRatio="none"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M910 0 V28 Q910 44 894 44 H106 Q90 44 90 28 V6"
+                                        stroke="#2f7bff"
+                                        strokeWidth="2.5"
+                                        vectorEffect="non-scaling-stroke"
+                                    />
+                                    <path
+                                        d="M84 14 L90 4 L96 14"
+                                        stroke="#2f7bff"
+                                        strokeWidth="3"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        vectorEffect="non-scaling-stroke"
+                                    />
+                                </svg>
+                                <span className="absolute left-1/2 top-[19px] -translate-x-1/2 bg-[var(--color-surface)] px-3 text-[12.5px] font-semibold text-[#2461d8]">
+                                    {t.pipeline.loop}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -616,6 +754,136 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                         } as React.CSSProperties
                     }
                 >
+                {/*
+                  무엇을 만드는가 — 연구만 하는 곳이 아니라는 점을 제품으로 보여준다.
+                  제품 메타는 customers.ts 의 PRODUCTS 를 그대로 쓴다 — 고객 사례
+                  화면과 같은 출처라 제품명·태그라인이 갈라지지 않는다.
+                */}
+                <section className="border-t border-[var(--color-line)]">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
+                        <h2 className="text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            {t.stack.title}
+                        </h2>
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.stack.lead}
+                        </p>
+                        {/*
+                          트라이앵글 구도 — XGEN 을 위 꼭짓점에 두고 Polar·Code
+                          Assistant 를 아래 두 꼭짓점에 놓는다. 가운데에는 셋을 잇는
+                          연구 기반을 그린다. 나란한 3열로 두면 세 제품이 대등해
+                          보이는데, 실제로는 XGEN 이 플랫폼이고 나머지가 그 위에 선다.
+                        */}
+                        <div className="relative mx-auto mt-12 max-w-4xl">
+                            {/* 세 꼭짓점을 잇는 삼각형 — 큰 화면에서만 그린다 */}
+                            <svg
+                                aria-hidden
+                                className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
+                                viewBox="0 0 800 520"
+                                preserveAspectRatio="none"
+                                fill="none"
+                            >
+                                <path
+                                    d="M400 120 L150 400 M400 120 L650 400 M150 400 L650 400"
+                                    stroke="#bcd0f5"
+                                    strokeWidth="1.5"
+                                    strokeDasharray="5 6"
+                                    vectorEffect="non-scaling-stroke"
+                                />
+                            </svg>
+
+                            {/* 위 꼭짓점 — 플랫폼 */}
+                            <div className="relative flex justify-center">
+                                <Link
+                                    href={href(PRODUCTS.xgen.href)}
+                                    className="group flex w-full max-w-[300px] flex-col items-center rounded-2xl border-2 border-[#2f7bff] bg-white p-7 text-center shadow-[0_18px_44px_-24px_rgba(20,40,80,0.3)] transition hover:-translate-y-0.5"
+                                >
+                                    <span className="inline-flex h-2 w-12 rounded-full bg-[#2f7bff]" />
+                                    <h3 className="mt-5 text-[24px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {PRODUCTS.xgen.name}
+                                    </h3>
+                                    <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {PRODUCTS.xgen.tagline}
+                                    </p>
+                                    <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                                        {t.stack.more}
+                                        <ArrowRight className="h-3.5 w-3.5" />
+                                    </span>
+                                </Link>
+                            </div>
+
+                            {/* 가운데 — 셋을 떠받치는 연구 기반 */}
+                            <div className="relative my-7 flex justify-center">
+                                <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-white px-5 py-2.5">
+                                    <FlaskConical className="h-4 w-4 text-[#2f7bff]" />
+                                    <span className="text-[13.5px] font-bold text-[var(--color-ink)]">
+                                        {t.stack.core}
+                                    </span>
+                                </span>
+                            </div>
+
+                            {/* 아래 두 꼭짓점 */}
+                            <div className="relative grid gap-4 sm:grid-cols-2">
+                                {[PRODUCTS.polar, PRODUCTS["code-assistant"]].map((p) => (
+                                    <Link
+                                        key={p.key}
+                                        href={href(p.href)}
+                                        className="group flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-7 text-center transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
+                                    >
+                                        <span
+                                            className="inline-flex h-2 w-12 rounded-full"
+                                            style={{ backgroundColor: p.accent }}
+                                        />
+                                        <h3 className="mt-5 text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {p.name}
+                                        </h3>
+                                        <p className="mt-2 flex-1 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {p.tagline}
+                                        </p>
+                                        <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                                            {t.stack.more}
+                                            <ArrowRight className="h-3.5 w-3.5" />
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/*
+                  어디에 적용하는가 — 산업 목록은 customers.ts 의 INDUSTRIES 를 쓴다.
+                  각 항목은 해당 산업의 고객 사례 목록으로 보낸다.
+                */}
+                <section className="border-t border-[var(--color-line)]">
+                    <div className="mx-auto max-w-7xl px-6 py-24">
+                        <h2 className="text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                            {t.deliver.title}
+                        </h2>
+                        <p className="mt-4 mx-auto max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.deliver.lead}
+                        </p>
+                        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            {/* 링크를 걸지 않는다 — 어느 산업에 적용했는지 보여주는 자리이지 고객 사례로 보내는 자리가 아니다 */}
+                            {Object.values(INDUSTRIES).map((ind) => (
+                                <div
+                                    key={ind.key}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                        <IndustryIcon kind={ind.key} className="h-6 w-6" />
+                                    </span>
+                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {en ? ind.en : ind.ko}
+                                    </h3>
+                                    <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {en ? ind.blurbEn : ind.blurb}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* 신뢰의 근거 + 연혁 */}
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
@@ -638,6 +906,17 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                     <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {p.desc}
                                     </p>
+                                    {/* 근거 태그 — 주장이 아니라 셀 수 있는 사실로 받친다 */}
+                                    <ul className="mt-4 flex flex-wrap gap-1.5">
+                                        {p.tags.map((tag) => (
+                                            <li
+                                                key={tag}
+                                                className="rounded-full border border-[#bcd0f5] bg-[#2f7bff]/[0.06] px-2.5 py-1 text-[12px] font-semibold text-[#1f4fa8]"
+                                            >
+                                                {tag}
+                                            </li>
+                                        ))}
+                                    </ul>
                                     <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                                         {t.proof.more}
                                         <ArrowRight className="h-3.5 w-3.5" />

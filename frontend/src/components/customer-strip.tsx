@@ -22,6 +22,44 @@ const CUSTOMERS: { name: string; nameEn: string; src?: string; h?: string }[] = 
     { name: "SK하이닉스", nameEn: "SK hynix", src: "/customers/sk-hynix.png" },
 ];
 
+/**
+ * X2BEE(커머스 플랫폼) 구축·운영 고객사. 이 목록은 로고를 싣지 않고 숫자에만 쓴다 —
+ * 로고 마퀴는 AI Labs 레퍼런스만 보여주는 자리다.
+ *
+ * 아래 두 곳은 위 CUSTOMERS 와 같은 고객이라 합계에서 한 번만 센다.
+ *   · 아이스크림 = i-Scream media
+ *   · 롯데홈쇼핑
+ */
+const X2BEE_CUSTOMERS = [
+    "현대자동차",
+    "기아",
+    "SK렌터카",
+    "롯데홈쇼핑",
+    "롯데백화점",
+    "LOTTE ON",
+    "롯데마트",
+    "한섬",
+    "더현대",
+    "오스템임플란트",
+    "kt",
+    "아이스크림",
+    "올리브영",
+    "스타벅스",
+    "동원F&B",
+    "신한카드",
+    "삼성카드",
+    "롯데카드",
+];
+
+/**
+ * 실증 고객사 수 — About 의 숫자 밴드가 쓴다. AI Labs 레퍼런스와 X2BEE 고객사를
+ * 합치되 중복은 한 번만 센다. 손으로 더하면 명단이 늘 때 값이 어긋난다.
+ */
+export const CUSTOMER_COUNT = new Set([
+    ...CUSTOMERS.map((c) => c.name),
+    ...X2BEE_CUSTOMERS,
+]).size;
+
 export function CustomerStrip({ locale = "ko" }: { locale?: Locale }) {
     const en = locale === "en";
     return (
