@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Download, ShieldAlert, ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
@@ -321,6 +322,13 @@ const COPY: Record<Locale, Copy> = {
 };
 
 export function XgenConnectorPageContent({ locale }: { locale: Locale }) {
+    /*
+     * 운영에서는 가린다 — 블로그 글의 draft 와 같은 규칙이다. 로컬 개발 서버에서는
+     * 그대로 열려 검토할 수 있고, 배포본에서는 주소를 알아도 404 다.
+     * 공개할 때 이 블록과 md 의 draft, sitemap 항목을 함께 되돌린다.
+     */
+    if (process.env.NODE_ENV === "production") notFound();
+
     const t = COPY[locale];
     const href = (path: string) => localeHref(locale, path);
 

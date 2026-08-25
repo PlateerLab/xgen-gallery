@@ -1,5 +1,5 @@
 ---
-title: "XGEN Connector — 기업 AI Agent를 실제 업무환경으로 연결하다"
+title: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다"
 titleSeo: "XGEN Connector — Agent를 업무환경에 연결"
 description: "AI가 생각하는 환경과 사람이 일하는 환경은 분리되어 있습니다. XGEN에서 만든 Agent가 사용자의 PC에서 파일과 애플리케이션을 다루고 실제 결과물을 만들도록 잇는 Desktop Interface를 소개합니다."
 date: "2026-08-26"
@@ -8,7 +8,7 @@ thumb: /blog/xgen-connector-preview-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN Connector", "XGEN DeX", "Agentic AI", "Desktop Experience", "AI 거버넌스", "제품"]
-draft: false
+draft: true
 faq:
   - q: "XGEN Connector는 데스크톱용 XGEN 채팅 앱인가요?"
     a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. Connector는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."

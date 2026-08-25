@@ -8,7 +8,7 @@ thumb: /blog/xgen-connector-preview-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN Connector", "XGEN DeX", "Agentic AI", "Desktop Experience", "AI governance", "Product"]
-draft: false
+draft: true
 faq:
   - q: "Is XGEN Connector a desktop chat app for XGEN?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. Connector is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
