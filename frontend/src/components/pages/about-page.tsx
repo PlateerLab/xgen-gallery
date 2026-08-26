@@ -352,33 +352,39 @@ const COPY: Record<Locale, AboutCopy> = {
             ],
         },
         pipeline: {
-            title: "What the lab builds, the product proves",
-            desc: "One direction of travel: start with foundational research, validate it in the open, ship it as product, and prove it in customer environments and certification.",
+            title: "It starts with research, and comes back to it",
+            desc: "Foundational research is published as open source so anyone can check it, shipped as product, and applied in customer environments. The feedback and operational data that come back become the starting point for the next round of research.",
             loop: "Back to research",
             items: [
                 {
                     icon: FlaskConical,
                     title: "Research",
-                    desc: "Foundational work that makes Enterprise AI practical",
+                    desc: "Foundational work that makes enterprise AI practical",
                     href: "/research",
                 },
                 {
                     icon: Boxes,
                     title: "Open Source",
-                    desc: "The libraries underneath the research, published in the open",
+                    desc: "Published under MIT so anyone can verify it",
                     href: "/library-gallery",
                 },
                 {
                     icon: Layers,
-                    title: "Product",
-                    desc: "Deployed in the field as XGEN, Polar, and AI Code Assistant",
+                    title: "XGEN Platform",
+                    desc: "Research turned into an enterprise AI platform",
                     href: "/product",
                 },
                 {
                     icon: BadgeCheck,
-                    title: "Proof",
-                    desc: "Results shown through customer projects and national certification",
+                    title: "Customers",
+                    desc: "Applied in the field and connected to business value",
                     href: "/customers",
+                },
+                {
+                    icon: MessagesSquare,
+                    title: "Feedback",
+                    desc: "User feedback and operational data feed the next research",
+                    href: "/research",
                 },
             ],
         },
@@ -728,20 +734,35 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                     preserveAspectRatio="none"
                                     fill="none"
                                 >
-                                    <path
-                                        d="M910 0 V28 Q910 44 894 44 H106 Q90 44 90 28 V6"
-                                        stroke="#2f7bff"
-                                        strokeWidth="2.5"
-                                        vectorEffect="non-scaling-stroke"
-                                    />
-                                    <path
-                                        d="M84 14 L90 4 L96 14"
-                                        stroke="#2f7bff"
-                                        strokeWidth="3"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        vectorEffect="non-scaling-stroke"
-                                    />
+                                    {/*
+                                      선의 양 끝은 첫 칸과 마지막 칸의 가운데다.
+                                      단계 수에서 좌표를 뽑아 카드가 늘거나 줄어도
+                                      선이 빈 칸까지 뻗지 않는다 — 국문 5단계,
+                                      영문 4단계였을 때 실제로 어긋났다.
+                                    */}
+                                    {(() => {
+                                        const n = t.pipeline.items.length;
+                                        const first = Math.round((1000 * 0.5) / n);
+                                        const last = Math.round((1000 * (n - 0.5)) / n);
+                                        return (
+                                            <>
+                                                <path
+                                                    d={`M${last} 0 V28 Q${last} 44 ${last - 16} 44 H${first + 16} Q${first} 44 ${first} 28 V6`}
+                                                    stroke="#2f7bff"
+                                                    strokeWidth="2.5"
+                                                    vectorEffect="non-scaling-stroke"
+                                                />
+                                                <path
+                                                    d={`M${first - 6} 14 L${first} 4 L${first + 6} 14`}
+                                                    stroke="#2f7bff"
+                                                    strokeWidth="3"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    vectorEffect="non-scaling-stroke"
+                                                />
+                                            </>
+                                        );
+                                    })()}
                                 </svg>
                                 <span className="absolute left-1/2 top-[19px] -translate-x-1/2 bg-[var(--color-surface)] px-3 text-[12.5px] font-semibold text-[#2461d8]">
                                     {t.pipeline.loop}
