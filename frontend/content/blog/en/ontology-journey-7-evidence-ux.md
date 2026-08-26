@@ -1,9 +1,9 @@
 ---
-title: "Highlighting only the graph nodes the answer mentions (Part 7)"
-titleSeo: "Highlight only what was cited (Part 7)"
+title: "Most of the nodes we painted red were not evidence (Part 7)"
+titleSeo: "What the highlight proves"
 cover: "/blog/ontology-journey-7-evidence-ux.svg"
 thumb: "/blog/ontology-journey-7-evidence-ux-thumb.svg"
-description: "Removing keyword partial matches and neighbour inflation, so only candidate labels that appear in the answer text are highlighted in the 2D and 3D views."
+description: "With retrieval quality raised, verifying on screen showed far more nodes highlighted than there was evidence for. What the highlight really proves."
 date: "2026-06-16"
 author: "김진수"
 authorGithub: "jinsoo96"
@@ -11,51 +11,114 @@ category: "Tech Note"
 tags: ["Ontology", "Evidence tracing", "Graph visualization"]
 draft: false
 ---
-> **Knowledge graph design · 7/10**
 
-After raising retrieval quality, verifying answers on screen showed far more nodes highlighted in red than there was actual evidence for. Keyword-matched candidates and their surrounding nodes were all painted the same colour, so there was no telling an entity used in the answer from one the search had merely passed through.
-
-As the graph grew, the 3D view became another bottleneck. It was useful for looking around the whole structure, but reading the evidence for a particular answer and selecting nodes in a dense graph was slow and unstable. Not every graph view needs to serve the same purpose.
-
-We removed the fallback in the search response that treated keyword partial matches and whole neighbourhoods as evidence. Instead, among the retrieval candidates' labels, only those that actually appear in the final answer string are returned as `evidence_nodes`, and the view highlights only that list. The 2D view became the place to check nodes related to the answer; the 3D view became the place to explore overall structure and clusters.
-
-## We separated all candidates from the labels the answer mentions
-
-The retriever gathers candidate node labels from graph triples and class results, then puts into `evidence_nodes` only those whose name is contained in the normalized final answer. The frontend highlights only that label list. Retrieval candidates and intermediate paths can remain as debugging or exploration information, but they are not mixed into the evidence colour.
-
-```text
-Retrieval candidates and exploration path
-        ↓ evidence selection
-Candidates whose name appears in the final answer
-        ↓
-evidence_nodes
-        ↓
-Graph highlighting
-```
-
-This contract is based on label strings, not stable node IDs or relationship-level provenance. If several nodes share a label they may be highlighted together, and the mere fact that a name appears in the answer does not prove that node was actually the basis for the reasoning. What we verified is that the highlighting scope is smaller than with the keyword fallback. Precise citation linking needs stable URIs and a `citation → triple → sourceChunk` mapping on top.
-
-## We split the purposes of the 2D and 3D views
-
-The 3D graph is good for looking around the whole structure and unfolding a dense relationship network. Depth and rotation let you explore a large graph, and moving physics calculation to a Web Worker keeps load off the main view.
-
-Reading the evidence for a final answer has different requirements. What matters is comparing node names and relationship labels quickly, and not losing the handful of nodes tied to a citation. We added a 2D view with less perspective and overlap, and used it for checking evidence.
-
-The two views draw the same graph in different ways.
-
-- 3D: exploring overall structure, expanding neighbourhoods, spatially separating a large graph
-- 2D: checking answer evidence, comparing relationship labels, holding a fixed selection scope
-
-Neither is treated as the default correct one; the user switches to whichever fits the task at hand. The `evidence_nodes` label list is shared as the same state across both views. That keeps the highlighting aligned between them, but it does not solve the same-label node problem described above.
-
-## We verified the contract end to end, from retrieval result to screen behaviour
-
-Verification did not stop at whether the backend field exists. We checked that keyword candidates absent from the answer are no longer highlighted, that returned labels render the same way in 2D and 3D, and that no stale highlighting survives on an empty graph or an answer with no evidence.
-
-We did not call this change "accurate evidence tracing." It is a UI improvement that reduces excessive candidate highlighting, and the data contract that would prove the actual reasoning basis is still outstanding. Raising explainability on screen requires preserving, by identifier, which relationships and which source passages supported the answer — not just deciding what to paint less of.
-
-After cleaning up the evidence view, the next work was integrity across repeated builds: persisting generation provenance so structured classes do not get merged in post-processing, and storing completion criteria so documents do not re-extract chunks that were already processed.
+**After rebuilding retrieval we opened the graph to verify answers on screen. Far more nodes were painted red than there was actual evidence for. We narrowed the highlight to labels that genuinely appear in the answer, and in the process had to rename the feature. It was not evidence tracing. It was string matching.**
 
 ---
-**Previous →** [The search redesign that started with an A/B measuring an empty graph](/en/blog/ontology-journey-6-search-redesign)
-**Next →** [Why ten CSV classes became four](/en/blog/ontology-journey-8-structured-incremental)
+
+## We opened the graph to verify an answer and it was red everywhere
+
+Having settled the retrieval structure in Part 6, we opened the graph view to check on screen whether answers were right.
+
+Far more nodes were highlighted than there was actual evidence for.
+
+Keyword-matched candidates and their surrounding nodes were all painted the same colour. **There was no telling an entity used in the answer from one retrieval had merely passed through.**
+
+Highlighting exists to give information, and in this state the screen could not narrow the grounding of an answer. It made everything look relevant, blurring the judgment of the person trying to check.
+
+The cause was in the retrieval response. A fallback path treating keyword partial matches and whole neighbourhoods as evidence had survived. It was designed to show evidence generously, and generosity had become meaninglessness.
+
+## We kept only candidates whose name appears in the answer
+
+Narrowing the highlight needed a criterion.
+
+The retriever gathers candidate node labels from graph triples and class results, then returns as evidence nodes **only those whose name is contained in the normalised final answer**. The frontend highlights only that list.
+
+```text
+retrieval candidates and traversal path
+        ↓ does the name appear in the answer string
+candidates mentioned in the final answer
+        ↓
+evidence node list
+        ↓
+graph highlight
+```
+
+Retrieval candidates and intermediate paths can remain as debugging or exploration information, but they are not mixed into the evidence colour.
+
+With the highlight narrowed the screen became usable for actually verifying an answer.
+
+Showing more looks safer when deciding what to display, since the user can pick from it. In practice it **hands the selection responsibility to the user at the screen**, and if we already held the information needed to select, we should not hand it over.
+
+## What we built was string matching, not evidence tracing
+
+Here we had to rename the feature.
+
+This contract is based on **label strings**, not stable node identifiers or relation-level provenance. Two things follow.
+
+If several nodes share a label they are all highlighted together. The screen cannot say which one the answer used.
+
+And, more importantly: **the fact that a name appears in the answer cannot prove that node was actual reasoning evidence.** Whether the model composed its answer from that node, or the same name happened to land in an answer produced by another path, this contract cannot distinguish.
+
+```text
+what we confirmed   the highlight is narrower than the keyword fallback
+what we did not do  prove that a highlighted node was evidence for the answer
+```
+
+So we did not call this change accurate evidence tracing. It is a UI improvement that reduced excessive candidate highlighting, and there is still no data contract proving actual reasoning evidence.
+
+Part 1 recorded that provenance attaches to the subject node rather than the relation triple; Part 2 recorded that visited nodes are labels rather than stable identifiers. **This is the third appearance of the same gap.** Raising explainability on screen requires not only painting less but preserving, by identifier, which relations and source supported the answer.
+
+Accurate citation linking needs stable URIs and a mapping from citation to triple to source chunk.
+
+Writing down the scope a feature name promises, alongside the name, reduces the chance that unverified trust accumulates because of that name later. That goes double for features about explainability. **A wrong evidence indicator is worse than none.**
+
+## The same graph, and two views were doing different jobs
+
+As the graph grew the 3D view became another bottleneck.
+
+It was useful for looking around the overall structure. Reading the evidence for a particular answer and selecting nodes in a dense graph was slow and unstable.
+
+At first we treated this as a 3D problem to improve. Raise performance, improve selection accuracy.
+
+That the two tasks want opposite things became visible later.
+
+```text
+3D   overall structure · neighbour expansion · spatial separation of large graphs
+     → depth and rotation help
+
+2D   evidence checking · relation label comparison · fixed selection scope
+     → perspective and overlap get in the way
+```
+
+**Not every graph view has to serve the same purpose.** 3D's depth is needed for exploration and gets in the way of evidence checking.
+
+So we added a 2D view for evidence checking and left 3D for structure and cluster exploration. Physics moved to a separate worker to reduce load on the main view.
+
+Neither is set as the default answer; the user switches to match the task at hand. The evidence node list is shared as the same state across views.
+
+That does not resolve the shared-label problem above. It only means the two views' highlights can be kept consistent.
+
+When one screen is reported as not working well, the instinct is to improve that screen. The prior question is **how many jobs that screen is currently doing at once.** If it is more than one, separation may be the answer rather than improvement.
+
+## Verification went past field existence to screen behaviour
+
+We did not end verification at whether a backend field exists.
+
+We confirmed that keyword candidates absent from the answer are no longer highlighted, that returned labels display the same way in 2D and 3D, and that a previous highlight does not linger on an empty graph or an answer with no evidence.
+
+The last condition actually caught something. If a previous question's highlight remains, the user reads it as evidence for the new answer. The path that clears state mattered as much as the path that shows it.
+
+## Deciding to paint less is as far as this part got
+
+Written precisely, what we did here is narrow the highlight, split the roles of the views, and correct the feature's name to match its actual behaviour.
+
+**We did not raise explainability; we reduced wrong explanation.** They are different. The second is a precondition of the first and does not substitute for it.
+
+After tidying the evidence view, the next work was integrity across repeated builds: keeping structured classes from being merged in post-processing by recording their generation source, and storing completion criteria so documents do not re-extract chunks already processed.
+
+---
+
+**Previous →** [The A/B calling it slow and wrong was measuring an empty graph (Part 6)](/en/blog/ontology-journey-6-search-redesign)
+
+**Next →** [Document dedup was merging structured tables (Part 8)](/en/blog/ontology-journey-8-structured-incremental)
