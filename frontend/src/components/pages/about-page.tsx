@@ -111,6 +111,8 @@ interface AboutCopy {
     milestones: { title: string; items: { when: string; what: string }[] };
     team: {
         members: { title: string; desc: string; cta: string };
+        /** 제품 사이트 아웃링크 — 연구소가 만든 것을 바로 확인하는 자리 */
+        product: { title: string; desc: string };
         company: { title: string; desc: string };
     };
     cta: { title: string; desc: string; trial: string; contact: string };
@@ -305,6 +307,10 @@ const COPY: Record<Locale, AboutCopy> = {
                 desc: "연구·엔지니어링으로 Enterprise AI를 현실로 만드는 멤버들을 소개합니다.",
                 cta: "멤버 보러가기",
             },
+            product: {
+                title: "XGEN",
+                desc: "연구 성과를 제품으로 만든 Enterprise AI 플랫폼입니다. 기능과 도입 방식은 제품 사이트에서 확인하세요.",
+            },
             company: {
                 title: "Plateer",
                 desc: "Plateer AI Labs는 플래티어(Plateer)의 연구 조직입니다. 회사 소개를 확인하세요.",
@@ -492,6 +498,10 @@ const COPY: Record<Locale, AboutCopy> = {
                 title: "The people behind Plateer AI Labs",
                 desc: "The researchers and engineers turning Enterprise AI into something you can actually deploy.",
                 cta: "View members",
+            },
+            product: {
+                title: "XGEN",
+                desc: "The enterprise AI platform our research turns into. See what it does and how it is adopted on the product site.",
             },
             company: {
                 title: "Plateer",
@@ -802,7 +812,7 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                         {PRODUCTS.xgen.name}
                                     </h3>
                                     <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {PRODUCTS.xgen.tagline}
+                                        {en ? PRODUCTS.xgen.taglineEn : PRODUCTS.xgen.tagline}
                                     </p>
                                     <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                                         {t.stack.more}
@@ -837,7 +847,7 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                             {p.name}
                                         </h3>
                                         <p className="mt-2 flex-1 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {p.tagline}
+                                            {en ? p.taglineEn : p.tagline}
                                         </p>
                                         <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                                             {t.stack.more}
@@ -1036,25 +1046,31 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                                 {c.no}
                                             </span>
                                         </div>
-                                        <h4 className="mt-3 text-[15px] font-bold leading-snug text-[var(--color-ink)]">
+                                        {/*
+                                          제목과 설명의 높이를 고정한다. flex-1 로 두면
+                                          글자 수에 따라 설명이 늘어나 카드마다 이미지가
+                                          다른 줄에서 시작한다 — 세 장을 나란히 놓는
+                                          자리라 시작 위치가 어긋나면 크기까지 달라
+                                          보인다.
+                                        */}
+                                        <h4 className="mt-3 min-h-[44px] text-[15px] font-bold leading-snug text-[var(--color-ink)]">
                                             {en ? c.nameEn : c.name}
                                         </h4>
-                                        <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        <p className="mt-2.5 min-h-[84px] text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
                                             {en ? c.descEn : c.desc}
                                         </p>
 
                                         {/*
-                                          인증서 원본의 비율이 제각각이다(XGEN 441x625,
-                                          나머지 약 330x395). w-full 만 주면 카드마다
-                                          이미지 높이가 달라져 세 장이 어긋나 보인다.
-                                          같은 비율의 상자에 넣고 object-contain 으로
-                                          안쪽에 맞춰 세 장의 크기를 통일한다.
+                                          이미지는 760x900 공통 캔버스로 미리 맞춰뒀다
+                                          (여백 제거 후 문서 높이를 900 으로 통일).
+                                          그래서 여기서는 w-full 만 주면 세 장이 같은
+                                          크기로 놓인다.
                                         */}
                                         <img
                                             src={c.cert}
                                             alt={t.certs.certAlt}
                                             loading="lazy"
-                                            className="mt-4 aspect-[4/5] w-full rounded-lg border border-[var(--color-line)] bg-white object-contain p-2"
+                                            className="mt-4 w-full rounded-lg border border-[var(--color-line)] bg-white"
                                         />
 
                                         <dl className="mt-4 space-y-1 border-t border-[var(--color-line)] pt-3 text-[12px] text-[var(--color-ink-muted)]">
@@ -1101,7 +1117,8 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                 {/* 팀 + Company + CTA */}
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-24">
-                        <div className="grid gap-4 md:grid-cols-2">
+                        {/* 사람 → 제품 → 회사 순. 가운데 XGEN 카드가 연구소와 회사를 잇는다 */}
+                        <div className="grid gap-4 md:grid-cols-3">
                             <Link
                                 href={href("/members")}
                                 className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5]"
@@ -1120,6 +1137,33 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                     <ArrowRight className="h-3.5 w-3.5" />
                                 </span>
                             </Link>
+
+                            {/*
+                              제품 사이트는 우리 소유 도메인이라 referrer 를 남긴다
+                              (rel 에 noreferrer 를 넣지 않는다) — GA4 에서 유입이
+                              Direct 가 아니라 labs 레퍼럴로 잡히게 하려는 것이다.
+                              GNB 의 XGEN 제품보기 버튼과 같은 처리다.
+                            */}
+                            <a
+                                href="https://www.xgen.im/"
+                                target="_blank"
+                                rel="noopener"
+                                className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5]"
+                            >
+                                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                    <Layers className="h-5 w-5" />
+                                </span>
+                                <h3 className="mt-4 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {t.team.product.title}
+                                </h3>
+                                <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {t.team.product.desc}
+                                </p>
+                                <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                                    xgen.im
+                                    <ArrowUpRight className="h-3.5 w-3.5" />
+                                </span>
+                            </a>
 
                             <a
                                 href="https://www.plateer.com/"

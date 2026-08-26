@@ -48,6 +48,8 @@ export interface ProductMeta {
     name: string;
     /** 짧은 한 줄 성격. */
     tagline: string;
+    /** 영문 화면용 한 줄 성격 — 없으면 영문 페이지에 한국어가 섞인다. */
+    taglineEn: string;
     /** 제품 상세 경로. */
     href: string;
     /** 배지 강조색(HEX). */
@@ -124,6 +126,7 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
         key: "xgen",
         name: "XGEN",
         tagline: "맞춤 Agentic AI 플랫폼",
+        taglineEn: "A tailored agentic AI platform",
         href: "/product",
         accent: "#2f7bff",
     },
@@ -131,6 +134,7 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
         key: "polar",
         name: "Polar",
         tagline: "커머스 특화 Private sLLM",
+        taglineEn: "A private sLLM built for commerce",
         href: "/polar",
         accent: "#0f9d8f",
     },
@@ -138,6 +142,7 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
         key: "code-assistant",
         name: "Code Assistant",
         tagline: "AI 코드 어시스턴트",
+        taglineEn: "An AI coding assistant",
         href: "/code-assistant",
         accent: "#7c5cff",
     },
