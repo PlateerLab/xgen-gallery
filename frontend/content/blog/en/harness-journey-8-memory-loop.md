@@ -1,93 +1,144 @@
 ---
-title: "Scoping and prioritizing memory between runs (Part 8)"
-titleSeo: "Memory scope between runs (Part 8)"
-description: "Separating one run's working notes from the lessons worth keeping, and handling conflicts across session, workflow, user, and platform scopes."
+title: "Letting the nearest memory always win was wrong (Part 8)"
+titleSeo: "Constraints and preferences differ"
+cover: "/blog/harness-journey-8-memory-loop.svg"
+thumb: "/blog/harness-journey-8-memory-loop-thumb.svg"
+description: "A session request is more specific than a platform policy, so it seemed it should win. Left that way, a user could override policy."
 date: "2026-06-22"
-cover: /blog/harness-journey-8-memory-loop.svg
-thumb: /blog/harness-journey-8-memory-loop-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
 tags: ["Harness", "Memory", "State management"]
 draft: false
 ---
-> **Agent harness design · 8/10**
 
-Even with the model and execution settings controlled, the next run still started from nothing. User preferences confirmed in one session, cautions about using a tool, corrections that came up repeatedly in judgement — none of it carried into another conversation or workflow. Re-inserting the whole conversation every time raises cost, and stale judgements collide with the current request inside one context.
-
-That problem is why we first looked into agent memory on 12 June. At the time we surveyed working notes, long-term memory, compaction, and recall, but did not attach storage and lookup to the product execution path.
-
-Implementation began at the end of June. A storage structure that lets execution state be read back came first, and on 29 June we connected the engine's store and recall points to the product store. Over the next two days we split memory into four scopes — `session`, `workflow`, `user`, `platform` — and attached lookup, expiry, and deletion paths.
-
-Through all of this we did not define memory as "a feature that keeps a lot of past conversation." It was about keeping only the small state worth changing the next judgement, while deciding alongside it **how long, for whom, and at what priority it applies**.
-
-## We separated one run's working notes from the next run's memory
-
-Marking an important paragraph while reading a long document, or picking which of several tool results to revisit, also looks like memory. But there is no guarantee that search result is still valid for a different request next week. Observations needed to finish the current task and lessons worth keeping beyond the run have different lifetimes.
-
-`RecallSet` is a working note used only within one run. It gathers items the model has tagged with meanings like `keep`, `check`, or `discard`, reduces duplicates by content fingerprint, and prioritizes within a count cap. Rather than unfolding every body of text from the start, it shows a list and identifiers and lets only the needed items be reread. When the run ends, the set goes with it.
-
-Between-run memory uses a separate `MemoryStore`. When quality judgement rejects an answer, what is kept as a lesson candidate is the concrete validation feedback, not a generic error string. After a run completes normally, an auxiliary model reads the user input and final output and extracts candidates for the next run. The full conversation log is not stored as is — but neither is it a structure where each candidate passes its own quality judgement before being stored.
-
-```text
-Observations in the current run → RecallSet → discarded when the run ends
-Judgement feedback / completion result → memory candidate extraction → MemoryStore → selective recall in the next run
-```
-
-That boundary separates transient search results from between-run memory. But candidate extraction and approval to store must not be treated as the same thing. For high-blast-radius items such as a `platform` constraint, where a wrong entry does real damage, it is safer to require separate approval or a deterministic check path rather than promoting on automatic extraction alone.
-
-## Storage and recall sit on opposite sides of the run boundary
-
-Even having decided what to store, if it is unclear when the model reads it, the effect varies run to run. Injecting new memory mid-answer lets unverified content circulate as fact within the same run.
-
-Writing happens after the judgement result is settled. On a retry, lesson candidates are extracted from the validation feedback; on completion, items from the user input and final result that look valid for future runs are collected. Reading happens when a new run's input is being prepared: memory within the permitted scope is selected and inserted before the first model call.
-
-Putting the run boundary between storage and recall also made test conditions clear. No long-term memory may exist before judgement, and the selected memory must already be present in the next run's first call. We did not check only whether the storage API succeeded — we checked whether it reached the actual next judgement.
-
-We also separated the roles of execution-state storage and long-term memory. The former preserves the state and lesson flow needed to re-explain a run. `MemoryStore` looks up and manages items to keep long-term, fitted to the product's user and workflow scopes. The two are not treated as the same table; the product bridge connects execution state to the product lifecycle.
-
-## The same memory applied at different scopes
-
-The generic engine does not know the product's user and workflow model. The product bridge connects memory to four scopes.
-
-- `session`: a temporary choice agreed in this conversation
-- `workflow`: output conventions and lessons a particular flow has to keep repeating
-- `user`: personal preferences such as language and phrasing
-- `platform`: policies and organization-level constraints the whole service must keep
-
-Scope is not a tag for search filters. It decides who can read an item, when it expires, and how far cleanup has to reach when the original object is deleted. Session memory must not cross into another session, and once a workflow is deleted, memory at that scope must no longer be retrievable. The broader the scope the greater the blast radius and authority, so platform memory is not created lightly from automatic extraction.
-
-When the same `memory_key` exists at several scopes, we did not simply pick the most recent. The kind of content and its scope had to be read together.
-
-## Constraints and preferences took priority in opposite directions
-
-When platform policy and a session request conflict, unconditionally preferring the more specific session would let a user override policy. Conversely, always following platform scope first strips meaning from per-workflow formats and user preferences.
-
-So memory stores a kind — `constraint`, `preference`, `lesson`, `fact`, `decision` — alongside its scope. For constraints, the broader scope wins: a platform constraint is not released by a user or session choice. For preferences and lessons, the narrower scope closest to the current work wins, because session and workflow requirements are more specific than a general user preference.
-
-If a user generally prefers detailed answers but the workflow requires a three-line summary, this task applies the workflow preference. A platform constraint against printing personal data comes ahead of both. Rather than putting every conflicting sentence into the prompt and leaving the model to resolve it, the recall stage decides what applies first.
-
-## We capped what gets read this time, not how much is stored
-
-Even with scope and priority set, long-term memory that keeps growing grows the context again. Inserting everything that looks relevant is not much different from appending the whole conversation.
-
-The recall path caps per-item length and item count first, then applies a total budget at the end. After resolving `memory_key` conflicts, it selects items close to the current scope with high priority. When passing them to the model it marks the source and applicable scope, so a user preference can be told from a platform constraint. Memory that is not selected is not deleted; it is simply out of this context.
-
-If content exceeds the budget, the omitted amount is recorded. The current implementation can cut a string at the total character cap, which may break the meaning of the last item. Filling whole items in priority order and excluding an item entirely when it does not fit is the next improvement point.
-
-Write and read permissions are checked separately. Candidates matching common secret keywords and prompt-injection patterns are rejected, but there is no guarantee of automatically catching values arriving without labels, or newly added sensitive fields. Per-product policy and regression tests have to sit alongside.
-
-## We designed the creation path and the deletion path together
-
-Memory has to move with the lifecycle of what it belongs to. We implemented hooks that clean up workflow-scope memory and execution state when a workflow is deleted, and session scope when a session ends. Expired items are excluded from recall results even while they remain in the store. That deletion wiring was within a feature branch and local verification at the time, and should not be read as fully reflected in production.
-
-The deletion wiring is best-effort and does not block the underlying workflow deletion or session end. That has the advantage of not failing a user's actual work because of a transient fault in the memory store. In exchange, a cleanup failure leaves only a warning and items can persist, so operations need a re-cleanup path and visibility into what remains.
-
-What we verified at this point, in the engine and the feature path, was per-scope storage and recall, conflict resolution, expiry exclusion, and deletion hooks. Decay that automatically lowers confidence in older memory, and periodic merging of similar memories, are not yet part of the always-on execution path. That a related function exists, that it is wired to the product lifecycle, and that it is deployed to production are three different facts.
-
-The quality of memory is not decided by how much you store. It comes from separating the current run's observations from the next run's lessons, resolving conflicts by scope and kind, and controlling how much gets read and how it gets deleted. The next part turns from memory that persists over time back to the current run, and looks at how much of the connected tools and output destinations to show the model.
-
+**Attaching memory to the agent, the first rule we settled on was "the more specific wins". What was just agreed in this conversation is more specific than a general user preference, so follow that. We found out later that under this rule a user can also override platform policy. The work was not deciding how much to store but deciding what beats what.**
 
 ---
-**Previous →** [Controlling execution conditions before comparing models (Part 7)](/en/blog/harness-journey-7-qwen-vs-sonnet)
-**Next →** [Designing tool exposure and output delivery as execution context (Part 9)](/en/blog/harness-journey-9-context-design)
+
+## We started memory as a feature for keeping past conversations
+
+Even with the model and execution settings controlled, the next run still started from nothing. A user preference confirmed in one session, a caution about a tool, a correction the judge kept repeating, none of it carried to another conversation or workflow.
+
+The simplest fix is to put the whole conversation back into the next run.
+
+Two things caught. Cost growing was expected; what we did not expect was **old judgments colliding with the current request** in one context. A sentence from last week saying "keep it short this time" was still alive in this request.
+
+So we changed the definition. Memory is not a feature for keeping lots of past conversation. It is keeping a small state worth changing the next decision, while also deciding **how long, for whom, and at what priority it applies**.
+
+In late June we built the storage structure first and connected the engine's write and recall points to the product store. Then we split memory into four scopes and attached lookup, expiry, and deletion paths.
+
+## Notes needed now and knowledge still valid later had different lifetimes
+
+Marking an important paragraph while reading a long document, or picking which of several tool results to revisit, also looks like memory.
+
+But there is no guarantee that a search result is still valid for a different request next week. Observations needed to finish the current task and lessons worth carrying past the run have different lifetimes.
+
+Working notes used only within one run got their own place. The model tags items as keep, check, or discard; content fingerprints reduce duplicates; priority is decided within a count ceiling. Rather than unfolding all bodies up front, it shows a list and identifiers and re-reads only what is needed. **When the run ends, that set disappears.**
+
+Between-run memory uses a separate store. If quality judgment rejected an answer, the concrete validation feedback rather than a generic error string becomes a lesson candidate. After a normal completion, a helper model reads the input and final output and extracts candidates for the next run.
+
+```text
+observations of the current run   → working notes → discarded at run end
+judgment feedback · completion    → candidate extraction → long-term store → selective recall next run
+```
+
+One thing needs care here. **Extracting a candidate and approving a write are not the same act.** Items with wide blast radius are safer promoted through separate approval or a deterministic check rather than automatic extraction alone.
+
+## Injecting new memory mid-answer lets unvalidated content circulate
+
+Deciding what to store is not enough if when it is read stays vague; the effect then varies run to run.
+
+Early on we considered injecting new memory immediately during a run. That lets **unvalidated content circulate as fact** inside the same run: a summary the model just produced becomes evidence for that run.
+
+So writes and recalls sit on opposite sides of the run boundary.
+
+Writing happens after the judgment result is settled. On retry we extract lesson candidates from the validation feedback; on completion we tidy items from the input and final result that still look valid next time. Reading happens while preparing the next run's input.
+
+The boundary made test conditions clear too. No long-term memory may exist before judgment, and the next run's first call must already contain the selected memories. We checked **not whether the store API succeeded but whether it reached the next decision.**
+
+After attaching a feature it is easy to see "stored" in the log and call it done. Storage is an intermediate event; the thing to confirm is whether that storage changed the next action.
+
+## Scope was not a search filter but a lifecycle
+
+The general-purpose engine does not know the product's user and workflow model. So the integration layer connected memory to four scopes.
+
+```text
+session    a temporary choice agreed in this conversation
+workflow   output conventions and lessons a specific flow must repeat
+user       personal preferences like language and phrasing
+platform   policies and org-level limits the whole service must honour
+```
+
+At first we treated these as tags for search filtering. Filter by scope on lookup and you are done.
+
+But scope was deciding who may read, when it expires, and how far cleanup must reach when the original object is deleted. Session memory must not cross into another session; delete a workflow and memory in that scope must stop being retrievable.
+
+**Scope was not a tag but that memory's lifecycle.** Wider scope means more blast radius and more permission, so platform memory is not created lightly from automatic extraction alone.
+
+Deferring the permission model usually comes back at exactly this spot. The moment you decide where data lives you are already deciding who can read it.
+
+## Letting the nearest memory win meant users could override policy
+
+When the same key exists in several scopes, something has to pick.
+
+The first rule was simple: the scope nearest the current work wins. Session is more specific than workflow, workflow more specific than user preference.
+
+Apply that literally and when platform policy conflicts with a session request, session wins. **A user could lift an organisational policy with something said mid-conversation.**
+
+Conversely, always following the wider scope strips workflow-specific formats and personal preferences of meaning entirely.
+
+Neither direction resolved it, because priority is not determined by scope alone. So we stored a **kind** alongside scope.
+
+```text
+constraint    wider scope wins   platform constraints are not lifted by a session choice
+preference    narrower wins      the requirement nearest this work is more specific
+lesson        narrower wins
+fact/decision consider source and time together
+```
+
+If a user generally prefers detailed answers but the workflow demands a three-line summary, this task follows the workflow. A platform constraint against emitting personal data still precedes both.
+
+We do not put every conflicting sentence into the prompt and leave the model to resolve it. **The recall stage decides what applies first.**
+
+The same distinction from Part 4, keeping quality judgment and the policy gate on different thresholds, reappeared here. What must hold and what would be nice to accommodate do not sort by the same rule.
+
+## We capped what gets read this time, not what gets stored
+
+Even with scope and priority settled, long-term memory that keeps growing inflates context again. Including everything that looks relevant is not far from appending the whole conversation.
+
+The recall path caps per-item length and item count first, then applies a total budget last. After resolving same-key conflicts it picks items near the current scope with high priority. When handing them to the model it labels source and scope so user preference and platform constraint stay distinguishable.
+
+Memories not selected are not deleted; they simply sit out this context.
+
+One thing here still needs fixing. The current implementation can cut a string at the total character ceiling, which can break the meaning of the last item. Filling whole items by priority and excluding what does not fit outright is the next improvement.
+
+Write permission and read permission are checked separately. Candidates matching common secret keywords and prompt-injection patterns are rejected, but values arriving without labels, or newly added sensitive fields, are not caught automatically. Product-specific policy and regression tests have to sit alongside.
+
+## Attaching deletion hooks did not guarantee cleanup
+
+Memory has to move with the lifecycle of its original. We attached hooks so that deleting a workflow cleans that scope's memory and execution state, and ending a session cleans session scope. Expired items may remain in the store but are excluded from recall results.
+
+The deletion link is best-effort and does not block the workflow deletion or session end itself. That has the advantage that a brief store outage does not fail the user's actual work.
+
+There is a price. **A cleanup failure remains only as a warning and items can survive.** In production you have to watch the re-cleanup path and the residue scope alongside.
+
+That deletion link was also within a feature branch and local verification scope at the time, and should not be read as reflected across production. Automatic decay for old memories and periodic merging of similar ones are not yet on the always-on execution path.
+
+**A function existing, being wired to the product lifecycle, and being deployed to production are three different facts.** Memory features blur those three especially easily, because a state where writes work and deletes do not goes unnoticed for a long time.
+
+## Memory quality was not what we kept but what beats what
+
+The time in this part did not go into deciding what to store.
+
+It went into separating current-run observations from next-run lessons, accepting that scope is a lifecycle, discovering that constraints and preferences resolve in opposite directions, and controlling how much gets read and how it gets deleted.
+
+**Attaching memory was not choosing a store but writing a conflict-resolution rule.** Storage takes a day; what beats what, if left undecided, is decided differently on every run.
+
+The next part turns from the time axis back to the current run. It is about how far to expose connected tools and output destinations to the model, and there too, "visible" and "callable" turned out not to be the same word.
+
+---
+
+**Previous →** [The 30x gap wasn't the model (Part 7)](/en/blog/harness-journey-7-qwen-vs-sonnet)
+
+**Next →** [The tools were listed but couldn't be called (Part 9)](/en/blog/harness-journey-9-context-design)
