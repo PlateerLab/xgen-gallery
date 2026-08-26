@@ -1,87 +1,159 @@
 ---
-title: "Why generation and judgement became separate execution stages (Part 4)"
-titleSeo: "Splitting generate and judge (Part 4)"
-description: "Rebuilding Company L's QA on the harness: separating generation logic from business judgement, and feeding per-criterion feedback back into the next run."
+title: "The model that wrote the answer was also grading it (Part 4)"
+titleSeo: "Separating answering from accepting"
+cover: "/blog/harness-journey-4-canvas-node-judge.svg"
+thumb: "/blog/harness-journey-4-canvas-node-judge-thumb.svg"
+description: "When one model writes an answer and then judges it, generation method and pass criteria share a context. Splitting doing the work from accepting it."
 date: "2026-05-17"
-cover: /blog/harness-journey-4-canvas-node-judge.svg
-thumb: /blog/harness-journey-4-canvas-node-judge-thumb.svg
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
-tags: ["Harness", "Quality judgement", "Reflexion"]
+tags: ["Harness", "Quality judgment", "Reflexion"]
 draft: false
 ---
-> **Agent harness design · 4/10**
 
-Having made a compiled workflow callable from outside, we looked again at Company L's product-review QA as a real application. The existing QA was split into several sub-flows reviewing product information and supporting documents, with values passed between stages through a shared store. The core judgement method, the prohibited conditions, and the result format all sat together inside long system prompts, stage by stage.
-
-We rebuilt that on the harness not to reduce the node count. When the same model reads the material, produces a result, and then immediately judges whether its own result followed the business rules, the generation method and the pass criteria end up in one context. Mandatory judgement items come to depend on a sentence saying "check yourself again." And it is hard to trace which rule caused a re-run.
-
-So we left the domain extraction method and the OCR and file tools on the generation path, and moved the judgement criteria that must be met, along with the output schema, into the harness's judgement stage and policy checks. We did not throw away the existing QA knowledge and build a new agent; we **separated the responsibility of doing the work from the responsibility of accepting the result**.
-
-Design started on 29 May and was applied to the canvas `agents/harness` node execution path in early June. There is no separate generation node and judgement node on screen — inside one harness node, generation and judgement are split into distinct states. The generation stage produces an answer candidate; the judgement stage returns whether to accept it, plus correction information. Then we connected multi-criterion evaluation and Reflexion retry, which feeds judgement feedback back into the next generation input.
-
-The point was not "telling the model to think once more." Generation and judgement had to use different states, and the state machine had to be able to turn a judgement result into a next action.
-
-## We separated the judge's input from the generation conversation
-
-Showing the generative model its whole conversation and asking "check whether this is well written" is simple to implement. But tool calls, intermediate reasoning, and previous candidates end up in one context. It is unclear which candidate a judgement applies to, and changing the judge model means knowing the generation conversation format too.
-
-An independent judge narrows its input. It receives the user's current request, the answer candidate being evaluated this time, and the evaluation criteria. Where needed, the tool results used as evidence are passed in a separate field, but the generation stage's full internal state is not handed over.
-
-Output is structured rather than free-form critique. It returns a score and reason per criterion, an overall score, short feedback, and a `pass` or `retry` decision. The state machine reads that to decide whether to complete or to return to generation carrying the feedback.
-
-```text
-Generator → answer candidate
-              ↓
-     Independent judge → per-criterion scores and feedback
-              ↓
-       State machine → complete or retry
-```
-
-In this structure a judgement result is not a grade sheet. It is the input to the next transition. Instead of a vague "write it better," the generative model receives which criterion it failed and why, and produces a new candidate.
-
-## We did not flatten several criteria into one score
-
-What counts as a good answer differs by task. A summarization agent and a code-generation agent have no reason to weigh relevance, completeness, format compliance, and groundedness equally. With a single score you cannot tell why it was low, and it is vague what the next candidate should fix.
-
-So each criterion has a name, a description, a weight, and a required flag. Continuous scores are used to compare degrees of improvement, while required criteria mark conditions that other strengths cannot offset in the LLM score calculation. If a mandatory field is missing, a fluent sentence does not get it through. That said, a required criterion is still a model judgement, so it does not substitute for security or deterministic format guarantees.
-
-On the canvas, judgement criteria are configured as node settings; in a standalone artifact, the same criteria are part of the compile specification. If criteria created on the product screen disappear in standalone execution, it cannot be called the same agent. The judge model, criteria version, and pass threshold are recorded with the run too, so we can tell when the meaning of a score changed.
-
-## We put quality and policy behind different thresholds
-
-Once there is a judge, it is tempting to make everything an evaluation item, including personal data and cost limits. But an LLM judgement is useful for comparing degree; it does not guarantee a constraint that must be met. When a judge's response wavers, the security policy must not waver with it.
-
-Items about **how well something was satisfied** — relevance, completeness, groundedness, clarity — belong to the quality judge. Conditions where **a violation means the run cannot proceed** — personal data, prohibited tools, user approval, token and cost limits — belong to the policy gate. Conditions that code can settle definitively, such as whether a JSON field exists, are rule-based checks.
-
-If policy blocks, execution stops however high the quality score is. Conversely, passing policy does not mean the answer is good. That distinction leaves "safe but insufficient" and "good content but not executable" as different states with different termination reasons.
-
-## We separated the judge model without hiding its cost
-
-Reusing the generative model as the judge is easy to wire and cheaper. But it can be lenient toward its own preferred phrasing, and it may share the generation process's blind spots in evaluation. A separate provider or a stronger model raises independence at the cost of latency and spend.
-
-The harness did not fix one approach as correct. Determinable items are checked by a rule-based `EvaluationStrategy`, and natural-language quality can be wired to a separate `judge_provider` and `judge_model`. Where cost matters the main model can be reused, but the settings and logs record that the result is not an independent evaluation.
-
-Change the judge model and the same 0.8 is no longer the same scale. So when comparing generative models we hold the judge fixed, and when changing the judge we re-check that the ordering of existing reference answers holds. What mattered was not the score number but whether a good answer is consistently rated above an obviously deficient one.
-
-## Reflexion was input to the next round, not a critique
-
-Produce a judgement result and leave it in the log and nothing about the run changes. The Reflexion path turns per-criterion shortfalls into short correction instructions and returns them to the generation stage. It does not replace the original user request; it is added as what to fix in this candidate.
-
-A retry is not transport recovery re-calling the same answer. It is a new generation round carrying judgement feedback. So we recorded quality-retry counts separately from rounds that progressed using tools. And we kept the roles intact: the judge does not produce answers, and the generator does not decide its own pass.
-
-The engine's default judgement path does not invent a score when it cannot call the judge provider or cannot parse the response — it returns a `bypassed` state and a reason. A product where quality verification is mandatory can block that state by policy. That said, some existing QA adapters retained a path where a judgement exception falls through to a default pass, for compatibility. So `bypassed` cannot be said to guarantee failure automatically in every product integration; the product bridge's failure policy has to be checked alongside.
-
-## We confirmed the same judgement on canvas and standalone
-
-Verification did not check for an identical decimal score on a given answer, because LLM judgement varies. Instead we checked that an answer sufficiently meeting the criteria scores above one clearly violating them, that an answer breaking a required condition does not pass, and that the next candidate after rejection feedback actually changes the deficient item.
-
-We also ran the same criteria on a canvas node and a standalone artifact and checked that result structures and transitions match. When a strategy cannot be found or a criterion definition is missing, it must not quietly fall back to a default judgement. Going through that verification made judgement criteria part of the execution contract rather than a screen setting.
-
-Splitting generation and judgement does not make answers automatically perfect. What changed is that we can explain which candidate was rejected on which criterion, and how that feedback entered the next generation. Afterwards a freshness problem — "exactly which candidate does this score belong to?" — surfaced as a separate task, covered in Part 10. The next part first distinguishes tool progress, transport recovery, and quality retry, and looks at where to end a run.
-
+**The agent kept dropping rules, so we appended "check your work again" to the end of the prompt. The check mostly passed, and rules were still dropped. The model that wrote the answer was also grading it. This is about splitting the responsibility for doing the work from the responsibility for accepting the result, and about what is still not guaranteed after the split.**
 
 ---
-**Previous →** [Exporting a fixed execution contract as a single MCP tool (Part 3)](/en/blog/harness-journey-3-compile-wheel-mcp)
-**Next →** [Why retry and termination conditions are separate (Part 5)](/en/blog/harness-journey-5-retry-termination)
+
+## We were leaving mandatory items to a sentence saying "check again"
+
+After making compiled workflows callable from outside, we looked again at the multi-stage business review flow already in use.
+
+It was divided into several sub-stages, and each stage's judgment method, prohibitions, and output format all sat inside one long system prompt.
+
+The same model reads the material, produces a result, and immediately judges whether that result followed the rules. The implementation is simple.
+
+The problem was that both jobs live in one context. **Generation method and pass criteria compete inside the same text.** Even items that must never be dropped hang on a single instruction to check your own work.
+
+When something was dropped we could not tell which rule caused the rerun either. The model said "checked" and moved on.
+
+What we re-examined here was not prompt structure but **who decides acceptance**. The same problem from Part 1, where we stopped letting the model decide whether output passed, had returned one layer up at business rules.
+
+So in late May we started the design and in early June applied it to the canvas harness node's execution path. Business data extraction and document tools stayed on the generation path; the judgment criteria that must hold and the output schema moved to a judgment stage and policy checks.
+
+We did not put two nodes on the screen. Inside one harness node, generation and judgment became **separate states**.
+
+## Showing the judge the whole conversation made it impossible to tell what was graded
+
+The first judgment path passed the entire generation conversation to the judge. More context seemed like better judgment.
+
+Inside it were tool calls, intermediate reasoning, and previously rejected candidates all mixed together. Getting a judgment back did not tell us **which candidate the score belonged to**.
+
+Trying to swap the judge model made it worse. A new judge had to understand the format of the generation conversation. Swapping the judge became a change to the generation stage.
+
+So we narrowed the input. Only the user's current request, the candidate being evaluated, and the criteria. If tool results used as grounding are needed they go in a separate field, but the generation stage's internal state does not travel wholesale.
+
+Output got a shape too, instead of free-form critique: per-criterion score and reason, an overall score, short feedback, and a pass-or-retry decision.
+
+```text
+generator → answer candidate
+             ↓
+        independent judge → per-criterion scores · feedback
+             ↓
+        state machine → complete or retry
+```
+
+Narrowing the input turned the judgment result from a report card into **the input to the next transition**. Instead of "write it better", the generator receives which criterion it missed and why, and builds a new candidate.
+
+Giving an evaluator lots of context looks generous, but the wider the context the blurrier the question of what exactly is being evaluated. If you cannot write down the object of evaluation in one sentence, that score cannot be interpreted later.
+
+## One score did not tell the next candidate what to fix
+
+The early judge returned a single overall score. Above the threshold, pass; below, retry.
+
+With retry enabled, the next candidate did not improve. The number 0.62 says nothing about what was lacking, and the generator receiving that number back could not tell what to change.
+
+**"The score is low" and "here is what to fix" were different pieces of information.**
+
+So each criterion got a name, a description, a weight, and a required flag. Partly because good answers differ by task: a summarisation agent and a code generation agent have no reason to weigh relevance, completeness, format compliance, and grounding the same way.
+
+Criteria created on the canvas were also included in the compiled specification for standalone artifacts. Criteria defined on a product screen that vanish in standalone execution mean it cannot be called the same agent. Judge model, criteria version, and pass threshold went into the execution record so we could tell when the meaning of a score changed.
+
+## We thought marking a criterion required guaranteed it, and it was still a model judgment
+
+Adding a required flag felt like creating items that could not be dropped. If a mandatory field is missing, no amount of fluent prose gets it through.
+
+The entity making that required determination was still the model.
+
+A required criterion is only a rule that other strengths cannot offset it; **judging whether that criterion was met remains a judgment that can wobble**. Naming it required did not create a guarantee.
+
+So we split thresholds into two kinds.
+
+```text
+quality judge   how well was it met       relevance · completeness · grounding · clarity
+                → LLM judgment. used to compare degree
+
+policy gate     violating it blocks the run  personal data · forbidden tools · approval · cost limits
+                → decided in code. does not wobble when the judge's response does
+```
+
+Conditions decidable in code, like whether a JSON field exists, moved to rule-based checks.
+
+If policy blocks, execution stops no matter how high the quality score. Conversely, passing policy does not mean the answer is good. That distinction leaves "safe but insufficient" and "good content but unrunnable" as different states with different termination reasons.
+
+This boundary collapses most often in organisations adopting LLM judges. Once the judge starts working well, you want to put personal data and cost limits in there too. **Your security policy must not wobble on the day the judge's responses do.** What must hold and what would be nice to have need different machinery.
+
+## Separating the judge model raised independence and cost together
+
+Reusing the generation model as the judge is easy to wire and cheap. It can also be generous toward its own preferred phrasing and shares the weaknesses it had while generating.
+
+Attaching a separate provider or stronger model raises independence and raises latency and cost.
+
+We did not fix either as the answer. Decidable items are checked by rule-based strategies; natural-language quality can be routed to a separate judge provider and model.
+
+When cost pushes toward reusing the main model, **we record in settings and logs that the result is not an independent evaluation.** The same score has to remain interpretable later in terms of how it was produced.
+
+Change the judge model and the same 0.8 is no longer the same scale. So when comparing generation models we fix the judge, and when changing judges we re-check that the ordering of existing reference answers holds.
+
+More than the absolute score, **whether good answers consistently rank above clearly deficient ones** turned out to be the criterion that was actually useful.
+
+## Writing a critique and changing the next turn were different jobs
+
+Produce a judgment and leave it in the log and nothing about execution changes. Early on that is what happened. Judgment records accumulated and results stayed the same.
+
+The correction path turns per-criterion shortfalls into short instructions and sends them back to the generation stage. It does not replace the original user request; it attaches what to fix in this candidate.
+
+Part 1's distinction was needed again here. This retry is not a transport recovery resending the same request but **a new generation turn carrying judgment feedback**. So quality retry counts and turns that progressed via tools are recorded separately.
+
+Roles held too. The judge does not write answers, and the generator does not decide its own pass.
+
+## We did not quietly pass runs where judgment failed
+
+Sometimes the judge provider cannot be reached or the response cannot be parsed.
+
+Fabricating a score there keeps execution moving, but that score means nothing. Looking at the record later, it is indistinguishable from a real judgment.
+
+So the engine produces no score in that case and returns a state saying judgment was skipped, with a reason. A product that requires quality validation can block that state by policy.
+
+There is a boundary here. The engine returning that state and the product integration layer actually blocking on it are different things. Failure policy can differ per integration layer, so **we did not claim the whole integration is safe based on the engine state alone, and each integration's policy had to be checked separately.**
+
+Designs that pass by default on failure are usually quiet. As quiet as they are, they go undiscovered for a long time.
+
+## Verification looked at ordering, not scores
+
+We did not check whether a given answer produces exactly the same decimal score. LLM judgment varies.
+
+We looked at three things instead: does an answer that satisfies the criteria score above one that clearly violates them, does an answer breaking a required condition fail to pass, and does the next candidate after rejection feedback actually change the item it was faulted on.
+
+We also ran the same criteria on a canvas node and a standalone artifact and confirmed the result structure and transitions matched. When a strategy is missing or a criterion definition is absent, it must not silently fall back to default judgment.
+
+Through that verification the judgment criteria became **part of the execution contract** rather than a screen setting.
+
+## Splitting them did not make the answers better
+
+Did answers noticeably improve after separating generation and judgment? No.
+
+What changed is elsewhere. We can now say which candidate was rejected on which criterion, and how that feedback entered the next generation. For answers that passed, we can say what we looked at in order to pass them.
+
+So what we gained was not quality but **a language for talking about quality**. Raising quality only became possible once that language existed.
+
+And the split created a new problem. Which candidate exactly a score belongs to, and whether a previous turn's judgment lingers across turn boundaries. That freshness problem is covered in Part 10.
+
+The next part looks at the problem sitting in front of it: distinguishing progressing via tools, resending after a transport error, and rewriting after a quality miss, and deciding where a run ends.
+
+---
+
+**Previous →** [It installed, but we couldn't call it the same run (Part 3)](/en/blog/harness-journey-3-compile-wheel-mcp)
+
+**Next →** [The submit tool fired and the run kept going (Part 5)](/en/blog/harness-journey-5-retry-termination)
