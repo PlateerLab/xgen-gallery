@@ -193,10 +193,10 @@ export function AboutHeroVisual({ className }: { className?: string }) {
                 fontFamily={FONT}
                 fontSize="21"
                 fontWeight="800"
-                letterSpacing="2.5"
+                letterSpacing="1.5"
                 fill="#7dd3fc"
             >
-                LABS
+                AI Labs
             </text>
 
             {/* 다섯 단계 카드 — 아이콘 · 제목 · 설명 */}

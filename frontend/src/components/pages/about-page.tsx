@@ -251,7 +251,7 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         deliver: {
             title: "어디에 적용하는가",
-            lead: "금융과 공공, 커머스, IT·제조 현장에 적용했습니다. 산업마다 데이터와 규제가 달라 적용 방식도 달라집니다.",
+            lead: "금융과 공공, 커머스, IT·제조 현장에 적용했습니다. 산업마다 데이터와 규제가 달라 적용 방식도 달라집니다.",
         },
         patents: {
             title: "특허로 축적한 기술",
@@ -435,7 +435,7 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         deliver: {
             title: "Where we deliver",
-            lead: "Applied in finance, the public sector, commerce, and IT and manufacturing. Data and regulation differ by industry, so the approach does too.",
+            lead: "Applied in finance, the public sector, commerce, and IT and manufacturing. Data and regulation differ by industry, so the approach does too.",
         },
         patents: {
             title: "Technology built up through patents",
@@ -1043,11 +1043,18 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                             {en ? c.descEn : c.desc}
                                         </p>
 
+                                        {/*
+                                          인증서 원본의 비율이 제각각이다(XGEN 441x625,
+                                          나머지 약 330x395). w-full 만 주면 카드마다
+                                          이미지 높이가 달라져 세 장이 어긋나 보인다.
+                                          같은 비율의 상자에 넣고 object-contain 으로
+                                          안쪽에 맞춰 세 장의 크기를 통일한다.
+                                        */}
                                         <img
                                             src={c.cert}
                                             alt={t.certs.certAlt}
                                             loading="lazy"
-                                            className="mt-4 w-full rounded-lg border border-[var(--color-line)] bg-white"
+                                            className="mt-4 aspect-[4/5] w-full rounded-lg border border-[var(--color-line)] bg-white object-contain p-2"
                                         />
 
                                         <dl className="mt-4 space-y-1 border-t border-[var(--color-line)] pt-3 text-[12px] text-[var(--color-ink-muted)]">
