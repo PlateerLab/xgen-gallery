@@ -1,9 +1,9 @@
 ---
-title: "Why we took the questions out of the ontology build (Part 1)"
-titleSeo: "Questions out of the build (Part 1)"
+title: "The questions were deciding the scope of the answers (Part 1)"
+titleSeo: "Taking questions out of the build"
 cover: "/blog/ontology-journey-1-cq-to-document.svg"
 thumb: "/blog/ontology-journey-1-cq-to-document-thumb.svg"
-description: "Questions stay in evaluation, and the source documents decide what knowledge gets discovered. Redividing responsibility in the build pipeline."
+description: "With only shipping and returns questions, the exception approval process in the source never entered the graph. Moving questions to evaluation."
 date: "2026-04-24"
 author: "김진수"
 authorGithub: "jinsoo96"
@@ -11,66 +11,124 @@ category: "Tech Note"
 tags: ["Ontology", "Knowledge graph", "Data modelling"]
 draft: false
 ---
-> **Knowledge graph design · 1/10**
 
-The early ontology build took competency questions as required input. By ontology here I mean a knowledge structure that expresses both the classes, properties, and relationships of business concepts and the actual instances of them. You decide on a question first — "what are the conditions for free shipping?" — and then look for the concepts and relationships needed to answer it. While the question list covered the business scope well enough, the results looked well aligned with the goal.
-
-As documents piled up, the question list started deciding not just the evaluation criteria but the discovery scope of knowledge itself. With only questions about shipping and returns, seller liability, refund responsibility, and exception approval procedures written in the source could fall out of the graph. Switching to auto-generated questions did not change the limit. Anything missed at the question-generation stage could not be recovered downstream.
-
-At the end of March we rebuilt the build pipeline and moved the responsibility. The source documents decide the discovery scope of classes, instances, relationships, and properties; the questions are used to evaluate whether the finished graph meets the actual requirements. Classes and instances are linked to the source through `sourceChunk`, and the chunk a relationship was extracted from is currently merged into the source list of the subject node. Knowledge not covered by any question is still stored, but with a way back to the relevant source later.
-
-## Questions are requirements; source documents are the boundary of discovery
-
-Question-driven builds mixed two roles together.
-
-- Deciding what knowledge to look for
-- Confirming whether the graph that was built is useful
-
-Give questions the first role too and it becomes hard to discover what you do not yet know. For the second role, questions are exactly right — they let you check whether the concepts and relationships a particular question needs are in the graph, and whether search actually used that structure.
-
-We moved the build input to the source documents and left the questions on the evaluation side. That split keeps the problems the graph has to answer while no longer limiting the knowledge that goes into the graph to a question list written in advance.
-
-## We merged staged extraction into a single document interpretation
-
-Once questions were out of the build, the reason to run concept extraction, named-entity recognition, relationship extraction, and data-property extraction as separate steps also shrank. With the stages separated, a later stage could not refer to a concept an earlier stage had missed, and the cost of reading the same sentence several times was high.
-
-We merged the extraction responsibility so that reading one document chunk produces all of this together.
-
-```text
-Document chunk
-  ├─ Classes and their hierarchy
-  ├─ Instances
-  ├─ Relationships between instances
-  └─ Data properties
-```
-
-In this structure, which concept and which entity a relationship connects can be settled inside a single response. The graph builder converts the extraction result into RDF (a graph format expressed as subject, predicate, object), and the same concept arriving from different chunks is merged in post-processing. Questions are no longer required input to this flow.
-
-## We stored provenance as part of the graph
-
-Going document-first adds one more responsibility. It has to be possible to go back from each fact in the graph to the source it came from.
-
-We attached `sourceChunk` to classes and instances. The chunk a relationship was extracted from is currently linked to the subject node of that relationship, not to the relationship triple itself. The retriever can use a node's source identifier to pull the relevant source chunk back. The graph provides the connective structure; the source provides the material for confirming an answer.
-
-```text
-Concept / relationship subject in the graph
-        ↓ sourceChunk
-Source chunk
-        ↓
-Answer and citation
-```
-
-When duplicate concepts are merged, their source lists are merged too. Unifying only the URI and keeping the source from whichever chunk was processed first shrinks the range of source material available for verification, even when the search result is right.
-
-This model can take you back to the source a node appeared in, but it cannot distinguish which chunk directly supports which predicate. Evidence at relationship granularity needs a separate provenance model — RDF-star, reification, or named graphs — that attaches provenance to the triple itself.
-
-## We separated build success from question success
-
-In the new pipeline, question correctness and build completion state are separate. Input, extraction, schema, RDF, and provenance are observable per stage, and question correctness is evaluated separately against the same graph. A `completed` state does not currently mean every provenance and quality check passed, so it has to be read together with the warnings and the quality report.
-
-The separation also sharpens failure diagnosis. If the relationship an answer needs is not in the graph, that is a build problem. If the relationship exists but was not retrieved, that is a search problem. If the evidence was retrieved but dropped from the answer, that is a synthesis problem. Three layers no longer get blended into one accuracy figure.
-
-Document-first building widened the discovery scope. But one lookup across the graph and the source does not let you follow a chain of relationships. The next part covers extending a single-shot search into a multi-turn search that explores while choosing tools.
+**The early ontology build took competency questions as required input, things like "what are the free shipping conditions". You fix the questions first, then find the concepts and relations needed to answer them. As documents grew, that question list was deciding not just the evaluation criteria but what would be discovered at all. Auto-generating the questions changed nothing. This is about finding two roles bundled inside one input, and pulling one of them out.**
 
 ---
-**Next →** [Why multi-turn GraphRAG was needed, and where it fell short](/en/blog/ontology-journey-2-react-graph)
+
+## While the questions were good, the results looked good too
+
+An ontology is a knowledge structure expressing the classes, properties, and relations of business concepts together with actual instances.
+
+The early build took competency questions as required input. Decide the questions to answer first, then find the concepts and relations that answer them in the source.
+
+While the question list covered the business scope well, results matched the goal. You get a graph that answers what you asked.
+
+It started slipping as documents grew. With only shipping and returns questions, the seller liability, refund responsibility, and exception approval process written in the same source never entered the graph.
+
+**The question list was deciding not just the evaluation criteria but the scope of discovery.**
+
+## Auto-generating the questions left the bottleneck in the same place
+
+Our first move was to stop making humans write the questions. Read the documents, generate questions automatically, and the list gets broader.
+
+It did get broader. The limit stayed.
+
+**What the question generation stage misses cannot be recovered downstream.** Whoever writes the questions, as long as that list is the pipeline's first gate, a concept that fails the gate never reappears.
+
+What we had automated was the labour of writing questions; the bottleneck was in the structure where questions decide the scope of discovery.
+
+At that point we looked again at questions as an input. Question-driven builds had two roles bundled together.
+
+```text
+role 1   decide what knowledge to look for   → you cannot find what you don't yet know
+role 2   check whether the built graph is useful → questions are good at this
+```
+
+Leave the first role to questions and you cannot discover the unknown. The second role suits them well: you can check whether the concepts and relations a question needs exist in the graph, and whether retrieval actually used that structure.
+
+At the end of March we rebuilt the pipeline and swapped the responsibilities. Build input moved to the source documents; questions stayed on the evaluation side.
+
+That split kept the problems the graph must answer while no longer limiting the knowledge that enters it to a pre-written list.
+
+Before automating something, there is a question worth asking. Is what you are automating the bottleneck, or the labour sitting in front of it? The two are usually adjacent, and without separating them you reduce only the labour and meet the same wall again.
+
+## We had split the stages, and later stages could not see earlier mistakes
+
+Taking questions out of the build surfaced something else.
+
+Extraction at the time ran concept extraction, named entity recognition, relation extraction, and data property extraction as separate stages. Splitting stages seemed to make each easier to improve.
+
+In practice a later stage could not reference a concept an earlier stage had missed. Something dropped in concept extraction cannot be connected in relation extraction. Reading the same sentence several times was expensive too.
+
+**The same structure as the question gate existed between the stages.** What the front misses, the back cannot recover.
+
+So we merged extraction responsibility to produce these results together while reading one document chunk.
+
+```text
+document chunk
+  ├─ classes and hierarchy
+  ├─ instances
+  ├─ relations between instances
+  └─ data properties
+```
+
+In this structure a relation's subject and object concepts can be reconciled within one response. The graph builder converts the extraction into RDF, the triple format of subject, predicate, and object, and the same concept from different chunks is merged in post-processing.
+
+Slicing a pipeline finely is not always good. If information can fall out at a boundary you created, that boundary is not a unit of improvement but a point of loss.
+
+## We attached provenance and still could not say which chunk supports which relation
+
+Going document-first adds a responsibility. Every fact in the graph has to lead back to the source it came from.
+
+We connected source chunks to classes and instances. The retriever can pull the related source chunk back using the node's source identifier.
+
+```text
+graph concept · relation subject
+        ↓ sourceChunk
+source chunk
+        ↓
+answer and citation
+```
+
+When merging duplicate concepts we merge the source lists too. Collapse the identifiers and keep only the first-processed chunk's provenance and the retrieval result is still right while the range of source you can check has shrunk.
+
+Here we had to re-examine what we had been calling evidence tracing.
+
+The chunk a relation was extracted from is connected to **the subject node of that relation, not to the relation triple itself.** So what this model supports is returning to the source where a node appeared, and **it cannot tell which chunk directly supports which predicate.**
+
+Relation-level grounding requires a separate provenance model such as RDF-star, reification, or named graphs. This limit reappears in the same shape in Part 7 when we cover on-screen evidence highlighting.
+
+Between "we attached provenance" and "we can trace evidence" there is often a gap like this. Writing down in one sentence what you can return from and to makes the gap visible.
+
+## We stopped reading build success and answer success as one number
+
+The new pipeline separated question correctness from build completion state.
+
+Input, extraction, schema, RDF, and provenance became per-stage observation targets, and question correctness is evaluated separately against the same graph. A completed state does not mean every provenance and quality check passed, so warnings and the quality report have to be read alongside.
+
+The split sharpened failure causes too.
+
+```text
+the relation the answer needs isn't in the graph   → build problem
+the relation is there but wasn't retrieved         → retrieval problem
+evidence was retrieved and dropped from the answer → synthesis problem
+```
+
+You no longer have to blend three layers into one accuracy figure. If a number does not contain where to look when it drops, you cannot plan the next piece of work from it.
+
+## We did not remove questions; we split the two jobs questions were doing
+
+Summarising this part as "we removed competency questions" is only half right.
+
+The questions are still there. Their seat changed. What was an input to the build became the criterion for evaluation.
+
+**What changed was not whether questions exist but what we let them decide.** The source decides what to look for; questions decide whether it is useful.
+
+Stated without overreach, what this change confirmed is that concepts outside the question list can now be candidates for extraction. Whether that actually produces better answers needed separate evaluation, and that evaluation became the subject of Part 4.
+
+One limit remains. A single lookup across the graph and the source does not let you follow relations several steps out. The next part covers widening a one-shot retrieval into multi-turn search where the model picks tools as it explores, and what that cost us.
+
+---
+
+**Next →** [What we truncated to save context was the evidence (Part 2)](/en/blog/ontology-journey-2-react-graph)
