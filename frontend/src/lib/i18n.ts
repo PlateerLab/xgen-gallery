@@ -269,7 +269,7 @@ export const dict: Record<Locale, Dict> = {
             about: "Company",
             blurb: "Plateer AI Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
             members: "AI Lab Members",
-            newsletter: "뉴스레터 구독",
+            newsletter: "랩 뉴스레터 구독",
             contribute: "블로그 기고",
             aiPolicy: "AI 품질 방침",
             ctaEyebrow: "Research. Technology. Impact.",
