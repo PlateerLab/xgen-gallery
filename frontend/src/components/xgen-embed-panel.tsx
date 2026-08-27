@@ -81,7 +81,7 @@ export function XgenEmbedPanel({
                     <span className="mt-1.5 hidden max-w-sm text-[13px] leading-relaxed text-[var(--color-ink-muted)] sm:mt-2 sm:block sm:text-[14.5px]">
                         {copy.overlayLead}
                     </span>
-                    <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/15 bg-white/70 px-5 py-2.5 text-[13.5px] font-semibold text-[var(--color-ink)] backdrop-blur-sm transition group-hover:border-[#2461d8]/40 group-hover:text-[#2461d8] transition group-hover:gap-3 group-hover:brightness-110 sm:mt-6 sm:px-6 sm:py-3 sm:text-[14.5px]">
+                    <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/15 bg-white/70 px-5 py-2.5 text-[13.5px] font-semibold text-[var(--color-ink)] backdrop-blur-sm transition group-hover:gap-3 group-hover:border-[#2461d8]/40 group-hover:text-[#2461d8] sm:mt-6 sm:px-6 sm:py-3 sm:text-[14.5px]">
                         {copy.overlayCta}
                         <ArrowUpRight className="h-4 w-4" />
                     </span>

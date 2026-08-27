@@ -66,9 +66,9 @@ const COPY: Record<Locale, TrialCopy> = {
             "15일간 XGEN 무료 Trial 시작",
         ],
         heroEyebrow: "XGEN · 무료 체험",
-        heroTitle: "아이디어를 나만의 AI Agent로 만들어보세요",
+        heroTitle: "기업 업무를 AI Agent로 전환해 보세요",
         heroLead:
-            "데이터 연결부터 맞춤형 AI Agent 구현, 실제 운영까지 — 15일 무료 데모 환경에서 직접 경험할 수 있습니다.",
+            "보안과 거버넌스를 갖춘 Enterprise AI 플랫폼을 직접 경험해 보세요.",
         ctaApply: "15일 무료 체험 신청하기",
         ctaConsult: "도입·PoC 상담",
         heroChips: ["15일 완전 무료", "설치 없이 웹에서", "노코드로 바로 시작"],
@@ -98,9 +98,9 @@ const COPY: Record<Locale, TrialCopy> = {
             "Start your 15-day XGEN trial",
         ],
         heroEyebrow: "XGEN · Free trial",
-        heroTitle: "Turn your idea into an AI agent of your own",
+        heroTitle: "Turn enterprise work into AI agents",
         heroLead:
-            "From connecting data to building a custom AI agent and running it — try the whole path yourself in a 15-day free demo environment.",
+            "See an enterprise AI platform built with security and governance for yourself.",
         ctaApply: "Start the 15-day trial",
         ctaConsult: "Talk about a PoC",
         heroChips: ["Free for 15 days", "In the browser, nothing to install", "No-code, start immediately"],
