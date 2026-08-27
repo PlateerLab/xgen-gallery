@@ -15,15 +15,30 @@ docker compose up -d --build backend
 
 ### 로컬
 
+Python 3.12 기준입니다. [uv](https://docs.astral.sh/uv/)로 런타임과 venv를 한 번에 잡습니다.
+
 ```bash
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+# Python 3.12 설치 + python/python3 심링크를 ~/.local/bin 에 배치
+uv python install 3.12 --default
+
+# venv 생성 및 의존성 설치
+uv venv venv --python 3.12
+uv pip install -r requirements.txt --python venv/Scripts/python.exe   # Linux/macOS: venv/bin/python
 
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
+uv 없이 표준 도구만 쓸 경우:
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 Swagger UI: http://localhost:8000/docs
+
+> **venv는 저장소에 포함되지 않습니다** (`.gitignore`). `venv/pyvenv.cfg`에는 생성한 PC의 절대 경로(사용자명, 드라이브 문자)가 박히기 때문에, venv 디렉터리를 다른 PC로 복사하면 `python`을 찾지 못하고 실패합니다. PC를 옮기거나 사용자 계정이 바뀌면 `venv/`를 지우고 위 명령으로 새로 만드세요.
 
 ## 환경 변수
 

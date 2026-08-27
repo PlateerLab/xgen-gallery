@@ -39,3 +39,6 @@ frontend/.npminstall.log
 /*.webp
 /_screenshots/
 /연구소 인력 사진/
+
+# 에디터 개인 설정 — PC마다 달라 공유하지 않는다
+.vscode/
