@@ -66,7 +66,7 @@ const COPY: Record<Locale, TrialCopy> = {
             "15일간 XGEN 무료 Trial 시작",
         ],
         heroEyebrow: "XGEN · 무료 체험",
-        heroTitle: "기업 업무를 AI Agent로 전환해 보세요",
+        heroTitle: "회사 업무를 AI Agent로 전환해 보세요",
         heroLead:
             "보안과 거버넌스를 갖춘 Enterprise AI 플랫폼을 직접 경험해 보세요.",
         ctaApply: "15일 무료 체험 신청하기",
