@@ -1,81 +1,182 @@
 ---
-title: "Why we split the validation loop into execution states (Part 1)"
-titleSeo: "The validation loop as states (Part 1)"
-description: Designing generation, validation, tool execution, and retry as explicit states and transitions instead of hiding them inside one loop.
+title: "Retry counts told us nothing about the run (Part 1)"
+titleSeo: "Why retry counts explained nothing"
+cover: "/blog/harness-journey-1-rust-to-python.svg"
+thumb: "/blog/harness-journey-1-rust-to-python-thumb.svg"
+description: "A run that called tools three times and one that failed quality checks three times both logged 'retry 3'. Splitting one loop into explicit states."
 date: "2026-04-20"
-cover: /blog/harness-journey-1-rust-to-python.svg
-thumb: /blog/harness-journey-1-rust-to-python-thumb.svg
-author: 김진수
-authorGithub: jinsoo96
-category: Tech Note
-tags:
-  - Harness
-  - Agent execution
-  - State machine
+author: "김진수"
+authorGithub: "jinsoo96"
+category: "Tech Note"
+tags: ["Harness", "Agent execution", "State machine"]
 draft: false
 ---
-The harness did not start as an effort to put more features into the agent. When the workflow auto-generation model produced a node that did not exist or a port that could not be connected, prompting alone was not enough to stop the same error recurring. On 5 April we wrote seven rules that check generated output against the node registry, and fed failure reasons back into the next generation for up to three corrections. The model still generates; the code decides whether it passes.
 
-A similar problem showed up in the product-review agent QA at Company L. Replaying the execution records of a four-stage product-review agent QA against 65 judgement rules could find that a result was wrong, but applying the same rules consistently during a live run was hard. We considered inserting judgement middleware into the existing executor, but the product's node-execution code and the domain rules were coupled in one layer, and the change surface was too large. We needed a separate execution layer that owns validation and retry outside the generative model.
+**When the agent kept repeating the same errors, the first thing we fixed was the prompt. It kept coming back in a slightly different shape, and when we opened the execution records we found three entirely different kinds of run recorded as the same single line: "retry 3". This is about what we had been counting wrong, and why that discovery turned into building a new executor.**
 
-Looking only at the happy path, a separate executor can seem excessive — if the generated output passes validation, you are done. But when validation fails, or the model asks for a tool instead of an answer, or an execution limit is reached, the same "run once more" means different things. Keep adding the values to carry into the next round, and the termination conditions, as edges and conditionals in a workflow, and it gets hard to explain which event moved the current run.
+---
 
-So when we built the standalone executor on 10 April, the first thing we settled was not how to call the model but **the states and transitions**. The first implementation was in Rust, rewritten in Python on 14 April. By the end of the month it had settled into a ten-stage execution flow from input through result assembly. The language changed; the starting point — that the executor, not the model, decides validation and termination — did not.
+## Fixing the prompt only changed the shape of the error
 
-## The same iteration served different purposes on the next round
+It started with workflow generation. A user describes what they want in a sentence and the model builds a canvas workflow.
 
-Continuing after calling a tool and regenerating an answer after failing validation are not the same iteration. A tool round adds the observation to the existing conversation and carries the work on. A quality retry hands back the reason a finished candidate was rejected and produces a new one. Termination is different again: an answer can be complete, or the run can be stopped by policy or an execution limit.
+The model often invented nodes that did not exist. Sometimes it wired together ports that could not connect.
 
-Express that as a plain `true` and `false` and one counter ends up carrying several responsibilities. A run that used a tool three times and a run that failed quality validation three times both come out as "3 retries." The call count is the same, but the reason the cost was spent and the input to the next round are completely different.
+Our first response was to fix the instructions. We put the list of available nodes into the prompt, explained the port rules in prose, and enumerated what not to do.
 
-The harness split the next action into three meanings.
+The same errors kept returning. Fix the node names and the ports would be wrong; explain the ports and a nonexistent parameter would show up.
+
+What we ended up re-examining was not the quality of the instructions but **who was deciding whether output passed**. Writing rules into a prompt is asking the model. Requests are mostly honoured, not always, and when they were not, nothing noticed.
+
+So on 5 April we built seven checks that compare generated output against the node registry. Code verifies that the node exists, that port types match, that required parameters are filled. On failure the reason rides along with the next generation request, up to three attempts.
+
+The model still generates. **The model no longer decides whether the result passes.**
+
+Any organisation attaching generative features to real work meets this distinction again somewhere. What you can manage with instructions is the model's tendency; what you must guarantee has to live outside them. Keep both in the same place and you can no longer tell a guarantee from a request.
+
+## We wedged judgment in as middleware and rolled it back within the week
+
+A similar problem showed up in a multi-stage business review workflow. Replaying the record against the rules after a run finished could tell us the result was wrong. The problem was during the run. There was no place to apply those rules consistently while it was in progress.
+
+The obvious fix was to wedge judgment middleware into the existing workflow executor. Hook the execution path, block anything that fails the rules. We added runtime judgment middleware that way on 8 April.
+
+That same week we reverted all of it. Around 900 lines across five files, including the judge, the registry, and the trace adapter, disappeared at once.
+
+We did not revert because the middleware failed to work. Making it work meant the product's node execution code and the business rules had to sit in the same layer, and then changing one rule meant touching node execution. The reverse held too: fixing one node shook the rules.
+
+What we learned there was that we needed **not validation code but an execution layer that owned validation**. The validation logic already existed. What was missing was where it lived, and who decided what happens next when it fails.
 
 ```text
-continue → add the new observation and carry on with the current work
-retry    → produce a new answer candidate, reflecting the validation feedback
+wedged in       product executor ─┬─ node execution code
+                                  └─ business rules      same layer → changes shake each other
+
+separated       product executor ── node execution code
+                execution layer ── owns validation, retry, termination
+```
+
+Sometimes the problem is not the feature but the ownership. Where you put the same code determines the cost of every change after it.
+
+## "Retry 3" was calling three different runs by the same name
+
+Having decided on a separate execution layer, the first thing we fixed was not how to call the model but the states and transitions. What pushed us there was the execution record.
+
+The record at the time held a retry count. One number seemed like enough. Know how many extra loops it took and you know the cost.
+
+Opening the records said otherwise.
+
+```text
+Run A   called tools three times, completed the answer     → recorded: retry 3
+Run B   produced three answers, all below quality bar      → recorded: retry 3
+Run C   provider errors, resent the same request 3 times   → recorded: retry 3
+```
+
+Only the call count is the same across the three. The reason cost was spent differs, what needs to be passed to the next turn differs, and what a human should do about it differs.
+
+A is healthy. Work progressed by using tools. B is a quality problem: the same request must not be resent, and a rejection reason has to ride along. C never advanced state at all; resending the identical request is exactly right.
+
+**One counter was carrying three responsibilities, and so it explained nothing.**
+
+Which means what we were counting was not retries. It was just an iteration count. We believed we were counting retries because the field was named retry.
+
+So we split the next action into three meanings.
+
+```text
+continue → add the new observation and carry on with the current task
+retry    → apply validation feedback and produce a new answer candidate
 complete → fix the completion or abort reason and assemble the result
 ```
 
-With that distinction you can also decide what each transition consumes and what it must leave behind. `continue` needs the tool call and the observation; `retry` needs the rejected candidate and the validation feedback; `complete` needs the final output *and* a termination reason. "Why did it move to which state?" replaced "how many rounds did it run?" as the basis for the execution record.
+Once the names were separate, what each transition consumes and must leave behind followed. `continue` needs the tool call and its observation. `retry` needs the rejected candidate and the validation feedback. `complete` needs not only the final output but the reason it ended.
 
-## Collecting state in one place made each stage's responsibility visible
+The unit of the execution record changed too. Not "how many times did it loop" but **"why did it move to which state"**.
 
-Splitting the transitions is not enough if messages, tool results, validation scores, and cost are scattered across local variables in several functions — you cannot reconstruct a run. So we gathered the values needed during execution into `PipelineState`. Conversation history, available tools, pending calls, answer candidates, validation results, iteration count, tokens, and cost all move together under one execution ID.
+If agent costs are coming in higher than expected, there is something worth checking first: whether the numbers you keep are cramming different reasons into one column. A total call count explains the invoice but not what to fix.
 
-Shared state is convenient, but leaving any stage free to change any field soon makes it no better than a global variable. We narrowed the inputs and outputs each stage owns. The model call records the response but does not decide termination. The tool stage adds observations but does not change the quality judgement. The decision stage looks at the current candidate, tool state, policy results, and execution limits together, and picks the next transition.
+## With no tools at all, two stages called each other and never stopped
 
-On that basis, a run divides into three sections: preparation, iteration, and assembly.
+Having split the transitions, we assumed termination would follow naturally. The answer arrives and it ends; the limit is hit and it stops.
+
+On 11 April we found that in a run with an empty tool list, the model-call stage and the tool-execution stage called each other without stopping.
 
 ```text
-Input preparation
-  → [context assembly → model call → policy check → tool execution → next-action decision]
-  → Result assembly
+model call ──"I'll use a tool"──> tool exec ──"no such tool"──> model call ──> …
 ```
 
-Normalizing user input and preparing the tool list only needs to happen once. Model call, policy check, tool execution, and next-action decision repeat as many times as needed. When the run ends, output, usage, and termination reason are assembled once. Compared with putting everything inside the loop, what repeats and what happens once became clear.
+Each stage did its job correctly. The model requested a tool; the tool stage honestly reported that the requested tool did not exist. Neither was a bug.
 
-## The ten stages were not a feature list, they were change boundaries
+What was missing was **anyone whose job was to judge this situation as terminal**. Treat termination as a side effect of each stage and you get combinations where every stage behaves correctly and the run still never ends.
 
-When we built the initial executor, the number of stages did not matter in itself. Dividing up the responsibilities gave concrete boundaries — overall orchestration, input, history, prompt, tools, policy, context, execution, decision, and finalization — and by the end of April it had settled into a ten-stage pipeline.
+After that incident we moved termination to a dedicated decision stage. It looks at the current answer candidate, tool state, policy result, and execution limits in one place and picks the next transition. The model-call stage records the response but does not decide termination. The tool stage adds observations but does not change quality judgment.
 
-The order of the stages is an execution contract; how each stage does its work is a swappable strategy. The context stage can be exchanged for a simple truncation or a summarization strategy, for instance, without that implementation directly changing the decision stage's state. Change the quality judgement method and the tool-execution stage's call specification stays as it is.
+When you build a looping system, termination conditions look trivial as long as you only look at the happy path. What actually bites is the combination in which every component behaves correctly. That combination will not surface as a bug in any single component.
 
-Even with many stages, this structure shrinks the change surface. Connecting a new provider swaps only the model-call strategy, without rewriting the whole loop. Spending the context budget differently does not require touching the state transitions themselves. Stage entry and exit, tool calls, validation, and retries are all emitted as events, so an execution order can be redrawn afterwards.
+## We hardened it in Rust, and what we were waiting on was the model
 
-## Moving from Rust to Python, the contract stayed
+The first standalone executor, built on 10 April, was Rust. It is an execution core, so a language whose compiler holds state and types seemed right. Fourteen thousand lines went in.
 
-We chose Rust for the first implementation because it is good for pinning down the state and types of an execution core. But most of the actual agent execution time went into waiting on models and external tools, while the code for swapping providers, strategies, and evaluation methods grew fast. The bottleneck was the time to wire up and verify a change, not the computation speed of a state transition.
+Four days later we deleted all of it and rewrote it in Python.
 
-So on 14 April we rebuilt the same state machine in Python. Rather than redesigning from scratch, we kept the stage IDs, state fields, event format, and tool interface. That let us compare whether the same situation still produced the same transition after the language change. The move to Python was a choice for implementation speed, but it was possible because the execution semantics had been fixed as a contract outside the language first.
+Not because performance fell short. When we measured execution time, most of it was spent waiting on model responses and external tools. The time spent computing state transitions rounded away next to that.
 
-## We verified the execution path, not the final answer
+What grew fast was the other code: swapping providers, changing strategies, attaching evaluation methods. The real bottleneck was not the speed of state transitions but **the time to wire up a change and confirm it**.
 
-An LLM's last sentence can differ on every run. A test that matches strings exactly cannot verify a state machine. Instead we checked whether a tool request adds the observation and continues, whether a validation failure goes down a new generation path carrying the feedback, and whether a policy block terminates without further calls.
+```text
+the bottleneck we assumed   state transition compute   → measured: negligible in total runtime
+the actual bottleneck       wiring and verifying change → this grew every day
+```
 
-The result does not carry the answer alone. It links which stages were passed through, what was observed, why the run continued or stopped, and which execution the tokens and cost belong to. If the wording of the answer differs but the meaning of the execution is the same, the same contract was kept.
+So it is less that Rust was the wrong choice, and more that the thing we were hardening was never the risky part. We were building a wall where there was nothing to defend.
 
-The state machine was not a device for making a simple validation loop complicated. It was a device for surfacing, in code, the differences that generation, tool use, judgement, and termination already had. The next part looks at how we divided the dependency direction so this executor works without knowing a particular product's database or canvas objects.
+Reviewing a technology choice usually starts with "which is faster". The question that comes first is **where the time is actually going right now**. When those two answers differ, optimisation leaves only cost behind.
 
-- - -
+## We tore out the language and the design stayed
 
-**Next →** [Why we separated the engine core from the product integration layer (Part 2)](/en/blog/harness-journey-2-engine-separation)
+There is a reason a full rewrite was possible in four days: we did not redesign from scratch.
+
+Stage identifiers, state fields, event formats, and the tool interface were kept as they were. After the language change we could compare, side by side, whether the same situation still picked the same transition.
+
+What that confirmed is that the asset we had built in Rust was not Rust code. The asset was having pinned the meaning of execution as a contract outside the language, and because that contract existed the implementation was disposable.
+
+For the same reason the number of stages never mattered in itself. Dividing responsibilities produced boundaries for orchestration, input, history, prompt, tools, policy, context, execution, decision, and finalisation, and by the end of April it settled at ten.
+
+```text
+prepare input
+  → [build context → call model → check policy → run tools → decide next action]
+  → assemble result
+```
+
+What happens once and what repeats as needed came apart. The order of stages is fixed as an execution contract; how each stage does its work is swappable. Changing the context stage from truncation to summarisation does not touch the decision stage's state. Adding a provider does not mean rewriting the loop.
+
+**A structure that looks like it has many stages actually narrowed the blast radius of each change.**
+
+## The last sentence differed every time, so answers were not a test
+
+Once it was built, how to test it remained. We started by comparing output strings against expected values.
+
+The same input did not produce the same answer. A model's closing sentence shifts a little every time.
+
+A different string did not mean the run was wrong. We had picked the wrong thing to verify. What we were trying to guarantee was not the wording of the answer but **whether the run chose the path the situation called for**.
+
+So we checked paths instead of answers. Does a tool request lead to adding the observation and continuing? Does a validation failure lead to a new generation carrying feedback? Does a policy block end the run with no further calls?
+
+Results kept more than the answer, too. Which stages it passed through, what it observed, why it continued or stopped, which run the tokens and cost belong to. If the wording differs but the meaning of the execution is the same, the same contract was honoured.
+
+When verifying a system whose output changes every time, string comparison is usually a dead end. Write down what you are trying to guarantee and the thing to verify is often already inside that sentence.
+
+## What we built was not a complicated loop but a set of names
+
+Looking back, this work did not add many features.
+
+Using a tool and rewriting an answer were always different things. Resending after a provider error was always different too. Termination was always split between completing and aborting.
+
+Things that were already different were simply being called by the same name in code. That is why the execution record explained nothing, why we could not find where termination leaked, why we could not judge what to optimise.
+
+The state machine was not a device for making a simple validation loop complicated. It was **a device for naming differences that were already there**. Once names existed, the decisions that followed came on their own: what each transition passes along, who owns termination, what to record, what to test.
+
+It took twenty days from the first commit until the ten-stage structure settled. Most of those twenty days were not spent adding features but working out what was different from what.
+
+That executor could still only live inside the product, though. The states and transitions were general-purpose, but data access and canvas object conversion were tangled into the same code. The next part covers separating the direction of that dependency so the executor works without knowing any particular product's database or screen structure.
+
+---
+
+**Next →** [We split the repos but not the dependencies (Part 2)](/en/blog/harness-journey-2-engine-separation)
