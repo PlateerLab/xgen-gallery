@@ -8,6 +8,8 @@ export const metadata = pageMetadata({
     // 언어 중립 경로를 넘기면 헬퍼가 canonical(/en/members)과 hreflang을 함께 만든다.
     path: "/members",
     locale: "en",
+    // 국문과 같은 이유로 색인 제외 — (ko)/members/page.tsx 참고.
+    robots: { index: false, follow: false },
 });
 
 export default function MembersPageEn() {

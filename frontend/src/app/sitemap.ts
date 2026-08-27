@@ -150,5 +150,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: path === "/" ? 0.9 : 0.6,
     }));
 
-    return [...koreanRoutes, ...englishRoutes];
+    /*
+      색인에서 뺀 경로는 사이트맵에도 넣지 않는다 — 페이지는 noindex 인데
+      사이트맵은 색인해 달라고 하는 모순이라 Search Console 경고로 잡힌다.
+      /members 는 구성원 실명·직함·사진이, /members/<login> 은 거기에 개인
+      GitHub 계정까지 묶여 나오는 화면이다.
+
+      EN_ROUTES 에서 /members 를 빼지 않는 이유는 그 목록이 사이트맵뿐 아니라
+      LocaleLink 의 영문 경로 판단에도 쓰이기 때문이다. 빼면 언어 전환이
+      /en/members 대신 /members 로 떨어진다.
+    */
+    const noIndexed = (e: MetadataRoute.Sitemap[number]) => {
+        const path = e.url.slice(SITE.url.length).replace(/^\/en/, "");
+        return path === "/members" || path.startsWith("/members/");
+    };
+
+    return [...koreanRoutes, ...englishRoutes].filter((e) => !noIndexed(e));
 }

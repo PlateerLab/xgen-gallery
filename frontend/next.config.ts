@@ -54,6 +54,27 @@ const nextConfig: NextConfig = {
                     },
                 ],
             },
+            /*
+              구성원 소개 — 실명·직함·사진이 한자리에 모이고, /members/<login>
+              에는 개인 GitHub 계정까지 붙는다. 검색 결과에 띄우지 않는다.
+
+              robots.txt 로 크롤을 막지는 않는다. 크롤러가 페이지를 못 읽으면
+              이 헤더도 못 읽고, 외부 링크만으로 URL 이 결과에 남을 수 있다.
+              읽게 두고 "색인하지 말라"고 말하는 쪽이 확실하다.
+
+              /en/members 도 함께 걸어야 한다 — 별도 라우트다.
+            */
+            ...["/members", "/en/members"].flatMap((base) =>
+                [base, `${base}/:path*`].map((source) => ({
+                    source,
+                    headers: [
+                        {
+                            key: 'X-Robots-Tag',
+                            value: 'noindex, nofollow, noarchive, nosnippet',
+                        },
+                    ],
+                })),
+            ),
         ];
     },
     async redirects() {

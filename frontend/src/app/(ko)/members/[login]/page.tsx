@@ -28,6 +28,11 @@ export async function generateMetadata({
         path: `/members/${login}`,
         image: `https://github.com/${login}.png`,
         imageDims: { width: 460, height: 460 },
+        /*
+          개인 GitHub 계정·저장소·활동 이력이 실명과 묶여 나오는 화면이라
+          검색 결과에서 뺀다. 목록(/members)과 같은 이유다.
+        */
+        robots: { index: false, follow: false },
     });
 }
 
