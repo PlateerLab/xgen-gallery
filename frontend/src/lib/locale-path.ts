@@ -43,6 +43,7 @@ export const EN_ROUTES: readonly string[] = [
     "/poc-projects",
     "/research",
     "/library-gallery",
+    "/members",
     "/blog",
     "/newsletter",
     "/ai-quality-policy",
