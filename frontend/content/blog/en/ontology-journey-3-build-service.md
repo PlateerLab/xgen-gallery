@@ -1,76 +1,134 @@
 ---
-title: "Treating an ontology build that takes hours as a job (Part 3)"
-titleSeo: "An hours-long build as a job (Part 3)"
+title: "We had put a multi-hour build in a cache (Part 3)"
+titleSeo: "Execution state is not cacheable"
 cover: "/blog/ontology-journey-3-build-service.svg"
 thumb: "/blog/ontology-journey-3-build-service-thumb.svg"
-description: "Separating progress state from the graph, and making input screening and structured-versus-unstructured paths explicit, turns a long build controllable."
+description: "As builds stretched into hours we replicated job state into a shared cache. When it expired we could not recover cancellation and resume state."
 date: "2026-05-12"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
-tags: ["Ontology", "Build pipeline", "Asynchronous processing"]
+tags: ["Ontology", "Build pipeline", "Async jobs"]
 draft: false
 ---
-> **Knowledge graph design · 3/10**
 
-When there were few documents, an ontology build fit inside a single API request. Read the input, call the model, store the graph, done. Once the input grew to tens of thousands of chunks plus CSVs, a build ran from minutes to hours — and so did the number of requests asking which stage it had reached.
-
-This post follows one mixed collection through registration, classification, processing, loading, and completion, and explains why we separated execution state from knowledge results.
-
-In the original approach, job state lived in process memory, so another API instance querying it could not find the job, and a restart erased the history. Reconstructing progress from processing markers in the graph put bulk writes and state queries in contention over the same store. And filtering input by English whitespace ratio meant Korean sentences, tables, and number-heavy documents were being discarded before extraction.
-
-As builds got longer, what we needed was not just faster model calls. We needed a durable job record owning state, cancellation, and restart, and a build service that splits structured and unstructured paths according to the input's actual shape. The graph owns the final state of knowledge; the job store owns the current state of execution.
-
-## We made PostgreSQL the system of record for job state
-
-Job state started in API process memory. Once several instances were splitting requests, the instance that created a job and the instance queried for its state differed, and 404s followed. Replicating state into Redis, the shared cache, solved cross-instance sharing, but build history also lived in PostgreSQL, the operational database, so we would have had to decide again which was authoritative. And how to restore cancellation and resume information after a cache expiry or a Redis restart was still open.
-
-A build job is not a cache to reuse briefly; it is an operational record you consult after completion to find the cause and the restart point. So we persisted `ontology_build_jobs` in PostgreSQL and removed the Redis job cache. Updating state, a monotonically increasing counter, and the cancellation request in one record means other instances — and the system after a restart — read the same values.
-
-We did not merge PostgreSQL and Fuseki, the RDF graph store, into one. Both store data for the long term, but the query shapes differ. Progress reads and updates a single row by job ID, frequently; the graph traverses classes and relationships with SPARQL. Putting job state in PostgreSQL and knowledge results in Fuseki is not a setup for running two storage technologies — it separates two different access patterns and lifecycles.
-
-## Progress is recorded, not recounted from the graph
-
-The job record stores total input count, processed input count, current stage, cancellation request, and completion state. The worker increments the processed count monotonically as it finishes each chunk group, and the view reads that value. A progress query costs the same regardless of how many triples are in the graph.
-
-State transitions are constrained to `pending → running → completed | failed | cancelled`. The job record is restored after a restart, but that does not mean an interrupted worker automatically resumes. A resume policy and idempotency at the actual processing unit need their own contract.
-
-```text
-Build job store               Graph store
--------------------          ------------------
-Total / processed chunks      Classes, instances
-Current stage                 Relationships, properties
-Cancel / fail / complete      Source provenance
-```
-
-The cancellation request is also left in the job record. The worker checks it at a group boundary and stops safely. Terminating at a boundary where you can establish exactly how far the work got is better for restart and recovery than killing the process mid-upload to the graph.
-
-At this stage the responsibilities of execution state and result store were separated, but that did not guarantee the state API always responds quickly. Synchronous document scans and database queries inside the background job still occupied the event loop. Separating the job model and separating execution resources are different problems, and the latter comes back once the scope of automatic post-processing grows.
-
-## Input screening looks at extractability, not language
-
-In a long build, filtering out useless input before the model call matters. But simple rules based on string length and whitespace ratio easily misjudge Korean sentences, number-heavy tables, and documents with code mixed in as non-natural-language.
-
-We changed the input gate's question from "is this natural English prose?" to "is there symbol and meaning here worth extracting?" If CJK characters are present it passes, and base64 is judged by whether it actually decodes rather than by how the characters look. Only extremely low-diversity input — no alphanumerics at all, or the same character repeating — is excluded.
-
-The gate does not make a final judgement on document quality. It removes only input that is obviously not worth a model call. Ambiguous input goes downstream, and whether extraction came back empty is recorded as a separate state. Discarding a valid document early costs more than one unnecessary call.
-
-## Tables and documents take different paths within the same collection
-
-Branching per collection — send everything down the CSV path if more than half the files are tabular, otherwise send everything down the document path — cannot handle mixed input. We split tables and documents per file and built a hybrid path that merges them into the same graph.
-
-Documents stream through as chunk groups while the model extracts concepts and relationships. Tables are converted deterministically from their schema and row structure. CSV instances are not put through morpheme-based duplicate merging: merging identifiers built from primary and foreign keys by semantic similarity can make distinct rows disappear.
-
-Large RDF (triple data expressed as subject, predicate, object) is not sent in one go; it is split into batches and uploaded in parallel. On an isolated local Fuseki we loaded 60,007 and 120,007 triples in splits and confirmed the re-query counts from the store matched.
-
-## We separated completion state from quality verification
-
-That the model returned JSON does not describe the whole build. We split input screening, extraction, structural validation, schema storage, RDF upload, and provenance into per-stage observables. You have to know which stage stopped to decide the scope of a retry.
-
-That said, the current completion logic can leave a warning and still transition to `completed` when RDF triples exist but the PostgreSQL schema is empty, and storing `built_chunk_ids` is best-effort. So `completed` is an execution state meaning the worker finished — not a quality certification that every schema and provenance check passed. It has to be read together with the warnings and the quality report.
-
-With this structure a build became a controllable job even when it takes a long time. But finishing reliably and producing a good graph are different problems. The next part covers dividing graph structure, provenance, and question answering into distinct quality boundaries, instead of judging by triple count or completion state.
+**With few documents an ontology build finished in one API request. As input grew to tens of thousands of chunks and CSVs, builds took hours and asking another instance for progress found no job. We replicated state into a shared cache, and when the cache expired we could not recover cancellation and resume information. This is about finding out that a build job was an operational record, not a cache entry.**
 
 ---
-**Previous →** [Why multi-turn GraphRAG was needed, and where it fell short](/en/blog/ontology-journey-2-react-graph)
-**Next →** [A triple count told us nothing about knowledge graph quality](/en/blog/ontology-journey-4-quality-baseline)
+
+## A build that finished in one request became a multi-hour job
+
+With few documents the build was simple. Read the input, call the model, store the graph.
+
+As input grew to tens of thousands of chunks and CSVs, builds ran from minutes to hours. And requests asking "how far along is it" grew with them.
+
+We could not answer. Job state lived in the API process memory. With several instances splitting requests, if the instance that created the job differed from the one queried, it was not found. Restarts erased the history.
+
+We also tried reconstructing progress from processing markers in the graph. Then bulk writes and status queries competed for the same store.
+
+**The graph is where the final state of knowledge lives, and we were trying to read the current state of execution out of it.**
+
+## Replicating into a cache meant deciding which copy was authoritative
+
+It was a sharing problem across instances, so a shared cache looked right. We replicated job state into Redis.
+
+Cross-instance sharing was solved. Something else came out.
+
+Build history also lived in the job database, PostgreSQL, so **we now had to decide which was authoritative.** And there was no answer for recovering cancellation and resume information after a cache expiry or a Redis restart.
+
+Here it became clear what we had been treating a build job as. A cache holds **values that are nice to reuse briefly and can be rebuilt if lost.**
+
+A build job is not that. Even after completion you need it to determine the failure cause and the restart point. Lose it and it cannot be rebuilt.
+
+So we persisted the job record into PostgreSQL and removed the Redis job cache. Update state, a monotonic counter, and cancellation requests in one record and any instance, and any restart, reads the same values.
+
+We did not merge PostgreSQL and the RDF graph store. Both persist data; the access shapes differ.
+
+```text
+job state        read and update one row often by job id   → PostgreSQL
+knowledge result traverse classes and relations via SPARQL → Fuseki
+```
+
+Not a scheme for using two storage technologies but a split of two different access patterns and lifecycles.
+
+Deciding where state lives, looking only at "many places must read it" makes a cache the answer. The question before that is **whether this value can be rebuilt once lost.** If it cannot, it cannot live in a cache.
+
+## Progress is recorded rather than recounted from the graph
+
+The job record holds total input count, processed count, current stage, cancellation request, and completion state. The worker increments the processed count on finishing a chunk group and the screen reads that value.
+
+Progress queries finish at constant cost regardless of the graph's triple count.
+
+```text
+build job store          graph store
+-----------------        ----------------
+total/processed chunks   classes · instances
+current stage            relations · properties
+cancel/fail/complete     source provenance
+```
+
+State transitions are constrained too: pending to running, running to completed, failed, or cancelled.
+
+One thing here is easy to misread, so it is worth stating. The job record surviving a restart **does not mean a stopped worker automatically resumes.** Resume policy and idempotency of the actual processing unit need a separate contract.
+
+Cancellation requests also live in the job record. Workers check at group boundaries and stop. Ending at a boundary where you can pin down what completed is better for restarting than killing a process mid-upload.
+
+At this stage execution state and result storage had separate responsibilities, but that did not guarantee status queries respond quickly. Synchronous document scans and database lookups inside background jobs occupying the event loop remained. **Splitting the job model and splitting execution resources were different problems**, and the latter came back in Part 5 once automatic post-processing grew.
+
+## Korean documents were being discarded before extraction
+
+In a long build, filtering useless input before calling the model matters. So we had an input gate.
+
+It looked at string length and whitespace ratio. Rules built around English text.
+
+Korean sentences, tables, and documents dense with numbers and code were being classified as non-natural-language there. **Documents that needed processing were discarded before ever meeting the model.**
+
+The question we had asked when building the gate was "is this fluent English". What we should have asked was "is there anything here with symbols and meaning to extract".
+
+Changing the question changed the method. Pass anything containing CJK characters; judge base64 by whether it actually decodes rather than by how it looks. Exclude only extreme cases with no alphanumerics at all or a single repeated character.
+
+We rewrote the gate's role too. It does not make a final quality judgment on a document; it **removes only input that is clearly not worth a model call.** Ambiguous input goes downstream, and whether the extraction came back empty is recorded as a separate state.
+
+Because discarding a valid document early costs more than one unnecessary call.
+
+Designing a filter, people look at pass and block rates first. Deciding beforehand **which side is more expensive to get wrong** shortens the threshold argument considerably.
+
+## Tables and documents had to take different paths inside one collection
+
+The initial branch was per collection. If more than half the files were tables, take the CSV path; otherwise the document path.
+
+Real collections are mixed. The path chosen by majority vote did not suit the rest of the files.
+
+We split tables and documents per file and merged them into the same graph. Documents stream in chunk groups while the model extracts concepts and relations. Tables convert schema and row structure deterministically.
+
+Morphology-based duplicate merging is not applied to CSV instances. Merging identifiers built from primary and foreign keys by semantic similarity **makes distinct rows disappear.**
+
+Large RDF is not transmitted at once but split into batches and uploaded in parallel. In an isolated local environment we loaded 60,007 and 120,007 triples in batches and confirmed the re-queried counts matched.
+
+## "Completed" did not mean verification had passed
+
+The model returning JSON does not describe the whole build. We split input gating, extraction, structure validation, schema storage, RDF upload, and provenance into per-stage observation targets. Knowing where it stopped is what sets the retry scope.
+
+The meaning of the completed state needs stating precisely here.
+
+The current completion logic can transition to completed with a warning even when RDF triples exist and the PostgreSQL schema is empty. Storing the processed-chunk list is also best-effort.
+
+So **completed is an execution state saying the worker finished, not a quality certification that all schema and provenance checks passed.** Warnings and the quality report must be read alongside.
+
+Put several meanings into one status value and each reader interprets it differently. The screen paints it green, downstream work decides it may proceed, and the operator considers it checked. That value keeps getting used as long as any one of those is right.
+
+## Finishing reliably and building a good graph were different things
+
+After this part's work a build could be queried, cancelled, and located even when it ran for hours.
+
+Looking back, all three were the same mistake. We read execution state out of the graph, put an operational record in a cache, and packed both execution state and quality certification into the single word "completed".
+
+**Each time we were putting things with different lifetimes in the same place.**
+
+And finishing reliably is not the same as building a good graph. Nobody was yet measuring whether a completed build produced anything usable. The next part covers what to look at instead of triple counts and completion states.
+
+---
+
+**Previous →** [What we truncated to save context was the evidence (Part 2)](/en/blog/ontology-journey-2-react-graph)
+
+**Next →** [Triple counts told us nothing about graph quality (Part 4)](/en/blog/ontology-journey-4-quality-baseline)
