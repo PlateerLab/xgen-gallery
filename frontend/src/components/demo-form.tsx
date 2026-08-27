@@ -426,14 +426,14 @@ export function DemoForm() {
     return (
         <form
             onSubmit={onSubmit}
-            className="relative overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white p-6 shadow-[0_20px_50px_-30px_rgba(20,40,80,0.5)] sm:p-7"
+            className="relative overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white p-5 shadow-[0_20px_50px_-30px_rgba(20,40,80,0.5)] sm:p-6"
         >
             {/* 상단 스카이블루 워시 — 위에서 회사 필드 부근까지 부드럽게 페이드 */}
             <div
                 aria-hidden
                 className="pointer-events-none absolute inset-x-0 top-0 h-[320px] bg-gradient-to-b from-[#7dd3fc]/35 via-[#bfe3ff]/15 to-transparent"
             />
-            <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="relative grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <Select
                     className="sm:col-span-2"
                     label={c.inquiryType}
@@ -502,7 +502,7 @@ export function DemoForm() {
                 />
             </div>
 
-            <div className="mt-4 border-t border-[var(--color-line)] pt-3.5">
+            <div className="mt-3 border-t border-[var(--color-line)] pt-3">
                 {/* 전체 동의 — (선택) 마케팅 수신 동의까지 함께 받기 위함 */}
                 <label className="flex cursor-pointer items-center gap-2 pb-2.5">
                     <input
@@ -517,7 +517,7 @@ export function DemoForm() {
                 </label>
                 {/* 동의 항목은 3개라 2열로 두면 둘째 줄에 하나만 남아 고아가 된다.
                     한 줄에 하나씩 쌓아 읽는 순서도 분명하게 한다. */}
-                <div className="grid grid-cols-1 gap-y-1.5 border-t border-[var(--color-line)] pt-2.5">
+                <div className="grid grid-cols-1 gap-y-1 border-t border-[var(--color-line)] pt-2">
                     <Consent
                         label={c.agreePolicy}
                         checked={fields.agreePrivacyPolicy}
@@ -545,7 +545,7 @@ export function DemoForm() {
             <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_10px_24px_-10px_rgba(47,123,255,0.6)] transition hover:brightness-110 disabled:opacity-60"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_10px_24px_-10px_rgba(47,123,255,0.6)] transition hover:brightness-110 disabled:opacity-60"
             >
                 {status === "loading" && (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -561,7 +561,7 @@ export function DemoForm() {
 /* ------------------------------------------------------------------ */
 
 const FIELD_BASE =
-    "w-full rounded-lg border bg-white px-3 py-2 text-[15px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-subtle)] focus:ring-2";
+    "w-full rounded-lg border bg-white px-3 py-1.5 text-[15px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-subtle)] focus:ring-2";
 
 function fieldCls(error?: string) {
     return cn(

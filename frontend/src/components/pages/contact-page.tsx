@@ -132,7 +132,7 @@ export function ContactPageContent({ locale }: { locale: Locale }) {
                 />
                 {/* 상단 여백은 GNB 실측 높이 기준 — 고정 140px이면 모바일에서 프로모
                     배너가 2줄로 접힐 때(헤더 176px) 카피가 GNB 밑에 깔린다. */}
-                <div className="relative mx-auto w-full max-w-7xl px-6 pt-[calc(var(--nav-h,84px)+40px)] pb-20 md:pt-[calc(var(--nav-h,84px)+64px)] md:pb-24">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-[calc(var(--nav-h,84px)+20px)] pb-12 md:pt-[calc(var(--nav-h,84px)+24px)] md:pb-14">
                     <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
                         {/* intro — 좌측 컬럼은 한 가지 폭(max-w-lg)으로 통일한다.
                             제목·불릿은 컬럼 전체(584px)인데 본문만 448px이면 본문만
