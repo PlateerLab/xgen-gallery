@@ -28,7 +28,7 @@ export interface Tool {
 export const TOOLS: Tool[] = [
     {
         id: "contextifier",
-        repo: "Contextifier",
+        repo: "xgen-contextifier",
         name: "Contextifier",
         tagline: "Turn any document into AI-ready text",
         description:

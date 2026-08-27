@@ -88,8 +88,10 @@ export function SiteFooter() {
         })),
         // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
         { key: "members", label: t.footer.members, href: "/members" },
-        // 뉴스레터 구독은 여기서 뺐다 — GNB Insight 의 "랩 뉴스레터"와 각 목록의
-        // 구독 위젯(SubscribeCta)이 이미 같은 자리를 맡고 있어 중복이었다.
+        // 뉴스레터 구독 — 한 번 뺐다가 되살렸다(요청). GNB Insight 와 목록의
+        // 구독 위젯(SubscribeCta)에도 있지만, 그 둘은 글을 보러 온 사람이
+        // 지나는 자리라 구독만 하러 온 사람에게는 푸터가 유일한 진입점이다.
+        { key: "newsletter", label: t.footer.newsletter, href: "/newsletter" },
         // AI 품질 방침 — 약관·정책류라 GNB가 아니라 이 About 목록과 제품 페이지
         // 인증·품질 섹션이 제자리다. 주소는 lib/ai-policy-link.ts 가 단일 출처다.
         // 대외 공개가 AI-MASTER NEW1 증빙 요건이므로 이 진입 링크를 지우지 않는다.
