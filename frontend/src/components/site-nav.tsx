@@ -479,6 +479,20 @@ export function SiteNav({
             {mobileOpen && (
                 <div className="border-t border-[var(--color-line)] bg-white xl:hidden">
                     <div className="mx-auto max-h-[80vh] max-w-7xl divide-y divide-[var(--color-line)] overflow-y-auto px-6">
+                        {/*
+                          About — 데스크톱에서는 로고 옆에 있어 NAV_GROUPS 밖이다.
+                          모바일에는 로고 옆 자리가 없으므로 드로어 첫 줄로 넣는다.
+                        */}
+                        <Link
+                            href="/about"
+                            onClick={() => {
+                                setMobileOpen(false);
+                                setMobileGroup(null);
+                            }}
+                            className="flex w-full items-center justify-between py-5 text-lg font-bold text-[var(--color-ink)]"
+                        >
+                            About
+                        </Link>
                         {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                             const items = g.items.filter((it) => !it.hidden);
                             const hasMenu = !g.flat && items.length > 0;

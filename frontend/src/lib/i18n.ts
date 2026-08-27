@@ -292,8 +292,8 @@ export const dict: Record<Locale, Dict> = {
         live: { try: "이 데모 체험하기" },
         toolsSection: {
             eyebrow: "/ 도구",
-            titleA: (n) => `${n}개의 라이브러리.`,
-            titleB: "설치 한 번이면 끝.",
+            titleA: (n) => `${n}개의 라이브러리`,
+            titleB: "설치는 한 번, 활용은 계속",
         },
         categories: {
             all: "전체",
@@ -390,8 +390,8 @@ export const dict: Record<Locale, Dict> = {
         live: { try: "Try this demo" },
         toolsSection: {
             eyebrow: "/ tools",
-            titleA: (n) => `${n} libraries.`,
-            titleB: "One install away.",
+            titleA: (n) => `${n} libraries`,
+            titleB: "One install, endless use",
         },
         categories: {
             all: "All",

@@ -264,7 +264,7 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                                             </>
                                         );
                                         return (
-                                            <li key={m.slug}>
+                                            <li key={m.slug} className="min-w-0">
                                                 {latest ? (
                                                     <Link
                                                         href={href(`/blog/${latest.slug}`)}
@@ -311,11 +311,11 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                             </a>
                         </div>
 
-                        <ul className="mt-9 grid gap-4 md:grid-cols-2">
+                        <ul className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
                             {LAB_PROJECTS.map((proj) => (
                                 <li
                                     key={proj.id}
-                                    className="flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7"
+                                    className="flex h-full min-w-0 flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7"
                                 >
                                     <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
                                         {en ? proj.titleEn : proj.title}
@@ -335,15 +335,15 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                                                     href={repoUrl(tool)}
                                                     target="_blank"
                                                     rel="noreferrer"
-                                                    className="group flex items-baseline gap-2.5 rounded-lg px-3 py-2 transition hover:bg-[var(--color-surface-alt)]"
+                                                    className="group flex min-w-0 flex-col gap-0.5 rounded-lg px-3 py-2 transition hover:bg-[var(--color-surface-alt)] sm:flex-row sm:items-baseline sm:gap-2.5"
                                                 >
-                                                    <span className="font-mono text-[13.5px] font-semibold text-[#2461d8]">
+                                                    <span className="flex items-center gap-1.5 font-mono text-[13.5px] font-semibold text-[#2461d8]">
                                                         {tool.name}
+                                                        <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition group-hover:opacity-100" />
                                                     </span>
-                                                    <span className="truncate text-[13px] text-[var(--color-ink-subtle)]">
+                                                    <span className="min-w-0 text-[13px] leading-snug text-[var(--color-ink-subtle)] sm:truncate">
                                                         {tool.tagline}
                                                     </span>
-                                                    <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 translate-y-0.5 text-[var(--color-ink-subtle)] opacity-0 transition group-hover:opacity-100" />
                                                 </a>
                                             </li>
                                         ))}
