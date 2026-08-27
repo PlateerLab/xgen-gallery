@@ -1,9 +1,9 @@
 ---
-title: "The search redesign that started with an A/B measuring an empty graph (Part 6)"
-titleSeo: "An A/B on an empty graph (Part 6)"
+title: "The A/B calling it slow and wrong was measuring an empty graph (Part 6)"
+titleSeo: "Re-measure before reverting"
 cover: "/blog/ontology-journey-6-search-redesign.svg"
 thumb: "/blog/ontology-journey-6-search-redesign-thumb.svg"
-description: "Verify first that the graph was actually called, then replace the ReAct loop with parallel retrieval and a single synthesis, by contribution per question type."
+description: "An A/B said multi-turn search was slower and less accurate. The evaluation was querying an empty graph and answering from vector search alone."
 date: "2026-06-08"
 author: "김진수"
 authorGithub: "jinsoo96"
@@ -11,66 +11,118 @@ category: "Tech Note"
 tags: ["Ontology", "GraphRAG", "Retrieval evaluation"]
 draft: false
 ---
-> **Knowledge graph design · 6/10**
 
-The goal of ReAct search was never to call tools many times. It was to find broader evidence than vector search for relationship, list, and aggregation questions — without making simple factual questions slow. On the real operational path, several turns were running even for a single fact, and the accumulated source material was sometimes clouding the answer.
+**We measured the multi-turn search from Part 2 against real questions and it was slower and less accurate than the existing search. Just before reverting the structure we opened the execution record and found the evaluation querying an empty graph and effectively answering from vector search alone. This is about what the numbers said once the graph was properly connected, and how those numbers changed the retrieval structure.**
 
-The initial A/B results said multi-turn search was both slower and less accurate. Before reverting the structure on that basis, we checked the execution records, and found the evaluation had been querying a graph with no data in it and effectively answering with vector search alone. We could not decide a retrieval structure on a miswired evaluation.
+---
 
-We re-measured using only runs where the graph was actually called, then compared contribution by question type. The result: keep the advantage of relationship traversal while cutting model turns, by gathering candidates from vector, graph, class, and structured-data paths in parallel and synthesizing exactly once.
+## We opened the execution record just before reverting
 
-## We checked the actual call, not the option
+The goal of multi-turn search was never to call tools repeatedly. It was to find broader evidence than vector search on relation, list, and aggregation questions without making simple factual questions slow.
 
-In the first comparison, multi-turn search came out slower and less accurate than the existing search. But following the execution records showed the evaluation harness was using the display name as the graph identifier. The request queried a graph that existed but was empty, and the answer was produced from vector search alone.
+The first A/B was unambiguous. Multi-turn was slower and less accurate.
 
-We discarded that result. Rather than the presence of `graph=true` in the settings, a run counted as graph search only if all of the following held:
+With numbers that clear, reverting was the move. Before that we followed the execution record.
 
-- Is the evaluated collection actually linked to the real graph IRI?
-- Do triples exist in the graph?
-- Was the graph tool called?
-- Were the returned relationships included in the synthesis input?
+The evaluation harness was using a display name as the graph identifier. Requests went out normally, queried a graph that **existed but was empty**, and the answers were produced by vector search alone.
 
-We also moved label search from a full string scan to a Lucene-backed `jena-text` index. The figures below come from an isolated environment where that index and a dataset assembler were prepared separately. Without the same configuration in a deployment environment, the `text:query` path does not reproduce. Having the graph feature turned on and having an operable retrieval path are not the same statement.
+```text
+what the evaluation measured  a run that failed graph lookup and answered from vector search
+what the evaluation called it "graph retrieval"
+```
 
-## The graph's contribution differed by question type
+**We had not measured the difference between two configurations. We had measured the cost of bolting a graph round trip onto the same vector search.** Slower was expected; equal accuracy was expected too.
 
-With the graph genuinely connected, we compared a fixed set of 100 questions. Every comparison used the same questions, answer model, vector evidence, time budget, and judgement criteria, varying only whether graph evidence was used. Correctness is a 0–1 score computed on the same judgement criteria. On the data at the time, the new retrieval configuration scored 0.465 and the existing configuration 0.230, with 34 and 13 fully correct answers respectively. These are the results under those evaluation conditions, not a general product performance guarantee.
+We discarded that result. In Part 4 we had decided not to treat an enabled option as evidence of use, and the evaluation harness was still doing exactly that.
 
-The more important result was the isolated A/B by type. With the same vector evidence and answer model, we turned graph evidence off and on.
+So we pinned four conditions for counting a run as graph retrieval.
+
+```text
+is the evaluated collection linked to a real graph identifier
+does the graph contain triples
+was the graph tool called
+did the returned relations make it into the synthesis input
+```
+
+When a measurement comes back opposite to expectation, it is worth suspecting the instrumentation before reverting the structure. Especially when **the result raises one hand very cleanly**. A miswired experiment usually gives a very crisp answer.
+
+Label search also moved from a full string scan to index-backed lookup. The figures below come from an isolated environment with that index and dataset configuration prepared separately; without the same setup in a deployment environment they do not reproduce. **Having the graph feature switched on and having an operable retrieval path are not the same thing.**
+
+## Re-measured, the graph's contribution differed by question type
+
+With the graph actually connected we compared a fixed set of 100 questions. Same questions, answer model, vector evidence, time budget, and judgment criteria, varying only whether graph evidence was used.
+
+The new configuration scored 0.465 and the existing one 0.230, with 34 and 13 fully correct answers respectively. That is the result under those evaluation conditions, not a general product performance guarantee.
+
+More important was the split by type.
 
 | Question type | Vector only | Vector + graph | Reading |
 |---|---:|---:|---|
-| Aggregation / list-everything | 0.033 | 0.683 | Needs the full entity set of a class |
-| Relational lookup | 0.292 | 0.521 | Relationship traversal constraining subject and predicate together works |
-| Single fact | ~0.46 | ~0.47 | Semantically close source search is enough |
+| Aggregation / list all | 0.033 | 0.683 | needs the full entity set of a class |
+| Relational lookup | 0.292 | 0.521 | traversal constraining subject and predicate together works |
+| Single fact | ~0.46 | ~0.47 | semantically close source retrieval suffices |
 
-The graph did not replace vector search on every question. It made a difference on questions where the answer *is* the connective structure or the set itself. On single-fact questions, adding graph traversal gained almost nothing.
+The graph did not replace vector search on every question. **It made a difference only where the answer is the connection structure or the set itself.**
 
-## We gathered four kinds of evidence in parallel, instead of classifying the question
+On single-fact questions adding graph traversal produced essentially no gain. In Part 2 we wrote that spending several turns on single-fact questions was the problem; here it was confirmed in numbers.
 
-Putting a separate LLM classifier in front of the question makes misclassification a new failure point. Instead we run cost-bounded retrieval paths in parallel, and any path with no structural signal returns an empty result.
+Looking only at the overall average, this ends at "adding the graph took 0.230 to 0.465". That sentence is true and says nothing about what to do next. Only after splitting by type did **where a loop is unnecessary** become visible.
+
+## Instead of classifying questions we ran four paths together
+
+If different question types need different things, classifying questions first seems right.
+
+Put an LLM classifier in front and misclassification becomes a new failure point. Classify an aggregation question as single-fact and it never sees the graph at all.
+
+So we chose not to classify. Cost-bounded retrieval paths run in parallel, and paths with no structural signal return empty.
 
 ```text
-Vector source search ───────────┐
-Label / neighbour connectivity ─┤
-Full class-set lookup ──────────┼─→ evidence ordering ─→ one answer synthesis
-Precise subject/predicate query ┘
+vector source search ────────────┐
+label · neighbour connectivity ──┤
+class full-set lookup ───────────┼─→ evidence ranking ─→ one synthesis pass
+precise subject·predicate lookup ┘
 ```
 
-The class lookup runs only when a term in the question resolves to an actual class label. The relationship lookup constrains subject candidates and predicate together when a relational term in the question matches a predicate label in the graph. No word list is hardcoded into the prompt; the current graph's classes and predicates are the gate.
+Class lookup runs only when a question term resolves to an actual class label. Relation lookup constrains subject candidates and predicate together when a question's relation term matches a predicate label in the graph.
 
-Retrieval results are synthesized once. Rather than leaving a loop to repeatedly judge "is the evidence sufficient?", each retriever deterministically performs the operation it owns and the synthesizer produces an answer from the evidence gathered. The full class list is placed at the front of the synthesis input with its own output budget, so a request for "all of them" does not get truncated during summarization.
+We did not hardcode a word list into the prompt. **The graph's current classes and predicates act as the gate.** Change the graph and the gate changes with it.
 
-## A good query plan decided accuracy and speed together
+Synthesis happens once. Rather than letting a loop repeatedly judge "is this evidence enough", each retriever performs its assigned operation deterministically and the synthesiser composes from what was gathered.
 
-The first implementation of the precise relationship lookup swept every predicate — accurate, but slow on every question. We changed the order to bind the entity first with `text:query`, then examine only the matched predicates around it. Not assembling URI strings by hand also meant identifiers containing parentheses and spaces were handled safely.
+The full class list goes at the front of the synthesis input with its own output budget reserved, so a request for "all of them" is not truncated during summarisation. That is also a response to Part 2, where truncation erased evidence.
 
-In this structure the relational score rose from 0.292 to 0.521 while single-fact question speed held. The final single-synthesis configuration handled every question in one turn; in that evaluation the median was about 2.4 seconds and 95% of requests finished within 4.1 seconds.
+When branching seems necessary, putting a classifier in front is natural. If misclassification is expensive, running several cheap paths and using only the ones with signal can be better.
 
-The measurements do not mean multi-turn ReAct was a bad idea. It was necessary to rapidly expand the tools and exploration paths of relationship search. But once the index, class sets, and precise relationship queries were in place, there was less need for the model to rediscover the tool order on every question. So on the verified functional path we removed the ReAct loop and kept parallel retrieval with single synthesis. The results at this point are feature-branch and isolated-environment verification, and do not mean a production deployment was completed.
+## An accurate query was not the same as a slow query
 
-With the retrieval structure settled on single synthesis, the next work was distinguishing on screen only the nodes mentioned in the answer, rather than every keyword candidate. The next part covers how that highlighting scope shrank, and what limitation label-based linking still carries.
+The first implementation of precise relation lookup scanned all predicates. It was accurate, and slow on every question.
+
+It looked like a trade-off between accuracy and speed. It was an ordering problem in the query plan.
+
+We bound the entity first via the index, then checked only matched predicates in its vicinity. Not composing identifier strings directly means identifiers with parentheses and spaces are handled safely.
+
+The relational score went from 0.292 to 0.521 while single-fact speed held. The final configuration handled every question in one turn, with a median of about 2.4 seconds and 95% of requests finishing within 4.1 seconds in that evaluation.
+
+**Accuracy and speed improving together usually means the earlier implementation was not a trade-off.** Before giving up one of them, look at the ordering of the plan.
+
+## Multi-turn was not wrong; its job was finished
+
+What we did with the measurement was remove the Part 2 structure. On the verified feature path we dropped the multi-turn loop and kept parallel retrieval with single synthesis.
+
+That does not make multi-turn a wrong idea.
+
+It was necessary to expand the tools and exploration paths of relation retrieval quickly. Which tools were needed and in what order they produce answers is what the model told us by exploring on every question.
+
+Once the index, class sets, and precise relation queries existed, **there was less reason for the model to rediscover tool ordering each time.** What had to be discovered was already in the code.
+
+So multi-turn was not the final structure but the instrument for finding it. Build the exploratory structure first, harden what it teaches into a deterministic path. Looking back, that order could not have been reversed.
+
+The results at this point are feature-branch and isolated-environment verification and do not indicate production deployment.
+
+After settling the retrieval structure, the screen remained. A highlight feature meant to show where the answer came from, and the next part is about that highlight painting far more nodes than there was actual evidence for.
 
 ---
-**Previous →** [Shrinking CSV rows while keeping legitimate classes](/en/blog/ontology-journey-5-csv-cleanup-guards)
-**Next →** [Highlighting only the graph nodes the answer mentions](/en/blog/ontology-journey-7-evidence-ux)
+
+**Previous →** [Cleaning up the graph deleted 1,500 healthy classes (Part 5)](/en/blog/ontology-journey-5-csv-cleanup-guards)
+
+**Next →** [Most of the nodes we painted red were not evidence (Part 7)](/en/blog/ontology-journey-7-evidence-ux)
