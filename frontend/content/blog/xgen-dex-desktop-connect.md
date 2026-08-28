@@ -1,7 +1,7 @@
 ---
 title: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다"
 titleSeo: "XGEN DeX — Agent를 업무환경에 연결"
-description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. XGEN에서 만든 Agent가 사용자의 PC에서 파일과 애플리케이션을 다루고 실제 결과물을 만들도록 잇는 Desktop Interface를 소개합니다."
+description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. XGEN DeX는 XGEN의 AI Agent를 사용자의 PC와 연결하여, 파일과 애플리케이션을 활용한 실제 업무 수행을 가능하게 하는 Desktop Interface입니다."
 date: "2026-08-26"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
@@ -109,19 +109,19 @@ DeX의 사용 방식은 일반적인 업무용 AI보다 오히려 단순하게 �
 
 여기서는 각 단계가 왜 그렇게 설계되었는지만 짚어보겠습니다.
 
-### Agent를 고르는 이유
+### Agent를 나누는 이유
 
-모든 업무를 하나의 범용 AI에게 맡기지 않습니다.
+모든 업무를 하나의 범용 AI Agent에게 맡기지는 않습니다.
 
-기업에서는 업무마다 사용하는 데이터와 도구, 권한이 다릅니다. 따라서 XGEN에서 각각의 업무 목적에 맞는 Agent를 구성하고, DeX에서는 필요한 Agent를 선택해 사용하는 방식이 적합합니다.
+기업에서는 업무마다 사용하는 데이터와 도구, 필요한 권한이 서로 다르기 때문입니다. 따라서 XGEN에서는 업무 목적에 맞는 Agent를 각각 구성하고, DeX에서는 상황에 맞는 Agent를 선택해 사용하는 방식을 권장합니다.
 
-업무지원 Agent, 데이터 분석 Agent, 문서 작성 Agent, 개발지원 Agent, 부서별 전문 Agent를 하나의 DeX에서 골라 쓰는 형태입니다.
+예를 들어 업무지원 Agent, 데이터 분석 Agent, 문서 작성 Agent, 개발지원 Agent, 부서별 전문 Agent를 하나의 DeX에서 필요에 따라 선택해 사용할 수 있습니다.
 
-### 실행 권한을 따로 연결하는 이유
+### 실행 환경을 연결하는 이유
 
-Agent가 실제 PC에서 작업하려면 실행 환경이 필요합니다. 업무에 따라 **Local File / Storage, Browser, PowerShell, MCP, Skill, Application** 등이 활용됩니다.
+Agent가 사용자의 PC에서 실제 업무를 수행하려면, 필요한 실행 환경에 접근할 수 있어야 합니다. 업무에 따라 **Local File / Storage, Browser, PowerShell, MCP, Skill, Application** 등을 활용합니다.
 
-이 연결을 자동으로 열어두지 않고 단계로 분리한 것이 핵심입니다. 웹에 있는 Agent가 사용자의 실제 업무환경에서 실행할 수 있는 Agent로 확장되는 지점이라, 어떤 실행 환경을 허용할지는 명시적으로 결정해야 합니다.
+DeX는 이러한 실행 환경을 기본적으로 모두 열어두지 않습니다. 웹에서 관리되는 Agent가 사용자의 실제 업무환경으로 확장되는 지점이기 때문에, 필요한 실행 환경만 명시적으로 연결하도록 설계했습니다.
 
 ### Workspace가 중요한 이유
 

@@ -1,7 +1,7 @@
 ---
 title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
 titleSeo: "XGEN DeX — agents in the real desktop"
-description: "The environment AI runs in and the environment people actually do their work in are separate. A desktop interface that lets an agent built in XGEN handle files and applications on your own machine and produce real deliverables."
+description: "The environment AI runs in and the environment people actually do their work in are separate. XGEN DeX is the desktop interface that connects XGEN AI agents to the user's PC, so real work gets done with the files and applications already there."
 date: "2026-08-26"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
@@ -105,19 +105,19 @@ The install screens and the detail of each step live in the hands-on companion.
 
 Here we will look only at why each step is designed the way it is.
 
-### Why you pick an agent
+### Why agents are separated
 
-Not everything is handed to one general-purpose AI.
+Not every task is handed to one general-purpose AI agent.
 
-Different work in a company uses different data, tools, and permissions. So you configure agents in XGEN for each purpose, and in DeX you select the one you need.
+Work in a company uses different data, different tools, and needs different permissions from one task to the next. So agents are configured in XGEN for each purpose, and in DeX you select the one that fits the situation.
 
-A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — chosen from one DeX.
+A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — all available from one DeX, chosen as needed.
 
-### Why execution permissions are connected separately
+### Why the execution environment is connected
 
-For an agent to work on your actual machine it needs an execution environment. Depending on the task that may be **local file and storage, browser, PowerShell, MCP, skill, or application.**
+For an agent to do real work on a user's PC, it has to be able to reach the execution environment that work requires — **local file and storage, browser, PowerShell, MCP, skill, or application**, depending on the task.
 
-The important part is that this is a deliberate step rather than something opened automatically. This is where an agent on the web becomes an agent that can execute in a real working environment, so what gets opened has to be stated explicitly.
+DeX does not open all of these by default. This is the point where an agent managed on the web extends into the user's real working environment, so it is built to connect only the execution environments a task actually needs.
 
 ### Why Workspace matters
 

@@ -104,7 +104,7 @@ With DeX running, this computer appears automatically under Connected PCs. Pick 
 
 *PC and agent both connected*
 
-> A connected agent can read and write your entire cloud. Connect only the agents a task needs, and pause the connection when you are not using it.
+> A connected agent can reach your cloud storage within the scope you allow. Connect only the agents a task needs, and pause the connection when you are not using it.
 
 Creating a store under Library makes a cloud folder, and a folder of the same name syncs under the default working folder on your PC. That folder is where the agent and you hand files back and forth.
 
@@ -160,21 +160,27 @@ The agent restates what it is about to do, runs a web search, and comes back wit
 
 *The work you handed over comes back organized*
 
-What it produces is saved automatically to the folder you connected in step 4. A working folder appears in the explorer for each agent, and the same content stays in sync with the local path you chose.
+What it produces is saved automatically to the folder you connected in step 4. A working folder appears in the explorer for each agent, and the same content is kept in sync automatically with the local path you chose.
 
 ![The explorer showing XgenCloud and the site operations agent folder, with the Storage tab listing that agent's local sync path](/connector/27-synced-folder.webp)
 
-*The agent's folder appears in the explorer and syncs to a local path*
+*A working folder per agent, kept in sync with the local path you chose*
 
 At this point the agent you built in XGEN is wired into your desktop environment, ready to do real work with local files and applications.
 
 ## What you learn running it
 
-**Split agents by task.** Do not hand everything to one general-purpose agent. Different work uses different data, tools, and permissions — putting site operations and document cleanup on the same agent opens permissions neither task needs.
+### Separate agents by what the work needs
 
-**Disconnect when you are not using it.** A connected agent reads and writes your whole cloud. Pause it under File Cloud → Connections and the connection stays configured while access stops.
+Rather than handing everything to one general-purpose agent, it is more efficient to split agents by task. Each kind of work uses different data, different tools, and needs different permissions. Put site operations and document cleanup on the same agent, and permissions neither task needs get granted along with the rest.
 
-**Continue from the result.** What the agent produces becomes the start of the next task. It stays in the synced folder, so you can keep the thread going — "summarize what you just made for an executive audience."
+### Pause the connection when you are not using it
+
+A connected agent can reach your cloud storage within the scope you allow. While you are not using it, choose Pause under File Cloud → Connections and access stops while the connection itself stays configured.
+
+### Continue the next task from the result
+
+What the agent produces becomes the start of the next task. It is saved in the synced folder as it is, so you can carry the context forward — "summarize what you just made for an executive briefing."
 
 ## Read next
 
