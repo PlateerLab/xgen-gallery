@@ -92,7 +92,9 @@ You get a workflow wiring input, conversation memory, web search, the agent, and
 
 ## 4. Connect it to your PC and create a working folder
 
-For the agent to read and write files on this machine, the two have to be connected. Do it in XGEN under Knowledge → File Cloud → Connections. With DeX running, this computer appears automatically under Connected PCs, and + Connect agent lets you pick the agent you just built.
+For an agent running on the XGEN server to read and write files on this machine, that agent and this computer have to be connected to each other. Do it in XGEN under Knowledge → File Cloud → Connections.
+
+With DeX running, this computer appears automatically under Connected PCs. Pick the agent you built with + Connect agent, and the agent on the XGEN server is joined to your desktop.
 
 ![The connect agent dialog with the site operations agent selected](/connector/21-connect-agent.webp)
 
@@ -157,6 +159,8 @@ What it produces lands in the folder you synced in step 4. The agent's folder ap
 ![The explorer showing XgenCloud and the site operations agent folder, with the Storage tab listing that agent's local sync path](/connector/27-synced-folder.webp)
 
 *The agent's folder appears in the explorer and syncs to a local path*
+
+At this point the agent you built in XGEN is wired into your desktop environment, ready to do real work with local files and applications.
 
 ## What you learn running it
 

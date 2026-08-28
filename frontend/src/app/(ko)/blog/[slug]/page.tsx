@@ -27,8 +27,17 @@ export async function generateMetadata({
             languages: languageAlternates(`/blog/${post.slug}`),
         },
         keywords: post.tags,
+        /*
+          비공개 발행 — 검색엔진 색인만 막고, 일반 robots 지시는 두지 않는다.
+          generic noindex 를 걸면 ChatGPT 같은 도구가 주소를 받아도 읽기를
+          거부해, 링크를 보내 검토를 부탁할 수 없다. 목록·사이트맵에 없고
+          어디서도 링크하지 않는 것으로 노출을 막는다.
+        */
         ...(post.unlisted
-            ? { robots: { index: false, follow: false } }
+            ? {
+                  robots: { googleBot: { index: false, follow: false } },
+                  other: { bingbot: "noindex, nofollow" },
+              }
             : {}),
         openGraph: {
             title: post.title,
