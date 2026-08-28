@@ -96,30 +96,54 @@ function DropdownItem({
                 ))}
             {children.length > 0 && (
                 <div className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
-                    {children.map((c) =>
-                        c.external ? (
-                            <a
-                                key={c.id}
-                                href={c.external}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={onClose}
-                                className={cn(childCls, "flex items-center gap-1")}
-                            >
-                                {navLabel(c, locale)}
-                                <ArrowUpRight className="h-3 w-3 text-[var(--color-ink-subtle)]" />
-                            </a>
-                        ) : (
-                            <Link
-                                key={c.id}
-                                href={c.route ?? sectionHref(groupKey, c.id)}
-                                onClick={onClose}
-                                className={childCls}
-                            >
-                                {navLabel(c, locale)}
-                            </Link>
-                        ),
-                    )}
+                    {children.map((c) => {
+                        // 손자 — 「핵심 기능 · 핵심 기술」 아래의 이지모드·패스파인더처럼
+                        // 한 단 더 들어가는 항목. 한 단만 더 지원한다.
+                        const grand = c.children?.filter((g) => !g.hidden) ?? [];
+                        return (
+                            <div key={c.id}>
+                                {c.external ? (
+                                    <a
+                                        href={c.external}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={onClose}
+                                        className={cn(childCls, "flex items-center gap-1")}
+                                    >
+                                        {navLabel(c, locale)}
+                                        <ArrowUpRight className="h-3 w-3 text-[var(--color-ink-subtle)]" />
+                                    </a>
+                                ) : (
+                                    <Link
+                                        href={c.route ?? sectionHref(groupKey, c.id)}
+                                        onClick={onClose}
+                                        className={childCls}
+                                    >
+                                        {navLabel(c, locale)}
+                                    </Link>
+                                )}
+                                {grand.length > 0 && (
+                                    /*
+                                      2열로 깐다. 네 개를 세로로 세우면 부모 목록이
+                                      그만큼 밀려 「핵심 기능」 아래가 아니라 별도
+                                      블록처럼 보였다.
+                                    */
+                                    <div className="mb-1 ml-3 grid grid-cols-2 border-l border-[var(--color-line)] pl-2">
+                                        {grand.map((g) => (
+                                            <Link
+                                                key={g.id}
+                                                href={g.route ?? sectionHref(groupKey, g.id)}
+                                                onClick={onClose}
+                                                className="block rounded-lg px-3 py-1.5 text-[14.5px] font-medium text-[var(--color-ink-subtle)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]"
+                                            >
+                                                {navLabel(g, locale)}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             )}
         </div>
@@ -604,22 +628,43 @@ export function SiteNav({
                                                                             <ArrowUpRight className="h-3.5 w-3.5" />
                                                                         </a>
                                                                     ) : (
-                                                                        <Link
-                                                                            key={c.id}
-                                                                            href={
-                                                                                c.route ??
-                                                                                sectionHref(
-                                                                                    g.key,
-                                                                                    c.id,
-                                                                                )
-                                                                            }
-                                                                            onClick={
-                                                                                close
-                                                                            }
-                                                                            className="block py-1.5 text-[15px] text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
-                                                                        >
-                                                                            {navLabel(c, locale)}
-                                                                        </Link>
+                                                                        <div key={c.id}>
+                                                                            <Link
+                                                                                href={
+                                                                                    c.route ??
+                                                                                    sectionHref(
+                                                                                        g.key,
+                                                                                        c.id,
+                                                                                    )
+                                                                                }
+                                                                                onClick={
+                                                                                    close
+                                                                                }
+                                                                                className="block py-1.5 text-[15px] text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
+                                                                            >
+                                                                                {navLabel(c, locale)}
+                                                                            </Link>
+                                                                            {/* 손자 — 데스크톱 드롭다운과 같은 한 단 */}
+                                                                            {c.children?.some((gc) => !gc.hidden) && (
+                                                                                <div className="ml-3 border-l border-[var(--color-line)] pl-3">
+                                                                                    {c.children
+                                                                                        .filter((gc) => !gc.hidden)
+                                                                                        .map((gc) => (
+                                                                                            <Link
+                                                                                                key={gc.id}
+                                                                                                href={
+                                                                                                    gc.route ??
+                                                                                                    sectionHref(g.key, gc.id)
+                                                                                                }
+                                                                                                onClick={close}
+                                                                                                className="block py-1.5 text-[14.5px] text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
+                                                                                            >
+                                                                                                {navLabel(gc, locale)}
+                                                                                            </Link>
+                                                                                        ))}
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
                                                                     ),
                                                             )}
                                                         </div>

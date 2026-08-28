@@ -315,7 +315,23 @@ export const NAV_GROUPS: NavGroup[] = [
                 // "자세히 보기"로 연결한다.
                 children: [
                     { label: "Why XGEN", labelKo: "제품 개요", id: "why-xgen", route: "/product" },
-                    { label: "Features · Core Technology", labelKo: "핵심 기능 · 핵심 기술", id: "features", route: "/product#features" },
+                    {
+                        label: "Features · Core Technology",
+                        labelKo: "핵심 기능 · 핵심 기술",
+                        id: "features",
+                        route: "/product#features",
+                        // 핵심 기능 4종 — /product#build 의 특장점 카드와 같은 목록이고,
+                        // 각 항목은 그 카드의 「자세히 보기」와 같은 곳으로 간다.
+                        //
+                        // 이지모드만 전용 페이지가 없다 — 네 장을 한 줄로 보여 주는
+                        // /product#build 로 보낸다. 전용 페이지가 생기면 route 만 바꾸면 된다.
+                        children: [
+                            { label: "Easy Mode", labelKo: "이지모드", id: "easy-mode", route: "/product#build" },
+                            { label: "PathFinder", labelKo: "패스파인더", id: "pathfinder", route: "/pathfinder" },
+                            { label: "FloUI", id: "floui", route: "/floui" },
+                            { label: "XGEN DeX", id: "xgen-dex", route: "/xgen-dex" },
+                        ],
+                    },
                     { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance" },
                     { label: "Certifications & Quality", labelKo: "인증·품질", id: "certification", route: "/product#certification" },
                     { label: "Customer Cases", labelKo: "고객사례", id: "xgen-cases", route: "/product#cases" },
