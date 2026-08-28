@@ -154,11 +154,11 @@ Minimize the window and the avatar stays. You do not have to find and open the a
 
 Hand it outcomes, not commands. Below, it was asked to find and summarize the most-read press coverage of on-premise B2B agent platforms from the past month.
 
-The agent restates what it is about to do, then runs its WebSearch tool. **Which tool it is using, and how far along, shows inline** — so you can follow the work while it happens.
+The agent restates what it is about to do, runs a web search, and comes back with what it found — title, URL, date, and a summary. Which tools it used, and how many times, is kept under View full log, so you can stay with the result or open up the process.
 
-![A DeX conversation where the agent was asked to research press coverage and is running its WebSearch tool four times](/connector/28-agent-task.webp)
+![A DeX conversation where the agent returns the press coverage it found, laid out with title, URL, date, and summary](/connector/28-agent-task.webp)
 
-*Hand it work and it picks the tools it needs*
+*The work you handed over comes back organized*
 
 What it produces lands in the folder you synced in step 4. The agent's folder appears in the explorer on the left, and the same content syncs to a local path.
 
