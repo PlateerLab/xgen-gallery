@@ -182,7 +182,7 @@ That way a company can manage agents and key assets centrally while connecting t
 
 ---
 
-## The agent lives on your desktop
+## The agent works alongside you on the desktop
 
 Work tools need a window opened before you can use them. Find the app, launch it, open a chat, and only then say what you want. Those few steps are what send people back to "I'll just do it myself."
 
@@ -198,7 +198,7 @@ You do not have to make one. The Store already carries ready-made characters to 
 
 *Pick a character from the store and download it*
 
-The avatar is not a visual flourish. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server has actually taken up residence in the user's working environment.
+The avatar is not a visual flourish. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server is actually there in the user's working environment.
 
 ---
 
