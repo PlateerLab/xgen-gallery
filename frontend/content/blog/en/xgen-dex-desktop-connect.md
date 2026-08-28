@@ -1,7 +1,7 @@
 ---
 title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
 titleSeo: "XGEN DeX — agents in the real desktop"
-description: "The environment AI thinks in and the environment people work in are separate. A desktop interface that lets an agent built in XGEN handle files and applications on your own machine and produce real deliverables."
+description: "The environment AI runs in and the environment people actually do their work in are separate. A desktop interface that lets an agent built in XGEN handle files and applications on your own machine and produce real deliverables."
 date: "2026-08-26"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
@@ -30,7 +30,7 @@ But in real work, everything after that is still yours to do.
 
 Find and upload the file, download the result, open Excel or PowerPoint to revise it, search the browser for anything missing, and save the finished file to a working folder.
 
-The reason is simple: **the environment the AI thinks in and the environment people work in are separate.**
+The reason is simple: **the environment the AI runs in and the environment people actually do their work in are separate.**
 
 XGEN DeX is being built to close that gap.
 
@@ -54,7 +54,7 @@ Put simply:
 
 **XGEN DeX is where those agents connect to the user's environment so the work can actually happen.**
 
-The product is named **XGEN DeX** (Desktop Experience), and what it does is act as the connector between agents on the server and the local working environment. That is why `xgen-connector` still appears in the installer and repository names.
+The product is named **XGEN DeX** (Desktop Experience), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
 
 ---
 
@@ -192,7 +192,7 @@ DeX can put the agent on screen as **a floating avatar**. Upload a photo or a Li
 
 *Turn the avatar on and the agent lives on your desktop*
 
-This is not decoration. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server has actually taken up residence in the user's working environment.
+The avatar is not a visual flourish. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server has actually taken up residence in the user's working environment.
 
 ---
 
@@ -224,7 +224,7 @@ Enterprise generative AI has mostly been used as people asking and AI answering.
 
 Agentic AI needs one more step.
 
-The AI does not stop at generating an answer — **it has to use the tools it needs and produce an actual result.**
+Beyond generating an answer, **it has to use the tools it needs and produce an actual result.**
 
 DeX closes that last gap between XGEN's agents and the real working environment.
 
@@ -243,7 +243,7 @@ to
 
 What DeX sets out to build is not another AI chat program.
 
-> **The execution touchpoint that lets an enterprise's own AI agents work alongside employees in their real environment.**
+> **The execution touchpoint that connects an enterprise's AI agents to the environment where work actually happens.**
 
 That is why XGEN DeX exists.
 
