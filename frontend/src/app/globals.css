@@ -330,10 +330,15 @@ img {
   마크다운의 alt 는 대체 텍스트로 두고, 설명은 이미지 다음 줄의 em 으로 단다.
 */
 .blog-prose img {
+    /*
+      width:100% 로 두면 원본보다 작은 캡처가 본문 폭까지 늘어나 흐려진다.
+      설치 대화상자처럼 작은 화면은 제 크기로 두고, 큰 캡처만 폭을 채운다.
+    */
     display: block;
-    width: 100%;
+    max-width: 100%;
+    width: auto;
     height: auto;
-    margin: 1.4em 0 0;
+    margin: 1.4em auto 0;
     border: 1px solid var(--color-line);
     border-radius: 0.75rem;
     background: var(--color-surface-alt);
@@ -372,7 +377,6 @@ img {
     padding: 1em 1.2em;
 }
 .blog-prose pre code { background: none; border: none; padding: 0; color: #e6ecf7; }
-.blog-prose img { margin: 1.6em 0; border-radius: 0.6rem; border: 1px solid var(--color-line); max-width: 100%; height: auto; }
 /* 인라인 SVG 일러스트(본문 내) — 페이지 폰트(Pretendard) 상속 */
 .blog-prose .blog-illust { margin: 1.6em 0; }
 .blog-prose .blog-illust svg {

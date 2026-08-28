@@ -8,7 +8,7 @@ thumb: /blog/xgen-connector-preview-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]
-draft: true
+unlisted: true
 faq:
   - q: "XGEN DeX는 데스크톱용 XGEN 채팅 앱인가요?"
     a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. DeX는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
