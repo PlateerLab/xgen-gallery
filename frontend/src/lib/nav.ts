@@ -325,11 +325,13 @@ export const NAV_GROUPS: NavGroup[] = [
                         //
                         // 이지모드만 전용 페이지가 없다 — 네 장을 한 줄로 보여 주는
                         // /product#build 로 보낸다. 전용 페이지가 생기면 route 만 바꾸면 된다.
+                        // 넷 다 제품 이름이라 국·영문을 같게 둔다 — labelKo 를 두지 않으면
+                        // navLabel 이 label 로 떨어진다.
                         children: [
-                            { label: "Easy Mode", labelKo: "이지모드", id: "easy-mode", route: "/product#build" },
-                            { label: "PathFinder", labelKo: "패스파인더", id: "pathfinder", route: "/pathfinder" },
+                            { label: "EasyMode", id: "easy-mode", route: "/product#build" },
+                            { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
                             { label: "FloUI", id: "floui", route: "/floui" },
-                            { label: "XGEN DeX", id: "xgen-dex", route: "/xgen-dex" },
+                            { label: "DeX (Desktop Experience)", id: "xgen-dex", route: "/xgen-dex" },
                         ],
                     },
                     { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance" },

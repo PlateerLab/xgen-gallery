@@ -129,16 +129,34 @@ function DropdownItem({
                                       블록처럼 보였다.
                                     */
                                     <div className="mb-1 ml-3 grid grid-cols-2 border-l border-[var(--color-line)] pl-2">
-                                        {grand.map((g) => (
-                                            <Link
-                                                key={g.id}
-                                                href={g.route ?? sectionHref(groupKey, g.id)}
-                                                onClick={onClose}
-                                                className="block rounded-lg px-3 py-1.5 text-[14.5px] font-medium text-[var(--color-ink-subtle)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]"
-                                            >
-                                                {navLabel(g, locale)}
-                                            </Link>
-                                        ))}
+                                        {grand.map((g) => {
+                                            /*
+                                              「DeX (Desktop Experience)」 처럼 이름 뒤에 풀이가
+                                              붙는 라벨은 한 칸에 다 못 들어가 옆 열을 침범했다.
+                                              괄호를 떼어 아랫줄에 작게 두면 칸 안에서 끝난다.
+                                            */
+                                            const text = navLabel(g, locale);
+                                            const paren = /^(.*?)\s*\((.+)\)$/.exec(text);
+                                            return (
+                                                <Link
+                                                    key={g.id}
+                                                    href={g.route ?? sectionHref(groupKey, g.id)}
+                                                    onClick={onClose}
+                                                    className="block min-w-0 rounded-lg px-3 py-1.5 text-[14.5px] font-medium leading-snug text-[var(--color-ink-subtle)] transition hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-ink)]"
+                                                >
+                                                    {paren ? (
+                                                        <>
+                                                            {paren[1]}
+                                                            <span className="block text-[11px] leading-tight text-[var(--color-ink-subtle)]/70">
+                                                                ({paren[2]})
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        text
+                                                    )}
+                                                </Link>
+                                            );
+                                        })}
                                     </div>
                                 )}
                             </div>
