@@ -104,6 +104,26 @@ export const PRODUCT_EN = {
                 "Business users turn their own systems into tools",
             ],
         },
+        {
+            ko: "FloUI",
+            tagline: "Ask, and the screen for that question builds itself",
+            desc: "FloUI is not a dashboard someone drew in advance. It reads the question and lays out KPIs, charts, and a RAG summary on the spot — so the cycle of filing a request and waiting for one more screen disappears, and a hypothesis raised in a meeting gets tested inside that meeting.",
+            items: [
+                "The question becomes the screen (Question-to-UI)",
+                "Structured data and RAG references on one screen",
+                "Explore and verify now, with no build queue",
+            ],
+        },
+        {
+            ko: "XGEN DeX",
+            tagline: "Run the agents you built on your team's desktops",
+            desc: "XGEN DeX is the desktop interface that connects agents running on the server to the working environment on a user's PC. Within the scope you allow, it uses local files and applications to produce real deliverables.",
+            items: [
+                "Runs against local files and applications",
+                "Execution permissions connected per task",
+                "Working-folder sync with an activity record",
+            ],
+        },
     ],
 
     features: [

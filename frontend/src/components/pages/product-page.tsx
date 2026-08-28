@@ -17,6 +17,7 @@ import {
     Download,
     Sparkles,
     Compass,
+    MonitorSmartphone,
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
@@ -24,6 +25,8 @@ import { ProductHero } from "@/components/product-hero";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
+import { DexArt } from "@/components/dex-art";
+import { FloUIArt } from "@/components/floui-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { SectionIndex } from "@/components/section-index";
@@ -153,7 +156,7 @@ const EFFECTS: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** XGEN 특장점 — 비개발자·현업도 직접 만드는 접근성(이지모드·패스파인더). */
+/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(DeX) 세 갈래. */
 const DIFFERENTIATORS: {
     icon: LucideIcon;
     en: string;
@@ -161,6 +164,8 @@ const DIFFERENTIATORS: {
     tagline: string;
     desc: string;
     items: string[];
+    /** 더 읽을 자리가 있는 카드만 「자세히 보기」를 단다 */
+    href?: string;
 }[] = [
     {
         icon: Sparkles,
@@ -185,6 +190,33 @@ const DIFFERENTIATORS: {
             "로그인·API·도구 등록·테스트 무코드",
             "현업이 직접 실행 도구화",
         ],
+        href: "/pathfinder",
+    },
+    {
+        icon: LayoutDashboard,
+        en: "FloUI",
+        ko: "FloUI",
+        tagline: "질문하는 순간, 그 질문을 위한 화면이 만들어집니다",
+        desc: "FloUI는 미리 만들어 둔 대시보드를 여는 기술이 아닙니다. 사용자의 질문을 해석해 KPI와 차트, RAG 요약을 그 자리에서 배치합니다. 화면 하나를 더 보려고 개발을 요청하고 기다리던 주기가 사라지고, 회의 중에 떠오른 가설을 그 회의 안에서 검증합니다.",
+        items: [
+            "질문을 곧 화면으로 (Question-to-UI)",
+            "정형 데이터와 RAG 참조를 한 화면에",
+            "개발 대기 없이 즉시 탐색·검증",
+        ],
+        href: "/floui",
+    },
+    {
+        icon: MonitorSmartphone,
+        en: "XGEN DeX",
+        ko: "XGEN DeX",
+        tagline: "만든 Agent를 직원의 데스크톱에서 실행합니다",
+        desc: "XGEN DeX는 서버에서 운영되는 Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 안에서 로컬 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
+        items: [
+            "로컬 파일·애플리케이션 실행",
+            "실행 권한을 업무 단위로 연결",
+            "작업 폴더 동기화와 작업 내역 기록",
+        ],
+        href: "/xgen-dex",
     },
 ];
 
@@ -793,8 +825,12 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더) */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·DeX) */}
+                {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
+                <section
+                    id="build"
+                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <p className="text-center font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
                             Build for Everyone
@@ -805,6 +841,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
                         </p>
+                        {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다 */}
                         <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-stretch">
                             {DIFFERENTIATORS_L.map((d) => (
                                 <div
@@ -821,6 +858,16 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <EasyModeArt locale={locale} />
                                         </div>
                                     )}
+                                    {d.en === "FloUI" && (
+                                        <div className="mb-6">
+                                            <FloUIArt locale={locale} />
+                                        </div>
+                                    )}
+                                    {d.en === "XGEN DeX" && (
+                                        <div className="mb-6">
+                                            <DexArt locale={locale} />
+                                        </div>
+                                    )}
                                     <div className="flex items-center justify-between gap-3">
                                         <div className="flex items-center gap-3">
                                             <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
@@ -835,10 +882,10 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                 </h3>
                                             </div>
                                         </div>
-                                        {/* 자세히 보기 — PathFinder만 상세 페이지 연결(그 외 카드는 미노출) */}
-                                        {d.en === "PathFinder" && (
+                                        {/* 자세히 보기 — 더 읽을 자리가 있는 카드만 노출한다 */}
+                                        {d.href && (
                                             <Link
-                                                href="/pathfinder"
+                                                href={localeHref(locale, d.href)}
                                                 className="group/link inline-flex flex-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                                             >
                                                 {en ? E.diffMore : "자세히 보기"}
@@ -849,10 +896,16 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                     <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
                                         {d.tagline}
                                     </p>
-                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {/* mb-5 — 아래 목록이 mt-auto 라, 최소 간격은 이쪽이 책임진다 */}
+                                    <p className="mt-2.5 mb-5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {d.desc}
                                     </p>
-                                    <ul className="mt-5 flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                    {/*
+                                      mt-auto — 설명 길이가 카드마다 다르다. 위에서부터 흘리면
+                                      구분선 높이가 제각각이라 두 열이 어긋나 보인다. 바닥에서
+                                      맞춰야 나란히 놓인 카드의 선이 한 줄로 읽힌다.
+                                    */}
+                                    <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
                                         {d.items.map((it) => (
                                             <li
                                                 key={it}
