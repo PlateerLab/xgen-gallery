@@ -103,9 +103,9 @@ DeX의 사용 방식은 일반적인 업무용 AI보다 오히려 단순하게 �
 | 5 | 자연어로 업무 지시 |
 | 6 | 결과물을 확인하고 이어서 작업 |
 
-설치 화면과 각 단계의 자세한 설명은 별도 가이드에 정리했습니다.
+설치 화면과 각 단계의 자세한 설명은 실습 편에 화면과 함께 정리했습니다.
 
-**→ [XGEN DeX 설치·활용 가이드](/xgen-connector)**
+**→ [XGEN DeX 설치부터 첫 업무까지 — 여섯 단계](/blog/xgen-dex-install-guide)**
 
 여기서는 각 단계가 왜 그렇게 설계되었는지만 짚어보겠습니다.
 
@@ -246,4 +246,4 @@ XGEN DeX가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 �
 ## 함께 읽기
 
 - [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — DeX가 놓이는 자리를 먼저 설명한 글(선행 글)
-- [XGEN DeX 설치·활용 가이드](/xgen-connector) — 설치 화면과 여섯 단계를 화면과 함께 안내
+- [XGEN DeX 설치부터 첫 업무까지](/blog/xgen-dex-install-guide) — 설치·Agent 제작·연결·업무 지시까지, 화면과 함께

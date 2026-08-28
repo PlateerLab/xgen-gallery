@@ -99,9 +99,9 @@ The overall flow is six steps.
 | 5 | Ask in plain language |
 | 6 | Check the result and keep going |
 
-The install screens and the detail of each step live in a separate guide.
+The install screens and the detail of each step live in the hands-on companion.
 
-**→ [Installing and using XGEN DeX](/en/xgen-connector)**
+**→ [XGEN DeX from install to first task — six steps](/en/blog/xgen-dex-install-guide)**
 
 Here we will look only at why each step is designed the way it is.
 
@@ -238,4 +238,4 @@ That is why XGEN DeX exists.
 ## Read next
 
 - [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the piece that laid out where DeX sits (read first)
-- [Installing and using XGEN DeX](/en/xgen-connector) — the six steps, with install screens
+- [XGEN DeX from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work

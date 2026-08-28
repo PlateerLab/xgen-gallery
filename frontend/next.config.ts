@@ -82,6 +82,18 @@ const nextConfig: NextConfig = {
             // 블로그를 /insights → /blog 로 이전 (SEO 손실 방지, 영구 리다이렉트).
             { source: '/insights', destination: '/blog', permanent: true },
             { source: '/demo', destination: '/contact', permanent: true },
+            // 설치 가이드를 별도 페이지에서 블로그 글로 옮겼다(요청). 공유된
+            // 링크가 죽지 않게 넘긴다 — 영문도 각자 경로로 보낸다.
+            {
+                source: '/xgen-connector',
+                destination: '/blog/xgen-dex-install-guide',
+                permanent: true,
+            },
+            {
+                source: '/en/xgen-connector',
+                destination: '/en/blog/xgen-dex-install-guide',
+                permanent: true,
+            },
             // 중복/스크래치 페이지 정리 — 단일 정식 경로로 영구 리다이렉트.
             { source: '/products', destination: '/product', permanent: true },
             { source: '/research-areas2', destination: '/research', permanent: true },

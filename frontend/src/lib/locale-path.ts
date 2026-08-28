@@ -29,7 +29,6 @@ export const EN_ROUTES: readonly string[] = [
     "/architecture",
     "/security-and-governance",
     "/code-assistant",
-    "/xgen-connector",
     "/technical-consulting",
     "/documentation",
     "/xgen-trial",

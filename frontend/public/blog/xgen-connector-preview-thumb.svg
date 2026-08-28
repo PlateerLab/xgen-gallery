@@ -1,37 +1,42 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX — 서버의 Agent 와 사용자 PC 를 Connector 가 잇는 모습">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX — 커넥터와 사용자 업무환경을 함께 묶은 실행 계층으로 서버의 Agent 가 들어온다">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#e8eefb"/></linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#1f4fa8"/></linearGradient>
+    <linearGradient id="dexfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.1"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0.02"/></linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.12"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
   <circle cx="600" cy="470" r="330" fill="url(#glow)"/>
 
-  <!-- 제품 이름은 XGEN DeX, 가운데 파란 박스의 Connector 는 그 기능이다 -->
-  <text x="600" y="108" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="40" font-weight="800" letter-spacing="6" fill="#2461d8">XGEN DeX</text>
-  <text x="600" y="206" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="86" font-weight="800" fill="#111827">Agent를</text>
-  <text x="600" y="300" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="86" font-weight="800" fill="#2461d8">업무환경으로</text>
+  <text x="600" y="96" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="34" font-weight="800" letter-spacing="6" fill="#2461d8">XGEN DeX</text>
+  <text x="600" y="182" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="72" font-weight="800" fill="#111827">Agent를 업무환경으로</text>
 
-  <!-- 서버 -->
-  <rect x="176" y="368" width="216" height="150" rx="26" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-  <text x="284" y="428" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="26" font-weight="800" fill="#1f4fa8">XGEN</text>
-  <text x="284" y="462" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="19" fill="#6b7280">Agent 관리</text>
-
-  <!-- Connector -->
-  <rect x="452" y="386" width="296" height="114" rx="26" fill="url(#brand)"/>
-  <text x="600" y="440" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="30" font-weight="800" fill="#ffffff">Connector</text>
-  <text x="600" y="472" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="17" fill="#d7e4ff">Desktop Interface</text>
-
-  <!-- PC -->
-  <rect x="808" y="368" width="216" height="150" rx="26" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-  <text x="916" y="428" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="26" font-weight="800" fill="#1f4fa8">내 PC</text>
-  <text x="916" y="462" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="19" fill="#6b7280">파일 · 앱 · 브라우저</text>
-
-  <!-- 잇는 화살표 -->
+  <!-- 서버에서 Agent 가 내려온다 -->
+  <rect x="392" y="236" width="416" height="76" rx="24" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
+  <text x="600" y="284" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="26" font-weight="800" fill="#1f4fa8">XGEN · 서버</text>
   <g stroke="#8fb4ff" stroke-width="5" stroke-linecap="round" fill="none">
-    <path d="M400 443 h36"/><path d="M428 431 l14 12 -14 12"/>
-    <path d="M764 443 h36"/><path d="M792 431 l14 12 -14 12"/>
+    <path d="M600 318 v34"/><path d="M588 342 l12 13 12 -13"/>
   </g>
 
-  <text x="600" y="596" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="27" font-weight="700" fill="#2461d8">Request · Understand · Execute · Deliver</text>
+  <!--
+    DeX 는 커넥터만이 아니다. 커넥터와 사용자 업무환경을 함께 묶은 것이
+    DeX 이므로, 둘을 한 테두리 안에 넣고 그 테두리에 이름을 붙인다.
+  -->
+  <rect x="112" y="374" width="976" height="182" rx="30" fill="url(#dexfill)" stroke="#2f7bff" stroke-width="3" stroke-dasharray="12 9"/>
+  <rect x="112" y="374" width="232" height="48" rx="24" fill="url(#brand)"/>
+  <text x="228" y="407" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="21" font-weight="800" fill="#ffffff">XGEN DeX</text>
+
+  <rect x="150" y="440" width="418" height="94" rx="20" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
+  <text x="359" y="478" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="27" font-weight="800" fill="#1f4fa8">커넥터</text>
+  <text x="359" y="512" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="19" fill="#6b7280">연결 · 권한 · 동기화</text>
+
+  <g stroke="#8fb4ff" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M584 487 h40"/><path d="M614 475 l13 12 -13 12"/>
+  </g>
+
+  <rect x="640" y="440" width="410" height="94" rx="20" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
+  <text x="845" y="478" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="27" font-weight="800" fill="#1f4fa8">사용자 업무환경</text>
+  <text x="845" y="512" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="19" fill="#6b7280">파일 · 앱 · 브라우저</text>
+
+  <text x="600" y="618" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="25" font-weight="700" fill="#2461d8">Request · Understand · Execute · Deliver</text>
 </svg>

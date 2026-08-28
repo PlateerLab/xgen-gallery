@@ -325,6 +325,28 @@ img {
     color: var(--color-ink);
 }
 .blog-prose blockquote p { color: var(--color-ink); }
+/*
+  본문 스크린샷 — 화면 캡처는 흰 여백이 많아 테두리가 없으면 글과 뭉개진다.
+  마크다운의 alt 는 대체 텍스트로 두고, 설명은 이미지 다음 줄의 em 으로 단다.
+*/
+.blog-prose img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1.4em 0 0;
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    background: var(--color-surface-alt);
+}
+.blog-prose p:has(> img) { margin-top: 1.6em; }
+/* 이미지 바로 뒤에 오는 기울임 한 줄을 캡션으로 쓴다 */
+.blog-prose p:has(> img) + p > em:only-child {
+    display: block;
+    margin-top: -0.5em;
+    font-size: 0.86em;
+    font-style: normal;
+    color: var(--color-ink-subtle);
+}
 /* 시리즈 목차(순서 목록을 담은 blockquote)는 기존 디자인(왼쪽 블루바) 유지 */
 .blog-prose blockquote:has(ol),
 .blog-prose blockquote:has(ul) {
