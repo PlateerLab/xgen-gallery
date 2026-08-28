@@ -2,7 +2,7 @@
 // 앱이 구독자에게 xgen@plateer.com(O365 SMTP)에서 요약 메일을 발송한다.
 // GitHub Action(.github/workflows/blog-notify.yml)에서 실행.
 //   env: NOTIFY_URL(기본 https://labs.plateer.com/api/content-notify) · TOKEN(=BLOG_NOTIFY_TOKEN) · BEFORE · AFTER
-// 이번 푸시에서 "추가된(A)" frontend/content/blog/*.md 중 draft가 아닌 글만 대상.
+// 이번 푸시에서 "추가된(A)" frontend/content/blog/*.md 중 draft·unlisted 가 아닌 글만 대상.
 import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import path from "node:path";
@@ -65,6 +65,11 @@ for (const f of added) {
     const fm = frontmatter(md);
     if (String(fm.draft) === "true") {
         console.log("초안 건너뜀:", f);
+        continue;
+    }
+    // 비공개 발행 — 주소를 아는 사람만 보는 글이라 구독자에게 알리지 않는다.
+    if (String(fm.unlisted) === "true") {
+        console.log("비공개 건너뜀:", f);
         continue;
     }
     const slug = path.basename(f, ".md");

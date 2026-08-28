@@ -1,12 +1,12 @@
 import { BlogPostPageContent } from "@/components/pages/blog-post-page";
-import { getAllSlugs, getPost } from "@/lib/blog";
+import { getRoutableSlugs, getPost } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 import { languageAlternates } from "@/lib/locale-path";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-    return getAllSlugs().map((slug) => ({ slug }));
+    return getRoutableSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -27,6 +27,9 @@ export async function generateMetadata({
             languages: languageAlternates(`/blog/${post.slug}`),
         },
         keywords: post.tags,
+        ...(post.unlisted
+            ? { robots: { index: false, follow: false } }
+            : {}),
         openGraph: {
             title: post.title,
             description: post.description,

@@ -62,6 +62,17 @@ export interface PostMeta {
      */
     gated?: boolean;
     draft?: boolean;
+    /**
+     * 비공개 발행 — 주소를 아는 사람만 본다.
+     *
+     * draft 와 다르다. draft 는 운영에서 아예 없는 글이라 URL 로도 404 다.
+     * unlisted 는 글은 살아 있고 목록·사이트맵·검색에서만 빠진다. 공개 전
+     * 운영 환경에서 실제 화면을 검토할 때 쓴다.
+     *
+     * 상세 페이지가 noindex 를 내려주는 것까지 함께 지켜야 의미가 있다
+     * (app/(ko)/blog/[slug]/page.tsx 참고).
+     */
+    unlisted?: boolean;
     featured?: boolean; // 키비주얼(히어로) 캐러셀 노출 — Decap에서 편집자가 선정
     /** TL;DR 요약 — 본문 상단 하이라이트 박스. AI 검색이 인용하기 쉬운 3~4문장 핵심. */
     summary?: string;
@@ -147,6 +158,7 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
         thumb: data.thumb ? String(data.thumb) : undefined,
         gated: Boolean(data.gated),
         draft: Boolean(data.draft),
+        unlisted: Boolean(data.unlisted),
         featured: Boolean(data.featured),
         summary: data.summary ? String(data.summary) : undefined,
         faq: Array.isArray(data.faq)
@@ -166,12 +178,15 @@ function parse(slug: string, locale: Locale = "ko"): Post | null {
     };
 }
 
-/** 발행된 글 목록(초안 제외, 최신순). 운영 빌드에서만 draft를 숨긴다. */
+/**
+ * 발행된 글 목록(최신순). 운영 빌드에서만 숨김이 적용된다.
+ * draft 는 아예 없는 글, unlisted 는 주소로만 닿는 글 — 둘 다 목록에선 뺀다.
+ */
 export function getAllPosts(locale: Locale = "ko"): PostMeta[] {
     return readSlugs(locale)
         .map((slug) => parse(slug, locale))
         .filter((p): p is Post => p !== null)
-        .filter((p) => !(isProd() && p.draft))
+        .filter((p) => !(isProd() && (p.draft || p.unlisted)))
         .sort((a, b) => (a.date < b.date ? 1 : -1))
         .map(({ html: _html, readingMinutes: _r, ...meta }) => meta);
 }
@@ -179,8 +194,21 @@ export function getAllPosts(locale: Locale = "ko"): PostMeta[] {
 export function getPost(slug: string, locale: Locale = "ko"): Post | null {
     const post = parse(slug, locale);
     if (!post) return null;
+    // unlisted 는 여기서 막지 않는다 — 주소를 아는 사람은 열 수 있어야 한다.
     if (isProd() && post.draft) return null;
     return post;
+}
+
+/**
+ * 목록에는 없지만 주소로는 닿는 글까지 포함한 slug 목록.
+ * 정적 생성이 이 목록을 써야 unlisted 글의 페이지가 만들어진다.
+ */
+export function getRoutableSlugs(locale: Locale = "ko"): string[] {
+    return readSlugs(locale)
+        .map((slug) => parse(slug, locale))
+        .filter((p): p is Post => p !== null)
+        .filter((p) => !(isProd() && p.draft))
+        .map((p) => p.slug);
 }
 
 export function getAllSlugs(locale: Locale = "ko"): string[] {

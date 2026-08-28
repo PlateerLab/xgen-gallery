@@ -8,7 +8,7 @@ thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "XGeny", "Desktop Experience", "Agentic AI", "설치 가이드"]
-draft: true
+unlisted: true
 faq:
   - q: "Agent는 어디서 만드나요?"
     a: "XGEN에서 만듭니다. DeX는 Agent를 실행하는 쪽이고, Agent 자체는 XGEN의 캔버스에서 만듭니다. 노드를 직접 잇는 방법도 있지만, XGeny에게 하려는 일을 말로 설명하면 필요한 노드와 연결을 갖춘 워크플로우를 만들어 줍니다."
