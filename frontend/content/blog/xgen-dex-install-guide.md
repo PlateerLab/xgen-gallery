@@ -161,4 +161,4 @@ Agent는 무엇을 할지 되짚어 확인한 뒤 WebSearch 도구를 돌립니�
 ## 함께 읽기
 
 - [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-connector-preview) — DeX가 왜 필요한지
-- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 그 앞의 이야기
+- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결

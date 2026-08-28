@@ -161,4 +161,4 @@ What it produces lands in the folder you synced in step 4. The agent's folder ap
 ## Read next
 
 - [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-connector-preview) — why DeX exists
-- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the story before it
+- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work

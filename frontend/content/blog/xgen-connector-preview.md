@@ -245,5 +245,5 @@ XGEN DeX가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 �
 
 ## 함께 읽기
 
-- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — DeX가 놓이는 자리를 먼저 설명한 글(선행 글)
+- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결
 - [XGEN DeX 설치부터 첫 업무까지](/blog/xgen-dex-install-guide) — 설치·Agent 제작·연결·업무 지시까지, 화면과 함께

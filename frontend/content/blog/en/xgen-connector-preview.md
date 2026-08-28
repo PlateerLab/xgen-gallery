@@ -237,5 +237,5 @@ That is why XGEN DeX exists.
 
 ## Read next
 
-- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the piece that laid out where DeX sits (read first)
+- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
 - [XGEN DeX from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work
