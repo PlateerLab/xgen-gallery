@@ -22,7 +22,7 @@ faq:
     a: "It appears because a code-signing certificate is not yet registered; it is not a problem with the installer itself. Click More info, check the publisher and filename, then continue."
 ---
 
-> This is the hands-on companion to [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-connector-preview). That post covered why the desktop needs connecting; this one connects it.
+> This is the hands-on companion to [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
 
 Anyone who has put AI to work tends to stop at the same place. The answer comes out fine — but turning that answer into an actual file, in an actual folder, is still done by a person.
 
@@ -172,5 +172,5 @@ At this point the agent you built in XGEN is wired into your desktop environment
 
 ## Read next
 
-- [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-connector-preview) — why DeX exists
+- [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect) — why DeX exists
 - [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work

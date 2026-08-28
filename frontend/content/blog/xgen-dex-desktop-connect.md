@@ -3,8 +3,8 @@ title: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다"
 titleSeo: "XGEN DeX — Agent를 업무환경에 연결"
 description: "AI가 생각하는 환경과 사람이 일하는 환경은 분리되어 있습니다. XGEN에서 만든 Agent가 사용자의 PC에서 파일과 애플리케이션을 다루고 실제 결과물을 만들도록 잇는 Desktop Interface를 소개합니다."
 date: "2026-08-26"
-cover: /blog/xgen-connector-preview.svg
-thumb: /blog/xgen-connector-preview-thumb.svg
+cover: /blog/xgen-dex-desktop-connect.svg
+thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]

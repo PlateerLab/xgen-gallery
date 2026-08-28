@@ -3,8 +3,8 @@ title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
 titleSeo: "XGEN DeX — agents in the real desktop"
 description: "The environment AI thinks in and the environment people work in are separate. A desktop interface that lets an agent built in XGEN handle files and applications on your own machine and produce real deliverables."
 date: "2026-08-26"
-cover: /blog/xgen-connector-preview.svg
-thumb: /blog/xgen-connector-preview-thumb.svg
+cover: /blog/xgen-dex-desktop-connect.svg
+thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI governance", "Product"]

@@ -94,6 +94,18 @@ const nextConfig: NextConfig = {
                 destination: '/en/blog/xgen-dex-install-guide',
                 permanent: true,
             },
+            // 글 주소를 xgen-connector-preview → xgen-dex-desktop-connect 로
+            // 바꿨다(요청). 이미 공유된 링크가 죽지 않게 넘긴다.
+            {
+                source: '/blog/xgen-connector-preview',
+                destination: '/blog/xgen-dex-desktop-connect',
+                permanent: true,
+            },
+            {
+                source: '/en/blog/xgen-connector-preview',
+                destination: '/en/blog/xgen-dex-desktop-connect',
+                permanent: true,
+            },
             // 중복/스크래치 페이지 정리 — 단일 정식 경로로 영구 리다이렉트.
             { source: '/products', destination: '/product', permanent: true },
             { source: '/research-areas2', destination: '/research', permanent: true },

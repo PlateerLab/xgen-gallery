@@ -22,7 +22,7 @@ faq:
     a: "코드 서명 인증서가 아직 등록되지 않아 나타나는 화면으로, 설치 파일 자체의 문제는 아닙니다. 추가 정보를 눌러 게시자와 파일명을 확인한 뒤 진행합니다."
 ---
 
-> 이 글은 [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-connector-preview)의 실습 편입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 직접 해봅니다.
+> 이 글은 [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect)의 실습 편입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 직접 해봅니다.
 
 AI에게 일을 시켜 본 사람은 대개 같은 지점에서 멈춥니다. 답은 잘 나오는데, 그 답을 실제 파일로 만들고 폴더에 넣는 일은 결국 사람이 합니다.
 
@@ -172,5 +172,5 @@ Agent는 무엇을 할지 되짚어 확인한 뒤 WebSearch 도구를 돌립니�
 
 ## 함께 읽기
 
-- [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-connector-preview) — DeX가 왜 필요한지
+- [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect) — DeX가 왜 필요한지
 - [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결
