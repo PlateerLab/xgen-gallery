@@ -192,6 +192,12 @@ DeX can put the agent on screen as **a floating avatar**. Upload a photo or a Li
 
 *Turn the avatar on and the agent lives on your desktop*
 
+You do not have to make one. The Store already carries ready-made characters to download and use as they are — and keeping a shared set there lets each agent wear a different face.
+
+![The avatar store listing character cards, each with a download button](/connector/16-avatar-store.webp)
+
+*Pick a character from the store and download it*
+
 The avatar is not a visual flourish. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server has actually taken up residence in the user's working environment.
 
 ---

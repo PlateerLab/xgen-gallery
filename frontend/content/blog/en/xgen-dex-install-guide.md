@@ -144,6 +144,12 @@ One more thing first. Turn on the avatar under Avatar settings and the agent sho
 
 *Turn the avatar on and the agent lives on your desktop*
 
+You do not have to make one yourself. The Store already carries ready-made characters — download the one you like and use it as it is.
+
+![The avatar store listing character cards, each with a download button](/connector/16-avatar-store.webp)
+
+*Pick a character from the store and download it*
+
 Minimize the window and the avatar stays. You do not have to find and open the app each time — you hand it work the way you would ask a colleague at the next desk. That is the figure on the right of the conversation screen below.
 
 Hand it outcomes, not commands. Below, it was asked to find and summarize the most-read press coverage of on-premise B2B agent platforms from the past month.
