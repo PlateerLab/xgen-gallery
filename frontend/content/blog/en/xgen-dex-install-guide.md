@@ -24,7 +24,7 @@ faq:
 
 > This is the hands-on companion to [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
 
-Anyone who has put AI to work tends to stop at the same place. The answer comes out fine — but turning that answer into an actual file, in an actual folder, is still done by a person.
+Anyone who has handed work to AI knows the feeling. The answer is good — but folding that result back into an existing file, opening the application it belongs in, and saving it to the right work folder is all still done by a person.
 
 XGEN DeX handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
 
