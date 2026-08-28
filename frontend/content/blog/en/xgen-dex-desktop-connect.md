@@ -190,7 +190,7 @@ DeX can put the agent on screen as **a floating avatar**. Upload a photo or a Li
 
 ![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
 
-*Turn the avatar on and the agent lives on your desktop*
+*Turn the avatar on and the agent works alongside you on the desktop*
 
 You do not have to make one. The Store already carries ready-made characters to download and use as they are — and keeping a shared set there lets each agent wear a different face.
 
@@ -221,6 +221,8 @@ It is closer to
 **"connect an enterprise-managed agent to a permitted working environment and toolset."**
 
 That is why DeX has to grow together with XGEN's agent management and AI governance.
+
+> **In development.** The security and governance controls described in this section are the direction XGEN DeX is heading, and they are still being built. We will share scope and timing as they land.
 
 ---
 

@@ -142,7 +142,7 @@ One more thing first. Turn on the avatar under Avatar settings and the agent sho
 
 ![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
 
-*Turn the avatar on and the agent lives on your desktop*
+*Turn the avatar on and the agent works alongside you on the desktop*
 
 You do not have to make one yourself. The Store already carries ready-made characters — download the one you like and use it as it is.
 

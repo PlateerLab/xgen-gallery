@@ -83,6 +83,8 @@ Widening the scope to the desktop raises one question first: does control get lo
 | Persistent agent experience | Whichever desktop you sign in from, the same agent continues the work |
 | Desktop connectivity | Local files, desktop applications, and enterprise systems become one agent experience |
 
+> **In development.** Among the principles above, the security and governance controls are the direction XGEN DeX is heading, and they are still being built. We will share scope and timing as they land.
+
 ## Coming soon
 
 XGEN DeX is in the final stage of development at the lab.
