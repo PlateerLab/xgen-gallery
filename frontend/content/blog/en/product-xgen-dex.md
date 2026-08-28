@@ -1,6 +1,6 @@
 ---
 title: "XGEN DeX — the execution layer that reaches the desktop"
-description: "The agent runs on the server; the user works with it from their own desktop. Central control stays where it is, and nobody has to change how they work."
+description: "The agent runs on the server; the user collaborates with it from their own desktop environment. Central control stays where it is, and nobody has to change how they work."
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
@@ -10,15 +10,15 @@ tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "On-premise", "Product"]
 draft: false
 ---
 
-**In one line —** XGEN DeX is a Desktop Experience component that connects agents running on the XGEN Server to the user's desktop, so local environments and applications can be used safely.
+**In one line —** XGEN DeX is a Desktop Experience component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
 
 Enterprise AI is no longer a chatbot that answers questions. It is moving toward agents that understand the work, connect to the systems already in place, and carry out real tasks on the user's behalf.
 
-But work still starts at the desktop. People sign in to internal systems, open local documents, edit Excel and PowerPoint, and use in-house applications. For AI to actually do that work, it has to reach the desktop.
+But work still starts at the desktop. People sign in to internal systems, open local documents, edit Excel and PowerPoint, and use in-house applications. For AI to actually do that work, it has to connect to the user's desktop environment.
 
 ## Runs on the server, continues on the desktop
 
-XGEN DeX (Desktop Experience) rests on one design premise: **keep the agent on the server, and bring only the connection down to the desktop.**
+XGEN DeX (Desktop Experience) rests on one design premise: **run the agent on the server, and extend only the execution environment it needs to the desktop.**
 
 AI agents run and are managed on the enterprise's own on-premise XGEN Server. The user collaborates with those agents from their desktop environment. The enterprise keeps AI under central control, and nobody changes how they work.
 
@@ -57,20 +57,20 @@ XGEN DeX splits the desktop's resources into three and wires each to the agent.
 
 **Local environment** — the user's working environment, connected so the agent can understand and act on it.
 
-**Local directory** — local directories linked to XGEN Cloud Storage, so documents and files are used where they already are, with no copying step.
+**Local directory** — local directories linked to XGEN Cloud Storage, so documents and files are used where they already are, without copying or moving them.
 
 **Local applications** — Excel, PowerPoint, the browser, in-house applications: programs running on the desktop, connected to the agent to support automation.
 
 ## What changes in the work
 
-Once the desktop and the server become one AI experience, the gain lands in a different place for each role.
+Once the desktop and the server become one AI experience, what each role gets out of it differs.
 
 - **Developers** build alongside an AI that understands the whole project
 - **Planners** write proposals grounded in internal documents
 - **Sales** connects customer material to prepare a tailored proposal
 - **Business teams** hand repetitive work to an agent and concentrate on what needs judgement
 
-The common thread is that nobody has to give up the tools they already use.
+The common thread is that teams keep the tools and the ways of working they already have.
 
 ## Central control stays where it is
 
@@ -89,6 +89,6 @@ XGEN DeX is in the final stage of development at the lab.
 
 We see it as more than a desktop connection tool: an execution layer that joins Enterprise AI and the user's desktop into a single working experience.
 
-Competition in AI is not settled by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. XGEN DeX is the first Desktop Experience platform we are building toward that.
+Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. XGEN DeX is the first Desktop Experience platform we are building toward that.
 
 We will introduce XGEN DeX's release schedule and capabilities here on the blog, step by step. For a product demo or a conversation about adoption, [get in touch](/en/contact) any time.
