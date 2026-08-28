@@ -160,7 +160,7 @@ The agent restates what it is about to do, runs a web search, and comes back wit
 
 *The work you handed over comes back organized*
 
-What it produces lands in the folder you synced in step 4. The agent's folder appears in the explorer on the left, and the same content syncs to a local path.
+What it produces is saved automatically to the folder you connected in step 4. A working folder appears in the explorer for each agent, and the same content stays in sync with the local path you chose.
 
 ![The explorer showing XgenCloud and the site operations agent folder, with the Storage tab listing that agent's local sync path](/connector/27-synced-folder.webp)
 
