@@ -84,11 +84,11 @@ Describe what you want — for example, "build me an agent that writes blog arti
 
 *Describe the agent you want*
 
-Run it as-is and refine from there. The execution log shows which node ran in what order; once it behaves, give it a name and save.
+You get a workflow wiring input, conversation memory, web search, the agent, and output. Run it as-is, add nodes or change settings to refine it, then give it a name and save.
 
-![A generated workflow connecting user input, multi-turn memory, web search, the XGeny agent, and output, with the execution order log](/connector/19-xgeny-flow.webp)
+![A canvas with user input, multi-turn memory, web search, the XGeny agent, and output nodes wired together](/connector/19-xgeny-flow.webp)
 
-*The workflow XGeny built, and its run log*
+*The workflow XGeny built*
 
 ## 4. Connect it to your PC and create a working folder
 
@@ -135,6 +135,14 @@ MCP runs MCP servers on your PC so the agent in the selected session can use tho
 ## 6. Hand it work
 
 The agent you built now appears in the DeX agent list on the left. Pick it and the conversation starts.
+
+One more thing first. Turn on the avatar under Avatar settings and the agent shows up as **a character floating on your screen**. Upload a photo (png/jpg) or a Live2D/Spine model, scale it with the wheel, and drag it where you want it.
+
+![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
+
+*Turn the avatar on and the agent lives on your desktop*
+
+Minimize the window and the avatar stays. You do not have to find and open the app each time — you hand it work the way you would ask a colleague at the next desk. That is the figure on the right of the conversation screen below.
 
 Hand it outcomes, not commands. Below, it was asked to find and summarize the most-read press coverage of on-premise B2B agent platforms from the past month.
 

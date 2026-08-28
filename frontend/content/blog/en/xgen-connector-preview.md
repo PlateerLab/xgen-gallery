@@ -182,6 +182,20 @@ That way a company can manage agents and key assets centrally while connecting t
 
 ---
 
+## The agent lives on your desktop
+
+Work tools need a window opened before you can use them. Find the app, launch it, open a chat, and only then say what you want. Those few steps are what send people back to "I'll just do it myself."
+
+DeX can put the agent on screen as **a floating avatar**. Upload a photo or a Live2D/Spine model to give it a look, set its size and position, and it stays there even when you minimize the window.
+
+![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
+
+*Turn the avatar on and the agent lives on your desktop*
+
+This is not decoration. It makes the agent **something beside you rather than something you go and open**. It is also the simplest way to show, on screen, that an agent managed on the server has actually taken up residence in the user's working environment.
+
+---
+
 ## An enterprise connector needs control alongside it
 
 Once AI can reach a PC and enterprise data, one thing has to be considered with it.
