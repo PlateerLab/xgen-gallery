@@ -26,7 +26,7 @@ faq:
 
 Anyone who has put AI to work tends to stop at the same place. The answer comes out fine — but turning that answer into an actual file, in an actual folder, is still done by a person.
 
-XGEN DeX closes that last stretch. It is the desktop endpoint that lets an agent on the server use the files and tools on your machine.
+XGEN DeX handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
 
 The installer is on GitHub, about 280MB. Screens are from Windows.
 
