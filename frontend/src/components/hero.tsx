@@ -144,14 +144,13 @@ function DexSlide() {
                 */}
                 {locale === "ko" ? (
                     <>
-                        XGEN DeX는 서버의 AI Agent를 사용자의 업무환경과 연결해{" "}
+                        XGEN DeX는 AI Agent를 사용자의 업무환경과 연결해{" "}
                         <br className="hidden sm:block" />
                         실제 업무를 수행하고 결과물을 완성합니다.
                     </>
                 ) : (
                     <>
-                        XGEN DeX connects the agent on the server to your working
-                        environment{" "}
+                        XGEN DeX connects the AI agent to your working environment{" "}
                         <br className="hidden sm:block" />
                         to carry out real work and finish the deliverable.
                     </>
