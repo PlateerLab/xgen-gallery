@@ -168,7 +168,7 @@ function DexSlide() {
                     href: localeHref(locale, "/xgen-dex"),
                 }}
                 secondary={{
-                    label: locale === "ko" ? "무료 평가판 신청" : "Request a free trial",
+                    label: locale === "ko" ? "XGEN 무료체험 신청" : "Start the XGEN free trial",
                     href: localeHref(locale, "/xgen-trial"),
                 }}
             />
