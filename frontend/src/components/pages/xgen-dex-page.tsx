@@ -69,7 +69,8 @@ interface DexCopy {
     /** 히어로 아래 세 기둥 — 중앙 관리 · 연결 · 실행 */
     pillars: [string, string][];
     whatTitle: string;
-    whatLead: string;
+    /** 줄바꿈 자리를 문장 안에서 정한다 — 좁은 화면에서는 br 이 숨어 그대로 흐른다 */
+    whatLead: string[];
     /** 요청 하나가 결과물이 되기까지 — 개념도 아래 네 칸 */
     taskSteps: [string, string][];
     /** 무엇으로 연결하나 — 멀티 모델 · 업무 커넥터 · 로컬 브리지 */
@@ -151,8 +152,10 @@ const COPY: Record<Locale, DexCopy> = {
             ],
         ],
         whatTitle: "XGEN DeX는 무엇인가요?",
-        whatLead:
-            "XGEN DeX(Desktop Experience)는 XGEN의 AI Agent와 사용자의 실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
+        whatLead: [
+            "XGEN DeX(Desktop Experience)는 XGEN의 AI Agent와 사용자의",
+            "실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
+        ],
         taskSteps: [
             ["요청", "목표와 범위를 자연어로 전달합니다"],
             ["조율", "필요한 모델과 도구를 조합합니다"],
@@ -342,8 +345,10 @@ const COPY: Record<Locale, DexCopy> = {
             ],
         ],
         whatTitle: "What is XGEN DeX?",
-        whatLead:
-            "XGEN DeX (Desktop Experience) is an installable desktop interface that connects XGEN's AI agents with a user's real working environment.",
+        whatLead: [
+            "XGEN DeX (Desktop Experience) is an installable desktop interface",
+            "that connects XGEN's AI agents with a user's real working environment.",
+        ],
         taskSteps: [
             ["Request", "State the goal and scope in plain language"],
             ["Orchestrate", "Assemble the models and tools it needs"],
@@ -579,7 +584,12 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                             {t.whatTitle}
                         </h2>
                         <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {t.whatLead}
+                            {t.whatLead.map((line, i) => (
+                                <span key={line}>
+                                    {i > 0 && <br className="hidden sm:block" />}
+                                    {line}{i < t.whatLead.length - 1 ? " " : ""}
+                                </span>
+                            ))}
                         </p>
 
                         <div className="mx-auto mt-12 max-w-4xl">
