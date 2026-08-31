@@ -175,7 +175,7 @@ const COPY: Record<Locale, DexCopy> = {
 
         whyTitle: "왜 필요한가요?",
         whyLead:
-            "AI는 답을 생성합니다. 하지만 기업의 업무는 사용자 PC에서 파일과 애플리케이션을 다루고 결과물을 만드는 과정에서 완성됩니다. 그 사이가 세 군데에서 끊어져 있습니다.",
+            "AI는 답을 생성합니다. 하지만 기업의 업무는 파일을 수정하고, 애플리케이션을 실행하며, 결과물을 저장하는 과정에서 완성됩니다. 지금의 AI는 그 마지막 실행 구간을 아직 연결하지 못합니다.",
         gapHead: ["핵심 과제", "현재의 문제", "사업 영향"],
         gaps: [
             ["도구 단절", "AI·문서·데이터 도구를 각각 따로 사용합니다", "전환 비용과 재작업이 늘어납니다"],
@@ -368,7 +368,7 @@ const COPY: Record<Locale, DexCopy> = {
 
         whyTitle: "Why is it needed?",
         whyLead:
-            "AI generates the answer. But enterprise work is finished on the user's PC — handling files and applications, and producing the deliverable. Three breaks sit in between.",
+            "AI generates the answer. But enterprise work is finished in the editing of files, the running of applications, and the saving of the deliverable. Today's AI still does not reach that last stretch of execution.",
         gapHead: ["The challenge", "What happens today", "What it costs the business"],
         gaps: [
             ["Disconnected tools", "AI, documents, and data tools are each used separately", "Switching cost and rework go up"],
