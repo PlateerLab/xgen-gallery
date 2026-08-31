@@ -19,16 +19,26 @@ function XgenMark() {
     );
 }
 
-const SLIDE_COUNT = 4;
+const SLIDE_COUNT = 5;
 const ROTATE_MS = 6000;
+/**
+ * 슬라이드별 노출 시간.
+ *
+ * 첫 장(XGEN DeX)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
+ * 전환이 두 번 지나갈 만큼은 머물러야 「무엇이 새로운지」가 읽힌다.
+ * 나머지는 기존 6초 그대로.
+ */
+const SLIDE_MS = [11000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
-// 순서: 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
-// 오픈소스 툴킷을 첫 슬라이드로 두어, 검색으로 홈에 도착한 개발자가 첫 화면에서
-// 자기 경로를 찾게 한다(연구소 서사는 마지막으로 이동).
+// 순서: XGEN DeX → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// DeX 를 맨 앞에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
+// 가장 설명 없이 와닿는 장면이고, 배경 영상도 실제 업무 책상이라 말과 그림이 맞는다.
+// 그다음 오픈소스 툴킷을 두어 검색으로 도착한 개발자가 자기 경로를 찾게 한다.
 // 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
+    "/hero-dex.mp4",
     "/hero-slide2.mp4",
     "/hero-security.jpeg",
     "/hero-xgen.mp4",
@@ -36,12 +46,13 @@ const SLIDE_BG = [
 ];
 const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
 // Per-slide object-position (기본 중앙).
-const SLIDE_POS = ["center", "center", "center", "center"];
+const SLIDE_POS = ["center", "center", "center", "center", "center"];
 // Per-slide 추가 이동/확대(이미지 슬라이드용). 거버넌스 이미지는 피사체를 더
 // 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시키고,
 // 연구소 정체성 이미지는 좌하단으로 옮긴다. 값은 각 이미지에 맞춰 잡은 것이라
 // 슬라이드 순서와 함께 이동한다.
 const SLIDE_TRANSFORM: (string | undefined)[] = [
+    undefined,
     undefined,
     "scale(1.3) translateX(16%)",
     undefined,
@@ -93,7 +104,79 @@ function HeroActions({
     );
 }
 
-/** 슬라이드 3 — XGEN 제품소개 (xgen.im 소개영상 배경). */
+/**
+ * 슬라이드 1 — XGEN DeX (실제 업무 책상 배경).
+ *
+ * 「AI 를 도입한다」가 아니라 「내 자리에서 같이 일한다」를 말한다. 홈에 처음
+ * 온 사람에게 설명 없이 와닿는 장면이 그쪽이고, 배경 영상도 실제 책상이라
+ * 문장과 그림이 같은 것을 가리킨다.
+ */
+function DexSlide() {
+    const { locale } = useI18n();
+    return (
+        <>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
+                XGEN DeX · Desktop Experience
+            </div>
+
+            <h1 className={cn(H1_CLS, "mt-7")}>
+                {locale === "ko" ? (
+                    <>
+                        사용자의 데스크톱에서
+                        <br />
+                        업무를 수행하는 AI Agent
+                    </>
+                ) : (
+                    <>
+                        An AI agent that does the work
+                        <br />
+                        on your desktop
+                    </>
+                )}
+            </h1>
+
+            <p className="mt-7 mx-auto max-w-3xl text-xl leading-relaxed text-white/70">
+                {/*
+                  줄바꿈은 문장 경계에 둔다. 문장 중간에 두면 br 이 숨는 모바일에서
+                  「서버의AI」처럼 붙는데, JSX 가 br 앞뒤 줄바꿈을 지워 공백이
+                  사라지기 때문이다. {" "} 로 공백을 명시해 둔다.
+                */}
+                {locale === "ko" ? (
+                    <>
+                        기존 파일과 애플리케이션은 그대로 사용합니다.{" "}
+                        <br className="hidden sm:block" />
+                        XGEN DeX는 서버의 AI Agent를 사용자의 업무환경과 연결해{" "}
+                        <br className="hidden sm:block" />
+                        실제 업무를 수행하고 결과물을 완성합니다.
+                    </>
+                ) : (
+                    <>
+                        Your existing files and applications stay as they are.{" "}
+                        <br className="hidden sm:block" />
+                        XGEN DeX connects the agent on the server to your working
+                        environment{" "}
+                        <br className="hidden sm:block" />
+                        to carry out real work and finish the deliverable.
+                    </>
+                )}
+            </p>
+
+            <HeroActions
+                primary={{
+                    label: locale === "ko" ? "DeX 주요 기능 보기" : "See DeX features",
+                    href: localeHref(locale, "/xgen-dex"),
+                }}
+                secondary={{
+                    label: locale === "ko" ? "무료 평가판 신청" : "Request a free trial",
+                    href: localeHref(locale, "/xgen-trial"),
+                }}
+            />
+        </>
+    );
+}
+
+/** 슬라이드 4 — XGEN 제품소개 (xgen.im 소개영상 배경). */
 function XgenPlatformSlide() {
     const { locale } = useI18n();
     return (
@@ -322,13 +405,19 @@ export function Hero({
     // 홈에서 보일지가 운에 달려 있어 최신글 고정으로 바꿨다.)
     const latestPost = techPosts[0] ?? null;
 
+    /*
+      슬라이드마다 머무는 시간이 달라 setInterval 대신 setTimeout 을 다시 건다.
+      active 가 바뀔 때마다 새로 걸리므로, 인디케이터를 눌러 옮긴 직후에도
+      그 장의 시간을 온전히 준다 — 예전 interval 은 클릭과 무관하게 돌아서
+      옮기자마자 넘어가 버리는 일이 있었다.
+    */
     useEffect(() => {
-        const id = setInterval(
+        const id = setTimeout(
             () => setActive((a) => (a + 1) % SLIDE_COUNT),
-            ROTATE_MS,
+            SLIDE_MS[active] ?? ROTATE_MS,
         );
-        return () => clearInterval(id);
-    }, []);
+        return () => clearTimeout(id);
+    }, [active]);
 
     // 활성 슬라이드 영상만 재생하고 나머지는 일시정지한다. 3개 영상을 동시에
     // 디코딩하면 보이는 영상이 끊기거나 멈춘 것처럼 보이므로, 디코딩 부하를 1개로
@@ -415,8 +504,12 @@ export function Hero({
                 )}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
-                {/* 1·3번째 슬라이드: 중앙 텍스트 뒤 배경을 부드럽게 블러(가독성) */}
-                {(active === 0 || active === 2) && (
+                {/*
+                  영상 배경 슬라이드(DeX·툴킷·XGEN 제품소개): 중앙 텍스트 뒤를
+                  부드럽게 블러해 가독성을 지킨다. 이미지 배경 둘은 이미 어둡게
+                  깔려 있어 필요 없다. 슬라이드 순서를 바꾸면 이 인덱스도 옮긴다.
+                */}
+                {(active === 0 || active === 1 || active === 3) && (
                     <div
                         aria-hidden
                         className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
@@ -441,10 +534,12 @@ export function Hero({
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
-                        <XgenSlide />
+                        <DexSlide />
                     ) : active === 1 ? (
-                        <SecuritySlide />
+                        <XgenSlide />
                     ) : active === 2 ? (
+                        <SecuritySlide />
+                    ) : active === 3 ? (
                         <XgenPlatformSlide />
                     ) : (
                         <VisionSlide />
