@@ -60,7 +60,8 @@ const SHOW_IMPACT = false;
 interface DexCopy {
     ldDescription: string;
     heroBadge: string;
-    heroTitle: string;
+    /** 줄바꿈 자리를 문장 안에서 정한다 */
+    heroTitle: string[];
     heroLead: string;
     ctaTrial: string;
     ctaGuide: string;
@@ -131,9 +132,9 @@ const COPY: Record<Locale, DexCopy> = {
         ldDescription:
             "XGEN DeX는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · DeX",
-        heroTitle: "대화로 끝나는 AI가 아니라, 실제 결과물을 완성합니다",
+        heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "XGEN DeX는 AI 모델과 사내 지식, 로컬·원격 업무 환경을 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 검증 가능한 산출물로 완성합니다.",
+            "XGEN DeX는 XGEN의 AI Agent를 로컬·원격 업무환경과 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 실제 업무를 수행합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -324,9 +325,9 @@ const COPY: Record<Locale, DexCopy> = {
         ldDescription:
             "XGEN DeX is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
         heroBadge: "XGEN · DeX",
-        heroTitle: "Not an AI that stops at the conversation — one that finishes the work",
+        heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "XGEN DeX is an execution platform that connects AI models, in-house knowledge, and local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and finishes with a deliverable you can verify.",
+            "XGEN DeX is an execution platform that connects XGEN's AI agents to local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and carries out the actual work.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -552,7 +553,12 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                         {t.heroBadge}
                     </p>
                     <h1 className="mx-auto mt-5 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                        {t.heroTitle}
+                        {t.heroTitle.map((line, i) => (
+                            <span key={line}>
+                                {i > 0 && <br />}
+                                {line}{i < t.heroTitle.length - 1 ? " " : ""}
+                            </span>
+                        ))}
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80">
                         {t.heroLead}
@@ -719,43 +725,52 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                           이 표는 그것이 사업에 얼마로 돌아오는지를 말한다. 도입을
                           결재하는 쪽이 찾는 건 후자다.
                         */}
-                        <div className="mt-10 overflow-x-auto">
-                            <table className="w-full min-w-[640px] border-collapse text-left">
-                                <thead>
-                                    <tr className="border-b border-[var(--color-line)]">
-                                        {t.gapHead.map((h) => (
-                                            <th
-                                                key={h}
-                                                scope="col"
-                                                className="px-5 py-3 font-mono text-[11.5px] uppercase tracking-widest text-[var(--color-ink-subtle)]"
-                                            >
-                                                {h}
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {t.gaps.map(([task, problem, impact]) => (
-                                        <tr
-                                            key={task}
-                                            className="border-b border-[var(--color-line)] last:border-0"
-                                        >
-                                            <th
-                                                scope="row"
-                                                className="whitespace-nowrap px-5 py-5 align-top text-[15.5px] font-bold tracking-tight text-[#2461d8]"
-                                            >
-                                                {task}
-                                            </th>
-                                            <td className="px-5 py-5 align-top text-[14.5px] leading-relaxed text-[var(--color-ink)]">
+                        {/*
+                          표로 두면 좁은 화면에서 세 번째 칸(사업 영향)이 잘려
+                          나간다 — 가로 스크롤을 줘도 거기 무엇이 있는지 모르니
+                          아무도 밀지 않는다. 넓을 때만 세 열로 세우고 좁으면
+                          위아래로 쌓아, 어느 폭에서든 세 값이 다 보이게 한다.
+                        */}
+                        <div className="mt-10">
+                            <div className="hidden border-b border-[var(--color-line)] px-5 py-3 md:grid md:grid-cols-[180px_1.1fr_1fr] md:gap-6">
+                                {t.gapHead.map((h) => (
+                                    <span
+                                        key={h}
+                                        className="font-mono text-[11.5px] uppercase tracking-widest text-[var(--color-ink-subtle)]"
+                                    >
+                                        {h}
+                                    </span>
+                                ))}
+                            </div>
+                            <ul>
+                                {t.gaps.map(([task, problem, impact]) => (
+                                    <li
+                                        key={task}
+                                        className="border-b border-[var(--color-line)] px-5 py-5 last:border-0 md:grid md:grid-cols-[180px_1.1fr_1fr] md:items-start md:gap-6"
+                                    >
+                                        <p className="text-[15.5px] font-bold tracking-tight text-[#2461d8]">
+                                            {task}
+                                        </p>
+                                        <div className="mt-3 md:mt-0">
+                                            {/* 좁을 때만 붙는 이름표 — 넓을 때는 위 머리글이 대신한다 */}
+                                            <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)] md:hidden">
+                                                {t.gapHead[1]}
+                                            </p>
+                                            <p className="mt-1 text-[14.5px] leading-relaxed text-[var(--color-ink)] md:mt-0">
                                                 {problem}
-                                            </td>
-                                            <td className="px-5 py-5 align-top text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            </p>
+                                        </div>
+                                        <div className="mt-3 md:mt-0">
+                                            <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-ink-subtle)] md:hidden">
+                                                {t.gapHead[2]}
+                                            </p>
+                                            <p className="mt-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] md:mt-0">
                                                 {impact}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                            </p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
                         <div className="mt-10 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">

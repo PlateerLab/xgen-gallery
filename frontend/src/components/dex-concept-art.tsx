@@ -223,9 +223,15 @@ function DesktopAvatar({ x, y, label, note }: { x: number; y: number; label: str
 export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
     const L = T[locale];
     return (
+        /*
+          좁은 화면에서는 이 상자 안에서만 옆으로 넘긴다. 폭에 맞춰 줄이면 칩
+          안의 12px 글자가 4px 이 되어 아무것도 안 읽힌다 — 그림이 설명하는
+          그림이 아니라 장식이 되어 버린다. 페이지는 밀리지 않는다.
+        */
+        <div className="-mx-6 overflow-x-auto px-6 pb-2 sm:mx-0 sm:px-0">
         <svg
             viewBox="0 0 1020 668"
-            className="dx-art block h-auto w-full"
+            className="dx-art block h-auto w-full min-w-[720px]"
             role="img"
             aria-label={L.aria}
             fontFamily={FONT}
@@ -434,5 +440,6 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
                 {L.footer}
             </text>
         </svg>
+        </div>
     );
 }
