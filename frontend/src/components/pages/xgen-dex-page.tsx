@@ -5,6 +5,8 @@ import {
     ArrowDown,
     ShieldCheck,
     Server,
+    Boxes,
+    Cable,
     Layers,
     RefreshCw,
     TrendingUp,
@@ -21,6 +23,7 @@ import { DexConceptArt } from "@/components/dex-concept-art";
 import { DexWhyBeforeArt, DexWhyAfterArt } from "@/components/dex-why-art";
 import { DEX_PILLAR_ART } from "@/components/dex-pillar-art";
 import { FeatureArt, type FeatureArtKey } from "@/components/feature-art";
+import { DEX_KPI_ART } from "@/components/dex-kpi-art";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { localeHref } from "@/lib/locale-path";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -34,6 +37,8 @@ import type { Locale } from "@/lib/i18n";
  * 실습 편이 맡는다 — 같은 내용을 두 번 쓰지 않는다.
  */
 const VALUE_ICONS: LucideIcon[] = [Layers, Server, RefreshCw, TrendingUp];
+/** 무엇을 연결하나 — 멀티 모델 · 업무 커넥터 · 로컬 브리지 */
+const CONNECT_ICONS: LucideIcon[] = [Boxes, Cable, MonitorSmartphone];
 
 /**
  * 「보안과 통제」 섹션 노출 여부.
@@ -42,6 +47,15 @@ const VALUE_ICONS: LucideIcon[] = [Layers, Server, RefreshCw, TrendingUp];
  * 구현이 끝나면 true 로 바꾼다.
  */
 const SHOW_GOVERNANCE = false;
+
+/**
+ * 「무엇을 측정하나요?」 섹션 노출 여부.
+ *
+ * 목표 수치와 도입 구성은 제안 단계에서 고객사별로 다시 잡는 값이라, 공개
+ * 페이지에 세워 두기 전에 한 번 더 정리하기로 했다. 문구와 마크업은 남겨 두고
+ * 이 값만 true 로 바꾸면 다시 나온다.
+ */
+const SHOW_IMPACT = false;
 
 interface DexCopy {
     ldDescription: string;
@@ -56,17 +70,17 @@ interface DexCopy {
     pillars: [string, string][];
     whatTitle: string;
     whatLead: string;
-    serverLabel: string;
-    serverNote: string;
-    agentLabel: string;
-    connectorLabel: string;
-    connectorItems: string[];
-    localLabel: string;
-    localItems: string[];
-    dexNote: string;
-    flowChips: string[];
+    /** 요청 하나가 결과물이 되기까지 — 개념도 아래 네 칸 */
+    taskSteps: [string, string][];
+    /** 무엇으로 연결하나 — 멀티 모델 · 업무 커넥터 · 로컬 브리지 */
+    connectTitle: string;
+    connectLead: string;
+    connects: [string, string][];
     whyTitle: string;
     whyLead: string;
+    /** 현재 업무 환경의 단절 — [과제, 현재의 문제, 사업 영향] */
+    gapHead: [string, string, string];
+    gaps: [string, string, string][];
     beforeLabel: string;
     before: string[];
     afterLabel: string;
@@ -84,6 +98,22 @@ interface DexCopy {
     govs: string[];
     govQuote: string;
     govQuoteSub: string;
+    /** 8주 도입안 — [기간, 단계, 산출] */
+    rolloutTitle: string;
+    rolloutLead: string;
+    rollout: [string, string, string][];
+    /**
+     * 성과 목표 — [측정 항목, 목표, 무엇을 재는가].
+     *
+     * 항목이 먼저다. 수치를 앞에 두면 「무엇을 측정하나요?」라고 묻고 결과만
+     * 답하는 꼴이라, 제목과 카드가 서로 따로 논다.
+     */
+    impactTitle: string;
+    impactLead: string;
+    impacts: [string, string, string][];
+    impactNote: string;
+    packageTitle: string;
+    packages: [string, string][];
     readTitle: string;
     reads: { label: string; desc: string; href: string; art: FeatureArtKey }[];
     /** 관련 블로그 — 기능 페이지와 성격이 달라 목록을 나눠 둔다 */
@@ -100,9 +130,9 @@ const COPY: Record<Locale, DexCopy> = {
         ldDescription:
             "XGEN DeX는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · DeX",
-        heroTitle: "AI Agent를 데스크톱 업무환경으로 연결합니다",
+        heroTitle: "대화로 끝나는 AI가 아니라, 실제 결과물을 완성합니다",
         heroLead:
-            "XGEN DeX는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+            "XGEN DeX는 AI 모델과 사내 지식, 로컬·원격 업무 환경을 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 검증 가능한 산출물로 완성합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -123,18 +153,31 @@ const COPY: Record<Locale, DexCopy> = {
         whatTitle: "XGEN DeX는 무엇인가요?",
         whatLead:
             "XGEN DeX(Desktop Experience)는 XGEN의 AI Agent와 사용자의 실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
-        serverLabel: "XGEN · 플랫폼",
-        serverNote: "Agent 생성 · 관리 · 권한 · 거버넌스",
-        agentLabel: "Agent",
-        connectorLabel: "커넥터",
-        connectorItems: ["서버 연결", "실행 권한 통제", "작업 폴더 동기화"],
-        localLabel: "사용자 업무환경",
-        localItems: ["파일", "애플리케이션", "브라우저", "PowerShell", "MCP", "Skill"],
-        dexNote: "커넥터와 업무환경을 함께 묶은 것이 DeX 입니다",
-        flowChips: ["Request", "Understand", "Execute", "Deliver"],
+        taskSteps: [
+            ["요청", "목표와 범위를 자연어로 전달합니다"],
+            ["조율", "필요한 모델과 도구를 조합합니다"],
+            ["실행", "승인된 범위 안에서 수행합니다"],
+            ["결과", "검증 가능한 산출물로 완성합니다"],
+        ],
+
+        connectTitle: "무엇을 연결하나요?",
+        connectLead:
+            "DeX는 하나의 모델이나 하나의 도구에 묶이지 않습니다. 업무에 필요한 것을 그때그때 연결합니다.",
+        connects: [
+            ["멀티 모델", "업무의 비용·성능 요건에 맞는 AI를 골라 씁니다. 모델이 바뀌어도 업무 흐름은 그대로입니다."],
+            ["업무 커넥터", "이미 쓰고 있는 SaaS와 사내 데이터를 명시적인 API 계약으로 연결합니다."],
+            ["로컬 브리지", "사용자 PC의 파일과 애플리케이션을 승인된 범위 안에서 다룹니다."],
+        ],
+
         whyTitle: "왜 필요한가요?",
         whyLead:
-            "AI는 답을 생성합니다. 하지만 기업의 업무는 사용자 PC에서 파일과 애플리케이션을 다루고 결과물을 만드는 과정에서 완성됩니다.",
+            "AI는 답을 생성합니다. 하지만 기업의 업무는 사용자 PC에서 파일과 애플리케이션을 다루고 결과물을 만드는 과정에서 완성됩니다. 그 사이가 세 군데에서 끊어져 있습니다.",
+        gapHead: ["핵심 과제", "현재의 문제", "사업 영향"],
+        gaps: [
+            ["도구 단절", "AI·문서·데이터 도구를 각각 따로 사용합니다", "전환 비용과 재작업이 늘어납니다"],
+            ["실행 단절", "AI 답변 이후의 실제 작업은 사람이 수동으로 처리합니다", "리드타임과 오류가 늘어납니다"],
+            ["통제 단절", "누가 무엇을 실행했는지 권한과 이력을 관리하기 어렵습니다", "보안·감사 부담이 늘어납니다"],
+        ],
         beforeLabel: "기존 방식의 한계",
         before: [
             "파일 업로드·다운로드 반복",
@@ -201,6 +244,33 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         govQuote: "허용된 업무환경과 도구만 연결합니다.",
         govQuoteSub: "안전한 연결, 통제 가능한 실행.",
+
+        rolloutTitle: "8주 단계적 도입안",
+        rolloutLead:
+            "전사 전환부터 시작하지 않습니다. 짧은 PoC로 가치와 위험을 먼저 확인한 뒤 대상 업무를 넓힙니다.",
+        rollout: [
+            ["1–2주", "진단 및 설계", "우선 업무 선정 · 정책 정의 · 지표 기준선"],
+            ["3–5주", "PoC 구축", "커넥터 구성 · 대표 시나리오 · 사용자 검증"],
+            ["6–7주", "안정화", "접근 통제 · 감사 점검 · 운영 교육"],
+            ["8주", "전환 및 확산", "운영 이관 · KPI 리뷰 · 후속 로드맵"],
+        ],
+
+        impactTitle: "무엇을 측정하나요?",
+        impactLead:
+            "AI 도입 효과는 추정이 아니라 데이터로 확인합니다. 파일럿 시작 전 기준값(Baseline)을 측정하고, 8주 후 동일한 지표로 개선 효과를 비교·검증합니다.",
+        impacts: [
+            ["업무 리드타임", "최대 30% 단축", "요청부터 결과물 완료까지의 평균 처리 시간"],
+            ["반복 작업 시간", "최대 20% 감소", "복사·정리·형식 변환 등 수작업에 쓰는 시간"],
+            ["핵심 업무 완료율", "90% 이상", "지원 없이 핵심 업무 시나리오를 끝까지 수행한 비율"],
+        ],
+        impactNote:
+            "표시된 수치는 파일럿 프로젝트의 목표 지표입니다. 실제 성과는 고객사의 업무 프로세스, 기준값(Baseline), 적용 범위에 따라 달라질 수 있으며, 도입 전 진단을 통해 목표 지표를 함께 설정합니다.",
+        packageTitle: "도입 구성",
+        packages: [
+            ["초기 구축", "환경 구성 · 시스템 연동 · 대표 시나리오 설계"],
+            ["라이선스", "사용자 수와 모델 사용량 기준"],
+            ["운영 지원", "SLA와 지원 범위에 따른 운영 이관·교육"],
+        ],
         readTitle: "XGEN 핵심 기능 더 알아보기",
         reads: [
             {
@@ -251,9 +321,9 @@ const COPY: Record<Locale, DexCopy> = {
         ldDescription:
             "XGEN DeX is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
         heroBadge: "XGEN · DeX",
-        heroTitle: "Connect AI agents to the desktop where work happens",
+        heroTitle: "Not an AI that stops at the conversation — one that finishes the work",
         heroLead:
-            "XGEN DeX is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC. Within the scope you allow, it uses files and applications to carry out real work and produce deliverables.",
+            "XGEN DeX is an execution platform that connects AI models, in-house knowledge, and local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and finishes with a deliverable you can verify.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -274,18 +344,31 @@ const COPY: Record<Locale, DexCopy> = {
         whatTitle: "What is XGEN DeX?",
         whatLead:
             "XGEN DeX (Desktop Experience) is an installable desktop interface that connects XGEN's AI agents with a user's real working environment.",
-        serverLabel: "XGEN · platform",
-        serverNote: "Agents built, managed, permissioned, governed",
-        agentLabel: "Agent",
-        connectorLabel: "Connector",
-        connectorItems: ["Server connection", "Permission control", "Working-folder sync"],
-        localLabel: "User's working environment",
-        localItems: ["Files", "Applications", "Browser", "PowerShell", "MCP", "Skill"],
-        dexNote: "DeX is the connector and the working environment, taken together",
-        flowChips: ["Request", "Understand", "Execute", "Deliver"],
+        taskSteps: [
+            ["Request", "State the goal and scope in plain language"],
+            ["Orchestrate", "Assemble the models and tools it needs"],
+            ["Execute", "Run inside the scope you approved"],
+            ["Deliver", "Finish with a deliverable you can verify"],
+        ],
+
+        connectTitle: "What does it connect?",
+        connectLead:
+            "DeX is not tied to one model or one tool. It connects whatever the task needs, when the task needs it.",
+        connects: [
+            ["Multiple models", "Pick the AI that fits the cost and performance the task calls for. Change the model and the workflow stays."],
+            ["Business connectors", "Reach the SaaS and in-house data you already run, through explicit API contracts."],
+            ["Local bridge", "Handle files and applications on the user's PC, inside the scope you approved."],
+        ],
+
         whyTitle: "Why is it needed?",
         whyLead:
-            "AI generates the answer. But enterprise work is finished on the user's PC — handling files and applications, and producing the deliverable.",
+            "AI generates the answer. But enterprise work is finished on the user's PC — handling files and applications, and producing the deliverable. Three breaks sit in between.",
+        gapHead: ["The challenge", "What happens today", "What it costs the business"],
+        gaps: [
+            ["Disconnected tools", "AI, documents, and data tools are each used separately", "Switching cost and rework go up"],
+            ["Disconnected execution", "After the AI answers, the actual work is done by hand", "Lead time and errors go up"],
+            ["Disconnected control", "Who ran what, with which permissions, is hard to track", "Security and audit burden goes up"],
+        ],
         beforeLabel: "Where the usual way stops",
         before: [
             "Uploading and downloading files, over and over",
@@ -352,6 +435,33 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         govQuote: "Only the working environment and tools you allow get connected.",
         govQuoteSub: "A safe connection, and execution you can control.",
+
+        rolloutTitle: "An eight-week phased rollout",
+        rolloutLead:
+            "It does not start with a company-wide switch. A short PoC establishes the value and the risk first; the scope widens after that.",
+        rollout: [
+            ["Weeks 1–2", "Assess and design", "Pick the first tasks · define policy · set the baseline"],
+            ["Weeks 3–5", "Build the PoC", "Configure connectors · representative scenarios · user validation"],
+            ["Weeks 6–7", "Stabilize", "Access control · audit review · operator training"],
+            ["Week 8", "Hand over and expand", "Operational handover · KPI review · the roadmap after"],
+        ],
+
+        impactTitle: "What gets measured?",
+        impactLead:
+            "The effect of adopting AI is confirmed with data, not estimates. A baseline is measured before the pilot starts, and the same metrics are compared eight weeks later.",
+        impacts: [
+            ["Task lead time", "Up to 30% shorter", "Average time from request to finished deliverable"],
+            ["Repetitive work", "Up to 20% less", "Time spent copying, tidying, and reformatting by hand"],
+            ["Core task completion", "90% or higher", "Share of core scenarios finished without help"],
+        ],
+        impactNote:
+            "The figures shown are the pilot's target metrics. Actual results vary with your processes, your baseline, and the scope of adoption — the targets are set together during the pre-adoption assessment.",
+        packageTitle: "What adoption covers",
+        packages: [
+            ["Initial build", "Environment setup · system integration · scenario design"],
+            ["Licensing", "By user count and model usage"],
+            ["Operational support", "Handover and training, per the SLA and support scope"],
+        ],
         readTitle: "More on XGEN key features",
         reads: [
             {
@@ -462,8 +572,48 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
             </section>
 
             <main>
-                {/* 세 기둥 — 관리 · 연결 · 실행 */}
+                {/* 무엇인가 — 서버 ↔ DeX ↔ PC */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto max-w-7xl px-6 py-20">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                            {t.whatTitle}
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.whatLead}
+                        </p>
+
+                        <div className="mx-auto mt-12 max-w-4xl">
+                            <DexConceptArt locale={locale} />
+                        </div>
+
+                        {/*
+                          요청 하나가 결과물이 되기까지. 아래 「사용 흐름」이 설치부터
+                          첫 업무까지를 다룬다면, 이쪽은 업무 하나가 도는 주기다 —
+                          같은 그림을 두 번 그리지 않도록 축을 다르게 둔다.
+                        */}
+                        <ol className="mx-auto mt-12 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                            {t.taskSteps.map(([label, desc], i) => (
+                                <li
+                                    key={label}
+                                    className="min-w-0 rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                >
+                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                        Step {i + 1}
+                                    </p>
+                                    <p className="mt-2 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {label}
+                                    </p>
+                                    <p className="mt-2 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {desc}
+                                    </p>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </section>
+
+                {/* 세 기둥 — 관리 · 연결 · 실행 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-16">
                         <ul className="grid gap-4 md:grid-cols-3">
                             {t.pillars.map(([title, desc], i) => {
@@ -495,19 +645,36 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 무엇인가 — 서버 ↔ DeX ↔ PC */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                {/* 무엇을 연결하나 — 멀티 모델 · 업무 커넥터 · 로컬 브리지 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
-                            {t.whatTitle}
+                            {t.connectTitle}
                         </h2>
                         <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {t.whatLead}
+                            {t.connectLead}
                         </p>
-
-                        <div className="mx-auto mt-12 max-w-4xl">
-                            <DexConceptArt locale={locale} />
-                        </div>
+                        <ul className="mt-10 grid gap-4 md:grid-cols-3">
+                            {t.connects.map(([title, desc], i) => {
+                                const Icon = CONNECT_ICONS[i];
+                                return (
+                                    <li
+                                        key={title}
+                                        className="min-w-0 rounded-2xl border border-[var(--color-line)] bg-white p-7"
+                                    >
+                                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <Icon className="h-5 w-5" />
+                                        </span>
+                                        <h3 className="mt-4 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {title}
+                                        </h3>
+                                        <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {desc}
+                                        </p>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                 </section>
 
@@ -536,6 +703,50 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                         <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.whyLead}
                         </p>
+
+                        {/*
+                          단절 세 가지 — 아래 before/after 가 사용자의 하루라면,
+                          이 표는 그것이 사업에 얼마로 돌아오는지를 말한다. 도입을
+                          결재하는 쪽이 찾는 건 후자다.
+                        */}
+                        <div className="mt-10 overflow-x-auto">
+                            <table className="w-full min-w-[640px] border-collapse text-left">
+                                <thead>
+                                    <tr className="border-b border-[var(--color-line)]">
+                                        {t.gapHead.map((h) => (
+                                            <th
+                                                key={h}
+                                                scope="col"
+                                                className="px-5 py-3 font-mono text-[11.5px] uppercase tracking-widest text-[var(--color-ink-subtle)]"
+                                            >
+                                                {h}
+                                            </th>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {t.gaps.map(([task, problem, impact]) => (
+                                        <tr
+                                            key={task}
+                                            className="border-b border-[var(--color-line)] last:border-0"
+                                        >
+                                            <th
+                                                scope="row"
+                                                className="whitespace-nowrap px-5 py-5 align-top text-[15.5px] font-bold tracking-tight text-[#2461d8]"
+                                            >
+                                                {task}
+                                            </th>
+                                            <td className="px-5 py-5 align-top text-[14.5px] leading-relaxed text-[var(--color-ink)]">
+                                                {problem}
+                                            </td>
+                                            <td className="px-5 py-5 align-top text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                {impact}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div className="mt-10 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
                             <div className="min-w-0 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7">
@@ -636,6 +847,112 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
+                {/* 8주 도입안 */}
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                    <div className="mx-auto max-w-7xl px-6 py-20">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                            {t.rolloutTitle}
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.rolloutLead}
+                        </p>
+
+                        <ol className="mx-auto mt-12 max-w-4xl">
+                            {t.rollout.map(([when, phase, detail], i) => (
+                                <li
+                                    key={phase}
+                                    className="grid gap-2 border-l-2 border-[#2f7bff] py-5 pl-6 sm:grid-cols-[104px_180px_1fr] sm:items-baseline sm:gap-6"
+                                >
+                                    <span className="font-mono text-[13px] font-semibold text-[#2461d8]">
+                                        {when}
+                                    </span>
+                                    <span className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {phase}
+                                    </span>
+                                    <span className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {detail}
+                                    </span>
+                                    {/* 마지막 칸은 아래 선을 잇지 않는다 — 여기서 끝난다 */}
+                                    {i < t.rollout.length - 1 && <span className="sr-only" />}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </section>
+
+                {/* 무엇을 측정하나 — 목표치와 그 목표를 검증하는 방식 */}
+                {SHOW_IMPACT && (
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto max-w-7xl px-6 py-20">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                            {t.impactTitle}
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.impactLead}
+                        </p>
+
+                        <ul className="mt-10 grid gap-4 md:grid-cols-3">
+                            {t.impacts.map(([item, target, desc], i) => {
+                                const Art = DEX_KPI_ART[i];
+                                return (
+                                    <li
+                                        key={item}
+                                        className="flex min-w-0 flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7"
+                                    >
+                                        {/*
+                                          측정 항목이 먼저, 목표가 그다음. 제목이
+                                          「무엇을 측정하나요?」이므로 카드도 항목으로
+                                          답해야 두 줄이 이어진다.
+                                        */}
+                                        <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {item}
+                                        </p>
+                                        <p className="mt-2 text-[26px] font-bold leading-tight tracking-tight text-[#2461d8]">
+                                            {target}
+                                        </p>
+                                        <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {desc}
+                                        </p>
+                                        {/* 기준값 대비 목표 — 수치가 무엇에 견준 값인지 그림으로 남긴다 */}
+                                        <div className="mt-auto pt-6">
+                                            <Art />
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+
+                        {/*
+                          수치를 크게 적어 두면 이미 달성한 실적처럼 읽힌다. 파일럿에서
+                          검증할 목표라는 것을 바로 아래에서 분명히 해 둔다 — 검토하는
+                          쪽이 나중에 알게 되면 그때까지의 신뢰가 함께 깎인다.
+                        */}
+                        <p className="mx-auto mt-6 max-w-3xl rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-6 py-4 text-center text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                            {t.impactNote}
+                        </p>
+
+                        <h3 className="mt-16 text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {t.packageTitle}
+                        </h3>
+                        <ul className="mx-auto mt-7 max-w-4xl">
+                            {t.packages.map(([name, detail]) => (
+                                <li
+                                    key={name}
+                                    className="grid gap-1 border-b border-[var(--color-line)] py-4 last:border-0 sm:grid-cols-[180px_1fr] sm:items-baseline sm:gap-6"
+                                >
+                                    <span className="text-[15.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {name}
+                                    </span>
+                                    <span className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {detail}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+                )}
+
                 {/*
                   보안과 통제 — 아직 구현 전이라 감춰 둔다. 문구와 마크업은 그대로
                   두고 SHOW_GOVERNANCE 만 true 로 바꾸면 다시 나온다. 지우면 나중에
@@ -670,10 +987,38 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 </section>
                 )}
 
-                {/* 핵심 기능 세 장 + 관련 블로그 — 성격이 달라 목록을 나눠 둔다 */}
+                {/*
+                  관련 프리뷰 → 핵심 기능 순. DeX 를 읽고 온 사람에게는 DeX 이야기를
+                  더 주는 쪽이 먼저고, 다른 기능으로 건너가는 문은 그 뒤에 둔다.
+                */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <h2 className="text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {t.postsTitle}
+                        </h2>
+                        <ul className="mt-7 grid gap-4 md:grid-cols-3">
+                            {t.posts.map((r) => (
+                                <li key={r.href} className="min-w-0">
+                                    <Link
+                                        href={r.href}
+                                        className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
+                                    >
+                                        <h3 className="text-[16.5px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                            {r.label}
+                                        </h3>
+                                        <p className="mt-2.5 flex-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {r.desc}
+                                        </p>
+                                        <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
+                                            {en ? "Read" : "읽어보기"}
+                                            <ArrowRight className="h-3.5 w-3.5" />
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <h2 className="mt-16 text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
                             {t.readTitle}
                         </h2>
                         {/* 세 장이라 3단 1열 — 두 열로 두면 마지막 한 장이 혼자 남는다 */}
@@ -696,31 +1041,6 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                                         </p>
                                         <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
                                             {en ? "Learn more" : "자세히 보기"}
-                                            <ArrowRight className="h-3.5 w-3.5" />
-                                        </span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-
-                        <h2 className="text-center mt-16 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
-                            {t.postsTitle}
-                        </h2>
-                        <ul className="mt-7 grid gap-4 md:grid-cols-3">
-                            {t.posts.map((r) => (
-                                <li key={r.href} className="min-w-0">
-                                    <Link
-                                        href={r.href}
-                                        className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
-                                    >
-                                        <h3 className="text-[16.5px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                            {r.label}
-                                        </h3>
-                                        <p className="mt-2.5 flex-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {r.desc}
-                                        </p>
-                                        <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[14px] font-semibold text-[#2461d8] transition group-hover:gap-2">
-                                            {en ? "Read" : "읽어보기"}
                                             <ArrowRight className="h-3.5 w-3.5" />
                                         </span>
                                     </Link>
