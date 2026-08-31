@@ -498,10 +498,10 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 {/* 무엇인가 — 서버 ↔ DeX ↔ PC */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
-                        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
                             {t.whatTitle}
                         </h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.whatLead}
                         </p>
 
@@ -514,10 +514,10 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 {/* 사용 흐름 6단계 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
-                        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
                             {t.flowTitle}
                         </h2>
-                        <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.flowLead}
                         </p>
                         {/* 세로형이라 폭까지 다 쓰면 단계가 과하게 커진다 — 본문 폭에 맞춘다 */}
@@ -530,10 +530,10 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 {/* 왜 필요한가 — 한계 vs 해결 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
-                        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
                             {t.whyTitle}
                         </h2>
-                        <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.whyLead}
                         </p>
 
@@ -591,10 +591,10 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
                             <div className="min-w-0">
-                                <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                                <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
                                     {t.fitTitle}
                                 </h2>
-                                <p className="mt-4 text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                <p className="mt-4 text-center text-[15.5px] leading-relaxed text-[var(--color-ink-muted)]">
                                     {t.fitLead}
                                 </p>
                                 <ul className="mt-7 space-y-2.5">
@@ -608,7 +608,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                             </div>
 
                             <div className="min-w-0">
-                                <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                                <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
                                     {t.valueTitle}
                                 </h2>
                                 <ul className="mt-7 space-y-4">
@@ -644,10 +644,10 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 {SHOW_GOVERNANCE && (
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-5xl px-6 py-20">
-                        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
+                        <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
                             {t.govTitle}
                         </h2>
-                        <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.govLead}
                         </p>
                         <ul className="mt-8 grid gap-3 md:grid-cols-2">
@@ -673,7 +673,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 {/* 핵심 기능 세 장 + 관련 블로그 — 성격이 달라 목록을 나눠 둔다 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
-                        <h2 className="text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                        <h2 className="text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
                             {t.readTitle}
                         </h2>
                         {/* 세 장이라 3단 1열 — 두 열로 두면 마지막 한 장이 혼자 남는다 */}
@@ -703,7 +703,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                             ))}
                         </ul>
 
-                        <h2 className="mt-16 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                        <h2 className="text-center mt-16 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
                             {t.postsTitle}
                         </h2>
                         <ul className="mt-7 grid gap-4 md:grid-cols-3">
