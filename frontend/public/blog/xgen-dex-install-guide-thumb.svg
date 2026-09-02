@@ -1,53 +1,36 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="설치부터 첫 업무까지 여섯 단계를 지나면 Agent 가 아바타로 내 화면에 상주한다">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX 설치부터 첫 업무까지 여섯 단계">
+  <!--
+    XGEN 프리뷰 썸네일 공통 규격 — 짙은 남색 배경, 왼쪽 두 줄 카피, 오른쪽에
+    반투명 흰색 도형 하나. 이 글의 요지는 「여섯 단계」라, 상징도 여섯 칸으로
+    두고 마지막 칸만 채워 끝이 있다는 것을 보인다.
+  -->
   <defs>
-    <linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#e8eefb"/></linearGradient>
-    <linearGradient id="tbrand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#1f4fa8"/></linearGradient>
-    <linearGradient id="tfig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#2f7bff"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#1b4fb0"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.34"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
   </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
 
-  <rect width="1200" height="675" fill="url(#tbg)"/>
-  <circle cx="1090" cy="80" r="200" fill="#2f7bff" opacity="0.07"/>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">설치부터</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">첫 업무까지</text>
 
-  <text x="600" y="118" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" fill="#2461d8" letter-spacing="8">XGEN DeX</text>
-  <text x="600" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="66" font-weight="800" fill="#111827">설치부터 첫 업무까지</text>
-
-  <!-- 여섯 단계 — 실습편이라는 것을 목록에서도 알 수 있게 한다 -->
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="21" font-weight="700">
-    <rect x="96" y="276" width="146" height="58" rx="29" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-    <text x="169" y="313" text-anchor="middle" fill="#6b7280">설치</text>
-    <rect x="258" y="276" width="182" height="58" rx="29" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-    <text x="349" y="313" text-anchor="middle" fill="#6b7280">서버 연결</text>
-    <rect x="456" y="276" width="212" height="58" rx="29" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-    <text x="562" y="313" text-anchor="middle" fill="#6b7280">Agent 제작</text>
-    <rect x="684" y="276" width="164" height="58" rx="29" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-    <text x="766" y="313" text-anchor="middle" fill="#6b7280">PC 연결</text>
-    <rect x="864" y="276" width="176" height="58" rx="29" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-    <text x="952" y="313" text-anchor="middle" fill="#6b7280">권한 열기</text>
+  <!-- 여섯 칸 — 앞의 다섯은 비어 있고 마지막만 채워진다 -->
+  <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" text-anchor="middle">
+    <rect x="672" y="256" width="68" height="68" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+    <text x="706" y="300" fill="#e4eeff">1</text>
+    <rect x="756" y="256" width="68" height="68" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+    <text x="790" y="300" fill="#e4eeff">2</text>
+    <rect x="840" y="256" width="68" height="68" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+    <text x="874" y="300" fill="#e4eeff">3</text>
+    <rect x="924" y="256" width="68" height="68" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+    <text x="958" y="300" fill="#e4eeff">4</text>
+    <rect x="1008" y="256" width="68" height="68" rx="18" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+    <text x="1042" y="300" fill="#e4eeff">5</text>
+    <rect x="1092" y="256" width="68" height="68" rx="18" fill="url(#badge)"/>
   </g>
+  <path d="M1112 290 l14 14 22 -26" fill="none" stroke="#1b4fb0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- 결과 — 내 화면에 Agent 가 상주한다 -->
-  <rect x="240" y="382" width="620" height="212" rx="20" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-  <rect x="240" y="382" width="620" height="44" rx="20" fill="#f2f6fd"/>
-  <rect x="240" y="408" width="620" height="18" fill="#f2f6fd"/>
-  <circle cx="270" cy="404" r="6" fill="#ff5f57"/><circle cx="292" cy="404" r="6" fill="#febc2e"/><circle cx="314" cy="404" r="6" fill="#28c840"/>
-  <rect x="272" y="452" width="286" height="34" rx="10" fill="#f3f6fb"/>
-  <rect x="470" y="500" width="356" height="34" rx="10" fill="url(#tbrand)"/>
-  <rect x="272" y="548" width="120" height="24" rx="12" fill="#d9f0e2"/>
-  <text x="332" y="566" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="13" font-weight="700" fill="#2f7d55">WebSearch</text>
-
-  <!-- 아바타 — 창을 닫아도 남는다 -->
-  <g transform="translate(880 372)">
-    <ellipse cx="60" cy="222" rx="66" ry="11" fill="#1f4fa8" opacity="0.10"/>
-    <path d="M8 218c0-38 24-68 52-68s52 30 52 68z" fill="url(#tfig)"/>
-    <circle cx="60" cy="120" r="36" fill="url(#tfig)"/>
-    <path d="M29 105c3-21 15-33 31-33s28 12 31 33c-10-8-20-12-31-12s-21 4-31 12z" fill="#123a72"/>
-    <circle cx="47" cy="123" r="8.5" fill="none" stroke="#123a72" stroke-width="3"/>
-    <circle cx="75" cy="123" r="8.5" fill="none" stroke="#123a72" stroke-width="3"/>
-    <path d="M55.5 123h11" stroke="#123a72" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="4" cy="76" r="22" fill="#ffffff"/>
-    <path d="M-4 82l-9 12 14-4z" fill="#ffffff"/>
-    <path d="M-5 71c0-5 4-9 9-9 2 0 4 1 5 3 1-2 3-3 5-3 5 0 9 4 9 9 0 7-14 14-14 14S-5 78-5 71z" fill="#ff6b8a"/>
-  </g>
-
-  <text x="600" y="646" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="25" font-weight="700" fill="#374151">Agent 가 내 화면에서 일합니다</text>
+  <path d="M672 372 H 1160" stroke="#ffffff4d" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 14"/>
+  <text x="916" y="440" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="600" fill="#e4eeff">여섯 단계</text>
 </svg>

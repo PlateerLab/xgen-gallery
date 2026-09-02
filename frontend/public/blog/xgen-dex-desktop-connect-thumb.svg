@@ -1,107 +1,33 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN 플랫폼의 Agent 가 커넥터를 통해 사용자 데스크톱으로 내려와 업무 도구를 다루는 구조">
-  <defs>
-    <linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#e8eefb"/></linearGradient>
-    <linearGradient id="tbrand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00acee"/><stop offset="1" stop-color="#185aea"/></linearGradient>
-    <linearGradient id="tbezel" x1="0" y1="0" x2="0.35" y2="1">
-      <stop offset="0" stop-color="#5c86d6"/><stop offset="0.45" stop-color="#2f4d8f"/><stop offset="1" stop-color="#16224a"/>
-    </linearGradient>
-    <linearGradient id="tscreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f2f7fe"/></linearGradient>
-
-    <!-- 커버·개념도와 같은 Agent 아바타 — 목록에서도 셋이 서로 다른 담당자로 읽힌다 -->
-    <linearGradient id="tav0g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#38c3f5"/><stop offset="1" stop-color="#185aea"/></linearGradient>
-    <linearGradient id="tav1g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#a58bff"/><stop offset="1" stop-color="#5b2ee0"/></linearGradient>
-    <linearGradient id="tav2g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#4fd8c0"/><stop offset="1" stop-color="#0d8f88"/></linearGradient>
-    <g id="tav0">
-      <circle cx="12" cy="12" r="12" fill="url(#tav0g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <g fill="#1447c4">
-        <circle cx="10.2" cy="10" r="0.9"/><circle cx="13.8" cy="10" r="0.9"/>
-        <path d="M6.4 9a5.6 5.6 0 0 1 11.2 0h-1.9a3.7 3.7 0 0 0-7.4 0z"/>
-        <rect x="5.2" y="8.6" width="2.4" height="3.4" rx="1.2"/>
-        <rect x="16.4" y="8.6" width="2.4" height="3.4" rx="1.2"/>
-      </g>
-    </g>
-    <g id="tav1">
-      <circle cx="12" cy="12" r="12" fill="url(#tav1g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <g fill="#4a24c0">
-        <circle cx="10.2" cy="10" r="0.9"/><circle cx="13.8" cy="10" r="0.9"/>
-        <path d="M7.6 8.2a4.4 4.4 0 0 1 8.8 0z"/>
-      </g>
-    </g>
-    <g id="tav2">
-      <circle cx="12" cy="12" r="12" fill="url(#tav2g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <circle cx="10.2" cy="10" r="0.9" fill="#0b7f79"/><circle cx="13.8" cy="10" r="0.9" fill="#0b7f79"/>
-      <rect x="11.4" y="2.8" width="1.2" height="2.4" rx="0.6" fill="#ffffff"/>
-      <circle cx="12" cy="2.2" r="1.5" fill="#ffffff"/>
-    </g>
-  </defs>
-
-  <rect width="1200" height="675" fill="url(#tbg)"/>
-  <circle cx="1090" cy="80" r="200" fill="#2f7bff" opacity="0.07"/>
-
-  <text x="600" y="92" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="700" fill="#2461d8" letter-spacing="8">XGEN DeX</text>
-  <text x="600" y="170" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="62" font-weight="800" fill="#111827">Agent를 업무환경으로</text>
-
-  <!-- 플랫폼 — 목록 크기에서는 이름만 남긴다 -->
-  <rect x="420" y="216" width="360" height="62" rx="16" fill="#ffffff" stroke="#dbe4f6" stroke-width="2"/>
-  <rect x="452" y="238" width="20" height="20" rx="5" fill="url(#tbrand)"/>
-  <text x="486" y="255" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="24" font-weight="800" fill="#1f4fa8">XGEN 플랫폼</text>
-
-  <path d="M600 278 V 336" stroke="#8fb4ff" stroke-width="3" fill="none"/>
-  <rect x="536" y="292" width="128" height="32" rx="16" fill="#ffffff" stroke="#bcd0f5" stroke-width="2"/>
-  <text x="600" y="314" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="17" font-weight="700" fill="#2461d8">커넥터</text>
-
-  <!-- 데스크톱 -->
-  <rect x="180" y="336" width="840" height="238" rx="20" fill="url(#tbezel)"/>
-  <rect x="182" y="338" width="836" height="234" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.28"/>
-  <rect x="192" y="348" width="816" height="214" rx="12" fill="url(#tscreen)"/>
-  <path d="M566 574 h68 l12 30 h-92z" fill="#233a70"/>
-  <rect x="486" y="604" width="228" height="14" rx="7" fill="#233a70"/>
-
-  <rect x="218" y="370" width="286" height="34" rx="17" fill="url(#tbrand)"/>
-  <text x="361" y="394" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="16" font-weight="800" fill="#ffffff">사용자 데스크톱 · XGEN DeX</text>
-
-  <!-- Agent 셋 — 작게 보이므로 원과 이름만 -->
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="16" font-weight="700" fill="#1f4fa8">
-    <rect x="360" y="422" width="150" height="44" rx="14" fill="#ffffff" stroke="#bcd0f5" stroke-width="2"/>
-    <use href="#tav0" transform="translate(373 431) scale(1.0833)"/>
-    <text x="445" y="450" text-anchor="middle">Agent</text>
-    <rect x="525" y="422" width="150" height="44" rx="14" fill="#ffffff" stroke="#bcd0f5" stroke-width="2"/>
-    <use href="#tav1" transform="translate(538 431) scale(1.0833)"/>
-    <text x="610" y="450" text-anchor="middle">Agent</text>
-    <rect x="690" y="422" width="150" height="44" rx="14" fill="#ffffff" stroke="#bcd0f5" stroke-width="2"/>
-    <use href="#tav2" transform="translate(703 431) scale(1.0833)"/>
-    <text x="775" y="450" text-anchor="middle">Agent</text>
-  </g>
-
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN DeX — Agent 가 사용자의 업무환경 안에서 일한다">
   <!--
-    선은 두 갈래로만 모은다. 여섯 갈래를 다 그리면 목록 크기에서 실뭉치가 되고,
-    아래 아이콘 위를 지나가 무엇에 닿는 선인지도 안 읽힌다.
+    XGEN 프리뷰 썸네일 공통 규격을 따른다 — 짙은 남색 배경, 왼쪽에 굵은 두 줄
+    카피, 오른쪽에 반투명 흰색 도형 하나. 목록에서 형제 글들과 나란히 놓이는
+    자리라, 여기서만 밝은 개념도를 쓰면 그 카드만 비어 보인다.
   -->
-  <g stroke="#bcd0f5" stroke-width="2.5" fill="none">
-    <path d="M435 466 C 435 486 380 484 380 502"/>
-    <path d="M600 466 C 600 486 380 484 380 502"/>
-    <path d="M600 466 C 600 486 745 484 745 502"/>
-    <path d="M765 466 C 765 486 745 484 745 502"/>
-  </g>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#1b4fb0"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0fd"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7bff" stop-opacity="0.34"/><stop offset="1" stop-color="#2f7bff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="936" cy="330" r="330" fill="url(#glow)"/>
 
-  <!-- 다루는 것 — 오피스 세 종과 로컬 자원 -->
-  <g font-family="Pretendard,sans-serif" font-size="16" font-weight="800" fill="#ffffff">
-    <path d="M282 510 h24 l12 12 v26 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 v-34 a4 4 0 0 1 4 -4z" fill="#217346"/>
-    <text x="298" y="540" text-anchor="middle">X</text>
-    <path d="M364 510 h24 l12 12 v26 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 v-34 a4 4 0 0 1 4 -4z" fill="#2b579a"/>
-    <text x="380" y="540" text-anchor="middle">W</text>
-    <path d="M446 510 h24 l12 12 v26 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 v-34 a4 4 0 0 1 4 -4z" fill="#d24726"/>
-    <text x="462" y="540" text-anchor="middle">P</text>
+  <text x="88" y="302" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#ffffff">내 자리에서</text>
+  <text x="88" y="416" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="92" font-weight="800" fill="#e4eeff">일하는 Agent</text>
+
+  <!-- 모니터 하나 — 그 안에서 Agent 가 문서를 다룬다 -->
+  <rect x="744" y="196" width="372" height="236" rx="24" fill="#ffffff3d" stroke="#ffffff99" stroke-width="2"/>
+  <rect x="772" y="224" width="316" height="180" rx="12" fill="#ffffff26"/>
+  <g fill="#ffffff6b">
+    <rect x="800" y="250" width="150" height="22" rx="8"/>
+    <rect x="800" y="290" width="150" height="22" rx="8"/>
+    <rect x="800" y="330" width="104" height="22" rx="8"/>
   </g>
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="15" font-weight="700" fill="#374151">
-    <rect x="580" y="514" width="104" height="34" rx="17" fill="#f3f7ff" stroke="#cfe0ff" stroke-width="2"/><text x="632" y="537" text-anchor="middle">파일</text>
-    <rect x="694" y="514" width="130" height="34" rx="17" fill="#f3f7ff" stroke="#cfe0ff" stroke-width="2"/><text x="759" y="537" text-anchor="middle">브라우저</text>
-    <rect x="834" y="514" width="104" height="34" rx="17" fill="#f3f7ff" stroke="#cfe0ff" stroke-width="2" stroke-dasharray="5 5"/><text x="886" y="537" text-anchor="middle">그 외</text>
-  </g>
+  <circle cx="1022" cy="292" r="38" fill="url(#badge)"/>
+  <path d="M1000 314a22 22 0 0 1 44 0z" fill="#1b4fb0"/>
+  <circle cx="1022" cy="282" r="13" fill="#1b4fb0"/>
+
+  <path d="M900 432 h60 l16 34 h-92z" fill="#ffffff6b"/>
+  <rect x="848" y="466" width="164" height="14" rx="7" fill="#ffffff6b"/>
+  <text x="930" y="530" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="28" font-weight="600" fill="#e4eeff">내 업무환경</text>
 </svg>
