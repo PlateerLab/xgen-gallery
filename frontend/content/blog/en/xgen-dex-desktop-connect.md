@@ -2,13 +2,12 @@
 title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
 titleSeo: "XGEN DeX — agents in the real desktop"
 description: "The environment AI runs in and the environment people actually do their work in are separate. XGEN DeX is the desktop interface that connects XGEN AI agents to the user's PC, so real work gets done with the files and applications already there."
-date: "2026-08-26"
+date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI governance", "Product"]
-unlisted: true
 faq:
   - q: "Is XGEN DeX a desktop chat app for XGEN?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. DeX is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
