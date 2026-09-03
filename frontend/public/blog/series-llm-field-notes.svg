@@ -1,0 +1,40 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM 현장 노트 시리즈">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171936"/>
+      <stop offset="1" stop-color="#263d73"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a79cf4"/>
+      <stop offset="1" stop-color="#73a5e7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="1030" cy="130" r="260" fill="#765ee8" opacity="0.13"/>
+  <circle cx="160" cy="790" r="210" fill="#5b8bd9" opacity="0.12"/>
+
+  <text x="88" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="29" font-weight="800" letter-spacing="7" fill="#b9b1ff">SERIES</text>
+  <text x="88" y="212" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="72" font-weight="800" fill="#ffffff">LLM 현장 노트</text>
+  <text x="90" y="270" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="25" font-weight="600" fill="#c9d5f4">토큰에서 에이전트까지</text>
+
+  <g transform="translate(600 576)">
+    <circle r="216" fill="none" stroke="#6887cf" stroke-width="4" opacity="0.4"/>
+    <circle r="154" fill="#ffffff" opacity="0.06"/>
+    <circle r="112" fill="url(#accent)" opacity="0.96"/>
+    <text x="0" y="19" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="50" font-weight="800" fill="#17213b">P(t+1)</text>
+
+    <g fill="#dbe5ff">
+      <rect x="-255" y="-31" width="70" height="62" rx="15"/>
+      <rect x="185" y="-31" width="70" height="62" rx="15"/>
+      <rect x="-35" y="-251" width="70" height="62" rx="15"/>
+      <rect x="-35" y="189" width="70" height="62" rx="15"/>
+    </g>
+    <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" font-weight="800" fill="#314777" text-anchor="middle">
+      <text x="-220" y="7">tok</text>
+      <text x="220" y="7">ctx</text>
+      <text x="0" y="-212">attn</text>
+      <text x="0" y="228">tool</text>
+    </g>
+    <path d="M-180 0 H-128 M128 0 H180 M0-180 V-128 M0 128 V180" stroke="#aebff0" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

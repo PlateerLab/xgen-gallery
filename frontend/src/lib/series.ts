@@ -39,6 +39,23 @@ export function seriesCopy(def: SeriesDef, en: boolean) {
 
 export const SERIES: SeriesDef[] = [
     {
+        key: "llm-field-notes",
+        title: "LLM 현장 노트",
+        label: "LLM 노트",
+        subtitle: "토큰 예측에서 에이전트까지, 생성 모델을 판단하는 기초",
+        description:
+            "다음 토큰 예측에서 출발해 학습과 파라미터, 추론, 컨텍스트, 도구 사용을 차례로 살펴봅니다. LLM과 에이전트를 하나의 기능으로 뭉뚱그리지 않고, 각 구성 요소가 무엇을 만들고 무엇을 외부에서 확인해야 하는지 편별로 정리합니다.",
+        titleEn: "LLM Field Notes",
+        labelEn: "LLM Notes",
+        subtitleEn:
+            "From next-token prediction to agents, the foundations for evaluating generative models",
+        descriptionEn:
+            "Starting from next-token prediction, we work through training and parameters, reasoning, context, and tool use. Each part separates what a component produces from what still needs to be checked outside it.",
+        cover: "/blog/series-llm-field-notes.svg",
+        match: /^llm-field-notes-/,
+        order: /^llm-field-notes-(\d+)-/,
+    },
+    {
         key: "gs-cert",
         title: "GS인증 개발기",
         label: "GS인증",
