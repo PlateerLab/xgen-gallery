@@ -1,18 +1,18 @@
-<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온톨로지 개발기 시리즈">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온톨로지 개발기 시리즈">
   <defs>
     <linearGradient id="obg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062f2b"/><stop offset="1" stop-color="#0f766e"/></linearGradient>
     <linearGradient id="oacc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
   </defs>
-  <rect width="1200" height="900" rx="0" fill="url(#obg)"/>
-  <circle cx="1010" cy="150" r="240" fill="#14b8a6" opacity="0.16"/>
-  <circle cx="180" cy="780" r="200" fill="#5eead4" opacity="0.12"/>
+  <rect width="1200" height="675" rx="0" fill="url(#obg)"/>
+  <circle cx="1040" cy="90" r="230" fill="#14b8a6" opacity="0.16"/>
+  <circle cx="150" cy="640" r="170" fill="#5eead4" opacity="0.12"/>
 
   <text x="90" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="800" letter-spacing="8" fill="#99f6e4">SERIES</text>
   <text x="90" y="210" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="72" font-weight="800" fill="#ffffff">온톨로지 개발기</text>
   <rect x="90" y="248" width="150" height="8" rx="4" fill="url(#oacc)"/>
 
   <!-- motif: 지식그래프 — 노드·엣지, 중앙 개념 노드 강조 -->
-  <g transform="translate(600 560)">
+  <g transform="translate(890 372) scale(0.92)">
     <!-- edges -->
     <g stroke="#2dd4bf" stroke-width="6" opacity="0.55" stroke-linecap="round">
       <line x1="0" y1="0" x2="-190" y2="-120"/>
