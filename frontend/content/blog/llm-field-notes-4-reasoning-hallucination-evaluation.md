@@ -120,4 +120,4 @@ faq:
 
 ---
 
-**다음 편 →** [LLM은 언제 에이전트가 되는가 (5편)](/blog/llm-field-notes-5-agent-tools-execution)
+**다음 편 →** [LLM은 어떻게 ‘답변’을 넘어 ‘실행’할 수 있을까? (5편)](/blog/llm-field-notes-5-agent-tools-execution)

@@ -1,5 +1,5 @@
 ---
-title: "LLM은 언제 에이전트가 되는가(5편)"
+title: "LLM은 어떻게 ‘답변’을 넘어 ‘실행’할 수 있을까? (5편)"
 description: "LLM은 행동을 제안하고 실행기는 도구를 호출합니다. 에이전트를 모델·도구·상태·제어 루프로 나눠 실제 업무가 끝까지 수행되는 조건을 설명합니다."
 date: "2026-09-03"
 cover: /blog/llm-field-notes-5-agent-tools-execution.svg
