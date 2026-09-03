@@ -352,6 +352,38 @@ const DICT: Record<string, string> = {
     "2분기 진행 현황": "Q2 progress update",
     "제목 1건을 교체하고 Q&A 슬라이드를 마지막에 추가했습니다. 기존 마스터·테마는 건드리지 않아 디자인이 유지됩니다.":
         "Replaced one title and appended a Q&A slide. The existing master and theme are untouched, so the design stays put.",
+
+    // ── xgen-ontology ───────────────────────────────
+    "문서와 표를 정제된 지식 그래프로 만들고, 한 번의 융합 검색으로 답합니다. 코어는 의존성이 없고 결과는 표준 RDF/Turtle로 나옵니다.":
+        "Turns documents and tables into a clean knowledge graph, then answers from it in a single fused search. The core has no dependencies and the output is standard RDF/Turtle.",
+    "입력 소스": "Input source",
+    "표(CSV) — LLM 없이 구축": "Tables (CSV) — built without an LLM",
+    "문서(텍스트) — LLM로 추출": "Documents (text) — extracted with an LLM",
+    "원본 데이터": "Source data",
+    "CSV 여러 장을 붙여넣거나(표 모드), 규정·정책 같은 문장을 넣으세요(문서 모드).":
+        "Paste several CSV tables (table mode), or prose such as a regulation or policy (document mode).",
+    "그래프에 던질 질문": "Question to ask the graph",
+    "예: Widget은 무슨 색인가?": "e.g. What color is Widget?",
+    "그래프 통계": "Graph statistics",
+    "융합 검색 결과": "Fused search result",
+    "근거 노드·관계": "Evidence nodes and relations",
+    "표 2장 → 그래프 (LLM 없음)": "Two tables → a graph (no LLM)",
+    "외래키를 관계로, 열을 속성으로 — 모델 호출 없이 구축":
+        "Foreign keys become relations and columns become properties — built with no model call",
+    "Widget은 무슨 색인가?": "What color is Widget?",
+    "Widget의 색은 Red입니다. products.color_id 가 colors.color_id 를 가리켜 hasColor 관계로 승격됐습니다.":
+        "Widget is Red. products.color_id points at colors.color_id, so it was promoted to a hasColor relation.",
+    "문서 → 그래프 + 목록형 질문": "Document → graph, then a list-shaped question",
+    "벡터 인덱스가 못 주는 class enumeration — 「전부 몇 개인가」에 답하는 구간":
+        "Class enumeration, which a vector index cannot give you — the part that answers “how many in total”",
+    "전자금융감독규정은 Acme Bank에 2020년부터 적용된다. 신용정보법은 Acme Bank와 Beta Card에 적용된다. 다만 소액 결제 대행은 예외로 둔다.":
+        "The Electronic Finance Supervision Regulation has applied to Acme Bank since 2020. The Credit Information Act applies to Acme Bank and Beta Card. Small-payment agency work is exempt.",
+    "Acme Bank에 적용되는 규정을 전부 알려줘":
+        "List every regulation that applies to Acme Bank",
+    "Acme Bank에는 전자금융감독규정(EFinanceSupervision, 2020년부터)과 신용정보법(CreditInfoAct) 2건이 적용됩니다. 소액 결제 대행은 예외로 남아 있습니다.":
+        "Two regulations apply to Acme Bank — the Electronic Finance Supervision Regulation (EFinanceSupervision, since 2020) and the Credit Information Act (CreditInfoAct). Small-payment agency work remains exempt.",
+    "class enumeration + MMR 다양성 — 소수 의견(예외 조항)이 밀려나지 않음":
+        "Class enumeration plus MMR diversity — the minority signal (the exemption clause) is not crowded out",
 };
 
 /** 사전에 있으면 영문으로, 없으면 원문 그대로. */

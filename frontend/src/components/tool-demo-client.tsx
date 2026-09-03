@@ -11,7 +11,7 @@ import {
     type InputField,
     type OutputField,
 } from "@plateerlab/xgen-gallery";
-import type { Tool } from "@/lib/tools";
+import { repoUrlFor, type Tool } from "@/lib/tools";
 import { demoManifestFor } from "@/lib/demo-manifests";
 import { cn } from "@/lib/cn";
 import { formatBytes } from "@/lib/format";
@@ -276,7 +276,7 @@ function DemoRunner({
                 <div className="flex flex-col items-stretch gap-2 md:items-end">
                     <CopyCommand value={tool.install} />
                     <Link
-                        href={`https://github.com/PlateerLab/${tool.repo}`}
+                        href={repoUrlFor(tool)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 rounded-md border border-[var(--color-line)] bg-white px-3 py-2 text-[14px] font-medium text-[var(--color-ink)] transition hover:border-[var(--color-ink)]"

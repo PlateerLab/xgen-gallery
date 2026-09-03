@@ -9,8 +9,7 @@
  * 갤러리와 어긋나는 순간이 온다. 없는 id 를 적으면 빌드가 아니라 화면에서 조용히
  * 빠지므로, assertProjectTools() 로 개발 중에 걸리게 해 둔다.
  */
-import { TOOLS, type Tool } from "@/lib/tools";
-import { SITE } from "@/lib/site";
+import { TOOLS, repoUrlFor, type Tool } from "@/lib/tools";
 
 export interface LabProject {
     id: string;
@@ -68,9 +67,9 @@ export const LAB_PROJECTS: LabProject[] = [
     },
 ];
 
-/** 조직 저장소 주소 — tool-card.tsx 와 같은 규칙이다. */
+/** 저장소 주소 — tool-card.tsx 와 같은 규칙(lib/tools.ts 의 repoUrlFor)을 쓴다. */
 export function repoUrl(tool: Tool): string {
-    return `${SITE.github}/${tool.repo}`;
+    return repoUrlFor(tool);
 }
 
 /** 트랙에 묶인 도구들. id 가 TOOLS 에 없으면 조용히 빠진다. */

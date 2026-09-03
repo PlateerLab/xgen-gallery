@@ -769,7 +769,134 @@ const edit2docs: DemoManifest = {
     ],
 };
 
+/**
+ * XGen Ontology — 소재를 「LLM 없이 되는 구간」과 「그래프라야 답이 나오는 구간」으로 갈랐다.
+ * 표 입력은 결정적으로 재현되고(FK → 관계, 열 → 속성), 검색 쪽은 벡터 인덱스가 못 주는
+ * class enumeration 이 갈리는 지점이라 그 둘을 샘플로 잡았다.
+ */
+const xgenOntology: DemoManifest = {
+    projectName: "xgen-ontology",
+    title: "XGen Ontology Demo",
+    description:
+        "문서와 표를 정제된 지식 그래프로 만들고, 한 번의 융합 검색으로 답합니다. 코어는 의존성이 없고 결과는 표준 RDF/Turtle로 나옵니다.",
+    icon: "🕸️",
+    inputs: [
+        {
+            key: "source",
+            type: "select",
+            label: "입력 소스",
+            options: [
+                { value: "table", label: "표(CSV) — LLM 없이 구축" },
+                { value: "text", label: "문서(텍스트) — LLM로 추출" },
+            ],
+            default: "table",
+        },
+        {
+            key: "content",
+            type: "textarea",
+            label: "원본 데이터",
+            placeholder:
+                "CSV 여러 장을 붙여넣거나(표 모드), 규정·정책 같은 문장을 넣으세요(문서 모드).",
+            required: true,
+        },
+        {
+            key: "question",
+            type: "text",
+            label: "그래프에 던질 질문",
+            placeholder: "예: Widget은 무슨 색인가?",
+        },
+    ],
+    outputs: [
+        { key: "stats", type: "json", label: "그래프 통계" },
+        { key: "turtle", type: "text", label: "RDF/Turtle" },
+        { key: "answer", type: "text", label: "융합 검색 결과" },
+        { key: "evidence", type: "json", label: "근거 노드·관계" },
+    ],
+    samples: [
+        {
+            label: "표 2장 → 그래프 (LLM 없음)",
+            description: "외래키를 관계로, 열을 속성으로 — 모델 호출 없이 구축",
+            inputs: {
+                source: "table",
+                content:
+                    "products: product_id,name,color_id / 1,Widget,10 / 2,Gadget,20\ncolors: color_id,name / 10,Red / 20,Blue",
+                question: "Widget은 무슨 색인가?",
+            },
+            mockOutput: {
+                stats: {
+                    classes: 2,
+                    instances: 4,
+                    relations: 2,
+                    data_properties: 3,
+                    llm_calls: 0,
+                },
+                turtle: [
+                    ":Product a owl:Class .",
+                    ":Color a owl:Class .",
+                    ":hasColor a owl:ObjectProperty ; rdfs:domain :Product ; rdfs:range :Color .",
+                    ":Widget a :Product ; :hasColor :Red .",
+                    ":Gadget a :Product ; :hasColor :Blue .",
+                ].join("\n"),
+                answer: "Widget의 색은 Red입니다. products.color_id 가 colors.color_id 를 가리켜 hasColor 관계로 승격됐습니다.",
+                evidence: {
+                    evidence_nodes: [":Widget", ":Red"],
+                    relations: [":Widget :hasColor :Red"],
+                    strategy: "graph label-linking → 1-hop",
+                },
+            },
+        },
+        {
+            label: "문서 → 그래프 + 목록형 질문",
+            description: "벡터 인덱스가 못 주는 class enumeration — 「전부 몇 개인가」에 답하는 구간",
+            inputs: {
+                source: "text",
+                content:
+                    "전자금융감독규정은 Acme Bank에 2020년부터 적용된다. 신용정보법은 Acme Bank와 Beta Card에 적용된다. 다만 소액 결제 대행은 예외로 둔다.",
+                question: "Acme Bank에 적용되는 규정을 전부 알려줘",
+            },
+            mockOutput: {
+                stats: {
+                    classes: 2,
+                    instances: 5,
+                    relations: 3,
+                    quality: { completeness: 0.82, integrity: 0.91, grounding: 0.88 },
+                    llm_calls: 1,
+                },
+                turtle: [
+                    ":Regulation a owl:Class .",
+                    ":Institution a owl:Class .",
+                    ":appliesTo a owl:ObjectProperty .",
+                    ":EFinanceSupervision a :Regulation ; :appliesTo :AcmeBank ; :since \"2020\" .",
+                    ":CreditInfoAct a :Regulation ; :appliesTo :AcmeBank, :BetaCard .",
+                    ":SmallPaymentAgency a :Exception ; :exemptFrom :EFinanceSupervision .",
+                ].join("\n"),
+                answer: "Acme Bank에는 전자금융감독규정(EFinanceSupervision, 2020년부터)과 신용정보법(CreditInfoAct) 2건이 적용됩니다. 소액 결제 대행은 예외로 남아 있습니다.",
+                evidence: {
+                    evidence_nodes: [
+                        ":EFinanceSupervision",
+                        ":CreditInfoAct",
+                        ":AcmeBank",
+                    ],
+                    relations: [
+                        ":EFinanceSupervision :appliesTo :AcmeBank",
+                        ":CreditInfoAct :appliesTo :AcmeBank",
+                    ],
+                    strategy: "class enumeration + MMR 다양성 — 소수 의견(예외 조항)이 밀려나지 않음",
+                },
+            },
+        },
+    ],
+};
+
+/**
+ * Contextifier — 저장소가 `xgen-contextifier` 로 개명되면서 npm 레지스트리 키
+ * (`Contextifier`)와 어긋나, 있던 큐레이션 데모가 조용히 폴백으로 떨어져 있었다.
+ * 매니페스트를 이 파일에 다시 옮겨 적는 대신 레지스트리 항목을 새 이름으로 다시 건다.
+ */
+const contextifier = getDemoManifest("Contextifier");
+
 export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
+    ...(contextifier ? { "xgen-contextifier": contextifier } : {}),
     "document-adapter": documentAdapter,
     "xgen-omnifuse": omnifuse,
     "xgen-harness-executor": xgenHarness,
@@ -779,6 +906,7 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-agent-runtime": agentRuntime,
     "xgen-an-web": anWeb,
     "xgen-edit2docs": edit2docs,
+    "xgen-ontology": xgenOntology,
 };
 
 /**

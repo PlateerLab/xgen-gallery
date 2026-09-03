@@ -20,6 +20,7 @@ const COPY = {
         prev: "이전",
         next: "다음",
         sdkGate: "권한 판정",
+        ontologyNoLlm: "LLM 호출 0회",
         defaultHint: "브라우저에서 실행",
         googer: [
             ["Machine Learning with Python — scikit-learn", "분류, 회귀, 클러스터링 예제 포함."],
@@ -38,6 +39,7 @@ const COPY = {
         prev: "Previous",
         next: "Next",
         sdkGate: "permission gate",
+        ontologyNoLlm: "0 LLM calls",
         defaultHint: "run in the browser",
         googer: [
             [
@@ -295,6 +297,8 @@ function Visual({ tool }: { tool: Tool }) {
             return <PlaywLeftViz />;
         case "xgen-sdk":
             return <XgenSdkViz />;
+        case "xgen-ontology":
+            return <XgenOntologyViz />;
         default:
             return <DefaultViz tool={tool} />;
     }
@@ -921,6 +925,120 @@ function XgenSdkViz() {
                 </svg>
                 allow
             </motion.div>
+        </div>
+    );
+}
+
+/* ── xgen-ontology: 표 두 장 → is-a 정제된 그래프 → Turtle ────────────── */
+function XgenOntologyViz() {
+    const { locale } = useI18n();
+    const c = COPY[locale];
+    // 좌: 표(FK 로 이어질 두 열), 우: 그 표가 승격된 클래스·인스턴스 그래프.
+    const rows: [string, string][] = [
+        ["1", "Widget"],
+        ["2", "Gadget"],
+    ];
+    return (
+        <div className="space-y-3.5">
+            <motion.div
+                {...fadeIn(0)}
+                className="flex items-center justify-between font-mono text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span>products.csv + colors.csv</span>
+                <span>{c.ontologyNoLlm}</span>
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-3">
+                <motion.div
+                    {...fadeIn(0.1)}
+                    className="rounded-md border border-[var(--color-line)] bg-white p-3"
+                >
+                    <div className="font-mono text-[11px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                        table
+                    </div>
+                    <div className="mt-2 space-y-1">
+                        {rows.map(([id, name], i) => (
+                            <motion.div
+                                key={id}
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.2 + i * 0.12, duration: 0.3 }}
+                                className="flex items-center justify-between border-b border-[var(--color-line)] pb-1 font-mono text-[12px] text-[var(--color-ink)] last:border-0"
+                            >
+                                <span className="text-[var(--color-ink-subtle)]">
+                                    {id}
+                                </span>
+                                <span>{name}</span>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    {...fadeIn(0.25)}
+                    className="rounded-md border border-[var(--color-line)] bg-white p-3"
+                >
+                    <div className="font-mono text-[11px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                        graph
+                    </div>
+                    <svg
+                        viewBox="0 0 120 60"
+                        className="mt-1 h-14 w-full text-[var(--color-ink)]"
+                    >
+                        {/* is-a 두 줄(점선) + hasColor 한 줄(실선) — 계층과 관계를 구분한다 */}
+                        <line x1="60" y1="14" x2="26" y2="46" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.45" />
+                        <line x1="60" y1="14" x2="60" y2="46" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.45" />
+                        <line x1="26" y1="46" x2="98" y2="46" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+                        {([
+                            [60, 14, 5.5],
+                            [26, 46, 4],
+                            [60, 46, 4],
+                            [98, 46, 4],
+                        ] as const).map(([x, y, r], i) => (
+                            <motion.circle
+                                key={i}
+                                cx={x}
+                                cy={y}
+                                r={r}
+                                fill="currentColor"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{
+                                    delay: 0.45 + i * 0.1,
+                                    type: "spring",
+                                    stiffness: 300,
+                                }}
+                            />
+                        ))}
+                    </svg>
+                </motion.div>
+            </div>
+
+            <motion.div
+                {...fadeIn(0.8)}
+                className="flex items-center gap-2 text-[12px] text-[var(--color-ink-subtle)]"
+            >
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+                <span className="font-mono">turtle</span>
+                <span className="h-px flex-1 bg-[var(--color-line)]" />
+            </motion.div>
+
+            <div className="space-y-1.5">
+                {[
+                    ":Widget a :Product ;",
+                    "  :hasColor :Red .",
+                ].map((line, i) => (
+                    <motion.div
+                        key={line}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.95 + i * 0.15 }}
+                        className="rounded-md border border-[var(--color-line)] bg-white px-3 py-1.5 font-mono text-[12.5px] text-[var(--color-ink)]"
+                    >
+                        {line}
+                    </motion.div>
+                ))}
+            </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, Copy, Play } from "lucide-react";
 import { useState } from "react";
-import { CATEGORIES, type Tool } from "@/lib/tools";
+import { CATEGORIES, repoUrlFor, type Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
 import { TOOL_I18N } from "@/lib/i18n";
@@ -65,7 +65,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
                     )}
                 </div>
                 <Link
-                    href={`https://github.com/PlateerLab/${tool.repo}`}
+                    href={repoUrlFor(tool)}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={t.toolCard.openRepo}

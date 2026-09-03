@@ -4,7 +4,7 @@
  * See docs/GEO-OPTIMIZATION-GUIDE.md §2.1.
  */
 import { SITE, absoluteUrl } from "./site";
-import type { Tool } from "./tools";
+import { repoUrlFor, type Tool } from "./tools";
 import type { MemberDetail } from "./members/types";
 import { type Locale, DEFAULT_LOCALE } from "./i18n";
 
@@ -53,7 +53,7 @@ export function websiteLd(locale: Locale = DEFAULT_LOCALE) {
 
 /** A tool/library as an installable, free, open-source SoftwareApplication. */
 export function softwareApplicationLd(tool: Tool) {
-    const repoUrl = `${SITE.github}/${tool.repo}`;
+    const repoUrl = repoUrlFor(tool);
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",

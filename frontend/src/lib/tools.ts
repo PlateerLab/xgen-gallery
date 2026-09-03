@@ -3,6 +3,13 @@ export type ToolCategory = "ingestion" | "knowledge" | "agent" | "utility";
 export interface Tool {
     id: string;
     repo: string;
+    /**
+     * 저장소 주소를 통째로 지정한다(선택). 생략하면 `SITE.github/<repo>` 즉
+     * PlateerLab 조직 아래로 본다. 조직 밖(개인 계정)에 있는 라이브러리는 여기에
+     * 전체 주소를 적어야 카드·데모 페이지의 GitHub 링크가 404 로 죽지 않는다.
+     * 링크를 만드는 자리는 모두 repoUrlFor() 를 거친다.
+     */
+    repoUrl?: string;
     name: string;
     tagline: string;
     description: string;
@@ -218,6 +225,20 @@ export const TOOLS: Tool[] = [
         hasDemo: true,
         language: "Python",
     },
+    {
+        id: "xgen-ontology",
+        repo: "xgen-ontology",
+        repoUrl: "https://github.com/jinsoo96/xgen-ontology",
+        name: "XGen Ontology",
+        tagline: "Documents and tables into a clean knowledge graph",
+        description:
+            "A backend-agnostic ontology toolkit — parse, extract, resolve, dedup, and clean the is-a hierarchy, then search the graph with one-shot GraphRAG. Zero dependencies in the core, and it loads into any SPARQL 1.1 store.",
+        category: "knowledge",
+        install: "pip install xgen-ontology",
+        hasDemo: true,
+        language: "Python",
+        addedAt: "2026-09-03",
+    },
 ];
 
 /**
@@ -241,6 +262,14 @@ export const CATEGORIES: {
     { id: "agent", label: "Agent", labelKo: "에이전트" },
     { id: "utility", label: "Utility", labelKo: "유틸리티" },
 ];
+
+/**
+ * 라이브러리 저장소 주소 — 카드·데모 페이지·구조화 데이터가 모두 이 한 곳을 쓴다.
+ * `repoUrl` 이 있으면 그대로, 없으면 PlateerLab 조직 아래 `repo` 로 만든다.
+ */
+export function repoUrlFor(tool: Tool): string {
+    return tool.repoUrl ?? `https://github.com/PlateerLab/${tool.repo}`;
+}
 
 export function getToolsByCategory(category: ToolCategory | "all") {
     if (category === "all") return TOOLS;
