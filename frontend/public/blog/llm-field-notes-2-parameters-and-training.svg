@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM 현장 노트 2편, 파라미터와 학습">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f9ff"/><stop offset="1" stop-color="#edf3ff"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2874c6"/><stop offset="1" stop-color="#5753c8"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#294a76" flood-opacity="0.14"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="80" r="230" fill="#4d64cf" opacity="0.07"/>
+  <circle cx="130" cy="600" r="170" fill="#3180c8" opacity="0.06"/>
+  <text x="86" y="104" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="750" letter-spacing="3" fill="#4054b4">LLM FIELD NOTES · 02</text>
+  <text x="86" y="234" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="58" font-weight="800" fill="#17213b">파라미터가 많으면</text>
+  <text x="86" y="308" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="58" font-weight="800" fill="#4054b4">무엇이 달라질까</text>
+  <rect x="86" y="358" width="302" height="52" rx="26" fill="#e0e8fa"/>
+  <text x="112" y="392" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="22" font-weight="700" fill="#4054b4">용량 · 데이터 · 학습량</text>
+
+  <g filter="url(#shadow)"><rect x="650" y="126" width="470" height="420" rx="30" fill="#ffffff"/></g>
+  <text x="694" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" font-weight="700" fill="#64748b">loss ↓  →  update weights</text>
+  <g fill="none" stroke="#b8c7e8" stroke-width="3">
+    <path d="M726 253 L828 218 L929 253 L1030 218"/>
+    <path d="M726 253 L828 304 L929 253 L1030 304"/>
+    <path d="M726 355 L828 304 L929 355 L1030 304"/>
+    <path d="M726 355 L828 406 L929 355 L1030 406"/>
+    <path d="M726 457 L828 406 L929 457 L1030 406"/>
+    <path d="M726 253 L828 406 L929 253 L1030 406" opacity="0.55"/>
+    <path d="M726 457 L828 304 L929 457 L1030 304" opacity="0.55"/>
+  </g>
+  <g fill="url(#accent)" stroke="#ffffff" stroke-width="5">
+    <circle cx="726" cy="253" r="22"/><circle cx="726" cy="355" r="22"/><circle cx="726" cy="457" r="22"/>
+    <circle cx="828" cy="218" r="22"/><circle cx="828" cy="304" r="22"/><circle cx="828" cy="406" r="22"/>
+    <circle cx="929" cy="253" r="22"/><circle cx="929" cy="355" r="22"/><circle cx="929" cy="457" r="22"/>
+    <circle cx="1030" cy="218" r="22"/><circle cx="1030" cy="304" r="22"/><circle cx="1030" cy="406" r="22"/>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">
+    <text x="726" y="258">w1</text><text x="828" y="309">w2</text><text x="929" y="360">w3</text><text x="1030" y="411">w4</text>
+  </g>
+</svg>
