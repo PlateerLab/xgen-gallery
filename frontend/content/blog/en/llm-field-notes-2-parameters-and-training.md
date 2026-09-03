@@ -2,13 +2,14 @@
 title: "What changes when an LLM has more parameters? (Part 2)"
 titleSeo: "What more LLM parameters actually change"
 description: "Parameters are trained numbers, not stored facts. Model size only makes sense alongside data, compute, post-training, and inference cost."
-date: "2026-09-03"
+date: "2026-08-13"
 cover: /blog/llm-field-notes-2-parameters-and-training-en.svg
+thumb: /blog/llm-field-notes-2-parameters-and-training-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Parameters", "Pre-training", "Scaling laws"]
-draft: true
+draft: false
 summary: "An LLM's parameters are not a list with one slot for every fact. They are trained numbers used throughout the calculation that turns input into a next-token distribution. More parameters provide room to represent more complex patterns, but that capacity becomes useful only with sufficient data, compute, and post-training. In deployment, weight memory is only the beginning: context and concurrent requests also contribute to cost."
 faq:
   - q: "Does one parameter store one piece of knowledge?"
@@ -24,6 +25,8 @@ faq:
 **Parameter count is not the number of facts an LLM knows. Parameters are numerical values used while turning input tokens into a next-token distribution, and training adjusts those values to reduce prediction error. More parameters create room for more complex patterns, but that room does not become answer quality unless data, training compute, and post-training support it.**
 
 ---
+
+> **Editor's note — what this means for enterprise buyers** — Parameter count is the first number you see in a proposal or a quote. This part sets out what that number does and does not tell you. Worth having on the table when a model-selection meeting is about to be decided on size alone.
 
 ## A 7B model does not contain seven billion knowledge records
 
@@ -100,3 +103,19 @@ Parameter count is useful information. It becomes more explanatory when placed n
 Deployment then adds numerical precision, context length, concurrency, and hardware. “How many B?” is a first question, not the final answer.
 
 The next part will separate patterns retained in parameters from information supplied in the current conversation. We will look at what a larger context window makes possible, why it is not the same as memory, and where retrieval-augmented generation fits.
+
+---
+
+## If you are evaluating adoption
+
+If a model selection is ahead of you, weigh three things together.
+
+First, **size narrows the shortlist; it does not make the decision.** For the same budget, pairing a right-sized model with clean internal data and an evaluation harness more often turns into working quality than reaching for the largest model available.
+
+Second, **total cost of ownership is set by inference conditions, not parameter count.** Concurrent users, average context length, latency targets, precision, and hardware drive the monthly bill. Quotes that do not state those conditions are not comparable.
+
+Third, **an internal task sample beats a public benchmark.** Thirty to fifty items drawn from real work is usually enough to see candidate models rank differently than the public leaderboards suggest.
+
+---
+
+**Next →** [Why is a long context window not memory? (Part 3)](/en/blog/llm-field-notes-3-context-memory-rag)

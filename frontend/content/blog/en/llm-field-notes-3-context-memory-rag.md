@@ -2,13 +2,14 @@
 title: "Why is a long context window not memory? (Part 3)"
 titleSeo: "Why a long context window is not memory"
 description: "A context window is working space for one request. Separating parameters, chat history, memory, and RAG shows why selection matters as much as length."
-date: "2026-09-03"
+date: "2026-08-20"
 cover: /blog/llm-field-notes-3-context-memory-rag-en.svg
+thumb: /blog/llm-field-notes-3-context-memory-rag-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Context", "Memory", "RAG"]
-draft: true
+draft: false
 summary: "A context window is the range of tokens a model can reference in one generation, not durable memory that the model maintains between requests. A long context provides room for more material, but including a fact does not guarantee that the model will retrieve and apply it reliably. RAG and memory are separate systems that select information from external storage and return it to the context; if retrieval or placement fails, generation can fail on top of it."
 faq:
   - q: "Does a large context window mean the model remembers every earlier conversation?"
@@ -24,6 +25,8 @@ faq:
 **A context window is not durable memory; it is closer to the workbench laid out for one generation. A wider bench can hold more material, but placing the right sentence on it does not guarantee that the model will use it correctly. Conversation history, RAG, and long-term memory are separate processes that store information, select it, and place it back on that bench.**
 
 ---
+
+> **Editor's note — what this means for enterprise buyers** — "A one-million-token context" does not mean you can simply load every internal document and be done. This part separates parameters, conversation history, retrieval, and long-term memory. Use it when deciding how to connect internal knowledge, and how that choice lands on cost and access control.
 
 ## A continuous chat is still assembled as a new request
 
@@ -126,3 +129,19 @@ change broad model behaviour      → post-training
 ```
 
 The next part will look more closely at how an answer is formed inside that context. We will examine when longer reasoning helps, how to distinguish plausible reasoning from supported conclusions, and why evaluation needs to change with the task.
+
+---
+
+## If you are evaluating adoption
+
+Three points decide how connecting internal knowledge actually goes.
+
+First, **what you select matters more than how much you can fit.** A wider context lets you load more material, but if retrieval pulls the wrong document, that document becomes the basis for the answer. Retrieval quality generally sets the ceiling on answer quality.
+
+Second, **permissions must not leak through the context.** In an organisation where people see different documents, access control has to apply at the retrieval step. Instructing a model to "see this but do not mention it" is not a control.
+
+Third, **do not contract for memory when what you have only looks like memory.** Conversation history, a search index, and long-term memory differ in where data is stored, how long it is kept, and who is responsible for deleting it. For work involving personal or customer data, that distinction is a security requirement.
+
+---
+
+**Next →** [Does longer reasoning make an answer better? (Part 4)](/en/blog/llm-field-notes-4-reasoning-hallucination-evaluation)

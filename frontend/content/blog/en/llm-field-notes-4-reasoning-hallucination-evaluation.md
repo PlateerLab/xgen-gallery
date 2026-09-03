@@ -2,13 +2,14 @@
 title: "Does longer reasoning make an answer better? (Part 4)"
 titleSeo: "When longer LLM reasoning actually helps"
 description: "Reasoning helps decompose problems; it is not proof. Separating hallucination types and task-specific checks makes model results explainable."
-date: "2026-09-03"
+date: "2026-08-27"
 cover: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-en.svg
+thumb: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Reasoning", "Hallucination", "Evaluation"]
-draft: true
+draft: false
 summary: "Generating intermediate reasoning gives a model room to break a problem into stages, but a longer explanation does not guarantee factual conclusions or a faithful account of how the answer arose. Hallucination includes not only invented facts but contradiction of supplied material, incorrect calculation, false citation, and claims that an unexecuted action succeeded. Evaluation is more useful when it records task-specific success, evidence agreement, format, cost, and failure reasons rather than one aggregate score."
 faq:
   - q: "Does a longer chain of thought always improve accuracy?"
@@ -24,6 +25,8 @@ faq:
 **Generating a longer line of reasoning gives a model more computational steps; it does not verify the answer. Intermediate stages can help decompose a complex problem, but a wrong premise or missing knowledge can also be continued into a longer response. What matters more than reasoning length is whether the conclusion has an independent criterion for checking it.**
 
 ---
+
+> **Editor's note — what this means for enterprise buyers** — The first question after adoption is always "so how accurate is it?" This part explains why no single number answers that, and how to set acceptance criteria per task. Useful when you are defining PoC exit criteria or an operational SLA.
 
 ## A short wrong answer and a long wrong answer are both wrong
 
@@ -103,3 +106,19 @@ This sequence has worked well for us.
 This separates tasks that benefit from longer reasoning from those better served by a short answer. Abstaining when information is missing can be defined as a policy-compliant success rather than an automatic failure. Evaluation becomes a way to set the boundary of a role, not merely rank models.
 
 The next part will separate an LLM that generates an answer from an agent that acts in an environment. We will examine what turns a tool-call proposal into execution and why repetition, permissions, and stopping conditions sit outside the model.
+
+---
+
+## If you are evaluating adoption
+
+Here is "how accurate is it?" translated into contractual and operational terms.
+
+First, **set acceptance criteria per task.** For summarisation the criterion is fidelity to the source; for fact lookup it is agreement with the cited source; for calculation it is reconciliation against a computed result. Collapsing these into one accuracy figure leaves none of them managed.
+
+Second, **define abstention as success.** A model that stops rather than inventing an answer when evidence is thin is behaving to policy, not failing. Without that definition, teams drift toward the setting that always answers, and the bill arrives later.
+
+Third, **treat the evaluation set as an asset.** The items and grading criteria you collect from real work get reused every time you change models. Building it early makes every later swap decision faster.
+
+---
+
+**Next →** [When does an LLM become an agent? (Part 5)](/en/blog/llm-field-notes-5-agent-tools-execution)

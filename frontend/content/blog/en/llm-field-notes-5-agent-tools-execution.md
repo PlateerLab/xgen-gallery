@@ -4,11 +4,12 @@ titleSeo: "When an LLM becomes an agent"
 description: "An LLM proposes actions; an executor calls tools. Separating model, tools, state, and control loop reveals what reliable task completion requires."
 date: "2026-09-03"
 cover: /blog/llm-field-notes-5-agent-tools-execution-en.svg
+thumb: /blog/llm-field-notes-5-agent-tools-execution-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "AI agent", "Tool calling", "Execution environment"]
-draft: true
+draft: false
 summary: "Producing a tool name and arguments does not mean an action occurred. An agent validates the model's proposal, executes a tool, returns the observation to context, and repeats until a goal or stopping condition is reached. Permissions, state, retries, validation, and human approval need owners outside the model; explicit boundaries make both failure causes and their effects traceable."
 faq:
   - q: "What is the main difference between a chatbot and an AI agent?"
@@ -24,6 +25,8 @@ faq:
 **An LLM does not directly perform an action. It generates the next output—perhaps a proposal to call a named tool with particular arguments—while an application and tool read the file or send the message. An agent is the system that connects proposal, execution, observation, and the next decision in a control loop.**
 
 ---
+
+> **Editor's note — what this means for enterprise buyers** — Adopting agents is less about picking a model than about designing permissions, execution, and records. This part separates proposing from executing and shows what belongs in between. Useful in the meeting where you decide what must be settled before real work is handed over.
 
 ## Producing an answer and changing an environment are different jobs
 
@@ -143,3 +146,19 @@ We have moved from next-token prediction through parameters and training, contex
 An LLM generates the next output from its input context. Parameters supply learned patterns and context supplies current information. Retrieval and tools connect the external world, while an executor and validators manage permission, state, and completion.
 
 From the next part, we will apply these criteria to actual models. Parameter scale and architecture, context length, reasoning modes, and tool support can then be read separately, together with the conditions behind published benchmark results.
+
+---
+
+## If you are evaluating adoption
+
+Before an agent touches real work, what you settle first is the boundary, not the model.
+
+First, **grant permissions against a person.** The systems and data an agent can reach should not exceed those of the employee who owns that task. Starting with broad permissions for convenience leaves you unable to trace the blast radius when something goes wrong.
+
+Second, **design the stop condition and the undo path first.** How many retries, on what state it hands back to a human, how an executed action gets reversed — without these, the cleanup outweighs the gain from automation.
+
+Third, **the execution log is your audit evidence.** Who ran which agent, which tool it called, and what it changed all have to be on record. In a regulated industry, how that record is retained decides whether adoption is possible at all. Start the pilot with work that can be undone.
+
+---
+
+**See the whole series →** [LLM Field Notes](/en/blog/series/llm-field-notes)

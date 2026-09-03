@@ -2,13 +2,14 @@
 title: "If an LLM only predicts the next token, how does it get work done? (Part 1)"
 titleSeo: "How next-token prediction enables work"
 description: "An LLM predicts the next token rather than looking up an answer. How that objective enables useful work—and why fluent output is not proof."
-date: "2026-09-03"
+date: "2026-08-06"
 cover: /blog/llm-field-notes-1-next-token-en.svg
+thumb: /blog/llm-field-notes-1-next-token-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Next-token prediction", "Transformer", "Generative AI"]
-draft: true
+draft: false
 summary: "An LLM calculates a distribution for the next token from the tokens already in context, appends one choice, and repeats. Pre-training turns that objective into reusable patterns of language and code, while post-training shapes those patterns into instruction-following behaviour. A plausible continuation is not the same as a true answer, so factual lookup, calculation, and real-world action still need sources, tools, and validation."
 faq:
   - q: "Does an LLM retrieve learned sentences like a database?"
@@ -24,6 +25,8 @@ faq:
 **An LLM is not a system that stores correct answers and retrieves them on demand. It calculates a distribution for the next token from the tokens already in context, chooses one, and repeats. The striking part is that applying this simple training objective to enough data and model capacity also produces summarisation, translation, and coding behaviour; the caveat is that a contextually plausible answer is not necessarily a true one.**
 
 ---
+
+> **Editor's note — what this means for enterprise buyers** — The judgment that splits most evaluation meetings is the gap between "it answers well in the demo" and "we can put it into production work." This part explains why those are two different questions, starting from the model's lowest-level behaviour. If you are evaluating adoption, read it as a basis for choosing which tasks to start with and for sizing your verification budget.
 
 ## We looked again at how fluent answers are made
 
@@ -121,3 +124,19 @@ Three points are worth carrying forward from this first part.
 3. Sources, tools, and validation outside the model are still needed to guarantee facts, calculations, and actions.
 
 The next part will examine the first number most of us see in a model name. We will look at what parameters retain through training, which capabilities and costs change as their count grows, and why model size alone does not determine answer quality.
+
+---
+
+## If you are evaluating adoption
+
+Three things carry over from this part into a buying decision.
+
+First, **sort tasks by where the evidence lives.** Work whose evidence sits inside the input — summarising meeting notes, rewriting a document — pays off relatively quickly. Work whose evidence sits outside the input — looking up current facts, computing an amount — needs sources, tools, and verification attached, whatever the model. Mixing both into one PoC makes it hard to read either the successes or the failures.
+
+Second, **budget for verification from the start.** Counting only model usage fees understates what running this actually costs. Checking sources, reconciling calculations, testing, and retaining execution records are not optional extras for tasks where factual accuracy matters.
+
+Third, **change the question you ask.** Replacing "does this answer sound right?" with "where can I verify the basis for this answer?" changes the quality of the discussion in an evaluation meeting.
+
+---
+
+**Next →** [What changes when an LLM has more parameters? (Part 2)](/en/blog/llm-field-notes-2-parameters-and-training)
