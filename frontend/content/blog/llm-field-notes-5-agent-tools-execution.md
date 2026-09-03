@@ -160,4 +160,4 @@ LLM은 입력 문맥에서 다음 출력을 생성합니다. 파라미터는 학
 
 ---
 
-**시리즈 전체 보기 →** [LLM 현장 노트](/blog/series/llm-field-notes)
+**시리즈 전체 보기 →** [LLM 인사이드](/blog/series/llm-field-notes)

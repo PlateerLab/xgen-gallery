@@ -161,4 +161,4 @@ Third, **the execution log is your audit evidence.** Who ran which agent, which 
 
 ---
 
-**See the whole series →** [LLM Field Notes](/en/blog/series/llm-field-notes)
+**See the whole series →** [LLM Inside](/en/blog/series/llm-field-notes)

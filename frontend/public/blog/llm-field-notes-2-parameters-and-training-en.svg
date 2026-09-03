@@ -1,11 +1,11 @@
-<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM Field Notes Part 2, parameters and training">
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM Inside Part 2, parameters and training">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f9ff"/><stop offset="1" stop-color="#edf3ff"/></linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2874c6"/><stop offset="1" stop-color="#5753c8"/></linearGradient>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#294a76" flood-opacity="0.14"/></filter>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/><circle cx="1080" cy="70" r="230" fill="#4d64cf" opacity="0.07"/><circle cx="130" cy="600" r="170" fill="#3180c8" opacity="0.06"/>
-  <text x="78" y="100" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="23" font-weight="750" letter-spacing="3" fill="#4054b4">LLM FIELD NOTES · 02</text>
+  <text x="78" y="100" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="23" font-weight="750" letter-spacing="3" fill="#4054b4">LLM INSIDE · 02</text>
   <text x="78" y="221" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="45" font-weight="800" fill="#17213b">WHAT DO MORE</text>
   <text x="78" y="284" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="45" font-weight="800" fill="#4054b4">PARAMETERS CHANGE?</text>
   <rect x="78" y="334" width="348" height="50" rx="25" fill="#e0e8fa"/><text x="102" y="366" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="20" font-weight="700" fill="#4054b4">CAPACITY · DATA · COMPUTE</text>

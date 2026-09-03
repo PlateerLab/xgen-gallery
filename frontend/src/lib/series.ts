@@ -40,17 +40,17 @@ export function seriesCopy(def: SeriesDef, en: boolean) {
 export const SERIES: SeriesDef[] = [
     {
         key: "llm-field-notes",
-        title: "LLM 현장 노트",
-        label: "LLM 노트",
-        subtitle: "토큰 예측에서 에이전트까지, 생성 모델을 판단하는 기초",
+        title: "LLM 인사이드",
+        label: "LLM 인사이드",
+        subtitle: "LLM을 이해하기 위해 꼭 알아야 할 핵심 개념을 하나씩 짚어봅니다.",
         description:
-            "다음 토큰 예측에서 출발해 학습과 파라미터, 추론, 컨텍스트, 도구 사용을 차례로 살펴봅니다. LLM과 에이전트를 하나의 기능으로 뭉뚱그리지 않고, 각 구성 요소가 무엇을 만들고 무엇을 외부에서 확인해야 하는지 편별로 정리합니다.",
-        titleEn: "LLM Field Notes",
-        labelEn: "LLM Notes",
+            "다음 토큰 예측부터 파라미터와 학습, 컨텍스트, 추론, 도구 사용까지. 복잡해 보이는 LLM의 작동 원리를 핵심 개념별로 나누어 쉽게 설명합니다. LLM이 어떻게 답을 만들고, 무엇이 성능을 좌우하며, 어디까지 활용할 수 있는지 차근차근 살펴봅니다.",
+        titleEn: "LLM Inside",
+        labelEn: "LLM Inside",
         subtitleEn:
-            "From next-token prediction to agents, the foundations for evaluating generative models",
+            "The core ideas you need to make sense of an LLM, taken one at a time.",
         descriptionEn:
-            "Starting from next-token prediction, we work through training and parameters, reasoning, context, and tool use. Each part separates what a component produces from what still needs to be checked outside it.",
+            "From next-token prediction through parameters and training, context, reasoning, and tool use. We break the workings of an LLM into core concepts and explain each in plain terms — how an answer gets made, what actually drives quality, and how far you can take it.",
         cover: "/blog/series-llm-field-notes.svg",
         match: /^llm-field-notes-/,
         order: /^llm-field-notes-(\d+)-/,

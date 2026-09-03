@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM 현장 노트 2편, 파라미터와 학습">
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM 인사이드 2편, 파라미터와 학습">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f9ff"/><stop offset="1" stop-color="#edf3ff"/></linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2874c6"/><stop offset="1" stop-color="#5753c8"/></linearGradient>
@@ -7,7 +7,7 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1080" cy="80" r="230" fill="#4d64cf" opacity="0.07"/>
   <circle cx="130" cy="600" r="170" fill="#3180c8" opacity="0.06"/>
-  <text x="86" y="104" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="750" letter-spacing="3" fill="#4054b4">LLM FIELD NOTES · 02</text>
+  <text x="86" y="104" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="750" letter-spacing="3" fill="#4054b4">LLM INSIDE · 02</text>
   <text x="86" y="234" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="58" font-weight="800" fill="#17213b">파라미터가 많으면</text>
   <text x="86" y="308" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="58" font-weight="800" fill="#4054b4">무엇이 달라질까</text>
   <rect x="86" y="358" width="302" height="52" rx="26" fill="#e0e8fa"/>
