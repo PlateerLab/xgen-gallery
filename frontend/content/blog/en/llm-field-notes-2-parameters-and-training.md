@@ -3,7 +3,7 @@ title: "What changes when an LLM has more parameters? (Part 2)"
 titleSeo: "What more LLM parameters actually change"
 description: "Parameters are trained numbers, not stored facts. Model size only makes sense alongside data, compute, post-training, and inference cost."
 date: "2026-09-03"
-cover: /blog/llm-field-notes-2-parameters-and-training.svg
+cover: /blog/llm-field-notes-2-parameters-and-training-en.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
@@ -100,4 +100,3 @@ Parameter count is useful information. It becomes more explanatory when placed n
 Deployment then adds numerical precision, context length, concurrency, and hardware. “How many B?” is a first question, not the final answer.
 
 The next part will separate patterns retained in parameters from information supplied in the current conversation. We will look at what a larger context window makes possible, why it is not the same as memory, and where retrieval-augmented generation fits.
-

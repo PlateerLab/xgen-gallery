@@ -3,7 +3,7 @@ title: "When does an LLM become an agent? (Part 5)"
 titleSeo: "When an LLM becomes an agent"
 description: "An LLM proposes actions; an executor calls tools. Separating model, tools, state, and control loop reveals what reliable task completion requires."
 date: "2026-09-03"
-cover: /blog/llm-field-notes-5-agent-tools-execution.svg
+cover: /blog/llm-field-notes-5-agent-tools-execution-en.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"

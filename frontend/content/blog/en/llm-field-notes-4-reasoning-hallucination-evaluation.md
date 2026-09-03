@@ -3,7 +3,7 @@ title: "Does longer reasoning make an answer better? (Part 4)"
 titleSeo: "When longer LLM reasoning actually helps"
 description: "Reasoning helps decompose problems; it is not proof. Separating hallucination types and task-specific checks makes model results explainable."
 date: "2026-09-03"
-cover: /blog/llm-field-notes-4-reasoning-hallucination-evaluation.svg
+cover: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-en.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"

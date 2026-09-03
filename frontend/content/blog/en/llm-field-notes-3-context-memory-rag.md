@@ -3,7 +3,7 @@ title: "Why is a long context window not memory? (Part 3)"
 titleSeo: "Why a long context window is not memory"
 description: "A context window is working space for one request. Separating parameters, chat history, memory, and RAG shows why selection matters as much as length."
 date: "2026-09-03"
-cover: /blog/llm-field-notes-3-context-memory-rag.svg
+cover: /blog/llm-field-notes-3-context-memory-rag-en.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
@@ -126,4 +126,3 @@ change broad model behaviour      → post-training
 ```
 
 The next part will look more closely at how an answer is formed inside that context. We will examine when longer reasoning helps, how to distinguish plausible reasoning from supported conclusions, and why evaluation needs to change with the task.
-

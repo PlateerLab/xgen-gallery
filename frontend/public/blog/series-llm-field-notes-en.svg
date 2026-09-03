@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM 현장 노트 시리즈">
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM Field Notes series">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171936"/><stop offset="1" stop-color="#263d73"/></linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a79cf4"/><stop offset="1" stop-color="#73a5e7"/></linearGradient>
@@ -6,9 +6,9 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1100" cy="40" r="220" fill="#765ee8" opacity="0.13"/>
   <circle cx="100" cy="610" r="170" fill="#5b8bd9" opacity="0.12"/>
-  <text x="82" y="98" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="27" font-weight="800" letter-spacing="7" fill="#b9b1ff">SERIES</text>
-  <text x="82" y="194" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="70" font-weight="800" fill="#ffffff">LLM 현장 노트</text>
-  <text x="84" y="252" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="25" font-weight="600" fill="#c9d5f4">토큰에서 에이전트까지</text>
+  <text x="82" y="98" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="7" fill="#b9b1ff">SERIES</text>
+  <text x="82" y="194" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="66" font-weight="800" fill="#ffffff">LLM Field Notes</text>
+  <text x="84" y="252" font-family="Pretendard,'Pretendard Variable',Arial,sans-serif" font-size="25" font-weight="600" fill="#c9d5f4">From tokens to agents</text>
   <g transform="translate(882 370)">
     <circle r="176" fill="none" stroke="#6887cf" stroke-width="4" opacity="0.55"/>
     <circle r="120" fill="#ffffff" opacity="0.06"/>

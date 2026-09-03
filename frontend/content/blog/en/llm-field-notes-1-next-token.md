@@ -1,9 +1,9 @@
 ---
 title: "If an LLM only predicts the next token, how does it get work done? (Part 1)"
-titleSeo: "How next-token prediction becomes useful work"
+titleSeo: "How next-token prediction enables work"
 description: "An LLM predicts the next token rather than looking up an answer. How that objective enables useful work—and why fluent output is not proof."
 date: "2026-09-03"
-cover: /blog/llm-field-notes-1-next-token.svg
+cover: /blog/llm-field-notes-1-next-token-en.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
