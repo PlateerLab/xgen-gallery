@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="온톨로지 개발기 series">
+  <defs>
+    <linearGradient id="obg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062f2b"/><stop offset="1" stop-color="#0f766e"/></linearGradient>
+    <linearGradient id="oacc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="0" fill="url(#obg)"/>
+  <circle cx="1040" cy="90" r="230" fill="#14b8a6" opacity="0.16"/>
+  <circle cx="150" cy="640" r="170" fill="#5eead4" opacity="0.12"/>
+
+  <text x="90" y="120" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="30" font-weight="800" letter-spacing="8" fill="#99f6e4">SERIES</text>
+  <text x="90" y="210" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="56" font-weight="800" fill="#ffffff">The Ontology Diary</text>
+  <rect x="90" y="248" width="150" height="8" rx="4" fill="url(#oacc)"/>
+
+  <!-- motif: 지식그래프 — 노드·엣지, 중앙 개념 노드 강조 -->
+  <g transform="translate(890 372) scale(0.92)">
+    <!-- edges -->
+    <g stroke="#2dd4bf" stroke-width="6" opacity="0.55" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-190" y2="-120"/>
+      <line x1="0" y1="0" x2="200" y2="-90"/>
+      <line x1="0" y1="0" x2="150" y2="150"/>
+      <line x1="0" y1="0" x2="-160" y2="140"/>
+      <line x1="-190" y1="-120" x2="200" y2="-90"/>
+      <line x1="200" y1="-90" x2="150" y2="150"/>
+      <line x1="-190" y1="-120" x2="-160" y2="140"/>
+      <line x1="-160" y1="140" x2="150" y2="150"/>
+    </g>
+    <!-- satellite nodes -->
+    <circle cx="-190" cy="-120" r="34" fill="#0d9488" stroke="#5eead4" stroke-width="6"/>
+    <circle cx="200" cy="-90" r="40" fill="#0d9488" stroke="#5eead4" stroke-width="6"/>
+    <circle cx="150" cy="150" r="30" fill="#0d9488" stroke="#5eead4" stroke-width="6"/>
+    <circle cx="-160" cy="140" r="36" fill="#0d9488" stroke="#5eead4" stroke-width="6"/>
+    <!-- far orbit dots -->
+    <circle cx="-300" cy="20" r="14" fill="#99f6e4" opacity="0.8"/>
+    <circle cx="300" cy="60" r="16" fill="#99f6e4" opacity="0.7"/>
+    <circle cx="60" cy="-230" r="12" fill="#99f6e4" opacity="0.7"/>
+    <!-- central concept node -->
+    <circle cx="0" cy="0" r="70" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="70" fill="none" stroke="url(#oacc)" stroke-width="8"/>
+    <circle cx="0" cy="0" r="30" fill="url(#oacc)"/>
+  </g>
+</svg>

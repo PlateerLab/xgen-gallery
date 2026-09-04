@@ -75,6 +75,7 @@ export const SERIES: SeriesDef[] = [
         descriptionEn:
             "How we read the 80 defects raised in GS certification testing and what we changed — from relearning what a defect is, to treating the manual as product.",
         cover: "/blog/series-gs-cert.svg",
+        coverEn: "/blog/series-gs-cert-en.svg",
         match: /^gs-cert-journey-/,
         order: /^gs-cert-journey-(\d+)-/,
     },
@@ -92,6 +93,7 @@ export const SERIES: SeriesDef[] = [
         descriptionEn:
             "How we designed the harness — the execution layer owning validation, retry, and termination outside the generative model, part by part.",
         cover: "/blog/series-harness.svg",
+        coverEn: "/blog/series-harness-en.svg",
         match: /^harness-journey-/,
         order: /^harness-journey-(\d+)-/,
     },
@@ -109,6 +111,7 @@ export const SERIES: SeriesDef[] = [
         descriptionEn:
             "How we built a knowledge graph from competency questions, measured its quality, and refined search and the evidence UX, part by part.",
         cover: "/blog/series-ontology.svg",
+        coverEn: "/blog/series-ontology-en.svg",
         match: /^ontology-journey-/,
         order: /^ontology-journey-(\d+)-/,
     },
