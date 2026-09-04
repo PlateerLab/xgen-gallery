@@ -1,7 +1,7 @@
 ---
 title: "1편. 다음 토큰을 예측할 뿐인데, LLM은 어떻게 일을 할까?"
 description: "LLM은 정답을 조회하지 않고 문맥상 다음 토큰의 확률을 계산합니다. 이 단순한 목표가 번역·요약·코딩으로 이어지는 과정과, 그 능력을 사실 판정과 구분해야 하는 이유를 설명합니다."
-date: "2026-08-06"
+date: "2026-09-03"
 cover: /blog/llm-field-notes-1-next-token.svg
 thumb: /blog/llm-field-notes-1-next-token-thumb.svg
 author: "김해수"
@@ -138,4 +138,4 @@ LLM이 좋은 초안을 만드는 이유와 존재하지 않는 출처를 자연
 
 ---
 
-**다음 편 →** [파라미터가 많으면 무엇이 달라질까 (2편)](/blog/llm-field-notes-2-parameters-and-training)
+**시리즈 전체 보기 →** [LLM 인사이드](/blog/series/llm-field-notes)

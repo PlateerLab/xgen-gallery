@@ -1,14 +1,14 @@
 ---
 title: "생각을 길게 쓰면 답이 더 좋아질까(4편)"
 description: "추론 과정은 복잡한 문제를 풀 공간을 늘리지만 정답 보증서는 아닙니다. 환각을 오류 유형으로 나누고 과제별 평가 기준을 설계하는 방법을 설명합니다."
-date: "2026-08-27"
+date: "2026-09-24"
 cover: /blog/llm-field-notes-4-reasoning-hallucination-evaluation.svg
 thumb: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "추론", "환각", "평가"]
-draft: false
+draft: true
 summary: "중간 추론을 생성하게 하면 모델이 문제를 여러 단계로 나눌 계산 공간이 생기지만, 길어진 설명이 결론의 사실성이나 추론 경로의 충실성을 보장하지는 않습니다. 환각은 존재하지 않는 사실뿐 아니라 입력과의 모순, 잘못된 계산, 실행하지 않은 행동의 완료 보고처럼 여러 유형으로 나타납니다. 평가는 하나의 종합 점수보다 과제별 정답 조건, 근거 일치, 형식, 비용과 실패 이유를 함께 기록해야 설명력을 갖습니다."
 faq:
   - q: "생각 과정을 길게 출력하면 항상 정확도가 올라가나요?"
@@ -120,4 +120,4 @@ faq:
 
 ---
 
-**다음 편 →** [LLM은 어떻게 ‘답변’을 넘어 ‘실행’할 수 있을까? (5편)](/blog/llm-field-notes-5-agent-tools-execution)
+**시리즈 전체 보기 →** [LLM 인사이드](/blog/series/llm-field-notes)

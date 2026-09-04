@@ -2,14 +2,14 @@
 title: "What changes when an LLM has more parameters? (Part 2)"
 titleSeo: "What more LLM parameters actually change"
 description: "Parameters are trained numbers, not stored facts. Model size only makes sense alongside data, compute, post-training, and inference cost."
-date: "2026-08-13"
+date: "2026-09-10"
 cover: /blog/llm-field-notes-2-parameters-and-training-en.svg
 thumb: /blog/llm-field-notes-2-parameters-and-training-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Parameters", "Pre-training", "Scaling laws"]
-draft: false
+draft: true
 summary: "An LLM's parameters are not a list with one slot for every fact. They are trained numbers used throughout the calculation that turns input into a next-token distribution. More parameters provide room to represent more complex patterns, but that capacity becomes useful only with sufficient data, compute, and post-training. In deployment, weight memory is only the beginning: context and concurrent requests also contribute to cost."
 faq:
   - q: "Does one parameter store one piece of knowledge?"
@@ -118,4 +118,4 @@ Third, **an internal task sample beats a public benchmark.** Thirty to fifty ite
 
 ---
 
-**Next →** [Why is a long context window not memory? (Part 3)](/en/blog/llm-field-notes-3-context-memory-rag)
+**See the whole series →** [LLM Inside](/en/blog/series/llm-field-notes)

@@ -1,14 +1,14 @@
 ---
 title: "LLM은 어떻게 ‘답변’을 넘어 ‘실행’할 수 있을까? (5편)"
 description: "LLM은 행동을 제안하고 실행기는 도구를 호출합니다. 에이전트를 모델·도구·상태·제어 루프로 나눠 실제 업무가 끝까지 수행되는 조건을 설명합니다."
-date: "2026-09-03"
+date: "2026-10-01"
 cover: /blog/llm-field-notes-5-agent-tools-execution.svg
 thumb: /blog/llm-field-notes-5-agent-tools-execution-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "AI 에이전트", "도구 호출", "실행 환경"]
-draft: false
+draft: true
 summary: "LLM이 도구 이름과 인자를 생성했다고 해서 실제 행동이 일어난 것은 아닙니다. 에이전트는 모델의 제안을 검증해 도구를 실행하고, 관측 결과를 다시 문맥에 넣으며, 목표 달성이나 중단 조건까지 반복하는 시스템입니다. 실행 권한과 상태, 재시도, 검증, 사람 승인은 모델 바깥에서 소유해야 하며, 이 경계가 분명할수록 실패의 원인과 영향을 추적할 수 있습니다."
 faq:
   - q: "챗봇과 AI 에이전트의 가장 큰 차이는 무엇인가요?"

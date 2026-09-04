@@ -2,14 +2,14 @@
 title: "Does longer reasoning make an answer better? (Part 4)"
 titleSeo: "When longer LLM reasoning actually helps"
 description: "Reasoning helps decompose problems; it is not proof. Separating hallucination types and task-specific checks makes model results explainable."
-date: "2026-08-27"
+date: "2026-09-24"
 cover: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-en.svg
 thumb: /blog/llm-field-notes-4-reasoning-hallucination-evaluation-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Reasoning", "Hallucination", "Evaluation"]
-draft: false
+draft: true
 summary: "Generating intermediate reasoning gives a model room to break a problem into stages, but a longer explanation does not guarantee factual conclusions or a faithful account of how the answer arose. Hallucination includes not only invented facts but contradiction of supplied material, incorrect calculation, false citation, and claims that an unexecuted action succeeded. Evaluation is more useful when it records task-specific success, evidence agreement, format, cost, and failure reasons rather than one aggregate score."
 faq:
   - q: "Does a longer chain of thought always improve accuracy?"
@@ -121,4 +121,4 @@ Third, **treat the evaluation set as an asset.** The items and grading criteria 
 
 ---
 
-**Next →** [When does an LLM become an agent? (Part 5)](/en/blog/llm-field-notes-5-agent-tools-execution)
+**See the whole series →** [LLM Inside](/en/blog/series/llm-field-notes)

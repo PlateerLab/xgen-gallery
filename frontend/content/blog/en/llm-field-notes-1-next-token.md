@@ -2,7 +2,7 @@
 title: "If an LLM only predicts the next token, how does it get work done? (Part 1)"
 titleSeo: "How next-token prediction enables work"
 description: "An LLM predicts the next token rather than looking up an answer. How that objective enables useful work—and why fluent output is not proof."
-date: "2026-08-06"
+date: "2026-09-03"
 cover: /blog/llm-field-notes-1-next-token-en.svg
 thumb: /blog/llm-field-notes-1-next-token-en-thumb.svg
 author: "김해수"
@@ -139,4 +139,4 @@ Third, **change the question you ask.** Replacing "does this answer sound right?
 
 ---
 
-**Next →** [What changes when an LLM has more parameters? (Part 2)](/en/blog/llm-field-notes-2-parameters-and-training)
+**See the whole series →** [LLM Inside](/en/blog/series/llm-field-notes)

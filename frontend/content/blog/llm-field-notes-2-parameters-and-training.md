@@ -1,14 +1,14 @@
 ---
 title: "파라미터가 많으면 무엇이 달라질까(2편)"
 description: "파라미터는 지식 항목의 개수가 아니라 학습으로 조정되는 수치입니다. 모델 크기와 데이터, 학습량, 추론 비용을 함께 봐야 하는 이유를 설명합니다."
-date: "2026-08-13"
+date: "2026-09-10"
 cover: /blog/llm-field-notes-2-parameters-and-training.svg
 thumb: /blog/llm-field-notes-2-parameters-and-training-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "파라미터", "사전학습", "스케일링 법칙"]
-draft: false
+draft: true
 summary: "LLM의 파라미터는 사실을 한 칸씩 저장한 목록이 아니라, 입력을 다음 토큰의 확률로 바꾸는 과정에서 사용되는 수치입니다. 파라미터가 많아지면 더 복잡한 패턴을 표현할 여지가 커지지만, 데이터의 양과 품질, 학습 연산량, 후속학습이 받쳐주지 않으면 그 여지가 그대로 답변 품질이 되지는 않습니다. 배포 단계에서는 가중치 메모리뿐 아니라 컨텍스트와 동시 요청이 만드는 비용도 함께 계산해야 합니다."
 faq:
   - q: "파라미터 하나가 지식 하나를 저장하나요?"
@@ -117,4 +117,4 @@ faq:
 
 ---
 
-**다음 편 →** [긴 컨텍스트는 왜 기억이 아닐까 (3편)](/blog/llm-field-notes-3-context-memory-rag)
+**시리즈 전체 보기 →** [LLM 인사이드](/blog/series/llm-field-notes)

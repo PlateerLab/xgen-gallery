@@ -1,14 +1,14 @@
 ---
 title: "긴 컨텍스트는 왜 기억이 아닐까(3편)"
 description: "컨텍스트 창은 모델이 이번 요청에서 볼 수 있는 작업 공간입니다. 파라미터·대화 기록·장기 기억·RAG를 구분하고, 길이보다 선택과 배치가 중요한 이유를 설명합니다."
-date: "2026-08-20"
+date: "2026-09-17"
 cover: /blog/llm-field-notes-3-context-memory-rag.svg
 thumb: /blog/llm-field-notes-3-context-memory-rag-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "컨텍스트", "메모리", "RAG"]
-draft: false
+draft: true
 summary: "컨텍스트 창은 모델이 한 번의 생성에서 참고할 수 있는 토큰 범위이며, 요청이 끝난 뒤에도 스스로 유지되는 장기 기억이 아닙니다. 긴 컨텍스트는 더 많은 자료를 넣을 공간을 주지만, 필요한 정보가 들어 있다는 사실만으로 모델이 그것을 안정적으로 찾아 쓰는 것은 아닙니다. RAG와 메모리는 외부 저장소에서 필요한 정보를 골라 컨텍스트로 되돌려주는 별도의 시스템이며, 검색과 배치가 틀리면 생성도 그 위에서 틀릴 수 있습니다."
 faq:
   - q: "컨텍스트 창이 크면 모델이 이전 대화를 모두 기억하나요?"
@@ -143,4 +143,4 @@ RAG는 근거를 제공하지만 사실성을 자동 보장하지는 않습니�
 
 ---
 
-**다음 편 →** [생각을 길게 쓰면 답이 더 좋아질까 (4편)](/blog/llm-field-notes-4-reasoning-hallucination-evaluation)
+**시리즈 전체 보기 →** [LLM 인사이드](/blog/series/llm-field-notes)

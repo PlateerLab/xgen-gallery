@@ -2,14 +2,14 @@
 title: "Why is a long context window not memory? (Part 3)"
 titleSeo: "Why a long context window is not memory"
 description: "A context window is working space for one request. Separating parameters, chat history, memory, and RAG shows why selection matters as much as length."
-date: "2026-08-20"
+date: "2026-09-17"
 cover: /blog/llm-field-notes-3-context-memory-rag-en.svg
 thumb: /blog/llm-field-notes-3-context-memory-rag-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Context", "Memory", "RAG"]
-draft: false
+draft: true
 summary: "A context window is the range of tokens a model can reference in one generation, not durable memory that the model maintains between requests. A long context provides room for more material, but including a fact does not guarantee that the model will retrieve and apply it reliably. RAG and memory are separate systems that select information from external storage and return it to the context; if retrieval or placement fails, generation can fail on top of it."
 faq:
   - q: "Does a large context window mean the model remembers every earlier conversation?"
@@ -144,4 +144,4 @@ Third, **do not contract for memory when what you have only looks like memory.**
 
 ---
 
-**Next →** [Does longer reasoning make an answer better? (Part 4)](/en/blog/llm-field-notes-4-reasoning-hallucination-evaluation)
+**See the whole series →** [LLM Inside](/en/blog/series/llm-field-notes)

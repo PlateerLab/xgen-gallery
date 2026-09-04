@@ -2,14 +2,14 @@
 title: "When does an LLM become an agent? (Part 5)"
 titleSeo: "When an LLM becomes an agent"
 description: "An LLM proposes actions; an executor calls tools. Separating model, tools, state, and control loop reveals what reliable task completion requires."
-date: "2026-09-03"
+date: "2026-10-01"
 cover: /blog/llm-field-notes-5-agent-tools-execution-en.svg
 thumb: /blog/llm-field-notes-5-agent-tools-execution-en-thumb.svg
 author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "AI agent", "Tool calling", "Execution environment"]
-draft: false
+draft: true
 summary: "Producing a tool name and arguments does not mean an action occurred. An agent validates the model's proposal, executes a tool, returns the observation to context, and repeats until a goal or stopping condition is reached. Permissions, state, retries, validation, and human approval need owners outside the model; explicit boundaries make both failure causes and their effects traceable."
 faq:
   - q: "What is the main difference between a chatbot and an AI agent?"
