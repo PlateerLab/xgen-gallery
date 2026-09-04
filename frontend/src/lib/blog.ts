@@ -191,6 +191,25 @@ export function getAllPosts(locale: Locale = "ko"): PostMeta[] {
         .map(({ html: _html, readingMinutes: _r, ...meta }) => meta);
 }
 
+/**
+ * 시리즈 화면 전용 — 아직 열리지 않은 편(draft)까지 함께 준다.
+ *
+ * 연재는 앞으로 몇 편이 남았고 언제 열리는지 보이는 편이 낫다. 목록·검색·
+ * 사이트맵·RSS 는 그대로 getAllPosts 를 쓰므로 닫힌 편이 그쪽으로 새지 않는다
+ * — 이 함수를 쓰는 화면에서만 「예정」으로 세우고 링크를 걸지 않는다.
+ *
+ * unlisted 는 여기서도 뺀다. 그쪽은 주소를 아는 사람만 보는 검토본이라
+ * 예고할 대상이 아니다.
+ */
+export function getSeriesTimeline(locale: Locale = "ko"): PostMeta[] {
+    return readSlugs(locale)
+        .map((slug) => parse(slug, locale))
+        .filter((p): p is Post => p !== null)
+        .filter((p) => !(isProd() && p.unlisted))
+        .sort((a, b) => (a.date < b.date ? 1 : -1))
+        .map(({ html: _html, readingMinutes: _r, ...meta }) => meta);
+}
+
 export function getPost(slug: string, locale: Locale = "ko"): Post | null {
     const post = parse(slug, locale);
     if (!post) return null;
