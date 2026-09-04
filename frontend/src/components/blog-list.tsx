@@ -559,7 +559,7 @@ export function BlogList({
                                         <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
-                                                src={g.def.cover}
+                                                src={seriesCopy(g.def, en).cover}
                                                 alt=""
                                                 loading="lazy"
                                                 className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"

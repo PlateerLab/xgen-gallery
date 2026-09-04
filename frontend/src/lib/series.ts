@@ -16,6 +16,9 @@ export interface SeriesDef {
     subtitleEn: string;
     descriptionEn: string;
     cover: string;
+    /** 영문 화면에서 쓸 커버. 없으면 `cover` 를 그대로 쓴다 — 글자가 없는
+     *  그림은 한 장으로 두 언어를 함께 쓸 수 있다. */
+    coverEn?: string;
     match: RegExp;
     order: RegExp;
 }
@@ -28,12 +31,14 @@ export function seriesCopy(def: SeriesDef, en: boolean) {
               label: def.labelEn,
               subtitle: def.subtitleEn,
               description: def.descriptionEn,
+              cover: def.coverEn ?? def.cover,
           }
         : {
               title: def.title,
               label: def.label,
               subtitle: def.subtitle,
               description: def.description,
+              cover: def.cover,
           };
 }
 
@@ -52,6 +57,7 @@ export const SERIES: SeriesDef[] = [
         descriptionEn:
             "From next-token prediction through parameters and training, context, reasoning, and tool use. We break the workings of an LLM into core concepts and explain each in plain terms — how an answer gets made, what actually drives quality, and how far you can take it.",
         cover: "/blog/series-llm-field-notes.svg",
+        coverEn: "/blog/series-llm-field-notes-en.svg",
         match: /^llm-field-notes-/,
         order: /^llm-field-notes-(\d+)-/,
     },

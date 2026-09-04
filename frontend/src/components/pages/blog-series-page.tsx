@@ -107,7 +107,7 @@ export async function SeriesPageContent({
                         <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--color-line)]">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                                src={def.cover}
+                                src={c.cover}
                                 alt=""
                                 className="h-full w-full object-cover"
                             />
