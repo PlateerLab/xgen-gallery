@@ -889,6 +889,79 @@ const xgenOntology: DemoManifest = {
 };
 
 /**
+ * XGen Gallery — 네트워크 호출 없이도 컴포넌트의 핵심 입력인 검색·언어 필터와
+ * limit 적용 결과를 결정적으로 보여준다.
+ */
+const xgenGallery: DemoManifest = {
+    projectName: "xgen-gallery",
+    title: "XGen Gallery Demo",
+    description:
+        "GitHub 조직 저장소를 검색·언어 필터가 있는 React 갤러리로 렌더링합니다. 같은 데이터에서 필터와 limit이 어떻게 적용되는지 확인합니다.",
+    icon: "▦",
+    inputs: [
+        {
+            key: "search",
+            type: "text",
+            label: "저장소 검색어",
+            placeholder: "예: agent",
+        },
+        {
+            key: "language",
+            type: "select",
+            label: "언어 필터",
+            options: [
+                { value: "all", label: "전체" },
+                { value: "Python", label: "Python" },
+                { value: "TypeScript", label: "TypeScript" },
+            ],
+            default: "all",
+        },
+        {
+            key: "limit",
+            type: "number",
+            label: "최대 카드 수",
+            default: 6,
+            min: 1,
+            max: 12,
+        },
+    ],
+    outputs: [
+        { key: "summary", type: "text", label: "필터 결과 요약" },
+        { key: "repositories", type: "json", label: "표시할 저장소" },
+        { key: "props", type: "json", label: "컴포넌트 속성" },
+    ],
+    samples: [
+        {
+            label: "에이전트 저장소 검색",
+            description: "이름·설명 검색과 TypeScript 언어 필터를 함께 적용",
+            inputs: { search: "xgen-agent", language: "Python", limit: 6 },
+            mockOutput: {
+                summary: "검색어와 언어 조건에 맞는 저장소 2개를 표시합니다.",
+                repositories: [
+                    { name: "xgen-agent-runtime", language: "Python", stars: 0 },
+                    { name: "xgen-agent-memory", language: "Python", stars: 0 },
+                ],
+                props: { org: "PlateerLab", theme: "light", limit: 6 },
+            },
+        },
+        {
+            label: "최근 저장소 3개",
+            description: "검색·언어 필터 없이 limit만 적용",
+            inputs: { search: "", language: "all", limit: 3 },
+            mockOutput: {
+                summary: "조직 저장소 목록의 앞 3개를 표시합니다.",
+                repositories: [
+                    { name: "xgen-dex-core", language: "TypeScript", stars: 1 },
+                    { name: "xgeny-cli", language: "Rust", stars: 0 },
+                    { name: "xgen-side", language: "Rust", stars: 0 },
+                ],
+                props: { org: "PlateerLab", theme: "light", limit: 3 },
+            },
+        },
+    ],
+};
+
+/**
  * Contextifier — 저장소가 `xgen-contextifier` 로 개명되면서 npm 레지스트리 키
  * (`Contextifier`)와 어긋나, 있던 큐레이션 데모가 조용히 폴백으로 떨어져 있었다.
  * 매니페스트를 이 파일에 다시 옮겨 적는 대신 레지스트리 항목을 새 이름으로 다시 건다.
@@ -907,6 +980,7 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-an-web": anWeb,
     "xgen-edit2docs": edit2docs,
     "xgen-ontology": xgenOntology,
+    "xgen-gallery": xgenGallery,
 };
 
 /**

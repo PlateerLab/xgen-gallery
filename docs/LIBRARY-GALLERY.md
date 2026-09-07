@@ -24,8 +24,9 @@ npm 패키지가 `UNLICENSED` 이거나 저장소·홈페이지 링크가 비어
 curl -s "https://api.github.com/orgs/PlateerLab/repos?per_page=100&sort=created&direction=desc"
 # 2) PyPI 전체 색인에서 계열 이름 훑기 — 조직 밖 저장소는 여기서만 걸린다
 curl -s https://pypi.org/simple/ | grep -oiE '>(xgen[a-z0-9_.-]*)<'
-# 3) npm 스코프
-curl -s "https://registry.npmjs.org/-/v1/search?text=plateer&size=30"
+# 3) npm 스코프 — 검색 API는 유사 이름도 섞으므로 응답에서 스코프를 다시 엄격히 거른다
+curl -s "https://registry.npmjs.org/-/v1/search?text=%40plateer-xgen&size=250" |
+  node -e 'let s=""; process.stdin.on("data",d=>s+=d).on("end",()=>{for(const x of JSON.parse(s).objects||[])if(x.package.name.startsWith("@plateer-xgen/"))console.log(x.package.name)})'
 ```
 
 ## 항목만 추가하면 자동으로 생기는 것

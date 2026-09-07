@@ -239,6 +239,19 @@ export const TOOLS: Tool[] = [
         language: "Python",
         addedAt: "2026-09-03",
     },
+    {
+        id: "xgen-gallery",
+        repo: "xgen-gallery",
+        name: "XGen Gallery",
+        tagline: "Drop-in React gallery for GitHub repositories",
+        description:
+            "A reusable React component that turns a GitHub organization into a searchable, filterable repository gallery with README and playground views.",
+        category: "utility",
+        install: "npm install @plateerlab/xgen-gallery",
+        hasDemo: true,
+        language: "TypeScript",
+        addedAt: "2026-09-07",
+    },
 ];
 
 /**

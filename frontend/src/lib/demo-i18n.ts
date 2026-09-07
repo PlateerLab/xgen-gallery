@@ -172,6 +172,26 @@ const DICT: Record<string, string> = {
     "예: admin.role:read":
         "e.g. admin.role:read",
 
+    // ── xgen-gallery ─────────────────────────────────
+    "GitHub 조직 저장소를 검색·언어 필터가 있는 React 갤러리로 렌더링합니다. 같은 데이터에서 필터와 limit이 어떻게 적용되는지 확인합니다.":
+        "Render a GitHub organization's repositories as a React gallery with search and language filters. See how filters and limit affect the same data set.",
+    "저장소 검색어": "Repository search",
+    "예: agent": "e.g. agent",
+    "언어 필터": "Language filter",
+    "최대 카드 수": "Maximum cards",
+    "필터 결과 요약": "Filter result summary",
+    "표시할 저장소": "Repositories to display",
+    "컴포넌트 속성": "Component props",
+    "에이전트 저장소 검색": "Search agent repositories",
+    "이름·설명 검색과 TypeScript 언어 필터를 함께 적용":
+        "Apply name and description search together with the TypeScript language filter",
+    "검색어와 언어 조건에 맞는 저장소 2개를 표시합니다.":
+        "Displays two repositories matching the search and language conditions.",
+    "최근 저장소 3개": "Three recent repositories",
+    "검색·언어 필터 없이 limit만 적용": "Apply only the limit, without search or language filters",
+    "조직 저장소 목록의 앞 3개를 표시합니다.":
+        "Displays the first three repositories in the organization list.",
+
     // ── xgen-agent-memory ───────────────────────────
     "의미 검색·BM25·타입드 엣지 그래프 탐색을 한 번에 합치는 메모리 엔진. 세 신호가 각각 얼마나 기여했는지 보여줍니다.":
         "A memory engine that fuses semantic search, BM25, and typed-edge graph traversal in a single pass — and shows how much each signal contributed.",

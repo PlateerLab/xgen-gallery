@@ -1,6 +1,6 @@
 # xgen-gallery
 
-PlateerLab 오픈소스 라이브러리 17종을 브라우저에서 직접 체험할 수 있는 playground입니다. Next.js 기반 갤러리 프론트엔드와 FastAPI 백엔드, 그리고 synaptic-memory MCP 서버가 Docker Compose로 묶여 있습니다.
+PlateerLab 오픈소스 라이브러리 18종을 브라우저에서 직접 체험할 수 있는 playground입니다. Next.js 기반 갤러리 프론트엔드와 FastAPI 백엔드, 그리고 synaptic-memory MCP 서버가 Docker Compose로 묶여 있습니다.
 
 ## 포함된 도구
 
@@ -27,6 +27,7 @@ PlateerLab 오픈소스 라이브러리 17종을 브라우저에서 직접 체�
 | XGen Agent Runtime | agent | 21단계 매니페스트 구동 에이전트 파이프라인 |
 | AN-Web | agent | 웹을 픽셀이 아니라 실행 가능한 상태 기계로 다루는 헤드리스 엔진 |
 | XGen SDK | utility | DB 풀링·설정·스토리지·ABAC 인가·쿼터를 묶은 백엔드 툴킷 |
+| **XGen Gallery** | utility | GitHub 조직을 검색·필터 가능한 저장소 갤러리로 만드는 React 컴포넌트 |
 
 ## 아키텍처
 
