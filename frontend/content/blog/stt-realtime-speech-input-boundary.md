@@ -8,7 +8,7 @@ author: "박소민"
 authorGithub: "ParkSomin23"
 category: "Tech Note"
 tags: ["STT", "음성 인식", "실시간 음성", "음성 대화", "XGEN"]
-draft: true
+draft: false
 ---
 
 <!-- 편집자 보강 시작: 아래 기고자 원문은 수정하지 않음 -->

@@ -8,7 +8,7 @@ author: "Somin Park"
 authorGithub: "ParkSomin23"
 category: "Tech Note"
 tags: ["STT", "Speech Recognition", "Real-time Speech", "Voice AI", "XGEN"]
-draft: true
+draft: false
 ---
 
 > **Editor’s note · B2B adoption perspective** — The performance of real-time voice AI is not determined by STT accuracy alone. It is equally important to decide how much of a user’s speech constitutes one business request—in other words, to identify the utterance boundary correctly. In customer service, field inspection, and meeting records, speech patterns and surrounding conditions differ. That decision affects not only response time, but also the risk of missed requests, duplicate execution, and incorrect actions.
