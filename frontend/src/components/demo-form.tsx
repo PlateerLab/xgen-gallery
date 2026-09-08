@@ -244,6 +244,7 @@ const TYPE_PARAM_TO_INDEX: Record<string, number> = {
     pricing: 3,
     newsletter: 4,
     fieldReport: 5,
+    other: 6,
 };
 
 const REQUIRED_CONSENTS = [
