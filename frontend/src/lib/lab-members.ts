@@ -155,6 +155,7 @@ export const LAB_MEMBERS: LabMember[] = [
         roleEn: "AI R&D",
         group: "research",
         slug: "parksomin",
+        blogAuthor: "박소민",
     },
     {
         name: "권오영",
