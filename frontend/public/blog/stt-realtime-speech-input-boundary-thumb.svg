@@ -1,0 +1,9 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TECH NOTE, 실시간 음성의 입력 완료 시점">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#eaf2ff"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#6758d9"/></linearGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><circle cx="1040" cy="100" r="240" fill="#2f7bff" opacity="0.06"/><circle cx="100" cy="660" r="190" fill="#6758d9" opacity="0.05"/>
+  <text x="86" y="228" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="27" font-weight="800" letter-spacing="3" fill="#3569c8">TECH NOTE · STT</text>
+  <text x="86" y="344" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="70" font-weight="800" fill="#101a33">음성의 입력 완료 시점</text>
+  <text x="89" y="410" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="25" font-weight="650" fill="#64748b">말하는 동안 표시하고, 끝난 뒤 실행합니다</text>
+  <g transform="translate(790 248)" fill="none" stroke="url(#a)" stroke-width="12" stroke-linecap="round"><path d="M0 74v54M38 35v132M76 67v68M114 5v192M152 44v114M190 22v158M228 61v80"/></g>
+  <circle cx="1064" cy="360" r="54" fill="url(#a)"/><path d="M1038 360l17 18 34-40" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
