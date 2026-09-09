@@ -1,29 +1,36 @@
 ---
-title: "What financial institutions actually ask when adopting AI agents"
-description: "Questions from a financial services enterprise evaluating AI agents — document knowledge, business-built agents, execution in closed networks, multi-agent orchestration, and governance."
+title: "Financial institutions ask about operations before AI agents: questions from the field"
+titleSeo: "How financial institutions evaluate AI agents"
+description: "Financial institutions now ask whether AI can operate safely, not simply whether it works. Field insights on document quality, closed networks, auditability, business-built agents, and governance."
 date: "2026-09-06"
+updated: "2026-09-09"
 cover: /blog/finance-ai-agent-adoption-questions-en.svg
 thumb: /blog/finance-ai-agent-adoption-questions-en-thumb.svg
 author: "Plateer AI Labs"
 category: "Industry Note"
 kicker: "An enterprise AI agent evaluation in financial services and capital finance"
 tags: ["Enterprise AI", "Agentic AI", "Financial services", "On-Premise", "RAG", "AI governance"]
+summary: "The evaluation criteria for AI agents in financial services are moving from model performance to operational viability. The recurring questions in this discussion concerned document accuracy, the scope of business-led creation, execution in closed networks, permissions, and auditability. Ultimately, competitiveness depends less on the choice of LLM than on whether AI can keep working within enterprise controls."
 gated: true
 draft: false
 ---
 
-When a financial institution moves from discussing AI agents to applying them in real work, the questions quickly become practical.
+Financial institutions are beginning to ask less whether they can adopt AI and more whether **AI can operate safely inside their existing environment**.
+
+In this discussion with a financial services and capital finance organisation, the questions came first to internal document accuracy, network isolation, integration with existing systems, the scope of business-led creation, permissions, and control — rather than the performance of a particular LLM. It was a sign that the competitiveness of AI agents is being decided by the **operating model as a whole**, not by one model.
+
+## The questions repeated in the meeting
 
 > **Can they make proper use of our internal documents and data?**
 > **Can they operate inside a closed network?**
 > **Can business staff build agents themselves?**
 > **Can they connect to existing systems while remaining safely controlled?**
 
-Plateer AI Labs recently discussed the potential application of XGEN with an organisation in financial services and capital finance. Leaving aside the specific company's business plans, this report sets out the points financial institutions should examine when adopting AI agents, based on the questions that drew the most attention in the field.
+Plateer AI Labs recently discussed the potential application of XGEN with an organisation in financial services and capital finance. Leaving aside the company's specific business plans, this report considers not only the functional answers but also **why these questions came first and what they reveal about the changing criteria for enterprise AI adoption**.
 
 ---
 
-## An agent can only work well if it can read documents well
+## Q1. Can it make proper use of internal documents?
 
 Financial institutions have a wealth of material that AI can use, including regulations, product documents, and operating manuals.
 
@@ -33,9 +40,13 @@ XGEN is developing its own document parser to support a wide range of formats. I
 
 That is why the ability to read and structure an enterprise's documents properly matters as much as choosing a capable LLM.
 
+> **Field Insight | Knowledge input now comes before model output**
+>
+> Document parsing was not treated as simple preprocessing in this discussion. If the structure of regulations and product materials is read incorrectly, the retrieval and agents built on top of them are difficult to trust. The question was becoming more specific: not merely “Can we use a good model?” but **“Can it produce consistent answers grounded in our documents?”**
+
 ---
 
-## Can business teams build agents themselves?
+## Q2. Can business teams build agents themselves?
 
 The people who understand the work best are ultimately the people who do it.
 
@@ -45,9 +56,13 @@ Roles can be divided so that business teams build straightforward workflows whil
 
 The point is not to hand software development to business users. It is to let them translate their operational knowledge into agents.
 
+> **Field Insight | Business autonomy depends on clear role boundaries**
+>
+> Behind the question of whether business staff can build agents sits another: who is accountable for operating them? Business teams can configure straightforward work while specialists and governance processes own complex integration and deployment. Self-service in financial services is less about unrestricted freedom and more about **implementing operational knowledge quickly within an approved scope**.
+
 ---
 
-## Can an agent perform real work inside a closed network?
+## Q3. Can an agent perform real work inside a closed network?
 
 In financial services, where data moves and what AI can access matter as much as model performance.
 
@@ -57,9 +72,13 @@ An agent may use APIs or databases to perform work, while tasks that require exe
 
 The security needed when AI only generates an answer is different from the security needed when it executes actions in a real system.
 
+> **Field Insight | Attention is moving from model performance to the execution environment**
+>
+> In this meeting, where data travels, how far execution permissions extend, and what can be stopped when something goes wrong were treated as more important criteria than the range of models available. Once AI moves beyond answering questions and begins performing work, **isolation, permissions, and control become product requirements on the same level as performance**.
+
 ---
 
-## As agents multiply, connection and management matter more
+## Q4. Can connections and controls scale with the number of agents?
 
 One agent does not need to handle every task.
 
@@ -71,16 +90,32 @@ The organisation needs permissions and governance that determine who may use whi
 
 In other words, the structure has to preserve both the autonomy of business teams and enterprise control.
 
+> **Field Insight | Financial institutions look beyond agent count to auditability**
+>
+> Connecting multiple agents and tools is not enough to establish an operating model. The organisation must be able to determine who used which data and tools, under what authority, and through what process a result was produced. As the scope of automation grows, **auditability becomes as important as accuracy** in the adoption decision.
+
 ---
 
-## Field Report
+## What this meeting confirmed
 
-What stood out in this discussion was that the questions centred less on “Which LLM is best?” and more on “Can AI actually work inside our operating environment?”
+The meeting revealed three shifts.
 
-For a financial institution, an AI agent is not ultimately a question of one model.
+1. **Financial institutions examine the operating model before the LLM.** Data location, execution environment, access permissions, and controls have become adoption conditions alongside model performance.
+2. **They look beyond one PoC to the structure for the next task.** The question is not only whether one agent works, but whether its documents, tools, and workflows can be reused and managed across other work.
+3. **They ask about governance before agents.** As business teams build agents and connect more systems, deployment authority, execution records, change management, and lines of accountability have to be designed first.
 
-**It must understand documents → connect to internal data and systems → perform work → collaborate with other agents when needed → and remain governed throughout by enterprise security and control.**
+These are not separate requirements. They converge on one need: the entire sequence — understanding documents → connecting internal data and systems → performing work → collaborating with other agents — must remain inside a common framework for security, permissions, and governance.
 
-XGEN is evolving to connect this entire process in one enterprise AI platform.
+XGEN is evolving to connect this process in one enterprise AI platform. The more important conclusion from the field, however, was not a list of product features. It was that **the adoption test for AI agents in financial services is changing from “Is it possible?” to “Can we keep it operating under control?”**
 
-If your financial institution is evaluating AI agents, it may be worth asking “How much of our work can we entrust to AI?” before asking “Which AI should we use?”
+## Questions to carry into the next project
+
+Before choosing a model, a financial institution evaluating AI agents should ask:
+
+- Who is accountable for the quality of the documents and data the AI uses?
+- How are query and execution permissions divided across users, agents, and tools?
+- Can the execution path and the evidence behind a result be traced later?
+- Who reviews, deploys, and manages changes to agents built by business teams?
+- Can knowledge and tools from the first agent be reused in the next task?
+
+The evaluation should begin not with “Which AI should we use?” but with **“How much of our work can we entrust to AI, and how will we control the process?”**
