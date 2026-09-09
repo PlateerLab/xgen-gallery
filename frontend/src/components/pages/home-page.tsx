@@ -37,9 +37,11 @@ export function HomePageContent({ locale }: { locale: Locale }) {
     // 로케일별 원문을 읽으므로 스트립에 세울 때 별도 필터가 필요 없다.
     const posts = getAllPosts(locale);
     const usable = posts;
-    // 제품 소식 최신 2건 — 1번째는 스트립 윗줄 대표 자리, 2번째는 아래 3단의 제품 소식
-    // 칸으로 보낸다(같은 글이 한 화면에 두 번 걸리지 않게).
+    // 최신 제품 소식은 스트립 윗줄 대표 자리에, 최신 현장 리포트는 아래 3단의
+    // 첫 칸에 세운다. 서로 다른 카테고리를 함께 보여 메인에서 새 현장 리포트로
+    // 바로 이어질 수 있게 한다.
     const newsPosts = usable.filter((p) => p.category === "제품 소식");
+    const fieldReportPosts = usable.filter((p) => p.category === "Industry Note");
     const toHeroPost = (p: (typeof posts)[number]) => ({
         slug: p.slug,
         title: p.title,
@@ -47,7 +49,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
         date: p.date,
     });
     const featuredPost = newsPosts[0] ? toHeroPost(newsPosts[0]) : null;
-    const productNews = newsPosts[1] ? toHeroPost(newsPosts[1]) : null;
+    const fieldReport = fieldReportPosts[0] ? toHeroPost(fieldReportPosts[0]) : null;
     // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나. 최신 1건만 넘긴다
     // (Hero가 techPosts[0]을 그대로 세운다).
     const techPosts = usable
@@ -74,7 +76,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
             <main>
                 <Hero
                     featuredPost={featuredPost}
-                    productNews={productNews}
+                    fieldReport={fieldReport}
                     techPosts={techPosts}
                     latestIssue={latestIssue}
                     latestCase={latestCase}

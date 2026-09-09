@@ -378,14 +378,15 @@ type HeroCase = { slug: string; text: string };
 
 export function Hero({
     featuredPost,
-    productNews,
+    fieldReport,
     techPosts = [],
     latestIssue,
     latestCase,
 }: {
     /** 스트립 맨 윗줄 좌측에 세우는 대표 글(최신 제품 소식). */
     featuredPost?: HeroPost | null;
-    productNews?: HeroPost | null;
+    /** 아래 3단 첫 칸에 세우는 최신 현장 리포트. */
+    fieldReport?: HeroPost | null;
     /** 최근 Tech Note 후보(최신순, 최대 5개) — 이 중 하나를 무작위 노출한다. */
     techPosts?: HeroPost[];
     latestIssue?: HeroIssue | null;
@@ -562,13 +563,13 @@ export function Hero({
             </div>
 
             {/* 헤드라인 뉴스 — 키비주얼 위에 얹은 반투명 오버레이(영상이 비쳐 보임) */}
-            {(featuredPost || productNews || latestPost || latestIssue || latestCase) && (
+            {(featuredPost || fieldReport || latestPost || latestIssue || latestCase) && (
                 <div ref={bandRef} aria-label={locale === "ko" ? "최근 소식" : "Latest updates"} className="absolute inset-x-0 bottom-0 z-20 px-6 pb-6">
                     <div className="mx-auto max-w-6xl rounded-2xl border border-white/12 bg-white/[0.07] px-6 py-1 shadow-[0_16px_48px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md">
                         {/* 윗줄 — 가장 알리고 싶은 두 가지(대표 글 · 최근 고객 사례).
-                            아래 3단(제품 소식·뉴스레터·Tech Note)과 구분선으로 분리한다.
-                            대표 글은 최신 제품 소식이고, 아래 3단의 제품 소식 칸은 그
-                            다음 글을 집는다 — 같은 글이 한 화면에 두 번 걸리지 않게. */}
+                            아래 3단(현장 리포트·뉴스레터·Tech Note)과 구분선으로 분리한다.
+                            대표 글은 최신 제품 소식이고, 아래 첫 칸은 최신 현장 리포트를
+                            세워 서로 다른 종류의 최신 인사이트를 함께 보여준다. */}
                         {(featuredPost || latestCase) && (
                             <div className="grid gap-x-8 gap-y-1 border-b border-white/10 sm:grid-cols-2">
                                 {featuredPost && (
@@ -610,19 +611,19 @@ export function Hero({
                             </div>
                         )}
                     <div className="grid gap-x-8 gap-y-1 sm:grid-cols-3">
-                        {productNews && (
+                        {fieldReport && (
                             // 모바일은 세로로 쌓여 히어로 CTA를 가리므로, 윗줄에 대표 글이
-                            // 선 만큼 그 다음 제품 소식은 sm 미만에서 감춘다.
-                            // justify-start — 윗줄 첫 열의 '제품 소식'과 x를 맞춘다.
+                            // 선 만큼 현장 리포트는 sm 미만에서 감춘다.
+                            // justify-start — 윗줄 첫 열의 배지와 x를 맞춘다.
                             <Link
-                                href={localeHref(locale, `/blog/${productNews.slug}`)}
+                                href={localeHref(locale, `/blog/${fieldReport.slug}`)}
                                 className="group hidden min-w-0 items-center justify-start gap-3 py-3 sm:flex"
                             >
                                 <span className="flex-none rounded-full bg-[#2f7bff] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider text-white">
-                                    {categoryLabel(productNews.category, locale)}
+                                    {categoryLabel(fieldReport.category, locale)}
                                 </span>
                                 <p className="min-w-0 truncate text-[14px] font-semibold text-white group-hover:underline">
-                                    {productNews.title}
+                                    {fieldReport.title}
                                 </p>
                                 <ArrowRight className="h-4 w-4 flex-none text-white/60 transition group-hover:translate-x-0.5 group-hover:text-white" />
                             </Link>
