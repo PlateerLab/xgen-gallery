@@ -9,7 +9,7 @@ author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Parameters", "Pre-training", "Scaling laws"]
-draft: true
+draft: false
 summary: "An LLM's parameters are not a list with one slot for every fact. They are trained numbers used throughout the calculation that turns input into a next-token distribution. More parameters provide room to represent more complex patterns, but that capacity becomes useful only with sufficient data, compute, and post-training. In deployment, weight memory is only the beginning: context and concurrent requests also contribute to cost."
 faq:
   - q: "Does one parameter store one piece of knowledge?"
