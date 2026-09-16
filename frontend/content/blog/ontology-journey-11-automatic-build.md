@@ -1,5 +1,7 @@
 ---
 title: "온톨로지 빌드·검색 개선 대장정 1편 — 자동 빌드에서 LLM을 뺀 이유"
+cover: "/blog/ontology-journey-11-automatic-build.svg"
+thumb: "/blog/ontology-journey-11-automatic-build-thumb.svg"
 description: "온톨로지 자동 빌드에서 LLM을 분리하고, 문서 누락과 한국어 의미 훼손, 값 노드의 가짜 경로를 찾아 바로잡은 과정을 설명합니다."
 date: "2026-09-15"
 author: "김진수"

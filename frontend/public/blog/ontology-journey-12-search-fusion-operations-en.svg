@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ontology build and search improvement journey 12">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1fdfb"/><stop offset="1" stop-color="#e2f7f2"/></linearGradient><linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#0f766e"/></linearGradient><filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#134e4a" flood-opacity="0.12"/></filter></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><circle cx="1080" cy="90" r="220" fill="#14b8a6" opacity=".06"/><circle cx="140" cy="620" r="180" fill="#0f766e" opacity=".05"/>
+  <text x="78" y="98" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="20" font-weight="800" letter-spacing="2" fill="#0d9488">ONTOLOGY BUILD · SEARCH JOURNEY</text>
+  <rect x="78" y="128" width="92" height="92" rx="23" fill="url(#badge)"/><text x="124" y="188" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="32" font-weight="900" fill="#fff">O12</text>
+  <text x="78" y="320" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="38" font-weight="900" fill="#0f172a">Eight search turns</text>
+  <text x="78" y="377" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="38" font-weight="900" fill="#0f766e">became one fusion</text>
+  <rect x="78" y="430" width="450" height="48" rx="24" fill="#ccfbf1"/><text x="102" y="462" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="17" font-weight="800" fill="#0f766e">GRAPH · VECTOR · ONE-SHOT FUSION</text>
+  <g filter="url(#sh)">
+  <g transform="translate(580 154)">
+    <g font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" font-weight="800" fill="#0f766e">
+      <rect x="0" y="0" width="142" height="58" rx="16" fill="#fff" stroke="#99f6e4" stroke-width="3"/><text x="71" y="36" text-anchor="middle">VECTOR</text>
+      <rect x="0" y="82" width="142" height="58" rx="16" fill="#fff" stroke="#99f6e4" stroke-width="3"/><text x="71" y="118" text-anchor="middle">1-HOP</text>
+      <rect x="0" y="164" width="142" height="58" rx="16" fill="#fff" stroke="#99f6e4" stroke-width="3"/><text x="71" y="200" text-anchor="middle">CLASS</text>
+      <rect x="0" y="246" width="142" height="58" rx="16" fill="#fff" stroke="#99f6e4" stroke-width="3"/><text x="71" y="282" text-anchor="middle">ENTITY</text>
+    </g>
+    <g stroke="#0d9488" stroke-width="5"><line x1="150" y1="29" x2="250" y2="152"/><line x1="150" y1="111" x2="250" y2="152"/><line x1="150" y1="193" x2="250" y2="152"/><line x1="150" y1="275" x2="250" y2="152"/></g>
+    <circle cx="286" cy="152" r="76" fill="#0d9488"/><text x="286" y="144" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="900" fill="#fff">ONE</text><text x="286" y="174" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="900" fill="#fff">FUSION</text>
+    <path d="M365 152h86" stroke="#0f766e" stroke-width="6"/><path d="M451 152l-18-10v20z" fill="#0f766e"/>
+    <rect x="468" y="105" width="126" height="94" rx="22" fill="#ccfbf1"/><text x="531" y="145" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="800" fill="#0f766e">LLM</text><text x="531" y="174" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#0f766e">ONCE</text>
+  </g></g>
+</svg>

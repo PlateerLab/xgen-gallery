@@ -1,5 +1,7 @@
 ---
 title: "온톨로지 빌드·검색 개선 대장정 3편 — 도입 전에 정해야 할 것들"
+cover: "/blog/ontology-journey-13-adoption-criteria.svg"
+thumb: "/blog/ontology-journey-13-adoption-criteria-thumb.svg"
 description: "삭제·수정 반영, 값의 타입, 출처와 동명이인, 평가 체계 등 현재 한계와 미결정 사항을 B2B 도입 기준으로 정리합니다."
 date: "2026-09-29"
 author: "김진수"
