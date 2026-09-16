@@ -1,7 +1,7 @@
 ---
-title: "문서를 올리면 그래프가 생기기까지: 기본 빌드에서 LLM을 뺀 이유 (11편)"
+title: "온톨로지 빌드·검색 개선 대장정 1편 — 자동 빌드에서 LLM을 뺀 이유"
 description: "온톨로지 자동 빌드에서 LLM을 분리하고, 문서 누락과 한국어 의미 훼손, 값 노드의 가짜 경로를 찾아 바로잡은 과정을 설명합니다."
-date: "2026-09-15"
+date: "2026-09-22"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
@@ -83,7 +83,6 @@ PDF·HWP·DOCX·CSV → 청크 + 벡터  →  LLM 0회 결정론    →  LLM, �
 
 ---
 
-**다음 편 →** [여덟 번의 탐색을 한 번의 융합으로: 온톨로지 검색을 운영 구조로 바꾸기 (12편)](/blog/ontology-journey-12-search-fusion-operations)
+**다음 편 →** [온톨로지 빌드·검색 개선 대장정 2편 — 여덟 번의 탐색을 한 번의 융합으로](/blog/ontology-journey-12-search-fusion-operations)
 
 **시리즈 전체 보기 →** [온톨로지 개발기](/blog/series/ontology)
-

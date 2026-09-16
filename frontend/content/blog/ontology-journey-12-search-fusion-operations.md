@@ -1,7 +1,7 @@
 ---
-title: "여덟 번의 탐색을 한 번의 융합으로: 온톨로지 검색을 운영 구조로 바꾸기 (12편)"
+title: "온톨로지 빌드·검색 개선 대장정 2편 — 여덟 번의 탐색을 한 번의 융합으로"
 description: "반복 LLM 탐색을 그래프·벡터 검색의 한 번짜리 융합으로 바꾸고, 기준 저장소와 증분 갱신 구조를 운영 가능한 형태로 정리한 과정입니다."
-date: "2026-09-15"
+date: "2026-09-29"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
@@ -109,9 +109,8 @@ PostgreSQL 세 테이블을 정본으로 옮겼습니다. 노드, 엣지, 그리
 
 ---
 
-**이전 편 →** [문서를 올리면 그래프가 생기기까지: 기본 빌드에서 LLM을 뺀 이유 (11편)](/blog/ontology-journey-11-automatic-build)
+**이전 편 →** [온톨로지 빌드·검색 개선 대장정 1편 — 자동 빌드에서 LLM을 뺀 이유](/blog/ontology-journey-11-automatic-build)
 
-**다음 편 →** [온톨로지 도입 전에 정해야 할 것들: 아직 못 하는 것과 남은 선택지 (13편)](/blog/ontology-journey-13-adoption-criteria)
+**다음 편 →** [온톨로지 빌드·검색 개선 대장정 3편 — 도입 전에 정해야 할 것들](/blog/ontology-journey-13-adoption-criteria)
 
 **시리즈 전체 보기 →** [온톨로지 개발기](/blog/series/ontology)
-

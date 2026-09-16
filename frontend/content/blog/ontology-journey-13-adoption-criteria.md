@@ -1,7 +1,7 @@
 ---
-title: "온톨로지 도입 전에 정해야 할 것들: 아직 못 하는 것과 남은 선택지 (13편)"
+title: "온톨로지 빌드·검색 개선 대장정 3편 — 도입 전에 정해야 할 것들"
 description: "삭제·수정 반영, 값의 타입, 출처와 동명이인, 평가 체계 등 현재 한계와 미결정 사항을 B2B 도입 기준으로 정리합니다."
-date: "2026-09-15"
+date: "2026-10-06"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
@@ -69,9 +69,8 @@ PoC를 시작하기 전에는 대표 질문과 정답이 포함된 골드 세트
 
 ---
 
-**이전 편 →** [여덟 번의 탐색을 한 번의 융합으로: 온톨로지 검색을 운영 구조로 바꾸기 (12편)](/blog/ontology-journey-12-search-fusion-operations)
+**이전 편 →** [온톨로지 빌드·검색 개선 대장정 2편 — 여덟 번의 탐색을 한 번의 융합으로](/blog/ontology-journey-12-search-fusion-operations)
 
 **시리즈 처음 →** [질문이 답의 범위까지 정하고 있었습니다 (1편)](/blog/ontology-journey-1-cq-to-document)
 
 **시리즈 전체 보기 →** [온톨로지 개발기](/blog/series/ontology)
-
