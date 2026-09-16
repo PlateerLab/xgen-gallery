@@ -1,7 +1,7 @@
 ---
 title: "온톨로지 빌드·검색 개선 대장정 2편 — 여덟 번의 탐색을 한 번의 융합으로"
 description: "반복 LLM 탐색을 그래프·벡터 검색의 한 번짜리 융합으로 바꾸고, 기준 저장소와 증분 갱신 구조를 운영 가능한 형태로 정리한 과정입니다."
-date: "2026-09-29"
+date: "2026-09-22"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
