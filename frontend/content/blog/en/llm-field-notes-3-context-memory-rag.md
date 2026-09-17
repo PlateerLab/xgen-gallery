@@ -9,7 +9,7 @@ author: "김해수"
 authorGithub: "haesookimDev"
 category: "Tech Note"
 tags: ["LLM", "Context", "Memory", "RAG"]
-draft: true
+draft: false
 summary: "A context window is the range of tokens a model can reference in one generation, not durable memory that the model maintains between requests. A long context provides room for more material, but including a fact does not guarantee that the model will retrieve and apply it reliably. RAG and memory are separate systems that select information from external storage and return it to the context; if retrieval or placement fails, generation can fail on top of it."
 faq:
   - q: "Does a large context window mean the model remembers every earlier conversation?"
