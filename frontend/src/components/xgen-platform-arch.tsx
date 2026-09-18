@@ -332,15 +332,15 @@ export function XgenPlatformArchitecture({
             <div className="min-w-[1000px] space-y-3">
                 {/* 접근 · 콘솔 */}
                 <div className="rounded-xl border border-[#E5E7EB] bg-[#EEF5FF] p-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                        <span className="mr-1 inline-flex items-center gap-1.5 font-mono text-[12px] font-bold uppercase tracking-widest text-[#2563EB]">
+                    <div className="flex flex-nowrap items-center gap-1.5 whitespace-nowrap">
+                        <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[11.5px] font-bold uppercase tracking-[0.12em] text-[#2563EB]">
                             <Monitor className="h-3.5 w-3.5" />
                             Access · Console
                         </span>
                         {ACCESS.map((a) => (
                             <span
                                 key={a}
-                                className="rounded-full border border-[#E5E7EB] bg-white px-3 py-1 text-[13px] font-semibold text-[#111827]"
+                                className="shrink-0 rounded-full border border-[#E5E7EB] bg-white px-2.5 py-1 text-[12.5px] font-semibold text-[#111827]"
                             >
                                 {a}
                             </span>
