@@ -116,12 +116,12 @@ const COPY: Record<Locale, ArchCopy> = {
                 desc: "목적·비용·정확도에 따라 LLM을 선택하고, 정책·승인·감사 추적으로 운영을 통제합니다",
             },
         ],
-        referenceTitle: "Enterprise AI 아키텍처",
+        referenceTitle: "XGEN 3.0 Enterprise AI 아키텍처",
         referenceLead:
-            "접근 채널부터 모델·인프라까지, 신뢰할 수 있는 Enterprise AI를 구성하는 전체 계층 구조",
-        securityTitle: "온프레미스·보안 아키텍처",
+            "접근 채널부터 지식·추론·계획·실행·운영, 모델·인프라까지 연결하는 XGEN 3.0 Enterprise AI 계층 구조",
+        securityTitle: "XGEN 3.0 온프레미스·보안 아키텍처",
         securityLead:
-            "외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부 서비스와 AI 모델, 데이터에 접근할 수 있습니다. 모든 AI 모델과 데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전 계층에 일관되게 적용됩니다.",
+            "외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부 서비스와 AI 모델, 데이터에 접근합니다. 로컬 자원은 Xgent Client의 명시적 사용자 승인과 최소 권한을 통해서만 연결되며, 서버·로컬 실행 전 과정에 보안·감사·거버넌스 정책이 적용됩니다.",
         securityCta: "보안·거버넌스 통제 정책 자세히 보기",
         platformTitle: "XGEN 3.0 플랫폼 아키텍처",
         platformLead:
@@ -197,12 +197,12 @@ const COPY: Record<Locale, ArchCopy> = {
                 desc: "Choose an LLM by purpose, cost, and accuracy, and keep operations under control through policy, approval, and audit trails",
             },
         ],
-        referenceTitle: "Enterprise AI architecture",
+        referenceTitle: "XGEN 3.0 Enterprise AI architecture",
         referenceLead:
-            "The full layer structure of a trustworthy Enterprise AI, from access channels down to models and infrastructure",
-        securityTitle: "On-premise and security architecture",
+            "The XGEN 3.0 Enterprise AI layers connecting access, knowledge, reasoning, planning, action, operations, models, and infrastructure",
+        securityTitle: "XGEN 3.0 on-premise and security architecture",
         securityLead:
-            "An external request reaches internal services, AI models, and data only after passing the authentication gateway and the trust boundary. Every AI model and every piece of data stays on the internal network, with security, permission, audit, and governance policies applied consistently across all layers.",
+            "An external request reaches internal services, AI models, and data only after passing the authentication gateway and trust boundary. Local resources connect only through explicit user approval and least privilege in Xgent Client, with security, audit, and governance applied across server and local execution.",
         securityCta: "More on security and governance controls",
         platformTitle: "XGEN 3.0 platform architecture",
         platformLead:

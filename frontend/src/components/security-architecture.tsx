@@ -30,6 +30,7 @@ interface Zone {
 /** 신뢰 구역 톤·태그는 두 언어 공통(대문자 영문 라벨). 설명 문구만 번역한다. */
 const ZONE_META: { tone: Tone; tag: string; boundaryBefore?: boolean }[] = [
     { tone: "slate", tag: "UNTRUSTED" },
+    { tone: "indigo", tag: "LOCAL EDGE" },
     { tone: "indigo", tag: "DMZ" },
     { tone: "indigo", tag: "GATEWAY", boundaryBefore: true },
     { tone: "blue", tag: "INTERNAL" },
@@ -67,6 +68,18 @@ const D: Record<Locale, SecData> = {
                     ["임베드 챗봇", "chatbot-embed.js · 배포 Agent"],
                 ],
                 flow: "HTTPS",
+            },
+            {
+                suffix: "사용자 통제 영역",
+                title: "Xgent 로컬 실행 경계",
+                sub: "명시적 승인과 최소 권한으로 로컬 자원 연결",
+                cards: [
+                    ["Xgent Client", "서버 Agent와 안전한 세션 연결"],
+                    ["사용자 승인", "작업별 허용 · 거절 · 즉시 중단"],
+                    ["Local Folder · OS", "선택한 폴더와 OS 기능만 접근"],
+                    ["Local MCP", "사내망 · 전용 도구 범위 제한"],
+                ],
+                flow: "승인된 Sync Contract",
             },
             {
                 suffix: "표현 계층",
@@ -130,11 +143,11 @@ const D: Record<Locale, SecData> = {
         legend: ["신뢰 없음 (외부)", "경계 · DMZ", "내부 신뢰 영역", "제한 데이터 영역"],
         defense: [
             { title: "인증 (AuthN)", items: ["JWT 쿠키 인증", "초기 SuperUser 부트스트랩 (1회)"] },
-            { title: "인가 (AuthZ)", items: ["RBAC 역할", "ABAC 3레이어 권한 (등급·역할·권한)", "워크플로 접근제어 5단계"] },
+            { title: "인가 (AuthZ)", items: ["RBAC 역할", "ABAC 3레이어 권한 (등급·역할·권한)", "로컬 폴더·OS·MCP 최소 권한"] },
             { title: "데이터 보호", items: ["PII 마스킹", "가드레일 (실패 시 차단)", "금칙어 · 위험 등급"] },
             { title: "거버넌스", items: ["배포·거버넌스 이중 승인", "정기 점검 (D-5 스케줄)", "위험도 평가"] },
-            { title: "감사·추적", items: ["감사 로그 · 데이터 감사 로그", "서비스 변경 이력 · 운영 이력"] },
-            { title: "격리·경계", items: ["MCP 샌드박스 실행", "모델·Guard 내부망 전용", "온프레미스 / 에어갭 대응"] },
+            { title: "감사·추적", items: ["계획·도구 선택·파일 접근 추적", "서버·로컬 실행 결과와 반출 기록"] },
+            { title: "격리·경계", items: ["MCP 샌드박스 실행", "Agent·세션·로컬 연결 Kill Switch", "온프레미스 / 에어갭 대응"] },
         ],
         boundaryTitle: "인증 신뢰 경계 (Trust Boundary)",
         boundaryNote: "이 지점 위쪽은 스푸핑 가능한 외부 · 아래쪽은 신뢰 영역 — 게이트웨이만 이 선을 넘길 수 있음",
@@ -152,6 +165,18 @@ const D: Record<Locale, SecData> = {
                     ["Embedded chatbot", "chatbot-embed.js · deployed agent"],
                 ],
                 flow: "HTTPS",
+            },
+            {
+                suffix: "User-controlled zone",
+                title: "Xgent local execution boundary",
+                sub: "Local resources connect through explicit approval and least privilege",
+                cards: [
+                    ["Xgent Client", "Secure session with the server-side agent"],
+                    ["User approval", "Allow, deny, or stop each action"],
+                    ["Local Folder · OS", "Only selected folders and OS capabilities"],
+                    ["Local MCP", "Scoped private-network and dedicated tools"],
+                ],
+                flow: "Approved Sync Contract",
             },
             {
                 suffix: "Presentation",
@@ -215,11 +240,11 @@ const D: Record<Locale, SecData> = {
         legend: ["Untrusted (external)", "Boundary · DMZ", "Internal trust zone", "Restricted data zone"],
         defense: [
             { title: "Authentication (AuthN)", items: ["JWT cookie authentication", "Initial SuperUser bootstrap (one time)"] },
-            { title: "Authorization (AuthZ)", items: ["RBAC roles", "Three-layer ABAC permissions (tier, role, permission)", "Five-stage workflow access control"] },
+            { title: "Authorization (AuthZ)", items: ["RBAC roles", "Three-layer ABAC permissions (tier, role, permission)", "Least privilege for local folders, OS, and MCP"] },
             { title: "Data protection", items: ["PII masking", "Guardrails (blocked on failure)", "Blocklists and risk grading"] },
             { title: "Governance", items: ["Dual deployment and governance approval", "Scheduled reviews (D-5 cadence)", "Risk assessment"] },
-            { title: "Audit and traceability", items: ["Audit logs and data audit logs", "Service change history and operations history"] },
-            { title: "Isolation and boundaries", items: ["MCP sandbox execution", "Models and guard confined to the internal network", "On-premise and air-gap support"] },
+            { title: "Audit and traceability", items: ["Trace plans, tool selection, and file access", "Record server/local results and data exports"] },
+            { title: "Isolation and boundaries", items: ["MCP sandbox execution", "Kill switch for agents, sessions, and local links", "On-premise and air-gap support"] },
         ],
         boundaryTitle: "Authentication trust boundary",
         boundaryNote: "Above this line is spoofable and external; below it is trusted — only the gateway can carry a request across",

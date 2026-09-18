@@ -11,6 +11,7 @@ import {
     Cpu,
     Server,
     Cloud,
+    Route,
     type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -100,13 +101,25 @@ const D: Record<Locale, DiagramData> = {
                 ],
             },
             {
+                icon: Route,
+                label: "계획",
+                sub: "Planning",
+                cells: [
+                    ["Harness Runtime", "목표 해석 · 계획"],
+                    ["Task Decomposition", "작업 분해"],
+                    ["Tool Selection", "도구 선택"],
+                    ["Replanning", "검증 · 재계획"],
+                ],
+            },
+            {
                 icon: Wrench,
                 label: "실행",
                 sub: "Action",
                 cells: [
-                    ["Tool & API", "도구 / API 연동"],
-                    ["Workflow Engine", "워크플로우 엔진"],
-                    ["Task Automation", "작업 자동화"],
+                    ["Server Tool Runtime", "서버 도구 실행"],
+                    ["Local Interaction", "로컬 자원 연동"],
+                    ["Approval Gate", "사용자 승인"],
+                    ["Sync Contract", "결과 · 상태 동기화"],
                 ],
             },
             {
@@ -121,16 +134,16 @@ const D: Record<Locale, DiagramData> = {
             },
         ],
         workflow: [
-            ["AI Deployment", "배포 / 배치"],
+            ["Agent Execution", "계획 실행"],
             ["Model Routing", "모델 라우팅"],
             ["Policy Enforcement", "정책 적용"],
             ["Response", "응답 반환"],
         ],
         shared: [
-            ["Model Registry", "모델 레지스트리"],
-            ["Prompt Hub", "프롬프트 허브"],
-            ["Dataset Management", "데이터셋 관리"],
-            ["Evaluation & Benchmarking", "평가 & 벤치마킹"],
+            ["Agent Workspace", "파일 · 작업 상태"],
+            ["Session State", "대화 · 실행 연속성"],
+            ["Tool Registry", "서버 · 로컬 도구"],
+            ["Evaluation & Trace", "평가 · 실행 추적"],
         ],
         platform: [
             ["LLM / ML Settings", "설정 관리"],
@@ -148,7 +161,7 @@ const D: Record<Locale, DiagramData> = {
         bandConsoleSub: "Console",
         bandDataSources: "데이터 소스",
         bandRuntime: "Enterprise AI Runtime",
-        bandRuntimeSub: "지식 · 추론 · 실행 · 운영 통합 계층",
+        bandRuntimeSub: "지식 · 추론 · 계획 · 실행 · 운영 통합 계층",
         workflowTitle: "워크플로우 오케스트레이션",
         workflowSub: "Workflow Orchestration",
         sharedTitle: "공유 오케스트레이션",
@@ -192,9 +205,14 @@ const D: Record<Locale, DiagramData> = {
                 cells: [["Model Orchestration"], ["RAG Engine"], ["Guardrails"]],
             },
             {
+                icon: Route,
+                label: "Planning",
+                cells: [["Harness Runtime"], ["Task Decomposition"], ["Tool Selection"], ["Replanning"]],
+            },
+            {
                 icon: Wrench,
                 label: "Action",
-                cells: [["Tool & API"], ["Workflow Engine"], ["Task Automation"]],
+                cells: [["Server Tool Runtime"], ["Local Interaction"], ["Approval Gate"], ["Sync Contract"]],
             },
             {
                 icon: Activity,
@@ -203,16 +221,16 @@ const D: Record<Locale, DiagramData> = {
             },
         ],
         workflow: [
-            ["AI Deployment"],
+            ["Agent Execution"],
             ["Model Routing"],
             ["Policy Enforcement"],
             ["Response"],
         ],
         shared: [
-            ["Model Registry"],
-            ["Prompt Hub"],
-            ["Dataset Management"],
-            ["Evaluation & Benchmarking"],
+            ["Agent Workspace"],
+            ["Session State"],
+            ["Tool Registry"],
+            ["Evaluation & Trace"],
         ],
         platform: [
             ["LLM / ML Settings"],
@@ -230,7 +248,7 @@ const D: Record<Locale, DiagramData> = {
         bandConsoleSub: "",
         bandDataSources: "Data sources",
         bandRuntime: "Enterprise AI Runtime",
-        bandRuntimeSub: "Knowledge · reasoning · action · operations, in one layer",
+        bandRuntimeSub: "Knowledge · reasoning · planning · action · operations, in one layer",
         workflowTitle: "Workflow Orchestration",
         workflowSub: "",
         sharedTitle: "Shared Orchestration",
@@ -387,7 +405,7 @@ export function ArchitectureDiagram({
                             en={d.bandRuntime}
                             ko={d.bandRuntimeSub}
                         />
-                        <div className="grid grid-cols-4 gap-3">
+                        <div className="grid grid-cols-5 gap-2.5">
                             {RUNTIME_COLS.map((col) => (
                                 <div
                                     key={col.label}
