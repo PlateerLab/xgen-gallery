@@ -61,7 +61,7 @@ export async function middleware(req: NextRequest) {
     // 환경변수에 의존하지 않아 그런 실패가 없다.
     if (req.nextUrl.pathname.startsWith("/downloads/")) {
         return new NextResponse(
-            "소개서는 labs.plateer.com/resources 에서 신청해 주세요.",
+            "소개서는 labs.plateer.com/xgen-brief-k7m4 에서 신청해 주세요.",
             {
                 status: 403,
                 headers: {

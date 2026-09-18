@@ -38,7 +38,7 @@ export async function GET(req: Request) {
     );
     if (!ok) {
         return deny(
-            "이 링크는 만료되었거나 유효하지 않습니다. 소개서는 labs.plateer.com/resources 에서 다시 신청해 주세요.",
+            "이 링크는 만료되었거나 유효하지 않습니다. 소개서는 labs.plateer.com/xgen-brief-k7m4 에서 다시 신청해 주세요.",
             403,
         );
     }

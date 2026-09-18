@@ -2,7 +2,7 @@
  * 소개서(브로셔) 카탈로그 — 종류 구분자(asset)로 PDF·표시명·카드 메타를 관리한다.
  *
  * 다운로드 폼·API·리드 웹훅(Apps Script) 모두 이 asset 값으로 종류를 구분한다.
- * 자료실(/resources)은 published=true 인 소개서를 카드로 나열한다.
+ * 소개서 신청 페이지(/xgen-brief-k7m4)는 published=true 인 소개서를 카드로 나열한다.
  *
  * 새 종류 추가:
  *   1) 여기 항목 추가(asset·표시명·PDF·카드 메타), 준비되면 published:true
@@ -12,7 +12,7 @@
 export interface BrochureContent {
     title: string;
     desc: string;
-    /** 영문판 표기 — `/en/resources`에서 사용(없으면 한국어로 폴백). */
+    /** 영문판 표기 — `/en/xgen-brief-k7m4`에서 사용(없으면 한국어로 폴백). */
     titleEn?: string;
     descEn?: string;
 }
@@ -30,7 +30,7 @@ export interface Brochure {
     taglineEn?: string;
     /** 카드 요약 설명 */
     summary: string;
-    /** 영문 카드 요약 — `/en/resources`에서 사용. */
+    /** 영문 카드 요약 — `/en/xgen-brief-k7m4`에서 사용. */
     summaryEn?: string;
     /** 소개서에 담긴 내용 — 신청 전 미리보기(리드 전환용) */
     contents: BrochureContent[];

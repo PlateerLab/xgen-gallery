@@ -399,7 +399,7 @@ const DEPLOY_CHIPS = ["온프레미스", "망분리 · Air-gap", "GPU 서빙", "
 const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }[] = [
     { icon: FileText, title: "Documentation", desc: "설치·구성·API 문서와 가이드", href: "/documentation" },
     { icon: Rocket, title: "Release Notes", desc: "버전별 신규 기능·변경 이력", href: "/releases" },
-    { icon: Download, title: "XGEN 소개서", desc: "제품 개요·아키텍처 자료", href: "/resources" },
+    { icon: Download, title: "XGEN 소개서", desc: "제품 개요·아키텍처 자료", href: "/xgen-brief-k7m4" },
 ];
 
 /** FAQ — GEO용 FAQPage JSON-LD와 화면 공용. */
@@ -1588,7 +1588,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <Link
-                                href={localeHref(locale, "/resources")}
+                                href={localeHref(locale, "/xgen-brief-k7m4")}
                                 className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
                                 <Download className="h-4 w-4" />

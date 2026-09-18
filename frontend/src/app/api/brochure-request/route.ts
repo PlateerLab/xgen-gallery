@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 /**
  * XGEN 소개서(브로슈어) 다운로드 리드 폼 수신 핸들러.
  *
- * 흐름: /resources 의 리드 폼 제출 → 필수 필드·동의 검증 → BROCHURE_WEBHOOK_URL
+ * 흐름: /xgen-brief-k7m4 의 리드 폼 제출 → 필수 필드·동의 검증 → BROCHURE_WEBHOOK_URL
  * (없으면 DEMO_WEBHOOK_URL)로 포워딩(Slack/email/CRM), 없으면 서버 로그 →
  * 성공 시 downloadUrl 반환 → 클라이언트가 소개서 PDF 다운로드를 노출/트리거.
  *
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
         asset: brochure.asset || DEFAULT_BROCHURE,
         brochureName: brochure.name,
         receivedAt: new Date().toISOString(),
-        source: "labs-site/resources",
+        source: "labs-site/xgen-brief-k7m4",
     };
 
     // 접수 응답 먼저 — 시트 적재(웹훅) + 담당자 알림(앱 O365 SMTP·발신 xgen)은 백그라운드.

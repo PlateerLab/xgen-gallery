@@ -439,14 +439,14 @@ export const NAV_GROUPS: NavGroup[] = [
             { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
             { label: "Lab Newsletter", labelKo: "랩 뉴스레터", id: "newsletter", route: "/newsletter" },
             {
-                // 메뉴에서만 감춘다 — /resources 페이지와 그 안의 소개서 다운로드는
+                // 메뉴에서만 감춘다 — 소개서 신청 페이지와 그 안의 다운로드는
                 // 그대로 살아 있고, 직접 주소로도 각 페이지 링크로도 접근된다.
                 // 다시 노출하려면 hidden 줄만 지우면 된다.
                 hidden: true,
                 label: "Downloads",
                 labelKo: "다운로드",
                 id: "resources",
-                route: "/resources",
+                route: "/xgen-brief-k7m4",
                 blurb: "XGEN 소개서 등 다운로드 자료를 제공합니다.",
             },
         ],

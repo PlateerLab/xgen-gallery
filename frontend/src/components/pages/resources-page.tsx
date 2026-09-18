@@ -50,7 +50,7 @@ const COPY: Record<
 export function ResourcesPageContent({ locale }: { locale: Locale }) {
     const t = COPY[locale];
     const home = locale === "en" ? "/en" : "/";
-    const self = locale === "en" ? "/en/resources" : "/resources";
+    const self = locale === "en" ? "/en/xgen-brief-k7m4" : "/xgen-brief-k7m4";
 
     return (
         <>
