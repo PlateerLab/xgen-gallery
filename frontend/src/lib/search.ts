@@ -36,7 +36,7 @@ const ARCHITECTURE: SearchDoc[] = [
     { title: "기반 아키텍처", subtitle: "데이터 주권·AI Runtime 핵심 기반", url: "/architecture#foundation", type: "아키텍처" },
     { title: "아키텍처 설계 원칙", subtitle: "근거 기반·데이터 주권·조합성·거버넌스", url: "/architecture#principles", type: "아키텍처" },
     { title: "Enterprise AI 아키텍처", subtitle: "접근 채널부터 모델·인프라까지 참조 구조", url: "/architecture#reference", type: "아키텍처" },
-    { title: "XGEN 2.0 플랫폼 아키텍처", subtitle: "클라이언트·게이트웨이·마이크로서비스·데이터 계층", url: "/architecture#platform", type: "아키텍처" },
+    { title: "XGEN 3.0 플랫폼 아키텍처", subtitle: "Harness Runtime·서버 Agent·로컬 실행·AI Platform Core", url: "/architecture#platform", type: "아키텍처" },
     { title: "코드 어시스턴트 아키텍처", subtitle: "인덱싱·하이브리드 검색·AI 재정렬", url: "/architecture#code-assistant", type: "아키텍처" },
     { title: "CI/CD 배포 파이프라인", subtitle: "GitOps 기반 통제된 배포", url: "/architecture#cicd", type: "아키텍처" },
 ];

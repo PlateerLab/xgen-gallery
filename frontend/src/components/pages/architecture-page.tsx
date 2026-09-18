@@ -123,11 +123,11 @@ const COPY: Record<Locale, ArchCopy> = {
         securityLead:
             "외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부 서비스와 AI 모델, 데이터에 접근할 수 있습니다. 모든 AI 모델과 데이터는 내부망에서 운영되며, 보안·권한·감사·거버넌스 정책이 전 계층에 일관되게 적용됩니다.",
         securityCta: "보안·거버넌스 통제 정책 자세히 보기",
-        platformTitle: "XGEN 2.0 플랫폼 아키텍처",
+        platformTitle: "XGEN 3.0 플랫폼 아키텍처",
         platformLead:
-            "접근·콘솔부터 도메인·채널, 에이전트·응용, AI Platform 코어, RAG·지식, 파운데이션 모델, 인프라까지 — 전 계층을 관통하는 거버넌스·보안 위에서 동작하는 Enterprise AI 플랫폼",
+            "서버의 통제와 로컬의 실행 가능성을 하나로 연결하고, 계획·도구·업무 맥락을 끊김 없이 이어가는 Enterprise AI 플랫폼",
         platformNote:
-            "사용자·관리자·API 접근을 단일 콘솔로 통합하고, 워크플로우 캔버스·유닛 에이전트·MCP 도구·멀티에이전트 오케스트레이션이 AI 코어(LLMOps·MLOps·Model Router)와 하이브리드 RAG, 파운데이션 모델 위에서 협력합니다. Guardrail·RBAC/ABAC·감사로그·PII 비식별화 등 거버넌스가 전 계층을 크로스커팅하며, k3s·ArgoCD 기반으로 온프레미스·Air-gap 배포를 지원합니다.",
+            "XGEN 3.0은 목표를 계획으로 전환하는 Harness Runtime과 중앙 Server Agent Runtime을 기반으로 동작합니다. 필요한 순간에만 Xgent Client를 통해 승인된 로컬 폴더·OS 기능·MCP 도구와 상호작용하며, 결과와 상태를 동기화합니다. 기존 AI Platform Core·RAG·Foundation Model·Infrastructure 역량 위에 로컬 최소 권한, 사용자 승인, 실행 추적, 즉시 중단을 결합했습니다.",
         platformCta: "XGEN 제품 보기",
         caTitle: "코드 어시스턴트 아키텍처",
         caLead:
@@ -204,11 +204,11 @@ const COPY: Record<Locale, ArchCopy> = {
         securityLead:
             "An external request reaches internal services, AI models, and data only after passing the authentication gateway and the trust boundary. Every AI model and every piece of data stays on the internal network, with security, permission, audit, and governance policies applied consistently across all layers.",
         securityCta: "More on security and governance controls",
-        platformTitle: "XGEN 2.0 platform architecture",
+        platformTitle: "XGEN 3.0 platform architecture",
         platformLead:
-            "From access and console through domain and channel, agents and applications, the AI platform core, RAG and knowledge, foundation models, and infrastructure — an Enterprise AI platform running on governance and security that cut across every layer",
+            "An Enterprise AI platform that joins server-side control with local execution and carries plans, tools, and work context across environments without breaking continuity",
         platformNote:
-            "User, admin, and API access converge into a single console. The workflow canvas, unit agents, MCP tools, and multi-agent orchestration work together on top of the AI core (LLMOps, MLOps, Model Router), hybrid RAG, and foundation models. Governance — guardrails, RBAC/ABAC, audit logs, PII de-identification — cuts across every layer, and k3s with ArgoCD supports on-premise and air-gapped deployment.",
+            "XGEN 3.0 runs on a Harness Runtime that turns goals into plans and a centrally governed Server Agent Runtime. Only when needed, Xgent Client connects approved local folders, OS capabilities, and MCP tools, then synchronizes results and state. Least privilege, user approval, execution traces, and an immediate kill switch extend the existing AI Platform Core, RAG, foundation-model, and infrastructure capabilities.",
         platformCta: "See the XGEN product",
         caTitle: "Code Assistant architecture",
         caLead:
@@ -388,7 +388,7 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* XGEN 2.0 플랫폼 아키텍처 (공개-안전 구성) */}
+                {/* XGEN 3.0 플랫폼 아키텍처 (공개-안전 구성) */}
                 <section
                     id="platform"
                     className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
