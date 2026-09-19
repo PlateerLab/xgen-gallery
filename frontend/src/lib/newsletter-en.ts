@@ -307,8 +307,8 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
         ],
         inProgress: [
             {
-                title: "XGeny — the tools an agent makes now persist",
-                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they do not disappear when the pod restarts, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. What we called Geny through the last issue becomes XGeny (internal identifiers are unchanged).",
+                title: "Geny — the tools an agent makes now persist",
+                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they do not disappear when the pod restarts, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. The user-facing product name is now consistently Geny (internal identifiers are unchanged).",
             },
             {
                 title: "Audio file transcription",
@@ -368,7 +368,7 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
         ],
         papers: [
             {
-                body: "A paper on the waste of an agent regenerating the same procedural code on every request (Kalle Kujanpää et al., 9 July). Switching to compiling repeated business procedures into pre-verified, versioned tools cut latency by up to 42% in a live service and improved the error rate by 53%. Tracing what was used when also became easier. The same ground XGeny stands on in this issue.",
+                body: "A paper on the waste of an agent regenerating the same procedural code on every request (Kalle Kujanpää et al., 9 July). Switching to compiling repeated business procedures into pre-verified, versioned tools cut latency by up to 42% in a live service and improved the error rate by 53%. Tracing what was used when also became easier. The same ground Geny stands on in this issue.",
             },
             {
                 body: "The same structure seen from the other side (22 June). Once an agent builds its own tools and accumulates memory, a bad influence that got in once is not erased and carries into the next generation. Splitting the attack surface into 25 areas, 17 were exposed, and the more evolution-centric the design, the more the surface grew — by 3.5×. The point: attacks that used to disappear when the session ended now survive along the lineage.",

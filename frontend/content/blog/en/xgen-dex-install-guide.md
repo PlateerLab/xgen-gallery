@@ -1,16 +1,16 @@
 ---
 title: "XGEN DeX from install to first task — six steps"
 titleSeo: "XGEN DeX install and usage guide"
-description: "Install DeX, ask XGeny in plain language to build an agent, connect that agent to your PC, and hand it real work. Six steps, with real screens."
+description: "Install DeX, ask Geny in plain language to build an agent, connect that agent to your PC, and hand it real work. Six steps, with real screens."
 date: "2026-08-28"
 cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "XGeny", "Desktop Experience", "Agentic AI", "Install guide"]
+tags: ["XGEN DeX", "Geny", "Desktop Experience", "Agentic AI", "Install guide"]
 faq:
   - q: "Where do I build the agent?"
-    a: "In XGEN. DeX is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to XGeny in plain language gets you a workflow with the nodes and connections already in place."
+    a: "In XGEN. DeX is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to Geny in plain language gets you a workflow with the nodes and connections already in place."
   - q: "Does the installer need admin rights?"
     a: "Not if you set the install scope to the current user. That is also the easier option for internal rollout."
   - q: "Can the agent do anything it wants with my files?"
@@ -69,25 +69,25 @@ Turn on Allow private certificates if your environment uses an internal CA, and 
 
 *Point DeX at your XGEN server*
 
-## 3. Build an agent with XGeny
+## 3. Build an agent with Geny
 
-DeX is the side that **runs** an agent; the agent itself is built in XGEN. You can wire nodes by hand on the canvas, but asking XGeny in plain language is faster.
+DeX is the side that **runs** an agent; the agent itself is built in XGEN. You can wire nodes by hand on the canvas, but asking Geny in plain language is faster.
 
-![The XGEN canvas with an XGeny agent node placed and its provider and model settings open](/connector/17-xgeny-node.webp)
+![The XGEN canvas with a Geny agent node placed and its provider and model settings open](/connector/17-xgeny-node.webp)
 
-*The XGeny node on the canvas*
+*The Geny node on the canvas*
 
-Describe what you want — for example, "build me an agent that writes blog articles for the Plateer Labs site" — and XGeny assembles a workflow with the nodes and connections it needs, then drops it on the canvas.
+Describe what you want — for example, "build me an agent that writes blog articles for the Plateer Labs site" — and Geny assembles a workflow with the nodes and connections it needs, then drops it on the canvas.
 
-![The XGEN chat asking XGeny to build an agent that writes blog articles](/connector/18-xgeny-prompt.webp)
+![The XGEN chat asking Geny to build an agent that writes blog articles](/connector/18-xgeny-prompt.webp)
 
 *Describe the agent you want*
 
 You get a workflow wiring input, conversation memory, web search, the agent, and output. Run it as-is, add nodes or change settings to refine it, then give it a name and save.
 
-![A canvas with user input, multi-turn memory, web search, the XGeny agent, and output nodes wired together](/connector/19-xgeny-flow.webp)
+![A canvas with user input, multi-turn memory, web search, the Geny agent, and output nodes wired together](/connector/19-xgeny-flow.webp)
 
-*The workflow XGeny built*
+*The workflow Geny built*
 
 ## 4. Connect it to your PC and create a working folder
 

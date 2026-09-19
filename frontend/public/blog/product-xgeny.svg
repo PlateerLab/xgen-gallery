@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGeny — 메모리·도구·스케줄을 담은 워크스페이스를 가진 에이전트가, 수많은 도구 가운데 필요한 것만 검색해 꺼내 쓰는 구조">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geny — 메모리·도구·스케줄을 담은 워크스페이스를 가진 에이전트가, 수많은 도구 가운데 필요한 것만 검색해 꺼내 쓰는 구조">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0a1330"/>
@@ -18,7 +18,7 @@
   <circle cx="600" cy="338" r="300" fill="url(#glow)"/>
 
   <!-- 타이틀 -->
-  <text x="600" y="118" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" letter-spacing="5">XGENY</text>
+  <text x="600" y="118" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" letter-spacing="5">Geny</text>
   <text x="600" y="174" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="700" fill="#ffffff">Agent with a Workspace</text>
 
   <!-- 좌: 워크스페이스 — 메모리·도구·스케줄 -->
@@ -36,14 +36,14 @@
     <text x="126" y="204" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="19" font-weight="600" fill="#ffffffbd">Workspace</text>
   </g>
 
-  <!-- 중앙: XGeny 에이전트 -->
+  <!-- 중앙: Geny 에이전트 -->
   <g transform="translate(500 268)">
     <rect width="200" height="132" rx="24" fill="url(#brand)"/>
     <circle cx="100" cy="50" r="23" fill="#eaf2ff" opacity="1"/>
     <circle cx="92" cy="46" r="3.4" fill="#16203a"/>
     <circle cx="108" cy="46" r="3.4" fill="#16203a"/>
     <path d="M90 59 q10 8 20 0" fill="none" stroke="#16203a" stroke-width="3" stroke-linecap="round"/>
-    <text x="100" y="104" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="700" fill="#2461d8">XGeny</text>
+    <text x="100" y="104" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="23" font-weight="700" fill="#2461d8">Geny</text>
   </g>
 
   <!-- 우: 도구 선반 — 전부 주지 않고 검색해서 꺼낸다 -->

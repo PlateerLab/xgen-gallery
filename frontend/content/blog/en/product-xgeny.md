@@ -1,27 +1,27 @@
 ---
-title: "XGeny — from an AI that answers to an AI agent that works"
-description: "The XGEN agent takes another step forward. XGeny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward."
+title: "Geny — from an AI that answers to an AI agent that works"
+description: "The XGEN agent takes another step forward. Geny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward."
 date: "2026-08-19"
 cover: /blog/product-xgeny.svg
 thumb: /blog/product-xgeny-thumb.svg
 author: "Plateer AI Labs"
 category: "Product news"
-tags: ["XGeny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "Product"]
+tags: ["Geny", "Agentic AI", "Progressive Disclosure", "Tool Search", "Workspace", "Product"]
 draft: false
 faq:
-  - q: "Is XGeny a separate product from XGEN?"
-    a: "No. XGeny is a new agent runtime used inside XGEN. You still build agents on the XGEN Canvas the way you always have; what is extended is the execution structure and the capabilities that come as standard."
+  - q: "Is Geny a separate product from XGEN?"
+    a: "No. Geny is a new agent runtime used inside XGEN. You still build agents on the XGEN Canvas the way you always have; what is extended is the execution structure and the capabilities that come as standard."
   - q: "What is the biggest difference from the existing XGEN agent?"
     a: "Memory, Workspace, Tool Search & Creation, and Schedule are provided as the default runtime. The significant change is that the agent finds the tools it needs and, where necessary, builds them itself."
   - q: "Does this mean existing agents can no longer be used?"
-    a: "No. XGeny does not replace the way you build agents today. It is an additional runtime for cases in XGEN that call for more autonomous execution."
+    a: "No. Geny does not replace the way you build agents today. It is an additional runtime for cases in XGEN that call for more autonomous execution."
   - q: "Is the avatar required?"
-    a: "No. The avatar is optional. What matters in XGeny is not the avatar but the runtime that lets work continue on top of memory and a workspace."
-  - q: "How do XGEN DeX and XGeny differ?"
-    a: "XGeny covers how an agent works and the runtime it works in; XGEN DeX connects the agent to the user's local working environment. Used together, they extend the agent's reach as far as the local machine."
+    a: "No. The avatar is optional. What matters in Geny is not the avatar but the runtime that lets work continue on top of memory and a workspace."
+  - q: "How do XGEN DeX and Geny differ?"
+    a: "Geny covers how an agent works and the runtime it works in; XGEN DeX connects the agent to the user's local working environment. Used together, they extend the agent's reach as far as the local machine."
 ---
 
-**The XGEN agent takes another step forward. XGeny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward.**
+**The XGEN agent takes another step forward. Geny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward.**
 
 ---
 
@@ -35,9 +35,9 @@ Real work, though, does not finish in a single question and answer.
 
 It has to remember what was done before, find the material it needs, and choose the right tool for the task. Sometimes a new tool is required, and the files and results produced along the way have to be kept so the next piece of work can use them again.
 
-XGEN is preparing a new agent runtime, **XGeny**, for exactly this shift.
+XGEN is preparing a new agent runtime, **Geny**, for exactly this shift.
 
-> **XGeny aims beyond an agent that answers questions — toward an agent that keeps working in a space of its own, drawing on the resources and tools it needs.**
+> **Geny aims beyond an agent that answers questions — toward an agent that keeps working in a space of its own, drawing on the resources and tools it needs.**
 
 The way you build an agent on the XGEN Canvas stays as it is, while **Memory, Workspace, Tool Discovery & Creation, and Schedule** come as the default runtime.
 
@@ -49,9 +49,9 @@ Existing agents were built around carrying out given work with predefined knowle
 
 If a new task called for a tool that was not there, a developer had to connect an API or compose a new tool and attach it to the agent.
 
-XGeny changes that structure.
+Geny changes that structure.
 
-| Existing XGEN agent | XGeny (Agent) |
+| Existing XGEN agent | Geny (Agent) |
 |---|---|
 | Capabilities configured up front | Starts with a default runtime |
 | Works from the tools it was given | Searches for the tools it needs |
@@ -72,7 +72,7 @@ Enterprise work does not start from scratch every time.
 
 What was requested before, the criteria a deliverable was built to, what was checked along the way — all of it is important context for the next piece of work.
 
-For that continuity, XGeny **includes memory in the default runtime**.
+For that continuity, Geny **includes memory in the default runtime**.
 
 Without wiring up a separate memory node each time, it accumulates what matters from conversation and from the work itself, and is designed to find and use the relevant memory in later work.
 
@@ -82,7 +82,7 @@ The goal is to develop the agent beyond a one-off question-and-answer tool into 
 
 ## 2. A workspace of its own for each agent
 
-One of the most important changes in XGeny is that **the agent has its own workspace**.
+One of the most important changes in Geny is that **the agent has its own workspace**.
 
 The workspace is an independent space in which the agent does its work.
 
@@ -104,7 +104,7 @@ extends into
 
 XGEN already gave each user an independent **environment for building agents**. Everyone could create agents and design their work their own way.
 
-XGeny takes it a step further. Not only the build environment but **the tool set-up and the runtime itself are independent per agent**. Which tools are on hand, and what gets built and kept, now differ from user to user. Where personalisation meant "building it my way," this is closer to "having a working environment that is mine."
+Geny takes it a step further. Not only the build environment but **the tool set-up and the runtime itself are independent per agent**. Which tools are on hand, and what gets built and kept, now differ from user to user. Where personalisation meant "building it my way," this is closer to "having a working environment that is mine."
 
 ### Independent, but not isolated
 
@@ -124,7 +124,7 @@ ERP, CRM, groupware, databases, search, email, document authoring — the more s
 
 Handing the agent every tool's details at all times is not efficient.
 
-For this, XGeny applies **Tool Search & Discovery**.
+For this, Geny applies **Tool Search & Discovery**.
 
 Rather than presenting every tool up front, the agent searches for and selects the tools the current task calls for.
 
@@ -140,7 +140,7 @@ The aim is a structure where, however many tools become connectable, the agent s
 
 ## 4. If the tool does not exist, it can build one
 
-XGeny goes a step further.
+Geny goes a step further.
 
 Where a task needs a tool that does not already exist, **the agent can build and test that tool itself**.
 
@@ -148,7 +148,7 @@ Given a request like
 
 > "Build me a tool that queries this data and summarises it daily."
 
-XGeny produces the code it needs, checks the result of running it, and composes it into a usable tool.
+Geny produces the code it needs, checks the result of running it, and composes it into a usable tool.
 
 The tool it builds is kept in the workspace and is available again in later work.
 
@@ -160,7 +160,7 @@ So this autonomy is being developed to work within what the enterprise permits, 
 
 ## 5. Progressive disclosure — taking out only what is needed
 
-One principle runs through the whole of XGeny's design.
+One principle runs through the whole of Geny's design.
 
 **Not all information is given to the agent up front.**
 
@@ -176,7 +176,7 @@ Memory is designed the same way: rather than always drawing on everything accumu
 
 The more data and systems an agent connects to in an enterprise setting, the more this approach matters.
 
-XGeny aims at a structure where, even as the resources available to the agent grow, it can efficiently find the information and tools it needs and carry the work forward.
+Geny aims at a structure where, even as the resources available to the agent grow, it can efficiently find the information and tools it needs and carry the work forward.
 
 ---
 
@@ -186,7 +186,7 @@ Enterprise work is full of things that have to be done repeatedly.
 
 Checking data every morning, collating performance figures every week, producing a report on a set cycle — these are typical.
 
-For work like this, XGeny **provides scheduling as standard**.
+For work like this, Geny **provides scheduling as standard**.
 
 Rather than repeating the same request to the agent every time, you can set it up to carry out the work at a defined point.
 
@@ -203,7 +203,7 @@ It is the basis for an agent to grow **from a tool waiting on requests into an a
 
 ## Meet XGEN DeX, and the agent's working space reaches the PC
 
-Where XGeny extends **what an agent can do**, [XGEN DeX](/en/blog/product-xgen-dex) extends **how far the working environment reaches**.
+Where Geny extends **what an agent can do**, [XGEN DeX](/en/blog/product-xgen-dex) extends **how far the working environment reaches**.
 
 XGEN DeX safely connects an XGEN agent to the local resources on a user's PC.
 
@@ -213,11 +213,11 @@ If a user asks
 
 > "Tidy this material into a document and save it to the work folder on my PC."
 
-then **XGeny** understands the task and carries it out with the tools it needs, while **XGEN DeX** connects the server-side agent to the user's local environment.
+then **Geny** understands the task and carries it out with the tools it needs, while **XGEN DeX** connects the server-side agent to the user's local environment.
 
 Put simply, the difference in role is this:
 
-**XGeny = how the agent works**
+**Geny = how the agent works**
 
 **XGEN DeX = how far the agent can work**
 
@@ -225,7 +225,7 @@ Put simply, the difference in role is this:
 
 ## Starting from the XGEN Canvas stays the same
 
-Using XGeny does not mean learning an entirely new way to build agents.
+Using Geny does not mean learning an entirely new way to build agents.
 
 Creating an agent and designing the work on the XGEN Canvas stays as it is.
 
@@ -239,9 +239,9 @@ Not because a few capabilities were added, but because **the execution structure
 
 ---
 
-## The change XGeny is aiming at
+## The change Geny is aiming at
 
-XGeny's goal is not only to attach more capabilities to an agent.
+Geny's goal is not only to attach more capabilities to an agent.
 
 It is to change how enterprises hand work to agents in the first place.
 
@@ -263,8 +263,8 @@ It is to change how enterprises hand work to agents in the first place.
 
 **An agent that keeps carrying out the work**
 
-With XGeny, Plateer AI Labs is extending the XGEN agent **from "AI that answers questions" to "AI you can hand real work to."**
+With Geny, Plateer AI Labs is extending the XGEN agent **from "AI that answers questions" to "AI you can hand real work to."**
 
-XGeny has completed its main implementation and is now in stabilisation, with tool creation, memory, and other core capabilities under verification.
+Geny has completed its main implementation and is now in stabilisation, with tool creation, memory, and other core capabilities under verification.
 
-Through XGEN Preview we will introduce XGeny's real usage scenarios and key capabilities step by step, ahead of general availability.
+Through XGEN Preview we will introduce Geny's real usage scenarios and key capabilities step by step, ahead of general availability.

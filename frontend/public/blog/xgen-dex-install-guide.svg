@@ -43,7 +43,7 @@
       <circle cx="102" cy="398" r="17" fill="url(#brand)"/>
       <text x="102" y="404" text-anchor="middle" font-size="14" font-weight="800" fill="#ffffff">3</text>
       <text x="134" y="404" font-size="17" font-weight="700" fill="#111827">Agent 제작</text>
-      <text x="252" y="404" font-size="14.5" fill="#6b7280">XGeny 에게 말로</text>
+      <text x="252" y="404" font-size="14.5" fill="#6b7280">Geny 에게 말로</text>
     </g>
     <path d="M102 420 v22" stroke="#bcd0f5" stroke-width="2" stroke-linecap="round"/>
     <g>

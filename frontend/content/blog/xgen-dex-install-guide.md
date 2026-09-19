@@ -1,16 +1,16 @@
 ---
 title: "XGEN DeX 설치부터 첫 업무까지 — 여섯 단계"
 titleSeo: "XGEN DeX 설치·활용 가이드"
-description: "DeX를 설치하고, XGeny에게 말로 시켜 Agent를 만들고, 그 Agent를 내 PC에 연결해 실제 업무를 맡기기까지. 실제 화면과 함께 여섯 단계로 따라갑니다."
+description: "DeX를 설치하고, Geny에게 말로 시켜 Agent를 만들고, 그 Agent를 내 PC에 연결해 실제 업무를 맡기기까지. 실제 화면과 함께 여섯 단계로 따라갑니다."
 date: "2026-08-28"
 cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "XGeny", "Desktop Experience", "Agentic AI", "설치 가이드"]
+tags: ["XGEN DeX", "Geny", "Desktop Experience", "Agentic AI", "설치 가이드"]
 faq:
   - q: "Agent는 어디서 만드나요?"
-    a: "XGEN에서 만듭니다. DeX는 Agent를 실행하는 쪽이고, Agent 자체는 XGEN의 캔버스에서 만듭니다. 노드를 직접 잇는 방법도 있지만, XGeny에게 하려는 일을 말로 설명하면 필요한 노드와 연결을 갖춘 워크플로우를 만들어 줍니다."
+    a: "XGEN에서 만듭니다. DeX는 Agent를 실행하는 쪽이고, Agent 자체는 XGEN의 캔버스에서 만듭니다. 노드를 직접 잇는 방법도 있지만, Geny에게 하려는 일을 말로 설명하면 필요한 노드와 연결을 갖춘 워크플로우를 만들어 줍니다."
   - q: "설치할 때 관리자 권한이 필요한가요?"
     a: "설치 범위를 현재 사용자로 두면 필요하지 않습니다. 사내 배포에서도 이 방식이 무난합니다."
   - q: "Agent가 제 PC의 파일을 마음대로 쓰게 되나요?"
@@ -69,15 +69,15 @@ XGEN DeX는 그 마지막 연결을 담당합니다. 서버에서 운영되는 A
 
 *접속할 XGEN 서버를 지정한다*
 
-## 3. XGeny로 Agent 만들기
+## 3. Geny로 Agent 만들기
 
-DeX는 Agent를 **실행하는** 쪽이고, Agent 자체는 XGEN에서 만듭니다. 캔버스에서 노드를 직접 잇는 방법도 있지만, XGeny에게 말로 시키는 편이 빠릅니다.
+DeX는 Agent를 **실행하는** 쪽이고, Agent 자체는 XGEN에서 만듭니다. 캔버스에서 노드를 직접 잇는 방법도 있지만, Geny에게 말로 시키는 편이 빠릅니다.
 
-![XGEN 캔버스에 에이전트 XGeny 노드가 놓이고 AI 제공사와 모델을 고르는 세부 설정이 열린 화면](/connector/17-xgeny-node.webp)
+![XGEN 캔버스에 에이전트 Geny 노드가 놓이고 AI 제공사와 모델을 고르는 세부 설정이 열린 화면](/connector/17-xgeny-node.webp)
 
-*캔버스의 XGeny 노드*
+*캔버스의 Geny 노드*
 
-대화창에 「플래티어 랩스 사이트에 블로그 아티클을 작성하는 에이전트를 만들어줘」처럼 하려는 일을 적으면, XGeny가 필요한 노드와 연결을 갖춘 워크플로우를 만들어 캔버스에 올립니다.
+대화창에 「플래티어 랩스 사이트에 블로그 아티클을 작성하는 에이전트를 만들어줘」처럼 하려는 일을 적으면, Geny가 필요한 노드와 연결을 갖춘 워크플로우를 만들어 캔버스에 올립니다.
 
 ![XGEN 대화창에 블로그 아티클을 작성하는 에이전트를 만들어 달라고 요청한 화면](/connector/18-xgeny-prompt.webp)
 
@@ -85,9 +85,9 @@ DeX는 Agent를 **실행하는** 쪽이고, Agent 자체는 XGEN에서 만듭니
 
 입력, 대화 기억, 웹 검색, 에이전트, 답변 출력이 이어진 워크플로우가 만들어집니다. 그대로 실행해 보면서 노드를 더하거나 설정을 바꿔 다듬은 뒤, 이름을 붙여 저장합니다.
 
-![사용자 질문 입력, 멀티턴 DB, 통합 웹 검색, 에이전트 XGeny, AI 답변 출력 노드가 선으로 이어진 캔버스 화면](/connector/19-xgeny-flow.webp)
+![사용자 질문 입력, 멀티턴 DB, 통합 웹 검색, 에이전트 Geny, AI 답변 출력 노드가 선으로 이어진 캔버스 화면](/connector/19-xgeny-flow.webp)
 
-*XGeny가 만든 워크플로우*
+*Geny가 만든 워크플로우*
 
 ## 4. 내 PC에 연결하고 작업 폴더 만들기
 
