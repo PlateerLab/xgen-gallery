@@ -1,6 +1,6 @@
 ---
 title: "서비스 관측의 해상도, AI 에이전트 노드까지 선명해지다"
-description: "서비스 단위의 병목 탐지에서 한 걸음 나아가 AI 에이전트 워크플로우에서 '어느 노드가 느렸는지, 어느 노드에서 실패했는지'에 답하기 위해 Zero-code와 Manual Instrumentation을 결합하고, Grafana Tempo로 대시보드와 경보까지 구성한 과정을 정리합니다."
+description: "서비스 단위 관측으로는 보이지 않던 병목과 실패 지점을 에이전트 노드 단위까지 끌어올려 추적하고, 대시보드와 경보로 바로 확인·감지할 수 있는 형태까지 만든 과정을 정리합니다."
 date: "2026-09-20"
 author: "전인수"
 authorGithub: "mumberrymountain"
