@@ -1,5 +1,7 @@
 """거버넌스 교육: 관리자 GitHub 권한 검증, 개인 링크, SQLite 트랜잭션 채점."""
 import hashlib
+import hmac
+import base64
 import json
 import os
 import random
@@ -53,6 +55,10 @@ def database():
         conn.execute("""CREATE TABLE IF NOT EXISTS audit (
           id INTEGER PRIMARY KEY, assignment_id TEXT NOT NULL,
           action TEXT NOT NULL, actor TEXT NOT NULL, at TEXT NOT NULL)""")
+        conn.commit()
+        conn.execute("BEGIN IMMEDIATE")
+        if "token_nonce" not in {r[1] for r in conn.execute("PRAGMA table_info(assignments)")}:
+            conn.execute("ALTER TABLE assignments ADD COLUMN token_nonce TEXT")
         conn.commit()
         yield conn
         conn.commit()
@@ -228,6 +234,33 @@ def link(token):
     return "/training/governance#" + token
 
 
+def recover_token(aid, nonce):
+    try:
+        key = (content_dir() / "link-key.bin").read_bytes()
+        if len(key) != 32:
+            raise ValueError()
+    except (OSError, ValueError) as exc:
+        raise HTTPException(503, "응시 링크 키를 확인하지 못했습니다. 관리자에게 문의해 주세요.") from exc
+    digest = hmac.new(key, f"{aid}:{nonce}".encode(), hashlib.sha256).digest()
+    return base64.urlsafe_b64encode(digest).decode().rstrip("=")
+
+
+def new_token(conn, aid):
+    if not (content_dir() / "link-key.bin").exists():
+        if conn.execute("SELECT 1 FROM assignments WHERE token_nonce IS NOT NULL LIMIT 1").fetchone():
+            raise HTTPException(503, "기존 링크 키의 복원이 필요합니다. 새 키로 덮어쓰지 않습니다.")
+        write_content("link-key.bin", secrets.token_bytes(32))
+    nonce = secrets.token_urlsafe(24)
+    return recover_token(aid, nonce), nonce
+
+
+def admin_summary(row):
+    result = summary(row)
+    # 개인 URL 재조회는 GitHub 관리자 인증을 통과한 응답에만 포함한다.
+    result["url"] = link(recover_token(row["id"], row["token_nonce"])) if row["token_nonce"] and not row["revoked_at"] and row["expires_at"] > now() else None
+    return result
+
+
 def snapshot(source):
     questions = json.loads(json.dumps(source["questions"]))
     rng = random.SystemRandom()
@@ -283,11 +316,12 @@ def assign(body: AssignmentRequest, actor: Admin):
         for member in body.members:
             old = conn.execute("SELECT * FROM assignments WHERE campaign=? AND member_id=?", (source["version"], member.id)).fetchone()
             if old:
-                existing.append(summary(old))
+                existing.append(admin_summary(old))
                 continue
-            aid, token = secrets.token_urlsafe(16), secrets.token_urlsafe(32)
-            conn.execute("""INSERT INTO assignments(id,campaign,member_id,name,team,token_hash,questions,created_at,created_by,expires_at)
-              VALUES(?,?,?,?,?,?,?,?,?,?)""", (aid, source["version"], member.id, member.name, member.team, hashed(token), json.dumps(snapshot(source), ensure_ascii=False), now(), actor, expires))
+            aid = secrets.token_urlsafe(16)
+            token, nonce = new_token(conn, aid)
+            conn.execute("""INSERT INTO assignments(id,campaign,member_id,name,team,token_hash,questions,created_at,created_by,expires_at,token_nonce)
+              VALUES(?,?,?,?,?,?,?,?,?,?,?)""", (aid, source["version"], member.id, member.name, member.team, hashed(token), json.dumps(snapshot(source), ensure_ascii=False), now(), actor, expires, nonce))
             audit(conn, aid, "assign", actor)
             created.append({"id": aid, "name": member.name, "team": member.team, "url": link(token), "expires_at": expires})
     return {"created": created, "existing": existing}
@@ -300,9 +334,9 @@ def rotate_link(aid: str, actor: Admin):
         row = conn.execute("SELECT * FROM assignments WHERE id=? AND campaign=?", (aid, bank()["version"])).fetchone()
         if not row:
             raise HTTPException(404, "배정 내역을 찾을 수 없습니다.")
-        token = secrets.token_urlsafe(32)
+        token, nonce = new_token(conn, aid)
         expires = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat(timespec="seconds")
-        conn.execute("UPDATE assignments SET token_hash=?,expires_at=?,revoked_at=NULL WHERE id=?", (hashed(token), expires, aid))
+        conn.execute("UPDATE assignments SET token_hash=?,token_nonce=?,expires_at=?,revoked_at=NULL WHERE id=?", (hashed(token), nonce, expires, aid))
         audit(conn, aid, "rotate_link", actor)
         return {"id": aid, "name": row["name"], "team": row["team"], "url": link(token), "expires_at": expires}
 
@@ -330,7 +364,7 @@ def report(actor: Admin):
     source = bank()
     with database() as conn:
         rows = conn.execute("SELECT * FROM assignments WHERE campaign=? ORDER BY created_at,name", (source["version"],)).fetchall()
-    assignments = [summary(r) for r in rows]
+    assignments = [admin_summary(r) for r in rows]
     # 회수해도 이미 제출한 결과는 보존하며 집계에 포함한다.
     submitted = [r for r in rows if r["submitted_at"]]
     counts = {key: sum(a["status"] == key for a in assignments) for key in ("not_started", "in_progress", "submitted", "expired", "revoked")}

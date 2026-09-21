@@ -15,7 +15,7 @@ OAuth state는 HttpOnly 쿠키와 상수 시간 비교로 검증한다. 관리�
 
 `frontend/src/lib/lab-members.ts`의 구성원 명단을 재사용한다. 관리자가 선택한 사람에게 공통 12문항을 배정하되 문항·보기 순서를 개인별로 섞고 문제은행 스냅샷과 순서를 DB에 고정한다. 같은 교육 버전과 구성원의 중복 배정은 생성하지 않는다.
 
-개인 링크는 별도 로그인 없는 **링크 소지자 방식**이다. 전달받은 사람이 실제 본인인지 인증하는 기능은 아니므로 해당 구성원에게만 전달한다. 32바이트 난수 토큰은 fragment에 두어 URL 접근 로그·Referer에서 제외하고 API Authorization 헤더로만 전송한다. DB에는 토큰 해시만 저장한다. 발급 화면에서 링크를 복사하거나 CSV를 저장한다. 분실한 원본 링크는 재조회할 수 없으며 재발급한다. 링크 재발급 시 기존 링크는 폐기되고 기존 응답·제출 결과는 그대로 유지된다.
+개인 링크는 별도 로그인 없는 **링크 소지자 방식**이다. 전달받은 사람이 실제 본인인지 인증하는 기능은 아니므로 해당 구성원에게만 전달한다. 서버 비공개 키와 배정별 난수로 계산한 256비트 토큰은 fragment에 두어 URL 접근 로그·Referer에서 제외하고 API Authorization 헤더로만 전송한다. DB에는 토큰 원문 대신 검증용 해시와 난수만 저장한다. 관리자 화면을 다시 열어도 유효한 개인 링크를 조회·복사하거나 CSV로 저장할 수 있다. 링크 복원 키는 비공개 자료 디렉토리의 `link-key.bin`(0600)에 별도로 보관하며 DB와 함께 백업해야 한다. 링크 재발급 시 기존 링크는 폐기되고 기존 응답·제출 결과는 그대로 유지된다.
 
 최초 발급 유효기간은 기본 30일, 화면에서 1–90일로 정한다. 재발급은 30일이다. 회수하면 즉시 응시·자료 접근을 차단한다. 만료된 링크도 동일하게 차단한다. 링크 만료는 응답 기록 삭제를 뜻하지 않는다.
 
@@ -62,4 +62,4 @@ npm run build
 
 ## 교육 자료 등록 API
 
-관리자 세션에서 `PUT /api/governance/admin/content/questions`로 문제은행 JSON을 등록하고, `PUT /api/governance/admin/content/video`와 `/slides`로 MP4/PPTX 원본 바이트를 등록한다(자료별 최대 12MB). 백엔드에 직접 요청할 때는 관리자 GitHub 토큰을 Authorization 헤더에 전달한다. 운영 자료 디렉토리는 DB와 같은 영구 볼륨의 `governance-content/`이며 `GOVERNANCE_CONTENT_DIR`로 바꿀 수 있다. 이미 배정한 버전의 문항을 변경하려면 새 버전을 지정해야 한다. 백업 시 DB와 자료 디렉토리를 함께 보존한다.
+관리자 세션에서 `PUT /api/governance/admin/content/questions`로 문제은행 JSON을 등록하고, `PUT /api/governance/admin/content/video`와 `/slides`로 MP4/PPTX 원본 바이트를 등록한다(자료별 최대 12MB). 백엔드에 직접 요청할 때는 관리자 GitHub 토큰을 Authorization 헤더에 전달한다. 운영 자료 디렉토리는 DB와 같은 영구 볼륨의 `governance-content/`이며 `GOVERNANCE_CONTENT_DIR`로 바꿀 수 있다. 이미 배정한 버전의 문항을 변경하려면 새 버전을 지정해야 한다. 백업 시 DB와 자료 디렉토리(링크 키 포함)를 함께 보존한다.

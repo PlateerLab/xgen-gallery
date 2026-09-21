@@ -1,6 +1,6 @@
 export type Option = { id: string; text: string };
 export type Question = { id: string; topic: string; prompt: string; options: Option[]; correct?: string; explanation?: string; source?: string; responses?: number; correct_count?: number; rate?: number; choices?: Record<string, number> };
-export type Assignment = { id: string; name: string; team: string; member_id: string; campaign: string; created_at: string; expires_at: string; started_at: string | null; submitted_at: string | null; correct: number | null; score: number | null; total: number; status: string };
+export type Assignment = { id: string; name: string; team: string; member_id: string; campaign: string; created_at: string; expires_at: string; started_at: string | null; submitted_at: string | null; correct: number | null; score: number | null; total: number; status: string; url?: string | null };
 export type Quiz = { assignment: Assignment; title: string; questions: Question[]; answers: Record<string, string> };
 export type IssuedLink = { id: string; name: string; team: string; url: string; expires_at: string };
 export type Report = { campaign: string; title: string; actor: string; assignments: Assignment[]; questions: Question[]; assigned: number; completed: number; completion_rate: number | null; average: number | null; counts: Record<string, number>; distribution: { label: string; count: number }[] };

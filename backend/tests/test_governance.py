@@ -47,6 +47,8 @@ def answers_for(item):
 def test_assignment_snapshot_and_no_answer_leak(client):
     one, two = assign(client, ('a', 'b'))['created']
     assert one['url'] != two['url']
+    report = client.get('/api/governance/admin/report').json()
+    assert next(a for a in report['assignments'] if a['id'] == one['id'])['url'] == one['url']
     quiz = client.get('/api/governance/quiz', headers=auth(one))
     assert quiz.headers['cache-control'] == 'no-store'
     assert len(quiz.json()['questions']) == 12
