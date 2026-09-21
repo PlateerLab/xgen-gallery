@@ -61,7 +61,7 @@ export const BLOCKED_BOTS = [
  */
 // /downloads/ 는 소개서 PDF — 서명 링크로만 열리므로(middleware) 크롤러가 긁어도
 // 403만 받는다. 크롤 예산을 낭비하지 않도록 애초에 막아둔다.
-const PRIVATE_PATHS = ["/admin/", "/qa-console/", "/downloads/"];
+const PRIVATE_PATHS = ["/admin/", "/qa-console/", "/downloads/", "/training/"];
 
 export default function robots(): MetadataRoute.Robots {
     return {

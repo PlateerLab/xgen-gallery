@@ -57,6 +57,7 @@ services:
       SYNAPTIC_DB: /tmp/synaptic.db
       # 블로그 조회수 DB — 볼륨(views_data)에 두어 재빌드에도 값 유지
       VIEWS_DB: /data/views.db
+      GOVERNANCE_DB: /data/governance.db
       # Embeddings (Qwen vLLM by default, no auth).
       SYNAPTIC_EMBED_URL: "${SYNAPTIC_EMBED_URL:-}"
       SYNAPTIC_EMBED_MODEL: "${SYNAPTIC_EMBED_MODEL:-default}"

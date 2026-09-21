@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { governanceCallback } from "@/lib/governance/auth";
 
 /**
  * Decap CMS GitHub OAuth — 2단계: code를 access_token으로 교환하고,
@@ -10,6 +11,9 @@ export const dynamic = "force-dynamic";
 const PUBLIC_OAUTH_CLIENT_ID = "Ov23liv3gveHfTPsLH2Z";
 
 export async function GET(req: NextRequest) {
+    if (req.nextUrl.searchParams.get("state")?.startsWith("governance_")) {
+        return governanceCallback(req);
+    }
     const code = new URL(req.url).searchParams.get("code");
     const clientId =
         process.env.GITHUB_OAUTH_CLIENT_ID || PUBLIC_OAUTH_CLIENT_ID;

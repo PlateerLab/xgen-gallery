@@ -42,3 +42,8 @@ frontend/.npminstall.log
 
 # 에디터 개인 설정 — PC마다 달라 공유하지 않는다
 .vscode/
+
+# 내부 교육 자료·정답지 — 공개 Git 저장소에 게시하지 않는다.
+/backend/data/governance-questions.json
+/backend/data/governance-training.mp4
+/backend/data/governance-training.pptx

@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
     },
     async headers() {
         return [
+            {
+                source: '/training/:path*',
+                headers: [
+                    { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive, nosnippet' },
+                    { key: 'Referrer-Policy', value: 'no-referrer' },
+                    { key: 'Cache-Control', value: 'no-store' },
+                ],
+            },
             // 내부용 QA 콘솔 — 색인 금지. robots.txt는 "예의 바른" 봇만 막으므로
             // 헤더로도 못 박는다(robots.txt를 무시하고 크롤한 경우에도 색인 제외).
             {

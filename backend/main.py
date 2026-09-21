@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from routers import contextifier, doc2chunk, f2a, googer, views
+from routers import contextifier, doc2chunk, f2a, googer, views, governance
 from mcp_bridge import bridge
 from mcp_servers import MCP_SERVERS
 
@@ -36,6 +36,7 @@ app.include_router(doc2chunk.router, prefix="/api/demo/doc2chunk")
 app.include_router(f2a.router, prefix="/api/demo/f2a")
 app.include_router(googer.router, prefix="/api/demo/googer")
 app.include_router(views.router, prefix="/api/views")
+app.include_router(governance.router, prefix="/api/governance")
 
 
 # ── Generic MCP bridge (libraries with native MCP servers) ──────────────────
