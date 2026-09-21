@@ -85,6 +85,7 @@ export const LAB_MEMBERS: LabMember[] = [
         roleEn: "Architecture Engineering",
         group: "architecture",
         slug: "parkyewon",
+        blogAuthor: "박예원",
     },
     {
         name: "채희철",
