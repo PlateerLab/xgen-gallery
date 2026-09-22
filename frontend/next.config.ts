@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
     },
     async headers() {
         return [
+            // 고객 공유용 비노출 PDF — 메뉴·사이트맵에 등록하지 않는다.
+            {
+                source: '/customer-share/:path*',
+                headers: [
+                    { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive, nosnippet' },
+                    { key: 'Referrer-Policy', value: 'no-referrer' },
+                ],
+            },
             {
                 source: '/training/:path*',
                 headers: [
