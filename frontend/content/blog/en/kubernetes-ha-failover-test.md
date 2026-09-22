@@ -2,12 +2,17 @@
 title: "Kubernetes Three-Node HA Setup and Failover Testing"
 description: "Testing pod recovery in a three-node K3s cluster: local-path volume constraints, migration to shared storage, recovery results, and validation limits."
 date: "2026-09-21"
+cover: /blog/kubernetes-ha-failover-test-en.svg
+thumb: /blog/kubernetes-ha-failover-test-en-thumb.svg
 author: "박예원"
 authorGithub: "yewon4540"
 category: "Tech Note"
 tags: ["Kubernetes", "K3s", "HA", "Failover", "PersistentVolume", "NFS"]
 draft: false
+summary: "A three-node Kubernetes cluster can retain control-plane quorum while an application still fails to recover when its data is tied to a local-path PV on one node. This field test follows the move to shared storage, a dedicated provisioner, persistence checks after restart, an observed recovery time of about 81 seconds, and the failure modes that remain outside the validated scope."
 ---
+
+> **Editor's note · B2B adoption perspective** — High availability is not guaranteed by node count alone. A customer needs to know whether a workload can restart elsewhere with its real data, whether configuration survives recovery, and whether user-visible interruption stays within the agreed target—not only whether the control plane remains alive. This article turns a “three-node” specification into operating criteria for data access, configuration persistence, and recovery time.
 
 We stopped one node in a three-node Kubernetes HA environment built with K3s and examined how its pod recovered. A pod using a local-path volume remained Pending because the volume was tied to a specific node. In the final configuration using shared storage, the pod became Ready on another node in approximately 81 seconds. This article covers the storage conditions and failover checks that the results highlight when planning an HA setup.
 
@@ -158,3 +163,19 @@ This validation revealed conditions that node count alone cannot establish. With
 The experience showed that an HA review needs to connect cluster state management, workload placement, data access, and configuration persistence after recovery.
 
 Further validation should cover failures of shared storage itself, the external request path, and recovery behavior for each database. Separating what has been confirmed from what remains untested makes it easier to explain precisely which failures a production environment can handle.
+
+---
+
+## Agree on the recovery boundary before applying this to a customer environment
+
+In a production customer environment, “the pod restarted after one node stopped” is rarely a sufficient completion criterion. The failure boundary must be agreed across the full service path, including shared storage, databases, external entry points, sessions, and background jobs.
+
+A PoC and production-readiness review should examine these criteria together:
+
+- **Failure scope** — Which scenarios were tested: node shutdown, network partition, or storage failure?
+- **Data continuity** — Can the rescheduled workload read existing data and safely write new data?
+- **Service recovery time** — How long until an external user receives a normal response, not merely until the pod becomes Ready?
+- **Configuration persistence** — Do StorageClass and provisioner settings remain intact after node and cluster restarts?
+- **Remaining single points of failure** — Which components, such as NFS, databases, or load balancers, are not yet redundant?
+
+The deliverable from an HA test should therefore be an operating baseline that records tested and excluded failures, observed recovery time, and data-validation results—not a single pass or fail. That gives the customer and supplier a shared definition of the availability they are committing to.
