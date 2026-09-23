@@ -3,12 +3,12 @@ title: "온톨로지 빌드·검색 개선 대장정 2편 — 여덟 번의 탐�
 cover: "/blog/ontology-journey-12-search-fusion-operations.svg"
 thumb: "/blog/ontology-journey-12-search-fusion-operations-thumb.svg"
 description: "반복 LLM 탐색을 그래프·벡터 검색의 한 번짜리 융합으로 바꾸고, 기준 저장소와 증분 갱신 구조를 운영 가능한 형태로 정리한 과정입니다."
-date: "2026-09-22"
+date: "2026-09-23"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
 tags: ["온톨로지", "GraphRAG", "하이브리드 검색", "증분 처리", "XGEN"]
-draft: true
+draft: false
 summary: "그래프 검색과 벡터 검색은 경쟁 관계가 아니라 서로 다른 질문을 담당하는 채널입니다. 최대 여덟 번 반복하던 LLM 도구 탐색을 클래스 열거·1홉 관계·엔티티 확장·벡터 검색의 한 번짜리 융합으로 바꾼 과정, PostgreSQL을 그래프 정본으로 선택한 이유, 증분 처리처럼 보이지만 전체 데이터를 다시 읽던 병목과 현재 기술 구성을 설명합니다."
 faq:
   - q: "그래프 검색은 어떤 질문에서 벡터 검색보다 유리한가요?"

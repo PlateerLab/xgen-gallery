@@ -4,12 +4,12 @@ titleSeo: "Graph and vector retrieval in one fusion"
 cover: "/blog/ontology-journey-12-search-fusion-operations-en.svg"
 thumb: "/blog/ontology-journey-12-search-fusion-operations-en-thumb.svg"
 description: "How we replaced repeated LLM exploration with one graph-vector fusion and made the canonical store and incremental refresh operational."
-date: "2026-09-22"
+date: "2026-09-23"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
 tags: ["Ontology", "GraphRAG", "Hybrid retrieval", "Incremental indexing", "XGEN"]
-draft: true
+draft: false
 summary: "Graph and vector retrieval are not competing approaches; they serve different questions. This article covers the move from an eight-turn LLM tool loop to one fusion of class enumeration, one-hop relations, entity expansion, and vector retrieval; why PostgreSQL became the graph's system of record; and how supposedly incremental processing was still scanning the full collection."
 faq:
   - q: "When is graph retrieval better than vector retrieval?"
