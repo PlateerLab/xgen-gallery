@@ -10,7 +10,7 @@ author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"
 tags: ["문서화", "위키", "Markdown", "다국어", "운영"]
-draft: false
+draft: true
 ---
 
 ## 하나의 마크다운 원본으로 웹 위키와 Word 문서, 그리고 한글·영문까지 함께 관리하기
