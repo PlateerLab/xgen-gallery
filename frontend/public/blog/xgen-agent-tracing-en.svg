@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="AI agent node tracing">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f5fbf6"/><stop offset="1" stop-color="#e4f4e8"/></linearGradient><linearGradient id="badge" x2="1" y2="1"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/><circle cx="1080" cy="90" r="220" fill="#22c55e" opacity=".06"/><circle cx="140" cy="620" r="180" fill="#15803d" opacity=".05"/>
+<g font-family="Pretendard, 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<text x="80" y="108" font-size="24" font-weight="700" fill="#15803d">TECH NOTE · AGENT OBSERVABILITY</text>
+<text x="80" y="295" font-size="44" font-weight="800" fill="#0f172a">See inside</text>
+<text x="80" y="358" font-size="44" font-weight="800" fill="#15803d">every agent node</text>
+<text x="80" y="435" font-size="21" fill="#15803d">OpenTelemetry · Grafana Tempo</text>
+<text x="80" y="480" font-size="18" fill="#475569">Locate failures. Connect the evidence.</text>
+<g transform="translate(595 155)" font-size="19" font-weight="700">
+<path d="M28 62v93h45m30 54v84h37m-37-45h37m-37 90h37" fill="none" stroke="#86b99b" stroke-width="3"/>
+<rect width="475" height="62" rx="16" fill="#15803d"/><text x="24" y="39" fill="white">01  workflow.execute</text>
+<rect x="73" y="125" width="402" height="62" rx="16" fill="white" stroke="#86b99b"/><text x="95" y="164" fill="#14532d">02  node.execute</text>
+<g fill="white" stroke="#86b99b"><rect x="140" y="225" width="335" height="44" rx="10"/><rect x="140" y="280" width="335" height="44" rx="10"/><rect x="140" y="335" width="335" height="44" rx="10"/></g>
+<g fill="#14532d"><text x="163" y="254">03  chat · model</text><text x="163" y="309">04  execute_tool</text><text x="163" y="364">05  retrieval.search</text></g>
+<text x="0" y="430" font-size="16" fill="#475569">Concept diagram · not a measured trace</text></g>
+</g></svg>
