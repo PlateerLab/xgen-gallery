@@ -1,12 +1,12 @@
 ---
 title: "서비스 관측의 해상도, AI 에이전트 노드까지 선명해지다"
 description: "서비스 단위 관측으로는 보이지 않던 병목과 실패 지점을 에이전트 노드 단위까지 끌어올려 추적하고, 대시보드와 경보로 바로 확인·감지할 수 있는 형태까지 만든 과정을 정리합니다."
-date: "2026-09-20"
+date: "2026-09-29"
 author: "전인수"
 authorGithub: "mumberrymountain"
 category: "Tech Note"
 tags: ["OpenTelemetry", "Grafana Tempo", "Observability", "AI Agent", "XGEN"]
-draft: true
+draft: false
 cover: /blog/xgen-agent-tracing.svg
 thumb: /blog/xgen-agent-tracing-thumb.svg
 ---

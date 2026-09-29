@@ -1,12 +1,12 @@
 ---
 title: "Sharper service observability, down to each AI agent node"
 description: "Extending service-level tracing to AI agent nodes, then connecting execution evidence to Grafana Tempo dashboards and alerts."
-date: "2026-09-20"
+date: "2026-09-29"
 author: "Insoo Jeon"
 authorGithub: "mumberrymountain"
 category: "Tech Note"
 tags: ["OpenTelemetry", "Grafana Tempo", "Observability", "AI Agent", "XGEN"]
-draft: true
+draft: false
 cover: /blog/xgen-agent-tracing-en.svg
 thumb: /blog/xgen-agent-tracing-en-thumb.svg
 ---
