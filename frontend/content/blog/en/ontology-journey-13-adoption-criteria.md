@@ -4,12 +4,12 @@ titleSeo: "Ontology limits, measurement, and adoption criteria"
 cover: "/blog/ontology-journey-13-adoption-criteria-en.svg"
 thumb: "/blog/ontology-journey-13-adoption-criteria-en-thumb.svg"
 description: "The current limits and open choices—delete and update, typed values, provenance, namesakes, and evaluation—turned into B2B adoption criteria."
-date: "2026-09-29"
+date: "2026-09-30"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
 tags: ["Ontology", "Knowledge graph", "PoC", "Evaluation", "Governance"]
-draft: true
+draft: false
 summary: "An operational ontology requires clarity not only about implemented features but also unsupported scope and unresolved choices. This article covers deletion and updates, typed values and units, edge-level provenance, identity, explainability, and missing evaluation, then reframes decisions about seed schemas, reasoning, real-time scope, and relation extraction as PoC acceptance criteria."
 faq:
   - q: "Do document deletion and updates immediately change the graph today?"

@@ -3,12 +3,12 @@ title: "온톨로지 빌드·검색 개선 대장정 3편 — 도입 전에 정�
 cover: "/blog/ontology-journey-13-adoption-criteria.svg"
 thumb: "/blog/ontology-journey-13-adoption-criteria-thumb.svg"
 description: "삭제·수정 반영, 값의 타입, 출처와 동명이인, 평가 체계 등 현재 한계와 미결정 사항을 B2B 도입 기준으로 정리합니다."
-date: "2026-09-29"
+date: "2026-09-30"
 author: "김진수"
 authorGithub: "jinsoo96"
 category: "Tech Note"
 tags: ["온톨로지", "지식 그래프", "PoC", "평가", "거버넌스"]
-draft: true
+draft: false
 summary: "운영 가능한 온톨로지를 만들려면 구현된 기능뿐 아니라 아직 지원하지 않는 범위와 결정하지 못한 선택지를 드러내야 합니다. 삭제·갱신, 값의 타입과 단위, 관계 단위 출처, 동명이인, 설명 가능성과 측정 체계의 한계를 살펴보고, 시드 스키마·추론·실시간성·관계 추출 시점 같은 갈림길을 고객의 PoC 수용 기준으로 바꾸는 방법을 제안합니다."
 faq:
   - q: "현재 문서를 삭제하거나 수정하면 그래프에 바로 반영되나요?"
