@@ -9,7 +9,7 @@ author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"
 tags: ["Documentation", "Wiki", "Markdown", "Multilingual", "Operations"]
-draft: true
+draft: false
 ---
 
 ## Managing a web wiki, Word documents, and both Korean and English from one Markdown source

@@ -9,7 +9,7 @@ author: "sooanc"
 authorGithub: "sooanc"
 category: "Tech Note"
 tags: ["Blog", "Authoring", "Open Authoring"]
-draft: true
+draft: false
 ---
 
 ## Running a blog and building the structure a blog runs on are different things
