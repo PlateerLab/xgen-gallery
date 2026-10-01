@@ -253,7 +253,7 @@ export async function NewsletterIssuePageContent({
 
     return (
         <>
-            <SiteNav overlay={!emailPattern} />
+            <SiteNav overlay />
             <JsonLd
                 data={[
                     breadcrumbLd([
@@ -268,47 +268,23 @@ export async function NewsletterIssuePageContent({
             />
 
             {/* Hero */}
-            <section
-                className={`relative flex items-center overflow-hidden border-b py-24 md:py-28 ${
-                    emailPattern
-                        ? "min-h-[360px] border-[var(--color-line)] bg-[var(--color-surface-alt)] text-[var(--color-ink)]"
-                        : "min-h-[400px] border-white/10 text-white"
-                }`}
-            >
-                {!emailPattern && <SceneBackground concept="insights" />}
+            <section className="relative flex min-h-[400px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+                <SceneBackground concept="insights" />
                 <div
                     className={`relative mx-auto w-full px-6 pt-16 ${
                         emailPattern ? "max-w-[700px]" : "max-w-3xl"
                     }`}
                 >
-                    <p
-                        className={`text-[15px] font-semibold tracking-tight ${
-                            emailPattern
-                                ? "text-[var(--color-ink-subtle)]"
-                                : "text-[#7dd3fc]"
-                        }`}
-                    >
+                    <p className="text-[15px] font-semibold tracking-tight text-[#7dd3fc]">
                         {t.kicker} · vol.{issue.vol}
                     </p>
                     <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                         {issue.title}
                     </h1>
-                    <p
-                        className={`mt-5 text-lg leading-relaxed ${
-                            emailPattern
-                                ? "text-[var(--color-ink-muted)]"
-                                : "text-white/75"
-                        }`}
-                    >
+                    <p className="mt-5 text-lg leading-relaxed text-white/75">
                         {issue.summary}
                     </p>
-                    <div
-                        className={`mt-6 flex flex-wrap items-center gap-2 text-[14px] ${
-                            emailPattern
-                                ? "text-[var(--color-ink-subtle)]"
-                                : "text-white/55"
-                        }`}
-                    >
+                    <div className="mt-6 flex flex-wrap items-center gap-2 text-[14px] text-white/55">
                         <time dateTime={issue.date}>{fmtDate(issue.date)}</time>
                         <span>·</span>
                         <span>{t.author}</span>
