@@ -330,6 +330,9 @@ export async function NewsletterIssuePageContent({
                                 <div className="mt-3">
                                     <Paragraphs body={r.body} />
                                 </div>
+                                {r.figures?.map((figure) => (
+                                    <FigureBlock key={figure.src} figure={figure} />
+                                ))}
                             </div>
                         ))}
                     </div>
@@ -361,7 +364,10 @@ export async function NewsletterIssuePageContent({
                 {/* 숫자로 보는 2주 */}
                 {issue.stats && (
                     <section className="pt-14">
-                        <SectionHead label="Numbers" title={t.statsTitle} />
+                        <SectionHead
+                            label="Numbers"
+                            title={s?.statsTitle ?? t.statsTitle}
+                        />
                         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
                             <div className="grid gap-6 sm:grid-cols-3">
                                 {issue.stats.items.map((it) => (
