@@ -79,9 +79,16 @@ function FigureBlock({
     figure: Figure;
     compact?: boolean;
 }) {
+    const small = compact && figure.displaySize === "small";
     return (
         <figure
-            className={`mt-5 ${compact ? "mx-auto w-full sm:w-4/5 sm:max-w-[512px]" : ""}`}
+            className={`mt-5 ${
+                small
+                    ? "mx-auto w-3/5 sm:w-[48%] sm:max-w-[307px]"
+                    : compact
+                      ? "mx-auto w-full sm:w-4/5 sm:max-w-[512px]"
+                      : ""
+            }`}
         >
             <Image
                 src={figure.src}
@@ -89,7 +96,9 @@ function FigureBlock({
                 width={figure.width}
                 height={figure.height}
                 sizes={
-                    compact
+                    small
+                        ? "(max-width: 640px) 60vw, 307px"
+                        : compact
                         ? "(max-width: 640px) calc(100vw - 48px), 512px"
                         : "(max-width: 768px) 100vw, 768px"
                 }

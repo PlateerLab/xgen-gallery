@@ -24,6 +24,8 @@ export interface Figure {
     width: number;
     height: number;
     caption: string;
+    /** 세로형 캡처처럼 본문 균형상 더 작게 보여야 하는 이미지. */
+    displaySize?: "small";
 }
 
 /**
@@ -193,6 +195,7 @@ const vol5: Issue = {
           src: "/newsletter/vol-5/agent-pin.jpg",
           width: 760,
           height: 918,
+          displaySize: "small",
           caption:
             "[Agent 목록]에서 에이전트의 메뉴를 열면 맨 위에 [고정]이 있습니다. 누르면 지금 상태 그대로 ‘(고정 N)’ 에이전트가 새로 생깁니다. (개발 환경 화면)",
         },
