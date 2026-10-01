@@ -106,10 +106,12 @@ function SectionHead({
     label,
     title,
     desc,
+    accent = false,
 }: {
     label: string;
     title: string;
     desc?: string;
+    accent?: boolean;
 }) {
     // 라벨은 기본이 영문 모노 키커다. 원문 메일의 한글 키커를 그대로 쓰는 호가
     // 있어, 비ASCII가 섞이면 본문 서체·자간으로 떨어뜨린다.
@@ -125,7 +127,11 @@ function SectionHead({
             >
                 {label}
             </p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)]">
+            <h2
+                className={`mt-2 text-2xl font-bold tracking-tight ${
+                    accent ? "text-[#00adee]" : "text-[var(--color-ink)]"
+                }`}
+            >
                 {title}
             </h2>
             {desc && (
@@ -334,6 +340,7 @@ export async function NewsletterIssuePageContent({
                         label={s?.releasesLabel ?? "Release"}
                         title={s?.releasesTitle ?? t.releasesTitle}
                         desc={s?.releasesDesc ?? t.releasesDesc}
+                        accent={emailPattern}
                     />
                     <div className={emailPattern ? "divide-y divide-[var(--color-line)]" : "space-y-4"}>
                         {issue.releases.map((r) => (
@@ -392,6 +399,7 @@ export async function NewsletterIssuePageContent({
                         <SectionHead
                             label="Numbers"
                             title={s?.statsTitle ?? t.statsTitle}
+                            accent={emailPattern}
                         />
                         <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
                             <div className="grid gap-6 sm:grid-cols-3">
@@ -433,6 +441,7 @@ export async function NewsletterIssuePageContent({
                             label="Screens"
                             title={s?.figuresTitle ?? t.figuresTitle}
                             desc={s?.figuresDesc}
+                            accent={emailPattern}
                         />
                         <div className="space-y-8">
                             {issue.figures.map((f) => (
@@ -448,6 +457,7 @@ export async function NewsletterIssuePageContent({
                         label="In progress"
                         title={t.progressTitle}
                         desc={s?.progressDesc ?? t.progressDesc}
+                        accent={emailPattern}
                     />
                     <div className={emailPattern ? "divide-y divide-[var(--color-line)]" : "space-y-4"}>
                         {issue.inProgress.map((p) => (
@@ -470,7 +480,11 @@ export async function NewsletterIssuePageContent({
                                 </div>
                                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-[var(--color-surface-alt)]">
                                     <div
-                                        className="h-full rounded-full bg-gradient-to-r from-[#2f7bff] to-[#7c5cff]"
+                                        className={`h-full rounded-full ${
+                                            emailPattern
+                                                ? "bg-[#00adee]"
+                                                : "bg-gradient-to-r from-[#2f7bff] to-[#7c5cff]"
+                                        }`}
                                         style={{ width: `${p.percent}%` }}
                                     />
                                 </div>
@@ -489,6 +503,7 @@ export async function NewsletterIssuePageContent({
                         label="News"
                         title={t.newsTitle}
                         desc={t.newsDesc}
+                        accent={emailPattern}
                     />
                     <div className="divide-y divide-[var(--color-line)] rounded-2xl border border-[var(--color-line)] bg-white">
                         {issue.news.map((it) => (
@@ -499,7 +514,11 @@ export async function NewsletterIssuePageContent({
 
                 {/* 읽을거리 */}
                 <section className="pt-14">
-                    <SectionHead label="Reading" title={t.readingTitle} />
+                    <SectionHead
+                        label="Reading"
+                        title={t.readingTitle}
+                        accent={emailPattern}
+                    />
                     <div className="divide-y divide-[var(--color-line)] rounded-2xl border border-[var(--color-line)] bg-white">
                         {issue.reading.map((it) => (
                             <LinkRow key={it.n} item={it} />
@@ -513,6 +532,7 @@ export async function NewsletterIssuePageContent({
                         label="Papers"
                         title={t.papersTitle}
                         desc={s?.papersDesc ?? t.papersDesc}
+                        accent={emailPattern}
                     />
                     <div className="space-y-4">
                         {issue.papers.map((p) => (
@@ -555,6 +575,7 @@ export async function NewsletterIssuePageContent({
                             label="Coming up"
                             title={s?.upcomingTitle ?? t.upcomingTitle}
                             desc={s?.upcomingDesc ?? t.upcomingDesc}
+                            accent={emailPattern}
                         />
                         <div className="space-y-4">
                             {issue.upcoming.map((u) => (
