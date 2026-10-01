@@ -72,15 +72,27 @@ function Paragraphs({
 }
 
 /** 원본 메일에 실린 화면 캡처 — 캡션을 아래에 단다. */
-function FigureBlock({ figure }: { figure: Figure }) {
+function FigureBlock({
+    figure,
+    compact = false,
+}: {
+    figure: Figure;
+    compact?: boolean;
+}) {
     return (
-        <figure className="mt-5">
+        <figure
+            className={`mt-5 ${compact ? "mx-auto w-full sm:w-4/5 sm:max-w-[512px]" : ""}`}
+        >
             <Image
                 src={figure.src}
                 alt={figure.caption}
                 width={figure.width}
                 height={figure.height}
-                sizes="(max-width: 768px) 100vw, 768px"
+                sizes={
+                    compact
+                        ? "(max-width: 640px) calc(100vw - 48px), 512px"
+                        : "(max-width: 768px) 100vw, 768px"
+                }
                 className="w-full rounded-xl border border-[var(--color-line)]"
             />
             <figcaption className="mt-2.5 text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">
@@ -235,12 +247,13 @@ export async function NewsletterIssuePageContent({
     const { slug } = await params;
     const issue = getIssueFor(slug, locale);
     if (!issue) notFound();
+    const emailPattern = issue.vol === 5;
     // 원문 메일이 그 호에만 쓴 섹션 머리말 — 없으면 화면 기본 문구를 쓴다.
     const s = issue.sections;
 
     return (
         <>
-            <SiteNav overlay />
+            <SiteNav overlay={!emailPattern} />
             <JsonLd
                 data={[
                     breadcrumbLd([
@@ -255,19 +268,47 @@ export async function NewsletterIssuePageContent({
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[400px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
-                <SceneBackground concept="insights" />
-                <div className="relative mx-auto w-full max-w-3xl px-6 pt-16">
-                    <p className="text-[15px] font-semibold tracking-tight text-[#7dd3fc]">
+            <section
+                className={`relative flex items-center overflow-hidden border-b py-24 md:py-28 ${
+                    emailPattern
+                        ? "min-h-[360px] border-[var(--color-line)] bg-[var(--color-surface-alt)] text-[var(--color-ink)]"
+                        : "min-h-[400px] border-white/10 text-white"
+                }`}
+            >
+                {!emailPattern && <SceneBackground concept="insights" />}
+                <div
+                    className={`relative mx-auto w-full px-6 pt-16 ${
+                        emailPattern ? "max-w-[700px]" : "max-w-3xl"
+                    }`}
+                >
+                    <p
+                        className={`text-[15px] font-semibold tracking-tight ${
+                            emailPattern
+                                ? "text-[var(--color-ink-subtle)]"
+                                : "text-[#7dd3fc]"
+                        }`}
+                    >
                         {t.kicker} · vol.{issue.vol}
                     </p>
                     <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                         {issue.title}
                     </h1>
-                    <p className="mt-5 text-lg leading-relaxed text-white/75">
+                    <p
+                        className={`mt-5 text-lg leading-relaxed ${
+                            emailPattern
+                                ? "text-[var(--color-ink-muted)]"
+                                : "text-white/75"
+                        }`}
+                    >
                         {issue.summary}
                     </p>
-                    <div className="mt-6 flex flex-wrap items-center gap-2 text-[14px] text-white/55">
+                    <div
+                        className={`mt-6 flex flex-wrap items-center gap-2 text-[14px] ${
+                            emailPattern
+                                ? "text-[var(--color-ink-subtle)]"
+                                : "text-white/55"
+                        }`}
+                    >
                         <time dateTime={issue.date}>{fmtDate(issue.date)}</time>
                         <span>·</span>
                         <span>{t.author}</span>
@@ -277,7 +318,11 @@ export async function NewsletterIssuePageContent({
                 </div>
             </section>
 
-            <main className="mx-auto max-w-3xl px-6 py-16 md:py-20">
+            <main
+                className={`mx-auto px-6 py-16 md:py-20 ${
+                    emailPattern ? "max-w-[700px]" : "max-w-3xl"
+                }`}
+            >
                 {/* 뉴스레터 소개 — 발행 콘텐츠를 그대로 싣되, 이 글이 무엇인지 먼저 안내 */}
                 <div className="mb-12 rounded-2xl border border-[#cfe0ff] bg-[#f1f6ff] p-6">
                     <p className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.16em] text-[#2461d8]">
@@ -314,11 +359,15 @@ export async function NewsletterIssuePageContent({
                         title={s?.releasesTitle ?? t.releasesTitle}
                         desc={s?.releasesDesc ?? t.releasesDesc}
                     />
-                    <div className="space-y-4">
+                    <div className={emailPattern ? "divide-y divide-[var(--color-line)]" : "space-y-4"}>
                         {issue.releases.map((r) => (
                             <div
                                 key={r.title}
-                                className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                className={
+                                    emailPattern
+                                        ? "py-6 first:pt-0"
+                                        : "rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                }
                             >
                                 <div className="flex flex-wrap items-center gap-2.5">
                                     <BadgeChip badge={r.badge} en={en} />
@@ -331,7 +380,7 @@ export async function NewsletterIssuePageContent({
                                     <Paragraphs body={r.body} />
                                 </div>
                                 {r.figures?.map((figure) => (
-                                    <FigureBlock key={figure.src} figure={figure} />
+                                    <FigureBlock key={figure.src} figure={figure} compact={emailPattern} />
                                 ))}
                             </div>
                         ))}
@@ -411,7 +460,7 @@ export async function NewsletterIssuePageContent({
                         />
                         <div className="space-y-8">
                             {issue.figures.map((f) => (
-                                <FigureBlock key={f.src} figure={f} />
+                                <FigureBlock key={f.src} figure={f} compact={emailPattern} />
                             ))}
                         </div>
                     </section>
@@ -424,11 +473,15 @@ export async function NewsletterIssuePageContent({
                         title={t.progressTitle}
                         desc={s?.progressDesc ?? t.progressDesc}
                     />
-                    <div className="space-y-4">
+                    <div className={emailPattern ? "divide-y divide-[var(--color-line)]" : "space-y-4"}>
                         {issue.inProgress.map((p) => (
                             <div
                                 key={p.title}
-                                className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                className={
+                                    emailPattern
+                                        ? "py-6 first:pt-0"
+                                        : "rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                }
                             >
                                 <div className="flex items-center gap-2.5">
                                     <BadgeChip badge={p.badge} en={en} />
@@ -448,7 +501,7 @@ export async function NewsletterIssuePageContent({
                                 <div className="mt-3.5">
                                     <Paragraphs body={p.body} />
                                 </div>
-                                {p.figure && <FigureBlock figure={p.figure} />}
+                                {p.figure && <FigureBlock figure={p.figure} compact={emailPattern} />}
                             </div>
                         ))}
                     </div>
@@ -562,7 +615,7 @@ export async function NewsletterIssuePageContent({
                                             className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]"
                                         />
                                     </div>
-                                    {u.figure && <FigureBlock figure={u.figure} />}
+                                    {u.figure && <FigureBlock figure={u.figure} compact={emailPattern} />}
                                     {u.link && (
                                         <a
                                             href={u.link.url}
