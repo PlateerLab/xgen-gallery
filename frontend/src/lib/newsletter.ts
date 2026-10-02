@@ -133,7 +133,7 @@ export interface Issue {
 const vol5: Issue = {
   slug: "vol-5",
   vol: 5,
-  date: "2026-09-30",
+  date: "2026-10-01",
   title: "XGEN 뉴스레터 vol.5",
   summary:
     "너희는 전혀 스윙하고 있지 않아. 좋은 모델만으로는 일이 끝까지 되지 않습니다. 자체 개발한 하네스 이야기와 9월 30일 운영 릴리즈, 판단 전용 모델 Jev.",
