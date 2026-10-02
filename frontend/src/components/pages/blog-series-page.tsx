@@ -136,14 +136,14 @@ export async function SeriesPageContent({
                                 >
                                     {i + 1}
                                 </span>
-                                <div className="relative hidden aspect-[16/9] w-[168px] flex-none overflow-hidden rounded-xl sm:block">
+                                <div className="relative hidden aspect-[16/9] w-[168px] flex-none self-center overflow-hidden rounded-xl p-1 sm:block">
                                     <Thumb
                                         post={p}
                                         className={cn(
-                                            "transition duration-500",
+                                            "object-contain transition duration-500",
                                             upcoming
                                                 ? "opacity-45 grayscale"
-                                                : "group-hover:scale-[1.04]",
+                                                : "",
                                         )}
                                     />
                                 </div>
