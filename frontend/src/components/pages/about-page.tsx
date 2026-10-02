@@ -283,7 +283,7 @@ const COPY: Record<Locale, AboutCopy> = {
         milestones: {
             title: "걸어온 길",
             items: [
-                { when: "2026.07", what: "XGEN, GS(Good Software) 인증 1등급 획득" },
+                { when: "2026.07", what: "XGEN 1.0, GS(Good Software) 인증 1등급 획득" },
                 { when: "2026.06", what: "AI 신뢰성 인증 AI-MASTER 인증 시험 착수" },
                 {
                     when: "2025",
@@ -474,7 +474,7 @@ const COPY: Record<Locale, AboutCopy> = {
             items: [
                 {
                     when: "2026.07",
-                    what: "XGEN awarded Grade 1 GS (Good Software) certification",
+                    what: "XGEN 1.0 awarded Grade 1 GS (Good Software) certification",
                 },
                 {
                     when: "2026.06",

@@ -22,10 +22,10 @@ const T: Record<
 > = {
     ko: {
         badgeDone: "획득 완료",
-        gsTitle: "GS인증 1등급",
+        gsTitle: "XGEN 1.0 · GS인증 1등급",
         gsSub: "Good Software Certification · 최고 등급",
-        gsAlt: "GS(Good Software) 인증 1등급 마크",
-        gsBody: "XGEN이 국가 공인 소프트웨어 품질인증 GS(Good Software) 1등급을 획득했습니다. 제3자 시험기관(TTA)이 기능성·신뢰성·사용성 등 품질 전반을 시험해 최고 등급으로 검증했습니다.",
+        gsAlt: "XGEN 1.0 GS(Good Software) 인증 1등급 마크",
+        gsBody: "XGEN 1.0이 국가 공인 소프트웨어 품질인증 GS(Good Software) 1등급을 획득했습니다. 제3자 시험기관(TTA)이 기능성·신뢰성·사용성 등 품질 전반을 시험해 최고 등급으로 검증했습니다.",
         gsChips: ["국가 공인 인증", "제3자 시험 · TTA", "최고 등급 · 1등급"],
         journeyTitle: "인증 여정 기록",
         badgeInProgress: "인증 시험 진행 중",
@@ -39,10 +39,10 @@ const T: Record<
     },
     en: {
         badgeDone: "Awarded",
-        gsTitle: "GS certification, Grade 1",
+        gsTitle: "XGEN 1.0 · GS certification, Grade 1",
         gsSub: "Good Software Certification · highest grade",
-        gsAlt: "Grade 1 GS (Good Software) certification mark",
-        gsBody: "XGEN has been awarded Grade 1 in GS (Good Software), Korea's national software quality certification. TTA, an accredited third-party laboratory, tested functionality, reliability, usability, and overall quality, and verified it at the highest grade.",
+        gsAlt: "XGEN 1.0 Grade 1 GS (Good Software) certification mark",
+        gsBody: "XGEN 1.0 has been awarded Grade 1 in GS (Good Software), Korea's national software quality certification. TTA, an accredited third-party laboratory, tested functionality, reliability, usability, and overall quality, and verified it at the highest grade.",
         gsChips: ["National certification", "Third-party testing · TTA", "Highest grade · Grade 1"],
         journeyTitle: "The certification journey",
         badgeInProgress: "Certification in progress",

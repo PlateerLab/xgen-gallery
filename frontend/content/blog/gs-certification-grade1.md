@@ -1,8 +1,8 @@
 ---
-title: "XGEN, GS 인증 1등급을 획득했습니다"
-titleEn: "XGEN has been awarded Grade 1 GS certification"
-description: "XGEN Agentic AI Platform이 국가 공인 소프트웨어 품질인증 GS 1등급(최고 등급)을 획득했습니다. 인증의 의미와 공공 조달·입찰에서의 효과를 정리합니다."
-descriptionEn: "The XGEN Agentic AI Platform passed accredited third-party testing against the ISO/IEC 25000 standards and received Grade 1 — the highest grade in Korea's national software quality certification."
+title: "XGEN 1.0, GS 인증 1등급을 획득했습니다"
+titleEn: "XGEN 1.0 has been awarded Grade 1 GS certification"
+description: "XGEN 1.0 Agentic AI Platform이 국가 공인 소프트웨어 품질인증 GS 1등급(최고 등급)을 획득했습니다. 인증의 의미와 공공 조달·입찰에서의 효과를 정리합니다."
+descriptionEn: "The XGEN 1.0 Agentic AI Platform passed accredited third-party testing against the ISO/IEC 25000 standards and received Grade 1 — the highest grade in Korea's national software quality certification."
 date: "2026-07-06"
 cover: /blog/gs-certification-grade1.svg
 thumb: /blog/gs-certification-grade1-thumb.svg
@@ -12,7 +12,7 @@ tags: ["GS인증", "소프트웨어 품질", "1등급", "XGEN", "Enterprise AI"]
 draft: false
 ---
 
-XGEN Agentic AI Platform이 국가 공인 소프트웨어 품질인증인 **GS(Good Software) 인증 1등급**을 획득했습니다. 2026년 7월 6일 인증심사위원회에서 최고 등급인 1등급으로 확정 통지를 받았습니다.
+XGEN 1.0 Agentic AI Platform이 국가 공인 소프트웨어 품질인증인 **GS(Good Software) 인증 1등급**을 획득했습니다. 2026년 7월 6일 인증심사위원회에서 최고 등급인 1등급으로 확정 통지를 받았습니다.
 
 ## GS 1등급은 무엇을 뜻하나
 

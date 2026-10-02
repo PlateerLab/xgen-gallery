@@ -1,7 +1,7 @@
 ---
-title: "XGEN has been awarded Grade 1 GS certification"
-titleSeo: "XGEN awarded GS certification Grade 1"
-description: "The XGEN Agentic AI Platform received Grade 1 — the top grade in Korea's national software quality certification. What it means, and what it changes."
+title: "XGEN 1.0 has been awarded Grade 1 GS certification"
+titleSeo: "XGEN 1.0 awarded GS certification Grade 1"
+description: "The XGEN 1.0 Agentic AI Platform received Grade 1 — the top grade in Korea's national software quality certification. What it means, and what it changes."
 date: "2026-07-06"
 cover: /blog/gs-certification-grade1.svg
 thumb: /blog/gs-certification-grade1-thumb.svg
@@ -11,7 +11,7 @@ tags: ["GS Certification", "Software quality", "Grade 1", "XGEN", "Enterprise AI
 draft: false
 ---
 
-The XGEN Agentic AI Platform has been awarded **Grade 1 GS (Good Software) certification**, Korea's national software quality certification. The certification review committee confirmed the highest grade on 6 July 2026.
+The XGEN 1.0 Agentic AI Platform has been awarded **Grade 1 GS (Good Software) certification**, Korea's national software quality certification. The certification review committee confirmed the highest grade on 6 July 2026.
 
 ## What Grade 1 means
 

@@ -188,9 +188,9 @@ const FAQ_KO: FaqEntry[] = [
             "네. XGEN은 온프레미스로 구축되어 데이터가 외부로 나가지 않으며, 인터넷과 분리된 망분리·에어갭 환경까지 지원합니다. 모든 AI 모델과 데이터는 내부망에서 운영되고, 인증 게이트웨이·신뢰 경계, 역할·속성 기반 접근제어(RBAC·ABAC), 개인정보(PII) 마스킹, 통합 감사 로그, AI 위험도 등급 등 다층 통제가 전 계층에 적용됩니다.",
     },
     {
-        question: "XGEN이 받은 GS 인증 1등급은 무엇을 의미하나요?",
+        question: "XGEN 1.0이 받은 GS 인증 1등급은 무엇을 의미하나요?",
         answer:
-            "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증으로, 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 기능 적합성·성능 효율성·신뢰성·보안성 등을 시험·평가합니다. 1등급은 그중 최고 등급으로, XGEN Agentic AI Platform의 품질을 벤더의 주장이 아니라 제3자 공인시험으로 검증했다는 뜻입니다. 도입 관점에서는 조달청 우수조달물품 지정 신청 자격, 공공 소프트웨어 사업 분리발주 의무 대상, 중소벤처기업부 우선구매 대상이 되며, 다수 공공 입찰 평가표에서 최근 3년 내 유효한 소프트웨어 인증으로 인정되어 기술 가점을 받을 수 있습니다.",
+            "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증으로, 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 기능 적합성·성능 효율성·신뢰성·보안성 등을 시험·평가합니다. 1등급은 그중 최고 등급으로, XGEN 1.0 Agentic AI Platform의 품질을 벤더의 주장이 아니라 제3자 공인시험으로 검증했다는 뜻입니다. 도입 관점에서는 조달청 우수조달물품 지정 신청 자격, 공공 소프트웨어 사업 발주 시 분리발주 의무 대상, 중소벤처기업부 우선구매 대상이 되며, 다수 공공 입찰 평가표에서 최근 3년 내 유효한 소프트웨어 인증으로 인정되어 기술 가점을 받을 수 있습니다.",
     },
     {
         question: "오픈소스 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
@@ -226,9 +226,9 @@ const FAQ_EN: FaqEntry[] = [
             "Yes. XGEN runs on-premise so data never leaves your environment, and it supports network-separated and air-gapped deployments. All AI models and data stay on the internal network, protected by an authentication gateway and trust boundary, RBAC/ABAC access control, PII masking, unified audit logs, and AI risk-grade policies across every layer.",
     },
     {
-        question: "What does XGEN's GS certification Grade 1 mean?",
+        question: "What does XGEN 1.0's Grade 1 GS certification mean?",
         answer:
-            "GS (Good Software) certification is Korea's national software quality certification, operated by the Ministry of Science and ICT under the Software Promotion Act. Accredited labs test functional suitability, performance efficiency, reliability, and security against the ISO/IEC 25000 series of international standards. Grade 1 is the highest level — meaning XGEN Agentic AI Platform's quality is verified by independent, accredited testing rather than vendor claims. For buyers, it qualifies XGEN for public-procurement programs (Excellent Procurement Product designation, split-order eligibility, priority purchase) and counts as a scored technical credential in many public RFP evaluations.",
+            "GS (Good Software) certification is Korea's national software quality certification, operated by the Ministry of Science and ICT under the Software Promotion Act. Accredited labs test functional suitability, performance efficiency, reliability, and security against the ISO/IEC 25000 series of international standards. Grade 1 is the highest level — meaning XGEN 1.0 Agentic AI Platform's quality is verified by independent, accredited testing rather than vendor claims. For buyers, it qualifies XGEN 1.0 for public-procurement programs (Excellent Procurement Product designation, split-order eligibility, priority purchase) and counts as a scored technical credential in many public RFP evaluations.",
     },
     {
         question: "What are the open-source libraries, and how do they relate to XGEN?",
