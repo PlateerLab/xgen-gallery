@@ -252,30 +252,6 @@ export const TOOLS: Tool[] = [
         language: "TypeScript",
         addedAt: "2026-09-07",
     },
-    {
-        id: "xgen-pdf",
-        repo: "xgen-pdf",
-        name: "XGen PDF",
-        tagline: "fitz-shaped PDF engine on permissive licenses",
-        description:
-            "A PyMuPDF-compatible PDF toolkit built on pdfium — text layout, table extraction, drawings, rendering, and redaction, all under permissive licenses instead of AGPL.",
-        category: "ingestion",
-        install: "pip install xgen-pdf",
-        language: "Python",
-        addedAt: "2026-10-05",
-    },
-    {
-        id: "xgen-agent-runtime-rsi",
-        repo: "xgen-agent-runtime-rsi",
-        name: "XGen Agent Runtime RSI",
-        tagline: "An agent runtime that evolves its own harness",
-        description:
-            "A sibling to XGen Agent Runtime that replays finished turns as simulators — RRSI edits the harness under measurement, Dream-RSI scores candidates without rerunning tools, and only adopted changes carry into the next turn.",
-        category: "agent",
-        install: "pip install xgen-agent-runtime-rsi",
-        language: "Python",
-        addedAt: "2026-10-05",
-    },
 ];
 
 /**

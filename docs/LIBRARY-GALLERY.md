@@ -12,6 +12,9 @@
 1. 저장소 루트에 패키징 선언이 있는가 — `pyproject.toml`, `package.json` 등
 2. 공개 레지스트리에서 판이 실제로 조회되는가 — PyPI · npm
 
+GitHub Releases에 wheel이나 tarball만 올린 저장소는 2번을 충족하지 않는다. `pip install`
+가능 여부가 아니라 PyPI 또는 npm 레지스트리 API에서 그 패키지와 판이 조회되어야 한다.
+
 둘 다 아니면 제품이다. `docker compose up` 으로 뜨는 다중 서비스 스택, 프런트엔드가 딸린
 런타임 플랫폼, 제품 CLI는 사이트의 제품·블로그 쪽에 실리지 갤러리에 실리지 않는다.
 npm 패키지가 `UNLICENSED` 이거나 저장소·홈페이지 링크가 비어 있으면 다른 패키지의 빌드
