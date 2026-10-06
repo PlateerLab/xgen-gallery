@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="에이전트가 만든 도구를 사용자에게">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f7f6ff"/><stop offset="1" stop-color="#eaf1ff"/></linearGradient><linearGradient id="badge" x2="1" y2="1"><stop stop-color="#765ee8"/><stop offset="1" stop-color="#3f7ad6"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/><circle cx="1080" cy="90" r="220" fill="#765ee8" opacity=".06"/>
+<g font-family="Pretendard,'Malgun Gothic','Noto Sans KR',sans-serif">
+<text x="88" y="108" font-size="24" font-weight="700" fill="#6b5bd0">TECH NOTE · GENY AGENT</text>
+<text x="88" y="290" font-size="46" font-weight="800" fill="#101a33">스스로 만든 도구</text>
+<text x="88" y="380" font-size="46" font-weight="800" fill="#6b5bd0">눈앞에 남기다</text>
+<text x="88" y="465" font-size="20" fill="#475569">실행 결과를 보여주는 것이 신뢰의 시작</text><g transform="translate(670 180)" font-size="21" font-weight="700"><path d="M205 70v40m0 70v40" stroke="#928ac7" stroke-width="3"/><rect width="410" height="70" rx="14" fill="#6b5bd0"/><text x="22" y="43" fill="white">01  도구 생성 결과</text><rect y="110" width="410" height="70" rx="14" fill="white" stroke="#aaa4d1"/><text x="22" y="153" fill="#101a33">02  대화에 남는 카드</text><rect y="220" width="410" height="70" rx="14" fill="white" stroke="#aaa4d1"/><text x="22" y="263" fill="#101a33">03  Agent 도구 탭</text><text y="355" font-size="16" fill="#475569">개념도 · 실제 제품 화면 아님</text></g>
+</g></svg>

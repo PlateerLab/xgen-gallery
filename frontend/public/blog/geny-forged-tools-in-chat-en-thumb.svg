@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Making agent-created tools visible">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f7f6ff"/><stop offset="1" stop-color="#eaf1ff"/></linearGradient><linearGradient id="badge" x2="1" y2="1"><stop stop-color="#765ee8"/><stop offset="1" stop-color="#3f7ad6"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/><circle cx="1080" cy="90" r="220" fill="#765ee8" opacity=".06"/>
+<g font-family="Pretendard,'Malgun Gothic','Noto Sans KR',sans-serif">
+<text x="88" y="108" font-size="24" font-weight="700" fill="#6b5bd0">TECH NOTE · GENY AGENT</text>
+<text x="88" y="290" font-size="64" font-weight="800" fill="#101a33">Tools created</text>
+<text x="88" y="380" font-size="64" font-weight="800" fill="#6b5bd0">Made visible</text>
+<circle cx="970" cy="336" r="180" fill="white" opacity=".6"/><circle cx="970" cy="336" r="146" fill="url(#badge)"/><text x="970" y="325" text-anchor="middle" font-size="34" font-weight="800" fill="white">TOOL</text><text x="970" y="378" text-anchor="middle" font-size="34" font-weight="800" fill="white">→ UI</text>
+</g></svg>
