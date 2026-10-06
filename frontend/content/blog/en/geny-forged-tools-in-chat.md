@@ -16,6 +16,14 @@ faq:
     a: "The screen does not interpret tool-call inputs. It counts the official event the server sends each time the graph actually changes. The desktop app, the CLI and the VS Code extension receive the same event."
 ---
 
+> **Editor's note · The B2B customer perspective**
+>
+> “It says it is done, but where can I check the result?” This is a question customers may encounter when bringing AI into their work. Even if an agent builds the tools it needs, that capability is unlikely to make everyday work easier unless the person using it can see what was created and find it again for the next task.
+>
+> This article focuses less on tool creation itself than on making its results recognizable and usable. As you read, consider the customer's question: “Can I check the result and take the next step without asking a developer again?” That perspective helps explain why seemingly small interface improvements matter to continuity of work and trust.
+
+---
+
 **Geny agents on the XGEN Agentic AI Platform build the tools they need in the middle of a conversation, yet in chat only a brief "done" marker flashed by, so users could hardly tell that a new tool existed or where to find it. Fixing this over three days, we saw our assumptions overturned three times. The tools were not on the canvas, there was not one chat screen but two, and the screen should never have been guessing what the runtime meant.**
 
 ---
@@ -129,3 +137,11 @@ Guessed code raises no error when it is wrong, so it is found later.
 
 If your team is bringing agents that build their own tools into a product, we suggest designing not only the agent's capabilities but also how users get to see the moment a capability appears.
 We learned that order by walking it backwards this time.
+
+---
+
+> **Editor's perspective · Adoption decisions and operating agreements**
+>
+> Customers want more than a statement that tool creation is supported: they want to see an actual work request lead to a usable result. In a PoC, consider testing a customer's work scenario end to end: request tool creation, confirm success or failure, inspect the result, then find and use it again. Check whether users can find the same result from different screens and whether failed operations could be mistaken for completed ones.
+>
+> Making a result visible and making a generated tool safe to run are separate concerns. Who validates generated code and tools, who may use them, and who manages changes or problems must be agreed separately for the customer's environment. The improvements described here do not establish that all those operating requirements have been met. A meaningful starting point is helping the person doing the work understand what was created and where to check it, so they can move on to the next task.
