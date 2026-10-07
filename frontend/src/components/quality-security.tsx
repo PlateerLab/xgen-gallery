@@ -37,11 +37,11 @@ const COPY: Record<
                 </span>
             </>
         ),
-        lead: "성능을 주장하는 대신, 국가 공인 제3자 시험으로 품질을 증명합니다. XGEN 1.0은 GS(Good Software) 인증 1등급(최고 등급)을 획득했습니다",
-        certName: "XGEN 1.0 · GS 인증 (Good Software)",
+        lead: "성능을 주장하는 대신, 국가 공인 제3자 시험으로 품질을 증명합니다. XGEN은 GS(Good Software) 인증 1등급(최고 등급)을 획득했습니다",
+        certName: "XGEN · GS 인증 (Good Software)",
         certGrade: "GS 1등급 획득",
         more: "인증·품질 자세히 보기",
-        imageAlt: "XGEN 1.0 Platform — GS 인증 1등급 획득",
+        imageAlt: "XGEN Platform — GS 인증 1등급 획득",
         effectsTitle: "인증의 의미와 효과",
         info: [
             {
@@ -72,11 +72,11 @@ const COPY: Record<
                 </span>
             </>
         ),
-        lead: "Rather than claiming performance, we had the quality tested by an accredited third party. XGEN 1.0 holds Grade 1 GS (Good Software) certification — the highest grade available",
-        certName: "XGEN 1.0 · GS Certification (Good Software)",
+        lead: "Rather than claiming performance, we had the quality tested by an accredited third party. XGEN holds Grade 1 GS (Good Software) certification — the highest grade available",
+        certName: "XGEN · GS Certification (Good Software)",
         certGrade: "Grade 1 awarded",
         more: "More on certification and quality",
-        imageAlt: "XGEN 1.0 Platform — awarded Grade 1 GS certification",
+        imageAlt: "XGEN Platform — awarded Grade 1 GS certification",
         effectsTitle: "What the certification unlocks",
         info: [
             {

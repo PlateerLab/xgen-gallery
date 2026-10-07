@@ -31,8 +31,8 @@ export interface Certification {
 /** 인증일 최신순. */
 export const CERTIFICATIONS: Certification[] = [
     {
-        name: "XGEN v1.0",
-        nameEn: "XGEN v1.0",
+        name: "XGEN",
+        nameEn: "XGEN",
         no: "26-0296",
         grade: "1등급",
         gradeEn: "Grade 1",

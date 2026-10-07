@@ -113,7 +113,7 @@ Enterprise AI adoption does not end when the features are built.
 
 It has to be verified as stable in a real enterprise environment, then applied to the actual work and embedded until people keep using it.
 
-XGEN Agentic AI Platform v1.0 holds [GS Certification Grade 1](/en/product#certification), and we continue to verify the platform's quality and reliability against objective standards.
+XGEN Agentic AI Platform holds [GS Certification Grade 1](/en/product#certification), and we continue to verify the platform's quality and reliability against objective standards.
 
 Our field-led technical support structure also supports the real adoption process — from requirements analysis through agent design, system integration, verification, and internalization of operations.
 
