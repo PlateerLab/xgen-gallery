@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Dex 사용 흐름 — 설치부터 첫 업무까지 여섯 단계를 한 줄로 그린다.
+ * Dexs 사용 흐름 — 설치부터 첫 업무까지 여섯 단계를 한 줄로 그린다.
  *
  * 세로로 세운다. 가로로 눕히면 여섯 칸을 넣느라 글자가 작아지고, 좁은 화면에서는
  * 옆으로 밀어 봐야 해 순서가 끊긴다. 세로로 두면 폭이 남아 설명이 한 줄에 들어가고
@@ -19,7 +19,7 @@ const FONT =
 const T: Record<Locale, { steps: [string, string][]; platform: string; desktop: string; aria: string }> = {
     ko: {
         steps: [
-            ["DeX 설치", "설치 파일을 실행해 Dex를 설치합니다"],
+            ["Dexs 설치", "설치 파일을 실행해 Dexs를 설치합니다"],
             ["XGEN에 연결", "계정으로 로그인해 XGEN 플랫폼에 연결합니다"],
             ["Agent 선택", "업무에 필요한 Agent를 고릅니다"],
             ["실행 환경 연결", "파일·브라우저·도구 중 필요한 것만 열어줍니다"],
@@ -28,11 +28,11 @@ const T: Record<Locale, { steps: [string, string][]; platform: string; desktop: 
         ],
         platform: "XGEN 플랫폼",
         desktop: "사용자 데스크톱 환경",
-        aria: "Dex 사용 흐름 여섯 단계 — DeX 설치, XGEN에 연결, Agent 선택, 실행 환경 연결, 업무 지시, 결과 확인과 이어가기",
+        aria: "Dexs 사용 흐름 여섯 단계 — Dexs 설치, XGEN에 연결, Agent 선택, 실행 환경 연결, 업무 지시, 결과 확인과 이어가기",
     },
     en: {
         steps: [
-            ["Install DeX", "Run the installer to set up Dex"],
+            ["Install Dexs", "Run the installer to set up Dexs"],
             ["Connect to XGEN", "Sign in to reach the XGEN platform"],
             ["Pick an agent", "Choose the agent the task calls for"],
             ["Connect execution", "Open only the files, browser, and tools the task needs"],
@@ -41,7 +41,7 @@ const T: Record<Locale, { steps: [string, string][]; platform: string; desktop: 
         ],
         platform: "XGEN platform",
         desktop: "User desktop environment",
-        aria: "The six steps of using Dex — install, connect to XGEN, pick an agent, connect the execution environment, hand it work, and check the result",
+        aria: "The six steps of using Dexs — install, connect to XGEN, pick an agent, connect the execution environment, hand it work, and check the result",
     },
 };
 

@@ -156,7 +156,7 @@ const EFFECTS: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(DeX) 세 갈래. */
+/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(Dexs) 세 갈래. */
 const DIFFERENTIATORS: {
     icon: LucideIcon;
     en: string;
@@ -207,10 +207,10 @@ const DIFFERENTIATORS: {
     },
     {
         icon: MonitorSmartphone,
-        en: "Dex",
-        ko: "Dex",
+        en: "Dexs",
+        ko: "Dexs",
         tagline: "만든 Agent를 직원의 데스크톱에서 실행합니다",
-        desc: "Dex는 서버에서 운영되는 Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 안에서 로컬 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
+        desc: "Dexs는 서버에서 운영되는 Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 안에서 로컬 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
         items: [
             "로컬 파일·애플리케이션 실행",
             "실행 권한을 업무 단위로 연결",
@@ -825,7 +825,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·DeX) */}
+                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·Dexs) */}
                 {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
                 <section
                     id="build"
@@ -863,7 +863,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <FloUIArt locale={locale} />
                                         </div>
                                     )}
-                                    {d.en === "Dex" && (
+                                    {d.en === "Dexs" && (
                                         <div className="mb-6">
                                             <DexArt locale={locale} />
                                         </div>

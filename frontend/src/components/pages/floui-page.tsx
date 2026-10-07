@@ -30,7 +30,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * FloUI 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
- * 패스파인더·DeX 상세와 같은 순서를 쓴다: 무엇이 다른가 → 어떻게 동작하는가 →
+ * 패스파인더·Dexs 상세와 같은 순서를 쓴다: 무엇이 다른가 → 어떻게 동작하는가 →
  * 무엇이 만들어지는가 → 어디에 쓰나. 도입을 검토하는 쪽이 3분 안에 판단하는
  * 자리이고, 화면 하나하나의 사용법은 매뉴얼이 맡는다.
  *
@@ -207,7 +207,7 @@ const COPY: Record<Locale, FlouiCopy> = {
                 art: "pathfinder",
             },
             {
-                label: "Dex",
+                label: "Dexs",
                 desc: "만든 Agent를 직원의 데스크톱 업무환경에서 실행합니다.",
                 href: "/xgen-dex",
                 art: "xgen-dex",
@@ -350,7 +350,7 @@ const COPY: Record<Locale, FlouiCopy> = {
                 art: "pathfinder",
             },
             {
-                label: "Dex",
+                label: "Dexs",
                 desc: "Runs the agents you built on your team's desktops.",
                 href: "/xgen-dex",
                 art: "xgen-dex",

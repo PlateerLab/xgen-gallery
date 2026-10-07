@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Dex 개념도.
+ * Dexs 개념도.
  *
  * 네 가지를 정확히 그린다.
  *
@@ -14,7 +14,7 @@ import type { Locale } from "@/lib/i18n";
  * 셋, 일하는 자리는 **사용자 PC 안**이다. 모니터 틀 안에 넣어야 "내 컴퓨터에서
  * 벌어지는 일" 로 읽힌다. 상자만 그리면 또 하나의 서버처럼 보인다.
  *
- * 넷, DeX 의 아바타는 **바탕화면에 상주한다**. 창을 열어야 만나는 것이 아니라
+ * 넷, Dexs 의 아바타는 **바탕화면에 상주한다**. 창을 열어야 만나는 것이 아니라
  * 화면 한쪽에 서서 말을 건다. 그래서 아바타는 상자 안이 아니라 화면 오른쪽
  * 바탕화면 자리에 세워 둔다 — 실제 제품에서 보이는 그대로다.
  *
@@ -44,7 +44,7 @@ const T: Record<Locale, {
         platformNote: "업무별 Agent 를 만들고 권한을 부여합니다",
         agents: ["제안서 작성", "매출 정산", "보고서 정리"],
         connector: "커넥터",
-        desktop: "사용자 데스크톱 · Dex",
+        desktop: "사용자 데스크톱 · Dexs",
         officeLabel: "오피스 워크",
         office: ["엑셀", "워드", "PPT"],
         localLabel: "로컬 자원",
@@ -60,7 +60,7 @@ const T: Record<Locale, {
         platformNote: "Agents built per task, with permissions granted",
         agents: ["Proposals", "Revenue recon", "Reporting"],
         connector: "Connector",
-        desktop: "User desktop · Dex",
+        desktop: "User desktop · Dexs",
         officeLabel: "Office work",
         office: ["Excel", "Word", "PPT"],
         localLabel: "Local resources",
@@ -136,10 +136,10 @@ function AgentAvatar({ i, cx, cy, r }: { i: number; cx: number; cy: number; r: n
 }
 
 /**
- * 바탕화면에 상주하는 DeX 아바타.
+ * 바탕화면에 상주하는 Dexs 아바타.
  *
  * 칩 안의 작은 아바타와 달리 이쪽은 반신 인물로 그린다 — 화면 한쪽에 사람이
- * 서 있는 그 모습 자체가 DeX 아바타 기능의 전부이기 때문이다. 작게 줄이면
+ * 서 있는 그 모습 자체가 Dexs 아바타 기능의 전부이기 때문이다. 작게 줄이면
  * 그냥 또 하나의 아이콘이 되어 버린다.
  */
 function DesktopAvatar({ x, y, label, note }: { x: number; y: number; label: string; note: string[] }) {
@@ -312,7 +312,7 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
                 {L.connector}
             </text>
 
-            {/* ── 사용자 PC — 모니터 틀 안이 곧 DeX 다 ── */}
+            {/* ── 사용자 PC — 모니터 틀 안이 곧 Dexs 다 ── */}
             <g filter="url(#dx-shadow)">
                 <rect x="34" y="196" width="952" height="392" rx="20" fill="url(#dx-bezel)" />
             </g>

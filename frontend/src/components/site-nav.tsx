@@ -131,7 +131,7 @@ function DropdownItem({
                                     <div className="mb-1 ml-3 grid grid-cols-2 border-l border-[var(--color-line)] pl-2">
                                         {grand.map((g) => {
                                             /*
-                                              「DeX (Desktop Experience)」 처럼 이름 뒤에 풀이가
+                                              「Dexs (Desktop Experience)」 처럼 이름 뒤에 풀이가
                                               붙는 라벨은 한 칸에 다 못 들어가 옆 열을 침범했다.
                                               괄호를 떼어 아랫줄에 작게 두면 칸 안에서 끝난다.
                                             */

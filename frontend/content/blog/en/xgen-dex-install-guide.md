@@ -1,31 +1,31 @@
 ---
-title: "Dex from install to first task — six steps"
-titleSeo: "Dex install and usage guide"
-description: "Install DeX, ask Geny in plain language to build an agent, connect that agent to your PC, and hand it real work. Six steps, with real screens."
+title: "Dexs from install to first task — six steps"
+titleSeo: "Dexs install and usage guide"
+description: "Install Dexs, ask Geny in plain language to build an agent, connect that agent to your PC, and hand it real work. Six steps, with real screens."
 date: "2026-08-28"
 cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dex", "Geny", "Desktop Experience", "Agentic AI", "Install guide"]
+tags: ["Dexs", "Geny", "Desktop Experience", "Agentic AI", "Install guide"]
 faq:
   - q: "Where do I build the agent?"
-    a: "In XGEN. DeX is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to Geny in plain language gets you a workflow with the nodes and connections already in place."
+    a: "In XGEN. Dexs is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to Geny in plain language gets you a workflow with the nodes and connections already in place."
   - q: "Does the installer need admin rights?"
     a: "Not if you set the install scope to the current user. That is also the easier option for internal rollout."
   - q: "Can the agent do anything it wants with my files?"
-    a: "No. It uses only what you open in DeX settings. PC Control scopes access with a default working folder and allowed folders, and commands like delete, power, or privilege escalation can be blocked by their first word. A connected agent can also be paused when you are not using it."
+    a: "No. It uses only what you open in Dexs settings. PC Control scopes access with a default working folder and allowed folders, and commands like delete, power, or privilege escalation can be blocked by their first word. A connected agent can also be paused when you are not using it."
   - q: "Where does the agent's output go?"
     a: "Into the local folder synced with your cloud store. Who did what and when is recorded in Activity with a timestamp and an actor."
   - q: "SmartScreen warns me — is that a problem?"
     a: "It appears because a code-signing certificate is not yet registered; it is not a problem with the installer itself. Click More info, check the publisher and filename, then continue."
 ---
 
-> This is the hands-on companion to [Dex — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
+> This is the hands-on companion to [Dexs — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
 
 Anyone who has handed work to AI knows the feeling. The answer is good — but folding that result back into an existing file, opening the application it belongs in, and saving it to the right work folder is all still done by a person.
 
-Dex handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
+Dexs handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
 
 The installer is on GitHub, about 280MB. Screens are from Windows.
 
@@ -53,25 +53,25 @@ The install folder defaults to a path under your user account's AppData and need
 
 The next screen names the data folder. Under it, the agent's working folder and local runtime components are created — `workspace` handles work sync, `cloud` is storage, and `local-runtime` holds the runtime and CLIs the agent uses when it executes on this machine.
 
-Copying the local runtime and its Python packages takes a while. When the progress bar completes, click Finish and launch DeX.
+Copying the local runtime and its Python packages takes a while. When the progress bar completes, click Finish and launch Dexs.
 
-![Setup complete, with a Run XGen-Dex checkbox and a Finish button](/connector/08-complete.webp)
+![Setup complete, with a Run XGen-Dexs checkbox and a Finish button](/connector/08-complete.webp)
 
 *Installation complete*
 
 ## 2. Connect to the server
 
-On first launch DeX asks for the XGEN server (gateway) address. Enter the XGEN instance your organization runs.
+On first launch Dexs asks for the XGEN server (gateway) address. Enter the XGEN instance your organization runs.
 
 Turn on Allow private certificates if your environment uses an internal CA, and Use SSO login if you sign in through single sign-on.
 
 ![The server connection screen with an address field and checkboxes for private certificates and SSO login](/connector/09-server.webp)
 
-*Point DeX at your XGEN server*
+*Point Dexs at your XGEN server*
 
 ## 3. Build an agent with Geny
 
-DeX is the side that **runs** an agent; the agent itself is built in XGEN. You can wire nodes by hand on the canvas, but asking Geny in plain language is faster.
+Dexs is the side that **runs** an agent; the agent itself is built in XGEN. You can wire nodes by hand on the canvas, but asking Geny in plain language is faster.
 
 ![The XGEN canvas with a Geny agent node placed and its provider and model settings open](/connector/17-xgeny-node.webp)
 
@@ -93,7 +93,7 @@ You get a workflow wiring input, conversation memory, web search, the agent, and
 
 For an agent running on the XGEN server to read and write files on this machine, that agent and this computer have to be connected to each other. Do it in XGEN under Knowledge → File Cloud → Connections.
 
-With DeX running, this computer appears automatically under Connected PCs. Pick the agent you built with + Connect agent, and the agent on the XGEN server is joined to your desktop.
+With Dexs running, this computer appears automatically under Connected PCs. Pick the agent you built with + Connect agent, and the agent on the XGEN server is joined to your desktop.
 
 ![The connect agent dialog with the site operations agent selected](/connector/21-connect-agent.webp)
 
@@ -119,7 +119,7 @@ Activity keeps a record of who did what and when — below is the `mkdir` entry 
 
 ## 5. Open execution permissions
 
-What the agent may do on this machine is decided in DeX under Settings. Open only what the work needs.
+What the agent may do on this machine is decided in Dexs under Settings. Open only what the work needs.
 
 PC Control covers shell and file access. Scope it with the default working folder and allowed folders, and block commands like delete, power, or privilege escalation by their first word.
 
@@ -135,7 +135,7 @@ MCP runs MCP servers on your PC so the agent in the selected session can use tho
 
 ## 6. Hand it work
 
-The agent you built now appears in the DeX agent list on the left. Pick it and the conversation starts.
+The agent you built now appears in the Dexs agent list on the left. Pick it and the conversation starts.
 
 One more thing first. Turn on the avatar under Avatar settings and the agent shows up as **a character floating on your screen**. Upload a photo (png/jpg) or a Live2D/Spine model, scale it with the wheel, and drag it where you want it.
 
@@ -155,7 +155,7 @@ Hand it outcomes, not commands. Below, it was asked to find and summarize the mo
 
 The agent restates what it is about to do, runs a web search, and comes back with what it found — title, URL, date, and a summary. Which tools it used, and how many times, is kept under View full log, so you can stay with the result or open up the process.
 
-![A DeX conversation where the agent returns the press coverage it found, laid out with title, URL, date, and summary](/connector/28-agent-task.webp)
+![A Dexs conversation where the agent returns the press coverage it found, laid out with title, URL, date, and summary](/connector/28-agent-task.webp)
 
 *The work you handed over comes back organized*
 
@@ -183,5 +183,5 @@ What the agent produces becomes the start of the next task. It is saved in the s
 
 ## Read next
 
-- [Dex — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect) — why DeX exists
-- [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
+- [Dexs — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect) — why Dexs exists
+- [Dexs — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
