@@ -154,7 +154,7 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         whatTitle: "Dexs는 무엇인가요?",
         whatLead: [
-            "Dexs(Desktop Experience)는 XGEN의 AI Agent와 사용자의",
+            "Dexs(Device Experience)는 XGEN의 AI Agent와 사용자의",
             "실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
         ],
         taskSteps: [
@@ -347,7 +347,7 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         whatTitle: "What is Dexs?",
         whatLead: [
-            "Dexs (Desktop Experience) is an installable desktop interface",
+            "Dexs (Device Experience) is an installable desktop interface",
             "that connects XGEN's AI agents with a user's real working environment.",
         ],
         taskSteps: [
@@ -535,7 +535,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
                         name: "Dexs",
-                        alternateName: "XGEN Desktop Experience",
+                        alternateName: "XGEN Device Experience",
                         applicationCategory: "BusinessApplication",
                         operatingSystem: "Windows",
                         description: t.ldDescription,

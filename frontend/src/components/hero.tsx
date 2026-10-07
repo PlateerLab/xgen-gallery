@@ -117,7 +117,7 @@ function DexSlide() {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
-                Dexs · Desktop Experience
+                Dexs · Device Experience
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>

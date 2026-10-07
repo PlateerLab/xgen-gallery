@@ -95,7 +95,7 @@ Real enterprise work does not happen only on servers.
 
 Writing documents, managing files, using in-house applications — much of the work starts on the user's PC.
 
-[Dexs (Desktop Experience)](/en/blog/product-xgen-dex) is the execution layer that connects centrally managed XGEN agents to the user's desktop working environment.
+[Dexs (Device Experience)](/en/blog/product-xgen-dex) is the execution layer that connects centrally managed XGEN agents to the user's desktop working environment.
 
 The aim is a structure where the enterprise manages AI and agents centrally while users take advantage of AI without significantly changing how they already work.
 

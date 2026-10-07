@@ -97,7 +97,7 @@ XGEN은 Agent와 사용자별 권한 관리, 실행 이력 및 감사 로그 등
 
 문서 작성, 파일 관리, 사내 애플리케이션 사용 등 많은 업무가 사용자의 PC에서 시작됩니다.
 
-[Dexs(Desktop Experience)](/blog/product-xgen-dex)는 중앙에서 관리되는 XGEN Agent와 사용자의 데스크톱 업무 환경을 연결하는 실행 계층입니다.
+[Dexs(Device Experience)](/blog/product-xgen-dex)는 중앙에서 관리되는 XGEN Agent와 사용자의 데스크톱 업무 환경을 연결하는 실행 계층입니다.
 
 이를 통해 기업은 AI와 Agent를 중앙에서 관리하면서도 사용자는 기존 업무 환경을 크게 변경하지 않고 AI를 활용할 수 있는 구조를 지향합니다.
 

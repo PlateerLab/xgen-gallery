@@ -6,11 +6,11 @@ cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer AI Labs"
 category: "Product news"
-tags: ["Dexs", "Desktop Experience", "Agentic AI", "On-premise", "Product"]
+tags: ["Dexs", "Device Experience", "Agentic AI", "On-premise", "Product"]
 draft: false
 ---
 
-**In one line —** Dexs is a Desktop Experience component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
+**In one line —** Dexs is a Device Experience component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
 
 Enterprise AI is no longer a chatbot that answers questions. It is moving toward agents that understand the work, connect to the systems already in place, and carry out real tasks on the user's behalf.
 
@@ -18,7 +18,7 @@ But work still starts at the desktop. People sign in to internal systems, open l
 
 ## Runs on the server, continues on the desktop
 
-Dexs (Desktop Experience) rests on one design premise: **run the agent on the server, and extend only the execution environment it needs to the desktop.**
+Dexs (Device Experience) rests on one design premise: **run the agent on the server, and extend only the execution environment it needs to the desktop.**
 
 AI agents run and are managed on the enterprise's own on-premise XGEN Server. The user collaborates with those agents from their desktop environment. The enterprise keeps AI under central control, and nobody changes how they work.
 
@@ -91,6 +91,6 @@ Dexs is in the final stage of development at the lab.
 
 We see it as more than a desktop connection tool: an execution layer that joins Enterprise AI and the user's desktop into a single working experience.
 
-Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. Dexs is the first Desktop Experience platform we are building toward that.
+Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. Dexs is the first Device Experience platform we are building toward that.
 
 We will introduce Dexs's release schedule and capabilities here on the blog, step by step. For a product demo or a conversation about adoption, [get in touch](/en/contact) any time.

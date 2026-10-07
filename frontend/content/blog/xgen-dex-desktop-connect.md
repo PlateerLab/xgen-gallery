@@ -7,7 +7,7 @@ cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dexs", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]
+tags: ["Dexs", "Device Experience", "Agentic AI", "AI 거버넌스", "제품"]
 faq:
   - q: "Dexs는 데스크톱용 XGEN 채팅 앱인가요?"
     a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. Dexs는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
@@ -57,7 +57,7 @@ Dexs를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이�
 
 이라고 이해하면 쉽습니다.
 
-이름은 **Dexs**(Desktop Experience)이고, 하는 일은 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
+이름은 **Dexs**(Device Experience)이고, 하는 일은 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
 
 ---
 
