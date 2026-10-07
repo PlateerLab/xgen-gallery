@@ -61,7 +61,7 @@ export function DexWhyBeforeArt() {
     );
 }
 
-/** Dexs — Agent 가 한 번에 결과물까지 간다 */
+/** Deks — Agent 가 한 번에 결과물까지 간다 */
 export function DexWhyAfterArt() {
     return (
         <svg viewBox={VB} className="block h-auto w-full" role="presentation" aria-hidden="true">

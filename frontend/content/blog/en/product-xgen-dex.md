@@ -1,16 +1,16 @@
 ---
-title: "Dexs — the execution layer that reaches the desktop"
+title: "Deks — the execution layer that reaches the desktop"
 description: "The agent runs on the server; the user collaborates with it from their own desktop environment. Central control stays where it is, and nobody has to change how they work."
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer AI Labs"
 category: "Product news"
-tags: ["Dexs", "Device Experience", "Agentic AI", "On-premise", "Product"]
+tags: ["Deks", "Device Experience", "Agentic AI", "On-premise", "Product"]
 draft: false
 ---
 
-**In one line —** Dexs is a Device Experience component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
+**In one line —** Deks is a Device Experience component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
 
 Enterprise AI is no longer a chatbot that answers questions. It is moving toward agents that understand the work, connect to the systems already in place, and carry out real tasks on the user's behalf.
 
@@ -18,14 +18,14 @@ But work still starts at the desktop. People sign in to internal systems, open l
 
 ## Runs on the server, continues on the desktop
 
-Dexs (Device Experience) rests on one design premise: **run the agent on the server, and extend only the execution environment it needs to the desktop.**
+Deks (Device Experience) rests on one design premise: **run the agent on the server, and extend only the execution environment it needs to the desktop.**
 
 AI agents run and are managed on the enterprise's own on-premise XGEN Server. The user collaborates with those agents from their desktop environment. The enterprise keeps AI under central control, and nobody changes how they work.
 
 It is the opposite direction from installing AI on each individual PC. Because an agent is not tied to one machine, whichever PC someone signs in from, the same agent picks the work back up.
 
 <figure style="margin:2.5rem 0">
-<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="The user's desktop environment connects through the Dexs connector to an XGEN Server agent, which in turn reaches local applications, cloud storage, and enterprise systems" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;display:block;margin:0 auto;font-family:'Pretendard',system-ui,-apple-system,sans-serif">
+<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="The user's desktop environment connects through the Deks connector to an XGEN Server agent, which in turn reaches local applications, cloud storage, and enterprise systems" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;display:block;margin:0 auto;font-family:'Pretendard',system-ui,-apple-system,sans-serif">
 <defs>
 <linearGradient id="dexGEn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
 </defs>
@@ -34,7 +34,7 @@ It is the opposite direction from installing AI on each individual PC. Because a
 <text x="360" y="54" text-anchor="middle" font-size="11.5" fill="#6b7688">The user's desktop</text>
 <path d="M360 62 L360 84" stroke="#c2cad8" stroke-width="2"/><path d="M354 78 L360 85 L366 78" fill="none" stroke="#c2cad8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="245" y="88" width="230" height="50" rx="13" fill="url(#dexGEn)"/>
-<text x="360" y="112" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">Dexs Connector</text>
+<text x="360" y="112" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">Deks Connector</text>
 <text x="360" y="128" text-anchor="middle" font-size="11.5" fill="#ffffffcc">desktop ↔ server bridge</text>
 <path d="M360 138 L360 160" stroke="#c2cad8" stroke-width="2"/><path d="M354 154 L360 161 L366 154" fill="none" stroke="#c2cad8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="245" y="164" width="230" height="50" rx="13" fill="#16203a"/>
@@ -53,7 +53,7 @@ It is the opposite direction from installing AI on each individual PC. Because a
 
 ## What it connects
 
-Dexs splits the desktop's resources into three and wires each to the agent.
+Deks splits the desktop's resources into three and wires each to the agent.
 
 **Local environment** — the user's working environment, connected so the agent can understand and act on it.
 
@@ -74,7 +74,7 @@ The common thread is that teams keep the tools and the ways of working they alre
 
 ## Central control stays where it is
 
-Widening the scope to the desktop raises one question first: does control get looser? Dexs leaves the operating principles an enterprise has already set in place.
+Widening the scope to the desktop raises one question first: does control get looser? Deks leaves the operating principles an enterprise has already set in place.
 
 | Principle | What it means |
 |---|---|
@@ -83,14 +83,14 @@ Widening the scope to the desktop raises one question first: does control get lo
 | Persistent agent experience | Whichever desktop you sign in from, the same agent continues the work |
 | Desktop connectivity | Local files, desktop applications, and enterprise systems become one agent experience |
 
-> **In development.** Among the principles above, the security and governance controls are the direction Dexs is heading, and they are still being built. We will share scope and timing as they land.
+> **In development.** Among the principles above, the security and governance controls are the direction Deks is heading, and they are still being built. We will share scope and timing as they land.
 
 ## Coming soon
 
-Dexs is in the final stage of development at the lab.
+Deks is in the final stage of development at the lab.
 
 We see it as more than a desktop connection tool: an execution layer that joins Enterprise AI and the user's desktop into a single working experience.
 
-Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. Dexs is the first Device Experience platform we are building toward that.
+Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. Deks is the first Device Experience platform we are building toward that.
 
-We will introduce Dexs's release schedule and capabilities here on the blog, step by step. For a product demo or a conversation about adoption, [get in touch](/en/contact) any time.
+We will introduce Deks's release schedule and capabilities here on the blog, step by step. For a product demo or a conversation about adoption, [get in touch](/en/contact) any time.

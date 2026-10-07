@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dexs — 서버에서 실행되는 Agent와 오피스·집의 사용자 데스크톱을 잇는 커넥터">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Deks — 서버에서 실행되는 Agent와 오피스·집의 사용자 데스크톱을 잇는 커넥터">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0a1330"/>
@@ -63,10 +63,10 @@
     <path d="M56 48 h56 M92 32 l20 16 -20 16" fill="none" stroke="#2461d8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M56 48 l-20 -16 M56 48 l-20 16" fill="none" stroke="#2461d8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
   </g>
-  <text x="600" y="378" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#e4eeff">Dexs Connector</text>
+  <text x="600" y="378" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="18" font-weight="700" fill="#e4eeff">Deks Connector</text>
 
   <!-- 타이틀 -->
-  <text x="600" y="126" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" letter-spacing="5">Dexs</text>
+  <text x="600" y="126" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="26" font-weight="600" fill="#e4eeff" letter-spacing="5">Deks</text>
   <text x="600" y="182" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="46" font-weight="700" fill="#ffffff">Device Experience</text>
 
   <!-- 하단 요약 -->

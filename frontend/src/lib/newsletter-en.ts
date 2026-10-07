@@ -376,7 +376,7 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
         ],
         upcoming: [
             {
-                title: "Dexs · coming soon",
+                title: "Deks · coming soon",
                 subtitle: "An execution layer carrying enterprise AI to the desktop",
                 body: "The AI agent runs on the server, and you work with that agent from your own desktop. It is a way of connecting that leaves central control as it is and does not change how you work.\n\nSo the resources an agent uses are not bound to the server alone. Attach an MCP server running on your PC and the agent can call tools inside the corporate network, or programs that exist only on this computer. Server resources and local resources, used together. More detail in the next issue.",
                 figure: "XGEN Connector — your agent list on the left, quick chat below, an avatar on screen. Agents running on the server, called straight from the desktop.",

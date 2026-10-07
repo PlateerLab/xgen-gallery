@@ -331,7 +331,7 @@ export const NAV_GROUPS: NavGroup[] = [
                             { label: "EasyMode", id: "easy-mode", route: "/product#build" },
                             { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
                             { label: "FloUI", id: "floui", route: "/floui" },
-                            { label: "Dexs (Device Experience)", id: "xgen-dex", route: "/xgen-dex" },
+                            { label: "Deks (Device Experience)", id: "xgen-dex", route: "/xgen-dex" },
                         ],
                     },
                     { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance" },

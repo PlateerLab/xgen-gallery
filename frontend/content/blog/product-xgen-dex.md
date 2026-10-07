@@ -1,16 +1,16 @@
 ---
-title: "Dexs — Enterprise AI를 데스크톱까지 잇는 실행 계층"
+title: "Deks — Enterprise AI를 데스크톱까지 잇는 실행 계층"
 description: "AI Agent는 서버에서 실행되고, 사용자는 자신의 데스크톱에서 Agent와 협업합니다. 중앙 통제는 그대로 두고 업무 방식만 바꾸지 않는 연결 방식을 소개합니다."
 date: "2026-08-07"
 cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dexs", "Device Experience", "Agentic AI", "온프레미스", "제품"]
+tags: ["Deks", "Device Experience", "Agentic AI", "온프레미스", "제품"]
 draft: false
 ---
 
-**한 줄 요약 —** Dexs는 XGEN Server에서 실행되는 Agent와 사용자의 데스크톱 환경을 연결해, 로컬 환경과 애플리케이션을 안전하게 활용할 수 있도록 지원하는 Device Experience 컴포넌트입니다.
+**한 줄 요약 —** Deks는 XGEN Server에서 실행되는 Agent와 사용자의 데스크톱 환경을 연결해, 로컬 환경과 애플리케이션을 안전하게 활용할 수 있도록 지원하는 Device Experience 컴포넌트입니다.
 
 Enterprise AI는 더 이상 질문에 답하는 챗봇이 아닙니다. 업무를 이해하고, 기존 시스템에 연결되고, 사용자를 대신해 실제 작업을 수행하는 Agent로 옮겨가고 있습니다.
 
@@ -18,14 +18,14 @@ Enterprise AI는 더 이상 질문에 답하는 챗봇이 아닙니다. 업무�
 
 ## 서버에서 실행되고, 데스크톱에서 이어진다
 
-Dexs(Device Experience)의 설계 전제는 하나입니다. **Agent는 서버에서 실행하고, 필요한 실행 환경만 데스크톱으로 확장합니다.**
+Deks(Device Experience)의 설계 전제는 하나입니다. **Agent는 서버에서 실행하고, 필요한 실행 환경만 데스크톱으로 확장합니다.**
 
 AI Agent는 기업의 온프레미스 XGEN Server에서 실행되고 관리됩니다. 사용자는 자기 데스크톱 환경에서 그 Agent와 협업합니다. 기업은 AI를 중앙에서 통제하고, 사용자는 쓰던 방식을 바꾸지 않습니다.
 
 개인 PC마다 AI를 설치하는 방식과는 반대 방향입니다. Agent가 특정 PC에 묶이지 않기 때문에, 사용자가 어느 PC에서 접속하든 같은 Agent가 하던 일을 이어받습니다.
 
 <figure style="margin:2.5rem 0">
-<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="사용자 데스크톱 환경이 Dexs 커넥터를 통해 XGEN Server Agent로 연결되고, Agent는 다시 로컬 앱·클라우드 스토리지·사내 시스템으로 이어지는 구조" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;display:block;margin:0 auto;font-family:'Pretendard',system-ui,-apple-system,sans-serif">
+<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="사용자 데스크톱 환경이 Deks 커넥터를 통해 XGEN Server Agent로 연결되고, Agent는 다시 로컬 앱·클라우드 스토리지·사내 시스템으로 이어지는 구조" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;display:block;margin:0 auto;font-family:'Pretendard',system-ui,-apple-system,sans-serif">
 <defs>
 <linearGradient id="dexG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
 </defs>
@@ -34,7 +34,7 @@ AI Agent는 기업의 온프레미스 XGEN Server에서 실행되고 관리됩�
 <text x="360" y="54" text-anchor="middle" font-size="11.5" fill="#6b7688">사용자 데스크톱</text>
 <path d="M360 62 L360 84" stroke="#c2cad8" stroke-width="2"/><path d="M354 78 L360 85 L366 78" fill="none" stroke="#c2cad8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="245" y="88" width="230" height="50" rx="13" fill="url(#dexG)"/>
-<text x="360" y="112" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">Dexs Connector</text>
+<text x="360" y="112" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">Deks Connector</text>
 <text x="360" y="128" text-anchor="middle" font-size="11.5" fill="#ffffffcc">데스크톱 ↔ 서버 브리지</text>
 <path d="M360 138 L360 160" stroke="#c2cad8" stroke-width="2"/><path d="M354 154 L360 161 L366 154" fill="none" stroke="#c2cad8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="245" y="164" width="230" height="50" rx="13" fill="#16203a"/>
@@ -53,7 +53,7 @@ AI Agent는 기업의 온프레미스 XGEN Server에서 실행되고 관리됩�
 
 ## 데스크톱의 무엇을 잇는가
 
-Dexs는 데스크톱의 자원을 세 갈래로 나눠 Agent에 연결합니다.
+Deks는 데스크톱의 자원을 세 갈래로 나눠 Agent에 연결합니다.
 
 **Local Environment** — 사용자의 작업 환경을 Agent가 이해하고 활용하도록 잇습니다.
 
@@ -74,7 +74,7 @@ Dexs는 데스크톱의 자원을 세 갈래로 나눠 Agent에 연결합니다.
 
 ## 중앙 통제는 그대로
 
-데스크톱까지 범위를 넓히면 통제가 느슨해지는 것 아니냐는 질문이 먼저 나옵니다. Dexs는 기업이 이미 세워둔 운영 원칙을 그대로 둡니다.
+데스크톱까지 범위를 넓히면 통제가 느슨해지는 것 아니냐는 질문이 먼저 나옵니다. Deks는 기업이 이미 세워둔 운영 원칙을 그대로 둡니다.
 
 | 원칙 | 내용 |
 |---|---|
@@ -83,14 +83,14 @@ Dexs는 데스크톱의 자원을 세 갈래로 나눠 Agent에 연결합니다.
 | Persistent Agent Experience | 접속하는 데스크톱이 달라져도 같은 Agent가 업무를 이어갑니다 |
 | Desktop Connectivity | 로컬 파일·데스크톱 애플리케이션·사내 시스템을 하나의 Agent 경험으로 잇습니다 |
 
-> **준비 중입니다.** 위 원칙 가운데 보안·거버넌스 통제 체계는 Dexs가 지향하는 방향이며, 현재 개발 중입니다. 제공 범위와 시점은 순차적으로 안내드리겠습니다.
+> **준비 중입니다.** 위 원칙 가운데 보안·거버넌스 통제 체계는 Deks가 지향하는 방향이며, 현재 개발 중입니다. 제공 범위와 시점은 순차적으로 안내드리겠습니다.
 
 ## 곧 공개합니다
 
-Dexs는 현재 연구소에서 개발 마무리 단계에 있습니다.
+Deks는 현재 연구소에서 개발 마무리 단계에 있습니다.
 
 단순한 데스크톱 연결 도구가 아니라, Enterprise AI와 사용자의 데스크톱을 하나의 업무 경험으로 잇는 실행 계층(Execution Layer)으로 보고 있습니다.
 
-이제 Enterprise AI의 경쟁력은 모델 성능만으로 결정되지 않습니다. 기업이 기존 업무 환경을 유지하면서 AI를 얼마나 자연스럽게 쓸 수 있는가가 다음 경쟁력이라고 봅니다. Dexs는 그 경험을 완성하기 위한 첫 번째 Device Experience 플랫폼입니다.
+이제 Enterprise AI의 경쟁력은 모델 성능만으로 결정되지 않습니다. 기업이 기존 업무 환경을 유지하면서 AI를 얼마나 자연스럽게 쓸 수 있는가가 다음 경쟁력이라고 봅니다. Deks는 그 경험을 완성하기 위한 첫 번째 Device Experience 플랫폼입니다.
 
-Dexs의 출시 일정과 주요 기능은 앞으로 블로그를 통해 순차적으로 소개하겠습니다. 제품 데모나 도입 상담을 원하시면 언제든 [문의해 주세요](/contact).
+Deks의 출시 일정과 주요 기능은 앞으로 블로그를 통해 순차적으로 소개하겠습니다. 제품 데모나 도입 상담을 원하시면 언제든 [문의해 주세요](/contact).

@@ -115,9 +115,9 @@ export const PRODUCT_EN = {
             ],
         },
         {
-            ko: "Dexs",
+            ko: "Deks",
             tagline: "Run the agents you built on your team's desktops",
-            desc: "Dexs is the desktop interface that connects agents running on the server to the working environment on a user's PC. Within the scope you allow, it uses local files and applications to produce real deliverables.",
+            desc: "Deks is the desktop interface that connects agents running on the server to the working environment on a user's PC. Within the scope you allow, it uses local files and applications to produce real deliverables.",
             items: [
                 "Runs against local files and applications",
                 "Execution permissions connected per task",

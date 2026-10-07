@@ -63,7 +63,7 @@
   <circle cx="1090" cy="80" r="200" fill="#2f7bff" opacity="0.06"/>
   <circle cx="120" cy="600" r="170" fill="#1f4fa8" opacity="0.05"/>
 
-  <text x="600" y="66" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#2461d8" letter-spacing="6">Dexs</text>
+  <text x="600" y="66" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#2461d8" letter-spacing="6">Deks</text>
   <text x="600" y="118" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="38" font-weight="800" fill="#111827">Agent를 업무환경으로</text>
 
   <!-- 플랫폼 — 업무별 Agent 를 만드는 곳 -->
@@ -88,7 +88,7 @@
   <rect x="552" y="258" width="96" height="26" rx="13" fill="#ffffff" stroke="#bcd0f5"/>
   <text x="600" y="276" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="700" fill="#2461d8">커넥터</text>
 
-  <!-- 사용자 데스크톱 = Dexs -->
+  <!-- 사용자 데스크톱 = Deks -->
   <g filter="url(#sh)"><rect x="150" y="300" width="900" height="284" rx="18" fill="url(#bezel)"/></g>
   <rect x="151.5" y="301.5" width="897" height="281" rx="17" fill="none" stroke="#ffffff" stroke-opacity="0.28"/>
   <rect x="160" y="310" width="880" height="264" rx="12" fill="url(#screen)"/>
@@ -96,7 +96,7 @@
   <rect x="490" y="616" width="220" height="12" rx="6" fill="#233a70"/>
 
   <rect x="184" y="330" width="250" height="28" rx="14" fill="url(#brand)"/>
-  <text x="309" y="349" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="800" fill="#ffffff">사용자 데스크톱 · Dexs</text>
+  <text x="309" y="349" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="800" fill="#ffffff">사용자 데스크톱 · Deks</text>
 
   <!-- 호출된 Agent — 플랫폼과 같은 x 라 내려온 것으로 읽힌다 -->
   <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12" font-weight="700" fill="#1f4fa8">

@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n";
  * 종류가 제각각이게 그린다 — 격자에 딱 맞으면 이미 정해져 있던 레이아웃처럼
  * 보인다.
  *
- * 이지모드·패스파인더·Dexs 카드와 같은 480x240 규격, 같은 색·선 굵기를 쓴다 —
+ * 이지모드·패스파인더·Deks 카드와 같은 480x240 규격, 같은 색·선 굵기를 쓴다 —
  * 네 장이 나란히 놓이므로 어느 하나만 튀면 카드 줄이 흐트러진다.
  */
 const T: Record<Locale, { ask: string; question: string[]; screen: string; kpi: string; trend: string; summary: string; aria: string }> = {

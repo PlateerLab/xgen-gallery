@@ -13,7 +13,7 @@ faq:
   - q: "Which industries need on-premise AI agents?"
     a: "Industries where data sovereignty, security, and regulatory requirements are decisive: manufacturing, finance, the public sector, defense, semiconductors, energy, and healthcare. What they share is a constraint — design information, process data, source code, and customer records cannot be sent to an external AI service."
   - q: "What does XGEN cover on-premise?"
-    a: "The XGEN Agentic AI Platform provides agent execution and orchestration, enterprise data connectivity (RAG), integration with existing business systems, permission and execution controls with audit logs, and a governance framework as one operating layer. It includes an execution layer that reaches the user's desktop (Dexs) and on-premise deployment."
+    a: "The XGEN Agentic AI Platform provides agent execution and orchestration, enterprise data connectivity (RAG), integration with existing business systems, permission and execution controls with audit logs, and a governance framework as one operating layer. It includes an execution layer that reaches the user's desktop (Deks) and on-premise deployment."
   - q: "Can an AI agent's execution be traced?"
     a: "It must be, and that is one reason enterprises choose on-premise. Unless there is a record of who used which agent, what data it accessed, and which tools it executed, no one can trace an incident afterwards or assign responsibility. XGEN provides permission management and execution history with audit logs as platform-level capabilities."
 draft: false
@@ -95,7 +95,7 @@ Real enterprise work does not happen only on servers.
 
 Writing documents, managing files, using in-house applications — much of the work starts on the user's PC.
 
-[Dexs (Device Experience)](/en/blog/product-xgen-dex) is the execution layer that connects centrally managed XGEN agents to the user's desktop working environment.
+[Deks (Device Experience)](/en/blog/product-xgen-dex) is the execution layer that connects centrally managed XGEN agents to the user's desktop working environment.
 
 The aim is a structure where the enterprise manages AI and agents centrally while users take advantage of AI without significantly changing how they already work.
 

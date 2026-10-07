@@ -17,8 +17,8 @@ faq:
     a: "No. Geny does not replace the way you build agents today. It is an additional runtime for cases in XGEN that call for more autonomous execution."
   - q: "Is the avatar required?"
     a: "No. The avatar is optional. What matters in Geny is not the avatar but the runtime that lets work continue on top of memory and a workspace."
-  - q: "How do Dexs and Geny differ?"
-    a: "Geny covers how an agent works and the runtime it works in; Dexs connects the agent to the user's local working environment. Used together, they extend the agent's reach as far as the local machine."
+  - q: "How do Deks and Geny differ?"
+    a: "Geny covers how an agent works and the runtime it works in; Deks connects the agent to the user's local working environment. Used together, they extend the agent's reach as far as the local machine."
 ---
 
 **The XGEN agent takes another step forward. Geny is a new agent runtime with memory and a workspace of its own, able to find the tools it needs — and build them when they do not exist — to carry work forward.**
@@ -201,11 +201,11 @@ It is the basis for an agent to grow **from a tool waiting on requests into an a
 
 ---
 
-## Meet Dexs, and the agent's working space reaches the PC
+## Meet Deks, and the agent's working space reaches the PC
 
-Where Geny extends **what an agent can do**, [Dexs](/en/blog/product-xgen-dex) extends **how far the working environment reaches**.
+Where Geny extends **what an agent can do**, [Deks](/en/blog/product-xgen-dex) extends **how far the working environment reaches**.
 
-Dexs safely connects an XGEN agent to the local resources on a user's PC.
+Deks safely connects an XGEN agent to the local resources on a user's PC.
 
 With both in place, the agent can draw not only on the data and systems in the server environment but, within what is permitted, on the user's local working environment as well.
 
@@ -213,13 +213,13 @@ If a user asks
 
 > "Tidy this material into a document and save it to the work folder on my PC."
 
-then **Geny** understands the task and carries it out with the tools it needs, while **Dexs** connects the server-side agent to the user's local environment.
+then **Geny** understands the task and carries it out with the tools it needs, while **Deks** connects the server-side agent to the user's local environment.
 
 Put simply, the difference in role is this:
 
 **Geny = how the agent works**
 
-**Dexs = how far the agent can work**
+**Deks = how far the agent can work**
 
 ---
 
