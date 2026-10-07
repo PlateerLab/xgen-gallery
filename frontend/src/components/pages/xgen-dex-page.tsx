@@ -30,9 +30,9 @@ import { SITE, absoluteUrl } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * XGEN DeX 제품 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
+ * Dex 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
- * 순서를 "무엇을 하는 제품인가 → 어떻게 동작하는가 → 무엇을 제공하는가" 로 둔다.
+ * 순서를 "무엇을 하는 기능인가 → 어떻게 동작하는가 → 무엇을 제공하는가" 로 둔다.
  * 도입을 검토하는 쪽이 3분 안에 판단하는 자리이고, 설치 절차와 화면은 블로그
  * 실습 편이 맡는다 — 같은 내용을 두 번 쓰지 않는다.
  */
@@ -130,11 +130,11 @@ interface DexCopy {
 const COPY: Record<Locale, DexCopy> = {
     ko: {
         ldDescription:
-            "XGEN DeX는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+            "Dex는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · DeX",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "XGEN DeX는 XGEN의 AI Agent를 로컬·원격 업무환경과 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 실제 업무를 수행합니다.",
+            "Dex는 XGEN의 AI Agent를 로컬·원격 업무환경과 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 실제 업무를 수행합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -152,9 +152,9 @@ const COPY: Record<Locale, DexCopy> = {
                 "분석하고 정리해 문서를 만들고 지정한 폴더에 저장하는 데까지가 한 번의 요청입니다. 사람이 옮겨 담던 과정이 사라져 업무 시간이 실제로 줄어듭니다.",
             ],
         ],
-        whatTitle: "XGEN DeX는 무엇인가요?",
+        whatTitle: "Dex는 무엇인가요?",
         whatLead: [
-            "XGEN DeX(Desktop Experience)는 XGEN의 AI Agent와 사용자의",
+            "Dex(Desktop Experience)는 XGEN의 AI Agent와 사용자의",
             "실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
         ],
         taskSteps: [
@@ -189,17 +189,17 @@ const COPY: Record<Locale, DexCopy> = {
             "브라우저에서 다시 검색",
             "결과 저장과 폴더 정리까지 모두 수동",
         ],
-        afterLabel: "XGEN DeX로 해결",
+        afterLabel: "Dex로 해결",
         after: [
             "PC의 파일과 앱을 직접 활용",
             "필요한 도구와 권한을 연결해 자동 실행",
             "결과물까지 자동 생성 및 저장",
             "연속적인 업무 흐름 유지",
         ],
-        flowTitle: "XGEN DeX 사용 흐름",
+        flowTitle: "Dex 사용 흐름",
         flowLead: "설치부터 첫 업무까지, 여섯 단계로 시작합니다.",
         steps: [
-            ["DeX 설치", "설치 파일을 실행하여 XGEN DeX를 설치합니다."],
+            ["DeX 설치", "설치 파일을 실행하여 Dex를 설치합니다."],
             ["XGEN에 연결", "계정 정보로 로그인하여 XGEN 플랫폼에 연결합니다."],
             ["Agent 선택", "업무에 필요한 Agent를 선택합니다."],
             ["실행 환경 연결", "파일과 브라우저, 도구 등 필요한 실행 환경을 연결하고 권한을 부여합니다."],
@@ -296,21 +296,21 @@ const COPY: Record<Locale, DexCopy> = {
                 art: "floui",
             },
         ],
-        postsTitle: "관련 XGEN DeX 프리뷰",
+        postsTitle: "관련 Dex 프리뷰",
         // 개념 → 연결 → 실습 순. 읽는 사람이 밟아 갈 순서대로 둔다
         posts: [
             {
-                label: "XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층",
+                label: "Dex — Enterprise AI를 데스크톱까지 잇는 실행 계층",
                 desc: "중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결 방식",
                 href: "/blog/product-xgen-dex",
             },
             {
-                label: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다",
+                label: "Dex — 기업 AI Agent를 실제 업무환경으로 연결하다",
                 desc: "왜 데스크톱까지 이어야 하는가, 무엇을 연결하고 무엇은 대체하지 않는가",
                 href: "/blog/xgen-dex-desktop-connect",
             },
             {
-                label: "XGEN DeX 설치부터 첫 업무까지 — 여섯 단계",
+                label: "Dex 설치부터 첫 업무까지 — 여섯 단계",
                 desc: "설치·Agent 제작·PC 연결·권한·업무 지시까지 실제 화면과 함께",
                 href: "/blog/xgen-dex-install-guide",
             },
@@ -323,11 +323,11 @@ const COPY: Record<Locale, DexCopy> = {
     },
     en: {
         ldDescription:
-            "XGEN DeX is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
+            "Dex is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
         heroBadge: "XGEN · DeX",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "XGEN DeX is an execution platform that connects XGEN's AI agents to local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and carries out the actual work.",
+            "Dex is an execution platform that connects XGEN's AI agents to local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and carries out the actual work.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -345,9 +345,9 @@ const COPY: Record<Locale, DexCopy> = {
                 "Analyzing, writing the document, and saving it to the right folder are all one request. The hand-carrying in between disappears, and the hours actually come down.",
             ],
         ],
-        whatTitle: "What is XGEN DeX?",
+        whatTitle: "What is Dex?",
         whatLead: [
-            "XGEN DeX (Desktop Experience) is an installable desktop interface",
+            "Dex (Desktop Experience) is an installable desktop interface",
             "that connects XGEN's AI agents with a user's real working environment.",
         ],
         taskSteps: [
@@ -392,7 +392,7 @@ const COPY: Record<Locale, DexCopy> = {
         flowTitle: "How you use it",
         flowLead: "Six steps from install to the first task.",
         steps: [
-            ["Install DeX", "Run the installer to set up XGEN DeX."],
+            ["Install DeX", "Run the installer to set up Dex."],
             ["Connect to XGEN", "Sign in with your account to reach the XGEN server."],
             ["Pick an agent", "Choose the agent the task calls for."],
             ["Connect the execution environment", "Connect files, browser, and tools, and grant the permissions needed."],
@@ -489,20 +489,20 @@ const COPY: Record<Locale, DexCopy> = {
                 art: "floui",
             },
         ],
-        postsTitle: "Related XGEN DeX previews",
+        postsTitle: "Related Dex previews",
         posts: [
             {
-                label: "XGEN DeX — the execution layer that reaches the desktop",
+                label: "Dex — the execution layer that reaches the desktop",
                 desc: "Central control stays as it is, and the way people work does not change",
                 href: "/en/blog/product-xgen-dex",
             },
             {
-                label: "XGEN DeX — bringing enterprise AI agents into the actual desktop",
+                label: "Dex — bringing enterprise AI agents into the actual desktop",
                 desc: "Why the desktop has to be reached, what gets connected, and what is not replaced",
                 href: "/en/blog/xgen-dex-desktop-connect",
             },
             {
-                label: "XGEN DeX from install to first task — six steps",
+                label: "Dex from install to first task — six steps",
                 desc: "Install, build, connect, permissions, and the first request — with real screens",
                 href: "/en/blog/xgen-dex-install-guide",
             },
@@ -529,12 +529,12 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                     breadcrumbLd([
                         { name: "Home", path: home },
                         { name: "Product", path: en ? "/en/product" : "/product" },
-                        { name: "XGEN DeX", path: en ? "/en/xgen-dex" : "/xgen-dex" },
+                        { name: "Dex", path: en ? "/en/xgen-dex" : "/xgen-dex" },
                     ]),
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        name: "XGEN DeX",
+                        name: "Dex",
                         alternateName: "XGEN Desktop Experience",
                         applicationCategory: "BusinessApplication",
                         operatingSystem: "Windows",

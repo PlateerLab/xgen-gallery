@@ -1,13 +1,13 @@
 ---
-title: "XGEN DeX from install to first task — six steps"
-titleSeo: "XGEN DeX install and usage guide"
+title: "Dex from install to first task — six steps"
+titleSeo: "Dex install and usage guide"
 description: "Install DeX, ask Geny in plain language to build an agent, connect that agent to your PC, and hand it real work. Six steps, with real screens."
 date: "2026-08-28"
 cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "Geny", "Desktop Experience", "Agentic AI", "Install guide"]
+tags: ["Dex", "Geny", "Desktop Experience", "Agentic AI", "Install guide"]
 faq:
   - q: "Where do I build the agent?"
     a: "In XGEN. DeX is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to Geny in plain language gets you a workflow with the nodes and connections already in place."
@@ -21,11 +21,11 @@ faq:
     a: "It appears because a code-signing certificate is not yet registered; it is not a problem with the installer itself. Click More info, check the publisher and filename, then continue."
 ---
 
-> This is the hands-on companion to [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
+> This is the hands-on companion to [Dex — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect). That post covered why the desktop needs connecting; this one connects it.
 
 Anyone who has handed work to AI knows the feeling. The answer is good — but folding that result back into an existing file, opening the application it belongs in, and saving it to the right work folder is all still done by a person.
 
-XGEN DeX handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
+Dex handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
 
 The installer is on GitHub, about 280MB. Screens are from Windows.
 
@@ -183,5 +183,5 @@ What the agent produces becomes the start of the next task. It is saved in the s
 
 ## Read next
 
-- [XGEN DeX — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect) — why DeX exists
-- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
+- [Dex — connecting enterprise AI agents to the real desktop](/en/blog/xgen-dex-desktop-connect) — why DeX exists
+- [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work

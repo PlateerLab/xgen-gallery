@@ -27,7 +27,7 @@ export async function generateMetadata({
     return pageMetadata({
         title: `${d.en} customer cases`,
         description: hasCases
-            ? `${blurb} — ${cases.length} case${cases.length > 1 ? "s" : ""}. See the background, the scope delivered, and the outcome of applying XGEN and AI Code Assistant to ${d.en.toLowerCase()} work.`
+            ? `${blurb} — ${cases.length} case${cases.length > 1 ? "s" : ""}. See the background, the scope delivered, and the outcome of applying XGEN and XGEN DevStudio to ${d.en.toLowerCase()} work.`
             : `${blurb} — in preparation. Plateer AI Labs researches Enterprise AI shaped to the workflows and regulations of ${d.en.toLowerCase()}, and proves it through PoCs.`,
         path: `/customers/${domain}`,
         locale: "en",

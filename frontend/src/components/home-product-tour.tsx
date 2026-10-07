@@ -9,15 +9,15 @@ import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * 메인 — Applied AI 하위 "Product Tour" 섹션.
- * 탭(XGEN / MCP Apps / PathFinder / FloUI)으로 제품 소개영상을 전환한다.
+ * 메인 — XGEN 주요 기능 소개영상 섹션.
+ * 탭(XGEN / PathFinder / FloUI / XGEN DevStudio)으로 소개영상을 전환한다.
  *
  * 성능: 파사드(facade) 패턴 — 처음에는 썸네일(poster) + 재생 버튼만 렌더하고,
  * 사용자가 클릭할 때만 실제 임베드(iframe)를 로드한다. 활성 탭 1개만 렌더하므로
  * 초기 페이지 로드 시 영상 플레이어 JS가 전혀 로드되지 않아 LCP에 영향이 없다.
- * 영상 추가 시 각 제품의 `video`(임베드 URL)와 `poster`(썸네일)만 채우면 된다.
+ * 영상 추가 시 각 항목의 `video`(임베드 URL)와 `poster`(썸네일)만 채우면 된다.
  */
-type Product = {
+type TourItem = {
     key: string;
     name: string;
     tagline: string;
@@ -33,7 +33,7 @@ type Product = {
 };
 
 // XGEN 우산 아래 Overview → Build(PathFinder) → Experience(FloUI) → Deploy(MCP Apps).
-const PRODUCTS: Product[] = [
+const TOUR_ITEMS: TourItem[] = [
     {
         key: "overview",
         name: "Overview",
@@ -73,7 +73,7 @@ const PRODUCTS: Product[] = [
     },
     {
         key: "code-assistant",
-        name: "AI Code Assistant",
+        name: "XGEN DevStudio",
         tagline: "Code",
         desc: {
             ko: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다",
@@ -101,14 +101,14 @@ const COPY: Record<
     ko: {
         title: (
             <>
-                제품을{" "}
+                XGEN 주요 기능을{" "}
                 <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
                     영상
                 </span>
                 으로 만나보세요
             </>
         ),
-        lead: "XGEN과 핵심 제품의 주요 기능을 짧은 소개영상으로 확인할 수 있습니다",
+        lead: "XGEN과 주요 기능, XGEN DevStudio를 짧은 소개영상으로 확인할 수 있습니다",
         more: "데모 영상 더보기",
         play: (n) => `${n} 소개영상 재생`,
         soon: (n) => `${n} 소개영상 준비 중`,
@@ -119,7 +119,7 @@ const COPY: Record<
     en: {
         title: (
             <>
-                See the products{" "}
+                See XGEN capabilities{" "}
                 <span className="bg-gradient-to-r from-[#00acee] to-[#5eead4] bg-clip-text text-transparent">
                     in motion
                 </span>
@@ -138,9 +138,9 @@ const COPY: Record<
 export function HomeProductTour() {
     const { locale } = useI18n();
     const t = COPY[locale];
-    const [activeKey, setActiveKey] = useState(PRODUCTS[0].key);
+    const [activeKey, setActiveKey] = useState(TOUR_ITEMS[0].key);
     const [playing, setPlaying] = useState(false);
-    const active = PRODUCTS.find((p) => p.key === activeKey) ?? PRODUCTS[0];
+    const active = TOUR_ITEMS.find((p) => p.key === activeKey) ?? TOUR_ITEMS[0];
 
     function selectTab(key: string) {
         setActiveKey(key);
@@ -152,7 +152,7 @@ export function HomeProductTour() {
             <div className="mx-auto max-w-7xl px-6 py-28">
                 <div className="text-center">
                     <p className="font-mono text-[13px] uppercase tracking-widest text-white/45">
-                        / Product Tour
+                        / XGEN Capability Tour
                     </p>
                     <h2 className="mt-3 mx-auto max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
                         {t.title}
@@ -164,7 +164,7 @@ export function HomeProductTour() {
 
                 {/* 탭 메뉴 */}
                 <div className="mt-10 flex flex-wrap justify-center gap-2">
-                    {PRODUCTS.map((p) => (
+                    {TOUR_ITEMS.map((p) => (
                         <button
                             key={p.key}
                             type="button"

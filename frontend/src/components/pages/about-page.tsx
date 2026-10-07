@@ -291,7 +291,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 {
                     when: "2024",
-                    what: "X2BEE AI — LLM·생성형 AI를 커머스에 적용, AI Search와 AI Code Assistant 출시",
+                    what: "X2BEE AI — LLM·생성형 AI를 커머스에 적용, AI Search와 XGEN DevStudio 출시",
                 },
                 {
                     when: "2021",
@@ -486,7 +486,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 {
                     when: "2024",
-                    what: "X2BEE AI — LLMs and generative AI applied to commerce, with AI Search and AI Code Assistant",
+                    what: "X2BEE AI — LLMs and generative AI applied to commerce, with AI Search and XGEN DevStudio",
                 },
                 {
                     when: "2021",

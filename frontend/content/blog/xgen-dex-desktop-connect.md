@@ -1,17 +1,17 @@
 ---
-title: "XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다"
-titleSeo: "XGEN DeX — Agent를 업무환경에 연결"
-description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. XGEN DeX는 XGEN의 AI Agent를 사용자의 PC와 연결하여, 파일과 애플리케이션을 활용한 실제 업무 수행을 가능하게 하는 Desktop Interface입니다."
+title: "Dex — 기업 AI Agent를 실제 업무환경으로 연결하다"
+titleSeo: "Dex — Agent를 업무환경에 연결"
+description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. Dex는 XGEN의 AI Agent를 사용자의 PC와 연결하여, 파일과 애플리케이션을 활용한 실제 업무 수행을 가능하게 하는 Desktop Interface입니다."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]
+tags: ["Dex", "Desktop Experience", "Agentic AI", "AI 거버넌스", "제품"]
 faq:
-  - q: "XGEN DeX는 데스크톱용 XGEN 채팅 앱인가요?"
+  - q: "Dex는 데스크톱용 XGEN 채팅 앱인가요?"
     a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. DeX는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
-  - q: "이전에 소개한 XGEN DeX 글과 어떤 관계인가요?"
+  - q: "이전에 소개한 Dex 글과 어떤 관계인가요?"
     a: "앞선 글이 Enterprise AI를 데스크톱까지 잇는다는 방향을 다뤘다면, 이 글은 그 방향을 실제로 구현한 설치형 접점을 다룹니다. 서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 실행 인터페이스 역할을 맡습니다."
   - q: "AI에게 제 PC를 통째로 맡기는 것인가요?"
     a: "아닙니다. DeX가 지향하는 것은 기업이 관리하는 Agent에게 허용된 업무환경과 도구를 연결하는 것입니다. 어떤 Agent가 어떤 데이터에 접근하고 어떤 Tool을 실행할 수 있는지는 XGEN의 Agent 관리·거버넌스 체계 안에서 통제됩니다."
@@ -31,15 +31,15 @@ AI는 분석 방법과 보고서 내용을 훌륭하게 제안할 수 있습니�
 
 결국 **AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경이 분리되어 있기 때문**입니다.
 
-XGEN DeX는 이 간극을 연결하기 위해 만들어지고 있습니다.
+Dex는 이 간극을 연결하기 위해 만들어지고 있습니다.
 
-> 이 글은 [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex)의 후속입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 실제로 잇는 설치형 접점을 다룹니다.
+> 이 글은 [Dex — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex)의 후속입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 실제로 잇는 설치형 접점을 다룹니다.
 
 ---
 
-## XGEN DeX란?
+## Dex란?
 
-XGEN DeX는 **XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 PC 업무환경을 연결하는 Desktop Interface**입니다.
+Dex는 **XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 PC 업무환경을 연결하는 Desktop Interface**입니다.
 
 XGEN에서 업무용 Agent를 만들고 관리한다면, DeX는 해당 Agent가 사용자의 PC 업무환경에서 실제 업무를 수행할 수 있도록 연결합니다.
 
@@ -53,11 +53,11 @@ DeX를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이�
 
 이라면,
 
-**XGEN DeX = Agent가 실제 업무를 수행할 수 있도록 사용자 환경과 연결하는 곳**
+**Dex = Agent가 실제 업무를 수행할 수 있도록 사용자 환경과 연결하는 곳**
 
 이라고 이해하면 쉽습니다.
 
-이름은 **XGEN DeX**(Desktop Experience)이고, 하는 일은 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
+이름은 **Dex**(Desktop Experience)이고, 하는 일은 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
 
 ---
 
@@ -71,7 +71,7 @@ DeX를 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이�
 
 AI가 실제 업무를 수행하려면 이러한 업무환경과 자연스럽게 연결될 수 있어야 합니다.
 
-그래서 XGEN DeX가 지향하는 AI 활용 방식은 기존의
+그래서 Dex가 지향하는 AI 활용 방식은 기존의
 
 **질문 → 답변**
 
@@ -104,7 +104,7 @@ DeX의 사용 방식은 일반적인 업무용 AI보다 오히려 단순하게 �
 
 설치 화면과 각 단계의 자세한 설명은 실습 편에 화면과 함께 정리했습니다.
 
-**→ [XGEN DeX 설치부터 첫 업무까지 — 여섯 단계](/blog/xgen-dex-install-guide)**
+**→ [Dex 설치부터 첫 업무까지 — 여섯 단계](/blog/xgen-dex-install-guide)**
 
 여기서는 각 단계가 왜 그렇게 설계되었는지만 짚어보겠습니다.
 
@@ -161,7 +161,7 @@ DeX를 모든 업무에 적용할 필요는 없습니다.
 
 여기서 중요한 원칙이 하나 있습니다.
 
-XGEN DeX가 Excel이나 PowerPoint, 브라우저, SharePoint 같은 기존 업무 도구를 새로 만드는 것은 아닙니다.
+Dex가 Excel이나 PowerPoint, 브라우저, SharePoint 같은 기존 업무 도구를 새로 만드는 것은 아닙니다.
 
 기업에는 이미 잘 사용하고 있는 업무 시스템과 SaaS, 애플리케이션이 있습니다.
 
@@ -179,7 +179,7 @@ PC에 있는 파일과 애플리케이션을 활용하는 업무는 로컬 실�
 
 반대로 기업의 공통 데이터나 중앙에서 관리해야 하는 AI 모델, Agent 자산 등은 서버에서 관리하는 것이 적합합니다.
 
-XGEN DeX는 이러한 특성을 고려해 **서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 구조**를 지향합니다.
+Dex는 이러한 특성을 고려해 **서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 구조**를 지향합니다.
 
 이를 통해 기업은 중앙에서 Agent와 주요 자산을 관리하면서, 실제 실행이 필요한 업무는 사용자의 업무환경과 연결할 수 있습니다.
 
@@ -215,7 +215,7 @@ AI가 PC와 기업 데이터에 접근할 수 있게 되면 반드시 함께 고
 
 특히 금융·공공·대기업에서는 Agent의 편리함만큼 이러한 관리 체계가 중요합니다.
 
-따라서 XGEN DeX가 지향하는 방향은
+따라서 Dex가 지향하는 방향은
 
 **"AI에게 내 PC를 맡긴다"**
 
@@ -227,7 +227,7 @@ AI가 PC와 기업 데이터에 접근할 수 있게 되면 반드시 함께 고
 
 XGEN의 Agent 관리 및 AI 거버넌스 체계와 DeX가 함께 발전해야 하는 이유입니다.
 
-> **준비 중입니다.** 이 절에서 설명한 보안·거버넌스 통제 체계는 XGEN DeX가 지향하는 방향이며, 현재 개발 중입니다. 제공 범위와 시점은 순차적으로 안내드리겠습니다.
+> **준비 중입니다.** 이 절에서 설명한 보안·거버넌스 통제 체계는 Dex가 지향하는 방향이며, 현재 개발 중입니다. 제공 범위와 시점은 순차적으로 안내드리겠습니다.
 
 ---
 
@@ -239,7 +239,7 @@ XGEN의 Agent 관리 및 AI 거버넌스 체계와 DeX가 함께 발전해야 �
 
 AI가 답변을 생성하는 것을 넘어 **필요한 도구를 사용하고 실제 업무 결과물을 만들어야 합니다.**
 
-XGEN DeX는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 이 마지막 간극을 연결합니다.
+Dex는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 이 마지막 간극을 연결합니다.
 
 **XGEN에서 Agent를 만들고
 → 기업의 데이터와 시스템을 연결하고
@@ -256,15 +256,15 @@ XGEN DeX는 XGEN의 Agent와 실제 업무환경 사이에 존재하는 이 마�
 
 로 확장됩니다.
 
-XGEN DeX가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 아닙니다.
+Dex가 만들고자 하는 것은 또 하나의 AI 채팅 프로그램이 아닙니다.
 
 > **기업이 구축한 AI Agent를 실제 업무환경으로 연결하는 실행 접점.**
 
-그것이 XGEN DeX가 필요한 이유입니다.
+그것이 Dex가 필요한 이유입니다.
 
 ---
 
 ## 함께 읽기
 
-- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결
-- [XGEN DeX 설치부터 첫 업무까지](/blog/xgen-dex-install-guide) — 설치·Agent 제작·연결·업무 지시까지, 화면과 함께
+- [Dex — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결
+- [Dex 설치부터 첫 업무까지](/blog/xgen-dex-install-guide) — 설치·Agent 제작·연결·업무 지시까지, 화면과 함께

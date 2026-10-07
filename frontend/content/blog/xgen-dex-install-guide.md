@@ -1,13 +1,13 @@
 ---
-title: "XGEN DeX 설치부터 첫 업무까지 — 여섯 단계"
-titleSeo: "XGEN DeX 설치·활용 가이드"
+title: "Dex 설치부터 첫 업무까지 — 여섯 단계"
+titleSeo: "Dex 설치·활용 가이드"
 description: "DeX를 설치하고, Geny에게 말로 시켜 Agent를 만들고, 그 Agent를 내 PC에 연결해 실제 업무를 맡기기까지. 실제 화면과 함께 여섯 단계로 따라갑니다."
 date: "2026-08-28"
 cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "Geny", "Desktop Experience", "Agentic AI", "설치 가이드"]
+tags: ["Dex", "Geny", "Desktop Experience", "Agentic AI", "설치 가이드"]
 faq:
   - q: "Agent는 어디서 만드나요?"
     a: "XGEN에서 만듭니다. DeX는 Agent를 실행하는 쪽이고, Agent 자체는 XGEN의 캔버스에서 만듭니다. 노드를 직접 잇는 방법도 있지만, Geny에게 하려는 일을 말로 설명하면 필요한 노드와 연결을 갖춘 워크플로우를 만들어 줍니다."
@@ -21,11 +21,11 @@ faq:
     a: "코드 서명 인증서가 아직 등록되지 않아 나타나는 화면으로, 설치 파일 자체의 문제는 아닙니다. 추가 정보를 눌러 게시자와 파일명을 확인한 뒤 진행합니다."
 ---
 
-> 이 글은 [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect)의 실습 편입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 직접 해봅니다.
+> 이 글은 [Dex — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect)의 실습 편입니다. 앞선 글이 "왜 데스크톱까지 이어야 하는가"를 다뤘다면, 이 글은 그것을 직접 해봅니다.
 
 AI에게 일을 맡겨 본 사람이라면 비슷한 경험이 있습니다. 답변은 훌륭하지만, 그 결과를 기존 파일에 반영하고, 필요한 애플리케이션을 실행하고, 업무 폴더에 저장하는 일은 여전히 사람이 처리합니다.
 
-XGEN DeX는 그 마지막 연결을 담당합니다. 서버에서 운영되는 Agent가 사용자의 PC에서 파일과 애플리케이션을 활용해 실제 업무를 수행할 수 있도록 연결합니다.
+Dex는 그 마지막 연결을 담당합니다. 서버에서 운영되는 Agent가 사용자의 PC에서 파일과 애플리케이션을 활용해 실제 업무를 수행할 수 있도록 연결합니다.
 
 설치 파일은 GitHub 저장소에서 받습니다. 용량은 약 280MB이고, 화면은 Windows 기준입니다.
 
@@ -183,5 +183,5 @@ Agent가 생성한 결과물은 다음 업무의 시작점이 됩니다. 결과�
 
 ## 함께 읽기
 
-- [XGEN DeX — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect) — DeX가 왜 필요한지
-- [XGEN DeX — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결
+- [Dex — 기업 AI Agent를 실제 업무환경으로 연결하다](/blog/xgen-dex-desktop-connect) — DeX가 왜 필요한지
+- [Dex — Enterprise AI를 데스크톱까지 잇는 실행 계층](/blog/product-xgen-dex) — 시리즈의 첫 글. 중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결

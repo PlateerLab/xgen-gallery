@@ -132,7 +132,7 @@ const COPY: Record<Locale, ArchCopy> = {
         caTitle: "코드 어시스턴트 아키텍처",
         caLead:
             "자연어 질문 · 코드 검색 요청을 인덱싱과 하이브리드 검색, AI 재정렬로 처리해 근거 있는 코드 답변을 제공합니다",
-        caCta: "AI Code Assistant 제품 보기",
+        caCta: "XGEN DevStudio 제품 보기",
         cicdTitle: "GitOps 배포 파이프라인",
         cicdLead:
             "소스 변경부터 운영 반영까지 — 컨테이너 이미지 빌드와 선언형 GitOps 동기화로 통제된 배포를 수행합니다",
@@ -213,7 +213,7 @@ const COPY: Record<Locale, ArchCopy> = {
         caTitle: "Code Assistant architecture",
         caLead:
             "Natural-language questions and code searches run through indexing, hybrid retrieval, and AI reranking to produce a code answer with evidence behind it",
-        caCta: "See the AI Code Assistant product",
+        caCta: "See the XGEN DevStudio product",
         cicdTitle: "GitOps deployment pipeline",
         cicdLead:
             "From source change to production — container image builds and declarative GitOps sync make each deployment a controlled one",

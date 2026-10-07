@@ -82,7 +82,7 @@ const COPY: Record<Locale, PfCopy> = {
         start: [
             ["확장 프로그램 준비", "패스파인더 압축 파일(.zip)을 내려받아 폴더로 압축을 풉니다 (manifest.json 포함)"],
             ["크롬에 추가", "chrome://extensions 에서 개발자 모드를 켜고 ‘압축 해제된 확장 프로그램을 로드’로 폴더를 선택합니다"],
-            ["실행·XGEN 연동", "크롬 우측 상단 확장 아이콘에서 XGEN PathFinder를 선택하면 XGEN이 로드될 때 자동으로 연결됩니다"],
+            ["실행·XGEN 연동", "크롬 우측 상단 확장 아이콘에서 PathFinder를 선택하면 XGEN이 로드될 때 자동으로 연결됩니다"],
         ],
         useCases: [
             ["레거시 사내 시스템을 AI 업무로 확장", "그룹웨어·ERP 등 기존 웹 시스템을 코드 수정 없이 Agent Tool로 연결해 AI 업무 환경으로 넓힙니다"],
@@ -93,7 +93,7 @@ const COPY: Record<Locale, PfCopy> = {
             { q: "패스파인더(PathFinder)란 무엇인가요?", a: "패스파인더는 시스템과 API를 코드 없이 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 XGEN 기술이자, 대화로 XGEN Canvas의 에이전트 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트입니다. 로그인·연결·테스트·등록의 전 과정을 브라우저에서 자동화합니다." },
             { q: "패스파인더는 어떻게 작동하나요?", a: "대상 시스템에 로그인한 뒤 화면과 상호작용하면, 패스파인더가 오가는 요청에서 필요한 API를 감지하고 이를 Agent Tool로 등록한 다음 바로 테스트합니다. 코드를 작성하지 않고 로그인 → API 연결 → 도구 등록 → 테스트의 4단계로 기존 시스템을 AI가 쓰는 도구로 만듭니다." },
             { q: "개발 지식이 없어도 쓸 수 있나요?", a: "네. 패스파인더는 코드 없이 브라우저 조작과 대화만으로 도구 등록과 워크플로우 구성을 자동화하도록 설계되어, 개발 지식이 없는 현업도 직접 사용할 수 있습니다." },
-            { q: "패스파인더는 어떻게 설치하나요?", a: "패스파인더 압축 파일(.zip)을 폴더로 압축 해제한 뒤, 크롬 chrome://extensions 에서 개발자 모드를 켜고 ‘압축 해제된 확장 프로그램을 로드’로 해당 폴더를 선택합니다. 이후 확장 아이콘에서 XGEN PathFinder를 실행하면 XGEN 로드 시 자동 연동됩니다." },
+            { q: "패스파인더는 어떻게 설치하나요?", a: "패스파인더 압축 파일(.zip)을 폴더로 압축 해제한 뒤, 크롬 chrome://extensions 에서 개발자 모드를 켜고 ‘압축 해제된 확장 프로그램을 로드’로 해당 폴더를 선택합니다. 이후 확장 아이콘에서 PathFinder를 실행하면 XGEN 로드 시 자동 연동됩니다." },
             { q: "패스파인더로 만든 에이전트는 그대로 사용하나요?", a: "패스파인더는 제작을 돕는 보조 도구입니다. 생성 후에는 표준 에이전트 제작 가이드로 구성을 검토하는 것을 권장하며, 확장 프로그램은 설치한 브라우저에서만 동작합니다." },
         ],
         heroTitle: "레거시 시스템을 AI가 쓰는 Tool로 연결합니다",
@@ -139,7 +139,7 @@ const COPY: Record<Locale, PfCopy> = {
         start: [
             ["Prepare the extension", "Download the PathFinder archive (.zip) and unpack it into a folder (including manifest.json)"],
             ["Add it to Chrome", "At chrome://extensions, turn on Developer mode and choose “Load unpacked” to select the folder"],
-            ["Run and connect to XGEN", "Pick XGEN PathFinder from the extension icon in the top right of Chrome, and it connects automatically when XGEN loads"],
+            ["Run and connect to XGEN", "Pick PathFinder from the extension icon in the top right of Chrome, and it connects automatically when XGEN loads"],
         ],
         useCases: [
             ["Extend legacy internal systems into AI work", "Connect existing web systems like groupware and ERP as Agent Tools without touching their code, widening them into an AI working environment"],
@@ -150,7 +150,7 @@ const COPY: Record<Locale, PfCopy> = {
             { q: "What is PathFinder?", a: "PathFinder is XGEN technology that connects systems and APIs into Agent Tools an AI agent can use without code — and a Chrome-extension AI assistant that helps you build agent workflows on the XGEN Canvas through conversation. Sign-in, connection, testing, and registration are all automated in the browser." },
             { q: "How does PathFinder work?", a: "Sign in to the target system, then interact with the screen. PathFinder detects the APIs it needs from the requests going back and forth, registers them as Agent Tools, and tests them immediately. Without writing code, four steps — sign in, connect the API, register the tool, test — turn an existing system into something an AI can use." },
             { q: "Can I use it without development knowledge?", a: "Yes. PathFinder is designed to automate tool registration and workflow construction through browser interaction and conversation alone, so people without development experience can use it directly." },
-            { q: "How do I install PathFinder?", a: "Unpack the PathFinder archive (.zip) into a folder, then at chrome://extensions turn on Developer mode and choose “Load unpacked” to select that folder. Run XGEN PathFinder from the extension icon and it connects automatically when XGEN loads." },
+            { q: "How do I install PathFinder?", a: "Unpack the PathFinder archive (.zip) into a folder, then at chrome://extensions turn on Developer mode and choose “Load unpacked” to select that folder. Run PathFinder from the extension icon and it connects automatically when XGEN loads." },
             { q: "Can I use an agent PathFinder built as-is?", a: "PathFinder is an assistant for building. After generation, we recommend reviewing the configuration against the standard agent authoring guide, and the extension only works in the browser where it is installed." },
         ],
         heroTitle: "Connect legacy systems into tools an AI can use",
@@ -208,7 +208,7 @@ export function PathFinderPageContent({ locale }: { locale: Locale }) {
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        name: "XGEN PathFinder",
+                        name: "PathFinder",
                         alternateName: t.ldAlternateName,
                         applicationCategory: "BrowserApplication",
                         operatingSystem: "Chrome",

@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
     title: "Customer cases",
     description:
-        "Where XGEN and AI Code Assistant were built and operated — finance, commerce, public sector, IT and manufacturing. Browse by product or industry.",
+        "Where XGEN and XGEN DevStudio were built and operated — finance, commerce, public sector, IT and manufacturing. Browse by product or industry.",
     path: "/customers",
     locale: "en",
 });

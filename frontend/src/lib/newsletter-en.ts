@@ -308,7 +308,7 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
         inProgress: [
             {
                 title: "Geny — the tools an agent makes now persist",
-                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they do not disappear when the pod restarts, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. The user-facing product name is now consistently Geny (internal identifiers are unchanged).",
+                body: "We are making the tools an agent builds mid-task usable in the next session too. The tool specification and its runtime live in the database, so they do not disappear when the pod restarts, and the pinned dependency versions are written into the spec. Code execution moved to a separate runner, away from the workflow core, and the [Tools] view shows the actual code and a three-stage status with a test you can run right there. The user-facing capability name is now consistently Geny (internal identifiers are unchanged).",
             },
             {
                 title: "Audio file transcription",
@@ -376,7 +376,7 @@ export const NEWSLETTER_EN: Record<string, IssueEn> = {
         ],
         upcoming: [
             {
-                title: "XGEN DeX · coming soon",
+                title: "Dex · coming soon",
                 subtitle: "An execution layer carrying enterprise AI to the desktop",
                 body: "The AI agent runs on the server, and you work with that agent from your own desktop. It is a way of connecting that leaves central control as it is and does not change how you work.\n\nSo the resources an agent uses are not bound to the server alone. Attach an MCP server running on your PC and the agent can call tools inside the corporate network, or programs that exist only on this computer. Server resources and local resources, used together. More detail in the next issue.",
                 figure: "XGEN Connector — your agent list on the left, quick chat below, an avatar on screen. Agents running on the server, called straight from the desktop.",

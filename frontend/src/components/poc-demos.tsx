@@ -147,7 +147,7 @@ export const DEMOS: Demo[] = [
     },
     {
         id: "4T7tT2nTXfw",
-        title: "XGEN PathFinder BUILD",
+        title: "PathFinder BUILD",
         desc: "PathFinder는 기존 웹 시스템을 AI가 이해하고 사용할 수 있는 Agent Tool로 연결하는 브라우저 자동화 기술입니다.",
         descEn:
             "PathFinder is browser-automation technology that turns existing web systems into Agent Tools an AI can understand and operate.",
@@ -155,7 +155,7 @@ export const DEMOS: Demo[] = [
     },
     {
         id: "StxOW5PbC8w",
-        title: "XGEN FloUI experience",
+        title: "FloUI experience",
         desc: "FLOUI(Flow UI)는 사용자의 질문과 업무 흐름에 따라 화면이 스스로 구성되는 AI 기반 Adaptive UI 기술입니다.",
         descEn:
             "FLOUI (Flow UI) is AI-driven adaptive UI: the screen composes itself around the user's question and the flow of the work.",
@@ -163,8 +163,8 @@ export const DEMOS: Demo[] = [
     },
     {
         id: "dGEvX07WXKM",
-        title: "AI Code Assistant 실증 데모",
-        titleEn: "AI Code Assistant demo",
+        title: "XGEN DevStudio 실증 데모",
+        titleEn: "XGEN DevStudio demo",
         desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트를 실제 화면으로 시연합니다.",
         descEn:
             "An enterprise code assistant that learns in-house code, APIs, DB schemas, and deliverables, and answers at code level in the context of the project — shown on the real product screen.",

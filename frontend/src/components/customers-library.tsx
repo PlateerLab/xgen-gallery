@@ -230,8 +230,8 @@ export function CustomersLibrary({
             <div className="text-center">
                 <h2 className="mx-auto max-w-3xl text-2xl font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[32px] md:leading-snug">
                     {en
-                        ? "Stories from customers who changed how they work with XGEN and AI Code Assistant"
-                        : "XGEN·AI Code Assistant로 업무를 혁신한 고객의 이야기를 살펴보세요"}
+                        ? "Stories from customers who changed how they work with XGEN and XGEN DevStudio"
+                        : "XGEN·XGEN DevStudio로 업무를 혁신한 고객의 이야기를 살펴보세요"}
                 </h2>
             </div>
 

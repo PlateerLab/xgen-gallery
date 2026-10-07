@@ -24,14 +24,14 @@ const ROTATE_MS = 6000;
 /**
  * 슬라이드별 노출 시간.
  *
- * 첫 장(XGEN DeX)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
+ * 첫 장(Dex)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
  * 전환이 두 번 지나갈 만큼은 머물러야 「무엇이 새로운지」가 읽힌다.
  * 나머지는 기존 6초 그대로.
  */
 const SLIDE_MS = [11000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
-// 순서: XGEN DeX → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// 순서: Dex → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
 // DeX 를 맨 앞에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
 // 가장 설명 없이 와닿는 장면이고, 배경 영상도 실제 업무 책상이라 말과 그림이 맞는다.
 // 그다음 오픈소스 툴킷을 두어 검색으로 도착한 개발자가 자기 경로를 찾게 한다.
@@ -105,7 +105,7 @@ function HeroActions({
 }
 
 /**
- * 슬라이드 1 — XGEN DeX (실제 업무 책상 배경).
+ * 슬라이드 1 — Dex (실제 업무 책상 배경).
  *
  * 「AI 를 도입한다」가 아니라 「내 자리에서 같이 일한다」를 말한다. 홈에 처음
  * 온 사람에게 설명 없이 와닿는 장면이 그쪽이고, 배경 영상도 실제 책상이라
@@ -117,7 +117,7 @@ function DexSlide() {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
-                XGEN DeX · Desktop Experience
+                Dex · Desktop Experience
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
@@ -144,13 +144,13 @@ function DexSlide() {
                 */}
                 {locale === "ko" ? (
                     <>
-                        XGEN DeX는 AI Agent를 사용자의 업무환경과 연결해{" "}
+                        Dex는 AI Agent를 사용자의 업무환경과 연결해{" "}
                         <br className="hidden sm:block" />
                         실제 업무를 수행하고 결과물을 완성합니다.
                     </>
                 ) : (
                     <>
-                        XGEN DeX connects the AI agent to your working environment{" "}
+                        Dex connects the AI agent to your working environment{" "}
                         <br className="hidden sm:block" />
                         to carry out real work and finish the deliverable.
                     </>

@@ -25,7 +25,7 @@ import { breadcrumbLd } from "@/lib/structured-data";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 /**
- * AI Code Assistant 제품 페이지 — 사내 코드베이스(코드·API·DB 스키마·산출물)를
+ * XGEN DevStudio 제품 페이지 — 사내 코드베이스(코드·API·DB 스키마·산출물)를
  * 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트.
  * 내부 위키(C.A) 기반이되 고객사명·크리덴셜·서버 스펙 등 내부 정보는 제외한다.
  * Product GNB > Code Assistant 진입점(/code-assistant).
@@ -35,7 +35,7 @@ import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * AI Code Assistant 제품 페이지 — 한국어(`/code-assistant`)와
+ * XGEN DevStudio 제품 페이지 — 한국어(`/code-assistant`)와
  * 영어(`/en/code-assistant`)가 이 컴포넌트를 공유한다.
  */
 interface CaCopy {
@@ -190,9 +190,9 @@ const COPY: Record<Locale, CaCopy> = {
         ],
         faq: [
             { q: "기존 코드베이스를 학습하나요?", a: "네. GitLab 저장소를 인덱싱해 코드, API, DB 스키마, 산출물 등을 지식화하고, 해당 저장소를 근거로 답변을 생성합니다. 저장소를 선택하지 않으면 일반 AI 채팅 모드로도 자유롭게 이용할 수 있습니다." },
-            { q: "소스 코드가 외부로 전송되나요?", a: "아니요. AI Code Assistant는 온프레미스·폐쇄망에 설치되어 소스와 데이터가 사내에 머뭅니다." },
+            { q: "소스 코드가 외부로 전송되나요?", a: "아니요. XGEN DevStudio는 온프레미스·폐쇄망에 설치되어 소스와 데이터가 사내에 머뭅니다." },
             { q: "특정 LLM에 종속되나요?", a: "아니요. 관리형 AI 게이트웨이를 통해 원하는 모델을 선택하고 교체할 수 있어, AI 생태계 변화에 지속적으로 대응합니다." },
-            { q: "GitHub Copilot 같은 범용 코드 어시스턴트와 무엇이 다른가요?", a: "범용 도구는 프로젝트를 깊이 이해하지 못해 원론적 답변에 그치는 경우가 많습니다. AI Code Assistant는 사내 프로젝트 전체를 학습해, 실제 컴포넌트·엔드포인트·테이블을 짚는 코드 수준의 구체적 답변을 제공합니다." },
+            { q: "GitHub Copilot 같은 범용 코드 어시스턴트와 무엇이 다른가요?", a: "범용 도구는 프로젝트를 깊이 이해하지 못해 원론적 답변에 그치는 경우가 많습니다. XGEN DevStudio는 사내 프로젝트 전체를 학습해, 실제 컴포넌트·엔드포인트·테이블을 짚는 코드 수준의 구체적 답변을 제공합니다." },
             { q: "GitLab 외 언어·환경도 지원하나요?", a: "GitLab Duo 하이브리드 구성으로 다양한 프로그래밍 언어와 환경까지 커버리지를 확장합니다." },
         ],
         ldDescription: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트. GitLab 연동, 온프레미스 배포, 모델 중립 게이트웨이를 지원한다.",
@@ -204,14 +204,14 @@ const COPY: Record<Locale, CaCopy> = {
             "GitLab 연동 · GitLab Duo 하이브리드",
             "온프레미스 · 모델 중립 게이트웨이",
         ],
-        heroTitle: "우리 코드베이스를 이해하는 AI Code Assistant",
+        heroTitle: "우리 코드베이스를 이해하는 XGEN DevStudio",
         heroLead: "범용 자동완성을 넘어, 사내 코드·API·DB 스키마·산출물을 학습해 실제 프로젝트 맥락에서 코드 수준으로 답합니다. GitLab과 연동되고 온프레미스·폐쇄망에 설치돼 소스가 외부로 나가지 않습니다.",
         heroCtaPrimary: "도입 문의",
         heroCtaSecondary: "고객사례 보기",
         heroChip: "엔터프라이즈 · 온프레미스 코드 어시스턴트",
         overviewTitle: "AI는 코드를 생성하는 것이 아니라, 우리 개발 환경을 이해해야 합니다",
         overviewLead: "사내 Git 저장소와 개발 표준을 기반으로 프로젝트 맥락을 이해하고 정확한 답변을 제공합니다. 온프레미스 환경에서 소스코드를 안전하게 보호하며, 특정 AI 모델에 종속되지 않는 개방형 구조로 기업 환경에 맞는 LLM을 자유롭게 선택할 수 있습니다.",
-        valueTitle: "AI Code Assistant 도입으로 개발 생산성과 운영 안정성을 동시에 확보합니다",
+        valueTitle: "XGEN DevStudio 도입으로 개발 생산성과 운영 안정성을 동시에 확보합니다",
         valueLead: "프로젝트에 특화된 코드 이해와 안전한 온프레미스 운영으로 개발 속도는 높이고, 유지보수 비용은 줄입니다.",
         labelBefore: "기존",
         labelAfter: "도입 후",
@@ -228,8 +228,8 @@ const COPY: Record<Locale, CaCopy> = {
         specsTitle: "기술 사양 · 연동",
         specsLead: "기존 개발 환경과의 연동 방식부터 핵심 기술 사양까지 한눈에 확인할 수 있습니다.",
         useCasesTitle: "활용 사례",
-        useCasesLead: "사내 코드·API·스키마를 이해하는 AI Code Assistant가 실제 개발 현장에서 어떻게 활용되는지 소개합니다.",
-        useCasesCta: "AI Code Assistant 고객사례 보기",
+        useCasesLead: "사내 코드·API·스키마를 이해하는 XGEN DevStudio가 실제 개발 현장에서 어떻게 활용되는지 소개합니다.",
+        useCasesCta: "XGEN DevStudio 고객사례 보기",
         faqTitle: "자주 묻는 질문",
         afterTitle: "도입 이후에도 함께합니다",
         afterLead: "구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을 위한 기술지원까지 이어집니다.",
@@ -328,9 +328,9 @@ const COPY: Record<Locale, CaCopy> = {
         ],
         faq: [
             { q: "Does it learn our existing codebase?", a: "Yes. It indexes your GitLab repositories, turning code, APIs, database schemas, and artifacts into knowledge, and generates answers grounded in that repository. If you don't select a repository, you can still use it freely as a general AI chat." },
-            { q: "Is our source code sent anywhere external?", a: "No. AI Code Assistant is installed on-premise or in an air-gapped environment, so source and data stay inside your organization." },
+            { q: "Is our source code sent anywhere external?", a: "No. XGEN DevStudio is installed on-premise or in an air-gapped environment, so source and data stay inside your organization." },
             { q: "Are we locked into a specific LLM?", a: "No. A managed AI gateway lets you select and swap models, so you keep pace as the AI ecosystem changes." },
-            { q: "How is this different from a general coding assistant like GitHub Copilot?", a: "General-purpose tools rarely understand a project deeply enough to get past high-level answers. AI Code Assistant learns the whole internal project, so it gives concrete, code-level answers that point to the actual components, endpoints, and tables." },
+            { q: "How is this different from a general coding assistant like GitHub Copilot?", a: "General-purpose tools rarely understand a project deeply enough to get past high-level answers. XGEN DevStudio learns the whole internal project, so it gives concrete, code-level answers that point to the actual components, endpoints, and tables." },
             { q: "Does it support languages and environments beyond GitLab?", a: "A GitLab Duo hybrid setup extends coverage across a wide range of programming languages and environments." },
         ],
         ldDescription: "An enterprise coding assistant that learns your code, APIs, database schemas, and artifacts, then answers at code level in your project's context. Supports GitLab integration, on-premise deployment, and a model-agnostic gateway.",
@@ -342,7 +342,7 @@ const COPY: Record<Locale, CaCopy> = {
             "GitLab integration and GitLab Duo hybrid",
             "On-premise, model-agnostic gateway",
         ],
-        heroTitle: "An AI Code Assistant that understands your codebase",
+        heroTitle: "An XGEN DevStudio that understands your codebase",
         heroLead: "Past generic autocomplete — it learns your code, APIs, database schemas, and artifacts, and answers at code level in your actual project context. It connects to GitLab and installs on-premise or air-gapped, so source never leaves.",
         heroCtaPrimary: "Talk to us",
         heroCtaSecondary: "See customer cases",
@@ -366,8 +366,8 @@ const COPY: Record<Locale, CaCopy> = {
         specsTitle: "Technical specs and integration",
         specsLead: "From how it connects to your existing development environment through to the core technical specifications.",
         useCasesTitle: "Use cases",
-        useCasesLead: "How an AI Code Assistant that understands your code, APIs, and schemas gets used day to day.",
-        useCasesCta: "See AI Code Assistant customer cases",
+        useCasesLead: "How an XGEN DevStudio that understands your code, APIs, and schemas gets used day to day.",
+        useCasesCta: "See XGEN DevStudio customer cases",
         faqTitle: "Frequently asked questions",
         afterTitle: "We stay with you after the rollout",
         afterLead: "It doesn't end at the build. Training that lands the capability inside your team, and technical support that keeps it running steadily.",
@@ -401,9 +401,9 @@ export function CodeAssistantPageContent({ locale }: { locale: Locale }) {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
                         "@id": absoluteUrl(localeHref(locale, "/code-assistant") + "#software"),
-                        name: "AI Code Assistant",
+                        name: "XGEN DevStudio",
                         applicationCategory: "DeveloperApplication",
-                        applicationSubCategory: "Enterprise AI Code Assistant",
+                        applicationSubCategory: "Enterprise XGEN DevStudio",
                         operatingSystem: "On-premise",
                         description: t.ldDescription,
                         inLanguage: locale,
@@ -425,7 +425,7 @@ export function CodeAssistantPageContent({ locale }: { locale: Locale }) {
                         { name: "Home", path: home },
                         { name: "Product", path: localeHref(locale, "/product") },
                         {
-                            name: "AI Code Assistant",
+                            name: "XGEN DevStudio",
                             path: localeHref(locale, "/code-assistant"),
                         },
                     ]),
@@ -701,7 +701,7 @@ export function CodeAssistantPageContent({ locale }: { locale: Locale }) {
                                             {t.comparisonGeneric}
                                         </th>
                                         <th className="py-3 pr-4 text-[15px] font-bold text-[#2461d8]">
-                                            AI Code Assistant
+                                            XGEN DevStudio
                                         </th>
                                     </tr>
                                 </thead>

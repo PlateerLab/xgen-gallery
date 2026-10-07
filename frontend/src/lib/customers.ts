@@ -174,8 +174,8 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
         key: "it-services",
         ko: "IT·제조",
         en: "IT & Manufacturing",
-        blurb: "AI Code Assistant·기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
-        blurbEn: "Customer cases applying AI to development and engineering — AI Code Assistant and technical documentation",
+        blurb: "XGEN DevStudio·기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to development and engineering — XGEN DevStudio and technical documentation",
     },
 };
 
@@ -258,26 +258,26 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "semiconductor-code-assistant",
-        title: "사내 개발 환경에 맞춘 AI Code Assistant를 전사로 확산하다",
+        title: "사내 개발 환경에 맞춘 XGEN DevStudio를 전사로 확산하다",
         titleEn:
-            "AI Code Assistant, rolled out company-wide",
+            "XGEN DevStudio, rolled out company-wide",
         customer: "국내 반도체 제조 대기업",
         customerEn: "A large semiconductor manufacturer",
         customerAnonymous: true,
         industry: "it-services",
         products: ["code-assistant"],
         summary:
-            "반도체 제조 대기업의 사내 개발 환경에 AI Code Assistant를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
+            "반도체 제조 대기업의 사내 개발 환경에 XGEN DevStudio를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
         summaryEn:
-            "An AI Code Assistant in a semiconductor manufacturer's internal development environment, connected to a local LLM and rolled out company-wide",
+            "An XGEN DevStudio in a semiconductor manufacturer's internal development environment, connected to a local LLM and rolled out company-wide",
         challenge:
             "외부 코드 어시스턴트는 보안상 사용이 어려웠고, 사내 환경에서 한글 기술 질의에 대한 답변 품질을 끌어올려야 했다.",
         challengeEn:
             "External coding assistants were not usable for security reasons, and answer quality for Korean-language technical questions had to be raised inside the internal environment.",
         solution:
-            "사내 Local LLM에 연동한 AI Code Assistant를 구축하고, 한글 답변 품질을 개선했다. 사내 교육을 병행해 실제 활용을 전사로 확산했다.",
+            "사내 Local LLM에 연동한 XGEN DevStudio를 구축하고, 한글 답변 품질을 개선했다. 사내 교육을 병행해 실제 활용을 전사로 확산했다.",
         solutionEn:
-            "An AI Code Assistant was built against the internal local LLM, with Korean answer quality improved. Training ran alongside, spreading real usage across the company.",
+            "An XGEN DevStudio was built against the internal local LLM, with Korean answer quality improved. Training ran alongside, spreading real usage across the company.",
         highlights: [
             "사내 Local LLM 연동",
             "한글 답변 품질 개선",
@@ -294,26 +294,26 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "defense-code-assistant",
-        title: "폐쇄망 개발 환경에 XGEN 기반 AI Code Assistant를 구축하다",
+        title: "폐쇄망 개발 환경에 XGEN 기반 XGEN DevStudio를 구축하다",
         titleEn:
-            "AI Code Assistant in an air-gapped network",
+            "XGEN DevStudio in an air-gapped network",
         customer: "국내 방산·시스템 기업",
         customerEn: "A defense and systems company",
         customerAnonymous: true,
         industry: "it-services",
         products: ["code-assistant"],
         summary:
-            "강한 보안 요건의 폐쇄망 개발 환경에 XGEN 기반 AI Code Assistant를 온프레미스로 구축한 사례",
+            "강한 보안 요건의 폐쇄망 개발 환경에 XGEN 기반 XGEN DevStudio를 온프레미스로 구축한 사례",
         summaryEn:
-            "An XGEN-based AI Code Assistant deployed on-premise into an air-gapped development environment with strict security requirements",
+            "An XGEN-based XGEN DevStudio deployed on-premise into an air-gapped development environment with strict security requirements",
         challenge:
             "외부 연결이 차단된 폐쇄망에서 개발 생산성을 높일 코드 어시스턴트가 필요했다.",
         challengeEn:
             "An air-gapped environment with no external connectivity still needed a coding assistant to raise development productivity.",
         solution:
-            "XGEN 기반 AI Code Assistant를 온프레미스로 구축해, 폐쇄망 안에서 코드 지원을 제공했다.",
+            "XGEN 기반 XGEN DevStudio를 온프레미스로 구축해, 폐쇄망 안에서 코드 지원을 제공했다.",
         solutionEn:
-            "An XGEN-based AI Code Assistant was deployed on-premise, providing code support entirely inside the closed network.",
+            "An XGEN-based XGEN DevStudio was deployed on-premise, providing code support entirely inside the closed network.",
         highlights: ["온프레미스 · 폐쇄망 구축", "XGEN 기반 Code Assistant"],
         highlightsEn: [
             "On-premise, air-gapped deployment",

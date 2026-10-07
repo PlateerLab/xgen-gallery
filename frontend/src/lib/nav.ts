@@ -232,7 +232,7 @@ export const NAV_GROUPS: NavGroup[] = [
                     { label: "MCP App", id: "mcp-compiler" },
                 ],
             },
-            { label: "AI Code Assistant", id: "ai-code-assistant" },
+            { label: "XGEN DevStudio", id: "ai-code-assistant" },
         ],
     },
     {
@@ -271,7 +271,7 @@ export const NAV_GROUPS: NavGroup[] = [
                 id: "customer-cases",
                 route: "/customers",
                 menuOnly: true,
-                blurb: "금융·커머스·공공·IT/제조 현장에 XGEN·AI Code Assistant를 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
+                blurb: "금융·커머스·공공·IT/제조 현장에 XGEN·XGEN DevStudio를 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
                 colBreak: true,
                 // 산업 구분은 사례 데이터가 쌓일 때까지 링크 대신 중간점 텍스트로만 노출.
                 note: "Commerce · Finance · Public · IT",
@@ -325,7 +325,7 @@ export const NAV_GROUPS: NavGroup[] = [
                         //
                         // 이지모드만 전용 페이지가 없다 — 네 장을 한 줄로 보여 주는
                         // /product#build 로 보낸다. 전용 페이지가 생기면 route 만 바꾸면 된다.
-                        // 넷 다 제품 이름이라 국·영문을 같게 둔다 — labelKo 를 두지 않으면
+                        // 넷 다 XGEN 주요 기능 이름이라 국·영문을 같게 둔다 — labelKo 를 두지 않으면
                         // navLabel 이 label 로 떨어진다.
                         children: [
                             { label: "EasyMode", id: "easy-mode", route: "/product#build" },
@@ -344,8 +344,8 @@ export const NAV_GROUPS: NavGroup[] = [
             {
                 // Code Assistant — 사내 코드베이스를 이해하는 코드 어시스턴트. colBreak로
                 // XGEN 오른쪽(col2)에 둔다. 라벨은 요청에 따라 영문 표기(labelKo도 영문).
-                label: "AI Code Assistant",
-                labelKo: "AI Code Assistant",
+                label: "XGEN DevStudio",
+                labelKo: "XGEN DevStudio",
                 id: "code-assistant",
                 route: "/code-assistant",
                 colBreak: true,

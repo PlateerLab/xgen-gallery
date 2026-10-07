@@ -90,7 +90,7 @@ export const BROCHURES = {
     },
     "code-assistant-brochure": {
         asset: "code-assistant-brochure",
-        name: "AI Code Assistant",
+        name: "XGEN DevStudio",
         file: "/downloads/code-assistant-brochure.pdf",
         tagline: "사내 코드베이스를 이해하는 AI 코드 어시스턴트",
         taglineEn: "An AI coding assistant that understands your codebase",

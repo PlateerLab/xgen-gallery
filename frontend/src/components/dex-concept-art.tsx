@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
 /**
- * XGEN DeX 개념도.
+ * Dex 개념도.
  *
  * 네 가지를 정확히 그린다.
  *
@@ -44,7 +44,7 @@ const T: Record<Locale, {
         platformNote: "업무별 Agent 를 만들고 권한을 부여합니다",
         agents: ["제안서 작성", "매출 정산", "보고서 정리"],
         connector: "커넥터",
-        desktop: "사용자 데스크톱 · XGEN DeX",
+        desktop: "사용자 데스크톱 · Dex",
         officeLabel: "오피스 워크",
         office: ["엑셀", "워드", "PPT"],
         localLabel: "로컬 자원",
@@ -60,7 +60,7 @@ const T: Record<Locale, {
         platformNote: "Agents built per task, with permissions granted",
         agents: ["Proposals", "Revenue recon", "Reporting"],
         connector: "Connector",
-        desktop: "User desktop · XGEN DeX",
+        desktop: "User desktop · Dex",
         officeLabel: "Office work",
         office: ["Excel", "Word", "PPT"],
         localLabel: "Local resources",

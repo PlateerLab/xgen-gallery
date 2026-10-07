@@ -1,17 +1,17 @@
 ---
-title: "XGEN DeX — bringing enterprise AI agents into the actual desktop"
-titleSeo: "XGEN DeX — agents in the real desktop"
-description: "The environment AI runs in and the environment people actually do their work in are separate. XGEN DeX is the desktop interface that connects XGEN AI agents to the user's PC, so real work gets done with the files and applications already there."
+title: "Dex — bringing enterprise AI agents into the actual desktop"
+titleSeo: "Dex — agents in the real desktop"
+description: "The environment AI runs in and the environment people actually do their work in are separate. Dex is the desktop interface that connects XGEN AI agents to the user's PC, so real work gets done with the files and applications already there."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["XGEN DeX", "Desktop Experience", "Agentic AI", "AI governance", "Product"]
+tags: ["Dex", "Desktop Experience", "Agentic AI", "AI governance", "Product"]
 faq:
-  - q: "Is XGEN DeX a desktop chat app for XGEN?"
+  - q: "Is Dex a desktop chat app for XGEN?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. DeX is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
-  - q: "How does this relate to the earlier XGEN DeX piece?"
+  - q: "How does this relate to the earlier Dex piece?"
     a: "That piece set out the direction — extending enterprise AI down to the desktop. This one covers the installable touchpoint that implements it, linking agent resources on the server with the local execution environment."
   - q: "Does this hand my whole PC over to the AI?"
     a: "No. What DeX aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
@@ -31,15 +31,15 @@ Find and upload the file, download the result, open Excel or PowerPoint to revis
 
 The reason is simple: **the environment the AI runs in and the environment people actually do their work in are separate.**
 
-XGEN DeX is being built to close that gap.
+Dex is being built to close that gap.
 
-> This is a follow-up to [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach the desktop at all, this one covers the installable touchpoint that actually reaches it.
+> This is a follow-up to [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach the desktop at all, this one covers the installable touchpoint that actually reaches it.
 
 ---
 
-## What is XGEN DeX?
+## What is Dex?
 
-XGEN DeX is a **desktop interface that connects the AI agents created and managed in XGEN with the working environment on a user's own PC.**
+Dex is a **desktop interface that connects the AI agents created and managed in XGEN with the working environment on a user's own PC.**
 
 If XGEN is where you build and manage agents for work, DeX is what lets those agents carry that work out on the user's machine.
 
@@ -51,9 +51,9 @@ Put simply:
 
 **XGEN is where agents are built and managed.**
 
-**XGEN DeX is where those agents connect to the user's environment so the work can actually happen.**
+**Dex is where those agents connect to the user's environment so the work can actually happen.**
 
-The product is named **XGEN DeX** (Desktop Experience), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
+The product is named **Dex** (Desktop Experience), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
 
 ---
 
@@ -100,7 +100,7 @@ The overall flow is six steps.
 
 The install screens and the detail of each step live in the hands-on companion.
 
-**→ [XGEN DeX from install to first task — six steps](/en/blog/xgen-dex-install-guide)**
+**→ [Dex from install to first task — six steps](/en/blog/xgen-dex-install-guide)**
 
 Here we will look only at why each step is designed the way it is.
 
@@ -221,7 +221,7 @@ It is closer to
 
 That is why DeX has to grow together with XGEN's agent management and AI governance.
 
-> **In development.** The security and governance controls described in this section are the direction XGEN DeX is heading, and they are still being built. We will share scope and timing as they land.
+> **In development.** The security and governance controls described in this section are the direction Dex is heading, and they are still being built. We will share scope and timing as they land.
 
 ---
 
@@ -252,11 +252,11 @@ What DeX sets out to build is not another AI chat program.
 
 > **The execution touchpoint that connects an enterprise's AI agents to the environment where work actually happens.**
 
-That is why XGEN DeX exists.
+That is why Dex exists.
 
 ---
 
 ## Read next
 
-- [XGEN DeX — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
-- [XGEN DeX from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work
+- [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
+- [Dex from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work

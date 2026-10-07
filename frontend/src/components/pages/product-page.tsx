@@ -207,10 +207,10 @@ const DIFFERENTIATORS: {
     },
     {
         icon: MonitorSmartphone,
-        en: "XGEN DeX",
-        ko: "XGEN DeX",
+        en: "Dex",
+        ko: "Dex",
         tagline: "만든 Agent를 직원의 데스크톱에서 실행합니다",
-        desc: "XGEN DeX는 서버에서 운영되는 Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 안에서 로컬 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
+        desc: "Dex는 서버에서 운영되는 Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 안에서 로컬 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
         items: [
             "로컬 파일·애플리케이션 실행",
             "실행 권한을 업무 단위로 연결",
@@ -863,7 +863,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <FloUIArt locale={locale} />
                                         </div>
                                     )}
-                                    {d.en === "XGEN DeX" && (
+                                    {d.en === "Dex" && (
                                         <div className="mb-6">
                                             <DexArt locale={locale} />
                                         </div>

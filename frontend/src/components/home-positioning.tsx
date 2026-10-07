@@ -33,7 +33,7 @@ const COPY: Record<Locale, Copy> = {
                 <span className={GRAD}>고객 현장에서 검증됩니다</span>
             </>
         ),
-        desc: "기초 연구에서 시작해 오픈소스로 검증하고, XGEN·Polar·AI Code Assistant로 제품화합니다. 고객 현장과 품질 인증을 통해 기술의 가치를 증명합니다.",
+        desc: "기초 연구에서 시작해 오픈소스로 검증하고, XGEN·Polar·XGEN DevStudio로 제품화합니다. 고객 현장과 품질 인증을 통해 기술의 가치를 증명합니다.",
         more: "바로가기",
         steps: [
             { n: "01", icon: FlaskConical, title: "연구", sub: "Research", desc: "신뢰·주권·조합 가능한 Enterprise AI를 현실로 만드는 기초 연구", href: "/research" },
@@ -49,7 +49,7 @@ const COPY: Record<Locale, Copy> = {
                 <span className={GRAD}>the field proves it</span>
             </>
         ),
-        desc: "We start with foundational research, validate it in open source, and ship it as XGEN, Polar, and AI Code Assistant. Customer deployments and quality certification are where the value gets settled.",
+        desc: "We start with foundational research, validate it in open source, and ship it as XGEN, Polar, and XGEN DevStudio. Customer deployments and quality certification are where the value gets settled.",
         more: "Explore",
         steps: [
             { n: "01", icon: FlaskConical, title: "Research", desc: "Foundational work on Enterprise AI that is trustworthy, sovereign, and composable", href: "/research" },
