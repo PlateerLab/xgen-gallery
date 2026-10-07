@@ -101,6 +101,16 @@ export const PUBLICATIONS: Publication[] = [
         category: "core",
     },
     {
+        title: "Designing a generative artificial intelligence-based hotel review management assistant: a design science approach",
+        authors: "Sang-Hyeak Yoon, Haryeom Jang, Sung-Byung Yang, Sangwon Park",
+        memberLogins: ["CocoRoF"],
+        venue: "Information Technology & Tourism 28, Article 71",
+        year: 2026,
+        type: "국제 논문지",
+        url: "https://link.springer.com/article/10.1007/s40558-026-00414-x",
+        category: "core",
+    },
+    {
         title: "건강추천시스템(HRS) 연구 동향: 인용네트워크 분석과 GraphSAGE를 활용하여",
         authors: "장하렴, 유지수, 양성병",
         memberLogins: ["CocoRoF", "Master0419"],
