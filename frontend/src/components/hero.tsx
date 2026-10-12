@@ -106,7 +106,7 @@ function HeroActions({
 }
 
 /**
- * 슬라이드 1 — Dex 바이브코딩 (소개영상 배경).
+ * 슬라이드 1 — XGEN 바이브코딩 (Dex 소개영상 배경).
  *
  * 「말하면 앱이 된다」를 문장보다 화면으로 보여준다. 배경은 소개영상을 2배속·무음으로
  * 줄인 루프(약 3MB)로, 첫 장면에 완성된 대시보드가 보이도록 원본 0:53부터 시작해
@@ -121,7 +121,7 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#a78bfa]" />
-                Dex · Vibe Coding
+                {ko ? "XGEN · 바이브코딩" : "XGEN · Vibe Coding"}
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
@@ -166,10 +166,10 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
                     {ko ? "소개 영상 보기" : "Watch the demo"}
                 </button>
                 <Link
-                    href={localeHref(locale, "/xgen-dex")}
+                    href={localeHref(locale, "/product")}
                     className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
                 >
-                    {ko ? "Dex 주요 기능 보기" : "See Dex features"}
+                    {ko ? "XGEN 주요 기능 보기" : "See XGEN features"}
                 </Link>
             </div>
         </>
@@ -188,7 +188,7 @@ function DexVibeVideoModal({ onClose }: { onClose: () => void }) {
         <div
             role="dialog"
             aria-modal="true"
-            aria-label={locale === "ko" ? "Dex 바이브코딩 소개 영상" : "Dex vibe coding demo"}
+            aria-label={locale === "ko" ? "XGEN 바이브코딩 소개 영상" : "XGEN vibe coding demo"}
             onClick={onClose}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
         >
