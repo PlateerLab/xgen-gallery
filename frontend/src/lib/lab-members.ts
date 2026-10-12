@@ -105,6 +105,20 @@ export const LAB_MEMBERS: LabMember[] = [
 
     // AI R&D
     {
+        name: "심효진",
+        role: "AI R&D",
+        roleEn: "AI R&D",
+        group: "research",
+        slug: "simhyojin",
+    },
+    {
+        name: "남도현",
+        role: "AI R&D",
+        roleEn: "AI R&D",
+        group: "research",
+        slug: "namdohyeon",
+    },
+    {
         name: "이다운",
         role: "AI R&D",
         roleEn: "AI R&D",
