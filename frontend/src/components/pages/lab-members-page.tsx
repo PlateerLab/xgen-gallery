@@ -65,6 +65,13 @@ interface Copy {
     };
 }
 
+/** 멤버스에서는 XGEN 플랫폼 하위 구성요소를 독립 제품처럼 보이지 않게 표기한다. */
+const MEMBER_TOOL_NAMES: Partial<Record<string, string>> = {
+    "xgen-agent-runtime": "Agent Runtime",
+    "xgen-harness": "Harness",
+    "xgen-sdk": "SDK",
+};
+
 const COPY: Record<Locale, Copy> = {
     ko: {
         eyebrow: "AI Lab Members",
@@ -338,7 +345,7 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                                                     className="group flex min-w-0 flex-col gap-0.5 rounded-lg px-3 py-2 transition hover:bg-[var(--color-surface-alt)] sm:flex-row sm:items-baseline sm:gap-2.5"
                                                 >
                                                     <span className="flex items-center gap-1.5 font-mono text-[13.5px] font-semibold text-[#2461d8]">
-                                                        {tool.name}
+                                                        {MEMBER_TOOL_NAMES[tool.id] ?? tool.name}
                                                         <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition group-hover:opacity-100" />
                                                     </span>
                                                     <span className="min-w-0 text-[13px] leading-snug text-[var(--color-ink-subtle)] sm:truncate">
