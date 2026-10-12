@@ -5,14 +5,14 @@ import type { Locale } from "@/lib/i18n";
  *
  * 네 가지를 정확히 그린다.
  *
- * 하나, 커넥터는 **잇는 역할**이다. 플랫폼과 데스크톱을 연결하는 통로이지
+ * 하나, 커넥터는 **잇는 역할**이다. 플랫폼과 사용자 기기를 연결하는 통로이지
  * 일을 하는 주체가 아니라, 선 위의 배지로 둔다.
  *
  * 둘, Agent 는 **여럿**이다. 업무마다 데이터·도구·권한이 달라 하나의 범용
  * Agent 에 몰지 않는다. 그래서 플랫폼에도 데스크톱에도 여러 개로 그린다.
  *
- * 셋, 일하는 자리는 **사용자 PC 안**이다. 모니터 틀 안에 넣어야 "내 컴퓨터에서
- * 벌어지는 일" 로 읽힌다. 상자만 그리면 또 하나의 서버처럼 보인다.
+ * 셋, 일하는 자리는 **사용자 기기 안**이다. PC·태블릿·핸드폰의 실제 기기 틀을
+ * 함께 보여 줘야 또 하나의 서버가 아니라 각자의 업무환경으로 읽힌다.
  *
  * 넷, Dex 의 아바타는 **바탕화면에 상주한다**. 창을 열어야 만나는 것이 아니라
  * 화면 한쪽에 서서 말을 건다. 그래서 아바타는 상자 안이 아니라 화면 오른쪽
@@ -29,6 +29,8 @@ const T: Record<Locale, {
     agents: string[];
     connector: string;
     desktop: string;
+    tablet: string;
+    phone: string;
     officeLabel: string;
     office: string[];
     localLabel: string;
@@ -44,7 +46,9 @@ const T: Record<Locale, {
         platformNote: "업무별 Agent 를 만들고 권한을 부여합니다",
         agents: ["제안서 작성", "매출 정산", "보고서 정리"],
         connector: "커넥터",
-        desktop: "사용자 데스크톱 · Dex",
+        desktop: "사용자 PC · Dex",
+        tablet: "태블릿 · Dex",
+        phone: "핸드폰 · Dex",
         officeLabel: "오피스 워크",
         office: ["엑셀", "워드", "PPT"],
         localLabel: "로컬 자원",
@@ -53,14 +57,16 @@ const T: Record<Locale, {
         avatarLabel: "아바타",
         avatarNote: ["Agent가 바탕화면에서", "함께 일합니다"],
         footer: "허용된 범위 안에서 Agent 가 직접 다룹니다",
-        aria: "XGEN 플랫폼에서 업무별로 만든 Agent 가 커넥터를 통해 사용자 PC 로 호출되어, 엑셀·워드·PPT 같은 오피스 작업과 파일·브라우저·PowerShell·MCP·Skill 을 직접 다루고, 아바타는 바탕화면에 상주하는 구조",
+        aria: "XGEN 플랫폼에서 업무별로 만든 Agent가 커넥터를 통해 사용자의 PC·태블릿·핸드폰으로 호출되어, 각 기기의 업무환경과 허용된 자원을 직접 다루는 구조",
     },
     en: {
         platform: "XGEN platform",
         platformNote: "Agents built per task, with permissions granted",
         agents: ["Proposals", "Revenue recon", "Reporting"],
         connector: "Connector",
-        desktop: "User desktop · Dex",
+        desktop: "User PC · Dex",
+        tablet: "Tablet · Dex",
+        phone: "Phone · Dex",
         officeLabel: "Office work",
         office: ["Excel", "Word", "PPT"],
         localLabel: "Local resources",
@@ -69,7 +75,7 @@ const T: Record<Locale, {
         avatarLabel: "Avatar",
         avatarNote: ["The agent works with you", "on the desktop"],
         footer: "The agent handles these directly, within the scope you allow",
-        aria: "Agents built per task on the XGEN platform are called into the desktop through the connector, where they handle Excel, Word, and PowerPoint work along with files, browser, PowerShell, MCP, and skills, while the avatar lives on the desktop itself",
+        aria: "Agents built per task on the XGEN platform are called through the connector into the user's PC, tablet, and phone, where they work with each device's environment and permitted resources",
     },
 };
 
@@ -220,6 +226,60 @@ function DesktopAvatar({ x, y, label, note }: { x: number; y: number; label: str
     );
 }
 
+/** PC 옆에서 같은 Agent를 호출하는 태블릿·핸드폰을 간결한 기기 실루엣으로 표시한다. */
+function CompanionDevice({
+    kind,
+    x,
+    y,
+    label,
+}: {
+    kind: "tablet" | "phone";
+    x: number;
+    y: number;
+    label: string;
+}) {
+    const tablet = kind === "tablet";
+    const w = tablet ? 126 : 70;
+    const h = tablet ? 190 : 146;
+    const screenInset = tablet ? 8 : 6;
+    const cx = x + w / 2;
+    return (
+        <g filter="url(#dx-device-shadow)">
+            <rect x={x} y={y} width={w} height={h} rx={tablet ? 16 : 18} fill="url(#dx-bezel)" />
+            <rect
+                x={x + screenInset}
+                y={y + screenInset + 4}
+                width={w - screenInset * 2}
+                height={h - screenInset * 2 - 12}
+                rx={tablet ? 10 : 12}
+                fill="url(#dx-screen)"
+            />
+            <circle cx={cx} cy={y + 8} r="2" fill="#8fb4ff" />
+            <rect
+                x={x + (tablet ? 18 : 8)}
+                y={y + 24}
+                width={w - (tablet ? 36 : 16)}
+                height="22"
+                rx="11"
+                fill="url(#dx-brand)"
+            />
+            <text x={cx} y={y + 39} textAnchor="middle" fontSize={tablet ? "9.5" : "8.5"} fontWeight="800" fill="#ffffff">
+                {label}
+            </text>
+            <AgentAvatar i={tablet ? 1 : 2} cx={cx} cy={y + 72} r={tablet ? 18 : 15} />
+            <rect x={x + 17} y={y + 99} width={w - 34} height="12" rx="6" fill="#eef4fd" />
+            <rect x={x + 17} y={y + 118} width={w - 42} height="8" rx="4" fill="#dbe8ff" />
+            {tablet && (
+                <>
+                    <rect x={x + 17} y={y + 136} width="42" height="30" rx="8" fill="#f3f7ff" stroke="#cfe0ff" />
+                    <rect x={x + 67} y={y + 136} width="42" height="30" rx="8" fill="#f3f7ff" stroke="#cfe0ff" />
+                </>
+            )}
+            <rect x={cx - (tablet ? 15 : 10)} y={y + h - 7} width={tablet ? 30 : 20} height="3" rx="1.5" fill="#8fb4ff" />
+        </g>
+    );
+}
+
 export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
     const L = T[locale];
     return (
@@ -230,7 +290,7 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
         */
         <div className="-mx-6 overflow-x-auto px-6 pb-2 sm:mx-0 sm:px-0">
         <svg
-            viewBox="0 0 1020 668"
+            viewBox="0 0 1220 668"
             className="dx-art block h-auto w-full min-w-[720px]"
             role="img"
             aria-label={L.aria}
@@ -269,6 +329,9 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
                 <filter id="dx-shadow" x="-20%" y="-20%" width="140%" height="150%">
                     <feDropShadow dx="0" dy="7" stdDeviation="10" floodColor="#1e3a68" floodOpacity="0.14" />
                 </filter>
+                <filter id="dx-device-shadow" x="-30%" y="-20%" width="160%" height="150%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="7" floodColor="#1e3a68" floodOpacity="0.16" />
+                </filter>
             </defs>
 
             <style>{`
@@ -304,8 +367,10 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
                 </g>
             ))}
 
-            {/* 커넥터 — 잇는 역할이라 선 위의 배지로 둔다 */}
+            {/* 커넥터 — PC·태블릿·핸드폰으로 분기되는 통로 */}
             <path d="M510 128 V 196" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
+            <path d="M510 174 C 720 174 980 210 1063 338" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
+            <path d="M510 174 C 790 174 1110 232 1177 388" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
             <path d="M504 188 l6 8 6 -8" stroke="#8fb4ff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             <rect x="462" y="146" width="96" height="28" rx="14" fill="#ffffff" stroke="#bcd0f5" />
             <text x="510" y="165" textAnchor="middle" fontSize="12.5" fontWeight="700" fill="#2461d8">
@@ -325,6 +390,10 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
             {/* 받침대 */}
             <path d="M474 588 h72 l12 36 h-96z" fill="url(#dx-stand)" />
             <rect x="396" y="624" width="228" height="13" rx="6.5" fill="url(#dx-stand)" />
+
+            {/* 같은 Dex가 설치되는 다른 사용자 기기 */}
+            <CompanionDevice kind="tablet" x={1000} y={338} label={L.tablet} />
+            <CompanionDevice kind="phone" x={1142} y={388} label={L.phone} />
 
             <rect x="70" y="228" width="270" height="32" rx="16" fill="url(#dx-brand)" />
             <text x="205" y="249" textAnchor="middle" fontSize="13" fontWeight="800" fill="#ffffff">
@@ -436,7 +505,7 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
             {/* 바탕화면에 상주하는 아바타 — 두 상자와 같은 줄, 화면 오른쪽 끝 */}
             <DesktopAvatar x={790} y={396} label={L.avatarLabel} note={L.avatarNote} />
 
-            <text x="510" y="664" textAnchor="middle" fontSize="12.5" fill="#8b95a6">
+            <text x="610" y="664" textAnchor="middle" fontSize="12.5" fill="#8b95a6">
                 {L.footer}
             </text>
         </svg>
