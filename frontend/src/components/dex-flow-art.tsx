@@ -27,8 +27,8 @@ const T: Record<Locale, { steps: [string, string][]; platform: string; desktop: 
             ["결과 확인 · 이어가기", "결과물은 동기화 폴더에, 다음 업무로 이어집니다"],
         ],
         platform: "XGEN 플랫폼",
-        desktop: "사용자 데스크톱 환경",
-        aria: "Dex 사용 흐름 여섯 단계 — Dex 설치, XGEN에 연결, Agent 선택, 실행 환경 연결, 업무 지시, 결과 확인과 이어가기",
+        desktop: "사용자 기기 환경 · PC · 핸드폰 · 태블릿",
+        aria: "PC·핸드폰·태블릿의 사용자 기기 환경에서 이루어지는 Dex 사용 흐름 여섯 단계 — Dex 설치, XGEN에 연결, Agent 선택, 실행 환경 연결, 업무 지시, 결과 확인과 이어가기",
     },
     en: {
         steps: [
@@ -40,8 +40,8 @@ const T: Record<Locale, { steps: [string, string][]; platform: string; desktop: 
             ["Check · continue", "The result lands in the synced folder and carries forward"],
         ],
         platform: "XGEN platform",
-        desktop: "User desktop environment",
-        aria: "The six steps of using Dex — install, connect to XGEN, pick an agent, connect the execution environment, hand it work, and check the result",
+        desktop: "User devices · PC · phone · tablet",
+        aria: "The six steps of using Dex on a user's PC, phone, or tablet — install, connect to XGEN, pick an agent, connect the execution environment, hand it work, and check the result",
     },
 };
 
@@ -131,7 +131,7 @@ export function DexFlowArt({ locale = "ko" }: { locale?: Locale }) {
             </defs>
 
             {/*
-              1~6 은 모두 사용자 데스크톱에서 일어난다. 테두리로 묶어 두지
+              1~6 은 모두 사용자의 PC·핸드폰·태블릿에서 일어난다. 테두리로 묶어 두지
               않으면 2번(XGEN에 연결) 때문에 어디서 벌어지는 일인지 흐려진다.
             */}
             <rect
@@ -139,12 +139,12 @@ export function DexFlowArt({ locale = "ko" }: { locale?: Locale }) {
                 fill="#2f7bff" fillOpacity="0.04"
                 stroke="#2f7bff" strokeWidth="1.8" strokeDasharray="8 7"
             />
-            <rect x="200" y="16" width="212" height="30" rx="15" fill="url(#df-node)" />
-            <text x="306" y="36" textAnchor="middle" fontSize="12.5" fontWeight="800" fill="#ffffff">
+            <rect x="200" y="16" width="300" height="30" rx="15" fill="url(#df-node)" />
+            <text x="350" y="36" textAnchor="middle" fontSize="12.5" fontWeight="800" fill="#ffffff">
                 {L.desktop}
             </text>
 
-            {/* 플랫폼 — 2번이 여기로 연결된다. 데스크톱 바깥에 둔다 */}
+            {/* 플랫폼 — 2번이 여기로 연결된다. 사용자 기기 환경 바깥에 둔다 */}
             <rect x="20" y={CONNECT_Y - 32} width="170" height="64" rx="14" fill="#ffffff" stroke="#dbe4f6" />
             <rect x="40" y={CONNECT_Y - 9} width="18" height="18" rx="5" fill="url(#df-node)" />
             <text x="66" y={CONNECT_Y + 6} fontSize="14.5" fontWeight="800" fill="#1f4fa8">
