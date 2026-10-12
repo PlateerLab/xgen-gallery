@@ -10,7 +10,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — XGEN 주요 기능 소개영상 섹션.
- * 탭(XGEN / PathFinder / FloUI / XGEN DevStudio)으로 소개영상을 전환한다.
+ * 탭(XGEN / Vibe Coding / PathFinder / FloUI / Code Assistant)으로 소개영상을 전환한다.
  *
  * 성능: 파사드(facade) 패턴 — 처음에는 썸네일(poster) + 재생 버튼만 렌더하고,
  * 사용자가 클릭할 때만 실제 임베드(iframe)를 로드한다. 활성 탭 1개만 렌더하므로
@@ -32,7 +32,7 @@ type TourItem = {
     detail?: { href: string; label: Record<Locale, string> };
 };
 
-// XGEN 우산 아래 Overview → Build(PathFinder) → Experience(FloUI) → Deploy(MCP Apps).
+// XGEN 우산 아래 Overview → Create(Vibe Coding) → Build(PathFinder) → Experience(FloUI) → Code Assistant.
 const TOUR_ITEMS: TourItem[] = [
     {
         key: "overview",
@@ -44,6 +44,21 @@ const TOUR_ITEMS: TourItem[] = [
         },
         video: "https://www.youtube-nocookie.com/embed/x0Uch1b0kNk",
         poster: "https://img.youtube.com/vi/x0Uch1b0kNk/maxresdefault.jpg",
+    },
+    {
+        key: "vibe-coding",
+        name: "Vibe Coding",
+        tagline: "Create",
+        desc: {
+            ko: "Dex로 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
+            en: "Connect a local development environment to XGEN Agent through Dex, then write and modify code from natural-language instructions",
+        },
+        video: "https://www.youtube-nocookie.com/embed/0ql6M_P9qRw",
+        poster: "https://img.youtube.com/vi/0ql6M_P9qRw/maxresdefault.jpg",
+        detail: {
+            href: "/xgen-dex",
+            label: { ko: "Vibe Coding 자세히 보기", en: "More on Vibe Coding" },
+        },
     },
     {
         key: "pathfinder",
@@ -73,7 +88,7 @@ const TOUR_ITEMS: TourItem[] = [
     },
     {
         key: "code-assistant",
-        name: "XGEN DevStudio",
+        name: "Code Assistant",
         tagline: "Code",
         desc: {
             ko: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트입니다",
@@ -108,7 +123,7 @@ const COPY: Record<
                 으로 만나보세요
             </>
         ),
-        lead: "XGEN과 주요 기능, XGEN DevStudio를 짧은 소개영상으로 확인할 수 있습니다",
+        lead: "XGEN과 주요 기능, Code Assistant를 짧은 소개영상으로 확인할 수 있습니다",
         more: "데모 영상 더보기",
         play: (n) => `${n} 소개영상 재생`,
         soon: (n) => `${n} 소개영상 준비 중`,
@@ -163,7 +178,7 @@ export function HomeProductTour() {
                 </div>
 
                 {/* 탭 메뉴 */}
-                <div className="mt-10 flex flex-wrap justify-center gap-2">
+                <div className="-mx-6 mt-10 flex flex-nowrap justify-start gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:justify-center sm:px-0">
                     {TOUR_ITEMS.map((p) => (
                         <button
                             key={p.key}
@@ -171,7 +186,7 @@ export function HomeProductTour() {
                             onClick={() => selectTab(p.key)}
                             aria-pressed={p.key === activeKey}
                             className={cn(
-                                "rounded-full px-4 py-2 text-[15px] font-semibold transition",
+                                "shrink-0 rounded-full px-4 py-2 text-[15px] font-semibold transition",
                                 p.key === activeKey
                                     ? "bg-white text-[#070b1c]"
                                     : "border border-white/20 text-white/70 hover:border-white/50 hover:text-white",
