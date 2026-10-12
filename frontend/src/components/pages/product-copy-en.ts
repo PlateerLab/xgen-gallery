@@ -117,9 +117,10 @@ export const PRODUCT_EN = {
         {
             ko: "Dex",
             tagline: "Run the agents you built on your team's desktops",
-            desc: "Dex is the device interface that connects agents running on the server to the working environment on a user's PC. Within the scope you allow, it uses local files and applications to produce real deliverables.",
+            desc: "Dex is the device interface that connects agents running on the server to the working environment on a user's PC. Within the scope you allow, it uses local files and applications to produce real deliverables, while vibe coding turns natural-language instructions into code changes.",
             items: [
                 "Runs against local files and applications",
+                "Writes and modifies code through vibe coding",
                 "Execution permissions connected per task",
                 "Working-folder sync with an activity record",
             ],
