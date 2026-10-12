@@ -68,6 +68,7 @@ interface Copy {
 /** 멤버스에서는 XGEN 플랫폼 하위 구성요소를 독립 제품처럼 보이지 않게 표기한다. */
 const MEMBER_TOOL_NAMES: Partial<Record<string, string>> = {
     "xgen-agent-runtime": "Agent Runtime",
+    "xgen-agent-memory": "Agent Memory",
     "xgen-harness": "Harness",
     "xgen-sdk": "SDK",
 };
