@@ -25,7 +25,7 @@ faq:
 
 Anyone who has handed work to AI knows the feeling. The answer is good — but folding that result back into an existing file, opening the application it belongs in, and saving it to the right work folder is all still done by a person.
 
-Dex handles that last connection. It lets an agent running on the server do real work on your PC, using the files and applications already there.
+Dex handles that last connection. Installed on PCs, phones, and tablets, it lets an agent running on the server do real work on each device, using the files and applications already there.
 
 The installer is on GitHub, about 280MB. Screens are from Windows.
 

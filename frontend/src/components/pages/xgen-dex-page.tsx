@@ -130,11 +130,11 @@ interface DexCopy {
 const COPY: Record<Locale, DexCopy> = {
     ko: {
         ldDescription:
-            "Dex는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+            "Dex는 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 AI Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 각 기기의 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · Dex",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "Dex는 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC에 설치된 Dex를 통해 XGEN Agent가 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
+            "Dex는 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC·핸드폰·태블릿에 설치된 Dex를 통해 XGEN Agent가 각 기기의 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -323,11 +323,11 @@ const COPY: Record<Locale, DexCopy> = {
     },
     en: {
         ldDescription:
-            "Dex is the device interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
+            "Dex is a device interface installed on PCs, phones, and tablets. It connects AI agents running on the XGEN Server to the user's actual working environment and produces deliverables from each device's files and applications within an allowed scope.",
         heroBadge: "XGEN · Dex",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "Dex extends where XGEN agents can act, all the way to the user's device. Through Dex installed on the PC, XGEN agents connect to the real working environment — files, browsers and applications — to carry out requests and finish the deliverable.",
+            "Dex extends where XGEN agents can act, all the way to the user's device. Through Dex installed on PCs, phones, and tablets, XGEN agents connect to each device's real working environment — files, browsers, and applications — to carry out requests and finish the deliverable.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -363,7 +363,7 @@ const COPY: Record<Locale, DexCopy> = {
         connects: [
             ["Multiple models", "Pick the AI that fits the cost and performance the task calls for. Change the model and the workflow stays."],
             ["Business connectors", "Reach the SaaS and in-house data you already run, through explicit API contracts."],
-            ["Local bridge", "Handle files and applications on the user's PC, inside the scope you approved."],
+            ["Device bridge", "Handle files and applications on the user's PC, phone, or tablet, inside the scope you approved."],
         ],
 
         whyTitle: "Why is it needed?",

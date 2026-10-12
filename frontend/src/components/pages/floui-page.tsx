@@ -208,7 +208,7 @@ const COPY: Record<Locale, FlouiCopy> = {
             },
             {
                 label: "Dex",
-                desc: "만든 Agent를 직원의 데스크톱 업무환경에서 실행합니다.",
+                desc: "만든 Agent를 직원의 PC·핸드폰·태블릿 업무환경에서 실행합니다.",
                 href: "/xgen-dex",
                 art: "xgen-dex",
             },
@@ -351,7 +351,7 @@ const COPY: Record<Locale, FlouiCopy> = {
             },
             {
                 label: "Dex",
-                desc: "Runs the agents you built on your team's desktops.",
+                desc: "Runs the agents you built on your team's PCs, phones, and tablets.",
                 href: "/xgen-dex",
                 art: "xgen-dex",
             },

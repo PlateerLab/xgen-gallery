@@ -201,11 +201,11 @@ It is the basis for an agent to grow **from a tool waiting on requests into an a
 
 ---
 
-## Meet Dex, and the agent's working space reaches the PC
+## Meet Dex, and the agent's working space reaches the user's devices
 
 Where Geny extends **what an agent can do**, [Dex](/en/blog/product-xgen-dex) extends **how far the working environment reaches**.
 
-Dex safely connects an XGEN agent to the local resources on a user's PC.
+Installed on PCs, phones, and tablets, Dex safely connects an XGEN agent to the local resources on each device.
 
 With both in place, the agent can draw not only on the data and systems in the server environment but, within what is permitted, on the user's local working environment as well.
 

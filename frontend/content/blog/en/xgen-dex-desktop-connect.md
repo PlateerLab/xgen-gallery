@@ -1,7 +1,7 @@
 ---
 title: "Dex — bringing enterprise AI agents into the actual desktop"
 titleSeo: "Dex — agents in the real desktop"
-description: "The environment AI runs in and the environment people actually do their work in are separate. Dex is the desktop interface that connects XGEN AI agents to the user's PC, so real work gets done with the files and applications already there."
+description: "The environment AI runs in and the environment people actually do their work in are separate. Installed on PCs, phones, and tablets, Dex is the device interface that connects XGEN AI agents to the user's actual working environment."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
@@ -10,7 +10,7 @@ category: "제품 소식"
 tags: ["Dex", "Device Extension", "Agentic AI", "AI governance", "Product"]
 faq:
   - q: "Is Dex a desktop chat app for XGEN?"
-    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. Dex is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
+    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a device. Installed on PCs, phones, and tablets, Dex is a device interface that lets agents built in XGEN use the files, applications, and browser on each device to produce real deliverables."
   - q: "How does this relate to the earlier Dex piece?"
     a: "That piece set out the direction — extending enterprise AI down to the desktop. This one covers the installable touchpoint that implements it, linking agent resources on the server with the local execution environment."
   - q: "Does this hand my whole PC over to the AI?"
@@ -39,9 +39,9 @@ Dex is being built to close that gap.
 
 ## What is Dex?
 
-Dex is a **desktop interface that connects the AI agents created and managed in XGEN with the working environment on a user's own PC.**
+Dex is a **device interface installed on PCs, phones, and tablets that connects the AI agents created and managed in XGEN with the user's actual working environment.**
 
-If XGEN is where you build and manage agents for work, Dex is what lets those agents carry that work out on the user's machine.
+If XGEN is where you build and manage agents for work, Dex is what lets those agents carry that work out on the user's PC, phone, or tablet.
 
 Its purpose differs from a desktop app that simply makes XGEN chat available on a PC.
 

@@ -1,7 +1,7 @@
 ---
 title: "Dex — 기업 AI Agent를 실제 업무환경으로 연결하다"
 titleSeo: "Dex — Agent를 업무환경에 연결"
-description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. Dex는 XGEN의 AI Agent를 사용자의 PC와 연결하여, 파일과 애플리케이션을 활용한 실제 업무 수행을 가능하게 하는 Desktop Interface입니다."
+description: "AI가 동작하는 환경과 사람이 실제 업무를 수행하는 환경은 분리되어 있습니다. Dex는 PC·핸드폰·태블릿에 설치되어 XGEN의 AI Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
@@ -10,7 +10,7 @@ category: "제품 소식"
 tags: ["Dex", "Device Extension", "Agentic AI", "AI 거버넌스", "제품"]
 faq:
   - q: "Dex는 데스크톱용 XGEN 채팅 앱인가요?"
-    a: "아닙니다. PC에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. Dex는 XGEN에서 만든 Agent가 사용자의 PC 환경에서 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Desktop Interface입니다."
+    a: "아닙니다. 기기에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. Dex는 PC·핸드폰·태블릿에 설치되어 XGEN에서 만든 Agent가 각 기기의 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Device Interface입니다."
   - q: "이전에 소개한 Dex 글과 어떤 관계인가요?"
     a: "앞선 글이 Enterprise AI를 데스크톱까지 잇는다는 방향을 다뤘다면, 이 글은 그 방향을 실제로 구현한 설치형 접점을 다룹니다. 서버의 Agent 자원과 사용자의 로컬 실행환경을 연결하는 실행 인터페이스 역할을 맡습니다."
   - q: "AI에게 제 PC를 통째로 맡기는 것인가요?"
@@ -39,9 +39,9 @@ Dex는 이 간극을 연결하기 위해 만들어지고 있습니다.
 
 ## Dex란?
 
-Dex는 **XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 PC 업무환경을 연결하는 Desktop Interface**입니다.
+Dex는 **PC·핸드폰·태블릿에 설치되어 XGEN에서 생성·관리되는 AI Agent와 사용자의 실제 업무환경을 연결하는 Device Interface**입니다.
 
-XGEN에서 업무용 Agent를 만들고 관리한다면, Dex는 해당 Agent가 사용자의 PC 업무환경에서 실제 업무를 수행할 수 있도록 연결합니다.
+XGEN에서 업무용 Agent를 만들고 관리한다면, Dex는 해당 Agent가 PC·핸드폰·태블릿의 실제 업무환경에서 업무를 수행할 수 있도록 연결합니다.
 
 단순히 PC에서 XGEN 채팅을 사용할 수 있게 만드는 데스크톱 앱과는 목적이 다릅니다.
 
