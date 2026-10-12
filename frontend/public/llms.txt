@@ -30,6 +30,8 @@ GitHub: https://github.com/PlateerLab
 - [Toolint](https://labs.plateer.com/tool/toolint): Structural linter for MCP agent tools. `pip install toolint` (Python, agent).
 - [XGEN Harness](https://labs.plateer.com/tool/xgen-harness): A 10-stage execution harness that owns validation, retries, and termination for agents. `pip install xgen-harness` (Python, agent).
 - [playwLeft](https://labs.plateer.com/tool/playleft): High-performance browser automation for agents. `pip install playleft` (Python, agent).
+- [PDF Engine](https://labs.plateer.com/tool/xgen-pdf): Apache-2.0 PDF parsing, rendering, table extraction, search, and permanent redaction. Distributed as a GitHub Release wheel (Python, ingestion).
+- [Agent Runtime RSI](https://labs.plateer.com/tool/xgen-agent-runtime-rsi): Replay completed runs, evaluate candidate harnesses under RRSI constraints, and adopt only measured improvements. Distributed as a GitHub Release wheel (Python, agent).
 
 ## Pages
 
@@ -59,6 +61,6 @@ with hreflang (`ko`, `en`, `x-default`). Korean is the default.
 
 - Identity: an AI research lab that proves its research through open-source and products.
 - Products: XGEN (Agentic AI Platform), Polar (commerce sLLM), AI Code Assistant.
-- Open-source category coverage: ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter), knowledge (Synaptic Memory, Knowtology, OmniFuse), agent (Googer, Toolint, XGEN Harness, playwLeft).
+- Open-source category coverage: ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter, PDF Engine), knowledge (Synaptic Memory, Knowtology, OmniFuse), agent (Googer, Toolint, XGEN Harness, playwLeft, Agent Runtime RSI).
 - Common compositions: RAG pipeline (ingest → chunk → embed → retrieve), agent runtime with an execution harness, long-term memory knowledge graph.
 - License: MIT. Language: Python. Install: pip.

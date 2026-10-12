@@ -968,6 +968,161 @@ const xgenGallery: DemoManifest = {
  */
 const contextifier = getDemoManifest("Contextifier");
 
+const xgenPdf: DemoManifest = {
+    projectName: "xgen-pdf",
+    title: "PDF Engine Demo",
+    description:
+        "PDF에서 위치 정보가 있는 텍스트와 표를 추출하고, 검색 결과에 영구 비식별 처리를 적용하는 흐름을 확인합니다.",
+    icon: "📄",
+    inputs: [
+        {
+            key: "operation",
+            type: "select",
+            label: "작업",
+            options: [
+                { value: "extract", label: "텍스트·표 추출" },
+                { value: "redact", label: "개인정보 검색·비식별" },
+                { value: "render", label: "페이지 렌더링" },
+            ],
+            default: "extract",
+        },
+        {
+            key: "pages",
+            type: "select",
+            label: "페이지 범위",
+            options: [
+                { value: "1", label: "1페이지" },
+                { value: "1-2", label: "1–2페이지" },
+                { value: "all", label: "전체" },
+            ],
+            default: "1-2",
+        },
+        {
+            key: "redact_pattern",
+            type: "text",
+            label: "비식별 검색어",
+            placeholder: "예: 110-24-82910",
+        },
+    ],
+    outputs: [
+        { key: "summary", type: "text", label: "처리 결과" },
+        { key: "blocks", type: "json", label: "위치 기반 블록" },
+        { key: "table", type: "table", label: "인식된 표" },
+    ],
+    samples: [
+        {
+            label: "청구서 구조 추출",
+            description: "텍스트 좌표와 표 셀을 함께 반환",
+            inputs: { operation: "extract", pages: "1-2", redact_pattern: "" },
+            mockOutput: {
+                summary: "2페이지에서 텍스트 블록 18개와 표 1개를 찾았습니다. 읽기 순서와 좌표를 보존했습니다.",
+                blocks: [
+                    { page: 1, bbox: [72, 64, 328, 91], text: "2026년 9월 서비스 청구서" },
+                    { page: 1, bbox: [72, 108, 264, 126], text: "공급받는 자: 플래티어" },
+                    { page: 2, bbox: [72, 71, 302, 90], text: "이용 내역" },
+                ],
+                table: {
+                    columns: ["항목", "수량", "금액"],
+                    rows: [
+                        ["Agent Runtime", "3", "₩1,200,000"],
+                        ["문서 처리", "18,420", "₩368,400"],
+                        ["합계", "", "₩1,568,400"],
+                    ],
+                },
+            },
+        },
+        {
+            label: "사업자번호 영구 비식별",
+            description: "문자열을 찾고 해당 영역을 PDF에서 제거",
+            inputs: { operation: "redact", pages: "all", redact_pattern: "110-24-82910" },
+            mockOutput: {
+                summary: "3개 일치 영역을 영구 비식별 처리했습니다. 저장 후 다시 검색해 일치 결과가 0건임을 확인했습니다.",
+                blocks: [
+                    { page: 1, matches: 2, action: "redacted" },
+                    { page: 2, matches: 1, action: "redacted" },
+                    { verification: "search_after_save", matches: 0 },
+                ],
+                table: {
+                    columns: ["검증", "결과"],
+                    rows: [["원문 검색", "3건"], ["저장 후 검색", "0건"], ["페이지 렌더링", "정상"]],
+                },
+            },
+        },
+    ],
+};
+
+const agentRuntimeRsi: DemoManifest = {
+    projectName: "xgen-agent-runtime-rsi",
+    title: "Agent Runtime RSI Demo",
+    description:
+        "완료된 실행 기록을 재생 세계로 사용해 후보 하네스를 비교하고, 품질 바닥과 비용 규칙을 통과한 개선만 채택합니다.",
+    icon: "↗",
+    inputs: [
+        {
+            key: "signal",
+            type: "select",
+            label: "개선 신호",
+            options: [
+                { value: "correction", label: "사용자 정정" },
+                { value: "rating", label: "낮은 평가" },
+                { value: "expected", label: "기대 답안" },
+            ],
+            default: "correction",
+        },
+        {
+            key: "candidate",
+            type: "select",
+            label: "후보 하네스",
+            options: [
+                { value: "h1", label: "H1 — 검증 게이트 강화" },
+                { value: "h2", label: "H2 — 병렬 탐색 확대" },
+            ],
+            default: "h1",
+        },
+        {
+            key: "quality_floor",
+            type: "number",
+            label: "품질 바닥",
+            default: 0.92,
+            min: 0,
+            max: 1,
+        },
+    ],
+    outputs: [
+        { key: "decision", type: "text", label: "RRSI 판정" },
+        { key: "replay", type: "table", label: "보류 기록 재생" },
+        { key: "evidence", type: "json", label: "판정 근거" },
+    ],
+    samples: [
+        {
+            label: "H1 개선 채택",
+            description: "품질은 오르고 비용은 줄어든 후보",
+            inputs: { signal: "correction", candidate: "h1", quality_floor: 0.92 },
+            mockOutput: {
+                decision: "H1 채택 — 보류 기록에서도 품질 바닥을 지키며 기준선보다 점수가 높고 비용이 낮습니다.",
+                replay: {
+                    columns: ["하네스", "품질", "토큰", "판정"],
+                    rows: [["H0", "0.919", "12,840", "기준"], ["H1", "0.948", "11,479", "채택"], ["H2", "0.951", "14,206", "비용 규칙 실패"]],
+                },
+                evidence: { worlds: 24, delta: "+0.029", token_change: "-10.6%", holdout_floor: "pass", kernel_changed: false },
+            },
+        },
+        {
+            label: "H2 변경 보류",
+            description: "점수 이득보다 비용 증가가 큰 후보",
+            inputs: { signal: "rating", candidate: "h2", quality_floor: 0.92 },
+            mockOutput: {
+                decision: "H0 유지 — H2는 점수 차이가 허용 오차 안에 있고 토큰 비용이 증가해 채택하지 않았습니다.",
+                replay: {
+                    columns: ["하네스", "품질", "토큰", "판정"],
+                    rows: [["H0", "0.941", "9,620", "유지"], ["H2", "0.943", "12,121", "거절"]],
+                },
+                evidence: { worlds: 18, delta: "+0.002", token_change: "+26.0%", holdout_floor: "pass", decision: "kept" },
+            },
+        },
+    ],
+};
+
 /**
  * XGen Ontology — 저장소가 jinsoo96/xgen-ontology 에서 PlateerLab/xgen-ontology-build 로
  * 옮겨지고 패키지도 xgen-ontology-build 로 개명됐다(xgen-ontology 는 0.16까지만 가는 셈).
@@ -986,6 +1141,8 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-edit2docs": edit2docs,
     "xgen-ontology-build": xgenOntology,
     "xgen-gallery": xgenGallery,
+    "xgen-pdf": xgenPdf,
+    "xgen-agent-runtime-rsi": agentRuntimeRsi,
 };
 
 /**

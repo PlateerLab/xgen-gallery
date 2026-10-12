@@ -30,7 +30,13 @@ export const LAB_PROJECTS: LabProject[] = [
         desc: "에이전트를 실제 업무에 태우는 실행 계층. 런타임과 실행 하네스, 백엔드 SDK를 오픈소스로 공개합니다.",
         descEn:
             "The execution layer that puts agents to work — runtime, execution harness, and backend SDK, all open source.",
-        toolIds: ["xgen-agent-runtime", "xgen-harness", "xgen-sdk", "xgen-an-web"],
+        toolIds: [
+            "xgen-agent-runtime",
+            "xgen-agent-runtime-rsi",
+            "xgen-harness",
+            "xgen-sdk",
+            "xgen-an-web",
+        ],
     },
     {
         id: "ontology",
@@ -53,6 +59,7 @@ export const LAB_PROJECTS: LabProject[] = [
             "doc2chunk",
             "document-adapter",
             "xgen-edit2docs",
+            "xgen-pdf",
             "f2a",
         ],
     },
