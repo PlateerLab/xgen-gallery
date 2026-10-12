@@ -68,6 +68,15 @@ const COPY: Record<
 
 export const DEMOS: Demo[] = [
     {
+        // 제목은 유튜브 원본과 동일하게 유지한다.
+        id: "0ql6M_P9qRw",
+        title: "XGEN 바이브 코딩 소개(Dex로 코딩하기)",
+        titleEn: "Introducing XGEN vibe coding — coding with Dex",
+        desc: "Dex를 통해 사용자의 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 바이브 코딩 과정을 실제 화면으로 소개합니다.",
+        descEn:
+            "A hands-on introduction to vibe coding with Dex, connecting XGEN Agent to the user's local development environment to write and modify code from natural-language instructions.",
+    },
+    {
         id: "4RiH3ThyIg0",
         // 제목·설명은 유튜브 원본과 동일하게 유지한다.
         title: "XGEN 플랫폼 실증 데모 — 문서 업로드부터 AI 에이전트·품질검증까지 (5분)",
@@ -144,15 +153,6 @@ export const DEMOS: Demo[] = [
         desc: "XGEN Agent 작업실에서 에이전트 제작부터 RAG·도구 연동·품질 평가·협업까지 전체 기능을 실제 화면으로 시연합니다.",
         descEn:
             "A full walkthrough of XGEN Agent Workshop on the real product screen — building agents, RAG, tool integration, quality evaluation, and collaboration.",
-    },
-    {
-        // 제목은 유튜브 원본과 동일하게 유지한다.
-        id: "0ql6M_P9qRw",
-        title: "XGEN 바이브 코딩 소개(Dex로 코딩하기)",
-        titleEn: "Introducing XGEN vibe coding — coding with Dex",
-        desc: "Dex를 통해 사용자의 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 바이브 코딩 과정을 실제 화면으로 소개합니다.",
-        descEn:
-            "A hands-on introduction to vibe coding with Dex, connecting XGEN Agent to the user's local development environment to write and modify code from natural-language instructions.",
     },
     {
         id: "4T7tT2nTXfw",
