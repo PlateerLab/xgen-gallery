@@ -369,8 +369,8 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
 
             {/* 커넥터 — PC·태블릿·핸드폰으로 분기되는 통로 */}
             <path d="M510 128 V 196" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
-            <path d="M510 174 C 720 174 980 210 1063 338" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
-            <path d="M510 174 C 790 174 1110 232 1177 388" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
+            <path d="M510 174 H 1063 V 338" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
+            <path d="M510 182 H 1177 V 388" stroke="#dbe4f6" strokeWidth="2.5" fill="none" />
             <path d="M504 188 l6 8 6 -8" stroke="#8fb4ff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             <rect x="462" y="146" width="96" height="28" rx="14" fill="#ffffff" stroke="#bcd0f5" />
             <text x="510" y="165" textAnchor="middle" fontSize="12.5" fontWeight="700" fill="#2461d8">
