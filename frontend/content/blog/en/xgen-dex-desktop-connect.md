@@ -1,6 +1,6 @@
 ---
-title: "Dex — bringing enterprise AI agents into the actual desktop"
-titleSeo: "Dex — agents in the real desktop"
+title: "Dex — bringing enterprise AI agents onto every work device"
+titleSeo: "Dex — agents across work devices"
 description: "The environment AI runs in and the environment people actually do their work in are separate. Installed on PCs, phones, and tablets, Dex is the device interface that connects XGEN AI agents to the user's actual working environment."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
@@ -9,10 +9,10 @@ author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["Dex", "Device Extension", "Agentic AI", "AI governance", "Product"]
 faq:
-  - q: "Is Dex a desktop chat app for XGEN?"
+  - q: "Is Dex just an XGEN chat app for devices?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a device. Installed on PCs, phones, and tablets, Dex is a device interface that lets agents built in XGEN use the files, applications, and browser on each device to produce real deliverables."
   - q: "How does this relate to the earlier Dex piece?"
-    a: "That piece set out the direction — extending enterprise AI down to the desktop. This one covers the installable touchpoint that implements it, linking agent resources on the server with the local execution environment."
+    a: "That piece set out the direction — extending enterprise AI onto user devices. This one covers the installable touchpoint that implements it, linking agent resources on the server with execution environments on PCs, phones, and tablets."
   - q: "Does this hand my whole PC over to the AI?"
     a: "No. What Dex aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
   - q: "Which work should we start with?"
@@ -33,7 +33,7 @@ The reason is simple: **the environment the AI runs in and the environment peopl
 
 Dex is being built to close that gap.
 
-> This is a follow-up to [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach the desktop at all, this one covers the installable touchpoint that actually reaches it.
+> This is a follow-up to [Dex — the execution layer that reaches user devices](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach work devices at all, this one covers the installable touchpoint that implements it on PCs, phones, and tablets.
 
 ---
 
@@ -43,7 +43,7 @@ Dex is a **device interface installed on PCs, phones, and tablets that connects 
 
 If XGEN is where you build and manage agents for work, Dex is what lets those agents carry that work out on the user's PC, phone, or tablet.
 
-Its purpose differs from a desktop app that simply makes XGEN chat available on a PC.
+Its purpose differs from an app that simply makes XGEN chat available on a device.
 
 Through Dex, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
 
@@ -114,7 +114,7 @@ A support agent, a data analysis agent, a document agent, a development agent, a
 
 ### Why the execution environment is connected
 
-For an agent to do real work on a user's PC, it has to be able to reach the execution environment that work requires — **local file and storage, browser, PowerShell, MCP, skill, or application**, depending on the task.
+For an agent to do real work on a user's device, it has to reach the execution environment the task requires. On a PC that can include **local file and storage, browser, PowerShell, MCP, skill, or application**. On phones and tablets, it connects the file, browser, and app capabilities permitted by the operating system.
 
 Dex does not open all of these by default. This is the point where an agent managed on the web extends into the user's real working environment, so it is built to connect only the execution environments a task actually needs.
 
@@ -171,21 +171,21 @@ It is less about adding one more tool and more about **adding execution ability 
 
 For enterprise agents, running everything on the server is not always the efficient choice.
 
-Work that touches files or applications on a PC naturally belongs in a local execution environment.
+Work that touches files or applications on a PC, phone, or tablet naturally belongs in that device's execution environment.
 
 Shared company data, centrally managed AI models, and agent assets, on the other hand, belong on the server.
 
-Dex is built around that split: **it connects agent resources on the server with the user's local execution environment.**
+Dex is built around that split: **it connects agent resources on the server with execution environments on PCs, phones, and tablets.** The same agent operates within the capabilities and permissions allowed on each device.
 
 That way a company can manage agents and key assets centrally while connecting the execution that genuinely has to happen locally.
 
 ---
 
-## The agent works alongside you on the desktop
+## On a PC, the agent works alongside you on the desktop
 
 Work tools need a window opened before you can use them. Find the app, launch it, open a chat, and only then say what you want. Those few steps are what send people back to "I'll just do it myself."
 
-Dex can put the agent on screen as **a floating avatar**. Upload a photo or a Live2D/Spine model to give it a look, set its size and position, and it stays there even when you minimize the window.
+On a PC, Dex can put the agent on screen as **a floating avatar**. Upload a photo or a Live2D/Spine model to give it a look, set its size and position, and it stays there even when you minimize the window. Phones and tablets provide access to the same agent through interactions suited to their screens.
 
 ![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
 
@@ -203,7 +203,7 @@ The avatar is not a visual flourish. It makes the agent **something beside you r
 
 ## An enterprise connector needs control alongside it
 
-Once AI can reach a PC and enterprise data, one thing has to be considered with it.
+Once AI can reach PCs, phones, tablets, and enterprise data, one thing has to be considered with it.
 
 **Security and governance.**
 
@@ -213,7 +213,7 @@ In finance, the public sector, and large enterprises especially, that control ma
 
 So the direction Dex takes is not
 
-**"hand my PC to the AI."**
+**"hand my device to the AI."**
 
 It is closer to
 
@@ -258,5 +258,5 @@ That is why Dex exists.
 
 ## Read next
 
-- [Dex — the execution layer that reaches the desktop](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
+- [Dex — the execution layer that reaches user devices](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
 - [Dex from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work

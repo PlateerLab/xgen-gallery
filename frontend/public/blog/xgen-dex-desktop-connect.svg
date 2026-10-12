@@ -1,147 +1,44 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN 플랫폼에서 업무별로 만든 Agent 가 커넥터를 통해 사용자 데스크톱으로 내려와, 오피스 문서와 로컬 자원을 직접 다루는 구조">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="XGEN 플랫폼의 Agent가 Dex 커넥터를 통해 PC, 핸드폰, 태블릿의 업무환경과 연결되는 구조">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f7faff"/>
-      <stop offset="1" stop-color="#e8eefb"/>
-    </linearGradient>
-    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#00acee"/>
-      <stop offset="1" stop-color="#185aea"/>
-    </linearGradient>
-    <linearGradient id="bezel" x1="0" y1="0" x2="0.35" y2="1">
-      <stop offset="0" stop-color="#5c86d6"/>
-      <stop offset="0.45" stop-color="#2f4d8f"/>
-      <stop offset="1" stop-color="#16224a"/>
-    </linearGradient>
-    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#f2f7fe"/>
-    </linearGradient>
-    <filter id="sh" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#14284f" flood-opacity="0.13"/>
-    </filter>
-
-    <!--
-      Agent 아바타 — 제품 페이지 개념도와 같은 그림이다. 플랫폼 칩과 데스크톱
-      칩에 같은 아바타가 나와야 "그 Agent 가 내려온 것" 으로 읽힌다.
-      24 단위로 그리고 use 에서 크기만 줄인다.
-    -->
-    <linearGradient id="av0g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#38c3f5"/><stop offset="1" stop-color="#185aea"/></linearGradient>
-    <linearGradient id="av1g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#a58bff"/><stop offset="1" stop-color="#5b2ee0"/></linearGradient>
-    <linearGradient id="av2g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#4fd8c0"/><stop offset="1" stop-color="#0d8f88"/></linearGradient>
-    <g id="av0">
-      <circle cx="12" cy="12" r="12" fill="url(#av0g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <g fill="#1447c4">
-        <circle cx="10.2" cy="10" r="0.9"/><circle cx="13.8" cy="10" r="0.9"/>
-        <path d="M6.4 9a5.6 5.6 0 0 1 11.2 0h-1.9a3.7 3.7 0 0 0-7.4 0z"/>
-        <rect x="5.2" y="8.6" width="2.4" height="3.4" rx="1.2"/>
-        <rect x="16.4" y="8.6" width="2.4" height="3.4" rx="1.2"/>
-      </g>
-    </g>
-    <g id="av1">
-      <circle cx="12" cy="12" r="12" fill="url(#av1g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <g fill="#4a24c0">
-        <circle cx="10.2" cy="10" r="0.9"/><circle cx="13.8" cy="10" r="0.9"/>
-        <path d="M7.6 8.2a4.4 4.4 0 0 1 8.8 0z"/>
-      </g>
-    </g>
-    <g id="av2">
-      <circle cx="12" cy="12" r="12" fill="url(#av2g)"/>
-      <path d="M2.6 20.4A9.9 9.9 0 0 1 12 14a9.9 9.9 0 0 1 9.4 6.4A11.95 11.95 0 0 1 12 24a11.95 11.95 0 0 1-9.4-3.6z" fill="#ffffff"/>
-      <circle cx="12" cy="9" r="4.6" fill="#ffffff"/>
-      <circle cx="10.2" cy="10" r="0.9" fill="#0b7f79"/><circle cx="13.8" cy="10" r="0.9" fill="#0b7f79"/>
-      <rect x="11.4" y="2.8" width="1.2" height="2.4" rx="0.6" fill="#ffffff"/>
-      <circle cx="12" cy="2.2" r="1.5" fill="#ffffff"/>
-    </g>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8faff"/><stop offset="1" stop-color="#eaf1ff"/></linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00acee"/><stop offset="1" stop-color="#185aea"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="9" stdDeviation="12" flood-color="#17366f" flood-opacity=".12"/></filter>
   </defs>
-
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <circle cx="1090" cy="80" r="200" fill="#2f7bff" opacity="0.06"/>
-  <circle cx="120" cy="600" r="170" fill="#1f4fa8" opacity="0.05"/>
-
-  <text x="600" y="66" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#2461d8" letter-spacing="6">Dex</text>
-  <text x="600" y="118" text-anchor="middle" font-family="Pretendard,'Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="38" font-weight="800" fill="#111827">Agent를 업무환경으로</text>
-
-  <!-- 플랫폼 — 업무별 Agent 를 만드는 곳 -->
-  <g filter="url(#sh)"><rect x="352" y="152" width="496" height="94" rx="16" fill="#ffffff"/></g>
-  <rect x="352" y="152" width="496" height="94" rx="16" fill="none" stroke="#dbe4f6"/>
-  <rect x="378" y="172" width="16" height="16" rx="4" fill="url(#brand)"/>
-  <text x="404" y="185" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="15" font-weight="800" fill="#1f4fa8">XGEN 플랫폼</text>
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12" font-weight="700" fill="#2461d8">
-    <rect x="378" y="202" width="140" height="30" rx="15" fill="#eef4fd" stroke="#cfe0ff"/>
-    <use href="#av0" transform="translate(384 208) scale(0.75)"/>
-    <text x="461" y="221" text-anchor="middle">제안서 작성 Agent</text>
-    <rect x="530" y="202" width="140" height="30" rx="15" fill="#eef4fd" stroke="#cfe0ff"/>
-    <use href="#av1" transform="translate(536 208) scale(0.75)"/>
-    <text x="613" y="221" text-anchor="middle">매출 정산 Agent</text>
-    <rect x="682" y="202" width="140" height="30" rx="15" fill="#eef4fd" stroke="#cfe0ff"/>
-    <use href="#av2" transform="translate(688 208) scale(0.75)"/>
-    <text x="765" y="221" text-anchor="middle">보고서 정리 Agent</text>
+  <circle cx="1080" cy="70" r="210" fill="#2f7bff" opacity=".05"/>
+  <circle cx="100" cy="620" r="180" fill="#2461d8" opacity=".04"/>
+  <g font-family="Pretendard,'Malgun Gothic',sans-serif">
+    <text x="600" y="60" text-anchor="middle" font-size="20" font-weight="700" fill="#2461d8" letter-spacing="6">Dex</text>
+    <text x="600" y="108" text-anchor="middle" font-size="36" font-weight="800" fill="#111827">Agent를 모든 업무 기기로</text>
+    <g filter="url(#shadow)"><rect x="340" y="140" width="520" height="112" rx="18" fill="#fff"/></g>
+    <rect x="340" y="140" width="520" height="112" rx="18" fill="none" stroke="#d7e3f7"/>
+    <rect x="370" y="166" width="18" height="18" rx="5" fill="url(#brand)"/>
+    <text x="402" y="181" font-size="16" font-weight="800" fill="#1f4fa8">XGEN 플랫폼</text>
+    <text x="370" y="218" font-size="14" font-weight="600" fill="#4b5563">Agent · Memory · Workspace · Tool · Governance</text>
+    <path d="M600 252V294H260V334M600 294H600V334M600 294H940V334" fill="none" stroke="#76a2f5" stroke-width="3" stroke-linejoin="miter"/>
+    <rect x="545" y="269" width="110" height="30" rx="15" fill="#fff" stroke="#a9c4f4"/>
+    <text x="600" y="289" text-anchor="middle" font-size="13" font-weight="800" fill="#2461d8">Dex 커넥터</text>
+    <g filter="url(#shadow)"><rect x="110" y="334" width="300" height="242" rx="18" fill="#fff"/></g>
+    <rect x="110" y="334" width="300" height="242" rx="18" fill="none" stroke="#d7e3f7"/>
+    <rect x="152" y="370" width="216" height="128" rx="10" fill="#edf4ff" stroke="#5c86d6" stroke-width="5"/>
+    <rect x="174" y="392" width="172" height="84" rx="7" fill="#fff"/>
+    <circle cx="260" cy="434" r="25" fill="url(#brand)"/><circle cx="260" cy="426" r="9" fill="#fff"/><path d="M244 452a16 16 0 0 1 32 0" fill="#fff"/>
+    <path d="M238 499h44l9 24h-62z" fill="#315694"/><rect x="205" y="523" width="110" height="9" rx="4.5" fill="#315694"/>
+    <text x="260" y="554" text-anchor="middle" font-size="15" font-weight="800" fill="#1f4fa8">PC · Dex</text>
+    <g filter="url(#shadow)"><rect x="450" y="334" width="300" height="242" rx="18" fill="#fff"/></g>
+    <rect x="450" y="334" width="300" height="242" rx="18" fill="none" stroke="#d7e3f7"/>
+    <rect x="532" y="366" width="136" height="162" rx="18" fill="#edf4ff" stroke="#5c86d6" stroke-width="5"/>
+    <rect x="548" y="388" width="104" height="116" rx="8" fill="#fff"/>
+    <circle cx="600" cy="446" r="25" fill="url(#brand)"/><circle cx="600" cy="438" r="9" fill="#fff"/><path d="M584 464a16 16 0 0 1 32 0" fill="#fff"/>
+    <circle cx="600" cy="516" r="4" fill="#5c86d6"/>
+    <text x="600" y="554" text-anchor="middle" font-size="15" font-weight="800" fill="#1f4fa8">핸드폰 · Dex</text>
+    <g filter="url(#shadow)"><rect x="790" y="334" width="300" height="242" rx="18" fill="#fff"/></g>
+    <rect x="790" y="334" width="300" height="242" rx="18" fill="none" stroke="#d7e3f7"/>
+    <rect x="842" y="374" width="196" height="142" rx="16" fill="#edf4ff" stroke="#5c86d6" stroke-width="5"/>
+    <rect x="860" y="392" width="160" height="106" rx="8" fill="#fff"/>
+    <circle cx="940" cy="445" r="25" fill="url(#brand)"/><circle cx="940" cy="437" r="9" fill="#fff"/><path d="M924 463a16 16 0 0 1 32 0" fill="#fff"/>
+    <circle cx="1027" cy="445" r="3.5" fill="#5c86d6"/>
+    <text x="940" y="554" text-anchor="middle" font-size="15" font-weight="800" fill="#1f4fa8">태블릿 · Dex</text>
+    <text x="600" y="626" text-anchor="middle" font-size="15" fill="#4b5563">기기별로 허용된 파일 · 앱 · 브라우저 · 도구를 안전하게 연결합니다</text>
   </g>
-
-  <!-- 커넥터 — 잇는 역할 -->
-  <path d="M600 246 V 300" stroke="#8fb4ff" stroke-width="2.5" fill="none"/>
-  <rect x="552" y="258" width="96" height="26" rx="13" fill="#ffffff" stroke="#bcd0f5"/>
-  <text x="600" y="276" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="700" fill="#2461d8">커넥터</text>
-
-  <!-- 사용자 데스크톱 = Dex -->
-  <g filter="url(#sh)"><rect x="150" y="300" width="900" height="284" rx="18" fill="url(#bezel)"/></g>
-  <rect x="151.5" y="301.5" width="897" height="281" rx="17" fill="none" stroke="#ffffff" stroke-opacity="0.28"/>
-  <rect x="160" y="310" width="880" height="264" rx="12" fill="url(#screen)"/>
-  <path d="M566 584 h68 l11 32 h-90z" fill="#233a70"/>
-  <rect x="490" y="616" width="220" height="12" rx="6" fill="#233a70"/>
-
-  <rect x="184" y="330" width="250" height="28" rx="14" fill="url(#brand)"/>
-  <text x="309" y="349" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="800" fill="#ffffff">사용자 데스크톱 · Dex</text>
-
-  <!-- 호출된 Agent — 플랫폼과 같은 x 라 내려온 것으로 읽힌다 -->
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12" font-weight="700" fill="#1f4fa8">
-    <rect x="378" y="376" width="140" height="38" rx="12" fill="#ffffff" stroke="#bcd0f5" stroke-width="1.5"/>
-    <use href="#av0" transform="translate(387 384) scale(0.9167)"/>
-    <text x="464" y="399" text-anchor="middle">제안서 작성</text>
-    <rect x="530" y="376" width="140" height="38" rx="12" fill="#ffffff" stroke="#bcd0f5" stroke-width="1.5"/>
-    <use href="#av1" transform="translate(539 384) scale(0.9167)"/>
-    <text x="616" y="399" text-anchor="middle">매출 정산</text>
-    <rect x="682" y="376" width="140" height="38" rx="12" fill="#ffffff" stroke="#bcd0f5" stroke-width="1.5"/>
-    <use href="#av2" transform="translate(691 384) scale(0.9167)"/>
-    <text x="768" y="399" text-anchor="middle">보고서 정리</text>
-  </g>
-
-  <g stroke="#bcd0f5" stroke-width="2" fill="none">
-    <path d="M448 414 C 448 440 350 434 350 458"/>
-    <path d="M600 414 C 600 440 350 434 350 458"/>
-    <path d="M600 414 C 600 440 850 434 850 458"/>
-    <path d="M752 414 C 752 440 850 434 850 458"/>
-  </g>
-
-  <!-- 오피스 워크 -->
-  <rect x="196" y="458" width="308" height="96" rx="12" fill="#ffffff" stroke="#dbe4f6"/>
-  <text x="350" y="482" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="800" fill="#1f4fa8">오피스 워크</text>
-  <g font-family="Pretendard,sans-serif" font-size="13" font-weight="800" fill="#ffffff">
-    <path d="M232 496 h20 l10 10 v22 a3 3 0 0 1 -3 3 h-27 a3 3 0 0 1 -3 -3 v-29 a3 3 0 0 1 3 -3z" fill="#217346"/>
-    <text x="245" y="522" text-anchor="middle">X</text>
-    <path d="M296 496 h20 l10 10 v22 a3 3 0 0 1 -3 3 h-27 a3 3 0 0 1 -3 -3 v-29 a3 3 0 0 1 3 -3z" fill="#2b579a"/>
-    <text x="309" y="522" text-anchor="middle">W</text>
-    <path d="M360 496 h20 l10 10 v22 a3 3 0 0 1 -3 3 h-27 a3 3 0 0 1 -3 -3 v-29 a3 3 0 0 1 3 -3z" fill="#d24726"/>
-    <text x="373" y="522" text-anchor="middle">P</text>
-  </g>
-  <rect x="424" y="498" width="48" height="34" rx="10" fill="#f3f7ff" stroke="#cfe0ff" stroke-dasharray="4 4"/>
-  <text x="448" y="520" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="14" font-weight="800" fill="#8fb4ff">···</text>
-
-  <!-- 로컬 자원 -->
-  <rect x="696" y="458" width="308" height="96" rx="12" fill="#ffffff" stroke="#dbe4f6"/>
-  <text x="850" y="482" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="12.5" font-weight="800" fill="#1f4fa8">로컬 자원</text>
-  <g font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="11.5" font-weight="700" fill="#374151">
-    <rect x="716" y="496" width="86" height="24" rx="12" fill="#f3f7ff" stroke="#cfe0ff"/><text x="759" y="512" text-anchor="middle">파일</text>
-    <rect x="808" y="496" width="86" height="24" rx="12" fill="#f3f7ff" stroke="#cfe0ff"/><text x="851" y="512" text-anchor="middle">브라우저</text>
-    <rect x="900" y="496" width="86" height="24" rx="12" fill="#f3f7ff" stroke="#cfe0ff"/><text x="943" y="512" text-anchor="middle">MCP</text>
-    <rect x="762" y="526" width="86" height="24" rx="12" fill="#f3f7ff" stroke="#cfe0ff"/><text x="805" y="542" text-anchor="middle">PowerShell</text>
-    <rect x="854" y="526" width="86" height="24" rx="12" fill="#f3f7ff" stroke="#cfe0ff"/><text x="897" y="542" text-anchor="middle">그 외</text>
-  </g>
-
-  <text x="600" y="656" text-anchor="middle" font-family="Pretendard,'Malgun Gothic',sans-serif" font-size="15" fill="#4b5563">허용된 범위 안에서 Agent가 직접 다룹니다</text>
 </svg>
