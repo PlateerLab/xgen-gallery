@@ -7,7 +7,7 @@ cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dex", "Device Experience", "Agentic AI", "AI governance", "Product"]
+tags: ["Dex", "Device Extension", "Agentic AI", "AI governance", "Product"]
 faq:
   - q: "Is Dex a desktop chat app for XGEN?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a PC. Dex is a desktop interface that lets agents built in XGEN use the files, applications, and browser on your machine to produce real deliverables."
@@ -53,7 +53,7 @@ Put simply:
 
 **Dex is where those agents connect to the user's environment so the work can actually happen.**
 
-The product is named **Dex** (Device Experience), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
+The product is named **Dex** (Device Extension), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
 
 ---
 

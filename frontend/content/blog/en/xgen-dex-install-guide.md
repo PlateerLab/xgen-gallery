@@ -7,7 +7,7 @@ cover: /blog/xgen-dex-install-guide.svg
 thumb: /blog/xgen-dex-install-guide-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dex", "Geny", "Device Experience", "Agentic AI", "Install guide"]
+tags: ["Dex", "Geny", "Device Extension", "Agentic AI", "Install guide"]
 faq:
   - q: "Where do I build the agent?"
     a: "In XGEN. Dex is the side that runs an agent; the agent itself is built on the XGEN canvas. You can wire nodes by hand, but describing the job to Geny in plain language gets you a workflow with the nodes and connections already in place."
