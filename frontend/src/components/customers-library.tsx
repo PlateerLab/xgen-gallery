@@ -81,9 +81,10 @@ function HashTags({ c, en }: { c: CaseStudy; en: boolean }) {
 }
 
 function StatusBadge({ c, en }: { c: CaseStudy; en: boolean }) {
+    const inProgress = c.status === "구축중";
     return (
-        <span className="inline-flex items-center gap-1 rounded-full bg-[#ecf8f1] px-2.5 py-0.5 text-[12px] font-bold text-[#1f9d57]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#1f9d57]" />
+        <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[12px] font-bold ${inProgress ? "bg-[#fff7e6] text-[#a45b00]" : "bg-[#ecf8f1] text-[#1f9d57]"}`}>
+            <span className={`h-1.5 w-1.5 rounded-full ${inProgress ? "bg-[#d97706]" : "bg-[#1f9d57]"}`} />
             {en ? CASE_STATUS_EN[c.status] : c.status}
         </span>
     );

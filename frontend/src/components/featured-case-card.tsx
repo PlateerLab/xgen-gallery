@@ -52,6 +52,9 @@ export function FeaturedCaseCard({
                     >
                         {item.published.slice(0, 7).replace("-", ".")}
                     </time>
+                    <span className={`rounded-full px-2.5 py-0.5 font-bold backdrop-blur-sm ${item.status === "구축중" ? "bg-[#f59e0b]/25 text-[#fde68a]" : "bg-white/10 text-white/85"}`}>
+                        {en && item.status === "구축중" ? "In progress" : item.status}
+                    </span>
                 </div>
 
                 {/* 하단 키 메시지 — 사례 제목 + 간략 설명 */}

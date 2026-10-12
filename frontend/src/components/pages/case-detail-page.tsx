@@ -181,8 +181,8 @@ export async function CaseDetailPageContent({
                     <span className="inline-flex items-center rounded-full border border-[var(--color-line)] bg-white px-2.5 py-0.5 text-[12.5px] font-semibold text-[var(--color-ink-muted)]">
                         {en ? industry.en : industry.ko}
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[#ecf8f1] px-2.5 py-0.5 text-[12.5px] font-bold text-[#1f9d57]">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#1f9d57]" />
+                    <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[12.5px] font-bold ${c.status === "구축중" ? "bg-[#fff7e6] text-[#a45b00]" : "bg-[#ecf8f1] text-[#1f9d57]"}`}>
+                        <span className={`h-1.5 w-1.5 rounded-full ${c.status === "구축중" ? "bg-[#d97706]" : "bg-[#1f9d57]"}`} />
                         {en ? CASE_STATUS_EN[c.status] : c.status}
                     </span>
                 </div>

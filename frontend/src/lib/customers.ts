@@ -32,10 +32,11 @@ export function caseLinkEnabled(slug: string): boolean {
 
 export type ProductKey = "xgen" | "polar" | "code-assistant";
 export type IndustryKey = "commerce" | "finance" | "public" | "it-services";
-export type CaseStatus = "운영 중" | "구축 완료" | "확산 중" | "구축·운영 중";
+export type CaseStatus = "구축중" | "운영 중" | "구축 완료" | "확산 중" | "구축·운영 중";
 
 /** 상태 라벨 영문 표기 — `/en` 화면에서 쓴다. */
 export const CASE_STATUS_EN: Record<CaseStatus, string> = {
+    "구축중": "In progress",
     "운영 중": "In operation",
     "구축 완료": "Delivered",
     "확산 중": "Rolling out",
@@ -184,6 +185,43 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
  * 제주은행만 공개 레퍼런스로 실명, 그 외는 업종+규모 익명. 미검증 수치는 넣지 않는다.
  */
 export const CASE_STUDIES: CaseStudy[] = [
+    {
+        slug: "financial-ai-platform-in-progress",
+        title: "금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하다",
+        titleEn: "Building an enterprise AI platform and governance foundation for financial work",
+        customer: "국내 금융사",
+        customerEn: "A Korean financial-services company",
+        customerAnonymous: true,
+        industry: "finance",
+        products: ["xgen"],
+        summary:
+            "금융사의 내부 업무에 AI Agent와 RAG를 안전하게 적용할 수 있도록 온프레미스 플랫폼, 통합 운영, 보안·거버넌스 체계를 구축하고 있는 사례",
+        summaryEn:
+            "An in-progress engagement building an on-premise platform, integrated operations, and security and governance controls so AI agents and RAG can be applied safely to internal financial work",
+        challenge:
+            "금융권의 보안·내부통제 요건을 지키면서 여러 AI 모델과 사내 데이터를 활용하고, Agent의 개발부터 배포·운영·감사까지 하나의 체계로 관리할 기반이 필요했다.",
+        challengeEn:
+            "The organization needed one governed foundation for using multiple AI models and internal data while meeting financial-sector security and control requirements across agent development, deployment, operations, and audit.",
+        solution:
+            "XGEN 기반 온프레미스 AI 플랫폼을 중심으로 Agent 설계·RAG 지식화·멀티 모델 연계·배포 승인·운영 모니터링을 통합하고 있다. RBAC 기반 접근 제어, 감사 로그, 가드레일과 데이터 보호 정책을 함께 적용해 향후 AI 서비스 확장을 위한 표준 운영 기반을 마련한다.",
+        solutionEn:
+            "The work is integrating agent design, RAG knowledge pipelines, multi-model connectivity, deployment approval, and operational monitoring around an on-premise XGEN platform. RBAC, audit logs, guardrails, and data-protection policies establish a standard foundation for expanding AI services safely.",
+        highlights: [
+            "온프레미스 Enterprise AI 플랫폼",
+            "Agent · RAG 통합 개발·운영",
+            "RBAC · 감사로그 · 가드레일",
+            "배포 승인 · 모니터링 체계",
+        ],
+        highlightsEn: [
+            "On-premise enterprise AI platform",
+            "Integrated agent and RAG lifecycle",
+            "RBAC, audit logs, and guardrails",
+            "Deployment approval and monitoring",
+        ],
+        status: "구축중",
+        published: "2026-10-12",
+        featured: true,
+    },
     {
         slug: "jeju-bank-genai-platform",
         title: "제주은행과 사내 생성형 AI 플랫폼을 구축하고 운영으로 안착시키다",
