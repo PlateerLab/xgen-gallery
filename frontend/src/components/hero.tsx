@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { TOOLS } from "@/lib/tools";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play, X } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { localeHref } from "@/lib/locale-path";
 import { categoryLabel } from "@/lib/blog-categories";
@@ -19,25 +19,27 @@ function XgenMark() {
     );
 }
 
-const SLIDE_COUNT = 5;
+const SLIDE_COUNT = 6;
 const ROTATE_MS = 6000;
 /**
  * 슬라이드별 노출 시간.
  *
- * 첫 장(Dex)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
+ * 첫 장(Dex 바이브코딩)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
+ * 더 오래 둔다. 둘째 장(Dex)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
  * 전환이 두 번 지나갈 만큼은 머물러야 「무엇이 새로운지」가 읽힌다.
  * 나머지는 기존 6초 그대로.
  */
-const SLIDE_MS = [11000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
+const SLIDE_MS = [16000, 11000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
-// 순서: Dex → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
-// Dex 를 맨 앞에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
+// 순서: Dex 바이브코딩 → Dex → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// Dex 를 앞쪽에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
 // 가장 설명 없이 와닿는 장면이고, 배경 영상도 실제 업무 책상이라 말과 그림이 맞는다.
 // 그다음 오픈소스 툴킷을 두어 검색으로 도착한 개발자가 자기 경로를 찾게 한다.
 // 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
+    "/hero-dex-vibe-bg.mp4",
     "/hero-dex.mp4",
     "/hero-slide2.mp4",
     "/hero-security.jpeg",
@@ -46,12 +48,13 @@ const SLIDE_BG = [
 ];
 const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
 // Per-slide object-position (기본 중앙).
-const SLIDE_POS = ["center", "center", "center", "center", "center"];
+const SLIDE_POS = ["center", "center", "center", "center", "center", "center"];
 // Per-slide 추가 이동/확대(이미지 슬라이드용). 거버넌스 이미지는 피사체를 더
 // 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시키고,
 // 연구소 정체성 이미지는 좌하단으로 옮긴다. 값은 각 이미지에 맞춰 잡은 것이라
 // 슬라이드 순서와 함께 이동한다.
 const SLIDE_TRANSFORM: (string | undefined)[] = [
+    undefined,
     undefined,
     undefined,
     "scale(1.3) translateX(16%)",
@@ -105,7 +108,116 @@ function HeroActions({
 }
 
 /**
- * 슬라이드 1 — Dex (실제 업무 책상 배경).
+ * 슬라이드 1 — Dex 바이브코딩 (소개영상 배경).
+ *
+ * 「말하면 앱이 된다」를 문장보다 화면으로 보여준다. 배경은 소개영상을 2배속·무음으로
+ * 줄인 루프(약 3MB)로, 첫 장면에 완성된 대시보드가 보이도록 원본 0:53부터 시작해
+ * 끝까지 간 뒤 요청 장면으로 이어 붙였다(인트로·아웃트로 타이틀은 뺐다). 소리 있는 전체 영상(1:52)은 버튼을 눌렀을 때만 불러온다.
+ * 룩앤필은 5번째 장(XGEN 제품소개)과 같다 — 공용 그라디언트·블러만 쓴다.
+ * 「8분 39초」는 영상 속 데모 실측값이라 그대로 옮긴다.
+ */
+function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
+    const { locale } = useI18n();
+    const ko = locale === "ko";
+    return (
+        <>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#a78bfa]" />
+                Dex · Vibe Coding
+            </div>
+
+            <h1 className={cn(H1_CLS, "mt-7")}>
+                {ko ? (
+                    <>
+                        말하면,
+                        <br />
+                        앱이 됩니다
+                    </>
+                ) : (
+                    <>
+                        Say it,
+                        <br />
+                        and it&apos;s an app
+                    </>
+                )}
+            </h1>
+
+            <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
+                {ko ? (
+                    <>
+                        요청 한 번, 8분 39초 — 에이전트가 설계·코드·실행·수정까지 맡아{" "}
+                        <br className="hidden sm:block" />
+                        실제로 돌아가는 업무 앱을 완성합니다
+                    </>
+                ) : (
+                    <>
+                        One request, 8 minutes 39 seconds — the agent plans, codes, runs and fixes{" "}
+                        <br className="hidden sm:block" />
+                        until a working business app is done
+                    </>
+                )}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                <button
+                    type="button"
+                    onClick={onPlay}
+                    className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[16px] font-semibold text-[#070b1c] transition hover:bg-white/90"
+                >
+                    <Play className="h-3.5 w-3.5 fill-current" />
+                    {ko ? "소개 영상 보기" : "Watch the demo"}
+                </button>
+                <Link
+                    href={localeHref(locale, "/xgen-dex")}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
+                >
+                    {ko ? "Dex 주요 기능 보기" : "See Dex features"}
+                </Link>
+            </div>
+        </>
+    );
+}
+
+/** 바이브코딩 소개영상(전체, 소리 포함) 모달 — 열 때만 영상을 불러온다. */
+function DexVibeVideoModal({ onClose }: { onClose: () => void }) {
+    const { locale } = useI18n();
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [onClose]);
+    return (
+        <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={locale === "ko" ? "Dex 바이브코딩 소개 영상" : "Dex vibe coding demo"}
+            onClick={onClose}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+        >
+            <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+                <button
+                    type="button"
+                    onClick={onClose}
+                    aria-label={locale === "ko" ? "닫기" : "Close"}
+                    className="absolute -top-11 right-0 rounded-full p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+                >
+                    <X className="h-5 w-5" />
+                </button>
+                <video
+                    src="/hero-dex-vibe.mp4"
+                    poster="/hero-dex-vibe-poster.jpg"
+                    autoPlay
+                    controls
+                    playsInline
+                    className="aspect-video w-full rounded-xl bg-black"
+                />
+            </div>
+        </div>
+    );
+}
+
+/**
+ * 슬라이드 2 — Dex (실제 업무 책상 배경).
  *
  * 「AI 를 도입한다」가 아니라 「내 자리에서 같이 일한다」를 말한다. 홈에 처음
  * 온 사람에게 설명 없이 와닿는 장면이 그쪽이고, 배경 영상도 실제 책상이라
@@ -395,6 +507,8 @@ export function Hero({
 }) {
     const { locale } = useI18n();
     const [active, setActive] = useState(0);
+    // 바이브코딩 소개영상 모달 — 열려 있는 동안은 슬라이드를 넘기지 않는다.
+    const [videoOpen, setVideoOpen] = useState(false);
 
     // 헤드라인 뉴스의 Tech Note 슬롯: 항상 최신 글을 세운다.
     // (예전에는 최근 5개 중 하나를 마운트 후 무작위로 바꿔 걸었는데, 새 글을 올려도
@@ -408,12 +522,13 @@ export function Hero({
       옮기자마자 넘어가 버리는 일이 있었다.
     */
     useEffect(() => {
+        if (videoOpen) return;
         const id = setTimeout(
             () => setActive((a) => (a + 1) % SLIDE_COUNT),
             SLIDE_MS[active] ?? ROTATE_MS,
         );
         return () => clearTimeout(id);
-    }, [active]);
+    }, [active, videoOpen]);
 
     // 활성 슬라이드 영상만 재생하고 나머지는 일시정지한다. 3개 영상을 동시에
     // 디코딩하면 보이는 영상이 끊기거나 멈춘 것처럼 보이므로, 디코딩 부하를 1개로
@@ -501,11 +616,11 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
                 {/*
-                  영상 배경 슬라이드(Dex·툴킷·XGEN 제품소개): 중앙 텍스트 뒤를
+                  영상 배경 슬라이드(바이브코딩·Dex·툴킷·XGEN 제품소개): 중앙 텍스트 뒤를
                   부드럽게 블러해 가독성을 지킨다. 이미지 배경 둘은 이미 어둡게
                   깔려 있어 필요 없다. 슬라이드 순서를 바꾸면 이 인덱스도 옮긴다.
                 */}
-                {(active === 0 || active === 1 || active === 3) && (
+                {(active === 0 || active === 1 || active === 2 || active === 4) && (
                     <div
                         aria-hidden
                         className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
@@ -530,12 +645,14 @@ export function Hero({
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
-                        <DexSlide />
+                        <DexVibeSlide onPlay={() => setVideoOpen(true)} />
                     ) : active === 1 ? (
-                        <XgenSlide />
+                        <DexSlide />
                     ) : active === 2 ? (
-                        <SecuritySlide />
+                        <XgenSlide />
                     ) : active === 3 ? (
+                        <SecuritySlide />
+                    ) : active === 4 ? (
                         <XgenPlatformSlide />
                     ) : (
                         <VisionSlide />
@@ -663,6 +780,7 @@ export function Hero({
                 </div>
             )}
         </section>
+        {videoOpen && <DexVibeVideoModal onClose={() => setVideoOpen(false)} />}
         </>
     );
 }
