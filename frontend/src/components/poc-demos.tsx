@@ -172,8 +172,8 @@ export const DEMOS: Demo[] = [
     },
     {
         id: "dGEvX07WXKM",
-        title: "XGEN DevStudio 실증 데모",
-        titleEn: "XGEN DevStudio demo",
+        title: "Code Assistant 실증 데모",
+        titleEn: "Code Assistant demo",
         desc: "사내 코드·API·DB 스키마·산출물을 학습해 프로젝트 맥락에서 코드 수준으로 답하는 엔터프라이즈 코드 어시스턴트를 실제 화면으로 시연합니다.",
         descEn:
             "An enterprise code assistant that learns in-house code, APIs, DB schemas, and deliverables, and answers at code level in the context of the project — shown on the real product screen.",

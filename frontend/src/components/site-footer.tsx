@@ -27,8 +27,8 @@ export function SiteFooter() {
         "/code-assistant": {
             id: "dGEvX07WXKM",
             title: {
-                ko: "XGEN DevStudio 실증 데모",
-                en: "XGEN DevStudio in action",
+                ko: "Code Assistant 실증 데모",
+                en: "Code Assistant in action",
             },
         },
     };
