@@ -25,11 +25,9 @@ const ROTATE_MS = 6000;
  * 슬라이드별 노출 시간.
  *
  * 첫 장(Dex 바이브코딩)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
- * 더 오래 둔다. 둘째 장(Dex)은 새 기능을 알리는 자리라 더 오래 둔다 — 배경 영상의 장면
- * 전환이 두 번 지나갈 만큼은 머물러야 「무엇이 새로운지」가 읽힌다.
- * 나머지는 기존 6초 그대로.
+ * 더 오래 둔다. 나머지는 모두 6초.
  */
-const SLIDE_MS = [16000, 11000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
+const SLIDE_MS = [16000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
 // 순서: Dex 바이브코딩 → Dex → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
