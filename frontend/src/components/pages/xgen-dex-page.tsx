@@ -134,7 +134,7 @@ const COPY: Record<Locale, DexCopy> = {
         heroBadge: "XGEN · Dex",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "Dex는 XGEN의 AI Agent를 로컬·원격 업무환경과 연결하는 통합 실행 플랫폼입니다. 자연어 요청을 이해하고 필요한 도구와 실행 환경을 연결해 실제 업무를 수행합니다.",
+            "Dex는 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC에 설치된 Dex를 통해 XGEN Agent가 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -327,7 +327,7 @@ const COPY: Record<Locale, DexCopy> = {
         heroBadge: "XGEN · Dex",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "Dex is an execution platform that connects XGEN's AI agents to local and remote working environments. It reads a request in plain language, wires up the tools and environment it needs, and carries out the actual work.",
+            "Dex extends where XGEN agents can act, all the way to the user's device. Through Dex installed on the PC, XGEN agents connect to the real working environment — files, browsers and applications — to carry out requests and finish the deliverable.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
