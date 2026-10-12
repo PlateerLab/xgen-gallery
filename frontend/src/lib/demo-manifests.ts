@@ -775,7 +775,7 @@ const edit2docs: DemoManifest = {
  * class enumeration 이 갈리는 지점이라 그 둘을 샘플로 잡았다.
  */
 const xgenOntology: DemoManifest = {
-    projectName: "xgen-ontology",
+    projectName: "xgen-ontology-build",
     title: "XGen Ontology Demo",
     description:
         "문서와 표를 정제된 지식 그래프로 만들고, 한 번의 융합 검색으로 답합니다. 코어는 의존성이 없고 결과는 표준 RDF/Turtle로 나옵니다.",
@@ -968,6 +968,11 @@ const xgenGallery: DemoManifest = {
  */
 const contextifier = getDemoManifest("Contextifier");
 
+/**
+ * XGen Ontology — 저장소가 jinsoo96/xgen-ontology 에서 PlateerLab/xgen-ontology-build 로
+ * 옮겨지고 패키지도 xgen-ontology-build 로 개명됐다(xgen-ontology 는 0.16까지만 가는 셈).
+ * 키를 저장소 이름 그대로 다시 걸어 큐레이션 데모가 폴백으로 떨어지지 않게 한다.
+ */
 export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     ...(contextifier ? { "xgen-contextifier": contextifier } : {}),
     "document-adapter": documentAdapter,
@@ -979,7 +984,7 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-agent-runtime": agentRuntime,
     "xgen-an-web": anWeb,
     "xgen-edit2docs": edit2docs,
-    "xgen-ontology": xgenOntology,
+    "xgen-ontology-build": xgenOntology,
     "xgen-gallery": xgenGallery,
 };
 

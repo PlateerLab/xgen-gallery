@@ -227,14 +227,13 @@ export const TOOLS: Tool[] = [
     },
     {
         id: "xgen-ontology",
-        repo: "xgen-ontology",
-        repoUrl: "https://github.com/jinsoo96/xgen-ontology",
+        repo: "xgen-ontology-build",
         name: "XGen Ontology",
         tagline: "Documents and tables into a clean knowledge graph",
         description:
             "A backend-agnostic ontology toolkit — parse, extract, resolve, dedup, and clean the is-a hierarchy, then search the graph with one-shot GraphRAG. Zero dependencies in the core, and it loads into any SPARQL 1.1 store.",
         category: "knowledge",
-        install: "pip install xgen-ontology",
+        install: "pip install xgen-ontology-build",
         hasDemo: true,
         language: "Python",
         addedAt: "2026-09-03",
