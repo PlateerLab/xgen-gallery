@@ -130,7 +130,7 @@ interface DexCopy {
 const COPY: Record<Locale, DexCopy> = {
     ko: {
         ldDescription:
-            "Dex는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Desktop Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+            "Dex는 서버에서 운영되는 AI Agent를 사용자의 PC 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · Dex",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
@@ -155,7 +155,7 @@ const COPY: Record<Locale, DexCopy> = {
         whatTitle: "Dex는 무엇인가요?",
         whatLead: [
             "Dex(Device Extension)는 XGEN의 AI Agent와 사용자의",
-            "실제 업무환경을 연결하는 설치형 Desktop Interface입니다.",
+            "실제 업무환경을 연결하는 설치형 Device Interface입니다.",
         ],
         taskSteps: [
             ["요청", "목표와 범위를 자연어로 전달합니다"],
@@ -323,7 +323,7 @@ const COPY: Record<Locale, DexCopy> = {
     },
     en: {
         ldDescription:
-            "Dex is the desktop interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
+            "Dex is the device interface that connects AI agents running on the XGEN Server to the working environment on a user's PC, carrying out real work and producing deliverables from files and applications within an allowed scope.",
         heroBadge: "XGEN · Dex",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
@@ -347,7 +347,7 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         whatTitle: "What is Dex?",
         whatLead: [
-            "Dex (Device Extension) is an installable desktop interface",
+            "Dex (Device Extension) is an installable device interface",
             "that connects XGEN's AI agents with a user's real working environment.",
         ],
         taskSteps: [
