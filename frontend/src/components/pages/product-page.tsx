@@ -169,8 +169,8 @@ const DIFFERENTIATORS: {
 }[] = [
     {
         icon: Sparkles,
-        en: "Easy Mode",
-        ko: "이지모드",
+        en: "EasyMode",
+        ko: "EasyMode",
         tagline: "코딩 없이, 약 90초면 에이전트가 완성됩니다",
         desc: "드래그&드롭 가이드형 빌더로 비개발자도 지식·프롬프트·도구를 조합해 에이전트를 생성·조립합니다. 만드는 즉시 채팅으로 바로 검증합니다.",
         items: [
@@ -182,7 +182,7 @@ const DIFFERENTIATORS: {
     {
         icon: Compass,
         en: "PathFinder",
-        ko: "패스파인더",
+        ko: "PathFinder",
         tagline: "기존 시스템을 AI가 사용하는 Tool로 연결합니다",
         desc: "패스파인더는 웹 시스템과 API를 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 기술입니다. 로그인부터 연결, 테스트, 등록까지 전 과정을 코드 없이 자동화하여, 기존 시스템을 빠르게 AI 업무 환경으로 확장합니다.",
         items: [
@@ -854,7 +854,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <PathFinderArt locale={locale} />
                                         </div>
                                     )}
-                                    {d.en === "Easy Mode" && (
+                                    {d.en === "EasyMode" && (
                                         <div className="mb-6">
                                             <EasyModeArt locale={locale} />
                                         </div>

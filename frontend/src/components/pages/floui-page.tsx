@@ -195,13 +195,13 @@ const COPY: Record<Locale, FlouiCopy> = {
         readTitle: "XGEN 핵심 기능 더 알아보기",
         reads: [
             {
-                label: "이지모드",
+                label: "EasyMode",
                 desc: "코딩 없이, 약 90초면 에이전트가 완성됩니다.",
                 href: "/product#build",
                 art: "easy-mode",
             },
             {
-                label: "패스파인더",
+                label: "PathFinder",
                 desc: "기존 웹 시스템과 API를 Agent가 쓰는 도구로 연결합니다.",
                 href: "/pathfinder",
                 art: "pathfinder",
@@ -338,7 +338,7 @@ const COPY: Record<Locale, FlouiCopy> = {
         readTitle: "More on XGEN key features",
         reads: [
             {
-                label: "Easy Mode",
+                label: "EasyMode",
                 desc: "No coding — an agent in about 90 seconds.",
                 href: "/product#build",
                 art: "easy-mode",

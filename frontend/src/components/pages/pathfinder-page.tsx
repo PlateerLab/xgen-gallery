@@ -64,7 +64,7 @@ interface PfCopy {
 
 const COPY: Record<Locale, PfCopy> = {
     ko: {
-        ldAlternateName: "패스파인더",
+        ldAlternateName: "PathFinder",
         ldDescription:
             "시스템과 API를 코드 없이 AI 에이전트가 사용하는 Agent Tool로 연결하고, 대화로 XGEN Canvas 워크플로우 제작을 돕는 크롬 확장형 AI 어시스턴트.",
         capabilities: [

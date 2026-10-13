@@ -85,7 +85,7 @@ export const PRODUCT_EN = {
 
     differentiators: [
         {
-            ko: "Easy Mode",
+            ko: "EasyMode",
             tagline: "No coding — an agent in about 90 seconds",
             desc: "A guided drag-and-drop builder lets non-developers combine knowledge, prompts, and tools into an agent. The moment it exists, you validate it in chat.",
             items: [
