@@ -1,0 +1,43 @@
+.page { color: #16223a; background: #fff; }
+.page a:focus-visible, .page button:focus-visible { outline: 3px solid #496deb; outline-offset: 5px; }
+.hero { background: #f1f4fc; overflow: hidden; }
+.heroInner { max-width: 1288px; margin: auto; padding: 62px 24px 66px; display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 55px; }
+.kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; font-weight: 600; color: #385aca; }
+.hero h1 { margin-top: 23px; font-size: clamp(34px, 4vw, 54px); font-weight: 800; letter-spacing: -.055em; line-height: 1.27; }
+.intro { margin-top: 23px; font-size: 16px; color: #59677e; line-height: 1.9; }
+.heroType { display: flex; flex-direction: column; transform: rotate(-4deg); font-size: clamp(58px, 8.2vw, 118px); font-weight: 850; letter-spacing: -.07em; line-height: .98; color: #264ce9; }
+.heroType span:last-child { color: #7693f1; }
+.listSection { max-width: 1288px; margin: auto; padding: 55px 24px 90px; }
+.listHeader { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.listHeader h2 { font-size: 28px; font-weight: 750; letter-spacing: -.04em; }
+.listHeader > span { font-size: 13px; color: #667489; }
+.filters { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 27px; }
+.filters button { padding: 11px 17px; border-radius: 24px; background: #f1f3f8; color: #59677e; font-size: 13px; font-weight: 600; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: #152137; color: #fff; }
+.filters button:hover { box-shadow: inset 0 0 0 1px #aebbd1; }
+.filters button span { margin-left: 6px; opacity: .75; font-size: 11px; }
+.resultCount { margin-top: 23px; font-size: 12px; color: #667489; }
+.eventGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 23px; }
+.eventLink { display: block; height: 100%; }
+.poster { display: flex; flex-direction: column; min-height: 260px; padding: 25px; background: #274de6; border-radius: 12px; color: #fff; overflow: hidden; transition: background .2s; }
+.eventLink:hover .poster { background: #1c3bc6; }
+.posterTop, .posterBottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em; color: #dce6ff; }
+.posterName { margin-top: 32px; font-family: var(--font-mono); font-size: 11px; color: #dfebff; }
+.poster > strong { display: block; margin: 10px 0 30px; font-size: 29px; line-height: 1.35; font-weight: 750; letter-spacing: -.04em; color: #dfffab; }
+.posterBottom { margin-top: auto; padding-top: 18px; border-top: 1px solid #a6bcfa66; }
+.cardMeta { display: flex; align-items: center; gap: 12px; margin-top: 22px; font-size: 12px; color: #68768d; }
+.status { display: inline-block; padding: 5px 9px; border-radius: 5px; background: #eef2fd; color: #385bc9; font-size: 11px; font-weight: 650; }
+.status[data-status="registration"], .status[data-status="ongoing"] { background: #e7f6ee; color: #20724c; }
+.status[data-status="upcoming"], .status[data-status="ended"] { background: #f0f1f4; color: #5c6575; }
+.card h3 { margin-top: 13px; font-size: 20px; font-weight: 750; line-height: 1.4; letter-spacing: -.03em; }
+.cardHeadline { margin-top: 8px; font-size: 15px; line-height: 1.7; }
+.description { margin-top: 10px; font-size: 13px; color: #617086; line-height: 1.8; }
+.cardDetails { display: flex; flex-wrap: wrap; gap: 7px 16px; margin-top: 18px; font-size: 12px; line-height: 1.8; color: #667489; }
+.cardAction { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; padding-top: 16px; border-top: 1px solid #e2e7ef; font-size: 13px; font-weight: 600; }
+.newTab { font-weight: 400; font-size: 11px; color: #6e7b90; }
+.empty { padding: 70px 24px; margin-top: 23px; text-align: center; background: #f7f8fb; border-radius: 12px; }
+.empty h3 { font-size: 18px; font-weight: 650; }
+.empty p { margin-top: 12px; font-size: 14px; line-height: 1.8; color: #667489; }
+.empty button { margin-top: 23px; padding: 11px 16px; border-radius: 7px; background: #18243b; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+@media (max-width: 1000px) { .heroInner { gap: 30px; } .eventGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .heroType { font-size: 76px; } }
+@media (max-width: 640px) { .heroInner { grid-template-columns: 1fr; padding: 42px 20px; gap: 34px; } .hero h1 { font-size: 37px; } .intro { font-size: 14px; } .heroType { flex-direction: row; flex-wrap: wrap; gap: 14px; font-size: 48px; transform: none; } .listSection { padding: 38px 20px 64px; } .eventGrid { grid-template-columns: 1fr; gap: 34px; } .listHeader h2 { font-size: 25px; } .filters { gap: 8px; } .filters button { padding: 10px 13px; font-size: 12px; } .poster { min-height: 250px; } }

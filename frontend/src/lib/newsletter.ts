@@ -1209,7 +1209,7 @@ export function localizeIssue(issue: Issue, locale: Locale): Issue {
     const en = NEWSLETTER_EN[issue.slug];
     if (!en) return issue;
     const zip = <
-        T extends { figure?: Figure },
+        T extends { body: string; figure?: Figure },
         U extends {
             title?: string;
             subtitle?: string;

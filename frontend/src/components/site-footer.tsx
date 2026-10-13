@@ -12,12 +12,12 @@ import { NAV_GROUPS, ABOUT_GROUP, sectionHref } from "@/lib/nav";
 import { stripLocale } from "@/lib/locale-path";
 import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 
-export function SiteFooter() {
+export function SiteFooter({ hideCta = false }: { hideCta?: boolean } = {}) {
     const { locale, t } = useI18n();
     // 경로 분기는 언어 중립 경로로 판단한다 — `/en/contact`도 `/contact`와 같게 동작해야 한다.
     const pathname = stripLocale(usePathname() || "/");
     // CTA는 메인(/)과 문의 페이지(/demo)를 제외한 모든 페이지 하단에 노출.
-    const showCta = pathname !== "/" && pathname !== "/contact";
+    const showCta = !hideCta && pathname !== "/" && pathname !== "/contact";
     // CTA 배너에 '실증 데모' 영상 카드를 함께 노출. CTA가 뜨는 모든 페이지에 적용하되,
     // 데모 페이지 자신(/proof-in-action)에서는 중복이므로 제외한다.
     const showDemo = showCta && pathname !== "/proof-in-action";

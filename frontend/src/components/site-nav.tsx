@@ -178,8 +178,11 @@ function DropdownItem({
 export function SiteNav({
     overlay = false,
     offsetTop = 0,
+    showPromotion = true,
 }: {
     overlay?: boolean;
+    /** Allow dedicated landing pages to keep their own primary call to action. */
+    showPromotion?: boolean;
     /**
      * 헤더를 상단에서 이만큼(px) 내려 붙인다. 헤더 위에 또 다른 고정 띠를 두는
      * 페이지용 — 지금은 승인 대기 검토본의 대외비 밴드(PREVIEW_BAND_H)가 유일하다.
@@ -301,7 +304,7 @@ export function SiteNav({
             onMouseLeave={scheduleClose}
         >
             {/* 상단 프로모션 배너 — XGEN 15일 무료 체험 (업스테이지 상단 배너 컨셉) */}
-            {bannerOpen && (
+            {showPromotion && bannerOpen && (
                 <div className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-[linear-gradient(90deg,#00acee_0%,#185aea_100%)] px-12 py-3 text-center text-[14px] leading-snug text-white">
                     <span className="font-semibold">{t.nav.promo}</span>
                     <Link
