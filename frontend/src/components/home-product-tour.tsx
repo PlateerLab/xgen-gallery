@@ -10,7 +10,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 — XGEN 주요 기능 소개영상 섹션.
- * 탭(XGEN / Vibe Coding / PathFinder / FloUI / Code Assistant)으로 소개영상을 전환한다.
+ * 탭(XGEN / DexON / PathFinder / FloUI / Code Assistant)으로 소개영상을 전환한다.
  *
  * 성능: 파사드(facade) 패턴 — 처음에는 썸네일(poster) + 재생 버튼만 렌더하고,
  * 사용자가 클릭할 때만 실제 임베드(iframe)를 로드한다. 활성 탭 1개만 렌더하므로
@@ -32,7 +32,7 @@ type TourItem = {
     detail?: { href: string; label: Record<Locale, string> };
 };
 
-// XGEN 우산 아래 Overview → Create(Vibe Coding) → Build(PathFinder) → Experience(FloUI) → Code Assistant.
+// XGEN 우산 아래 Overview → Create(DexON) → Build(PathFinder) → Experience(FloUI) → Code Assistant.
 const TOUR_ITEMS: TourItem[] = [
     {
         key: "overview",
@@ -47,17 +47,17 @@ const TOUR_ITEMS: TourItem[] = [
     },
     {
         key: "vibe-coding",
-        name: "Vibe Coding",
+        name: "DexON",
         tagline: "Create",
         desc: {
-            ko: "DexOn으로 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
-            en: "Connect a local development environment to XGEN Agent through DexOn, then write and modify code from natural-language instructions",
+            ko: "DexON으로 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
+            en: "Connect a local development environment to XGEN Agent through DexON, then write and modify code from natural-language instructions",
         },
         video: "https://www.youtube-nocookie.com/embed/0ql6M_P9qRw",
         poster: "https://img.youtube.com/vi/0ql6M_P9qRw/maxresdefault.jpg",
         detail: {
             href: "/xgen-dex",
-            label: { ko: "Vibe Coding 자세히 보기", en: "More on Vibe Coding" },
+            label: { ko: "DexON 자세히 보기", en: "More on DexON" },
         },
     },
     {

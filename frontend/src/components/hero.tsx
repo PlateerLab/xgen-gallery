@@ -24,14 +24,14 @@ const ROTATE_MS = 6000;
 /**
  * 슬라이드별 노출 시간.
  *
- * 첫 장(DexOn 바이브코딩)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
+ * 첫 장(DexON)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
  * 더 오래 둔다. 나머지는 모두 6초.
  */
 const SLIDE_MS = [16000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
-// 순서: DexOn 바이브코딩 → DexOn → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
-// DexOn 를 앞쪽에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
+// 순서: DexON 코딩 → DexON → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// DexON을 앞쪽에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
 // 가장 설명 없이 와닿는 장면이고, 배경 영상도 실제 업무 책상이라 말과 그림이 맞는다.
 // 그다음 오픈소스 툴킷을 두어 검색으로 도착한 개발자가 자기 경로를 찾게 한다.
 // 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
@@ -106,7 +106,7 @@ function HeroActions({
 }
 
 /**
- * 슬라이드 1 — XGEN 바이브코딩 (DexOn 소개영상 배경).
+ * 슬라이드 1 — XGEN DexON 소개영상 배경.
  *
  * 「말하면 앱이 된다」를 문장보다 화면으로 보여준다. 배경은 소개영상을 2배속·무음으로
  * 줄인 루프(약 3MB)로, 첫 장면에 완성된 대시보드가 보이도록 원본 0:53부터 시작해
@@ -121,7 +121,7 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#a78bfa]" />
-                {ko ? "XGEN · 바이브코딩" : "XGEN · Vibe Coding"}
+                XGEN · DexON
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
@@ -176,7 +176,7 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
     );
 }
 
-/** 바이브코딩 소개영상(전체, 소리 포함) 모달 — 열 때만 영상을 불러온다. */
+/** DexON 소개영상(전체, 소리 포함) 모달 — 열 때만 영상을 불러온다. */
 function DexVibeVideoModal({ onClose }: { onClose: () => void }) {
     const { locale } = useI18n();
     useEffect(() => {
@@ -188,7 +188,7 @@ function DexVibeVideoModal({ onClose }: { onClose: () => void }) {
         <div
             role="dialog"
             aria-modal="true"
-            aria-label={locale === "ko" ? "XGEN 바이브코딩 소개 영상" : "XGEN vibe coding demo"}
+            aria-label={locale === "ko" ? "XGEN DexON 소개 영상" : "XGEN DexON demo"}
             onClick={onClose}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
         >
@@ -215,7 +215,7 @@ function DexVibeVideoModal({ onClose }: { onClose: () => void }) {
 }
 
 /**
- * 슬라이드 2 — DexOn (실제 업무 책상 배경).
+ * 슬라이드 2 — DexON (실제 업무 책상 배경).
  *
  * 「AI 를 도입한다」가 아니라 「내 자리에서 같이 일한다」를 말한다. 홈에 처음
  * 온 사람에게 설명 없이 와닿는 장면이 그쪽이고, 배경 영상도 실제 책상이라
@@ -227,7 +227,7 @@ function DexSlide() {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
-                DexOn · Device Extension On
+                DexON · Device Extension On
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>
@@ -254,13 +254,13 @@ function DexSlide() {
                 */}
                 {locale === "ko" ? (
                     <>
-                        DexOn은 AI Agent를 사용자의 업무환경과 연결해{" "}
+                        DexON은 AI Agent를 사용자의 업무환경과 연결해{" "}
                         <br className="hidden sm:block" />
                         실제 업무를 수행하고 결과물을 완성합니다.
                     </>
                 ) : (
                     <>
-                        DexOn connects the AI agent to your working environment{" "}
+                        DexON connects the AI agent to your working environment{" "}
                         <br className="hidden sm:block" />
                         to carry out real work and finish the deliverable.
                     </>
@@ -269,7 +269,7 @@ function DexSlide() {
 
             <HeroActions
                 primary={{
-                    label: locale === "ko" ? "DexOn 주요 기능 보기" : "See DexOn features",
+                    label: locale === "ko" ? "DexON 주요 기능 보기" : "See DexON features",
                     href: localeHref(locale, "/xgen-dex"),
                 }}
                 secondary={{
@@ -505,7 +505,7 @@ export function Hero({
 }) {
     const { locale } = useI18n();
     const [active, setActive] = useState(0);
-    // 바이브코딩 소개영상 모달 — 열려 있는 동안은 슬라이드를 넘기지 않는다.
+    // DexON 소개영상 모달 — 열려 있는 동안은 슬라이드를 넘기지 않는다.
     const [videoOpen, setVideoOpen] = useState(false);
 
     // 헤드라인 뉴스의 Tech Note 슬롯: 항상 최신 글을 세운다.
@@ -614,7 +614,7 @@ export function Hero({
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
                 {/*
-                  영상 배경 슬라이드(바이브코딩·DexOn·툴킷·XGEN 제품소개): 중앙 텍스트 뒤를
+                  영상 배경 슬라이드(DexON 코딩·DexON·툴킷·XGEN 제품소개): 중앙 텍스트 뒤를
                   부드럽게 블러해 가독성을 지킨다. 이미지 배경 둘은 이미 어둡게
                   깔려 있어 필요 없다. 슬라이드 순서를 바꾸면 이 인덱스도 옮긴다.
                 */}
