@@ -326,11 +326,11 @@ export function SiteNav({
             )}
             <div
                 ref={navRowRef}
-                className="flex h-[84px] w-full items-center px-6"
+                className="mx-auto flex h-[84px] w-full max-w-[1600px] items-center px-6"
             >
                 <Link
                     href="/"
-                    className="flex items-center gap-2 leading-none min-[1600px]:ml-[calc((100vw-80rem)/2)]"
+                    className="flex shrink-0 items-center gap-2 whitespace-nowrap leading-none"
                 >
                     <BrandMark
                         className={cn(
@@ -347,14 +347,14 @@ export function SiteNav({
                 {/* 안3 시안 — 로고 옆 브랜드 링크 */}
                 <span
                     className={cn(
-                        "mx-3.5 hidden h-5 w-px lg:block",
+                        "mx-3.5 hidden h-5 w-px shrink-0 lg:block",
                         light ? "bg-white/25" : "bg-[var(--color-line)]",
                     )}
                 />
                 <Link
                     href="/about"
                     className={cn(
-                        "hidden text-[15px] font-semibold transition lg:inline-flex",
+                        "hidden shrink-0 text-[15px] font-semibold transition lg:inline-flex",
                         light
                             ? "text-white/85 hover:text-white"
                             : "text-[var(--color-ink-muted)] hover:text-[#2461d8]",
@@ -365,7 +365,7 @@ export function SiteNav({
                 </Link>
 
                 {/* desktop groups */}
-                <nav className="hidden items-center gap-6 2xl:gap-9 whitespace-nowrap text-[16px] font-medium xl:ml-24 xl:flex 2xl:ml-28">
+                <nav className="mx-auto hidden shrink-0 items-center gap-3 whitespace-nowrap text-[14px] font-medium xl:flex xl:pl-4 2xl:gap-7 2xl:pl-8 2xl:text-[16px]">
                     {NAV_GROUPS.filter((g) => !g.hidden).map((g) => {
                         const menuItems = g.items.filter((it) => !it.hidden);
                         const hasMenu = !g.flat && menuItems.length > 0;
@@ -454,7 +454,7 @@ export function SiteNav({
                     })}
                 </nav>
 
-                <div className="ml-auto flex items-center justify-end gap-3">
+                <div className="ml-auto flex shrink-0 items-center justify-end gap-3 xl:ml-4">
                     {/* XGEN 제품 사이트 아웃링크 — 검색바 왼쪽. 우리 소유 도메인이라
                         referrer를 남겨(rel에 noreferrer 미포함) 유입이 GA4에서
                         Direct가 아니라 labs 레퍼럴로 잡히게 한다. */}
@@ -463,16 +463,16 @@ export function SiteNav({
                         target="_blank"
                         rel="noopener"
                         className={cn(
-                            "hidden items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[14px] font-semibold transition lg:inline-flex",
+                            "hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-[14px] font-semibold transition lg:inline-flex",
                             light
                                 ? "border-white/25 text-white/90 hover:border-white/60 hover:text-white"
                                 : "border-[var(--color-line-strong)] text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
                         )}
                     >
                         {t.nav.productSite}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                     </a>
-                    <div className="hidden w-[150px] sm:block sm:w-[180px] lg:w-[210px]">
+                    <div className="hidden shrink-0 sm:block sm:w-[180px] xl:w-[160px] 2xl:w-[210px]">
                         <SiteSearch light={light} />
                     </div>
                     {/* members 아이콘은 검색바 뒤에서 제거 — 푸터 About으로 이동(요청).
