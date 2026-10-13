@@ -116,7 +116,7 @@ const D: Record<Locale, PlatformData> = {
             server: [["Agent Logic", "계획 · 오케스트레이션"], ["LLM Gateway", "추론 · Model Router"], ["Tool Runtime", "코드 실행 · API 호출"], ["Workspace", "영구 파일 · 상태 · 이력"]],
             sync: "승인된 상호작용",
             localTitle: "Local Interaction",
-            local: [["Xgent Client", "안전한 연결 경계"], ["Local Folder", "허용된 파일 접근"], ["OS Capability", "로컬 앱 · 기능"], ["Local MCP", "사내망 · 전용 도구"]],
+            local: [["DexOn Client", "안전한 연결 경계"], ["Local Folder", "허용된 파일 접근"], ["OS Capability", "로컬 앱 · 기능"], ["Local MCP", "사내망 · 전용 도구"]],
             tags: ["Agent는 서버에서 실행", "로컬 최소 권한", "결과·상태 동기화", "사용자 승인", "즉시 중단"],
         },
         core: [
@@ -196,7 +196,7 @@ const D: Record<Locale, PlatformData> = {
             server: [["Agent Logic", "Planning · orchestration"], ["LLM Gateway", "Inference · model routing"], ["Tool Runtime", "Code execution · API calls"], ["Workspace", "Persistent files · state · history"]],
             sync: "Approved interaction",
             localTitle: "Local Interaction",
-            local: [["Xgent Client", "Secure connection boundary"], ["Local Folder", "Approved file access"], ["OS Capability", "Local apps · capabilities"], ["Local MCP", "Private-network tools"]],
+            local: [["DexOn Client", "Secure connection boundary"], ["Local Folder", "Approved file access"], ["OS Capability", "Local apps · capabilities"], ["Local MCP", "Private-network tools"]],
             tags: ["Server-side agent", "Least privilege", "State sync", "User approval", "Immediate stop"],
         },
         core: [

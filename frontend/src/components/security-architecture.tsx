@@ -71,10 +71,10 @@ const D: Record<Locale, SecData> = {
             },
             {
                 suffix: "사용자 통제 영역",
-                title: "Xgent 로컬 실행 경계",
+                title: "DexOn 로컬 실행 경계",
                 sub: "명시적 승인과 최소 권한으로 로컬 자원 연결",
                 cards: [
-                    ["Xgent Client", "서버 Agent와 안전한 세션 연결"],
+                    ["DexOn Client", "서버 Agent와 안전한 세션 연결"],
                     ["사용자 승인", "작업별 허용 · 거절 · 즉시 중단"],
                     ["Local Folder · OS", "선택한 폴더와 OS 기능만 접근"],
                     ["Local MCP", "사내망 · 전용 도구 범위 제한"],
@@ -168,10 +168,10 @@ const D: Record<Locale, SecData> = {
             },
             {
                 suffix: "User-controlled zone",
-                title: "Xgent local execution boundary",
+                title: "DexOn local execution boundary",
                 sub: "Local resources connect through explicit approval and least privilege",
                 cards: [
-                    ["Xgent Client", "Secure session with the server-side agent"],
+                    ["DexOn Client", "Secure session with the server-side agent"],
                     ["User approval", "Allow, deny, or stop each action"],
                     ["Local Folder · OS", "Only selected folders and OS capabilities"],
                     ["Local MCP", "Scoped private-network and dedicated tools"],
