@@ -70,11 +70,11 @@ export const DEMOS: Demo[] = [
     {
         // 제목은 유튜브 원본과 동일하게 유지한다.
         id: "0ql6M_P9qRw",
-        title: "XGEN DexON 소개 — 자연어로 코딩하기",
-        titleEn: "Introducing XGEN DexON — coding with natural language",
-        desc: "DexON을 통해 사용자의 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 바이브 코딩 과정을 실제 화면으로 소개합니다.",
+        title: "XGEN DexOn 소개 — 자연어로 코딩하기",
+        titleEn: "Introducing XGEN DexOn — coding with natural language",
+        desc: "DexOn을 통해 사용자의 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 바이브 코딩 과정을 실제 화면으로 소개합니다.",
         descEn:
-            "A hands-on introduction to vibe coding with DexON, connecting XGEN Agent to the user's local development environment to write and modify code from natural-language instructions.",
+            "A hands-on introduction to vibe coding with DexOn, connecting XGEN Agent to the user's local development environment to write and modify code from natural-language instructions.",
     },
     {
         id: "4RiH3ThyIg0",
