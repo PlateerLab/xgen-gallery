@@ -21,7 +21,7 @@ const FAQ = [
     { q: "XGEN 계정이 있어야 하나요?", a: `네. DexOn은 XGEN 서버에 연결해 사용하는 클라이언트이므로, 행사 XGEN에 로그인할 수 있는 계정이 필요합니다. ${HACKATHON_ACCESS.accountNotice} ${HACKATHON_ACCESS.serverNotice}` },
     { q: "DexOn 설치만 하면 바로 시작할 수 있나요?", a: "설치 후 행사 XGEN 서버 주소를 지정하고 계정으로 로그인해야 합니다. 사용할 프로젝트·Agent 권한과 PC 연결을 확인한 다음, 샘플 자료로 첫 실행을 해보세요. 계정과 접속 준비가 필요한 참가자는 행사 계정 안내를 먼저 확인해 주세요." },
     { q: "설치 방법과 파일은 어디서 확인하나요?", a: "참가 준비 안내의 ‘설치 가이드 보기’와 ‘설치 파일 보기’에서 확인할 수 있습니다. 설치 파일은 GitHub Releases에 공개돼 있고, 기존 화면 가이드는 Windows 기준입니다. 행사에서 사용할 버전과 접속 환경은 참가 안내에서 확정합니다." },
-    { q: "어떤 주제로 참여할 수 있나요?", a: `‘${HACKATHON_THEME.lead} ${HACKATHON_THEME.focus}’를 주제로, 업무 개선 또는 새로운 서비스 두 트랙 안에서 직접 해결할 문제를 정해 참여하는 방식입니다.` },
+    { q: "어떤 주제로 참여할 수 있나요?", a: `‘${HACKATHON_THEME.lead} ${HACKATHON_THEME.focus}’를 주제로, 업무 개선 또는 새로운 서비스 두 트랙 안에서 직접 해결할 문제를 정해 참여하는 방식입니다. 새로운 서비스의 산업·분야에는 제한이 없습니다.` },
     { q: "무엇을 제출하나요?", a: "실행 가능한 앱 또는 사내에서 접근 가능한 데모, 문제와 대상 사용자, XGEN·DexOn 활용 방식, 검증 결과를 제출하는 안입니다. PPT는 보조 자료로 쓰고 실제 앱 시연을 중심으로 진행하는 방향을 제안합니다." },
     { q: "심사는 어떻게 진행되나요?", a: `제출작을 검토한 뒤 Demo Day에서 실제 앱 시연과 질의응답을 심사위원이 평가하는 안입니다. ${HACKATHON_CRITERIA.map((criterion) => `${criterion.label} ${criterion.score}점`).join(", ")}으로 총 ${TOTAL_SCORE}점입니다. 임직원 투표로 정하는 인기상은 별도 운영을 제안합니다. 최종 심사 방식은 확정 후 안내합니다.` },
     { q: "심사위원은 정해졌나요?", a: "심사위원은 아직 미정입니다. 확정되는 대로 이 페이지에서 안내합니다. 참가자는 제시된 평가 항목과 배점을 참고해 준비해 주세요." },
@@ -90,10 +90,10 @@ export function HackathonPageContent({ event, status }: { event: LabEvent; statu
                 </nav>
 
                 <section id="tracks" className={styles.section} aria-labelledby="tracks-title">
-                    <div className={styles.sectionHeading}><p className={styles.kicker}>01 / THE CHALLENGE</p><h2 id="tracks-title">더 나은 일하는 방식,<br />플래티어의 새로운 가능성.</h2><p>작은 불편 하나를 해결해도 좋습니다.<br />플래티어의 경험에서 새로운 서비스를 찾아도 좋습니다.</p></div>
+                    <div className={styles.sectionHeading}><p className={styles.kicker}>01 / THE CHALLENGE</p><h2 id="tracks-title">더 나은 일하는 방식,<br />플래티어의 새로운 가능성.</h2><p>작은 불편 하나를 해결해도 좋습니다.<br />분야에 제한 없이 새로운 서비스를 제안해도 좋습니다.</p></div>
                     <div className={styles.trackGrid}>
                         <article className={styles.workTrack}><p className={styles.trackLabel}>TRACK 01 / WORK BETTER</p><h3>우리의 일을<br />더 잘하게.</h3><p>반복되는 업무를 줄이고,<br />판단에 필요한 정보를 연결하는 앱.</p><div className={styles.trackTags}><span>반복 작업</span><span>문서 · 데이터</span><span>협업</span></div></article>
-                        <article className={styles.nextTrack}><p className={styles.trackLabel}>TRACK 02 / BUILD NEXT</p><h3>우리의 경험을<br />새로운 가치로.</h3><p>커머스·서비스·운영 현장의 경험을<br />새로운 사용자 경험으로 만드는 앱.</p><div className={styles.trackTags}><span>커머스</span><span>고객 경험</span><span>서비스 발굴</span></div></article>
+                        <article className={styles.nextTrack}><p className={styles.trackLabel}>TRACK 02 / BUILD NEXT</p><h3>우리의 경험을<br />새로운 가치로.</h3><p>업무와 일상에서 발견한 문제를<br />새로운 서비스로 풀어내는 앱.</p><div className={styles.trackTags}><span>문제 발견</span><span>사용자 경험</span><span>서비스 발굴</span></div></article>
                     </div>
                 </section>
 
