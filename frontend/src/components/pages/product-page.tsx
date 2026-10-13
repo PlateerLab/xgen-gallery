@@ -156,7 +156,7 @@ const EFFECTS: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(Dex) 세 갈래. */
+/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(DexOn) 세 갈래. */
 const DIFFERENTIATORS: {
     icon: LucideIcon;
     en: string;
@@ -207,10 +207,10 @@ const DIFFERENTIATORS: {
     },
     {
         icon: MonitorSmartphone,
-        en: "Dex",
-        ko: "Dex",
+        en: "DexOn",
+        ko: "DexOn",
         tagline: "만든 Agent를 직원의 기기에서 실행합니다",
-        desc: "Dex는 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만들고, 바이브코딩으로 자연어 지시를 코드 작성·수정까지 이어갑니다.",
+        desc: "DexOn은 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만들고, 바이브코딩으로 자연어 지시를 코드 작성·수정까지 이어갑니다.",
         items: [
             "로컬 파일·애플리케이션 실행",
             "바이브코딩으로 코드 작성·수정",
@@ -826,7 +826,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·Dex) */}
+                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·DexOn) */}
                 {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
                 <section
                     id="build"
@@ -864,7 +864,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <FloUIArt locale={locale} />
                                         </div>
                                     )}
-                                    {d.en === "Dex" && (
+                                    {d.en === "DexOn" && (
                                         <div className="mb-6">
                                             <DexArt locale={locale} />
                                         </div>

@@ -30,7 +30,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Dex 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
+ * DexOn 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
  * 순서를 "무엇을 하는 기능인가 → 어떻게 동작하는가 → 무엇을 제공하는가" 로 둔다.
  * 도입을 검토하는 쪽이 3분 안에 판단하는 자리이고, 설치 절차와 화면은 블로그
@@ -130,11 +130,11 @@ interface DexCopy {
 const COPY: Record<Locale, DexCopy> = {
     ko: {
         ldDescription:
-            "Dex는 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 AI Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 각 기기의 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
-        heroBadge: "XGEN · Dex",
+            "DexOn은 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 AI Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 각 기기의 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+        heroBadge: "XGEN · DexOn",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "Dex는 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC·핸드폰·태블릿에 설치된 Dex를 통해 XGEN Agent가 각 기기의 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
+            "DexOn은 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC·핸드폰·태블릿에 설치된 DexOn을 통해 XGEN Agent가 각 기기의 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -152,9 +152,9 @@ const COPY: Record<Locale, DexCopy> = {
                 "분석하고 정리해 문서를 만들고 지정한 폴더에 저장하는 데까지가 한 번의 요청입니다. 사람이 옮겨 담던 과정이 사라져 업무 시간이 실제로 줄어듭니다.",
             ],
         ],
-        whatTitle: "Dex는 무엇인가요?",
+        whatTitle: "DexOn은 무엇인가요?",
         whatLead: [
-            "Dex(Device Extension)는 XGEN의 AI Agent와 사용자의",
+            "DexOn(Device Extension On)는 XGEN의 AI Agent와 사용자의",
             "실제 업무환경을 연결하는 설치형 Device Interface입니다.",
         ],
         taskSteps: [
@@ -166,7 +166,7 @@ const COPY: Record<Locale, DexCopy> = {
 
         connectTitle: "무엇을 연결하나요?",
         connectLead:
-            "Dex는 하나의 모델이나 하나의 도구에 묶이지 않습니다. 업무에 필요한 것을 그때그때 연결합니다.",
+            "DexOn은 하나의 모델이나 하나의 도구에 묶이지 않습니다. 업무에 필요한 것을 그때그때 연결합니다.",
         connects: [
             ["멀티 모델", "업무의 비용·성능 요건에 맞는 AI를 골라 씁니다. 모델이 바뀌어도 업무 흐름은 그대로입니다."],
             ["업무 커넥터", "이미 쓰고 있는 SaaS와 사내 데이터를 명시적인 API 계약으로 연결합니다."],
@@ -189,17 +189,17 @@ const COPY: Record<Locale, DexCopy> = {
             "브라우저에서 다시 검색",
             "결과 저장과 폴더 정리까지 모두 수동",
         ],
-        afterLabel: "Dex로 해결",
+        afterLabel: "DexOn으로 해결",
         after: [
             "PC의 파일과 앱을 직접 활용",
             "필요한 도구와 권한을 연결해 자동 실행",
             "결과물까지 자동 생성 및 저장",
             "연속적인 업무 흐름 유지",
         ],
-        flowTitle: "Dex 사용 흐름",
+        flowTitle: "DexOn 사용 흐름",
         flowLead: "설치부터 첫 업무까지, 여섯 단계로 시작합니다.",
         steps: [
-            ["Dex 설치", "설치 파일을 실행하여 Dex를 설치합니다."],
+            ["DexOn 설치", "설치 파일을 실행하여 DexOn을 설치합니다."],
             ["XGEN에 연결", "계정 정보로 로그인하여 XGEN 플랫폼에 연결합니다."],
             ["Agent 선택", "업무에 필요한 Agent를 선택합니다."],
             ["실행 환경 연결", "파일과 브라우저, 도구 등 필요한 실행 환경을 연결하고 권한을 부여합니다."],
@@ -218,7 +218,7 @@ const COPY: Record<Locale, DexCopy> = {
             "개발 업무 자동화",
             "사내 시스템 · Agent 활용",
         ],
-        valueTitle: "Dex의 핵심 가치",
+        valueTitle: "DexOn의 핵심 가치",
         values: [
             [
                 "기존 업무 도구를 대체하지 않습니다",
@@ -296,26 +296,26 @@ const COPY: Record<Locale, DexCopy> = {
                 art: "floui",
             },
         ],
-        postsTitle: "관련 Dex 프리뷰",
+        postsTitle: "관련 DexOn 프리뷰",
         // 개념 → 연결 → 실습 순. 읽는 사람이 밟아 갈 순서대로 둔다
         posts: [
             {
-                label: "Dex — Enterprise AI를 데스크톱까지 잇는 실행 계층",
+                label: "DexOn — Enterprise AI를 데스크톱까지 잇는 실행 계층",
                 desc: "중앙 통제는 그대로 두고 업무 방식은 바꾸지 않는 연결 방식",
                 href: "/blog/product-xgen-dex",
             },
             {
-                label: "Dex — 기업 AI Agent를 실제 업무환경으로 연결하다",
+                label: "DexOn — 기업 AI Agent를 실제 업무환경으로 연결하다",
                 desc: "왜 데스크톱까지 이어야 하는가, 무엇을 연결하고 무엇은 대체하지 않는가",
                 href: "/blog/xgen-dex-desktop-connect",
             },
             {
-                label: "Dex 설치부터 첫 업무까지 — 여섯 단계",
+                label: "DexOn 설치부터 첫 업무까지 — 여섯 단계",
                 desc: "설치·Agent 제작·PC 연결·권한·업무 지시까지 실제 화면과 함께",
                 href: "/blog/xgen-dex-install-guide",
             },
         ],
-        closingTitle: "XGEN에서 Agent를 만들고, Dex로 실제 업무를 완성합니다",
+        closingTitle: "XGEN에서 Agent를 만들고, DexOn으로 실제 업무를 완성합니다",
         closingLead:
             "설치부터 첫 업무까지 여섯 단계입니다. 도입 검토나 데모가 필요하시면 언제든 문의해 주세요.",
         closingTrial: "무료 체험 신청",
@@ -323,11 +323,11 @@ const COPY: Record<Locale, DexCopy> = {
     },
     en: {
         ldDescription:
-            "Dex is a device interface installed on PCs, phones, and tablets. It connects AI agents running on the XGEN Server to the user's actual working environment and produces deliverables from each device's files and applications within an allowed scope.",
-        heroBadge: "XGEN · Dex",
+            "DexOn is a device interface installed on PCs, phones, and tablets. It connects AI agents running on the XGEN Server to the user's actual working environment and produces deliverables from each device's files and applications within an allowed scope.",
+        heroBadge: "XGEN · DexOn",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "Dex extends where XGEN agents can act, all the way to the user's device. Through Dex installed on PCs, phones, and tablets, XGEN agents connect to each device's real working environment — files, browsers, and applications — to carry out requests and finish the deliverable.",
+            "DexOn extends where XGEN agents can act, all the way to the user's device. Through DexOn installed on PCs, phones, and tablets, XGEN agents connect to each device's real working environment — files, browsers, and applications — to carry out requests and finish the deliverable.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -345,9 +345,9 @@ const COPY: Record<Locale, DexCopy> = {
                 "Analyzing, writing the document, and saving it to the right folder are all one request. The hand-carrying in between disappears, and the hours actually come down.",
             ],
         ],
-        whatTitle: "What is Dex?",
+        whatTitle: "What is DexOn?",
         whatLead: [
-            "Dex (Device Extension) is an installable device interface",
+            "DexOn (Device Extension On) is an installable device interface",
             "that connects XGEN's AI agents with a user's real working environment.",
         ],
         taskSteps: [
@@ -359,7 +359,7 @@ const COPY: Record<Locale, DexCopy> = {
 
         connectTitle: "What does it connect?",
         connectLead:
-            "Dex is not tied to one model or one tool. It connects whatever the task needs, when the task needs it.",
+            "DexOn is not tied to one model or one tool. It connects whatever the task needs, when the task needs it.",
         connects: [
             ["Multiple models", "Pick the AI that fits the cost and performance the task calls for. Change the model and the workflow stays."],
             ["Business connectors", "Reach the SaaS and in-house data you already run, through explicit API contracts."],
@@ -382,7 +382,7 @@ const COPY: Record<Locale, DexCopy> = {
             "Going back to the browser to search again",
             "Saving results and tidying folders, all manually",
         ],
-        afterLabel: "What Dex changes",
+        afterLabel: "What DexOn changes",
         after: [
             "Uses the files and applications already on the PC",
             "Runs automatically with the tools and permissions connected",
@@ -392,7 +392,7 @@ const COPY: Record<Locale, DexCopy> = {
         flowTitle: "How you use it",
         flowLead: "Six steps from install to the first task.",
         steps: [
-            ["Install Dex", "Run the installer to set up Dex."],
+            ["Install DexOn", "Run the installer to set up DexOn."],
             ["Connect to XGEN", "Sign in with your account to reach the XGEN server."],
             ["Pick an agent", "Choose the agent the task calls for."],
             ["Connect the execution environment", "Connect files, browser, and tools, and grant the permissions needed."],
@@ -411,7 +411,7 @@ const COPY: Record<Locale, DexCopy> = {
             "Development task automation",
             "Internal systems and agents",
         ],
-        valueTitle: "What Dex is built around",
+        valueTitle: "What DexOn is built around",
         values: [
             [
                 "It does not replace your existing tools",
@@ -489,25 +489,25 @@ const COPY: Record<Locale, DexCopy> = {
                 art: "floui",
             },
         ],
-        postsTitle: "Related Dex previews",
+        postsTitle: "Related DexOn previews",
         posts: [
             {
-                label: "Dex — the execution layer that reaches the desktop",
+                label: "DexOn — the execution layer that reaches the desktop",
                 desc: "Central control stays as it is, and the way people work does not change",
                 href: "/en/blog/product-xgen-dex",
             },
             {
-                label: "Dex — bringing enterprise AI agents into the actual desktop",
+                label: "DexOn — bringing enterprise AI agents into the actual desktop",
                 desc: "Why the desktop has to be reached, what gets connected, and what is not replaced",
                 href: "/en/blog/xgen-dex-desktop-connect",
             },
             {
-                label: "Dex from install to first task — six steps",
+                label: "DexOn from install to first task — six steps",
                 desc: "Install, build, connect, permissions, and the first request — with real screens",
                 href: "/en/blog/xgen-dex-install-guide",
             },
         ],
-        closingTitle: "Build the agent in XGEN, finish the work with Dex",
+        closingTitle: "Build the agent in XGEN, finish the work with DexOn",
         closingLead:
             "Six steps from install to the first task. For an adoption conversation or a demo, get in touch any time.",
         closingTrial: "Start the free trial",
@@ -529,13 +529,13 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                     breadcrumbLd([
                         { name: "Home", path: home },
                         { name: "Product", path: en ? "/en/product" : "/product" },
-                        { name: "Dex", path: en ? "/en/xgen-dex" : "/xgen-dex" },
+                        { name: "DexOn", path: en ? "/en/xgen-dex" : "/xgen-dex" },
                     ]),
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        name: "Dex",
-                        alternateName: "XGEN Device Extension",
+                        name: "DexOn",
+                        alternateName: "XGEN Device Extension On",
                         applicationCategory: "BusinessApplication",
                         operatingSystem: "Windows",
                         description: t.ldDescription,
@@ -583,7 +583,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
             </section>
 
             <main>
-                {/* 무엇인가 — 서버 ↔ Dex ↔ PC */}
+                {/* 무엇인가 — 서버 ↔ DexOn ↔ PC */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <h2 className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[32px]">
@@ -1013,7 +1013,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 )}
 
                 {/*
-                  관련 프리뷰 → 핵심 기능 순. Dex 를 읽고 온 사람에게는 Dex 이야기를
+                  관련 프리뷰 → 핵심 기능 순. DexOn 를 읽고 온 사람에게는 DexOn 이야기를
                   더 주는 쪽이 먼저고, 다른 기능으로 건너가는 문은 그 뒤에 둔다.
                 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">

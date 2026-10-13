@@ -50,8 +50,8 @@ const TOUR_ITEMS: TourItem[] = [
         name: "Vibe Coding",
         tagline: "Create",
         desc: {
-            ko: "Dex로 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
-            en: "Connect a local development environment to XGEN Agent through Dex, then write and modify code from natural-language instructions",
+            ko: "DexOn으로 로컬 개발 환경과 XGEN Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
+            en: "Connect a local development environment to XGEN Agent through DexOn, then write and modify code from natural-language instructions",
         },
         video: "https://www.youtube-nocookie.com/embed/0ql6M_P9qRw",
         poster: "https://img.youtube.com/vi/0ql6M_P9qRw/maxresdefault.jpg",

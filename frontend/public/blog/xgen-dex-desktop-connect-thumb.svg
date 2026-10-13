@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dex — PC, 핸드폰, 태블릿에서 일하는 Agent">
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DexOn — PC, 핸드폰, 태블릿에서 일하는 Agent">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8faff"/><stop offset="1" stop-color="#e8f0ff"/></linearGradient>
     <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00acee"/><stop offset="1" stop-color="#185aea"/></linearGradient>
@@ -8,10 +8,10 @@
   <g font-family="Pretendard,'Malgun Gothic',sans-serif">
     <text x="82" y="278" font-size="76" font-weight="800" fill="#111827">모든 기기에서</text>
     <text x="82" y="382" font-size="76" font-weight="800" fill="#2461d8">일하는 Agent</text>
-    <text x="86" y="445" font-size="24" font-weight="600" fill="#5b6575">PC · 핸드폰 · 태블릿을 잇는 Dex</text>
+    <text x="86" y="445" font-size="24" font-weight="600" fill="#5b6575">PC · 핸드폰 · 태블릿을 잇는 DexOn</text>
     <path d="M910 162V226H792V278M910 226H910V278M910 226H1068V278" fill="none" stroke="#76a2f5" stroke-width="4"/>
     <rect x="844" y="118" width="132" height="54" rx="27" fill="url(#brand)"/>
-    <text x="910" y="153" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">Dex</text>
+    <text x="910" y="153" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">DexOn</text>
     <rect x="700" y="278" width="184" height="132" rx="14" fill="#fff" stroke="#5c86d6" stroke-width="5"/>
     <rect x="720" y="298" width="144" height="88" rx="8" fill="#edf4ff"/>
     <path d="M774 411h36l8 22h-52z" fill="#315694"/><rect x="748" y="433" width="88" height="8" rx="4" fill="#315694"/>

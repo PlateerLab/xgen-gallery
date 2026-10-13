@@ -1,24 +1,24 @@
 ---
-title: "Dex — bringing enterprise AI agents onto every work device"
-titleSeo: "Dex — agents across work devices"
-description: "The environment AI runs in and the environment people actually do their work in are separate. Installed on PCs, phones, and tablets, Dex is the device interface that connects XGEN AI agents to the user's actual working environment."
+title: "DexOn — bringing enterprise AI agents onto every work device"
+titleSeo: "DexOn — agents across work devices"
+description: "The environment AI runs in and the environment people actually do their work in are separate. Installed on PCs, phones, and tablets, DexOn is the device interface that connects XGEN AI agents to the user's actual working environment."
 date: "2026-09-01"
 cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["Dex", "Device Extension", "Agentic AI", "AI governance", "Product"]
+tags: ["DexOn", "Device Extension On", "Agentic AI", "AI governance", "Product"]
 faq:
-  - q: "Is Dex just an XGEN chat app for devices?"
-    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a device. Installed on PCs, phones, and tablets, Dex is a device interface that lets agents built in XGEN use the files, applications, and browser on each device to produce real deliverables."
-  - q: "How does this relate to the earlier Dex piece?"
+  - q: "Is DexOn just an XGEN chat app for devices?"
+    a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a device. Installed on PCs, phones, and tablets, DexOn is a device interface that lets agents built in XGEN use the files, applications, and browser on each device to produce real deliverables."
+  - q: "How does this relate to the earlier DexOn piece?"
     a: "That piece set out the direction — extending enterprise AI onto user devices. This one covers the installable touchpoint that implements it, linking agent resources on the server with execution environments on PCs, phones, and tablets."
   - q: "Does this hand my whole PC over to the AI?"
-    a: "No. What Dex aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
+    a: "No. What DexOn aims at is connecting an enterprise-managed agent to a permitted working environment and toolset. Which data an agent can reach and which tools it can run stay under XGEN's agent management and governance."
   - q: "Which work should we start with?"
     a: "Work where a person repeatedly moves between several programs and files. If someone opens, copies, searches, and moves files between programs many times a day, that work is worth trying first."
   - q: "Does it replace Excel or PowerPoint?"
-    a: "No. Companies already have systems and SaaS that work well. Dex does not replace them — it lets an agent use those existing tools more easily."
+    a: "No. Companies already have systems and SaaS that work well. DexOn does not replace them — it lets an agent use those existing tools more easily."
 ---
 
 Suppose you ask a generative AI to "analyze this Excel file and write it up as a report."
@@ -31,33 +31,33 @@ Find and upload the file, download the result, open Excel or PowerPoint to revis
 
 The reason is simple: **the environment the AI runs in and the environment people actually do their work in are separate.**
 
-Dex is being built to close that gap.
+DexOn is being built to close that gap.
 
-> This is a follow-up to [Dex — the execution layer that reaches user devices](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach work devices at all, this one covers the installable touchpoint that implements it on PCs, phones, and tablets.
+> This is a follow-up to [DexOn — the execution layer that reaches user devices](/en/blog/product-xgen-dex). Where that piece covered why enterprise AI has to reach work devices at all, this one covers the installable touchpoint that implements it on PCs, phones, and tablets.
 
 ---
 
-## What is Dex?
+## What is DexOn?
 
-Dex is a **device interface installed on PCs, phones, and tablets that connects the AI agents created and managed in XGEN with the user's actual working environment.**
+DexOn is a **device interface installed on PCs, phones, and tablets that connects the AI agents created and managed in XGEN with the user's actual working environment.**
 
-If XGEN is where you build and manage agents for work, Dex is what lets those agents carry that work out on the user's PC, phone, or tablet.
+If XGEN is where you build and manage agents for work, DexOn is what lets those agents carry that work out on the user's PC, phone, or tablet.
 
 Its purpose differs from an app that simply makes XGEN chat available on a device.
 
-Through Dex, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
+Through DexOn, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
 
 Put simply:
 
 **XGEN is where agents are built and managed.**
 
-**Dex is where those agents connect to the user's environment so the work can actually happen.**
+**DexOn is where those agents connect to the user's environment so the work can actually happen.**
 
-The product is named **Dex** (Device Extension), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
+The product is named **DexOn** (Device Extension On), and what it does is act as the execution interface between agents on the server and the user's local working environment. That is why `xgen-connector` still appears in the installer and repository names.
 
 ---
 
-## Why is Dex needed?
+## Why is DexOn needed?
 
 Enterprise work does not end inside a single chat window.
 
@@ -67,7 +67,7 @@ People move across many environments to get something done.
 
 For AI to take over real work, it has to reach into those environments.
 
-So the way of working that Dex aims at goes a step beyond
+So the way of working that DexOn aims at goes a step beyond
 
 **question → answer**
 
@@ -85,13 +85,13 @@ That is, you ask for **a unit of work that ends in a deliverable.**
 
 ## How do you use it?
 
-Dex aims to be simpler to use than most AI tools for work, not more complex.
+DexOn aims to be simpler to use than most AI tools for work, not more complex.
 
 The overall flow is six steps.
 
 | Step | What happens |
 | --- | --- |
-| 1 | Install Dex |
+| 1 | Install DexOn |
 | 2 | Connect to XGEN |
 | 3 | Pick the agent for the task |
 | 4 | Connect the execution permissions it needs |
@@ -100,7 +100,7 @@ The overall flow is six steps.
 
 The install screens and the detail of each step live in the hands-on companion.
 
-**→ [Dex from install to first task — six steps](/en/blog/xgen-dex-install-guide)**
+**→ [DexOn from install to first task — six steps](/en/blog/xgen-dex-install-guide)**
 
 Here we will look only at why each step is designed the way it is.
 
@@ -108,15 +108,15 @@ Here we will look only at why each step is designed the way it is.
 
 Not every task is handed to one general-purpose AI agent.
 
-Work in a company uses different data, different tools, and needs different permissions from one task to the next. So agents are configured in XGEN for each purpose, and in Dex you select the one that fits the situation.
+Work in a company uses different data, different tools, and needs different permissions from one task to the next. So agents are configured in XGEN for each purpose, and in DexOn you select the one that fits the situation.
 
-A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — all available from one Dex, chosen as needed.
+A support agent, a data analysis agent, a document agent, a development agent, a team-specific agent — all available from one DexOn, chosen as needed.
 
 ### Why the execution environment is connected
 
 For an agent to do real work on a user's device, it has to reach the execution environment the task requires. On a PC that can include **local file and storage, browser, PowerShell, MCP, skill, or application**. On phones and tablets, it connects the file, browser, and app capabilities permitted by the operating system.
 
-Dex does not open all of these by default. This is the point where an agent managed on the web extends into the user's real working environment, so it is built to connect only the execution environments a task actually needs.
+DexOn does not open all of these by default. This is the point where an agent managed on the web extends into the user's real working environment, so it is built to connect only the execution environments a task actually needs.
 
 ### Why Workspace matters
 
@@ -130,11 +130,11 @@ XGEN treats an agent not as a single LLM call but as a unit of work combining **
 
 ## Which work should you start with?
 
-Dex does not need to be applied everywhere.
+DexOn does not need to be applied everywhere.
 
 The most effective starting point is **work where a person repeatedly moves between several programs and files.**
 
-| Existing work | With Dex |
+| Existing work | With DexOn |
 | --- | --- |
 | Cleaning up Excel data | Check the file → analyze → produce a result file |
 | Recurring reporting | Gather sources → analyze → produce the report |
@@ -149,7 +149,7 @@ A simple test helps when choosing what to try first.
 
 > **"To do this work, does someone open, copy, search, and move files between programs several times a day?"**
 
-If so, it is worth trying Dex there.
+If so, it is worth trying DexOn there.
 
 ---
 
@@ -157,11 +157,11 @@ If so, it is worth trying Dex there.
 
 One principle matters here.
 
-Dex is not rebuilding Excel, PowerPoint, the browser, or SharePoint.
+DexOn is not rebuilding Excel, PowerPoint, the browser, or SharePoint.
 
 Companies already have systems, SaaS, and applications that work well.
 
-Dex's role is not to replace them but **to let an agent use those existing tools more easily.**
+DexOn's role is not to replace them but **to let an agent use those existing tools more easily.**
 
 It is less about adding one more tool and more about **adding execution ability to the environment that already exists.**
 
@@ -175,7 +175,7 @@ Work that touches files or applications on a PC, phone, or tablet naturally belo
 
 Shared company data, centrally managed AI models, and agent assets, on the other hand, belong on the server.
 
-Dex is built around that split: **it connects agent resources on the server with execution environments on PCs, phones, and tablets.** The same agent operates within the capabilities and permissions allowed on each device.
+DexOn is built around that split: **it connects agent resources on the server with execution environments on PCs, phones, and tablets.** The same agent operates within the capabilities and permissions allowed on each device.
 
 That way a company can manage agents and key assets centrally while connecting the execution that genuinely has to happen locally.
 
@@ -185,7 +185,7 @@ That way a company can manage agents and key assets centrally while connecting t
 
 Work tools need a window opened before you can use them. Find the app, launch it, open a chat, and only then say what you want. Those few steps are what send people back to "I'll just do it myself."
 
-On a PC, Dex can put the agent on screen as **a floating avatar**. Upload a photo or a Live2D/Spine model to give it a look, set its size and position, and it stays there even when you minimize the window. Phones and tablets provide access to the same agent through interactions suited to their screens.
+On a PC, DexOn can put the agent on screen as **a floating avatar**. Upload a photo or a Live2D/Spine model to give it a look, set its size and position, and it stays there even when you minimize the window. Phones and tablets provide access to the same agent through interactions suited to their screens.
 
 ![The avatar settings screen with the feature on and the selected avatar floating on the desktop](/connector/15-avatar-overlay.webp)
 
@@ -211,7 +211,7 @@ Who can use which agent, which data an agent can reach, which tools it can run, 
 
 In finance, the public sector, and large enterprises especially, that control matters as much as the convenience.
 
-So the direction Dex takes is not
+So the direction DexOn takes is not
 
 **"hand my device to the AI."**
 
@@ -219,9 +219,9 @@ It is closer to
 
 **"connect an enterprise-managed agent to a permitted working environment and toolset."**
 
-That is why Dex has to grow together with XGEN's agent management and AI governance.
+That is why DexOn has to grow together with XGEN's agent management and AI governance.
 
-> **In development.** The security and governance controls described in this section are the direction Dex is heading, and they are still being built. We will share scope and timing as they land.
+> **In development.** The security and governance controls described in this section are the direction DexOn is heading, and they are still being built. We will share scope and timing as they land.
 
 ---
 
@@ -233,12 +233,12 @@ Agentic AI needs one more step.
 
 Beyond generating an answer, **it has to use the tools it needs and produce an actual result.**
 
-Dex closes that last gap between XGEN's agents and the real working environment.
+DexOn closes that last gap between XGEN's agents and the real working environment.
 
 **Build an agent in XGEN
 → connect enterprise data and systems
 → provide the tools and skills it needs
-→ execute it in the real working environment through Dex.**
+→ execute it in the real working environment through DexOn.**
 
 Enterprise AI moves from
 
@@ -248,15 +248,15 @@ to
 
 **Request → Understand → Execute → Deliver**
 
-What Dex sets out to build is not another AI chat program.
+What DexOn sets out to build is not another AI chat program.
 
 > **The execution touchpoint that connects an enterprise's AI agents to the environment where work actually happens.**
 
-That is why Dex exists.
+That is why DexOn exists.
 
 ---
 
 ## Read next
 
-- [Dex — the execution layer that reaches user devices](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
-- [Dex from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work
+- [DexOn — the execution layer that reaches user devices](/en/blog/product-xgen-dex) — the first in the series: central control stays put, and nobody changes how they work
+- [DexOn from install to first task](/en/blog/xgen-dex-install-guide) — install, build, connect, and hand it work

@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Dex 개념도.
+ * DexOn 개념도.
  *
  * 네 가지를 정확히 그린다.
  *
@@ -14,7 +14,7 @@ import type { Locale } from "@/lib/i18n";
  * 셋, 일하는 자리는 **사용자 기기 안**이다. PC·태블릿·핸드폰의 실제 기기 틀을
  * 함께 보여 줘야 또 하나의 서버가 아니라 각자의 업무환경으로 읽힌다.
  *
- * 넷, Dex 의 아바타는 **바탕화면에 상주한다**. 창을 열어야 만나는 것이 아니라
+ * 넷, DexOn 의 아바타는 **바탕화면에 상주한다**. 창을 열어야 만나는 것이 아니라
  * 화면 한쪽에 서서 말을 건다. 그래서 아바타는 상자 안이 아니라 화면 오른쪽
  * 바탕화면 자리에 세워 둔다 — 실제 제품에서 보이는 그대로다.
  *
@@ -46,9 +46,9 @@ const T: Record<Locale, {
         platformNote: "업무별 Agent 를 만들고 권한을 부여합니다",
         agents: ["제안서 작성", "매출 정산", "보고서 정리"],
         connector: "커넥터",
-        desktop: "사용자 PC · Dex",
-        tablet: "태블릿 · Dex",
-        phone: "핸드폰 · Dex",
+        desktop: "사용자 PC · DexOn",
+        tablet: "태블릿 · DexOn",
+        phone: "핸드폰 · DexOn",
         officeLabel: "오피스 워크",
         office: ["엑셀", "워드", "PPT"],
         localLabel: "로컬 자원",
@@ -64,9 +64,9 @@ const T: Record<Locale, {
         platformNote: "Agents built per task, with permissions granted",
         agents: ["Proposals", "Revenue recon", "Reporting"],
         connector: "Connector",
-        desktop: "User PC · Dex",
-        tablet: "Tablet · Dex",
-        phone: "Phone · Dex",
+        desktop: "User PC · DexOn",
+        tablet: "Tablet · DexOn",
+        phone: "Phone · DexOn",
         officeLabel: "Office work",
         office: ["Excel", "Word", "PPT"],
         localLabel: "Local resources",
@@ -142,10 +142,10 @@ function AgentAvatar({ i, cx, cy, r }: { i: number; cx: number; cy: number; r: n
 }
 
 /**
- * 바탕화면에 상주하는 Dex 아바타.
+ * 바탕화면에 상주하는 DexOn 아바타.
  *
  * 칩 안의 작은 아바타와 달리 이쪽은 반신 인물로 그린다 — 화면 한쪽에 사람이
- * 서 있는 그 모습 자체가 Dex 아바타 기능의 전부이기 때문이다. 작게 줄이면
+ * 서 있는 그 모습 자체가 DexOn 아바타 기능의 전부이기 때문이다. 작게 줄이면
  * 그냥 또 하나의 아이콘이 되어 버린다.
  */
 function DesktopAvatar({ x, y, label, note }: { x: number; y: number; label: string; note: string[] }) {
@@ -377,7 +377,7 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
                 {L.connector}
             </text>
 
-            {/* ── 사용자 PC — 모니터 틀 안이 곧 Dex 다 ── */}
+            {/* ── 사용자 PC — 모니터 틀 안이 곧 DexOn 다 ── */}
             <g filter="url(#dx-shadow)">
                 <rect x="34" y="196" width="952" height="392" rx="20" fill="url(#dx-bezel)" />
             </g>
@@ -391,7 +391,7 @@ export function DexConceptArt({ locale = "ko" }: { locale?: Locale }) {
             <path d="M474 588 h72 l12 36 h-96z" fill="url(#dx-stand)" />
             <rect x="396" y="624" width="228" height="13" rx="6.5" fill="url(#dx-stand)" />
 
-            {/* 같은 Dex가 설치되는 다른 사용자 기기 */}
+            {/* 같은 DexOn이 설치되는 다른 사용자 기기 */}
             <CompanionDevice kind="tablet" x={1000} y={338} label={L.tablet} />
             <CompanionDevice kind="phone" x={1142} y={388} label={L.phone} />
 
