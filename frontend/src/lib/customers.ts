@@ -187,7 +187,7 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
 export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "financial-ai-platform-in-progress",
-        title: "여신금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하다",
+        title: "여신금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하고 있습니다",
         titleEn: "Building an enterprise AI platform and governance foundation for capital finance",
         customer: "I사 · 여신금융",
         customerEn: "Company I · Capital finance",
@@ -195,28 +195,30 @@ export const CASE_STUDIES: CaseStudy[] = [
         industry: "finance",
         products: ["xgen"],
         summary:
-            "국내 여신금융사의 내부 업무에 AI Agent와 RAG를 안전하게 적용할 수 있도록 온프레미스 플랫폼, 통합 운영, 보안·거버넌스 체계를 구축하고 있는 사례",
+            "플래티어는 국내 여신금융사 I사가 AI Agent와 RAG를 실제 내부 업무에 안전하게 적용할 수 있도록 XGEN 기반 온프레미스 Enterprise AI 플랫폼을 구축하고 있습니다. Agent 개발부터 검증·승인·배포·운영·감사까지 하나의 기준으로 관리할 수 있는 통합 운영 및 보안·거버넌스 체계를 함께 마련하고 있습니다.",
         summaryEn:
-            "An in-progress engagement building an on-premise platform, integrated operations, and security and governance controls so AI agents and RAG can be applied safely to internal capital-finance work",
+            "Plateer is building an XGEN-based, on-premise enterprise AI platform that enables Company I to apply AI agents and RAG safely to internal capital-finance work. The engagement also establishes one operating and governance framework across agent development, validation, approval, deployment, operations, and audit.",
         challenge:
-            "금융권의 보안·내부통제 요건을 지키면서 여러 AI 모델과 사내 데이터를 활용하고, Agent의 개발부터 배포·운영·감사까지 하나의 체계로 관리할 기반이 필요했다.",
+            "I사는 금융권의 엄격한 보안·내부통제 요건을 준수하면서도 여러 AI 모델과 사내 데이터를 업무 목적에 맞게 활용할 수 있는 기반이 필요했습니다. 부서별 실증이 개별 시스템으로 흩어지지 않도록 모델, 지식, 도구와 Agent를 공통 플랫폼에서 관리해야 했으며, 개발 이후의 검증·승인·배포·운영·감사까지 추적할 수 있는 표준 절차도 필요했습니다. 특히 민감한 업무 데이터가 외부로 불필요하게 이동하지 않도록 온프레미스 환경에서 보안 정책과 접근 권한을 일관되게 적용하는 것이 핵심 과제였습니다.",
         challengeEn:
-            "The organization needed one governed foundation for using multiple AI models and internal data while meeting financial-sector security and control requirements across agent development, deployment, operations, and audit.",
+            "Company I needed a governed foundation for using multiple AI models and internal data while meeting strict financial-sector security and control requirements. It also needed to prevent departmental pilots from becoming disconnected systems and to manage models, knowledge, tools, and agents on one platform. A traceable standard was required across development, validation, approval, deployment, operations, and audit, with consistent access controls inside an on-premise environment.",
         solution:
-            "XGEN 기반 온프레미스 AI 플랫폼을 중심으로 Agent 설계·RAG 지식화·멀티 모델 연계·배포 승인·운영 모니터링을 통합하고 있다. RBAC 기반 접근 제어, 감사 로그, 가드레일과 데이터 보호 정책을 함께 적용해 향후 AI 서비스 확장을 위한 표준 운영 기반을 마련한다.",
+            "플래티어는 XGEN을 기반으로 고객사의 인프라와 보안 정책 안에서 운영되는 온프레미스 Enterprise AI 플랫폼을 설계하고 구축하고 있습니다. 업무 담당자가 Agent를 설계하고 사내 문서를 RAG 지식으로 구성하며, 업무 특성에 맞는 AI 모델과 도구를 연결할 수 있도록 개발 환경을 통합하고 있습니다. 또한 개발된 Agent가 검증과 승인을 거쳐 배포되도록 운영 절차를 구성하고, 운영 상태를 지속해서 확인할 수 있는 모니터링 체계를 마련하고 있습니다. RBAC 기반 접근 제어, 감사 로그, 가드레일과 데이터 보호 정책을 플랫폼 전반에 적용하여 사용자·조직·업무별 권한과 실행 이력을 관리합니다. 현재 구축 단계에서는 대표 업무를 기준으로 공통 구조와 운영 기준을 정립하고 있으며, 향후 새로운 부서와 AI 서비스로 확장할 때 같은 기준을 재사용할 수 있는 기반을 만드는 것을 목표로 합니다.",
         solutionEn:
-            "The work is integrating agent design, RAG knowledge pipelines, multi-model connectivity, deployment approval, and operational monitoring around an on-premise XGEN platform. RBAC, audit logs, guardrails, and data-protection policies establish a standard foundation for expanding AI services safely.",
+            "Plateer is designing and implementing an on-premise enterprise AI platform based on XGEN and aligned with the customer's infrastructure and security policies. The platform brings together agent design, RAG knowledge pipelines, AI model and tool connectivity, governed validation and deployment, and operational monitoring. RBAC, audit logs, guardrails, and data-protection policies provide consistent control over users, organizations, tasks, and execution records. The current phase establishes a reusable architecture and operating standard that can support additional departments and AI services over time.",
         highlights: [
-            "온프레미스 Enterprise AI 플랫폼",
-            "Agent · RAG 통합 개발·운영",
-            "RBAC · 감사로그 · 가드레일",
-            "배포 승인 · 모니터링 체계",
+            "XGEN 기반 온프레미스 플랫폼 설계·구축",
+            "Agent 설계·RAG 지식화·멀티 모델 연계",
+            "검증·승인·배포를 잇는 운영 절차",
+            "RBAC·감사 로그·가드레일 기반 통제",
+            "운영 모니터링과 확장 표준 수립",
         ],
         highlightsEn: [
-            "On-premise enterprise AI platform",
-            "Integrated agent and RAG lifecycle",
-            "RBAC, audit logs, and guardrails",
-            "Deployment approval and monitoring",
+            "XGEN-based on-premise platform design and implementation",
+            "Agent design, RAG knowledge pipelines, and multi-model connectivity",
+            "Governed validation, approval, and deployment workflow",
+            "RBAC, audit logs, guardrails, and data controls",
+            "Operational monitoring and reusable expansion standards",
         ],
         status: "구축중",
         published: "2026-10-12",
