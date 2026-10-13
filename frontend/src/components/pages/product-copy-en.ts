@@ -117,7 +117,7 @@ export const PRODUCT_EN = {
         {
             ko: "DexOn",
             tagline: "Run the agents you built on your team's devices",
-            desc: "DexOn is a device interface installed on PCs, phones, and tablets. It connects agents running on the server to the user's actual working environment and, within the scope you allow, uses files and applications on each device to produce real deliverables while vibe coding turns natural-language instructions into code changes.",
+            desc: "DexOn is XGEN's Device Interface component for connecting agents to the user's PC, phone, and tablet working environments. Within the scope you allow, it uses files and applications on each device to produce real deliverables while vibe coding turns natural-language instructions into code changes.",
             items: [
                 "Runs against local files and applications",
                 "Writes and modifies code through vibe coding",

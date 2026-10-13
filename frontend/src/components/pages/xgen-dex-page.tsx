@@ -30,7 +30,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * DexOn 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
+ * XGEN의 DexOn 컴포넌트 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
  * 순서를 "무엇을 하는 기능인가 → 어떻게 동작하는가 → 무엇을 제공하는가" 로 둔다.
  * 도입을 검토하는 쪽이 3분 안에 판단하는 자리이고, 설치 절차와 화면은 블로그
@@ -130,11 +130,11 @@ interface DexCopy {
 const COPY: Record<Locale, DexCopy> = {
     ko: {
         ldDescription:
-            "DexOn은 PC·핸드폰·태블릿에 설치되어 서버에서 운영되는 AI Agent를 사용자의 실제 업무환경과 연결하는 Device Interface입니다. 허용된 범위 내에서 각 기기의 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
+            "DexOn은 XGEN 안에서 AI Agent와 사용자의 PC·핸드폰·태블릿 업무환경을 연결하는 Device Interface 컴포넌트입니다. 허용된 범위 내에서 각 기기의 파일과 애플리케이션을 활용해 실제 업무를 수행하고 결과물을 생성합니다.",
         heroBadge: "XGEN · DexOn",
         heroTitle: ["대화로 끝나는 AI가 아니라,", "실제 결과물을 완성합니다"],
         heroLead:
-            "DexOn은 XGEN Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC·핸드폰·태블릿에 설치된 DexOn을 통해 XGEN Agent가 각 기기의 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
+            "DexOn은 XGEN을 구성하는 디바이스 연결 컴포넌트로, Agent의 실행 영역을 사용자의 Device까지 확장합니다. PC·핸드폰·태블릿에 설치된 DexOn을 통해 XGEN Agent가 각 기기의 파일, 브라우저, 애플리케이션 등 실제 업무환경과 연결되어 요청을 실행하고 결과물을 완성합니다.",
         ctaTrial: "무료 체험 신청",
         ctaGuide: "설치 가이드 보기",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -154,8 +154,8 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         whatTitle: "DexOn은 무엇인가요?",
         whatLead: [
-            "DexOn(Device Extension On)는 XGEN의 AI Agent와 사용자의",
-            "실제 업무환경을 연결하는 설치형 Device Interface입니다.",
+            "DexOn(Device Extension On)은 XGEN 안에서 AI Agent와 사용자의",
+            "실제 업무환경을 연결하는 설치형 Device Interface 컴포넌트입니다.",
         ],
         taskSteps: [
             ["요청", "목표와 범위를 자연어로 전달합니다"],
@@ -323,11 +323,11 @@ const COPY: Record<Locale, DexCopy> = {
     },
     en: {
         ldDescription:
-            "DexOn is a device interface installed on PCs, phones, and tablets. It connects AI agents running on the XGEN Server to the user's actual working environment and produces deliverables from each device's files and applications within an allowed scope.",
+            "DexOn is XGEN's Device Interface component for connecting AI agents to the user's PC, phone, and tablet working environments. It uses files and applications on each device within an allowed scope to produce real deliverables.",
         heroBadge: "XGEN · DexOn",
         heroTitle: ["Not an AI that stops at the conversation —", "one that finishes the work"],
         heroLead:
-            "DexOn extends where XGEN agents can act, all the way to the user's device. Through DexOn installed on PCs, phones, and tablets, XGEN agents connect to each device's real working environment — files, browsers, and applications — to carry out requests and finish the deliverable.",
+            "DexOn is XGEN's device-connection component, extending where its agents can act all the way to the user's device. Installed on PCs, phones, and tablets, it connects XGEN agents to each device's files, browsers, and applications to carry out requests and finish the deliverable.",
         ctaTrial: "Start the free trial",
         ctaGuide: "Read the install guide",
         guideHref: "/blog/xgen-dex-install-guide",
@@ -347,8 +347,8 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         whatTitle: "What is DexOn?",
         whatLead: [
-            "DexOn (Device Extension On) is an installable device interface",
-            "that connects XGEN's AI agents with a user's real working environment.",
+            "DexOn (Device Extension On) is XGEN's installable Device Interface component",
+            "that connects its AI agents with a user's real working environment.",
         ],
         taskSteps: [
             ["Request", "State the goal and scope in plain language"],
@@ -528,14 +528,14 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 data={[
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Product", path: en ? "/en/product" : "/product" },
+                        { name: "XGEN", path: en ? "/en/product" : "/product" },
                         { name: "DexOn", path: en ? "/en/xgen-dex" : "/xgen-dex" },
                     ]),
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        name: "DexOn",
-                        alternateName: "XGEN Device Extension On",
+                        name: "XGEN DexOn component",
+                        alternateName: "DexOn · Device Extension On",
                         applicationCategory: "BusinessApplication",
                         operatingSystem: "Windows",
                         description: t.ldDescription,

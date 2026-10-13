@@ -7,7 +7,7 @@ cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["DexOn", "Device Extension On", "Agentic AI", "AI 거버넌스", "제품"]
+tags: ["DexOn", "Device Extension On", "Agentic AI", "AI 거버넌스", "컴포넌트"]
 faq:
   - q: "DexOn은 기기용 XGEN 채팅 앱인가요?"
     a: "아닙니다. 기기에서 XGEN 채팅을 쓰게 해주는 앱과는 목적이 다릅니다. DexOn은 PC·핸드폰·태블릿에 설치되어 XGEN에서 만든 Agent가 각 기기의 파일과 애플리케이션, 브라우저를 활용해 실제 결과물을 만들도록 연결하는 Device Interface입니다."
@@ -57,7 +57,7 @@ DexOn을 통해 Agent는 허용된 범위에서 로컬 파일과 애플리케이
 
 이라고 이해하면 쉽습니다.
 
-이름은 **DexOn**(Device Extension On)이고, 하는 일은 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**입니다. 그래서 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
+XGEN 안에서 이 역할을 맡는 컴포넌트의 이름은 **DexOn**(Device Extension On)입니다. 서버의 Agent와 사용자의 로컬 업무환경을 연결하는 **실행 인터페이스**이며, 설치 파일과 저장소 이름에는 `xgen-connector`가 그대로 남아 있습니다.
 
 ---
 
