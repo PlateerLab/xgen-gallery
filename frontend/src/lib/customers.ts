@@ -187,17 +187,17 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
 export const CASE_STUDIES: CaseStudy[] = [
     {
         slug: "financial-ai-platform-in-progress",
-        title: "금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하다",
-        titleEn: "Building an enterprise AI platform and governance foundation for financial work",
-        customer: "국내 금융사",
-        customerEn: "A Korean financial-services company",
+        title: "여신금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하다",
+        titleEn: "Building an enterprise AI platform and governance foundation for capital finance",
+        customer: "I사 · 여신금융",
+        customerEn: "Company I · Capital finance",
         customerAnonymous: true,
         industry: "finance",
         products: ["xgen"],
         summary:
-            "금융사의 내부 업무에 AI Agent와 RAG를 안전하게 적용할 수 있도록 온프레미스 플랫폼, 통합 운영, 보안·거버넌스 체계를 구축하고 있는 사례",
+            "국내 여신금융사의 내부 업무에 AI Agent와 RAG를 안전하게 적용할 수 있도록 온프레미스 플랫폼, 통합 운영, 보안·거버넌스 체계를 구축하고 있는 사례",
         summaryEn:
-            "An in-progress engagement building an on-premise platform, integrated operations, and security and governance controls so AI agents and RAG can be applied safely to internal financial work",
+            "An in-progress engagement building an on-premise platform, integrated operations, and security and governance controls so AI agents and RAG can be applied safely to internal capital-finance work",
         challenge:
             "금융권의 보안·내부통제 요건을 지키면서 여러 AI 모델과 사내 데이터를 활용하고, Agent의 개발부터 배포·운영·감사까지 하나의 체계로 관리할 기반이 필요했다.",
         challengeEn:
