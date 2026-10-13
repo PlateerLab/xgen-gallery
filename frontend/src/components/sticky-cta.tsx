@@ -24,7 +24,10 @@ export function StickyCta() {
         pathname.startsWith("/admin") ||
         pathname === "/blog" ||
         pathname.startsWith("/blog/") ||
-        pathname.startsWith("/newsletter");
+        pathname.startsWith("/newsletter") ||
+        pathname === "/hackathon" ||
+        pathname === "/events" ||
+        pathname.startsWith("/events/");
     if (!mounted || hidden) return null;
 
     const en = locale === "en";

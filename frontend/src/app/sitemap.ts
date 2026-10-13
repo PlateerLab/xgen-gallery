@@ -8,6 +8,7 @@ import { getIssues, getIssuesFor } from "@/lib/newsletter";
 import { SERIES } from "@/lib/series";
 import { getAllCases, INDUSTRIES, getCasesByIndustry, type IndustryKey } from "@/lib/customers";
 import { EN_ROUTES, localePath } from "@/lib/locale-path";
+import { LAB_EVENTS } from "@/lib/events";
 
 /**
  * Dynamic sitemap covering every public URL (home, tools, members, releases).
@@ -35,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${SITE.url}/members`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
         { url: `${SITE.url}/newsletter`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+        { url: `${SITE.url}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/xgen-brief-k7m4`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${SITE.url}/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/code-assistant`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -165,5 +167,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return path === "/members" || path.startsWith("/members/");
     };
 
-    return [...koreanRoutes, ...englishRoutes].filter((e) => !noIndexed(e));
+    const eventRoutes: MetadataRoute.Sitemap = LAB_EVENTS.filter((event) => !event.draft).map((event) => ({
+        url: `${SITE.url}${event.href}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.6,
+    }));
+
+    return [...koreanRoutes, ...englishRoutes, ...eventRoutes].filter((e) => !noIndexed(e));
 }

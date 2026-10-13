@@ -414,7 +414,7 @@ export const NAV_GROUPS: NavGroup[] = [
     },
     {
         // 블로그(/blog) 최상위 — 드롭다운은 1depth로 편다: XGEN Preview →
-        // Field Report → Tech Note → Lab Newsletter. (Downloads 는 hidden.)
+        // Field Report → Tech Note → Lab Newsletter → Events. (Downloads 는 hidden.)
         // 목록 탭 순서(VISIBLE_BLOG_CATEGORIES)에 없는 뉴스레터가 끼므로
         // 이 배열이 GNB 순서의 단일 출처다.
         // 카테고리는 /blog?cat=… 로 딥링크되어
@@ -438,6 +438,7 @@ export const NAV_GROUPS: NavGroup[] = [
             // { label: "Case Study", id: "cat-case", route: "/blog?cat=case" },
             { label: "Tech Note", labelKo: "테크 노트", id: "cat-labs", route: "/blog?cat=labs" },
             { label: "Lab Newsletter", labelKo: "랩 뉴스레터", id: "newsletter", route: "/newsletter" },
+            { label: "Events", labelKo: "이벤트", id: "events", route: "/events", menuOnly: true },
             {
                 // 메뉴에서만 감춘다 — 소개서 신청 페이지와 그 안의 다운로드는
                 // 그대로 살아 있고, 직접 주소로도 각 페이지 링크로도 접근된다.
