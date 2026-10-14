@@ -27,9 +27,8 @@ import type { Locale } from "@/lib/i18n";
 /**
  * 랩 멤버스 — 구성원과 그 사람이 쓴 글을 함께 보여준다.
  *
- * 사진과 이름, 역할까지만 싣는다. GitHub 계정·이메일·활동 이력은 넣지 않는다 —
- * 그 조합이 모이면 채용 타깃 명단이 된다. 대신 글을 붙여, 이 페이지에 무언가를
- * 더 남기는 방법이 기여라는 것이 드러나게 한다.
+ * 기고자 이름은 공개된 글의 GitHub 계정으로, 테크노트 링크는 글로 연결한다.
+ * 이메일이나 활동 이력은 추가로 노출하지 않는다.
  */
 
 interface Copy {
@@ -54,7 +53,7 @@ interface Copy {
     };
     allPosts: string;
     /**
-     * 프로젝트 → GitHub. 사람에서 개인 계정으로 가는 길 대신 이쪽을 둔다.
+     * 프로젝트 → GitHub. 공개 프로젝트 저장소를 함께 소개한다.
      * 트랙과 저장소 이름은 lab-projects.ts 가 가지고 있고, 여기엔 문구만 있다.
      */
     repos: {
@@ -226,15 +225,9 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                                 {/* 큰 화면에서 6명이 한 줄 — 리더십 여섯 명이 정확히 한 행이다 */}
                                 <ul className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                                     {members.map((m) => {
-                                        const posts = m.blogAuthor
-                                            ? (byAuthor.get(m.blogAuthor) ?? [])
-                                            : [];
-                                        /*
-                                          글이 있으면 카드 전체가 그 사람의 최신 글로
-                                          가는 링크가 된다. 제목을 카드에 늘어놓으면
-                                          카드 높이가 사람마다 달라지고, 정작 사람은
-                                          글 목록의 머리말처럼 읽힌다.
-                                        */
+                                        const posts = byAuthor.get(m.blogAuthor ?? m.name) ?? [];
+                                        const github = posts.find((p) => p.authorGithub)?.authorGithub;
+                                        /* 이름과 글 링크를 분리해 중첩 링크를 피한다. */
                                         const latest = posts[0];
                                         const cardCls =
                                             "flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white";
@@ -256,33 +249,28 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                                                 />
                                                 <div className="flex flex-1 flex-col p-4">
                                                     <h3 className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                        {m.name}
+                                                        {github ? (
+                                                            <a href={`https://github.com/${github}`} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline" aria-label={`${m.name} GitHub (${en ? "new tab" : "새 탭"})`}>
+                                                                {m.name}<ArrowUpRight className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />
+                                                            </a>
+                                                        ) : m.name}
                                                     </h3>
                                                     <p className="mt-0.5 text-[12.5px] leading-snug text-[var(--color-ink-muted)]">
                                                         {en ? m.roleEn : m.role}
                                                     </p>
                                                     {/* 한글 라벨이라 font-mono·uppercase 를 쓰지 않는다 — 자간이 벌어지고 글자가 깨져 보인다 */}
                                                     {latest && (
-                                                        <span className="mt-auto inline-flex items-center gap-1 pt-3 text-[12.5px] font-semibold text-[#2461d8] transition group-hover:gap-1.5">
+                                                        <Link href={href(`/blog/${latest.slug}`)} className="mt-auto inline-flex items-center gap-1 pt-3 text-[12.5px] font-semibold text-[#2461d8] underline-offset-4 hover:underline">
                                                             {t.wrote(posts.length)}
                                                             <ArrowRight className="h-3 w-3" />
-                                                        </span>
+                                                        </Link>
                                                     )}
                                                 </div>
                                             </>
                                         );
                                         return (
                                             <li key={m.slug} className="min-w-0">
-                                                {latest ? (
-                                                    <Link
-                                                        href={href(`/blog/${latest.slug}`)}
-                                                        className={`group ${cardCls} transition hover:-translate-y-0.5 hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]`}
-                                                    >
-                                                        {inner}
-                                                    </Link>
-                                                ) : (
-                                                    <div className={cardCls}>{inner}</div>
-                                                )}
+                                                <div className={cardCls}>{inner}</div>
                                             </li>
                                         );
                                     })}
@@ -293,9 +281,7 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                 })}
 
                 {/*
-                  프로젝트 → GitHub. 사람 카드에서 개인 계정으로 나가는 길을 없앤
-                  자리를 이 섹션이 대신한다. 저장소는 조직이 공개하기로 한 결과물이라
-                  이름과 묶여도 명단이 되지 않는다.
+                  프로젝트 → GitHub. 조직이 공개한 결과물을 소개한다.
                 */}
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">

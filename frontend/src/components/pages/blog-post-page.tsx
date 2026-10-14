@@ -125,7 +125,7 @@ export async function BlogPostPageContent({
                             {t.writtenBy} <span className="text-white/40">|</span>{" "}
                             {post.authorGithub ? (
                                 <Link
-                                    href={localeHref(locale, `/members/${post.authorGithub}`)}
+                                    href={`https://github.com/${post.authorGithub}`} target="_blank" rel="noopener noreferrer"
                                     className="inline-flex items-center gap-1.5 text-white/80 transition hover:text-white"
                                 >
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
