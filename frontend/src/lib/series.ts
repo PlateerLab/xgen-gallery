@@ -44,6 +44,20 @@ export function seriesCopy(def: SeriesDef, en: boolean) {
 
 export const SERIES: SeriesDef[] = [
     {
+        key: "xgen-journey",
+        title: "모든 일이 XGEN에서 시작되는 회사를 꿈꾸며",
+        label: "XGEN의 여정",
+        subtitle: "Geny의 실행 기반에서 Orka·Plex와 자기 개선까지",
+        description: "원문의 흐름을 네 편으로 나누어 XGEN의 실행 환경, 업무 명세, 맞춤화, 자기 개선과 사업 모델을 살펴봅니다.",
+        titleEn: "A Company Where Every Task Starts with XGEN",
+        labelEn: "The XGEN Journey",
+        subtitleEn: "Four essays on execution, business specifications, customization, and improvement",
+        descriptionEn: "Geny, Orka, Plex, and the evolution of the platform and its business model.",
+        cover: "/blog/series-xgen-journey.svg",
+        match: /^xgen-journey-/,
+        order: /^xgen-journey-(\d+)-/,
+    },
+    {
         key: "llm-field-notes",
         title: "LLM 인사이드",
         label: "LLM 인사이드",

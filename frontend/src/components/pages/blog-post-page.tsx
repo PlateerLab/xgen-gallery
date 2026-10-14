@@ -173,7 +173,7 @@ export async function BlogPostPageContent({
                     <img
                         src={post.cover}
                         alt={t.coverAlt(post.title)}
-                        className="mb-12 aspect-[16/9] w-full rounded-2xl border border-[var(--color-line)] object-cover"
+                        className={/^xgen-journey-[1-4]-/.test(post.slug) ? "mb-8 aspect-[16/9] w-full max-w-[640px] object-contain" : "mb-12 aspect-[16/9] w-full rounded-2xl border border-[var(--color-line)] object-cover"}
                     />
                 )}
                 {sdef && sIdx >= 0 && (
