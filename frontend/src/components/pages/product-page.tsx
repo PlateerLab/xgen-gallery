@@ -1099,10 +1099,10 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                             Vibe Coding
                                                         </div>
                                                         <Image
-                                                            src="/newsletter/vol-4/xgen-dex-vscode.jpg"
-                                                            alt={en ? "DexOn vibe coding workspace where an agent understands project context and assists implementation" : "DexOn 바이브코딩 작업환경 — Agent가 프로젝트 문맥을 이해하고 구현을 돕는 화면"}
-                                                            width={1200}
-                                                            height={742}
+                                                            src="/product/dexon-vibe-coding-video.jpg"
+                                                            alt={en ? "DexOn vibe coding video scene where an agent creates project files from a natural-language request" : "DexOn 바이브코딩 영상 장면 — Agent가 자연어 요청을 바탕으로 프로젝트 파일을 생성하는 화면"}
+                                                            width={1920}
+                                                            height={1080}
                                                             sizes="(max-width: 1024px) 92vw, 560px"
                                                             className="h-auto w-full"
                                                         />
@@ -1112,10 +1112,10 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                             Full Coding
                                                         </div>
                                                         <Image
-                                                            src="/newsletter/vol-4/xgen-dex-cli.jpg"
-                                                            alt={en ? "DexOn full-coding workspace for direct code editing and execution" : "DexOn 풀코딩 작업환경 — 코드를 직접 편집하고 실행하는 화면"}
-                                                            width={1200}
-                                                            height={591}
+                                                            src="/product/dexon-full-coding-video.jpg"
+                                                            alt={en ? "DexOn full-coding video scene showing generated React code ready for direct editing" : "DexOn 풀코딩 영상 장면 — 생성된 React 코드를 IDE에서 직접 확인하고 편집하는 화면"}
+                                                            width={1920}
+                                                            height={1080}
                                                             sizes="(max-width: 640px) 52vw, 280px"
                                                             className="h-auto w-full"
                                                         />
