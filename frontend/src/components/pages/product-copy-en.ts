@@ -107,16 +107,6 @@ export const PRODUCT_EN = {
             ],
         },
         {
-            ko: "EasyMode",
-            tagline: "No coding — an agent in about 90 seconds",
-            desc: "A guided drag-and-drop builder lets non-developers combine knowledge, prompts, and tools into an agent. The moment it exists, you validate it in chat.",
-            items: [
-                "Drag-and-drop, no-code build",
-                "Step-by-step guided setup",
-                "Built and assembled in about 90 seconds",
-            ],
-        },
-        {
             ko: "PathFinder",
             tagline: "Connect existing systems as tools the AI can use",
             desc: "PathFinder connects web systems and APIs as Agent Tools an AI agent can use. Sign-in, connection, testing, and registration are automated without code, so existing systems extend quickly into an AI working environment.",
@@ -124,6 +114,16 @@ export const PRODUCT_EN = {
                 "Connection through browser automation",
                 "Sign-in, API, tool registration, and testing — all no-code",
                 "Business users turn their own systems into tools",
+            ],
+        },
+        {
+            ko: "EasyMode",
+            tagline: "No coding — an agent in about 90 seconds",
+            desc: "A guided drag-and-drop builder lets non-developers combine knowledge, prompts, and tools into an agent. The moment it exists, you validate it in chat.",
+            items: [
+                "Drag-and-drop, no-code build",
+                "Step-by-step guided setup",
+                "Built and assembled in about 90 seconds",
             ],
         },
     ],

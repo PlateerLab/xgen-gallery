@@ -324,8 +324,8 @@ const ALL_NAV_GROUPS: NavGroup[] = [
                         children: [
                             { label: "Vibe Coding in DexOn", id: "vibe-coding", route: "/vibe-coding" },
                             { label: "DexOn (Device Extension On)", id: "xgen-dex", route: "/xgen-dex" },
-                            { label: "EasyMode", id: "easy-mode", route: "/easy-mode" },
                             { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
+                            { label: "EasyMode", id: "easy-mode", route: "/easy-mode" },
                         ],
                     },
                     { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance", colBreak: true },

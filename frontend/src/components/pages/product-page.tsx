@@ -200,19 +200,6 @@ const DIFFERENTIATORS: {
         href: "/xgen-dex",
     },
     {
-        icon: Sparkles,
-        en: "EasyMode",
-        ko: "EasyMode",
-        tagline: "코딩 없이, 약 90초면 에이전트가 완성됩니다",
-        desc: "드래그&드롭 가이드형 빌더로 비개발자도 지식·프롬프트·도구를 조합해 에이전트를 생성·조립합니다. 만드는 즉시 채팅으로 바로 검증합니다.",
-        items: [
-            "드래그&드롭 노코드 빌드",
-            "단계별 가이드형 구성",
-            "약 90초 만에 생성·조립",
-        ],
-        href: "/easy-mode",
-    },
-    {
         icon: Compass,
         en: "PathFinder",
         ko: "PathFinder",
@@ -224,6 +211,19 @@ const DIFFERENTIATORS: {
             "현업이 직접 실행 도구화",
         ],
         href: "/pathfinder",
+    },
+    {
+        icon: Sparkles,
+        en: "EasyMode",
+        ko: "EasyMode",
+        tagline: "코딩 없이, 약 90초면 에이전트가 완성됩니다",
+        desc: "드래그&드롭 가이드형 빌더로 비개발자도 지식·프롬프트·도구를 조합해 에이전트를 생성·조립합니다. 만드는 즉시 채팅으로 바로 검증합니다.",
+        items: [
+            "드래그&드롭 노코드 빌드",
+            "단계별 가이드형 구성",
+            "약 90초 만에 생성·조립",
+        ],
+        href: "/easy-mode",
     },
 ];
 
@@ -832,7 +832,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — Vibe Coding in DexOn·DexOn·EasyMode·PathFinder (FloUI는 현재 비노출) */}
+                {/* 특장점 — Vibe Coding in DexOn·DexOn·PathFinder·EasyMode (FloUI는 현재 비노출) */}
                 {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
                 <section
                     id="build"
