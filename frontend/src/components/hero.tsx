@@ -444,17 +444,17 @@ function SecuritySlide() {
             <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
                 {locale === "ko" ? (
                     <>
-                        가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와 AI 위험도
-                        등급까지 —
+                        가드 모델·개인정보 마스킹·금칙어 필터와 감사 로그에 더해,{" "}
+                        AI 위험도를 심사하고 등급에 따른 결재선을 지정해 승인합니다.{" "}
                         <br className="hidden sm:block" />
                         규제 산업에서도 신뢰할 수 있는 다층 통제 위에서 AI를 운영합니다
                     </>
                 ) : (
                     <>
-                        Guard models, PII masking, and blocklist filters, plus audit
-                        logs and AI risk grading —
+                        Guard models, PII masking, blocklist filters, and audit logs — plus AI risk reviews{" "}
+                        and approval workflows configured by risk grade.{" "}
                         <br className="hidden sm:block" />
-                        layered controls that hold up in regulated industries
+                        Layered controls that hold up in regulated industries.
                     </>
                 )}
             </p>
