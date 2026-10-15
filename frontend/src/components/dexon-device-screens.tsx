@@ -4,21 +4,28 @@ import type { Locale } from "@/lib/i18n";
 export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
     const en = locale === "en";
     return (
-        <figure className="text-center" data-dexon-device-screens>
-            <svg viewBox="0 0 640 480" className="block h-auto w-full" role="img" aria-label={en ? "DexOn demo screens in desktop monitor, tablet, and mobile phone frames" : "모니터·태블릿·모바일 폰 프레임에 배치한 DexOn 데모 화면"}>
+        <figure className="text-center" data-dexon-device-screens data-device-grounded>
+            <svg viewBox="0 0 640 410" className="block h-auto w-full" role="img" aria-label={en ? "DexOn demo screens in desktop monitor, tablet, and mobile phone frames" : "모니터·태블릿·모바일 폰 프레임에 배치한 DexOn 데모 화면"}>
                 <title>{en ? "DexOn across three devices" : "세 기기에서 이어지는 DexOn 업무"}</title>
                 <defs>
                     <linearGradient id="dds-metal"><stop stopColor="#949ca7" /><stop offset=".2" stopColor="#eef1f4" /><stop offset=".6" stopColor="#bbc2cb" /><stop offset=".85" stopColor="#f1f3f5" /><stop offset="1" stopColor="#959da7" /></linearGradient>
                     <linearGradient id="dds-stand" x2="0" y2="1"><stop stopColor="#8e98a5" /><stop offset="1" stopColor="#e4e8ed" /></linearGradient>
-                    <filter id="dds-shadow" x="-25%" y="-20%" width="150%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="7" floodColor="#14253b" floodOpacity=".15" /></filter>
+                    <filter id="dds-contact" x="-25%" y="-100%" width="150%" height="300%"><feGaussianBlur stdDeviation="3" /></filter>
                     <clipPath id="dds-monitor"><rect x="43" y="29" width="522" height="257" rx="5" /></clipPath>
                     <clipPath id="dds-tablet"><rect x="30" y="193" width="189" height="233" rx="9" /></clipPath>
                     <clipPath id="dds-phone"><rect x="489" y="197" width="120" height="240" rx="22" /></clipPath>
                 </defs>
+                {/* Shared tabletop and tight contact shadows anchor all three devices. */}
+                <ellipse cx="316" cy="361" rx="299" ry="16" fill="#f0f2f5" />
+                <g fill="#526071" opacity=".24" filter="url(#dds-contact)">
+                    <ellipse cx="304" cy="360" rx="64" ry="4" />
+                    <ellipse cx="108" cy="360" rx="79" ry="4" />
+                    <ellipse cx="539" cy="360" rx="48" ry="4" />
+                </g>
                 {/* Desktop monitor and stand */}
-                <g filter="url(#dds-shadow)">
-                <path d="M283 291h42l8 37h-58z" fill="url(#dds-stand)" stroke="#a4aebb" />
-                <rect x="247" y="326" width="114" height="8" rx="4" fill="url(#dds-metal)" stroke="#b7bec8" />
+                <g>
+                <path d="M283 291h42l8 63h-58z" fill="url(#dds-stand)" stroke="#a4aebb" />
+                <rect x="247" y="352" width="114" height="8" rx="4" fill="url(#dds-metal)" stroke="#b7bec8" />
                 <rect x="32" y="18" width="544" height="279" rx="13" fill="#303741" stroke="#89939f" strokeWidth="1.5" />
                 <rect x="34" y="20" width="540" height="275" rx="11" fill="#20252d" />
                 <g clipPath="url(#dds-monitor)">
@@ -29,7 +36,7 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
                 <circle cx="304" cy="24" r="1.5" fill="#080b10" />
                 </g>
                 {/* Tablet: the conversation and work area from the same demo */}
-                <g transform="rotate(-2 124 310)" filter="url(#dds-shadow)">
+                <g transform="translate(8 8) scale(.8)">
                 <rect x="231" y="214" width="3" height="32" rx="1" fill="#9da6b2" />
                 <rect x="74" y="178" width="29" height="3" rx="1" fill="#9da6b2" />
                 <rect x="18" y="181" width="213" height="259" rx="22" fill="url(#dds-metal)" stroke="#9fa9b6" />
@@ -43,7 +50,7 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
                 <rect x="98" y="420" width="52" height="3" rx="1.5" fill="#252a32" />
                 </g>
                 {/* Mobile: the conversation panel, framed as a phone */}
-                <g transform="rotate(2 549 317)" filter="url(#dds-shadow)">
+                <g transform="translate(100 4) scale(.8)">
                 <rect x="480" y="232" width="3" height="13" rx="1" fill="#939ba5" />
                 <rect x="480" y="255" width="3" height="26" rx="1" fill="#939ba5" />
                 <rect x="480" y="287" width="3" height="26" rx="1" fill="#939ba5" />
@@ -62,9 +69,9 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
                 <rect x="529" y="429" width="40" height="3" rx="1.5" fill="#252a32" />
                 </g>
                 <g fontFamily="Pretendard, system-ui, sans-serif" fontSize="13" fontWeight="700" fill="var(--color-ink)">
-                    <text x="304" y="362" textAnchor="middle">Desktop</text>
-                    <text x="124" y="468" textAnchor="middle">Tablet</text>
-                    <text x="549" y="471" textAnchor="middle">Mobile Phone</text>
+                    <text x="304" y="396" textAnchor="middle">Desktop</text>
+                    <text x="108" y="396" textAnchor="middle">Tablet</text>
+                    <text x="539" y="396" textAnchor="middle">Mobile Phone</text>
                 </g>
             </svg>
             <figcaption className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
