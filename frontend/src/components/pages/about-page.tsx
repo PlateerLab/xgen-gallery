@@ -291,7 +291,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 {
                     when: "2024",
-                    what: "X2BEE AI — LLM·생성형 AI를 커머스에 적용, AI Search와 Code Assistant 출시",
+                    what: "X2BEE AI — LLM·생성형 AI를 커머스에 적용, AI Search 출시",
                 },
                 {
                     when: "2021",
@@ -486,7 +486,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 },
                 {
                     when: "2024",
-                    what: "X2BEE AI — LLMs and generative AI applied to commerce, with AI Search and Code Assistant",
+                    what: "X2BEE AI — LLMs and generative AI applied to commerce, with AI Search",
                 },
                 {
                     when: "2021",
@@ -854,7 +854,7 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
 
                             {/* 아래 두 꼭짓점 */}
                             <div className="relative grid gap-4 sm:grid-cols-2">
-                                {[PRODUCTS.polar, PRODUCTS["code-assistant"]].map((p) => (
+                                {[PRODUCTS.polar].map((p) => (
                                     <Link
                                         key={p.key}
                                         href={href(p.href)}

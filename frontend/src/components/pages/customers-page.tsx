@@ -42,7 +42,7 @@ const COPY: Record<
         heroEyebrow: "Applied AI · 고객 사례",
         heroTitle: "Enterprise AI는 실제 업무에서 검증됩니다",
         heroLead:
-            "XGEN과 Code Assistant를 금융, 커머스, 공공, IT·제조 등 다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과 산업별로 원하는 사례를 찾아보세요.",
+            "XGEN을 금융, 커머스, 공공, IT·제조 등 다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과 산업별로 원하는 사례를 찾아보세요.",
         ctaReview: "우리 업무에 적용 검토",
         ctaStories: "현장 리포트 보기",
         sliderLabel: "최근 사례",
@@ -62,7 +62,7 @@ const COPY: Record<
         heroEyebrow: "Applied AI · Customer cases",
         heroTitle: "Enterprise AI proves itself in the actual work",
         heroLead:
-            "Cases where XGEN and Code Assistant were built and operated across finance, commerce, public sector, and IT and manufacturing. Browse by product or by industry.",
+            "Cases where XGEN were built and operated across finance, commerce, public sector, and IT and manufacturing. Browse by product or by industry.",
         ctaReview: "Discuss applying this to your work",
         ctaStories: "Read the field reports",
         sliderLabel: "Recent cases",
@@ -93,7 +93,7 @@ export async function CustomersPageContent({
     const recent = cases.slice(0, 3); // 최근 사례 — 키비주얼 슬라이드 배너
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
-        product && product in PRODUCTS ? (product as ProductKey) : "all";
+        product && product !== "code-assistant" && product in PRODUCTS ? (product as ProductKey) : "all";
 
     const ld = [
         breadcrumbLd([

@@ -66,5 +66,5 @@ export function buildSearchIndex(): SearchDoc[] {
         type: "FAQ",
     }));
 
-    return [...PAGES, ...ARCHITECTURE, ...tools, ...posts, ...faqs];
+    return [...PAGES, ...ARCHITECTURE.filter((entry) => !entry.url.includes("code-assistant")), ...tools, ...posts, ...faqs];
 }

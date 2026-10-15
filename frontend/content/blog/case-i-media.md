@@ -6,7 +6,7 @@ author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["이커머스", "AI 검색", "Agentic AI", "Case Study"]
 cover: "/blog/case-i-media.svg"
-draft: false
+draft: true
 ---
 
 교육 콘텐츠·소비재를 다루는 이커머스·미디어 기업 **I사**는 XGEN Agentic AI Platform 도입 이후 **런칭 대비 매출·거래금액이 전월 대비 약 20%, 접속 트래픽이 약 20% 증가**했습니다. 검색·고객상담·사이트 개선이라는 서로 달라 보이는 세 가지 과제를 하나의 AI 체계로 묶은 결과입니다.

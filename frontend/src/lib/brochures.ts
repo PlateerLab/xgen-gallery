@@ -141,6 +141,7 @@ export const DEFAULT_BROCHURE: BrochureAsset = "xgen-brochure";
 
 /** asset 값으로 브로셔를 해석. 미매칭이면 기본(XGEN). */
 export function resolveBrochure(asset?: string | null): Brochure {
+    if (asset === "code-assistant-brochure") return BROCHURES[DEFAULT_BROCHURE];
     return (
         (BROCHURES as Record<string, Brochure>)[asset ?? ""] ??
         BROCHURES[DEFAULT_BROCHURE]
@@ -154,5 +155,5 @@ export function publishedBrochures(): Brochure[] {
 
 /** 전체 소개서(비활성/준비 중 포함) — 자료실 카드 자리 표시용. */
 export function allBrochures(): Brochure[] {
-    return Object.values(BROCHURES);
+    return Object.values(BROCHURES).filter((b) => b.asset !== "code-assistant-brochure");
 }

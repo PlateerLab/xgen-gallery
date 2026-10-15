@@ -33,7 +33,7 @@ type TourItem = {
 };
 
 // XGEN 우산 아래 Overview → Create(DexOn) → Build(PathFinder) → Experience(FloUI) → Code Assistant.
-const TOUR_ITEMS: TourItem[] = [
+const ALL_TOUR_ITEMS: TourItem[] = [
     {
         key: "overview",
         name: "Overview",
@@ -100,6 +100,8 @@ const TOUR_ITEMS: TourItem[] = [
 ];
 
 /** 임베드 URL에 autoplay 파라미터를 붙인다(클릭 후 자동 재생). */
+const TOUR_ITEMS = ALL_TOUR_ITEMS.filter((item) => item.key !== "code-assistant");
+
 function withAutoplay(url: string) {
     return url + (url.includes("?") ? "&" : "?") + "autoplay=1";
 }
@@ -123,7 +125,7 @@ const COPY: Record<
                 으로 만나보세요
             </>
         ),
-        lead: "XGEN과 주요 기능, Code Assistant를 짧은 소개영상으로 확인할 수 있습니다",
+        lead: "XGEN과 주요 기능을 짧은 소개영상으로 확인할 수 있습니다",
         more: "데모 영상 더보기",
         play: (n) => `${n} 소개영상 재생`,
         soon: (n) => `${n} 소개영상 준비 중`,

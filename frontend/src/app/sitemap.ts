@@ -39,7 +39,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/xgen-brief-k7m4`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${SITE.url}/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-        { url: `${SITE.url}/code-assistant`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/pathfinder`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/vibe-coding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/easy-mode`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -166,7 +165,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     */
     const noIndexed = (e: MetadataRoute.Sitemap[number]) => {
         const path = e.url.slice(SITE.url.length).replace(/^\/en/, "");
-        return path === "/members" || path.startsWith("/members/");
+        return path === "/code-assistant" || path === "/members" || path.startsWith("/members/");
     };
 
     const eventRoutes: MetadataRoute.Sitemap = LAB_EVENTS.filter((event) => !event.draft).map((event) => ({

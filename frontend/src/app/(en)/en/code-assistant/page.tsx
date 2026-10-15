@@ -10,5 +10,7 @@ export const metadata = pageMetadata({
 });
 
 export default function CodeAssistantPageEn() {
+    notFound();
     return <CodeAssistantPageContent locale="en" />;
 }
+import { notFound } from "next/navigation";

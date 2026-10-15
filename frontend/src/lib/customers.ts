@@ -175,8 +175,8 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
         key: "it-services",
         ko: "IT·제조",
         en: "IT & Manufacturing",
-        blurb: "Code Assistant·기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
-        blurbEn: "Customer cases applying AI to development and engineering — Code Assistant and technical documentation",
+        blurb: "기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to development and engineering — technical documentation",
     },
 };
 
@@ -184,7 +184,7 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
  * 실제 납품/운영 프로젝트 — 신뢰 원칙에 따라 정리.
  * 제주은행만 공개 레퍼런스로 실명, 그 외는 업종+규모 익명. 미검증 수치는 넣지 않는다.
  */
-export const CASE_STUDIES: CaseStudy[] = [
+const ALL_CASE_STUDIES: CaseStudy[] = [
     {
         slug: "financial-ai-platform-in-progress",
         title: "여신금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하고 있습니다",
@@ -395,17 +395,20 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
 ];
 
+// Code Assistant 사례 원본은 보존하되 공개 목록·상세·관련 사례에서 제외한다.
+export const CASE_STUDIES = ALL_CASE_STUDIES.filter((c) => !c.products.includes("code-assistant"));
+
 // ── 조회 헬퍼 ────────────────────────────────────────────────────────────────
 
 /** 발행된 사례(초안 제외)를 최신순으로. */
 export function getAllCases(): CaseStudy[] {
-    return CASE_STUDIES.filter((c) => !c.draft).sort(
+    return CASE_STUDIES.filter((c) => !c.draft && !c.products.includes("code-assistant")).sort(
         (a, b) => b.published.localeCompare(a.published),
     );
 }
 
 export function getCaseBySlug(slug: string): CaseStudy | undefined {
-    return CASE_STUDIES.find((c) => c.slug === slug && !c.draft);
+    return CASE_STUDIES.find((c) => c.slug === slug && !c.draft && !c.products.includes("code-assistant"));
 }
 
 export function getCasesByIndustry(industry: IndustryKey): CaseStudy[] {

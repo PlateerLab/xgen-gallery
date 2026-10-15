@@ -137,7 +137,7 @@ const LIBRARY_CATEGORY_ITEMS: NavLeaf[] = CATEGORIES.filter(
     route: `/library-gallery?cat=${c.id}#tools`,
 }));
 
-export const NAV_GROUPS: NavGroup[] = [
+const ALL_NAV_GROUPS: NavGroup[] = [
     {
         // 최상위 GNB에서는 감추고(= Research & Technology 아래로 편입), /research
         // 원페이지와 sitemap 등록은 그대로 유지한다.
@@ -271,7 +271,7 @@ export const NAV_GROUPS: NavGroup[] = [
                 id: "customer-cases",
                 route: "/customers",
                 menuOnly: true,
-                blurb: "금융·커머스·공공·IT/제조 현장에 XGEN·Code Assistant를 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
+                blurb: "금융·커머스·공공·IT/제조 현장에 XGEN을 구축·운영한 고객사례를 제품·산업별로 확인하세요.",
                 colBreak: true,
                 // 산업 구분은 사례 데이터가 쌓일 때까지 링크 대신 중간점 텍스트로만 노출.
                 note: "Commerce · Finance · Public · IT",
@@ -450,6 +450,11 @@ export const NAV_GROUPS: NavGroup[] = [
 
 // GNB 최상위 노출 순서를 서사(연구→오픈소스→제품→실증)에 맞춰 정렬한다.
 // order 미지정 그룹(hidden 등)은 뒤로 밀린다. 안정 정렬이라 동순위는 정의 순서 유지.
+function visibleItems(items: NavLeaf[]): NavLeaf[] {
+    return items.filter((item) => !["code-assistant", "ai-code-assistant"].includes(item.id)).map((item) => ({ ...item, children: item.children ? visibleItems(item.children) : undefined }));
+}
+export const NAV_GROUPS: NavGroup[] = ALL_NAV_GROUPS.map((group) => ({ ...group, items: visibleItems(group.items) }));
+
 NAV_GROUPS.sort((a, b) => (a.order ?? 90) - (b.order ?? 90));
 
 /** Lookup a group by its url key. */

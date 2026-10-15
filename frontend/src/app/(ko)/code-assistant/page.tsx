@@ -9,5 +9,7 @@ export const metadata = pageMetadata({
 });
 
 export default function CodeAssistantPage() {
+    notFound();
     return <CodeAssistantPageContent locale="ko" />;
 }
+import { notFound } from "next/navigation";

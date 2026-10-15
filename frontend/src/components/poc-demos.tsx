@@ -66,7 +66,7 @@ const COPY: Record<
     },
 };
 
-export const DEMOS: Demo[] = [
+const ALL_DEMOS: Demo[] = [
     {
         // 제목은 유튜브 원본과 동일하게 유지한다.
         id: "0ql6M_P9qRw",
@@ -181,6 +181,8 @@ export const DEMOS: Demo[] = [
 ];
 
 /** 키 비주얼(ProofHero)에 쓰는 대표 영상. featured 플래그가 붙은 첫 항목. */
+export const DEMOS = ALL_DEMOS.filter((demo) => demo.id !== "dGEvX07WXKM");
+
 export const FEATURED_DEMO: Demo | null =
     DEMOS.find((d) => d.featured) ?? null;
 

@@ -54,9 +54,9 @@ const COPY: Record<
             "통신",
             "IT 서비스",
         ],
-        artProducts: ["XGEN", "코드 어시스턴트", "Polar"],
+        artProducts: ["XGEN", "Polar"],
         artAria:
-            "금융·공공·커머스·제조·미디어·물류·통신·IT 등 다양한 산업이 Applied AI로 수렴해 XGEN·코드 어시스턴트·Polar 제품으로 이어지는 애니메이션",
+            "금융·공공·커머스·제조·미디어·물류·통신·IT 등 다양한 산업이 Applied AI로 수렴해 XGEN·Polar 제품으로 이어지는 애니메이션",
         industriesLead:
             "산업마다 업무 특성과 규제가 다릅니다. 각 산업의 맥락을 반영해 검증된 Enterprise AI 적용 영역을 정리했습니다.",
         industriesTitle: (
@@ -159,9 +159,9 @@ const COPY: Record<
             "Telecom",
             "IT Services",
         ],
-        artProducts: ["XGEN", "Code Assistant", "Polar"],
+        artProducts: ["XGEN", "Polar"],
         artAria:
-            "Animation showing finance, public sector, commerce, manufacturing, media, logistics, telecom, and IT converging into Applied AI and flowing into the XGEN, Code Assistant, and Polar products",
+            "Animation showing finance, public sector, commerce, manufacturing, media, logistics, telecom, and IT converging into Applied AI and flowing into the XGEN and Polar products",
         industriesLead:
             "Every industry works differently and is regulated differently. These are the Enterprise AI applications we have validated, organized by the context each one sits in.",
         industriesTitle: (

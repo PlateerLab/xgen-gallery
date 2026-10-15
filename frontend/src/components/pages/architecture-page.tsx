@@ -275,7 +275,7 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                 </div>
             </section>
 
-            <SectionIndex sections={t.sections} />
+            <SectionIndex sections={t.sections.filter((section) => section.id !== "code-assistant")} />
 
             <main>
                 {/* 신뢰 컨셉 — 2-card (콘텐츠 시작) */}
@@ -417,7 +417,8 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 코드 어시스턴트 아키텍처 (공개-안전 구성) */}
+                {/* Code Assistant 공개 중단: 원본 보존 */}
+                {false && (
                 <section
                     id="code-assistant"
                     className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
@@ -442,6 +443,8 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                         </Link>
                     </div>
                 </section>
+
+                )}
 
                 {/* CI/CD — GitOps 배포 파이프라인 (공개-안전 구성) */}
                 <section

@@ -7,7 +7,7 @@ author: "Plateer AI Labs"
 category: "Case Study"
 tags: ["E-commerce", "AI search", "Agentic AI", "Case Study"]
 cover: "/blog/case-i-media.svg"
-draft: false
+draft: true
 ---
 
 **Company I**, an e-commerce and media business in educational content and consumer goods, saw **revenue and transaction value rise roughly 20% month over month after launch, with site traffic up about 20%** following its adoption of the XGEN Agentic AI Platform. It came from tying three problems that looked unrelated — search, customer support, and site improvement — into a single AI system.

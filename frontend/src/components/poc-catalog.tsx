@@ -64,13 +64,11 @@ const AREAS: {
         industry: "IT · 제조",
         en: "IT & Manufacturing",
         cases: [
-            "Code Assistant",
             "사내 코드 추천(RAG)",
             "기술 문서 검색",
             "폐쇄망 온프레미스 구축",
         ],
         casesEn: [
-            "Code Assistant",
             "In-house code recommendation (RAG)",
             "Technical document search",
             "Air-gapped on-premise deployment",

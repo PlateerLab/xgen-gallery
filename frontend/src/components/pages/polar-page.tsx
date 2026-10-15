@@ -133,7 +133,6 @@ const COPY: Record<Locale, PolarCopy> = {
                         "챗봇",
                         "시맨틱·이미지 검색",
                         "Commerce+",
-                        "Code Assistant",
                     ],
                 },
                 {
@@ -268,7 +267,6 @@ const COPY: Record<Locale, PolarCopy> = {
                         "Chatbot",
                         "Semantic and image search",
                         "Commerce+",
-                        "Code Assistant",
                     ],
                 },
                 {
