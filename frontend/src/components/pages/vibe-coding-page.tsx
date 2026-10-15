@@ -123,7 +123,7 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-            <main className="bg-white text-[var(--color-ink)]">
+            <main className="bg-white text-center text-[var(--color-ink)]">
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
                     <div className="mx-auto max-w-4xl px-6 py-14">
                         <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center md:p-8">
@@ -136,13 +136,13 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <p className="font-mono text-[12px] tracking-widest text-[var(--color-ink-subtle)]">{t.overviewEyebrow}</p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.overviewTitle}</h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.overviewLead}</p>
+                        <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.overviewTitle}</h2>
+                        <p className="mx-auto mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.overviewLead}</p>
                         <div className="mt-10 grid gap-0 border-y border-[var(--color-line)] md:grid-cols-3">
                             {t.steps.map(([no, title, desc]: string[], index: number) => {
                                 const Icon = STEP_ICONS[index];
-                                return <article key={no} className="border-b border-[var(--color-line)] py-7 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0">
-                                    <div className="flex items-center gap-3"><Icon className="h-5 w-5 text-[#2461d8]" /><span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">{no}</span></div>
+                                return <article key={no} className="border-b border-[var(--color-line)] py-7 md:border-b-0 md:border-r md:px-7 md:last:border-r-0">
+                                    <div className="flex items-center justify-center gap-3"><Icon className="h-5 w-5 text-[#2461d8]" /><span className="font-mono text-[12px] text-[var(--color-ink-subtle)]">{no}</span></div>
                                     <h3 className="mt-5 text-[19px] font-bold">{title}</h3>
                                     <p className="mt-3 text-[14px] leading-6 text-[var(--color-ink-muted)]">{desc}</p>
                                 </article>;
@@ -154,12 +154,12 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                 <section className="bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t.modesTitle}</h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.modesLead}</p>
+                        <p className="mx-auto mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.modesLead}</p>
                         <div className="mt-9 grid gap-5 md:grid-cols-2">
                             {t.modes.map(([title, desc]: string[], index: number) => {
                                 const Icon = index === 0 ? MessageSquareText : TerminalSquare;
                                 return <article key={title} className="border border-[var(--color-line)] bg-white p-7">
-                                    <Icon className="h-6 w-6 text-[#2461d8]" />
+                                    <Icon className="mx-auto h-6 w-6 text-[#2461d8]" />
                                     <h3 className="mt-5 text-xl font-bold">{title}</h3>
                                     <p className="mt-3 text-[14px] leading-6 text-[var(--color-ink-muted)]">{desc}</p>
                                 </article>;
@@ -171,9 +171,9 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                 <section id="demo" className="scroll-mt-[var(--nav-h,84px)] border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <p className="font-mono text-[12px] tracking-widest text-[#2461d8]">{t.videoEyebrow}</p>
-                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.videoTitle}</h2>
-                        <p className="mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.videoLead}</p>
-                        <div className="mt-9 max-w-5xl"><VibeCodingVideo locale={locale} /></div>
+                        <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.videoTitle}</h2>
+                        <p className="mx-auto mt-4 max-w-3xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.videoLead}</p>
+                        <div className="mx-auto mt-9 max-w-5xl"><VibeCodingVideo locale={locale} /></div>
                     </div>
                 </section>
 
@@ -183,7 +183,7 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                         <div className="mt-9 grid gap-5 md:grid-cols-2">
                             {t.outcomes.map(([title, desc]: string[], index: number) => {
                                 const Icon = OUTCOME_ICONS[index];
-                                return <article key={title} className="flex gap-5 border-t border-[var(--color-line)] py-7">
+                                return <article key={title} className="flex flex-col items-center gap-5 border-t border-[var(--color-line)] py-7">
                                     <Icon className="mt-1 h-6 w-6 flex-none text-[#2461d8]" />
                                     <div><h3 className="text-xl font-bold">{title}</h3><p className="mt-3 text-[14px] leading-6 text-[var(--color-ink-muted)]">{desc}</p></div>
                                 </article>;
@@ -194,8 +194,8 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
 
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
-                        <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.closingTitle}</h2>
-                        <p className="mt-4 max-w-2xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.closingLead}</p>
+                        <h2 className="mx-auto max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">{t.closingTitle}</h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-7 text-[var(--color-ink-muted)]">{t.closingLead}</p>
                         <Link href={localeHref(locale, "/xgen-trial")} className="mt-8 inline-flex items-center gap-2 bg-[#2461d8] px-5 py-3 text-[14px] font-semibold text-white">{t.closingCta}<ArrowRight className="h-4 w-4" /></Link>
                     </div>
                 </section>
