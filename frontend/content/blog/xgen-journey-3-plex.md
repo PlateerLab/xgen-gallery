@@ -14,9 +14,9 @@ draft: false
 
 Editable XGEN의 맞춤화 구조와 연결의 확장, 변화 속에서도 지켜야 할 경계를 이야기합니다.
 
-> **읽기 전에** — Geny는 현재 버전입니다. Orka와 Plex는 가칭이며, 이 글에 소개하는 기능과 일정은 개발 목표입니다. ‘자기 개선’은 AI가 임의로 시스템을 바꾼다는 뜻이 아니라, 변경안을 검증하고 승인한 뒤 반영하는 구조를 뜻합니다.
+> **읽기 전에** — Geny는 현재 단계입니다. Orka와 Plex는 가칭이며, 이 글에 소개하는 기능과 일정은 개발 목표입니다. ‘자기 개선’은 AI가 임의로 시스템을 바꾼다는 뜻이 아니라, 변경안을 검증하고 승인한 뒤 반영하는 구조를 뜻합니다.
 
-**XGEN의 핵심 엔진** — Xgen·Agentflow·Geny·Orka·Plex는 XGEN에서 각 프로젝트 버전의 중심이 되는 핵심 엔진을 부르는 이름입니다. 전체 흐름은 **Xgen → Agentflow → Geny → Orka → Plex**입니다. 각 버전은 이전 버전의 기반을 유지하면서 새로운 엔진과 기능을 더해 확장하는 관계입니다.
+**XGEN의 핵심 엔진** — Xgen·Agentflow·Geny·Orka·Plex는 XGEN에서 각 프로젝트 단계의 중심이 되는 핵심 엔진을 부르는 이름입니다. 전체 흐름은 **Xgen → Agentflow → Geny → Orka → Plex**입니다. 각 단계는 이전 단계의 기반을 유지하면서 새로운 엔진과 기능을 더해 확장하는 관계입니다.
 
 <nav aria-label="시리즈 안내" style="border:1px solid #d9dce1;padding:20px;margin:28px 0"><strong>모든 일이 XGEN에서 시작되는 회사를 꿈꾸며</strong><ol><li><a href="/blog/xgen-journey-1-geny">Geny — 에이전트가 일할 환경을 만들다</a></li><li><a href="/blog/xgen-journey-2-orca">Orka — 고객의 일을 명세로 이해하다</a></li><li><a aria-current="page" href="/blog/xgen-journey-3-plex">Plex — 업무와 사람에 맞춰 진화하다</a></li><li><a href="/blog/xgen-journey-4-evolution">자기 개선 — 실행이 쌓여 플랫폼이 되다</a></li></ol></nav>
 

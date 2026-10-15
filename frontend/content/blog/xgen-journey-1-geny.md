@@ -14,9 +14,9 @@ draft: false
 
 시스템이 도구가 되는 변화와 Geny의 실행 기반, 제품과 실험실의 관계를 살펴봅니다.
 
-> **읽기 전에** — Geny는 현재 버전입니다. Orka와 Plex는 가칭이며, 이 글에 소개하는 기능과 일정은 개발 목표입니다. ‘자기 개선’은 AI가 임의로 시스템을 바꾼다는 뜻이 아니라, 변경안을 검증하고 승인한 뒤 반영하는 구조를 뜻합니다.
+> **읽기 전에** — Geny는 현재 단계입니다. Orka와 Plex는 가칭이며, 이 글에 소개하는 기능과 일정은 개발 목표입니다. ‘자기 개선’은 AI가 임의로 시스템을 바꾼다는 뜻이 아니라, 변경안을 검증하고 승인한 뒤 반영하는 구조를 뜻합니다.
 
-**XGEN의 핵심 엔진** — Xgen·Agentflow·Geny·Orka·Plex는 XGEN에서 각 프로젝트 버전의 중심이 되는 핵심 엔진을 부르는 이름입니다. 전체 흐름은 **Xgen → Agentflow → Geny → Orka → Plex**입니다. 각 버전은 이전 버전의 기반을 유지하면서 새로운 엔진과 기능을 더해 확장하는 관계입니다.
+**XGEN의 핵심 엔진** — Xgen·Agentflow·Geny·Orka·Plex는 XGEN에서 각 프로젝트 단계의 중심이 되는 핵심 엔진을 부르는 이름입니다. 전체 흐름은 **Xgen → Agentflow → Geny → Orka → Plex**입니다. 각 단계는 이전 단계의 기반을 유지하면서 새로운 엔진과 기능을 더해 확장하는 관계입니다.
 
 <nav aria-label="시리즈 안내" style="border:1px solid #d9dce1;padding:20px;margin:28px 0"><strong>모든 일이 XGEN에서 시작되는 회사를 꿈꾸며</strong><ol><li><a aria-current="page" href="/blog/xgen-journey-1-geny">Geny — 에이전트가 일할 환경을 만들다</a></li><li><a href="/blog/xgen-journey-2-orca">Orka — 고객의 일을 명세로 이해하다</a></li><li><a href="/blog/xgen-journey-3-plex">Plex — 업무와 사람에 맞춰 진화하다</a></li><li><a href="/blog/xgen-journey-4-evolution">자기 개선 — 실행이 쌓여 플랫폼이 되다</a></li></ol></nav>
 
@@ -26,10 +26,10 @@ draft: false
 
 최근 Geny가 릴리스되면서 회사 안에서 작은 "혼란"이 있었습니다. 그리고 그 혼란을 계기로 여러 자리에서 다양한 논의가 오갔습니다.
 
-혼란은 눈에 보이는 것에서 시작되었습니다. 새로 추가된 하위 컴포넌트들, 바뀐 버전 체계와 낯선 이름들이 그것입니다. Agentflow, Geny, DexOn, Omnifuse라는 이름이 한꺼번에 등장하자 자연스럽게 질문이 따라왔습니다.
+혼란은 눈에 보이는 것에서 시작되었습니다. 새로 추가된 하위 컴포넌트들, 바뀐 단계 체계와 낯선 이름들이 그것입니다. Agentflow, Geny, DexOn, Omnifuse라는 이름이 한꺼번에 등장하자 자연스럽게 질문이 따라왔습니다.
 
 - 이것들은 서로 다른 제품인가, 하나의 제품인가?
-- 왜 버전마다 이름이 붙는가?
+- 왜 단계마다 이름이 붙는가?
 - 지금까지 써 오던 Agentflow는 이제 어떻게 되는가?
 
 질문은 거기서 그치지 않았습니다. 크게는 'XGEN이라는 솔루션이 어디로 가고 있는가'라는 방향성에 대한 물음으로 넓어졌습니다. 작게는 '이 기능은 왜 이렇게 만들어졌는가', '사용자 화면은 왜 이런 모습이 되었는가'처럼 XGEN에 담긴 기능과 인터페이스가 지금의 모습에 이른 과정과 이유를 묻는 이야기로 이어졌습니다.
@@ -62,13 +62,13 @@ Geny는 이 질문에서 출발했습니다. "시스템마다 AI를 따로 붙�
 
 2026년 10월, XGEN은 Agentflow 중심의 실행 구조에서 Geny를 더하며 큰 변화를 겪었습니다. Geny는 별도의 제품이 아니라, XGEN을 구성하며 에이전트 실행을 담당하는 핵심 엔진이자 컴포넌트입니다. 이 글에서는 XGEN의 핵심 엔진 이름을 중심으로 각 엔진의 역할과 확장 방향을 설명합니다.
 
-<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>버전</th><th>표기</th><th>대표 하위 컴포넌트</th><th>상태</th><th>컴포넌트의 역할</th></tr></thead><tbody><tr><td>2.0</td><td><strong>Agentflow</strong></td><td>Agentflow</td><td>운영 중</td><td>흐름을 그려 에이전트를 만드는 Low-code 엔진</td></tr><tr><td>3.0</td><td><strong>Geny</strong></td><td>Geny</td><td>2026년 10월~</td><td>Agent가 일할 환경을 제공하는 실행 엔진(하네스)</td></tr><tr><td>—</td><td><strong>Orka</strong></td><td>Orka (가칭)</td><td>2027년 1월 말 목표</td><td>고객의 일을 명세로 이해하고 업무를 도구로 만드는 도메인 플랫폼 계층</td></tr><tr><td>—</td><td><strong>Plex</strong></td><td>Plex (가칭)</td><td>2027년 7월 말 목표</td><td>업무 · 사람마다 모습이 달라지는 Editable XGEN</td></tr></tbody></table></div>
+<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>단계</th><th>표기</th><th>대표 하위 컴포넌트</th><th>상태</th><th>컴포넌트의 역할</th></tr></thead><tbody><tr><td>2.0</td><td><strong>Agentflow</strong></td><td>Agentflow</td><td>운영 중</td><td>흐름을 그려 에이전트를 만드는 Low-code 엔진</td></tr><tr><td>3.0</td><td><strong>Geny</strong></td><td>Geny</td><td>2026년 10월~</td><td>Agent가 일할 환경을 제공하는 실행 엔진(하네스)</td></tr><tr><td>—</td><td><strong>Orka</strong></td><td>Orka (가칭)</td><td>2027년 1월 말 목표</td><td>고객의 일을 명세로 이해하고 업무를 도구로 만드는 도메인 플랫폼 계층</td></tr><tr><td>—</td><td><strong>Plex</strong></td><td>Plex (가칭)</td><td>2027년 7월 말 목표</td><td>업무 · 사람마다 모습이 달라지는 Editable XGEN</td></tr></tbody></table></div>
 
-새 버전이 나와도 이전 버전의 대표 컴포넌트는 사라지지 않습니다. Geny 안에서 Agentflow는 Low-code 경로로 계속 쓰이고, Orka는 Geny 엔진 위에 올라갑니다. 버전이 올라갈수록 대표 컴포넌트가 하나씩 **쌓이는** 구조입니다.
+새 단계로 나아가도 이전 단계의 대표 컴포넌트는 사라지지 않습니다. Geny 안에서 Agentflow는 Low-code 경로로 계속 쓰이고, Orka는 Geny 엔진 위에 올라갑니다. 단계가 높아질수록 대표 컴포넌트가 하나씩 **쌓이는** 구조입니다.
 
-버전별 구성을 비교하면 다음과 같습니다.
+단계별 구성을 비교하면 다음과 같습니다.
 
-<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>버전</th><th>아키텍처</th><th>애플리케이션/컴포넌트</th><th>핵심 구성요소</th></tr></thead><tbody><tr><td>Agentflow</td><td>단일 SPA + MSA</td><td>XGEN (단일 제품)</td><td>프런트엔드, Agentflow 엔진, 모델 관리, MCP Station, 매뉴얼 생성, 팀 채팅</td></tr><tr><td><strong>Geny</strong></td><td>멀티 애플리케이션 + MSA</td><td><strong>Agentflow · Geny · DexOn</strong></td><td>+ Agent 서버 런타임(Geny), 온톨로지 엔진(Omnifuse), 모델 하네스(CLI), 멀티 OS 데스크톱(DexOn)</td></tr></tbody></table></div>
+<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>단계</th><th>아키텍처</th><th>애플리케이션/컴포넌트</th><th>핵심 구성요소</th></tr></thead><tbody><tr><td>Agentflow</td><td>단일 SPA + MSA</td><td>XGEN (단일 제품)</td><td>프런트엔드, Agentflow 엔진, 모델 관리, MCP Station, 매뉴얼 생성, 팀 채팅</td></tr><tr><td><strong>Geny</strong></td><td>멀티 애플리케이션 + MSA</td><td><strong>Agentflow · Geny · DexOn</strong></td><td>+ Agent 서버 런타임(Geny), 온톨로지 엔진(Omnifuse), 모델 하네스(CLI), 멀티 OS 데스크톱(DexOn)</td></tr></tbody></table></div>
 
 ![그림 1. Geny 현재 시스템 구조](/blog/geny-to-lucy-evolving-platform-1.svg)
 
