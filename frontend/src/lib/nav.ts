@@ -328,7 +328,7 @@ const ALL_NAV_GROUPS: NavGroup[] = [
                             { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
                         ],
                     },
-                    { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance" },
+                    { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance", colBreak: true },
                     { label: "Certifications & Quality", labelKo: "인증·품질", id: "certification", route: "/product#certification" },
                     { label: "Customer Cases", labelKo: "고객사례", id: "xgen-cases", route: "/product#cases" },
                     { label: "Documentation", id: "documentation", route: "/documentation" },

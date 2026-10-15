@@ -95,8 +95,10 @@ function DropdownItem({
                     </p>
                 ))}
             {children.length > 0 && (
-                <div className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
-                    {children.map((c) => {
+                <div className="flex gap-6">
+                    {buildColumns(children, 1).map((column, index) => (
+                    <div key={index} className="mb-1 ml-3 border-l border-[var(--color-line)] pl-2">
+                    {column.map((c) => {
                         // 손자 — 「핵심 기능 · 핵심 기술」 아래의 이지모드·패스파인더처럼
                         // 한 단 더 들어가는 항목. 한 단만 더 지원한다.
                         const grand = c.children?.filter((g) => !g.hidden) ?? [];
@@ -158,6 +160,8 @@ function DropdownItem({
                             </div>
                         );
                     })}
+                    </div>
+                    ))}
                 </div>
             )}
         </div>
@@ -405,7 +409,10 @@ export function SiteNav({
                                     className={cn(
                                         // 업스테이지 벤치마크 — 와이드 메뉴 포함 모든 드롭다운을
                                         // 트리거 좌측 끝에 앵커해 바로 아래로 펼친다.
-                                        "absolute left-0 top-full pt-3",
+                                        "absolute top-full pt-3",
+                                        g.key === "product"
+                                            ? "left-1/2 -translate-x-1/2"
+                                            : "left-0",
                                     )}
                                 >
                                     {g.wide ? (
