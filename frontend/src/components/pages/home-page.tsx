@@ -66,7 +66,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
     // 헤드라인(title)이 아니라 한 줄 요약(summary)을 넘긴다 — 히어로 스트립은 폭을
     // 넉넉히 주고 말줄임으로 끊는 자리라, 짧은 헤드라인보다 요약이 더 많이 읽힌다.
     const kase = getAllCases().find((c) => caseLinkEnabled(c.slug));
-    const caseText = isKo ? kase?.summary : kase?.summaryEn;
+    const caseText = isKo ? kase?.summary.replace(/^플래티어는\s+/, "") : kase?.summaryEn;
     const latestCase = kase && caseText ? { slug: kase.slug, text: caseText } : null;
 
     return (
