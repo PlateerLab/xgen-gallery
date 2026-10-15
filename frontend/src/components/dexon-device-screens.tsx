@@ -5,7 +5,7 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
     const en = locale === "en";
     return (
         <figure className="text-center" data-dexon-device-screens data-device-grounded>
-            <svg viewBox="0 0 640 410" className="block h-auto w-full" role="img" aria-label={en ? "DexOn demo screens in desktop monitor, tablet, and mobile phone frames" : "모니터·태블릿·모바일 폰 프레임에 배치한 DexOn 데모 화면"}>
+            <svg viewBox="0 0 640 438" className="block h-auto w-full" role="img" aria-label={en ? "DexOn: Full Coding on desktop, Vibe Coding on tablet and mobile phone" : "DexOn: 데스크톱에서 풀코딩, 태블릿과 모바일 폰에서 바이브코딩"}>
                 <title>{en ? "DexOn across three devices" : "세 기기에서 이어지는 DexOn 업무"}</title>
                 <defs>
                     <linearGradient id="dds-metal"><stop stopColor="#949ca7" /><stop offset=".2" stopColor="#eef1f4" /><stop offset=".6" stopColor="#bbc2cb" /><stop offset=".85" stopColor="#f1f3f5" /><stop offset="1" stopColor="#959da7" /></linearGradient>
@@ -72,6 +72,11 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
                     <text x="304" y="396" textAnchor="middle">Desktop</text>
                     <text x="108" y="396" textAnchor="middle">Tablet</text>
                     <text x="539" y="396" textAnchor="middle">Mobile Phone</text>
+                </g>
+                <g fontFamily="Pretendard, system-ui, sans-serif" fontSize="15" fontWeight="700" fill="var(--color-ink)">
+                    <text x="304" y="420" textAnchor="middle">Full Coding</text>
+                    <text x="108" y="420" textAnchor="middle">Vibe Coding</text>
+                    <text x="539" y="420" textAnchor="middle">Vibe Coding</text>
                 </g>
             </svg>
             <figcaption className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
