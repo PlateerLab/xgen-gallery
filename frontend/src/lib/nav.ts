@@ -323,7 +323,7 @@ export const NAV_GROUPS: NavGroup[] = [
                         // 제품 카드와 동일한 순서로 각 기능의 상세 랜딩에 연결한다.
                         children: [
                             { label: "Vibe Coding in DexOn", id: "vibe-coding", route: "/vibe-coding" },
-                            { label: "DexOn", id: "xgen-dex", route: "/xgen-dex" },
+                            { label: "DexOn (Device Extension On)", id: "xgen-dex", route: "/xgen-dex" },
                             { label: "EasyMode", id: "easy-mode", route: "/easy-mode" },
                             { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
                         ],
