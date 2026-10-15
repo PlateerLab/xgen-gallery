@@ -16,6 +16,7 @@ import {
     ArrowRight,
     Download,
     Sparkles,
+    Code2,
     Compass,
     MonitorSmartphone,
     type LucideIcon,
@@ -26,7 +27,7 @@ import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
 import { DexArt } from "@/components/dex-art";
-import { FloUIArt } from "@/components/floui-art";
+import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { SectionIndex } from "@/components/section-index";
@@ -156,7 +157,7 @@ const EFFECTS: { en: string; ko: string; desc: string }[] = [
     },
 ];
 
-/** XGEN 특장점 — 만들고(이지모드), 잇고(패스파인더), 쓰는(DexOn) 세 갈래. */
+/** XGEN 핵심 기능 — 바이브코딩부터 기기 실행, 제작, 시스템 연결까지. */
 const DIFFERENTIATORS: {
     icon: LucideIcon;
     en: string;
@@ -167,6 +168,32 @@ const DIFFERENTIATORS: {
     /** 더 읽을 자리가 있는 카드만 「자세히 보기」를 단다 */
     href?: string;
 }[] = [
+    {
+        icon: Code2,
+        en: "Vibe Coding",
+        ko: "Vibe Coding",
+        tagline: "말로 설명하면 코드 작성부터 실행 검증까지 이어집니다",
+        desc: "자연어로 원하는 기능과 수정 사항을 설명하면 Agent가 프로젝트 문맥을 읽고 코드를 작성·수정합니다. 실행 결과를 확인하고 오류를 고치는 과정까지 한 흐름에서 반복합니다.",
+        items: [
+            "자연어 기반 코드 작성·수정",
+            "프로젝트 문맥과 기존 코드 활용",
+            "실행·테스트·오류 수정 반복",
+        ],
+    },
+    {
+        icon: MonitorSmartphone,
+        en: "DexOn",
+        ko: "DexOn",
+        tagline: "만든 Agent를 직원의 기기에서 실행합니다",
+        desc: "DexOn은 XGEN 안에서 Agent와 사용자의 PC·핸드폰·태블릿 업무환경을 연결하는 Device Interface 컴포넌트입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
+        items: [
+            "로컬 파일·애플리케이션 실행",
+            "PC·핸드폰·태블릿 업무환경 연결",
+            "실행 권한을 업무 단위로 연결",
+            "작업 폴더 동기화와 작업 내역 기록",
+        ],
+        href: "/xgen-dex",
+    },
     {
         icon: Sparkles,
         en: "EasyMode",
@@ -191,33 +218,6 @@ const DIFFERENTIATORS: {
             "현업이 직접 실행 도구화",
         ],
         href: "/pathfinder",
-    },
-    {
-        icon: LayoutDashboard,
-        en: "FloUI",
-        ko: "FloUI",
-        tagline: "질문하는 순간, 그 질문을 위한 화면이 만들어집니다",
-        desc: "FloUI는 미리 만들어 둔 대시보드를 여는 기술이 아닙니다. 사용자의 질문을 해석해 KPI와 차트, RAG 요약을 그 자리에서 배치합니다. 화면 하나를 더 보려고 개발을 요청하고 기다리던 주기가 사라지고, 회의 중에 떠오른 가설을 그 회의 안에서 검증합니다.",
-        items: [
-            "질문을 곧 화면으로 (Question-to-UI)",
-            "정형 데이터와 RAG 참조를 한 화면에",
-            "개발 대기 없이 즉시 탐색·검증",
-        ],
-        href: "/floui",
-    },
-    {
-        icon: MonitorSmartphone,
-        en: "DexOn",
-        ko: "DexOn",
-        tagline: "만든 Agent를 직원의 기기에서 실행합니다",
-        desc: "DexOn은 XGEN 안에서 Agent와 사용자의 PC·핸드폰·태블릿 업무환경을 연결하는 Device Interface 컴포넌트입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만들고, 바이브코딩으로 자연어 지시를 코드 작성·수정까지 이어갑니다.",
-        items: [
-            "로컬 파일·애플리케이션 실행",
-            "바이브코딩으로 코드 작성·수정",
-            "실행 권한을 업무 단위로 연결",
-            "작업 폴더 동기화와 작업 내역 기록",
-        ],
-        href: "/xgen-dex",
     },
 ];
 
@@ -826,7 +826,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — 누구나 만드는 에이전트(이지모드·패스파인더·FloUI·DexOn) */}
+                {/* 특장점 — Vibe Coding·DexOn·EasyMode·PathFinder (FloUI는 현재 비노출) */}
                 {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
                 <section
                     id="build"
@@ -849,6 +849,11 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                     key={d.en}
                                     className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
+                                    {d.en === "Vibe Coding" && (
+                                        <div className="mb-6">
+                                            <VibeCodingArt locale={locale} />
+                                        </div>
+                                    )}
                                     {d.en === "PathFinder" && (
                                         <div className="mb-6">
                                             <PathFinderArt locale={locale} />
@@ -857,11 +862,6 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                     {d.en === "EasyMode" && (
                                         <div className="mb-6">
                                             <EasyModeArt locale={locale} />
-                                        </div>
-                                    )}
-                                    {d.en === "FloUI" && (
-                                        <div className="mb-6">
-                                            <FloUIArt locale={locale} />
                                         </div>
                                     )}
                                     {d.en === "DexOn" && (

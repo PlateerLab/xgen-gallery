@@ -85,6 +85,27 @@ export const PRODUCT_EN = {
 
     differentiators: [
         {
+            ko: "Vibe Coding",
+            tagline: "Describe the change, then carry it through code and verification",
+            desc: "Describe a feature or change in natural language and the agent reads the project context, writes or revises the code, then keeps iterating through execution, testing, and error correction in one flow.",
+            items: [
+                "Write and revise code from natural language",
+                "Use project context and existing code",
+                "Repeat execution, tests, and error correction",
+            ],
+        },
+        {
+            ko: "DexOn",
+            tagline: "Run the agents you built on your team's devices",
+            desc: "DexOn is XGEN's Device Interface component for connecting agents to the user's PC, phone, and tablet working environments. Within the scope you allow, it uses files and applications on each device to produce real deliverables.",
+            items: [
+                "Runs against local files and applications",
+                "Connects PC, phone, and tablet environments",
+                "Execution permissions connected per task",
+                "Working-folder sync with an activity record",
+            ],
+        },
+        {
             ko: "EasyMode",
             tagline: "No coding — an agent in about 90 seconds",
             desc: "A guided drag-and-drop builder lets non-developers combine knowledge, prompts, and tools into an agent. The moment it exists, you validate it in chat.",
@@ -102,27 +123,6 @@ export const PRODUCT_EN = {
                 "Connection through browser automation",
                 "Sign-in, API, tool registration, and testing — all no-code",
                 "Business users turn their own systems into tools",
-            ],
-        },
-        {
-            ko: "FloUI",
-            tagline: "Ask, and the screen for that question builds itself",
-            desc: "FloUI is not a dashboard someone drew in advance. It reads the question and lays out KPIs, charts, and a RAG summary on the spot — so the cycle of filing a request and waiting for one more screen disappears, and a hypothesis raised in a meeting gets tested inside that meeting.",
-            items: [
-                "The question becomes the screen (Question-to-UI)",
-                "Structured data and RAG references on one screen",
-                "Explore and verify now, with no build queue",
-            ],
-        },
-        {
-            ko: "DexOn",
-            tagline: "Run the agents you built on your team's devices",
-            desc: "DexOn is XGEN's Device Interface component for connecting agents to the user's PC, phone, and tablet working environments. Within the scope you allow, it uses files and applications on each device to produce real deliverables while vibe coding turns natural-language instructions into code changes.",
-            items: [
-                "Runs against local files and applications",
-                "Writes and modifies code through vibe coding",
-                "Execution permissions connected per task",
-                "Working-folder sync with an activity record",
             ],
         },
     ],
