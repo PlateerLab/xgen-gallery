@@ -27,6 +27,7 @@ import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
 import { DexArt } from "@/components/dex-art";
+import { DexOnDeviceScreens } from "@/components/dexon-device-screens";
 import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
@@ -1093,37 +1094,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                         {/* 대표 제품 화면 */}
                                         <div className={flip ? "lg:order-1" : ""}>
                                             {i === 0 ? (
-                                                <div className="relative pb-[13%] pr-[8%] sm:pb-[11%] sm:pr-[10%]">
-                                                    <figure className="relative overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
-                                                        <div className="absolute left-3 top-3 z-10 rounded-md border border-white/70 bg-white/95 px-2.5 py-1 text-[11px] font-bold text-[var(--color-ink)] shadow-sm">
-                                                            Vibe Coding
-                                                        </div>
-                                                        <Image
-                                                            src="/product/dexon-vibe-coding-video.jpg"
-                                                            alt={en ? "DexOn vibe coding video scene where an agent creates project files from a natural-language request" : "DexOn 바이브코딩 영상 장면 — Agent가 자연어 요청을 바탕으로 프로젝트 파일을 생성하는 화면"}
-                                                            width={1920}
-                                                            height={1080}
-                                                            sizes="(max-width: 1024px) 92vw, 560px"
-                                                            className="h-auto w-full"
-                                                        />
-                                                    </figure>
-                                                    <figure className="absolute bottom-0 right-0 w-[54%] overflow-hidden rounded-xl border-2 border-white bg-white shadow-[0_22px_48px_-18px_rgba(20,40,80,0.5)] sm:w-[48%]">
-                                                        <div className="absolute left-2 top-2 z-10 rounded-md border border-white/70 bg-white/95 px-2 py-1 text-[10px] font-bold text-[var(--color-ink)] shadow-sm">
-                                                            Full Coding
-                                                        </div>
-                                                        <Image
-                                                            src="/product/dexon-full-coding-video.jpg"
-                                                            alt={en ? "DexOn full-coding video scene showing generated React code ready for direct editing" : "DexOn 풀코딩 영상 장면 — 생성된 React 코드를 IDE에서 직접 확인하고 편집하는 화면"}
-                                                            width={1920}
-                                                            height={1080}
-                                                            sizes="(max-width: 640px) 52vw, 280px"
-                                                            className="h-auto w-full"
-                                                        />
-                                                    </figure>
-                                                    <p className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
-                                                        {en ? "Vibe coding and full coding, together in DexOn" : "바이브코딩과 풀코딩을 하나의 DexOn 작업환경에서"}
-                                                    </p>
-                                                </div>
+                                                <DexOnDeviceScreens locale={locale} />
                                             ) : (
                                                 <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
                                                     <Image
