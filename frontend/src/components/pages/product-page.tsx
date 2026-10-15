@@ -1124,7 +1124,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                         {en ? "Vibe coding and full coding, together in DexOn" : "바이브코딩과 풀코딩을 하나의 DexOn 작업환경에서"}
                                                     </p>
                                                     <Link
-                                                        href={localeHref("/vibe-coding", locale)}
+                                                        href={localeHref(locale, "/vibe-coding")}
                                                         className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#185aea] hover:underline"
                                                     >
                                                         {en ? "Explore vibe coding" : "바이브코딩 자세히 보기"}
