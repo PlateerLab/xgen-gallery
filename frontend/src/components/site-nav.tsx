@@ -143,7 +143,7 @@ function DropdownItem({
                                                     {paren ? (
                                                         <>
                                                             {paren[1]}
-                                                            <span className="block text-[11px] leading-tight text-[var(--color-ink-subtle)]/70">
+                                                            <span className="block text-[10px] font-normal leading-tight text-[var(--color-ink-subtle)]/70">
                                                                 ({paren[2]})
                                                             </span>
                                                         </>
@@ -676,7 +676,9 @@ export function SiteNav({
                                                                                                 onClick={close}
                                                                                                 className="block py-1.5 text-[14.5px] text-[var(--color-ink-subtle)] transition hover:text-[var(--color-ink)]"
                                                                                             >
-                                                                                                {navLabel(gc, locale)}
+                                                                                                {gc.id === "xgen-dex" ? (
+                                                                                                    <>DexOn<span className="block text-[10px] font-normal leading-tight text-[var(--color-ink-subtle)]/70">(Device Extension On)</span></>
+                                                                                                ) : navLabel(gc, locale)}
                                                                                             </Link>
                                                                                         ))}
                                                                                 </div>

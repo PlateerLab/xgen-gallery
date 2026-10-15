@@ -27,7 +27,7 @@ const ROTATE_MS = 6000;
  * 첫 장(DexOn)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
  * 더 오래 둔다. 나머지는 모두 6초.
  */
-const SLIDE_MS = [16000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
+const SLIDE_MS = [21000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
 // 순서: DexOn 코딩 → DexOn → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
