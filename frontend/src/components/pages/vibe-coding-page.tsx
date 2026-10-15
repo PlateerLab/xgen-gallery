@@ -13,7 +13,7 @@ import type { Locale } from "@/lib/i18n";
 
 const COPY = {
     ko: {
-        badge: "XGEN · DexOn Component",
+        badge: "XGEN · DexOn Workspace",
         title: "바이브코딩으로 Agent와 App을 만듭니다",
         lead: "DexOn에서 원하는 업무를 자연어로 설명하면 Agent가 프로젝트 문맥을 읽고 코드를 작성합니다. Agent 제작부터 업무용 App 구현, 실행·테스트·오류 수정까지 한 흐름으로 이어집니다.",
         ctaVideo: "실제 화면으로 보기",
@@ -45,7 +45,7 @@ const COPY = {
         closingCta: "XGEN 무료 체험",
     },
     en: {
-        badge: "XGEN · DexOn Component",
+        badge: "XGEN · DexOn Workspace",
         title: "Build agents and apps with vibe coding",
         lead: "Describe the work you want inside DexOn and the agent reads the project context and writes the code. Agent creation, business-app implementation, execution, testing, and error correction stay in one continuous flow.",
         ctaVideo: "Watch it in action",
