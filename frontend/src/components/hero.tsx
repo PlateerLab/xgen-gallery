@@ -37,7 +37,7 @@ const SLIDE_MS = [16000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 // 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
-    "/hero-dex-vibe-bg.mp4",
+    "/hero-dex-vibe-dashboard-bg.mp4",
     "/hero-dex.mp4",
     "/hero-slide2.mp4",
     "/hero-security.jpeg",
@@ -597,6 +597,7 @@ export function Hero({
                                 videoRefs.current[i] = el;
                             }}
                             autoPlay={i === 0}
+                            poster={i === 0 ? "/hero-dex-vibe-dashboard-poster.jpg" : undefined}
                             loop
                             muted
                             playsInline
