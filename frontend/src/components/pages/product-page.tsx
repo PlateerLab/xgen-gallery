@@ -29,6 +29,7 @@ import { EasyModeArt } from "@/components/easy-mode-art";
 import { DexArt } from "@/components/dex-art";
 import { DexOnDeviceScreens } from "@/components/dexon-device-screens";
 import { GovernanceApprovalScreens } from "@/components/governance-approval-screens";
+import { OperationsScreens } from "@/components/operations-screens";
 import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
@@ -1098,6 +1099,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                 <DexOnDeviceScreens locale={locale} />
                                             ) : i === 4 ? (
                                                 <GovernanceApprovalScreens locale={locale} />
+                                            ) : i === 5 ? (
+                                                <OperationsScreens locale={locale} />
                                             ) : (
                                                 <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
                                                     <Image
