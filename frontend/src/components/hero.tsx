@@ -233,7 +233,7 @@ function DexSlide() {
             <h1 className={cn(H1_CLS, "mt-7")}>
                 {locale === "ko" ? (
                     <>
-                        데스크톱뿐 아니라 어떤 디바이스에서도
+                        어떤 Device에서도
                         <br />
                         업무를 수행하는 AI Agent
                     </>
@@ -241,7 +241,7 @@ function DexSlide() {
                     <>
                         An AI agent that does the work
                         <br />
-                        on any device — not just your desktop
+                        on any device
                     </>
                 )}
             </h1>
