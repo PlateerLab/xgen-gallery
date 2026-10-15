@@ -68,7 +68,7 @@ Geny는 이 질문에서 출발했습니다. "시스템마다 AI를 따로 붙�
 
 단계별 구성을 비교하면 다음과 같습니다.
 
-<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>단계</th><th>아키텍처</th><th>애플리케이션/컴포넌트</th><th>핵심 구성요소</th></tr></thead><tbody><tr><td>Agentflow</td><td>단일 SPA + MSA</td><td>XGEN (단일 제품)</td><td>프런트엔드, Agentflow 엔진, 모델 관리, MCP Station, 매뉴얼 생성, 팀 채팅</td></tr><tr><td><strong>Geny</strong></td><td>멀티 애플리케이션 + MSA</td><td><strong>Agentflow · Geny · DexOn</strong></td><td>+ Agent 서버 런타임(Geny), 온톨로지 엔진(Omnifuse), 모델 하네스(CLI), 멀티 OS 데스크톱(DexOn)</td></tr></tbody></table></div>
+<div style="max-width:100%;overflow-x:auto" tabindex="0" role="region" aria-label="가로로 스크롤할 수 있는 표"><table><thead><tr><th>핵심엔진</th><th>아키텍처</th><th>애플리케이션/컴포넌트</th><th>핵심 구성요소</th></tr></thead><tbody><tr><td>Agentflow</td><td>단일 SPA + MSA</td><td>XGEN (단일 제품)</td><td>프런트엔드, Agentflow 엔진, 모델 관리, MCP Station, 매뉴얼 생성, 팀 채팅</td></tr><tr><td><strong>Geny</strong></td><td>멀티 애플리케이션 + MSA</td><td><strong>Agentflow · Geny · DexOn</strong></td><td>+ Agent 서버 런타임(Geny), 온톨로지 엔진(Omnifuse), 모델 하네스(CLI), 멀티 OS 데스크톱(DexOn)</td></tr></tbody></table></div>
 
 ![그림 1. Geny 현재 시스템 구조](/blog/geny-to-lucy-evolving-platform-1.svg)
 
