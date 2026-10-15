@@ -172,14 +172,15 @@ const DIFFERENTIATORS: {
         icon: Code2,
         en: "Vibe Coding in DexOn",
         ko: "Vibe Coding in DexOn",
-        tagline: "DexOn 안에서 바이브코딩과 풀코딩을 모두 사용할 수 있습니다",
-        desc: "자연어로 원하는 기능을 설명하는 바이브코딩부터 코드를 직접 작성·수정하는 풀코딩까지 DexOn 안에서 이어집니다. Agent가 프로젝트 문맥을 함께 활용하며 실행·테스트·오류 수정 과정을 한 흐름으로 지원합니다.",
+        tagline: "바이브코딩으로 Agent와 App을 만듭니다",
+        desc: "자연어로 Agent와 App의 목적을 설명하는 바이브코딩부터 코드를 직접 작성·수정하는 풀코딩까지 DexOn 안에서 이어집니다. 프로젝트 문맥을 활용해 구현·실행·테스트·오류 수정을 한 흐름으로 진행합니다.",
         items: [
             "자연어 중심의 바이브코딩",
             "직접 작성·수정하는 풀코딩",
             "프로젝트 문맥과 기존 코드 활용",
             "실행·테스트·오류 수정 반복",
         ],
+        href: "/vibe-coding",
     },
     {
         icon: MonitorSmartphone,

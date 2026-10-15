@@ -86,8 +86,8 @@ export const PRODUCT_EN = {
     differentiators: [
         {
             ko: "Vibe Coding in DexOn",
-            tagline: "Use both vibe coding and full coding inside DexOn",
-            desc: "DexOn supports both vibe coding, where you describe what to build in natural language, and full coding, where you write and revise the code directly. The agent works with the project context and supports execution, testing, and error correction in one continuous flow.",
+            tagline: "Build agents and apps with vibe coding",
+            desc: "Inside DexOn, move from vibe coding—describing the agent or app you want in natural language—to hands-on code editing. Project context, implementation, execution, testing, and error correction stay in one continuous flow.",
             items: [
                 "Vibe coding with natural-language instructions",
                 "Full coding with direct code editing",
