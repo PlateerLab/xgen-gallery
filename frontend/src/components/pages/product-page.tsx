@@ -210,6 +210,7 @@ const DIFFERENTIATORS: {
             "단계별 가이드형 구성",
             "약 90초 만에 생성·조립",
         ],
+        href: "/easy-mode",
     },
     {
         icon: Compass,

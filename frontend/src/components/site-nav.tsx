@@ -123,12 +123,8 @@ function DropdownItem({
                                     </Link>
                                 )}
                                 {grand.length > 0 && (
-                                    /*
-                                      2열로 깐다. 네 개를 세로로 세우면 부모 목록이
-                                      그만큼 밀려 「핵심 기능」 아래가 아니라 별도
-                                      블록처럼 보였다.
-                                    */
-                                    <div className="mb-1 ml-3 grid grid-cols-2 border-l border-[var(--color-line)] pl-2">
+                                    /* 기능 순서를 위에서 아래로 명확하게 보여 준다. */
+                                    <div className="mb-1 ml-3 grid grid-cols-1 border-l border-[var(--color-line)] pl-2">
                                         {grand.map((g) => {
                                             /*
                                               「DexOn (Device Extension On)」 처럼 이름 뒤에 풀이가

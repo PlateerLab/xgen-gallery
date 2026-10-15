@@ -320,18 +320,12 @@ export const NAV_GROUPS: NavGroup[] = [
                         labelKo: "핵심 기능 · 핵심 기술",
                         id: "features",
                         route: "/product#features",
-                        // 핵심 기능 4종 — /product#build 의 특장점 카드와 같은 목록이고,
-                        // 각 항목은 그 카드의 「자세히 보기」와 같은 곳으로 간다.
-                        //
-                        // 이지모드만 전용 페이지가 없다 — 네 장을 한 줄로 보여 주는
-                        // /product#build 로 보낸다. 전용 페이지가 생기면 route 만 바꾸면 된다.
-                        // 넷 다 XGEN 주요 기능 이름이라 국·영문을 같게 둔다 — labelKo 를 두지 않으면
-                        // navLabel 이 label 로 떨어진다.
+                        // 제품 카드와 동일한 순서로 각 기능의 상세 랜딩에 연결한다.
                         children: [
-                            { label: "EasyMode", id: "easy-mode", route: "/product#build" },
+                            { label: "Vibe Coding in DexOn", id: "vibe-coding", route: "/vibe-coding" },
+                            { label: "DexOn", id: "xgen-dex", route: "/xgen-dex" },
+                            { label: "EasyMode", id: "easy-mode", route: "/easy-mode" },
                             { label: "PathFinder", id: "pathfinder", route: "/pathfinder" },
-                            { label: "FloUI", id: "floui", route: "/floui" },
-                            { label: "DexOn (Device Extension On)", id: "xgen-dex", route: "/xgen-dex" },
                         ],
                     },
                     { label: "On-Premise · Security · Governance", labelKo: "온프레미스·보안·거버넌스", id: "on-premise", route: "/security-and-governance" },

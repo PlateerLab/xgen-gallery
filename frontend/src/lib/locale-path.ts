@@ -37,6 +37,7 @@ export const EN_ROUTES: readonly string[] = [
     "/polar",
     "/pathfinder",
     "/vibe-coding",
+    "/easy-mode",
     "/floui",
     "/enablement",
     "/product",
