@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BadgeCheck, Check, ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
+import { XGEN_GS_CERTIFICATION } from "@/lib/certifications";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
@@ -106,6 +107,9 @@ export function CertificationQuality({
 
                 <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                     {t.gsBody}
+                </p>
+                <p className="mt-3 text-[14px] font-semibold text-[var(--color-ink)]">
+                    {locale === "ko" ? "인증번호" : "Certificate No."}: {XGEN_GS_CERTIFICATION.no}
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">

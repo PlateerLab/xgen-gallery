@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { XGEN_GS_CERTIFICATION } from "@/lib/certifications";
 import { Award, ShieldCheck, BadgeCheck, Check, ArrowRight } from "lucide-react";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
@@ -129,6 +130,9 @@ export function QualitySecurity({ locale = "ko" }: { locale?: Locale }) {
                                 </p>
                                 <p className="text-[13px] font-semibold text-[#1f9d57]">
                                     {t.certGrade}
+                                </p>
+                                <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+                                    {locale === "ko" ? "인증번호" : "Certificate No."}: {XGEN_GS_CERTIFICATION.no}
                                 </p>
                             </div>
                         </div>

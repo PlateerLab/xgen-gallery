@@ -77,3 +77,6 @@ export const CERTIFICATIONS: Certification[] = [
         noteEn: "Reissued following a company name change (previously 21Store I&C)",
     },
 ];
+
+/** 홈과 제품 페이지에서도 동일한 XGEN 인증 정보를 사용한다. */
+export const XGEN_GS_CERTIFICATION = CERTIFICATIONS.find((cert) => cert.name === "XGEN")!;
