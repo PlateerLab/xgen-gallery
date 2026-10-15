@@ -130,9 +130,9 @@ export const PRODUCT_EN = {
 
     features: [
         {
-            ko: "Agentflow design",
-            desc: "Connect nodes by drag and drop on the canvas to design an AI workflow visually. Combine LLM calls, tool execution, and branching without code.",
-            items: ["Visual node-based editing", "Multi-agent collaboration", "Version control and execution logs"],
+            ko: "Build agents and apps in DexOn",
+            desc: "Inside DexOn (formerly DeX), move between vibe coding—describing what you want in natural language—and full coding with direct code control. Build, run, test, and refine agents and apps in one continuous workspace.",
+            items: ["Build agents and apps with vibe coding", "Edit implementation details with full coding", "Run, test, and fix errors in one flow"],
         },
         {
             ko: "Knowledge and retrieval",

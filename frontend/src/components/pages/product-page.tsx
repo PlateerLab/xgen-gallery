@@ -232,11 +232,11 @@ const FEATURES: {
     items: string[];
 }[] = [
     {
-        icon: Workflow,
-        tag: "Agentflow · Canvas",
-        ko: "에이전트플로우 설계",
-        desc: "캔버스에서 노드를 드래그&드롭으로 연결해 AI 업무 흐름을 시각적으로 설계합니다. 코딩 없이 LLM 호출·도구 실행·분기를 조합합니다.",
-        items: ["노드 기반 시각 편집", "다중 Agent 협업 구성", "버전 관리 · 실행 로그"],
+        icon: Code2,
+        tag: "DexOn · Vibe & Full Coding",
+        ko: "DexOn에서 만드는 Agent와 App",
+        desc: "DexOn(구 DeX)에서 자연어로 요구사항을 설명하는 바이브코딩과 개발자가 직접 코드를 다루는 풀코딩을 한 흐름으로 이어갑니다. Agent와 App을 만들고 실행·테스트·수정하는 전 과정을 같은 작업환경에서 진행합니다.",
+        items: ["바이브코딩으로 Agent·App 구현", "풀코딩으로 세부 코드 직접 편집", "실행·테스트·오류 수정까지 한 흐름"],
     },
     {
         icon: Database,
@@ -1092,19 +1092,60 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                         </div>
                                         {/* 대표 제품 화면 */}
                                         <div className={flip ? "lg:order-1" : ""}>
-                                            <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
-                                                <Image
-                                                    src={sc.img}
-                                                    alt={sc.alt}
-                                                    width={sc.w}
-                                                    height={sc.h}
-                                                    sizes="(max-width: 1024px) 100vw, 560px"
-                                                    className="h-auto w-full"
-                                                />
-                                                <figcaption className="border-t border-[var(--color-line)] bg-white px-5 py-3 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
-                                                    {sc.caption}
-                                                </figcaption>
-                                            </figure>
+                                            {i === 0 ? (
+                                                <div className="relative pb-[13%] pr-[8%] sm:pb-[11%] sm:pr-[10%]">
+                                                    <figure className="relative overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
+                                                        <div className="absolute left-3 top-3 z-10 rounded-md border border-white/70 bg-white/95 px-2.5 py-1 text-[11px] font-bold text-[var(--color-ink)] shadow-sm">
+                                                            Vibe Coding
+                                                        </div>
+                                                        <Image
+                                                            src="/newsletter/vol-4/xgen-dex-vscode.jpg"
+                                                            alt={en ? "DexOn vibe coding workspace where an agent understands project context and assists implementation" : "DexOn 바이브코딩 작업환경 — Agent가 프로젝트 문맥을 이해하고 구현을 돕는 화면"}
+                                                            width={1200}
+                                                            height={742}
+                                                            sizes="(max-width: 1024px) 92vw, 560px"
+                                                            className="h-auto w-full"
+                                                        />
+                                                    </figure>
+                                                    <figure className="absolute bottom-0 right-0 w-[54%] overflow-hidden rounded-xl border-2 border-white bg-white shadow-[0_22px_48px_-18px_rgba(20,40,80,0.5)] sm:w-[48%]">
+                                                        <div className="absolute left-2 top-2 z-10 rounded-md border border-white/70 bg-white/95 px-2 py-1 text-[10px] font-bold text-[var(--color-ink)] shadow-sm">
+                                                            Full Coding
+                                                        </div>
+                                                        <Image
+                                                            src="/newsletter/vol-4/xgen-dex-cli.jpg"
+                                                            alt={en ? "DexOn full-coding workspace for direct code editing and execution" : "DexOn 풀코딩 작업환경 — 코드를 직접 편집하고 실행하는 화면"}
+                                                            width={1200}
+                                                            height={591}
+                                                            sizes="(max-width: 640px) 52vw, 280px"
+                                                            className="h-auto w-full"
+                                                        />
+                                                    </figure>
+                                                    <p className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
+                                                        {en ? "Vibe coding and full coding, together in DexOn" : "바이브코딩과 풀코딩을 하나의 DexOn 작업환경에서"}
+                                                    </p>
+                                                    <Link
+                                                        href={localeHref("/vibe-coding", locale)}
+                                                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#185aea] hover:underline"
+                                                    >
+                                                        {en ? "Explore vibe coding" : "바이브코딩 자세히 보기"}
+                                                        <ChevronRight className="h-4 w-4" />
+                                                    </Link>
+                                                </div>
+                                            ) : (
+                                                <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
+                                                    <Image
+                                                        src={sc.img}
+                                                        alt={sc.alt}
+                                                        width={sc.w}
+                                                        height={sc.h}
+                                                        sizes="(max-width: 1024px) 100vw, 560px"
+                                                        className="h-auto w-full"
+                                                    />
+                                                    <figcaption className="border-t border-[var(--color-line)] bg-white px-5 py-3 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
+                                                        {sc.caption}
+                                                    </figcaption>
+                                                </figure>
+                                            )}
                                         </div>
                                     </div>
                                 );
