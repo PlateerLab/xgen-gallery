@@ -39,11 +39,11 @@ DexOn is being built to close that gap.
 
 ## What is DexOn?
 
-DexOn is a **device interface installed on PCs, phones, and tablets that connects the AI agents created and managed in XGEN with the user's actual working environment.**
+DexOn is both a **Device Interface connecting XGEN agents to real working environments on PCs, phones, and tablets, and a Workspace where users work alongside those agents.**
 
-If XGEN is where you build and manage agents for work, DexOn is what lets those agents carry that work out on the user's PC, phone, or tablet.
+While XGEN is where agents are built and managed, DexOn is where users request work, handle documents and code, and review execution results. Users can review and refine deliverables with their agents in one workspace.
 
-Its purpose differs from an app that simply makes XGEN chat available on a device.
+Work started on a PC can continue on a tablet or phone, keeping users in the same workflow as they move between devices.
 
 Through DexOn, an agent can use local files and applications within a permitted scope, use the browser, and run the tools and skills it needs to produce an actual result.
 
@@ -51,9 +51,9 @@ Put simply:
 
 **XGEN is where agents are built and managed.**
 
-**DexOn is where those agents connect to the user's environment so the work can actually happen.**
+**DexOn connects agents to real working environments and provides the workspace where users work alongside them.**
 
-The XGEN workspace responsible for this role is called **DexOn** (Device Extension On). It acts as the execution interface between agents on the server and the user's local working environment, which is why `xgen-connector` still appears in installer and repository names.
+**DexOn** (Device Extension On) combines a **device interface** for connecting files, browsers, and applications with a **user workspace** for requesting, executing, reviewing, and completing work.
 
 ---
 
