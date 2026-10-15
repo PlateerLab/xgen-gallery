@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, AppWindow, Bot, CheckCircle2, Code2, MessageSquareText, PlayCircle, TerminalSquare } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { SceneBackground } from "@/components/scene-background";
+import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { VibeCodingVideo } from "@/components/vibe-coding-video";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
@@ -104,23 +106,33 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                 ]),
             ]} />
 
-            <main className="bg-white pt-[var(--nav-h,84px)] text-[var(--color-ink)]">
-                <section className="bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-                        <p className="font-mono text-[12px] uppercase tracking-widest text-[#2461d8]">{t.badge}</p>
-                        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-[1.12] tracking-tight md:text-6xl">{t.title}</h1>
-                        <p className="mt-6 max-w-3xl text-[17px] leading-8 text-[var(--color-ink-muted)] md:text-[19px]">{t.lead}</p>
-                        <div className="mt-9 flex flex-wrap gap-3">
-                            <a href="#demo" className="inline-flex items-center gap-2 bg-[#2461d8] px-5 py-3 text-[14px] font-semibold text-white">
+                <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+                    <SceneBackground concept="products" />
+                    <div className="relative mx-auto w-full max-w-4xl px-6 pt-16 text-center">
+                        <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm"><Code2 className="h-3.5 w-3.5 text-[#7dd3fc]" />{t.badge}</p>
+                        <h1 className="mx-auto mt-5 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">{t.title}</h1>
+                        <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80">{t.lead}</p>
+                        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+                            <Link href={localeHref(locale, "/xgen-trial")} className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110">
+                                {t.closingCta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <a href="#demo" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white">
                                 <PlayCircle className="h-4 w-4" />{t.ctaVideo}
                             </a>
-                            <Link href={localeHref(locale, "/product#build")} className="inline-flex items-center gap-2 border border-[var(--color-line)] bg-white px-5 py-3 text-[14px] font-semibold">
-                                {t.ctaProduct}<ArrowRight className="h-4 w-4" />
-                            </Link>
                         </div>
                     </div>
                 </section>
 
+            <main className="bg-white text-[var(--color-ink)]">
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto max-w-4xl px-6 py-14">
+                        <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 text-center md:p-8">
+                            <div className="mx-auto mb-6 max-w-lg"><VibeCodingArt locale={locale} /></div>
+                            <p className="text-[19px] font-bold tracking-tight text-[#2461d8] md:text-[22px]">{t.modesTitle}</p>
+                            <p className="mt-3 text-[15px] leading-7 text-[var(--color-ink-muted)]">{t.modesLead}</p>
+                        </div>
+                    </div>
+                </section>
                 <section className="border-t border-[var(--color-line)]">
                     <div className="mx-auto max-w-7xl px-6 py-20">
                         <p className="font-mono text-[12px] tracking-widest text-[var(--color-ink-subtle)]">{t.overviewEyebrow}</p>

@@ -1123,13 +1123,6 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                     <p className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
                                                         {en ? "Vibe coding and full coding, together in DexOn" : "바이브코딩과 풀코딩을 하나의 DexOn 작업환경에서"}
                                                     </p>
-                                                    <Link
-                                                        href={localeHref(locale, "/vibe-coding")}
-                                                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#185aea] hover:underline"
-                                                    >
-                                                        {en ? "Explore vibe coding" : "바이브코딩 자세히 보기"}
-                                                        <ChevronRight className="h-4 w-4" />
-                                                    </Link>
                                                 </div>
                                             ) : (
                                                 <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
