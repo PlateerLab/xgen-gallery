@@ -73,10 +73,13 @@ export function DexOnDeviceScreens({ locale }: { locale: Locale }) {
                     <text x="108" y="396" textAnchor="middle">Tablet</text>
                     <text x="539" y="396" textAnchor="middle">Mobile Phone</text>
                 </g>
-                <g fontFamily="Pretendard, system-ui, sans-serif" fontSize="15" fontWeight="700" fill="var(--color-ink)">
-                    <text x="304" y="420" textAnchor="middle">Full Coding</text>
-                    <text x="108" y="420" textAnchor="middle">Vibe Coding</text>
-                    <text x="539" y="420" textAnchor="middle">Vibe Coding</text>
+                <g data-coding-mode-pills fontFamily="Pretendard, system-ui, sans-serif" fontSize="15" fontWeight="700">
+                    <rect x="236" y="402" width="136" height="30" rx="15" className="fill-blue-100" />
+                    <rect x="40" y="402" width="136" height="30" rx="15" className="fill-violet-100" />
+                    <rect x="471" y="402" width="136" height="30" rx="15" className="fill-violet-100" />
+                    <text x="304" y="422" textAnchor="middle" className="fill-blue-800">Full Coding</text>
+                    <text x="108" y="422" textAnchor="middle" className="fill-violet-800">Vibe Coding</text>
+                    <text x="539" y="422" textAnchor="middle" className="fill-violet-800">Vibe Coding</text>
                 </g>
             </svg>
             <figcaption className="mt-4 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
