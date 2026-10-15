@@ -170,12 +170,13 @@ const DIFFERENTIATORS: {
 }[] = [
     {
         icon: Code2,
-        en: "Vibe Coding",
-        ko: "Vibe Coding",
-        tagline: "말로 설명하면 코드 작성부터 실행 검증까지 이어집니다",
-        desc: "자연어로 원하는 기능과 수정 사항을 설명하면 Agent가 프로젝트 문맥을 읽고 코드를 작성·수정합니다. 실행 결과를 확인하고 오류를 고치는 과정까지 한 흐름에서 반복합니다.",
+        en: "Vibe Coding in DexOn",
+        ko: "Vibe Coding in DexOn",
+        tagline: "DexOn 안에서 바이브코딩과 풀코딩을 모두 사용할 수 있습니다",
+        desc: "자연어로 원하는 기능을 설명하는 바이브코딩부터 코드를 직접 작성·수정하는 풀코딩까지 DexOn 안에서 이어집니다. Agent가 프로젝트 문맥을 함께 활용하며 실행·테스트·오류 수정 과정을 한 흐름으로 지원합니다.",
         items: [
-            "자연어 기반 코드 작성·수정",
+            "자연어 중심의 바이브코딩",
+            "직접 작성·수정하는 풀코딩",
             "프로젝트 문맥과 기존 코드 활용",
             "실행·테스트·오류 수정 반복",
         ],
@@ -826,7 +827,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* 특장점 — Vibe Coding·DexOn·EasyMode·PathFinder (FloUI는 현재 비노출) */}
+                {/* 특장점 — Vibe Coding in DexOn·DexOn·EasyMode·PathFinder (FloUI는 현재 비노출) */}
                 {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
                 <section
                     id="build"
@@ -849,7 +850,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                     key={d.en}
                                     className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                 >
-                                    {d.en === "Vibe Coding" && (
+                                    {d.en === "Vibe Coding in DexOn" && (
                                         <div className="mb-6">
                                             <VibeCodingArt locale={locale} />
                                         </div>

@@ -5,13 +5,13 @@ const COPY = {
         prompt: "자연어로 요청",
         code: "코드 작성 · 수정",
         verify: "실행 · 검증",
-        aria: "자연어 요청을 코드 작성과 수정, 실행 검증으로 이어가는 Vibe Coding 흐름",
+        aria: "DexOn 안에서 자연어 요청과 직접 코드 수정을 실행 검증으로 이어가는 Vibe Coding과 Full Coding 흐름",
     },
     en: {
         prompt: "Natural-language request",
         code: "Write · revise code",
         verify: "Run · verify",
-        aria: "A Vibe Coding flow that turns a natural-language request into code changes and verified execution",
+        aria: "A Vibe Coding and Full Coding flow in DexOn that connects natural-language requests and direct code edits to verified execution",
     },
 } satisfies Record<Locale, Record<string, string>>;
 
