@@ -7,7 +7,7 @@ cover: /blog/xgen-dex-desktop-connect.svg
 thumb: /blog/xgen-dex-desktop-connect-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["DexOn", "Device Extension On", "Agentic AI", "AI governance", "Component"]
+tags: ["DexOn", "Device Extension On", "Agentic AI", "AI governance", "Workspace"]
 faq:
   - q: "Is DexOn just an XGEN chat app for devices?"
     a: "No. Its purpose differs from an app that simply lets you use XGEN chat on a device. Installed on PCs, phones, and tablets, DexOn is a device interface that lets agents built in XGEN use the files, applications, and browser on each device to produce real deliverables."
@@ -53,7 +53,7 @@ Put simply:
 
 **DexOn is where those agents connect to the user's environment so the work can actually happen.**
 
-The XGEN component responsible for this role is called **DexOn** (Device Extension On). It acts as the execution interface between agents on the server and the user's local working environment, which is why `xgen-connector` still appears in installer and repository names.
+The XGEN workspace responsible for this role is called **DexOn** (Device Extension On). It acts as the execution interface between agents on the server and the user's local working environment, which is why `xgen-connector` still appears in installer and repository names.
 
 ---
 

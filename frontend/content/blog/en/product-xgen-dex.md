@@ -6,11 +6,11 @@ cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer AI Labs"
 category: "Product news"
-tags: ["DexOn", "Device Extension On", "Agentic AI", "On-premise", "Component"]
+tags: ["DexOn", "Device Extension On", "Agentic AI", "On-premise", "Workspace"]
 draft: false
 ---
 
-**In one line —** DexOn is a Device Extension On component that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
+**In one line —** DexOn is a Device Extension On workspace that connects agents running on the XGEN Server to the user's desktop environment, so local environments and applications can be used safely.
 
 Enterprise AI is no longer a chatbot that answers questions. It is moving toward agents that understand the work, connect to the systems already in place, and carry out real tasks on the user's behalf.
 
@@ -91,6 +91,6 @@ DexOn is in the final stage of development at the lab.
 
 We see it as more than a desktop connection tool: an execution layer that joins Enterprise AI and the user's desktop into a single working experience.
 
-Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. DexOn is the Device Extension On component inside XGEN that completes that experience.
+Enterprise AI is no longer decided by model performance alone. What comes next is how naturally an enterprise can use AI while keeping the working environment it already has. DexOn is the Device Extension On workspace inside XGEN that completes that experience.
 
-We will introduce the DexOn component's availability and capabilities here on the blog, step by step. For an XGEN demo or a conversation about adoption, [get in touch](/en/contact) any time.
+We will introduce the DexOn workspace's availability and capabilities here on the blog, step by step. For an XGEN demo or a conversation about adoption, [get in touch](/en/contact) any time.

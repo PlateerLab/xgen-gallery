@@ -190,7 +190,7 @@ const DIFFERENTIATORS: {
         en: "DexOn",
         ko: "DexOn",
         tagline: "만든 Agent를 직원의 기기에서 실행합니다",
-        desc: "DexOn은 XGEN 안에서 Agent와 사용자의 PC·핸드폰·태블릿 업무환경을 연결하는 Device Interface 컴포넌트입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
+        desc: "DexOn은 XGEN 안에서 Agent와 사용자의 PC·핸드폰·태블릿 업무환경을 연결하는 Device Interface 워크스페이스입니다. 허용된 범위 안에서 각 기기의 파일과 애플리케이션을 활용해 실제 결과물을 만듭니다.",
         items: [
             "로컬 파일·애플리케이션 실행",
             "PC·핸드폰·태블릿 업무환경 연결",

@@ -254,13 +254,13 @@ function DexSlide() {
                 */}
                 {locale === "ko" ? (
                     <>
-                        XGEN의 DexOn 컴포넌트는 AI Agent를 사용자의 업무환경과 연결해{" "}
+                        XGEN의 DexOn 워크스페이스는 AI Agent를 사용자의 업무환경과 연결해{" "}
                         <br className="hidden sm:block" />
                         실제 업무를 수행하고 결과물을 완성합니다.
                     </>
                 ) : (
                     <>
-                        XGEN's DexOn component connects the AI agent to your working environment{" "}
+                        XGEN's DexOn workspace connects the AI agent to your working environment{" "}
                         <br className="hidden sm:block" />
                         to carry out real work and finish the deliverable.
                     </>

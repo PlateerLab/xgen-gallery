@@ -50,8 +50,8 @@ const TOUR_ITEMS: TourItem[] = [
         name: "DexOn",
         tagline: "Create",
         desc: {
-            ko: "XGEN의 DexOn 컴포넌트로 로컬 개발 환경과 Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
-            en: "Use XGEN's DexOn component to connect a local development environment to an agent, then write and modify code from natural-language instructions",
+            ko: "XGEN의 DexOn 워크스페이스로 로컬 개발 환경과 Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 과정을 실제 화면으로 소개합니다",
+            en: "Use XGEN's DexOn workspace to connect a local development environment to an agent, then write and modify code from natural-language instructions",
         },
         video: "https://www.youtube-nocookie.com/embed/0ql6M_P9qRw",
         poster: "https://img.youtube.com/vi/0ql6M_P9qRw/maxresdefault.jpg",

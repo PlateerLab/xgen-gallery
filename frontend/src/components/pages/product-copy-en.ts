@@ -98,7 +98,7 @@ export const PRODUCT_EN = {
         {
             ko: "DexOn",
             tagline: "Run the agents you built on your team's devices",
-            desc: "DexOn is XGEN's Device Interface component for connecting agents to the user's PC, phone, and tablet working environments. Within the scope you allow, it uses files and applications on each device to produce real deliverables.",
+            desc: "DexOn is XGEN's Device Interface workspace for connecting agents to the user's PC, phone, and tablet working environments. Within the scope you allow, it uses files and applications on each device to produce real deliverables.",
             items: [
                 "Runs against local files and applications",
                 "Connects PC, phone, and tablet environments",

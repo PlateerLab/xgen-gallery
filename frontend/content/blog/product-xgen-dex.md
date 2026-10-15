@@ -6,11 +6,11 @@ cover: /blog/product-xgen-dex.svg
 thumb: /blog/product-xgen-dex-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
-tags: ["DexOn", "Device Extension On", "Agentic AI", "온프레미스", "컴포넌트"]
+tags: ["DexOn", "Device Extension On", "Agentic AI", "온프레미스", "워크스페이스"]
 draft: false
 ---
 
-**한 줄 요약 —** DexOn은 XGEN Server에서 실행되는 Agent와 사용자의 데스크톱 환경을 연결해, 로컬 환경과 애플리케이션을 안전하게 활용할 수 있도록 지원하는 Device Extension On 컴포넌트입니다.
+**한 줄 요약 —** DexOn은 XGEN Server에서 실행되는 Agent와 사용자의 데스크톱 환경을 연결해, 로컬 환경과 애플리케이션을 안전하게 활용할 수 있도록 지원하는 Device Extension On 워크스페이스입니다.
 
 Enterprise AI는 더 이상 질문에 답하는 챗봇이 아닙니다. 업무를 이해하고, 기존 시스템에 연결되고, 사용자를 대신해 실제 작업을 수행하는 Agent로 옮겨가고 있습니다.
 
@@ -91,6 +91,6 @@ DexOn은 현재 연구소에서 개발 마무리 단계에 있습니다.
 
 단순한 데스크톱 연결 도구가 아니라, Enterprise AI와 사용자의 데스크톱을 하나의 업무 경험으로 잇는 실행 계층(Execution Layer)으로 보고 있습니다.
 
-이제 Enterprise AI의 경쟁력은 모델 성능만으로 결정되지 않습니다. 기업이 기존 업무 환경을 유지하면서 AI를 얼마나 자연스럽게 쓸 수 있는가가 다음 경쟁력이라고 봅니다. DexOn은 그 경험을 완성하기 위해 XGEN 안에 포함되는 Device Extension On 컴포넌트입니다.
+이제 Enterprise AI의 경쟁력은 모델 성능만으로 결정되지 않습니다. 기업이 기존 업무 환경을 유지하면서 AI를 얼마나 자연스럽게 쓸 수 있는가가 다음 경쟁력이라고 봅니다. DexOn은 그 경험을 완성하기 위해 XGEN 안에 포함되는 Device Extension On 워크스페이스입니다.
 
-DexOn 컴포넌트의 제공 일정과 주요 기능은 앞으로 블로그를 통해 순차적으로 소개하겠습니다. XGEN 데모나 도입 상담을 원하시면 언제든 [문의해 주세요](/contact).
+DexOn 워크스페이스의 제공 일정과 주요 기능은 앞으로 블로그를 통해 순차적으로 소개하겠습니다. XGEN 데모나 도입 상담을 원하시면 언제든 [문의해 주세요](/contact).
