@@ -150,9 +150,9 @@ export const PRODUCT_EN = {
             items: ["Deploy, embed, share", "Scheduled execution (cron)", "Version and deployment state"],
         },
         {
-            ko: "AI governance",
-            desc: "Manage AI usage through PII masking, risk grading, and control policy. Dual deployment and governance approval, scheduled reviews, and audit logs meet the control requirements.",
-            items: ["PII masking and risk grading", "Dual approval and scheduled review", "Change history and audit logs"],
+            ko: "AI risk review and approval routing",
+            desc: "Assign collaborating departments, governance officers, or information-security managers as approvers for an AI service risk review. Configure approval routes by organization and risk level, then manage every review, decision, and audit record consistently.",
+            items: ["Risk-based review requests", "Cross-functional, governance, and security approval routes", "Review decisions and audit records"],
         },
         {
             ko: "Dashboard and monitoring",
