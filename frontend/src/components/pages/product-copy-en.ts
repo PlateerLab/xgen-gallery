@@ -131,8 +131,8 @@ export const PRODUCT_EN = {
     features: [
         {
             ko: "Build agents and apps in DexOn",
-            desc: "Inside DexOn (formerly DeX), move between vibe coding—describing what you want in natural language—and full coding with direct code control. Build, run, test, and refine agents and apps in one continuous workspace.",
-            items: ["Build agents and apps with vibe coding", "Edit implementation details with full coding", "Run, test, and fix errors in one flow"],
+            desc: "Inside DexOn, move between vibe coding—describing what you want in natural language—and full coding with direct code control. Build, run, test, and refine agents and apps, then continue work started on a PC from a tablet or phone.",
+            items: ["Build agents and apps with vibe coding", "Edit implementation details with full coding", "Keep work moving across PC, tablet, and phone"],
         },
         {
             ko: "Knowledge and retrieval",
