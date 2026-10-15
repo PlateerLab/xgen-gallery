@@ -48,7 +48,7 @@ export const PRODUCT_EN = {
 
     stats: [
         ["100%", "On-premise operation", "Network separation · data sovereignty"],
-        ["80+", "Built-in tools and plugins", "Extensible with your own"],
+        ["110+", "Built-in tools and plugins", "Extensible with your own"],
         ["Grade 1", "National GS certification", "Verified by third-party testing"],
         // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생.
         [String(TOOLS.length), "Open-source libraries", "MIT · install with pip"],

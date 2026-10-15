@@ -80,7 +80,7 @@ const CHALLENGES: { q: string; desc: string; img: string; imgAlt: string }[] = [
 /** 숫자로 보는 XGEN — 실측 사실만(미검증 수치 금지). */
 const STATS: { n: string; label: string; sub: string }[] = [
     { n: "100%", label: "온프레미스 운영", sub: "망분리·데이터 주권" },
-    { n: "80+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
+    { n: "110+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
     { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
     // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생 — 라이브러리를 추가·삭제하면 자동 반영된다.
     { n: String(TOOLS.length), label: "오픈소스 라이브러리", sub: "MIT · pip 설치" },
