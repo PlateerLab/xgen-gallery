@@ -116,18 +116,18 @@ const COPY: Record<Locale, ArchCopy> = {
                 desc: "목적·비용·정확도에 따라 LLM을 선택하고, 정책·승인·감사 추적으로 운영을 통제합니다",
             },
         ],
-        referenceTitle: "XGEN 3.0 Enterprise AI 아키텍처",
+        referenceTitle: "XGEN Enterprise AI 아키텍처",
         referenceLead:
-            "접근 채널부터 지식·추론·계획·실행·운영, 모델·인프라까지 연결하는 XGEN 3.0 Enterprise AI 계층 구조",
-        securityTitle: "XGEN 3.0 온프레미스·보안 아키텍처",
+            "접근 채널부터 지식·추론·계획·실행·운영, 모델·인프라까지 연결하는 XGEN Enterprise AI 계층 구조",
+        securityTitle: "XGEN 온프레미스·보안 아키텍처",
         securityLead:
             "외부 요청은 인증 게이트웨이와 신뢰 경계를 통과한 뒤에만 내부 서비스와 AI 모델, 데이터에 접근합니다. 로컬 자원은 DexOn Client의 명시적 사용자 승인과 최소 권한을 통해서만 연결되며, 서버·로컬 실행 전 과정에 보안·감사·거버넌스 정책이 적용됩니다.",
         securityCta: "보안·거버넌스 통제 정책 자세히 보기",
-        platformTitle: "XGEN 3.0 플랫폼 아키텍처",
+        platformTitle: "XGEN 플랫폼 아키텍처",
         platformLead:
             "서버의 통제와 로컬의 실행 가능성을 하나로 연결하고, 계획·도구·업무 맥락을 끊김 없이 이어가는 Enterprise AI 플랫폼",
         platformNote:
-            "XGEN 3.0은 목표를 계획으로 전환하는 Harness Runtime과 중앙 Server Agent Runtime을 기반으로 동작합니다. 필요한 순간에만 DexOn Client를 통해 승인된 로컬 폴더·OS 기능·MCP 도구와 상호작용하며, 결과와 상태를 동기화합니다. 기존 AI Platform Core·RAG·Foundation Model·Infrastructure 역량 위에 로컬 최소 권한, 사용자 승인, 실행 추적, 즉시 중단을 결합했습니다.",
+            "XGEN은 목표를 계획으로 전환하는 Harness Runtime과 중앙 Server Agent Runtime을 기반으로 동작합니다. 필요한 순간에만 DexOn Client를 통해 승인된 로컬 폴더·OS 기능·MCP 도구와 상호작용하며, 결과와 상태를 동기화합니다. 기존 AI Platform Core·RAG·Foundation Model·Infrastructure 역량 위에 로컬 최소 권한, 사용자 승인, 실행 추적, 즉시 중단을 결합했습니다.",
         platformCta: "XGEN 제품 보기",
         caTitle: "코드 어시스턴트 아키텍처",
         caLead:
@@ -197,18 +197,18 @@ const COPY: Record<Locale, ArchCopy> = {
                 desc: "Choose an LLM by purpose, cost, and accuracy, and keep operations under control through policy, approval, and audit trails",
             },
         ],
-        referenceTitle: "XGEN 3.0 Enterprise AI architecture",
+        referenceTitle: "XGEN Enterprise AI architecture",
         referenceLead:
-            "The XGEN 3.0 Enterprise AI layers connecting access, knowledge, reasoning, planning, action, operations, models, and infrastructure",
-        securityTitle: "XGEN 3.0 on-premise and security architecture",
+            "The XGEN Enterprise AI layers connecting access, knowledge, reasoning, planning, action, operations, models, and infrastructure",
+        securityTitle: "XGEN on-premise and security architecture",
         securityLead:
             "An external request reaches internal services, AI models, and data only after passing the authentication gateway and trust boundary. Local resources connect only through explicit user approval and least privilege in DexOn Client, with security, audit, and governance applied across server and local execution.",
         securityCta: "More on security and governance controls",
-        platformTitle: "XGEN 3.0 platform architecture",
+        platformTitle: "XGEN platform architecture",
         platformLead:
             "An Enterprise AI platform that joins server-side control with local execution and carries plans, tools, and work context across environments without breaking continuity",
         platformNote:
-            "XGEN 3.0 runs on a Harness Runtime that turns goals into plans and a centrally governed Server Agent Runtime. Only when needed, DexOn Client connects approved local folders, OS capabilities, and MCP tools, then synchronizes results and state. Least privilege, user approval, execution traces, and an immediate kill switch extend the existing AI Platform Core, RAG, foundation-model, and infrastructure capabilities.",
+            "XGEN runs on a Harness Runtime that turns goals into plans and a centrally governed Server Agent Runtime. Only when needed, DexOn Client connects approved local folders, OS capabilities, and MCP tools, then synchronizes results and state. Least privilege, user approval, execution traces, and an immediate kill switch extend the existing AI Platform Core, RAG, foundation-model, and infrastructure capabilities.",
         platformCta: "See the XGEN product",
         caTitle: "Code Assistant architecture",
         caLead:
@@ -388,7 +388,7 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* XGEN 3.0 플랫폼 아키텍처 (공개-안전 구성) */}
+                {/* XGEN 플랫폼 아키텍처 (공개-안전 구성) */}
                 <section
                     id="platform"
                     className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"

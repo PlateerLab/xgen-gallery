@@ -41,7 +41,7 @@ import {
 import type { Locale } from "@/lib/i18n";
 
 /**
- * XGEN 3.0 플랫폼 아키텍처 맵.
+ * XGEN 플랫폼 아키텍처 맵.
  * 접근·콘솔 → 도메인·채널 → 에이전트·응용 → AI Platform 코어 → RAG·지식 →
  * 파운데이션 모델 → 인프라 계층 스택 + 전 계층 크로스커팅 거버넌스·보안 + 레퍼런스.
  * 컬러 토큰 — Primary #2563EB · Hover #EEF5FF · Section #F8FAFC · Border #E5E7EB ·
