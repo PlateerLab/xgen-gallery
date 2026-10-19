@@ -251,32 +251,6 @@ export const TOOLS: Tool[] = [
         language: "TypeScript",
         addedAt: "2026-09-07",
     },
-    {
-        id: "xgen-pdf",
-        repo: "xgen-pdf",
-        name: "PDF Engine",
-        tagline: "Permissive PDF parsing, rendering, and redaction",
-        description:
-            "An Apache-2.0 PDF engine for extracting positioned text and tables, rendering pages, searching content, and applying permanent redactions without an AGPL runtime dependency.",
-        category: "ingestion",
-        install: 'pip install "xgen-pdf @ https://github.com/PlateerLab/xgen-pdf/releases/download/v0.1.2/xgen_pdf-0.1.2-py3-none-any.whl"',
-        hasDemo: true,
-        language: "Python",
-        addedAt: "2026-10-12",
-    },
-    {
-        id: "xgen-agent-runtime-rsi",
-        repo: "xgen-agent-runtime-rsi",
-        name: "Agent Runtime RSI",
-        tagline: "A runtime that improves its harness from evidence",
-        description:
-            "A drop-in agent runtime that replays completed runs as evaluation worlds, compares candidate harnesses under RRSI constraints, and adopts only measured improvements.",
-        category: "agent",
-        install: 'pip install "xgen-agent-runtime-rsi @ https://github.com/PlateerLab/xgen-agent-runtime-rsi/releases/download/v0.10.0/xgen_agent_runtime_rsi-0.10.0-py3-none-any.whl"',
-        hasDemo: true,
-        language: "Python",
-        addedAt: "2026-10-12",
-    },
 ];
 
 /**
