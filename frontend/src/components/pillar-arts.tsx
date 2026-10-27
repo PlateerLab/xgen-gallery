@@ -154,7 +154,7 @@ function Orchestration() {
     );
 }
 
-/** 2) 무결점 신뢰성 — 실드 + 락(앰버). */
+/** 2) 근거 기반 신뢰성 — 실드 + 락(앰버). */
 function Reliability() {
     const th = ONBLUE;
     const check = "#2f6fe0";
@@ -195,7 +195,7 @@ function Reliability() {
     );
 }
 
-/** 3) 완벽한 유연성 — 허브 & 스포크 라우팅. */
+/** 3) 유연한 모델 선택 — 허브 & 스포크 라우팅. */
 function Routing() {
     const th = ONBLUE;
     const hub: [number, number] = [120, 116];
@@ -245,7 +245,7 @@ function Routing() {
     );
 }
 
-/** 4) 무중단 안정성 — 게이지 + 기어. */
+/** 4) 고가용성 운영 — 게이지 + 기어. */
 function Uptime() {
     const th = ONBLUE;
     const cx = 96;

@@ -198,7 +198,7 @@ const COPY: Record<Locale, PolarCopy> = {
         faq: [
             { q: "Polar는 무엇인가요?", a: "Polar는 플래티어가 개발한 이커머스 특화 Private sLLM(small LLM)입니다. 커머스 도메인 데이터로 학습해 검색·추천·상담 등 커머스 AI 기능을 제공하며, 온프레미스로 기업 데이터를 안전하게 보호합니다." },
             { q: "sLLM은 대형 LLM과 무엇이 다른가요?", a: "sLLM은 특정 도메인에 최적화된 소형 언어모델입니다. Polar는 이커머스에 특화된 고품질 데이터를 학습하고 Fine-tuning·RAG로 최적화해, 범용 대형 모델보다 커머스 업무에서 높은 정확성과 운영 효율을 제공합니다." },
-            { q: "데이터 보안은 어떻게 보장되나요?", a: "구축형 온프레미스 및 프라이빗 클라우드로 운영할 수 있어 기업 핵심 데이터가 외부로 유출되지 않습니다. 내부 데이터를 학습해 정확성을 높이면서도 데이터는 기업 내부에 안전하게 보관됩니다." },
+            { q: "데이터 보안은 어떻게 관리하나요?", a: "온프레미스 및 프라이빗 클라우드에서 기업 데이터의 처리·접근 범위를 관리할 수 있습니다. 외부 연동 시에는 전송 범위와 접근 정책을 별도로 설정해야 합니다. 내부 데이터를 학습해 정확성을 높이면서도 데이터는 기업 내부에 안전하게 보관됩니다." },
             { q: "Polar는 XGEN과 어떻게 함께 쓰나요?", a: "Polar는 커머스에 특화된 모델 레이어로, XGEN Agentic AI 플랫폼 위에서 검색·쇼핑·CS 에이전트를 구성하는 데 활용됩니다. XGEN의 Agent Builder·ModelOps와 결합해 커머스 AI 서비스를 설계·운영할 수 있습니다." },
         ],
         heroTitle: "커머스를 위한 Private sLLM, Polar",
@@ -238,7 +238,7 @@ const COPY: Record<Locale, PolarCopy> = {
         ],
         pillars: [
             ["Commerce-specialized sLLM", "Trained on high-quality commerce data, so the AI capabilities are tuned to commerce work."],
-            ["On-premise security", "Core enterprise data stays under internal control, so sensitive data never leaves."],
+            ["On-premise security", "On-premise deployment supports internal data processing and access control; external integrations require separate data-transfer policies."],
             ["Tuned per customer", "Apply the foundation model flexibly per customer and adapt it to their own data through RAG."],
         ],
         journey: {
@@ -332,7 +332,7 @@ const COPY: Record<Locale, PolarCopy> = {
         faq: [
             { q: "What is Polar?", a: "Polar is a private, e-commerce-specialized sLLM (small LLM) developed by Plateer. Trained on commerce-domain data, it powers search, recommendation, and support capabilities while keeping enterprise data safe on-premise." },
             { q: "How does an sLLM differ from a large LLM?", a: "An sLLM is a smaller language model optimized for a specific domain. Polar trains on high-quality e-commerce data and is tuned with fine-tuning and RAG, which gives it higher accuracy and better operating efficiency on commerce work than a general-purpose large model." },
-            { q: "How is data security guaranteed?", a: "It can run as an on-premise deployment or in a private cloud, so core enterprise data never leaves. Internal data improves accuracy while the data itself stays inside the organization." },
+            { q: "How is data security managed?", a: "It can run on-premise or in a private cloud to manage data processing and access. External integrations require separate review of data-transfer scope and policies. Internal data improves accuracy while the data itself stays inside the organization." },
             { q: "How does Polar work with XGEN?", a: "Polar is the commerce-specialized model layer used to build search, shopping, and customer-service agents on top of the XGEN Agentic AI platform. Combined with XGEN's Agent Builder and ModelOps, you design and run commerce AI services end to end." },
         ],
         heroTitle: "Polar — a private sLLM built for commerce",

@@ -14,12 +14,12 @@ const cy = 130;
 const T: Record<Locale, { left: string[]; right: string[]; aria: string }> = {
     ko: {
         left: ["인증 · MFA / OTP", "가드레일 · PII 마스킹"],
-        right: ["권한 · ABAC 3-레이어", "감사 로그 · 100% 추적"],
+        right: ["권한 · ABAC 3-레이어", "주요 실행 · 감사 로그"],
         aria: "중앙 보안 코어를 동심 방어 계층과 좌우 통제 항목이 감싸는 XGEN 거버넌스 개념도",
     },
     en: {
         left: ["Authentication · MFA / OTP", "Guardrails · PII masking"],
-        right: ["Permissions · 3-layer ABAC", "Audit log · fully traced"],
+        right: ["Permissions · 3-layer ABAC", "Audit logs · key actions"],
         aria: "A diagram of XGEN governance — a central security core wrapped by concentric defense layers, with control items on either side",
     },
 };

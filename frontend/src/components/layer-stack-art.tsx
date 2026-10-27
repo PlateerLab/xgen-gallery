@@ -40,7 +40,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             },
             {
                 title: "RAG 하이브리드 검색",
-                role: ["사내 지식에서 근거를 찾아", "환각 없는 답변 생성"],
+                role: ["사내 지식에서 근거를 찾아", "근거 기반 답변 생성"],
                 feat: ["Hybrid RAG Search", "온톨로지·근거 기반의 정확한 기업 지식 검색"],
                 desc: ["Dense + Sparse(SPLADE) + Reranker", "Late Chunking + Vision · 온톨로지"],
             },
@@ -58,9 +58,9 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             },
             {
                 title: "인프라 레이어",
-                role: ["고가용성·무중단 배포의", "온프레미스 실행 기반"],
+                role: ["고가용성·롤링 배포의", "온프레미스 실행 기반"],
                 feat: ["AI Runtime Platform", "고가용성 AI 실행 환경 제공"],
-                desc: ["k3s HA(고가용성) + ArgoCD GitOps", "무중단 배포"],
+                desc: ["k3s HA(고가용성) + ArgoCD GitOps", "롤링 배포"],
             },
         ],
         aria: "인프라부터 에이전트까지 여섯 계층이 쌓인 XGEN 코어 엔진 아이소메트릭 도해",
@@ -82,7 +82,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             },
             {
                 title: "Hybrid RAG retrieval",
-                role: ["Find evidence in internal knowledge", "and answer without hallucination"],
+                role: ["Find evidence in internal knowledge", "and generate evidence-grounded answers"],
                 feat: ["Hybrid RAG Search", "Precise enterprise knowledge retrieval grounded in ontology and evidence"],
                 desc: ["Dense + Sparse (SPLADE) + Reranker", "Late chunking + vision · ontology"],
             },
@@ -100,9 +100,9 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             },
             {
                 title: "Infrastructure layer",
-                role: ["The on-premise execution base for", "high availability and zero-downtime deployment"],
+                role: ["The on-premise execution base for", "high availability and rolling deployment"],
                 feat: ["AI Runtime Platform", "A highly available AI execution environment"],
-                desc: ["k3s HA + ArgoCD GitOps", "Zero-downtime deployment"],
+                desc: ["k3s HA + ArgoCD GitOps", "Rolling deployment"],
             },
         ],
         aria: "An isometric diagram of the XGEN core engine, six layers stacked from infrastructure up to agents",

@@ -128,7 +128,7 @@ const COPY: Record<
                 icon: Database,
                 title: "Memory & Knowledge",
                 sub: "기억 · 지식 접지",
-                desc: "장기 기억과 기업 지식에 접지(grounding)해 일관되고 근거 있는 행동을 보장합니다",
+                desc: "장기 기억과 기업 지식에 접지(grounding)해 일관되고 근거 있는 행동을 지원합니다",
             },
             {
                 icon: UserCheck,

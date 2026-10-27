@@ -47,7 +47,7 @@ export const PRODUCT_EN = {
     ],
 
     stats: [
-        ["100%", "On-premise operation", "Network separation · data sovereignty"],
+        ["Local", "On-premise deployment support", "Network separation · data sovereignty"],
         ["110+", "Built-in tools and plugins", "Extensible with your own"],
         ["Grade 1", "National GS certification", "Verified by third-party testing"],
         // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생.
@@ -71,8 +71,8 @@ export const PRODUCT_EN = {
     pillars: [
         ["Intelligent orchestration", "Proactive automation through multi-agent workflows and task routing"],
         ["Dependable answers", "Hybrid RAG and five-stage precision retrieval keep answers grounded and hallucination low"],
-        ["Complete flexibility", "GPT, Claude, private LLMs — dynamic model selection per requirement, with no vendor lock-in"],
-        ["Zero-downtime stability", "A k3s high-availability architecture with GitOps deployment, built for enterprise operation"],
+        ["Flexible model selection", "GPT, Claude, private LLMs — dynamic model selection per requirement, with no vendor lock-in"],
+        ["High-availability operation", "Supports k3s high availability and GitOps deployment. Service continuity depends on redundancy, health checks, and application configuration."],
     ] as [string, string][],
 
     effects: [
@@ -201,9 +201,9 @@ export const PRODUCT_EN = {
     ],
 
     onprem: [
-        ["Leakage blocked at the source", "An on-premise build means data is used safely without leaving your environment."],
+        ["Internal data processing", "On-premise deployment with internal models supports processing within your security boundary. External integrations require separate transfer policies."],
         ["Network separation and air-gap", "Deploys and runs in network-separated and air-gapped environments, meeting the closed-network requirements of finance and the public sector."],
-        ["Zero training guaranteed", "Technical safeguards prevent customer data from being used as training data for external models."],
+        ["External training controls", "Controls help restrict the use of customer data for external model training. External integrations require review of provider training and retention policies and contract terms."],
     ] as [string, string][],
 
     deploySteps: [
@@ -259,8 +259,8 @@ export const PRODUCT_EN = {
             a: "A first filter applies at creation through risk assessment and administrator approval, and if something goes wrong in operation an admin kill switch stops the service immediately. Where accuracy is decisive we apply human-in-the-loop, designing the AI to raise throughput through pre- and post-processing rather than replacing the work entirely, with a person confirming the result before the next step.",
         },
         {
-            q: "How is data security guaranteed?",
-            a: "It is built on-premise so data never leaves, and it supports network-separated and air-gapped environments. Role- and attribute-based access control (RBAC/ABAC) plus a zero-training guarantee technically prevent customer data from being used to train external models.",
+            q: "How is data security managed?",
+            a: "On-premise deployments using internal models can process data within the enterprise security boundary and support network-separated and air-gapped environments. RBAC/ABAC manages access. External model and tool integrations require separate review of data transfer scope and provider training and retention policies.",
         },
         {
             q: "Can we build agents without coding?",
@@ -307,7 +307,7 @@ export const PRODUCT_EN = {
         ],
         [
             "Infrastructure layer",
-            "k3s high-availability Kubernetes with ArgoCD GitOps guarantees self-healing and zero-downtime deployment, on an on-premise, GPU-serving foundation.",
+            "k3s high-availability Kubernetes with ArgoCD GitOps supports self-healing and rolling deployment, on an on-premise, GPU-serving foundation.",
         ],
     ] as [string, string][],
 
@@ -378,7 +378,7 @@ export const PRODUCT_EN = {
         "Even on one platform, the working environment is optimized by role and permission. Each user gets only the capabilities and information their work requires, and uses the AI more efficiently for it.",
     onpremTitle: "Data stays inside the company, and gets used with confidence",
     onpremLead:
-        "XGEN is built on-premise so data never leaves, and technical safeguards prevent customer data from being used to train external models.",
+        "XGEN supports processing within the enterprise security boundary when configured with internal models. External integrations require review of data transfer scope and provider training and retention policies.",
     onpremMore: "Explore the security and governance architecture",
     deployTitle: "From intake to operation, a proven build process",
     deployLead:

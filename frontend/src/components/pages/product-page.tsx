@@ -79,7 +79,7 @@ const CHALLENGES: { q: string; desc: string; img: string; imgAlt: string }[] = [
 
 /** 숫자로 보는 XGEN — 실측 사실만(미검증 수치 금지). */
 const STATS: { n: string; label: string; sub: string }[] = [
-    { n: "100%", label: "온프레미스 운영", sub: "망분리·데이터 주권" },
+    { n: "내부", label: "온프레미스 배포 지원", sub: "망분리·데이터 주권" },
     { n: "110+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
     { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
     // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생 — 라이브러리를 추가·삭제하면 자동 반영된다.
@@ -113,21 +113,21 @@ const PILLARS: { variant: PillarVariant; en: string; ko: string; desc: string }[
     },
     {
         variant: "reliability",
-        en: "Zero Hallucination",
-        ko: "무결점 신뢰성",
+        en: "Grounded Answers",
+        ko: "근거 기반 신뢰성",
         desc: "하이브리드 RAG와 5단계 정밀 검색으로 환각을 최소화한 근거 기반(Grounded) 답변",
     },
     {
         variant: "routing",
         en: "Multi-LLM Routing",
-        ko: "완벽한 유연성",
+        ko: "유연한 모델 선택",
         desc: "GPT · Claude · Private LLM 등 벤더 종속 없이 업무 요건에 맞춘 동적 모델 선택",
     },
     {
         variant: "uptime",
-        en: "Zero-Downtime",
-        ko: "무중단 안정성",
-        desc: "k3s 고가용성 아키텍처와 GitOps 기반 배포로 엔터프라이즈급 운영 환경 보장",
+        en: "High Availability",
+        ko: "고가용성 운영",
+        desc: "k3s 고가용성 아키텍처와 GitOps 기반 배포를 지원합니다. 서비스 연속성은 이중화·헬스체크·애플리케이션 구성에 따라 달라집니다.",
     },
 ];
 
@@ -362,8 +362,8 @@ const EXTRA_SCREENS = [SCREENS[1], SCREENS[6], SCREENS[8]]; // 노드 편집·�
 const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
     {
         icon: Lock,
-        title: "외부 유출 원천 차단",
-        desc: "온프레미스 구축으로 데이터가 외부로 유출되지 않고 안전하게 활용됩니다.",
+        title: "내부 데이터 처리",
+        desc: "내부 모델을 사용하는 온프레미스 구성에서 기업 보안 경계 내 처리를 지원합니다. 외부 연동에는 별도 전송 정책이 필요합니다.",
     },
     {
         icon: Server,
@@ -372,8 +372,8 @@ const ONPREM: { icon: LucideIcon; title: string; desc: string }[] = [
     },
     {
         icon: ShieldCheck,
-        title: "제로 트레이닝 보장",
-        desc: "고객사 데이터가 외부 모델의 학습 데이터로 활용되는 것을 기술적으로 방지합니다.",
+        title: "외부 학습 사용 통제",
+        desc: "고객 데이터의 외부 학습 사용을 제한하도록 구성합니다. 외부 모델 연동 시 공급자의 학습·보존 정책과 계약 조건을 함께 확인해야 합니다.",
     },
 ];
 
@@ -440,8 +440,8 @@ const FAQ: { q: string; a: string }[] = [
         a: "생성 단계에서 위험도 평가와 관리자 승인으로 1차 필터링하고, 운영 중 이상이 감지되면 어드민의 킬 스위치로 서비스를 즉시 중단할 수 있습니다. 정확도가 결정적으로 중요한 영역에는 휴먼인더루프를 적용해, AI가 업무를 완전히 대체하기보다 전처리·후처리로 활용도를 높이고 사람이 결과를 확인한 뒤 다음 단계로 진행하도록 설계합니다.",
     },
     {
-        q: "데이터 보안은 어떻게 보장되나요?",
-        a: "온프레미스로 구축돼 데이터가 외부로 나가지 않으며, 인터넷과 분리된 망분리·에어갭 환경까지 지원합니다. 역할·속성 기반 접근 제어(RBAC·ABAC)와 제로 트레이닝 보장으로 고객사 데이터가 외부 모델 학습에 쓰이지 않도록 기술적으로 차단합니다.",
+        q: "데이터 보안은 어떻게 관리하나요?",
+        a: "내부 모델을 사용하는 온프레미스 구성에서 데이터를 내부 보안 경계 내 처리하도록 설계하며, 망분리·에어갭 환경도 지원합니다. 역할·속성 기반 접근 제어(RBAC·ABAC)로 접근을 관리합니다. 외부 모델·도구 연동 시에는 전송 범위와 공급자의 학습·보존 정책을 별도로 확인해야 합니다.",
     },
     {
         q: "코딩 없이 에이전트를 만들 수 있나요?",
@@ -545,7 +545,7 @@ const TECH_LAYERS: {
         no: "LAYER 05",
         en: "Infra Layer",
         title: "인프라 레이어",
-        desc: "k3s 고가용성 쿠버네티스와 ArgoCD GitOps로 자동 복구·무중단 배포를 보장하는 온프레미스·GPU 서빙 기반입니다.",
+        desc: "k3s 고가용성 쿠버네티스와 ArgoCD GitOps로 자동 복구·롤링 배포를 지원하는 온프레미스·GPU 서빙 기반입니다.",
         chips: ["k3s HA", "ArgoCD GitOps", "Istio", "On-prem", "GPU Serving", "Auto-Healing"],
     },
 ];
@@ -1238,7 +1238,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             {en ? E.onpremTitle : "데이터는 기업 안에, 안심하고 활용"}
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.onpremLead : "XGEN은 온프레미스로 구축돼 데이터가 외부로 나가지 않으며, 고객사 데이터가 외부 모델 학습에 쓰이지 않도록 기술적으로 차단합니다."}
+                            {en ? E.onpremLead : "XGEN은 내부 모델을 사용하는 구성에서 데이터를 기업 보안 경계 내 처리하도록 설계합니다. 외부 연동 시에는 데이터 전송 범위와 공급자의 학습·보존 정책을 확인해야 합니다."}
                         </p>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
                             {ONPREM_L.map((o) => (

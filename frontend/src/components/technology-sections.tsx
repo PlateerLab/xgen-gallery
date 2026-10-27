@@ -105,7 +105,7 @@ const T: Record<Locale, {
         ontologyQuote: "벡터는 ‘닮은 문장’을 찾고, 온톨로지는 ‘맞는 사실’을 따라갑니다",
         harnessPillar: "운영",
         harnessTitle: "Harness — AI가 일하는 환경 전체를 설계하는 기술",
-        harnessDesc: "AI를 움직이는 것은 모델이 아니라 환경입니다. Harness Engineering은 지시(Prompt)와 맥락(Context)을 넘어, LLM이 실제로 일하는 환경 전체를 통제해 신뢰할 수 있는 실행을 보장합니다.",
+        harnessDesc: "AI를 움직이는 것은 모델이 아니라 환경입니다. Harness Engineering은 지시(Prompt)와 맥락(Context)을 넘어, LLM이 실제로 일하는 환경 전체를 통제해 실행을 검증하고 통제하도록 설계합니다.",
         harnessLayers: [
             ["Prompt Engineering", "LLM에게 무엇을 하라고 지시하는 문장을 정교하게 설계"],
             ["Context Engineering", "LLM이 답할 때 무엇을 참고하고 어떤 도구를 쓸지 맥락을 설계"],
@@ -152,7 +152,7 @@ const T: Record<Locale, {
         ],
         frameworksLead: "엔진을 업무로 잇는 프레임워크입니다. 운영 지능부터 그래프·하이브리드 검색, 맥락 설계까지 — 목적에 맞게 조합해 실제 업무를 수행합니다.",
         frameworks: [
-            ["운영 지능", "Ontology와 Harness를 하나로 묶어, 정확한 지식 맥락과 검증된 실행 환경으로 신뢰할 수 있는 결과를 보장하는 운영 지능 계층입니다."],
+            ["운영 지능", "Ontology와 Harness를 하나로 묶어, 정확한 지식 맥락과 검증된 실행 환경으로 결과의 신뢰성을 높이도록 설계한 운영 지능 계층입니다."],
             ["지식 그래프 검색", "닮은 문장이 아닌 문서 기반 관계를 탐색해 넓은 범주에서 정답을 찾습니다. 문서 검색을 넘어 하나의 지식 그래프로 추론합니다."],
             ["벡터 + 그래프", "벡터(유사도)와 그래프(관계)를 결합해 정밀도와 탐색 범위를 동시에 확보하는 하이브리드 검색입니다."],
             ["맥락 설계", "LLM이 답할 때 무엇을 참고하고 어떤 도구를 사용할지 — 맥락(context) 자체를 설계하는 기술입니다."],

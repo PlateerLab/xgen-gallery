@@ -45,7 +45,7 @@ const COPY: Record<
                 icon: Layers,
                 kicker: "Frameworks",
                 title: "운영 지능과 검색",
-                body: "정확한 지식 맥락과 검증된 실행을 묶어 신뢰할 수 있는 결과를 보장합니다",
+                body: "정확한 지식 맥락과 검증된 실행을 묶어 결과의 신뢰성을 높이도록 설계했습니다",
             },
             {
                 icon: Server,

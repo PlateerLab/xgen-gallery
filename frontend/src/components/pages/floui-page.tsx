@@ -311,7 +311,7 @@ const COPY: Record<Locale, FlouiCopy> = {
             "Data outside the user's permissions is excluded during composition",
             "RAG references stay within the document scope the user can access",
             "Which question queried which data is recorded",
-            "On-premise, the data never leaves your environment",
+            "On-premise deployment supports internal data processing; review external integrations separately",
         ],
 
         faqTitle: "Frequently asked questions",

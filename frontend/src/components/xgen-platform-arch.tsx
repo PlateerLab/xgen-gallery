@@ -137,7 +137,7 @@ const D: Record<Locale, PlatformData> = {
         ],
         infra: [
             ["k3s HA", "Kubernetes 고가용성"],
-            ["ArgoCD", "GitOps · 무중단 배포"],
+            ["ArgoCD", "GitOps · 롤링 배포"],
             ["Qdrant", "Vector Database"],
             ["MinIO", "Object Storage"],
             ["On-Premise", "GPU · 컨테이너"],
@@ -217,7 +217,7 @@ const D: Record<Locale, PlatformData> = {
         ],
         infra: [
             ["k3s HA", "Kubernetes high availability"],
-            ["ArgoCD", "GitOps · zero-downtime deployment"],
+            ["ArgoCD", "GitOps · rolling deployment"],
             ["Qdrant", "Vector Database"],
             ["MinIO", "Object Storage"],
             ["On-Premise", "GPU · containers"],

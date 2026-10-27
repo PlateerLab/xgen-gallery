@@ -9,7 +9,7 @@ category: "Industry Note"
 tags: ["On-premise", "Private Agent", "Data sovereignty", "AI governance", "XGEN", "Agentic AI"]
 faq:
   - q: "How does an on-premise AI agent differ from a cloud SaaS one?"
-    a: "The difference is where execution happens and who holds control. With cloud SaaS, data crosses into the vendor's boundary and the model, policy, and availability depend on that vendor. With an on-premise AI agent, the model and the agent run inside the enterprise security boundary, so core data never leaves and the enterprise controls permissions, audit, and continuity directly."
+    a: "The difference is where execution happens and who holds control. With cloud SaaS, data crosses into the vendor's boundary and the model, policy, and availability depend on that vendor. With an on-premise AI agent, the model and the agent run inside the enterprise security boundary, so the enterprise can control data processing, permissions, audit, and continuity; external integrations still require explicit data-transfer policies."
   - q: "Which industries need on-premise AI agents?"
     a: "Industries where data sovereignty, security, and regulatory requirements are decisive: manufacturing, finance, the public sector, defense, semiconductors, energy, and healthcare. What they share is a constraint — design information, process data, source code, and customer records cannot be sent to an external AI service."
   - q: "What does XGEN cover on-premise?"

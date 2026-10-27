@@ -30,7 +30,7 @@ In finance, a wrong answer is not a simple error — it is a trust problem. So t
 
 **Sources on every answer** — each answer carries the source it rests on, which raises confidence in the response and keeps compliance intact. Even for regulation-sensitive questions — limits by collateral type, for instance — it shows which material the answer came from.
 
-**Multi-agent orchestration** — customer response, internal lookup, and risk management are split across several agents and automated. All of it runs on a **custom on-premise MLOps environment**, inside the internal network, so data never leaves.
+**Multi-agent orchestration** — customer response, internal lookup, and risk management are split across several agents and automated. All of it runs on a **custom on-premise MLOps environment**, inside the internal network, with data processing governed by the deployment’s access and integration policies.
 
 ## What the PoC proved
 

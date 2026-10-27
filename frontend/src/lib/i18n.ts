@@ -223,7 +223,7 @@ const FAQ_EN: FaqEntry[] = [
     {
         question: "Does it run on-premise / air-gapped, and is our data safe?",
         answer:
-            "Yes. XGEN runs on-premise so data never leaves your environment, and it supports network-separated and air-gapped deployments. All AI models and data stay on the internal network, protected by an authentication gateway and trust boundary, RBAC/ABAC access control, PII masking, unified audit logs, and AI risk-grade policies across every layer.",
+            "Yes. XGEN supports on-premise processing with internal models, including network-separated and air-gapped deployments. External integrations require review of data transfer scope and provider policies. Internal deployments are protected by an authentication gateway and trust boundary, RBAC/ABAC access control, PII masking, unified audit logs, and AI risk-grade policies across every layer.",
     },
     {
         question: "What does XGEN's Grade 1 GS certification mean?",

@@ -82,7 +82,7 @@ const COPY: Record<Locale, ArchCopy> = {
         concepts: [
             {
                 icon: ShieldCheck,
-                lead: "데이터 주권, 보안, 감사 추적, 조직 거버넌스를 보장하는",
+                lead: "데이터 주권, 보안, 감사 추적, 조직 거버넌스를 지원하는",
                 strong: "폐쇄망 · 온프레미스 친화 아키텍처",
             },
             {

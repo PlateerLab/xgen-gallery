@@ -266,7 +266,7 @@ const COPY: Record<Locale, CaCopy> = {
                 value: "Shorter ramp-up and higher developer productivity",
             },
             {
-                title: "Source code never leaves the building",
+                title: "Control source-code processing boundaries",
                 before: "Using an external AI service means shipping source code out, with the security concerns that follow",
                 after: "Code and data stay internal in an on-premise or air-gapped environment",
                 value: "Meets security policy in finance, public sector, and large enterprises",
@@ -343,7 +343,7 @@ const COPY: Record<Locale, CaCopy> = {
             "On-premise, model-agnostic gateway",
         ],
         heroTitle: "Code Assistant that understands your codebase",
-        heroLead: "Past generic autocomplete — it learns your code, APIs, database schemas, and artifacts, and answers at code level in your actual project context. It connects to GitLab and installs on-premise or air-gapped, so source never leaves.",
+        heroLead: "Past generic autocomplete — it learns your code, APIs, database schemas, and artifacts, and answers at code level in your actual project context. It connects to GitLab and installs on-premise or air-gapped, to support internal source-code processing; external integrations require separate policy review.",
         heroCtaPrimary: "Talk to us",
         heroCtaSecondary: "See customer cases",
         heroChip: "Enterprise · on-premise coding assistant",
