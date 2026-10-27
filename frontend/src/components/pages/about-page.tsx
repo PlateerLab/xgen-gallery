@@ -852,13 +852,13 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
                                 </span>
                             </div>
 
-                            {/* 아래 두 꼭짓점 */}
-                            <div className="relative grid gap-4 sm:grid-cols-2">
+                            {/* 하단 제품 — 공개 중인 카드 수에 맞춰 가운데 정렬 */}
+                            <div className="relative flex justify-center">
                                 {[PRODUCTS.polar].map((p) => (
                                     <Link
                                         key={p.key}
                                         href={href(p.href)}
-                                        className="group flex flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-7 text-center transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
+                                        className="group flex w-full max-w-[440px] flex-col items-center rounded-2xl border border-[var(--color-line)] bg-white p-7 text-center transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
                                     >
                                         <span
                                             className="inline-flex h-2 w-12 rounded-full"
