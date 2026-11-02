@@ -8,7 +8,7 @@ type NewsletterFile = {
   type: "internal" | "delivery";
   typeLabel: string;
   issue: string;
-  period: string;
+  date: string;
   title: string;
   url: string;
 };
@@ -119,7 +119,7 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
                     onClick={() => setSelectedByType((previous) => ({ ...previous, [type]: file.id }))}
                   >
                     <strong>{file.issue}</strong>
-                    <span>{file.period}</span>
+                    <span>{file.date}</span>
                   </button>
                 ))}
               </div>
