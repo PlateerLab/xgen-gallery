@@ -118,8 +118,9 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
                     aria-current={current.id === file.id ? "page" : undefined}
                     onClick={() => setSelectedByType((previous) => ({ ...previous, [type]: file.id }))}
                   >
-                    <strong>{file.issue}</strong>
-                    <span>{file.date}</span>
+                    <span className="newsletter-history-label">
+                      <strong>{file.issue}</strong>: {file.date}
+                    </span>
                   </button>
                 ))}
               </div>
