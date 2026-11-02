@@ -32,6 +32,22 @@ curl -s "https://registry.npmjs.org/-/v1/search?text=%40plateer-xgen&size=250" |
   node -e 'let s=""; process.stdin.on("data",d=>s+=d).on("end",()=>{for(const x of JSON.parse(s).objects||[])if(x.package.name.startsWith("@plateer-xgen/"))console.log(x.package.name)})'
 ```
 
+### 이미 실린 항목도 매주 다시 조회한다
+
+판별은 등록 때 한 번으로 끝나지 않는다. 레지스트리에서 내려가거나, 포크·개명으로 `install` 의
+패키지 이름이 실제 배포명과 어긋나도 카드는 멀쩡해 보인다(2026-11-02 점검에서 18종 중 6종의
+`install` 이름이 PyPI 에서 조회되지 않았다 — 그중 `playleft` 는 원본 `playwleft` 와 이름이 갈려 있었다).
+
+```bash
+cd frontend && grep -oE 'install: "[^"]+"' src/lib/tools.ts | sed -E 's/install: "//;s/"$//' |
+  while read -r l; do set -- $l; p=${!#}
+    if [ "$1" = pip ]; then u="https://pypi.org/pypi/$p/json"; else u="https://registry.npmjs.org/${p/\//%2f}"; fi
+    printf '%s %s\n' "$(curl -s -o /dev/null -w '%{http_code}' "$u")" "$l"; done
+```
+
+404 가 나면 그 자리에서 빼지 말고 보고에 올린다. 공개 페이지에서 라이브러리를 내리는 일이라
+레지스트리 재배포로 풀지, 갤러리에서 뺄지는 사람이 정한다.
+
 ## 항목만 추가하면 자동으로 생기는 것
 
 `TOOLS` 에 항목이 있으면 아래는 별도 작업 없이 만들어진다.
