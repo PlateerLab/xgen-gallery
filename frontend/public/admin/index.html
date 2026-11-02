@@ -4,11 +4,36 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, nofollow" />
-        <title>Plateer AI Labs — Blog CMS</title>
+        <title>Plateer AI Labs — 관리자</title>
         <!-- /admin(트레일링 슬래시 없음)에서도 config.yml을 정확히 찾도록 절대경로 명시 -->
         <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+        <style>
+            :root { --admin-gnb-width: 204px; }
+            * { box-sizing: border-box; }
+            html, body { margin: 0; background: #fff; color: #17191c; }
+            body { padding-left: var(--admin-gnb-width) !important; }
+            .admin-gnb { position: fixed; z-index: 1000; inset: 0 auto 0 0; width: var(--admin-gnb-width); padding: 28px 20px; background: #f7f8fa; font-family: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; }
+            .admin-gnb strong { display: block; margin-bottom: 28px; font-size: 15px; }
+            .admin-gnb a { display: block; padding: 10px 0; color: #17191c; font-size: 14px; line-height: 1.5; text-decoration: none; }
+            .admin-gnb a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+            @media (max-width: 900px) {
+                body { padding-left: 0 !important; padding-top: 61px !important; }
+                .admin-gnb { inset: 0 0 auto; width: auto; height: 61px; padding: 10px 20px; display: flex; align-items: center; gap: 24px; overflow-x: auto; }
+                .admin-gnb strong { margin: 0; white-space: nowrap; }
+                .admin-gnb nav { display: flex; gap: 24px; }
+                .admin-gnb a { white-space: nowrap; }
+            }
+        </style>
     </head>
     <body>
+        <aside class="admin-gnb" aria-label="관리자 메뉴">
+            <strong>Plateer AI Labs</strong>
+            <nav>
+                <a href="/admin" aria-current="page">블로그</a>
+                <a href="/admin/governance">거버넌스</a>
+                <a href="/admin/newsletter">뉴스레터</a>
+            </nav>
+        </aside>
         <!-- Decap CMS — DB 없이 git(content/blog/*.md)에 글을 커밋하는 어드민.
              설정은 ./config.yml 참고. 로컬 편집: `npx decap-server` 실행 후 /admin 접속. -->
         <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
@@ -23,8 +48,6 @@
             (function () {
                 // 순서대로 사이드바 하단에 붙는다(배열 순서 = 표시 순서).
                 var GUIDES = [
-                    { id: "governance-admin-link", url: "/admin/governance", label: "거버넌스 퀴즈 관리" },
-                    { id: "governance-stats-link", url: "/admin/governance#statistics", label: "거버넌스 결과 통계" },
                     { id: "guide-writing-link", url: "/guides/blog-writing.html", label: "📖 블로그 작성 가이드" },
                     { id: "guide-cta-link", url: "/guides/cta-operations.html", label: "📮 CTA 운영 가이드" },
                     { id: "newsletter-vol5-link", url: "/admin/XGEN_Newsletter_2026-09_Vol5.html", label: "✉️ XGEN 뉴스레터 Vol.5 사내용" },

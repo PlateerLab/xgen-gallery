@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { api, csvDownload, dateLabel, statusLabel, type Report, type Quiz, type IssuedLink } from "@/lib/governance/types";
+import AdminNav from "@/components/admin-nav";
 
 type Member = { id: string; name: string; team: string };
 export default function GovernanceAdmin({ members }: { members: Member[] }) {
@@ -78,7 +79,7 @@ export default function GovernanceAdmin({ members }: { members: Member[] }) {
         {report && <button onClick={() => run(async () => { await api("logout", { method: "POST" }); setReport(null); setLinks([]); setLogin(true); })}>로그아웃</button>}
     </div>;
     return <div className="gov">
-        <aside><strong>Plateer AI Labs</strong><a href="/admin">블로그 관리</a><a href="/admin/governance" aria-current="page">거버넌스 교육</a></aside>
+        <AdminNav current="governance" />
         <main className="workspace">
             <header className="page-head"><div><h1>거버넌스 교육</h1><p className="muted">{report ? `관리자 ${report.actor} · ${report.campaign}` : "관리자 전용 · 개인별 퀴즈와 학습 결과"}</p></div>{actionBar}</header>
             <nav className="tabs" aria-label="거버넌스 교육 메뉴">
