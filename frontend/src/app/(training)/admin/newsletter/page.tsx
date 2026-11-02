@@ -1,32 +1,23 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { Metadata } from "next";
 import NewsletterAdmin from "./view";
 
 export const metadata: Metadata = { title: "뉴스레터 관리 · Plateer AI Labs" };
 
-function newsletterFiles() {
-  const directory = path.join(process.cwd(), "public", "admin");
-  return fs
-    .readdirSync(directory)
-    .filter((name) => /^XGEN_Newsletter_.*\.html$/.test(name))
-    .map((name) => ({
-      name,
-      modified: fs.statSync(path.join(directory, name)).mtimeMs,
-    }))
-    .sort(
-      (a, b) => b.modified - a.modified || b.name.localeCompare(a.name, "ko"),
-    )
-    .map(({ name }) => ({
-      name,
-      label: name
-        .replace(/\.html$/, "")
-        .replace(/^XGEN_Newsletter_/, "")
-        .replaceAll("_", " "),
-      url: `/admin/${encodeURIComponent(name)}`,
-    }));
-}
+const NEWSLETTERS = [
+  {
+    id: "internal",
+    label: "사내용",
+    title: "XGEN 뉴스레터 Vol.5 사내용",
+    url: "/admin/XGEN_Newsletter_2026-09_Vol5.html",
+  },
+  {
+    id: "delivery",
+    label: "발송용",
+    title: "XGEN 뉴스레터 Vol.5 발송용",
+    url: "/admin/XGEN_Newsletter_2026-10_Vol5_2.html",
+  },
+] as const;
 
 export default function Page() {
-  return <NewsletterAdmin files={newsletterFiles()} />;
+  return <NewsletterAdmin files={NEWSLETTERS} />;
 }
