@@ -18,6 +18,9 @@ const TYPES = [
   { id: "delivery", label: "발송용" },
 ] as const;
 
+const PAGE_SIZE = 15;
+const PAGE_WINDOW = 5;
+
 export default function NewsletterAdmin({ files }: { files: readonly NewsletterFile[] }) {
   const [type, setType] = useState<NewsletterFile["type"]>("internal");
   const history = useMemo(() => files.filter((file) => file.type === type), [files, type]);
@@ -25,7 +28,26 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
     internal: files.find((file) => file.type === "internal")?.id || "",
     delivery: files.find((file) => file.type === "delivery")?.id || "",
   });
+  const [pageByType, setPageByType] = useState({ internal: 1, delivery: 1 });
+  const totalPages = Math.max(1, Math.ceil(history.length / PAGE_SIZE));
+  const currentPage = Math.min(pageByType[type], totalPages);
+  const pageStart = (currentPage - 1) * PAGE_SIZE;
+  const visibleHistory = history.slice(pageStart, pageStart + PAGE_SIZE);
+  const windowStart = Math.floor((currentPage - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
+  const pageNumbers = Array.from(
+    { length: Math.min(PAGE_WINDOW, totalPages - windowStart + 1) },
+    (_, index) => windowStart + index,
+  );
   const current = history.find((file) => file.id === selectedByType[type]) || history[0];
+
+  function movePage(nextPage: number) {
+    const page = Math.max(1, Math.min(nextPage, totalPages));
+    const first = history[(page - 1) * PAGE_SIZE];
+    setPageByType((previous) => ({ ...previous, [type]: page }));
+    if (first) {
+      setSelectedByType((previous) => ({ ...previous, [type]: first.id }));
+    }
+  }
 
   return (
     <div className="gov">
@@ -64,17 +86,43 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
           <div className="newsletter-manager">
             <nav className="newsletter-history" aria-label={`${current.typeLabel} 제작 히스토리`}>
               <h2>{current.typeLabel} 히스토리</h2>
-              {history.map((file) => (
-                <button
-                  key={file.id}
-                  type="button"
-                  aria-current={current.id === file.id ? "page" : undefined}
-                  onClick={() => setSelectedByType((previous) => ({ ...previous, [type]: file.id }))}
-                >
-                  <strong>{file.issue}</strong>
-                  <span>{file.period}</span>
-                </button>
-              ))}
+              <div className="newsletter-pagination" aria-label={`${current.typeLabel} 히스토리 페이지`}>
+                {windowStart > 1 && (
+                  <button type="button" aria-label="이전 페이지 묶음" onClick={() => movePage(windowStart - 1)}>
+                    이전
+                  </button>
+                )}
+                {pageNumbers.map((page) => (
+                  <button
+                    key={page}
+                    type="button"
+                    aria-current={currentPage === page ? "page" : undefined}
+                    aria-label={`${page}페이지`}
+                    onClick={() => movePage(page)}
+                  >
+                    {page}
+                  </button>
+                ))}
+                {windowStart + PAGE_WINDOW <= totalPages && (
+                  <button type="button" aria-label="다음 페이지 묶음" onClick={() => movePage(windowStart + PAGE_WINDOW)}>
+                    다음
+                  </button>
+                )}
+              </div>
+              <div className="newsletter-history-items">
+                {visibleHistory.map((file) => (
+                  <button
+                    className="newsletter-history-item"
+                    key={file.id}
+                    type="button"
+                    aria-current={current.id === file.id ? "page" : undefined}
+                    onClick={() => setSelectedByType((previous) => ({ ...previous, [type]: file.id }))}
+                  >
+                    <strong>{file.issue}</strong>
+                    <span>{file.period}</span>
+                  </button>
+                ))}
+              </div>
             </nav>
             <section id="newsletter-preview" className="newsletter-frame-wrap" aria-label={`${current.title} 미리보기`}>
               <iframe key={current.id} src={current.url} title={`${current.title} 미리보기`} />

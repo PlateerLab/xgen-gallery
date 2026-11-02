@@ -39,7 +39,7 @@
   font-size: 15px;
 }
 
-.gov .newsletter-history button {
+.gov .newsletter-history-item {
   display: flex;
   width: 100%;
   align-items: center;
@@ -54,16 +54,39 @@
   cursor: pointer;
 }
 
-.gov .newsletter-history button[aria-current="page"] {
+.gov .newsletter-history-item[aria-current="page"] {
   font-weight: 700;
   text-decoration: underline;
 }
 
-.gov .newsletter-history button span {
+.gov .newsletter-history-item span {
   flex: 0 0 auto;
   color: var(--color-text-muted);
   font-size: 12.5px;
   font-weight: 400;
+}
+
+.gov .newsletter-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 0 12px;
+}
+
+.gov .newsletter-pagination button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 7px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.gov .newsletter-pagination button[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .gov .newsletter-frame-wrap {
@@ -98,18 +121,29 @@
   }
 
   .gov .newsletter-history {
-    display: flex;
-    overflow-x: auto;
     border-top: 0;
   }
 
   .gov .newsletter-history h2 {
-    flex: 0 0 auto;
     padding-right: 20px;
     white-space: nowrap;
   }
 
-  .gov .newsletter-history button {
+  .gov .newsletter-pagination {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .gov .newsletter-pagination button {
+    flex: 0 0 auto;
+  }
+
+  .gov .newsletter-history-items {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .gov .newsletter-history-item {
     flex: 0 0 auto;
     width: auto;
     min-width: 128px;
