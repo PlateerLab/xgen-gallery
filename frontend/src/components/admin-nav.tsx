@@ -1,9 +1,10 @@
-type AdminSection = "blog" | "governance" | "newsletter";
+type AdminSection = "blog" | "governance" | "newsletter" | "guides";
 
 const ITEMS: { id: AdminSection; href: string; label: string }[] = [
   { id: "blog", href: "/admin", label: "블로그" },
   { id: "governance", href: "/admin/governance", label: "거버넌스" },
   { id: "newsletter", href: "/admin/newsletter", label: "뉴스레터" },
+  { id: "guides", href: "/admin/guides", label: "운영 가이드" },
 ];
 
 export default function AdminNav({ current }: { current: AdminSection }) {
