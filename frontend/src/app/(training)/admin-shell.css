@@ -106,6 +106,10 @@
   background: var(--color-surface);
 }
 
+.gov .newsletter-guide-wrap {
+  margin-top: 24px;
+}
+
 @media (max-width: 900px) {
   .gov .admin-gnb nav {
     display: flex;

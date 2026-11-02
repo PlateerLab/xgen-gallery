@@ -13,16 +13,21 @@ type NewsletterFile = {
   url: string;
 };
 
+type NewsletterType = NewsletterFile["type"];
+type NewsletterSection = NewsletterType | "guide";
+
 const TYPES = [
   { id: "internal", label: "사내용" },
   { id: "delivery", label: "발송용" },
+  { id: "guide", label: "CTA 운영 가이드" },
 ] as const;
 
 const PAGE_SIZE = 15;
 const PAGE_WINDOW = 5;
 
 export default function NewsletterAdmin({ files }: { files: readonly NewsletterFile[] }) {
-  const [type, setType] = useState<NewsletterFile["type"]>("internal");
+  const [section, setSection] = useState<NewsletterSection>("internal");
+  const type: NewsletterType = section === "guide" ? "internal" : section;
   const history = useMemo(() => files.filter((file) => file.type === type), [files, type]);
   const [selectedByType, setSelectedByType] = useState({
     internal: files.find((file) => file.type === "internal")?.id || "",
@@ -39,6 +44,7 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
     (_, index) => windowStart + index,
   );
   const current = history.find((file) => file.id === selectedByType[type]) || history[0];
+  const actionUrl = section === "guide" ? "/guides/cta-operations.html" : current?.url;
 
   function movePage(nextPage: number) {
     const page = Math.max(1, Math.min(nextPage, totalPages));
@@ -58,9 +64,9 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
             <h1>뉴스레터</h1>
             <p className="muted">사내용과 발송용 뉴스레터의 제작 히스토리를 구분해 확인합니다.</p>
           </div>
-          {current && (
+          {actionUrl && (
             <div className="actions">
-              <a className="button primary" href={current.url} target="_blank" rel="noreferrer">
+              <a className="button primary" href={actionUrl} target="_blank" rel="noreferrer">
                 새 창에서 열기
               </a>
             </div>
@@ -71,18 +77,23 @@ export default function NewsletterAdmin({ files }: { files: readonly NewsletterF
             <button
               key={item.id}
               type="button"
-              aria-current={type === item.id ? "page" : undefined}
-              onClick={() => setType(item.id)}
+              aria-current={section === item.id ? "page" : undefined}
+              onClick={() => setSection(item.id)}
             >
               {item.label}
             </button>
           ))}
         </nav>
         <p className="muted">
-          상단에서 용도를 고른 뒤 왼쪽 히스토리에서 제작본을 선택하세요. 원본 HTML의 복사·가이드 기능은
-          미리보기 안에서 그대로 사용할 수 있습니다.
+          {section === "guide"
+            ? "뉴스레터 CTA의 목적·문구·연결 경로와 운영 점검 기준을 확인합니다."
+            : "상단에서 용도를 고른 뒤 왼쪽 히스토리에서 제작본을 선택하세요. 원본 HTML의 복사·가이드 기능은 미리보기 안에서 그대로 사용할 수 있습니다."}
         </p>
-        {current ? (
+        {section === "guide" ? (
+          <section className="newsletter-frame-wrap newsletter-guide-wrap" aria-label="CTA 운영 가이드 미리보기">
+            <iframe src="/guides/cta-operations.html" title="CTA 운영 가이드 미리보기" />
+          </section>
+        ) : current ? (
           <div className="newsletter-manager">
             <nav className="newsletter-history" aria-label={`${current.typeLabel} 제작 히스토리`}>
               <h2>{current.typeLabel} 히스토리</h2>

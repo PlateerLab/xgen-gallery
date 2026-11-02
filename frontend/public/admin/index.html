@@ -38,8 +38,7 @@
              설정은 ./config.yml 참고. 로컬 편집: `npx decap-server` 실행 후 /admin 접속. -->
         <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
         <script>
-            // 좌측 Collections 목록 아래에 가이드 링크(새 탭)들을 추가한다.
-            //   ① 블로그 작성 가이드   ② CTA 운영 가이드
+            // 좌측 Collections 목록 아래에 블로그 작성 가이드 링크(새 탭)를 추가한다.
             //
             // ⚠ 과거엔 CMS.registerAdditionalLink()를 썼지만, 현재 배포되는 decap-cms 번들의
             //   window.CMS 에는 그 API가 없어(존재하지 않음) 링크가 조용히 사라졌다.
@@ -49,7 +48,6 @@
                 // 순서대로 사이드바 하단에 붙는다(배열 순서 = 표시 순서).
                 var GUIDES = [
                     { id: "guide-writing-link", url: "/guides/blog-writing.html", label: "📖 블로그 작성 가이드" },
-                    { id: "guide-cta-link", url: "/guides/cta-operations.html", label: "📮 CTA 운영 가이드" },
                 ];
 
                 function inject() {
