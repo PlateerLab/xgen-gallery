@@ -18,7 +18,7 @@ export const SITE = {
         "Plateer AI Labs provides XGEN, an Agentic AI platform for enterprises. Build AI on your choice of LLM and on-premise or air-gapped infrastructure with built-in security and governance, then apply it to real business workflows for proven results.",
     github: "https://github.com/PlateerLab",
     githubOrg: "PlateerLab",
-    youtube: "https://www.youtube.com/@PlateerLabs",
+    youtube: "https://www.youtube.com/@PlateerAILabs",
     locale: "ko_KR",
     /** OG/Twitter share image — 1200×630 브랜드 카드(public/og.png). */
     ogImage: "/og-v2.png",

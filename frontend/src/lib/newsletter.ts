@@ -378,7 +378,7 @@ const vol6: Issue = {
       body: "XGEN 데모와 기술 세션 영상을 볼 수 있습니다. ‘XGEN 플랫폼 실증 데모(5분)’에서 문서 업로드부터 에이전트 실행, 품질 검증까지의 과정을 확인할 수 있습니다.",
       link: {
         label: "채널 보러가기",
-        url: "https://www.youtube.com/@PlateerLabs",
+        url: "https://www.youtube.com/@PlateerAILabs",
       },
     },
     {
@@ -655,7 +655,7 @@ const vol5: Issue = {
       body: "XGEN 데모와 기술 세션을 올립니다. 구독해 두시면 새 영상이 올라올 때 바로 보실 수 있습니다. 문서 업로드부터 에이전트 실행·품질검증까지 한 번에 확인할 수 있는 XGEN 플랫폼 실증 데모(5분)부터 보시면 좋습니다.",
       link: {
         label: "채널 보러가기",
-        url: "https://www.youtube.com/@PlateerLabs",
+        url: "https://www.youtube.com/@PlateerAILabs",
       },
     },
     {
@@ -1194,7 +1194,7 @@ const vol4: Issue = {
         {
             title: "플래티어랩스 유튜브 채널",
             body: "XGEN 데모와 기술 세션을 올립니다. 문서 업로드부터 에이전트 실행·품질검증까지 한 번에 훑는 XGEN 플랫폼 실증 데모(5분)부터 보시면 좋습니다.",
-            link: { label: "열기", url: "https://www.youtube.com/@PlateerLabs" },
+            link: { label: "열기", url: "https://www.youtube.com/@PlateerAILabs" },
         },
         {
             title: "지난 뉴스레터 보러가기",
@@ -1450,7 +1450,7 @@ const vol3: Issue = {
             body: "XGEN 데모와 기술 세션을 올립니다. 구독해 두시면 새 영상이 올라올 때 바로 보실 수 있습니다.",
             link: {
                 label: "채널 보러가기",
-                url: "https://www.youtube.com/@PlateerLabs",
+                url: "https://www.youtube.com/@PlateerAILabs",
             },
         },
     ],
