@@ -19,43 +19,47 @@ function XgenMark() {
     );
 }
 
-const SLIDE_COUNT = 6;
+const SLIDE_COUNT = 7;
 const ROTATE_MS = 6000;
 /**
  * 슬라이드별 노출 시간.
  *
- * 첫 장(DexOn)은 배경 영상이 요청→코드→실행 장면까지 지나가도록
- * 더 오래 둔다. 나머지는 모두 6초.
+ * 첫 장(AI 보안)은 10초, DexOn 코딩 장은 9초를 둔다. 나머지는 모두 6초.
  */
-const SLIDE_MS = [21000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
+const SLIDE_MS = [10000, ROTATE_MS, 9000, ROTATE_MS, ROTATE_MS, ROTATE_MS, ROTATE_MS];
 
 // Per-slide background videos (index matches the active slide).
-// 순서: DexOn 코딩 → DexOn → 툴킷 → 거버넌스 → XGEN 제품소개 → 연구소 정체성.
+// 순서: AI 보안 → 거버넌스 → DexOn 코딩 → DexOn → 툴킷 → XGEN 제품소개 → 연구소 정체성.
 // DexOn을 앞쪽에 둔다 — 홈에 처음 온 사람에게 「AI 가 내 데스크톱에서 일한다」가
 // 가장 설명 없이 와닿는 장면이고, 배경 영상도 실제 업무 책상이라 말과 그림이 맞는다.
 // 그다음 오픈소스 툴킷을 두어 검색으로 도착한 개발자가 자기 경로를 찾게 한다.
 // 배경은 슬라이드와 인덱스로 묶여 있으므로 순서를 바꿀 때 함께 옮긴다.
 // 이미지 확장자(.jpg/.jpeg/.png/.webp)면 <img>로, 그 외(.mp4)는 배경 <video>로 렌더한다.
 const SLIDE_BG = [
+    "/hero-security-shield.jpg",
+    "/hero-security.jpeg",
     "/hero-dex-vibe-dashboard-bg.mp4",
     "/hero-dex.mp4",
     "/hero-slide2.mp4",
-    "/hero-security.jpeg",
     "/hero-xgen.mp4",
     "/hero-vision.jpeg",
 ];
-const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif)$/i.test(src);
+/** 첫 장에서 SLIDE_BG[0] 과 번갈아 보여 줄 배경과 전환 주기. */
+const SECURITY_ALT_BG = "/hero-security-recheck.svg";
+const SECURITY_BG_SWAP_MS = 4000;
+const isImage = (src: string) => /\.(jpe?g|png|webp|avif|gif|svg)$/i.test(src);
 // Per-slide object-position (기본 중앙).
-const SLIDE_POS = ["center", "center", "center", "center", "center", "center"];
+const SLIDE_POS = ["center", "center", "center", "center", "center", "center", "center"];
 // Per-slide 추가 이동/확대(이미지 슬라이드용). 거버넌스 이미지는 피사체를 더
 // 오른쪽으로 보내기 위해 살짝 확대(가장자리 빈틈 방지) 후 우측으로 이동시키고,
 // 연구소 정체성 이미지는 좌하단으로 옮긴다. 값은 각 이미지에 맞춰 잡은 것이라
 // 슬라이드 순서와 함께 이동한다.
 const SLIDE_TRANSFORM: (string | undefined)[] = [
     undefined,
-    undefined,
-    undefined,
     "scale(1.3) translateX(16%)",
+    undefined,
+    undefined,
+    undefined,
     undefined,
     "scale(1.3) translate(calc(-10% + 5px), 12%)",
 ];
@@ -69,7 +73,8 @@ function HeroActions({
     secondary,
 }: {
     primary?: { label: string; href: string };
-    secondary?: { label: string; href: string; external?: boolean };
+    /** null 이면 보조 버튼을 그리지 않는다. */
+    secondary?: { label: string; href: string; external?: boolean } | null;
 } = {}) {
     const { t, locale } = useI18n();
     // 기본 CTA는 라이브러리 갤러리로 보낸다. 예전 값은 "/#tools" 였는데 홈에는
@@ -78,7 +83,7 @@ function HeroActions({
         label: t.hero.browse,
         href: localeHref(locale, "/library-gallery"),
     };
-    const s = secondary ?? {
+    const s = secondary === null ? null : secondary ?? {
         label: t.hero.viewGithub,
         href: "https://github.com/PlateerLab",
         external: true,
@@ -92,15 +97,17 @@ function HeroActions({
                 {p.label}
                 <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
             </Link>
-            <Link
-                href={s.href}
-                {...(s.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
-            >
-                {s.label}
-            </Link>
+            {s && (
+                <Link
+                    href={s.href}
+                    {...(s.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
+                >
+                    {s.label}
+                </Link>
+            )}
         </div>
     );
 }
@@ -127,15 +134,15 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
             <h1 className={cn(H1_CLS, "mt-7")}>
                 {ko ? (
                     <>
-                        말하면,
+                        말하는 것만으로 완성되는
                         <br />
-                        앱이 됩니다
+                        AI App
                     </>
                 ) : (
                     <>
-                        Say it,
+                        Built just by describing it:
                         <br />
-                        and it&apos;s an app
+                        your AI app
                     </>
                 )}
             </h1>
@@ -415,6 +422,52 @@ function XgenSlide() {
     );
 }
 
+/** 슬라이드 0 — AI 보안. 배경은 SLIDE_BG[0] 과 SECURITY_ALT_BG 를 번갈아 보여 준다. */
+function SecurityRecheckSlide() {
+    const { locale } = useI18n();
+    return (
+        <>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                AI Security
+            </div>
+
+            <h1 className={cn(H1_CLS, "mt-7 text-balance")}>
+                {locale === "ko" ? (
+                    <>
+                        공격자의 시선으로 검증된
+                        <br />
+                        Enterprise AI Security
+                    </>
+                ) : (
+                    <>
+                        Enterprise AI Security,
+                        <br />
+                        tested through an attacker&apos;s eyes
+                    </>
+                )}
+            </h1>
+
+            <p className="mx-auto mt-7 max-w-3xl text-balance text-xl leading-relaxed text-white/75">
+                {locale === "ko"
+                    ? "Plateer AI Labs는 AI 에이전트의 권한과 데이터 접근, 승인, 실행 과정을 통제하고 추적할 수 있는 기술을 연구하며, 이를 XGEN에 적용하고 검증합니다."
+                    : "Plateer AI Labs researches ways to control and trace AI agents' permissions, data access, approvals, and execution, then applies and validates them in XGEN."}
+            </p>
+
+            <HeroActions
+                primary={{
+                    label: locale === "ko" ? "XGEN 제품보기" : "View XGEN",
+                    href: localeHref(locale, "/product"),
+                }}
+                secondary={{
+                    label: locale === "ko" ? "보안·거버넌스 보기" : "Security and governance",
+                    href: localeHref(locale, "/security-and-governance"),
+                }}
+            />
+        </>
+    );
+}
+
 /** 슬라이드 2 — 거버넌스 (가드레일·통제, /security-and-governance 참고). */
 function SecuritySlide() {
     const { locale } = useI18n();
@@ -430,21 +483,22 @@ function SecuritySlide() {
                     <>
                         선언한 대로 통제되는
                         <br />
-                        Enterprise AI
+                        Enterprise AI Governance
                     </>
                 ) : (
                     <>
-                        Enterprise AI that behaves
+                        Enterprise AI Governance
                         <br />
-                        the way you declared
+                        that works the way you declared
                     </>
                 )}
             </h1>
 
-            <p className="mt-7 mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
+            <p className="mt-7 mx-auto max-w-3xl text-xl leading-relaxed text-white/70">
                 {locale === "ko" ? (
                     <>
                         가드 모델·개인정보 마스킹·금칙어 필터와 감사 로그에 더해,{" "}
+                        <br className="hidden sm:block" />
                         AI 위험도를 심사하고 등급에 따른 결재선을 지정해 승인합니다.{" "}
                         <br className="hidden sm:block" />
                         규제 산업에서도 신뢰할 수 있는 다층 통제 위에서 AI를 운영합니다
@@ -507,6 +561,14 @@ export function Hero({
     const [active, setActive] = useState(0);
     // DexOn 소개영상 모달 — 열려 있는 동안은 슬라이드를 넘기지 않는다.
     const [videoOpen, setVideoOpen] = useState(false);
+    // 첫 장 배경 전환 — 첫 장에 머무는 동안만 돈다.
+    const [securityAlt, setSecurityAlt] = useState(false);
+    useEffect(() => {
+        setSecurityAlt(false);
+        if (active !== 0) return;
+        const id = setInterval(() => setSecurityAlt((v) => !v), SECURITY_BG_SWAP_MS);
+        return () => clearInterval(id);
+    }, [active]);
 
     // 헤드라인 뉴스의 Tech Note 슬롯: 항상 최신 글을 세운다.
     // (예전에는 최근 5개 중 하나를 마운트 후 무작위로 바꿔 걸었는데, 새 글을 올려도
@@ -596,8 +658,8 @@ export function Hero({
                             ref={(el) => {
                                 videoRefs.current[i] = el;
                             }}
-                            autoPlay={i === 0}
-                            poster={i === 0 ? "/hero-dex-vibe-dashboard-poster.jpg" : undefined}
+                            autoPlay={i === 2}
+                            poster={i === 2 ? "/hero-dex-vibe-dashboard-poster.jpg" : undefined}
                             loop
                             muted
                             playsInline
@@ -612,6 +674,22 @@ export function Hero({
                         </video>
                     ),
                 )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={SECURITY_ALT_BG}
+                    alt=""
+                    className={cn(
+                        "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out",
+                        active === 0 && securityAlt ? "opacity-100" : "opacity-0",
+                    )}
+                />
+                {/* 첫 장 배경은 가운데가 밝아 글자가 묻힌다. */}
+                <div
+                    className={cn(
+                        "absolute inset-0 bg-[#050813]/55 transition-opacity duration-1000 ease-in-out",
+                        active === 0 ? "opacity-100" : "opacity-0",
+                    )}
+                />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050813]/80 via-[#050813]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813]/55 to-transparent" />
                 {/*
@@ -619,7 +697,7 @@ export function Hero({
                   부드럽게 블러해 가독성을 지킨다. 이미지 배경 둘은 이미 어둡게
                   깔려 있어 필요 없다. 슬라이드 순서를 바꾸면 이 인덱스도 옮긴다.
                 */}
-                {(active === 0 || active === 1 || active === 2 || active === 4) && (
+                {(active === 2 || active === 3 || active === 4 || active === 5) && (
                     <div
                         aria-hidden
                         className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
@@ -644,14 +722,16 @@ export function Hero({
                 {/* rolling slides — fade/slide-in on change */}
                 <div key={active} className="hero-slide-enter text-center">
                     {active === 0 ? (
-                        <DexVibeSlide onPlay={() => setVideoOpen(true)} />
+                        <SecurityRecheckSlide />
                     ) : active === 1 ? (
-                        <DexSlide />
-                    ) : active === 2 ? (
-                        <XgenSlide />
-                    ) : active === 3 ? (
                         <SecuritySlide />
+                    ) : active === 2 ? (
+                        <DexVibeSlide onPlay={() => setVideoOpen(true)} />
+                    ) : active === 3 ? (
+                        <DexSlide />
                     ) : active === 4 ? (
+                        <XgenSlide />
+                    ) : active === 5 ? (
                         <XgenPlatformSlide />
                     ) : (
                         <VisionSlide />
