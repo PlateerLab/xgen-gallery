@@ -483,11 +483,11 @@ function SecuritySlide() {
                     <>
                         선언한 대로 통제되는
                         <br />
-                        Enterprise AI Governance
+                        AI Governance
                     </>
                 ) : (
                     <>
-                        Enterprise AI Governance
+                        AI Governance
                         <br />
                         that works the way you declared
                     </>
