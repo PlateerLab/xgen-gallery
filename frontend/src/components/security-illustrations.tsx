@@ -24,6 +24,115 @@ function Panel({
     );
 }
 
+/** 공격자 시선 재검증 — 공격 시도가 방패에서 막히고 정상 요청만 데이터에 닿는다. */
+const ATTACK_ROWS = [
+    { y: 72, delay: "0s" },
+    { y: 100, delay: "1s" },
+    { y: 128, delay: "2s" },
+];
+
+export function AttackerViewArt({ className }: { className?: string }) {
+    return (
+        <Panel className={className}>
+            <style>{`
+                .av-probe { opacity: 0; }
+                @media (prefers-reduced-motion: no-preference) {
+                    .av-probe { animation: av-probe 3s linear infinite; }
+                    .av-block { animation: av-block 3s ease-out infinite; }
+                    .av-ring { animation: av-ring 3s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+                    .av-pass { animation: av-pass 3s linear infinite; }
+                }
+                @keyframes av-probe {
+                    0% { opacity: 0; transform: translateX(0); }
+                    8% { opacity: 1; }
+                    58% { opacity: 1; transform: translateX(42px); }
+                    60%, 100% { opacity: 0; transform: translateX(42px); }
+                }
+                @keyframes av-block {
+                    0%, 56% { opacity: 0; }
+                    62%, 78% { opacity: 1; }
+                    92%, 100% { opacity: 0; }
+                }
+                @keyframes av-ring {
+                    0% { opacity: 0.55; transform: scale(0.8); }
+                    70%, 100% { opacity: 0; transform: scale(1.2); }
+                }
+                @keyframes av-pass {
+                    0% { opacity: 0; transform: translateX(0); }
+                    15% { opacity: 1; }
+                    70% { opacity: 1; transform: translateX(26px); }
+                    80%, 100% { opacity: 0; transform: translateX(26px); }
+                }
+            `}</style>
+            <svg viewBox="0 0 320 200" fill="none" className="w-full" aria-hidden="true">
+                <defs>
+                    <linearGradient id="av-shield" x1="0" y1="0" x2="0" y2="1">
+                        <stop stopColor="#3b82f6" />
+                        <stop offset="1" stopColor="#1b4fb0" />
+                    </linearGradient>
+                </defs>
+                <circle cx="160" cy="100" r="80" fill="#dbeafe" opacity="0.5" />
+                <circle className="av-ring" cx="160" cy="100" r="62" stroke="#3b82f6" strokeWidth="2" />
+                {ATTACK_ROWS.map((r) => (
+                    <g key={r.y}>
+                        <rect x="26" y={r.y - 11} width="46" height="22" rx="7" fill="#fdeeee" stroke="#f6caca" />
+                        <circle cx="49" cy={r.y} r="5" stroke="#ef4444" strokeWidth="2" />
+                        <path
+                            d={`M49 ${r.y - 8} v4 M49 ${r.y + 4} v4 M41 ${r.y} h4 M53 ${r.y} h4`}
+                            stroke="#ef4444"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                        />
+                        <path d={`M76 ${r.y} H118`} stroke="#94a3b8" strokeWidth="2.5" strokeDasharray="2 4" />
+                        <circle
+                            className="av-probe"
+                            cx="78"
+                            cy={r.y}
+                            r="4"
+                            fill="#ef4444"
+                            style={{ animationDelay: r.delay }}
+                        />
+                        <g className="av-block" style={{ animationDelay: r.delay }}>
+                            <circle cx="120" cy={r.y} r="9" fill="#ef4444" />
+                            <path
+                                d={`M116 ${r.y - 4} l8 8 M124 ${r.y - 4} l-8 8`}
+                                stroke="#ffffff"
+                                strokeWidth="2.4"
+                                strokeLinecap="round"
+                            />
+                        </g>
+                    </g>
+                ))}
+                <path
+                    d="M160 48 l36 14 v30 c0 30 -20 48 -36 58 c-16 -10 -36 -28 -36 -58 v-30 z"
+                    fill="url(#av-shield)"
+                />
+                <path
+                    d="M146 98 l10 10 l19 -22"
+                    stroke="#ffffff"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path d="M200 100 H232" stroke="#0f9d8f" strokeWidth="2.5" />
+                <circle className="av-pass" cx="204" cy="100" r="4" fill="#0f9d8f" />
+                <rect x="238" y="66" width="56" height="68" rx="10" fill="#ffffff" stroke="#cfe0ff" strokeWidth="2" />
+                <rect x="248" y="80" width="36" height="6" rx="3" fill="#cfe0ff" />
+                <rect x="248" y="94" width="36" height="6" rx="3" fill="#cfe0ff" />
+                <rect x="248" y="108" width="24" height="6" rx="3" fill="#cfe0ff" />
+                <circle cx="290" cy="130" r="11" fill="#0f9d8f" />
+                <path
+                    d="M285 130 l4 4 l7 -8"
+                    stroke="#ffffff"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+        </Panel>
+    );
+}
+
 /** 다층 통제 — 겹겹이 쌓인 방패 레이어. */
 export function LayeredControlArt({ className }: { className?: string }) {
     return (

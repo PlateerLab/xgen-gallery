@@ -221,3 +221,214 @@ export function SecurityHeroArt({ locale = "ko" }: { locale?: Locale }) {
         </div>
     );
 }
+
+/** 보안 통제 슬라이드 — 왼쪽의 공격 시도가 방패에서 막히고 허용된 흐름만 자원에 닿는다. */
+const ATTACK_T: Record<Locale, { attacks: string[]; assets: string[]; aria: string }> = {
+    ko: {
+        attacks: ["권한 우회", "비로그인 요청", "설정 조회"],
+        assets: ["데이터", "AI Agent"],
+        aria: "보안 통제 — 권한 우회·비로그인 요청·설정 조회 시도가 방패에서 차단되고 허용된 흐름만 데이터와 AI Agent에 닿는 개념 애니메이션",
+    },
+    en: {
+        attacks: ["Bypass", "No login", "Config read"],
+        assets: ["Data", "AI Agent"],
+        aria: "Security controls — a conceptual animation of permission bypass, unauthenticated, and configuration-read attempts stopped at a shield while allowed traffic reaches data and AI agents",
+    },
+};
+
+const ATTACKS: { y: number; tx: number; ty: number; delay: string }[] = [
+    { y: 70, tx: 172, ty: 146, delay: "0s" },
+    { y: 165, tx: 168, ty: 178, delay: "0.8s" },
+    { y: 260, tx: 180, ty: 212, delay: "1.6s" },
+];
+
+const ASSETS: { y: number; delay: string }[] = [
+    { y: 112, delay: "0.4s" },
+    { y: 218, delay: "1.4s" },
+];
+
+export function SecurityAttackArt({ locale = "ko" }: { locale?: Locale }) {
+    const t = ATTACK_T[locale];
+    return (
+        <div className="relative mx-auto w-full max-w-[440px]">
+            <svg
+                viewBox="0 0 440 360"
+                className="block h-auto w-full"
+                role="img"
+                aria-label={t.aria}
+                fontFamily="Pretendard, system-ui, sans-serif"
+            >
+                <defs>
+                    <linearGradient id="sa-shield" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stopColor="#22d3ee" />
+                        <stop offset="1" stopColor="#2f7bff" />
+                    </linearGradient>
+                    <radialGradient id="sa-glow" cx="0.5" cy="0.5" r="0.5">
+                        <stop offset="0" stopColor="#22d3ee" stopOpacity="0.3" />
+                        <stop offset="1" stopColor="#22d3ee" stopOpacity="0" />
+                    </radialGradient>
+                </defs>
+
+                <circle cx="220" cy="182" r="120" fill="url(#sa-glow)" />
+
+                {[0, 1].map((i) => (
+                    <circle
+                        key={i}
+                        cx="220"
+                        cy="178"
+                        r="62"
+                        fill="none"
+                        stroke="#22d3ee"
+                        strokeWidth="1.4"
+                        opacity="0"
+                    >
+                        <animate
+                            attributeName="r"
+                            values="60;104"
+                            dur="3s"
+                            begin={`${i * 1.5}s`}
+                            repeatCount="indefinite"
+                        />
+                        <animate
+                            attributeName="opacity"
+                            values="0.45;0"
+                            dur="3s"
+                            begin={`${i * 1.5}s`}
+                            repeatCount="indefinite"
+                        />
+                    </circle>
+                ))}
+
+                {ATTACKS.map((a, i) => (
+                    <g key={a.y}>
+                        <line
+                            x1="112"
+                            y1={a.y + 13}
+                            x2={a.tx}
+                            y2={a.ty}
+                            stroke="rgba(248,113,113,0.35)"
+                            strokeWidth="1.2"
+                            strokeDasharray="3 4"
+                        />
+                        <rect
+                            x="8"
+                            y={a.y}
+                            width="104"
+                            height="26"
+                            rx="13"
+                            fill="rgba(127,29,29,0.35)"
+                            stroke="rgba(248,113,113,0.55)"
+                        />
+                        <text
+                            x="60"
+                            y={a.y + 17.5}
+                            textAnchor="middle"
+                            fontSize="12"
+                            fontWeight="600"
+                            fill="#fecaca"
+                        >
+                            {t.attacks[i]}
+                        </text>
+                        <circle r="3.5" fill="#f87171" opacity="0">
+                            <animateMotion
+                                dur="2.4s"
+                                begin={a.delay}
+                                repeatCount="indefinite"
+                                path={`M112 ${a.y + 13} L${a.tx} ${a.ty}`}
+                            />
+                            <animate
+                                attributeName="opacity"
+                                values="0;1;1;0;0"
+                                keyTimes="0;0.1;0.68;0.72;1"
+                                dur="2.4s"
+                                begin={a.delay}
+                                repeatCount="indefinite"
+                            />
+                        </circle>
+                        <g opacity="0">
+                            <circle cx={a.tx} cy={a.ty} r="9" fill="#ef4444" />
+                            <path
+                                d={`M${a.tx - 4} ${a.ty - 4} l8 8 M${a.tx + 4} ${a.ty - 4} l-8 8`}
+                                stroke="#ffffff"
+                                strokeWidth="2.2"
+                                strokeLinecap="round"
+                            />
+                            <animate
+                                attributeName="opacity"
+                                values="0;0;1;1;0"
+                                keyTimes="0;0.68;0.72;0.9;1"
+                                dur="2.4s"
+                                begin={a.delay}
+                                repeatCount="indefinite"
+                            />
+                        </g>
+                    </g>
+                ))}
+
+                {ASSETS.map((a, i) => (
+                    <g key={a.y}>
+                        <line
+                            x1="268"
+                            y1="178"
+                            x2="336"
+                            y2={a.y + 13}
+                            stroke="rgba(94,234,212,0.4)"
+                            strokeWidth="1.2"
+                        />
+                        <rect
+                            x="336"
+                            y={a.y}
+                            width="96"
+                            height="26"
+                            rx="13"
+                            fill="rgba(13,148,136,0.18)"
+                            stroke="rgba(94,234,212,0.55)"
+                        />
+                        <text
+                            x="384"
+                            y={a.y + 17.5}
+                            textAnchor="middle"
+                            fontSize="12"
+                            fontWeight="600"
+                            fill="#ccfbf1"
+                        >
+                            {t.assets[i]}
+                        </text>
+                        <circle r="3" fill="#5eead4" opacity="0">
+                            <animateMotion
+                                dur="2s"
+                                begin={a.delay}
+                                repeatCount="indefinite"
+                                path={`M268 178 L336 ${a.y + 13}`}
+                            />
+                            <animate
+                                attributeName="opacity"
+                                values="0;1;1;0"
+                                keyTimes="0;0.15;0.85;1"
+                                dur="2s"
+                                begin={a.delay}
+                                repeatCount="indefinite"
+                            />
+                        </circle>
+                    </g>
+                ))}
+
+                <path
+                    d={SHIELD}
+                    fill="rgba(9,15,32,0.78)"
+                    stroke="url(#sa-shield)"
+                    strokeWidth="2.4"
+                    strokeLinejoin="round"
+                />
+                <rect x="203" y="176" width="34" height="27" rx="5" fill="url(#sa-shield)" />
+                <path
+                    d="M210 176 v-9 a10 10 0 0 1 20 0 v9"
+                    fill="none"
+                    stroke="url(#sa-shield)"
+                    strokeWidth="3.2"
+                />
+                <circle cx="220" cy="188" r="3.4" fill="#0a1020" />
+            </svg>
+        </div>
+    );
+}

@@ -15,9 +15,10 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SceneBackground } from "@/components/scene-background";
-import { SecurityHeroArt } from "@/components/security-hero-art";
+import { SecurityCardSlider, type SecurityHeroCard } from "@/components/security-hero-slider";
 import { JsonLd } from "@/components/json-ld";
 import {
+    AttackerViewArt,
     LayeredControlArt,
     GuardModelArt,
     DataProtectionArt,
@@ -30,8 +31,8 @@ import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Security & Governance — 가드레일 3축(가드 모델·PII·금칙어) + 감사 로그 +
- * AI 위험도 등급 + 온프레미스 아키텍처 + FAQ.
+ * Security & Governance — 공격자 시선 재검증 + 가드레일 3축(가드 모델·PII·금칙어) +
+ * 감사 로그 + AI 위험도 등급 + 온프레미스 아키텍처 + FAQ.
  * 한국어(`/security-and-governance`)와 영어(`/en/...`)가 이 컴포넌트를 공유한다.
  */
 interface SecCopy {
@@ -40,7 +41,16 @@ interface SecCopy {
     heroEyebrow: string;
     heroTitle: React.ReactNode;
     heroLead: string;
-    heroChip: string;
+    heroCta: string;
+    heroCtaSecondary: string;
+    heroCardLabel: string;
+    heroCards: SecurityHeroCard[];
+    verifyTitle: string;
+    verifyLead: string;
+    verifyMethods: { icon: LucideIcon; en: string; sub: string; desc: string }[];
+    verifyResultTitle: string;
+    verifyStats: { value: string; label: string }[];
+    verifyNote: string;
     layeredTitle: string;
     layeredLead: string;
     controls: { icon: LucideIcon; en: string; sub: string; desc: string }[];
@@ -85,14 +95,63 @@ const COPY: Record<Locale, SecCopy> = {
         heroEyebrow: "Applied AI · Security & Governance",
         heroTitle: (
             <>
-                선언한 대로 통제되는
+                공격자의 시선으로 검증하고
                 <br />
-                Enterprise AI
+                선언한 대로 통제합니다
             </>
         ),
         heroLead:
-            "XGEN Agentic AI Platform은 사용자 입력·워크플로우 실행·문서 업로드 텍스트에 보안 정책을 적용하는 다층 통제 체계를 제공합니다. 가드 모델·개인정보 마스킹·금칙어 필터에 감사 로그와 AI 위험도 등급을 더해, 규제 산업에서도 신뢰할 수 있는 AI를 운영합니다",
-        heroChip: "가드 모델 · PII 마스킹 · 금칙어 · 감사 로그 · 위험도 등급",
+            "AI 에이전트의 권한과 데이터 접근, 승인, 실행 과정을 통제하고 추적합니다. 이 통제가 공격 상황에서도 작동하는지 격리 환경의 침투 테스트로 다시 확인합니다.",
+        heroCta: "검증 내용 보기",
+        heroCtaSecondary: "통제 체계 보기",
+        heroCardLabel: "Security & Governance",
+        heroCards: [
+            {
+                tag: "보안 통제",
+                title: "공격자의 시선으로 검증된 Enterprise AI Security",
+                desc: "권한 우회, 비로그인 요청, 설정 조회를 공격 방식으로 시도해 통제가 작동하는지 확인합니다.",
+                cta: "검증 내용 보기",
+                href: "#attacker-view",
+            },
+            {
+                tag: "거버넌스 통제",
+                title: "선언한 대로 통제되는 AI Governance",
+                desc: "가드 모델·개인정보 마스킹·금칙어 필터와 감사 로그에 더해, AI 위험도를 심사하고 등급에 따른 결재선을 지정해 승인합니다.",
+                cta: "통제 체계 보기",
+                href: "#layered-control",
+            },
+        ],
+        verifyTitle: "공격자의 시선으로 검증합니다",
+        verifyLead:
+            "권한 통제는 설정만으로 끝나지 않습니다. XGEN은 다른 사용자의 데이터에 접근할 수 있는지, 로그인 없이 내부 기능에 닿을 수 있는지를 공격자의 방식으로 시도해 확인합니다.",
+        verifyMethods: [
+            {
+                icon: Lock,
+                en: "Access Control Test",
+                sub: "권한 우회 점검",
+                desc: "API 자동 테스트, 설정 스캔, LLM 프로브와 테스트 계정으로 한 계정이 다른 계정의 데이터에 접근할 수 있는지 확인합니다.",
+            },
+            {
+                icon: ScanLine,
+                en: "Autonomous Pentest",
+                sub: "자율 침투 테스트",
+                desc: "AI가 공격 순서를 스스로 계획하는 오픈소스 도구 ARTEX로 인증·인가 경로를 다시 시험합니다.",
+            },
+            {
+                icon: ShieldCheck,
+                en: "Isolated Environment",
+                sub: "격리 환경 검증",
+                desc: "외부와 분리된 환경에 개발 버전을 별도로 구성해 점검하므로, 공용 개발 서버에는 영향을 주지 않습니다.",
+            },
+        ],
+        verifyResultTitle: "재점검 결과",
+        verifyStats: [
+            { value: "0건", label: "기존 고위험 항목 재발" },
+            { value: "96.5%", label: "비로그인 요청 차단율" },
+            { value: "0건", label: "민감 정보 노출" },
+        ],
+        verifyNote:
+            "2026년 11월 초 개발 버전을 점검한 결과로, 해당 버전과 점검 범위에 한정됩니다. 비로그인 요청 1,341건 중 1,294건이 차단됐고, 나머지 47건은 공개용 상태 정보와 잘못된 요청·없는 주소에 대한 응답입니다. 남은 개선 과제 3건은 조치 중이며, LLM·RAG 영역의 검증은 이어서 진행합니다.",
         layeredTitle: "3가지 축으로 통제하는 다층 가드레일",
         layeredLead:
             "XGEN의 통제 기능은 외부 가드 모델 기반 유해성 검토, 개인정보 탐지·마스킹, 금칙어 탐지·마스킹의 3가지 축으로 구성됩니다. 각 축은 독립적으로 켜고 끌 수 있으며, 탐지 이벤트는 항상 로그로 남습니다.",
@@ -224,6 +283,18 @@ const COPY: Record<Locale, SecCopy> = {
                 q: "통제 이벤트는 감사에 활용할 수 있나요?",
                 a: "PII·금칙어·가드 모델에 의해 탐지·차단된 이벤트는 통합 정책 이벤트 로그에 기록되며, 출처·정책 유형·사용자·워크플로우·컬렉션·기간으로 필터링해 조회할 수 있습니다. 정책의 생성·수정·삭제도 변경 이력과 버전으로 남습니다.",
             },
+            {
+                q: "XGEN의 보안 검증은 어떻게 진행하나요?",
+                a: "API 자동 테스트, 설정 스캔, LLM 프로브와 테스트 계정으로 한 계정이 다른 계정의 데이터에 접근할 수 있는지 확인합니다. 이어서 AI가 공격 순서를 스스로 계획하는 오픈소스 도구 ARTEX로 인증·인가 경로를 다시 시험합니다. 점검은 외부와 분리된 격리 환경에 개발 버전을 별도로 구성해 진행합니다.",
+            },
+            {
+                q: "비로그인 요청 차단율 96.5%는 무엇을 뜻하나요?",
+                a: "2026년 11월 초 재점검에서 로그인 없이 보낸 요청 1,341건 중 1,294건이 차단된 비율입니다. 나머지 47건은 공개용 상태 정보와 잘못된 요청·없는 주소에 대한 응답입니다.",
+            },
+            {
+                q: "재점검 결과는 어디까지 적용되나요?",
+                a: "결과는 점검 시점의 개발 버전과 점검 범위에 한정되며, 실제 운영 환경의 보안 수준은 구성과 운영 정책에 따라 달라질 수 있습니다.",
+            },
         ],
         ctaTitle: "검증 가능한 통제 위에서 AI를 운영합니다",
         ctaLead:
@@ -237,14 +308,63 @@ const COPY: Record<Locale, SecCopy> = {
         heroEyebrow: "Applied AI · Security & Governance",
         heroTitle: (
             <>
-                Enterprise AI that behaves
+                Tested through an attacker&apos;s eyes,
                 <br />
-                the way you declared
+                governed the way you declared
             </>
         ),
         heroLead:
-            "The XGEN Agentic AI Platform applies security policy to user input, workflow execution, and uploaded document text through a layered control system. Guard models, PII masking, and blocklist filters, together with audit logs and AI risk grading, are what let regulated industries run AI they can trust",
-        heroChip: "Guard model · PII masking · Blocklists · Audit logs · Risk grading",
+            "XGEN controls and traces AI agent permissions, data access, approvals, and execution. We re-check these controls with penetration testing in an isolated environment to see whether they hold under attack.",
+        heroCta: "See how we test",
+        heroCtaSecondary: "See the control system",
+        heroCardLabel: "Security & Governance",
+        heroCards: [
+            {
+                tag: "Security controls",
+                title: "Enterprise AI Security, tested through an attacker's eyes",
+                desc: "We attempt permission bypass, unauthenticated requests, and configuration reads the way an attacker would, to check that controls hold.",
+                cta: "See how we test",
+                href: "#attacker-view",
+            },
+            {
+                tag: "Governance controls",
+                title: "AI Governance that works the way you declared",
+                desc: "On top of guard models, PII masking, blocklist filters, and audit logs, XGEN assesses AI risk and routes approval through an approval line set by risk grade.",
+                cta: "See the control system",
+                href: "#layered-control",
+            },
+        ],
+        verifyTitle: "Tested through an attacker's eyes",
+        verifyLead:
+            "Permission controls are not finished once they are configured. XGEN attempts what an attacker would: reaching another user's data, or internal functions without logging in.",
+        verifyMethods: [
+            {
+                icon: Lock,
+                en: "Access Control Test",
+                sub: "Permission bypass checks",
+                desc: "Automated API tests, configuration scans, LLM probes, and test accounts check whether one account can reach another's data.",
+            },
+            {
+                icon: ScanLine,
+                en: "Autonomous Pentest",
+                sub: "Autonomous penetration testing",
+                desc: "ARTEX, an open-source tool in which AI plans its own attack sequence, re-tests authentication and authorization paths.",
+            },
+            {
+                icon: ShieldCheck,
+                en: "Isolated Environment",
+                sub: "Testing in isolation",
+                desc: "A development build runs in a separate environment cut off from external networks, so the shared development server is not affected.",
+            },
+        ],
+        verifyResultTitle: "Re-test results",
+        verifyStats: [
+            { value: "0", label: "Recurrences of prior high-risk items" },
+            { value: "96.5%", label: "Unauthenticated requests blocked" },
+            { value: "0", label: "Sensitive data exposures" },
+        ],
+        verifyNote:
+            "Results are from a development build tested in early November 2026 and apply only to that build and test scope. Of 1,341 unauthenticated requests, 1,294 were blocked; the other 47 were public status data or responses to malformed requests and nonexistent addresses. Three remaining improvement items are in progress, and validation of the LLM and RAG areas continues.",
         layeredTitle: "Layered guardrails on three axes",
         layeredLead:
             "XGEN's controls run on three axes: harm review by an external guard model, PII detection and masking, and blocklist detection and masking. Each axis can be switched on or off independently, and detection events are always logged.",
@@ -376,6 +496,18 @@ const COPY: Record<Locale, SecCopy> = {
                 q: "Can control events be used for audit?",
                 a: "Events detected or blocked by PII, blocklist, or guard-model policies are written to a unified policy event log and can be filtered by source, policy type, user, workflow, collection, and period. Policy creation, edits, and deletions are also kept as change history with versions.",
             },
+            {
+                q: "How does XGEN test its security?",
+                a: "Automated API tests, configuration scans, LLM probes, and test accounts check whether one account can reach another's data. ARTEX, an open-source tool in which AI plans its own attack sequence, then re-tests authentication and authorization paths. Testing runs on a development build in a separate environment cut off from external networks.",
+            },
+            {
+                q: "What does the 96.5% block rate mean?",
+                a: "In the early November 2026 re-test, 1,294 of 1,341 requests sent without logging in were blocked. The other 47 were public status data or responses to malformed requests and nonexistent addresses.",
+            },
+            {
+                q: "How far do the re-test results apply?",
+                a: "Results apply only to the development build and test scope at that time; the security of a production environment can vary with its configuration and operating policies.",
+            },
         ],
         ctaTitle: "Run AI on controls you can verify",
         ctaLead:
@@ -434,33 +566,43 @@ export function SecurityPageContent({ locale }: { locale: Locale }) {
             {/* Hero */}
             <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
-                <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
-                    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-                        <div>
-                            <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                                {t.heroEyebrow}
-                            </p>
-                            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-                                {t.heroTitle}
-                            </h1>
-                            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                                {t.heroLead}
-                            </p>
-                            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                                {t.heroChip}
-                            </span>
-                        </div>
-                        <div className="hidden lg:block">
-                            <SecurityHeroArt locale={locale} />
+                <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div>
+                        <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
+                            {t.heroEyebrow}
+                        </p>
+                        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+                            {t.heroTitle}
+                        </h1>
+                        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                            {t.heroLead}
+                        </p>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <a
+                                href="#attacker-view"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                            >
+                                {t.heroCta}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </a>
+                            <a
+                                href="#layered-control"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                {t.heroCtaSecondary}
+                            </a>
                         </div>
                     </div>
+                    <SecurityCardSlider label={t.heroCardLabel} cards={t.heroCards} locale={locale} />
                 </div>
             </section>
 
             <main>
                 {/* 다층 통제 체계 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section
+                    id="layered-control"
+                    className="scroll-mt-20 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
                     <div className="mx-auto max-w-7xl px-6 py-24">
                         <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
                             <div>
@@ -743,8 +885,74 @@ export function SecurityPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
+                {/* 공격자 시선 검증 */}
+                <section
+                    id="attacker-view"
+                    className="scroll-mt-20 border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                >
+                    <div className="mx-auto max-w-7xl px-6 py-24">
+                        <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
+                            <div>
+                                <Eyebrow>Attacker&apos;s View</Eyebrow>
+                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                    {t.verifyTitle}
+                                </h2>
+                                <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {t.verifyLead}
+                                </p>
+                            </div>
+                            <AttackerViewArt className="hidden lg:block" />
+                        </div>
+                        <div className="mt-10 grid gap-4 md:grid-cols-3">
+                            {t.verifyMethods.map((c) => (
+                                <div
+                                    key={c.en}
+                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <c.icon className="h-5 w-5" />
+                                        </span>
+                                        <div>
+                                            <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {c.en}
+                                            </h3>
+                                            <p className="text-[13.5px] font-semibold text-[#2461d8]">
+                                                {c.sub}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {c.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-10">
+                            <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                {t.verifyResultTitle}
+                            </h3>
+                            <dl className="mt-4 grid gap-6 border-y border-[var(--color-line)] py-6 md:grid-cols-3">
+                                {t.verifyStats.map((v) => (
+                                    <div key={v.label}>
+                                        <dd className="text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                                            {v.value}
+                                        </dd>
+                                        <dt className="mt-1 text-[15px] text-[var(--color-ink-muted)]">
+                                            {v.label}
+                                        </dt>
+                                    </div>
+                                ))}
+                            </dl>
+                            <p className="mt-4 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {t.verifyNote}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
                 {/* FAQ */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                     <div className="mx-auto max-w-4xl px-6 py-24">
                         <Eyebrow>FAQ</Eyebrow>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
