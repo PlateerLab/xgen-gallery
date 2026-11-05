@@ -393,7 +393,7 @@ const vol5: Issue = {
   slug: "vol-5",
   vol: 5,
   date: "2026-10-01",
-  title: "XGEN 뉴스레터 vol.5",
+  title: "스윙은 하네스에서 나옵니다",
   summary:
     "너희는 전혀 스윙하고 있지 않아. 좋은 모델만으로 모든 업무를 완수할 수는 없습니다. 자체 개발한 하네스 이야기와 9월 30일 운영 릴리즈, 판단 전용 모델 Jev.",
   intro: [
@@ -670,8 +670,8 @@ const vol1: Issue = {
     slug: "vol-1",
     vol: 1,
     date: "2026-07-13",
-    title: "XGEN 뉴스레터 vol.1",
-    titleEn: "XGEN Newsletter vol.1",
+    title: "처음 인사드립니다, XGEN 뉴스레터",
+    titleEn: "Hello from the XGEN Newsletter",
     summary:
         "Claude Code 백엔드 연동, 구글 검색 AI 전면 전환, Context rot — 최근 소식을 정리했습니다",
     intro: [
@@ -817,8 +817,8 @@ const vol2: Issue = {
     slug: "vol-2",
     vol: 2,
     date: "2026-07-27",
-    title: "XGEN 뉴스레터 vol.2",
-    titleEn: "XGEN Newsletter vol.2",
+    title: "XGEN, 이제 듣고 말합니다",
+    titleEn: "XGEN now listens and speaks",
     summary:
         "음성 대화(STT·TTS) 도입, 에이전트별 마스킹, AI 요금이 신분이 되는 이야기 — 지난 2주 소식을 정리했습니다",
     intro: [
@@ -970,8 +970,8 @@ const vol4: Issue = {
     slug: "vol-4",
     vol: 4,
     date: "2026-09-01",
-    title: "XGEN 뉴스레터 vol.4",
-    titleEn: "XGEN Newsletter vol.4",
+    title: "이제 노드 연결 대신, 대화로 에이전트를 만듭니다",
+    titleEn: "Build agents through conversation, not node wiring",
     summary:
         "노드를 잇는 대신 대화로 에이전트를 만드는 DexOn. 왜 로컬이 필요하고 개인 PC 자원을 써야 하는지, 작은 오픈 모델 하나로 어디까지 가는지 담았습니다.",
     intro: [
@@ -1208,8 +1208,8 @@ const vol3: Issue = {
     slug: "vol-3",
     vol: 3,
     date: "2026-08-13",
-    title: "XGEN 뉴스레터 vol.3",
-    titleEn: "XGEN Newsletter vol.3",
+    title: "API를 붙이면, 지식이 됩니다",
+    titleEn: "Connect an API, and it becomes knowledge",
     summary:
         "외부 API를 컬렉션에 붙이면 정한 주기마다 스스로 색인됩니다. 업로드 버전 관리, GPU 다중 적재까지 지난 2주 소식을 정리했습니다.",
     intro: [],
