@@ -145,7 +145,7 @@ export const PRODUCT_EN = {
             items: ["API tool registration and calling", "MCP standard integration", "Centralized credential profiles"],
         },
         {
-            ko: "Approval routing and AI risk review",
+            ko: "Approval route setup and AI risk review",
             desc: "Assign collaborating departments, governance officers, or information-security managers as approvers for an AI service risk review. Configure approval routes by organization and risk level, then manage every review, decision, and audit record consistently.",
             items: ["Risk-based review requests", "Cross-functional, governance, and security approval routes", "Review decisions and audit records"],
         },
