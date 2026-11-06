@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
+import { ProductGeny } from "@/components/product-geny";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
@@ -1186,6 +1187,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             {en ? E.techMore : "XGEN 플랫폼 아키텍처 자세히 보기"}
                             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </Link>
+
+                        <ProductGeny locale={locale} />
                     </div>
                 </section>
 
