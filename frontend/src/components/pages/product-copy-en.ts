@@ -150,9 +150,21 @@ export const PRODUCT_EN = {
             items: ["Risk-based review requests", "Cross-functional, governance, and security approval routes", "Review decisions and audit records"],
         },
         {
-            ko: "Deployment and operation",
-            desc: "Deploy the agentflow you designed so users and external systems can call it. Embed it into an external site with a snippet, or run it on a schedule.",
-            items: ["Deploy, embed, share", "Scheduled execution (cron)", "Version and deployment state"],
+            ko: "Agent and app deployment and operation",
+            desc: "Two deployment paths serve different purposes, and the deployment environment can be customized to your infrastructure.",
+            items: [],
+            groups: [
+                {
+                    title: "Agent deployment",
+                    desc: "Users share agents built in their own development environment with colleagues. External system calls, web embedding, and scheduled runs are also supported.",
+                    items: ["Share with colleagues, embed", "Scheduled execution (cron)", "Version and deployment state"],
+                },
+                {
+                    title: "App deployment",
+                    desc: "Apps built with vibe coding are provided in a per-user development environment. For public release, users request deployment from a system administrator, and the app is served through a registered deployment server.",
+                    items: ["Per-user app development environment", "Public release by administrator request", "Deployment server and app domain setup"],
+                },
+            ],
         },
         {
             ko: "Dashboard and monitoring",

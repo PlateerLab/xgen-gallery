@@ -24,6 +24,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
 import { ProductGeny } from "@/components/product-geny";
+import { DeploymentScreens } from "@/components/deployment-screens";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
 import { EasyModeArt } from "@/components/easy-mode-art";
@@ -235,6 +236,7 @@ const FEATURES: {
     ko: string;
     desc: string;
     items: string[];
+    groups?: { title: string; desc: string; items: string[] }[];
 }[] = [
     {
         icon: Code2,
@@ -267,9 +269,21 @@ const FEATURES: {
     {
         icon: Rocket,
         tag: "Deploy · Operate",
-        ko: "배포와 운영",
-        desc: "설계한 에이전트플로우를 사용자·외부 시스템이 호출할 수 있도록 배포합니다. 임베드 코드로 외부 웹에 삽입하고, 스케줄로 자동 실행합니다.",
-        items: ["배포 · 임베드 · 공유", "스케줄 자동 실행 (Cron)", "버전 · 배포 상태 관리"],
+        ko: "에이전트·앱 배포와 운영",
+        desc: "목적에 맞는 두 가지 배포 방식을 제공하며, 배포 환경은 고객사 인프라에 맞춰 커스터마이징할 수 있습니다.",
+        items: [],
+        groups: [
+            {
+                title: "에이전트 배포",
+                desc: "사용자가 자신의 개발 환경에서 만든 에이전트를 동료와 공유해 함께 활용합니다. 외부 시스템 호출과 웹 임베드, 스케줄 실행도 지원합니다.",
+                items: ["동료 공유 · 임베드", "스케줄 자동 실행 (Cron)", "버전 · 배포 상태 관리"],
+            },
+            {
+                title: "앱 배포",
+                desc: "바이브코딩으로 만든 앱은 사용자별 개발 환경에서 제공합니다. 공개 배포가 필요하면 시스템 관리자에게 요청하고, 관리자가 등록한 배포 서버를 통해 서비스합니다.",
+                items: ["사용자별 앱 개발 환경", "시스템 관리자 요청 기반 공개 배포", "배포 서버 · 앱 도메인 구성"],
+            },
+        ],
     },
     {
         icon: LayoutDashboard,
@@ -1083,17 +1097,43 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
                                                 {f.desc}
                                             </p>
-                                            <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                                                {f.items.map((it) => (
-                                                    <li
-                                                        key={it}
-                                                        className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
-                                                    >
-                                                        <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
-                                                        {it}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            {f.groups ? (
+                                                <div className="mt-6 space-y-6">
+                                                    {f.groups.map((g) => (
+                                                        <div key={g.title}>
+                                                            <h4 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                                {g.title}
+                                                            </h4>
+                                                            <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                                {g.desc}
+                                                            </p>
+                                                            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                                                                {g.items.map((it) => (
+                                                                    <li
+                                                                        key={it}
+                                                                        className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
+                                                                    >
+                                                                        <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
+                                                                        {it}
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                                                    {f.items.map((it) => (
+                                                        <li
+                                                            key={it}
+                                                            className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
+                                                        >
+                                                            <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
+                                                            {it}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
                                         </div>
                                         {/* 대표 제품 화면 */}
                                         <div className={flip ? "lg:order-1" : ""}>
@@ -1101,6 +1141,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                                 <DexOnDeviceScreens locale={locale} />
                                             ) : i === 3 ? (
                                                 <GovernanceApprovalScreens locale={locale} />
+                                            ) : i === 4 ? (
+                                                <DeploymentScreens locale={locale} />
                                             ) : i === 5 ? (
                                                 <OperationsScreens locale={locale} />
                                             ) : (
