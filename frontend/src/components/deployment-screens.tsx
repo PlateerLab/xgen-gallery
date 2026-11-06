@@ -17,9 +17,8 @@ export function DeploymentScreens({ locale }: { locale: Locale }) {
                     sizes="(max-width: 1024px) 94vw, 520px"
                     className="h-auto w-full"
                 />
-                <div className="h-24" aria-hidden="true" />
             </div>
-            <div className="relative z-10 -mt-24 ml-auto w-[58%] overflow-hidden rounded-xl border border-[var(--color-line)] bg-white shadow-[0_18px_44px_-24px_rgba(20,40,80,0.36)]">
+            <div className="relative z-10 -mt-16 ml-auto w-[58%] overflow-hidden rounded-xl border border-[var(--color-line)] bg-white shadow-[0_18px_44px_-24px_rgba(20,40,80,0.36)]">
                 <p className="bg-[var(--color-surface-alt)] px-4 py-3 text-[13.5px] font-bold text-[var(--color-ink)]">
                     {en ? "02 · App deployment server" : "02 · 앱 배포 서버 등록"}
                 </p>
