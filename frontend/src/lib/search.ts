@@ -24,7 +24,7 @@ const PAGES: SearchDoc[] = [
     { title: "Insight", subtitle: "연구·현장 인사이트", url: "/blog", type: "페이지", keywords: "블로그 인사이트 insight" },
     { title: "Architecture", subtitle: "Enterprise AI 참조 아키텍처·XGEN 플랫폼·CI/CD", url: "/architecture", type: "페이지", keywords: "아키텍처 architecture" },
     { title: "Documentation", subtitle: "XGEN 사용자 매뉴얼·가이드", url: "/documentation", type: "페이지", keywords: "문서 매뉴얼 manual" },
-    { title: "Library Gallery", subtitle: "오픈소스 라이브러리 갤러리", url: "/library-gallery", type: "페이지", keywords: "라이브러리 오픈소스" },
+    { title: "Library Gallery", subtitle: "공개 라이브러리 갤러리", url: "/library-gallery", type: "페이지", keywords: "라이브러리 오픈소스" },
     { title: "Release Notes", subtitle: "변경 이력·업데이트", url: "/releases", type: "페이지", keywords: "릴리즈 변경 이력 changelog" },
     { title: "AI Lab Members", subtitle: "연구 멤버 프로필·기여 활동", url: "/members", type: "페이지", keywords: "멤버 팀 team lab members 랩" },
     { title: "PoC Projects", subtitle: "산업별 PoC 실증 사례", url: "/poc-projects", type: "페이지", keywords: "poc 실증 사례" },

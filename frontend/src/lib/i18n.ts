@@ -206,9 +206,9 @@ const FAQ_KO: FaqEntry[] = [
             "GS(Good Software) 인증은 「소프트웨어 진흥법」에 근거해 과학기술정보통신부가 운영하는 국가 공인 소프트웨어 품질인증으로, 공인 시험기관이 ISO/IEC 25000 계열 국제표준을 기준으로 기능 적합성·성능 효율성·신뢰성·보안성 등을 시험·평가합니다. 1등급은 그중 최고 등급으로, XGEN Agentic AI Platform의 품질을 벤더의 주장이 아니라 제3자 공인시험으로 검증했다는 뜻입니다. 도입 관점에서는 조달청 우수조달물품 지정 신청 자격, 공공 소프트웨어 사업 발주 시 분리발주 의무 대상, 중소벤처기업부 우선구매 대상이 되며, 다수 공공 입찰 평가표에서 최근 3년 내 유효한 소프트웨어 인증으로 인정되어 기술 가점을 받을 수 있습니다.",
     },
     {
-        question: "오픈소스 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
+        question: "공개 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
         answer:
-            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 오픈소스 라이브러리로 공개합니다. 라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 사용 조건은 각 저장소에서 확인해 주세요. pip·npm으로 설치하고 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
+            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 라이브러리로 공개합니다. 라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 일부는 오픈소스가 아니므로 사용 조건은 각 저장소에서 확인해 주세요. pip·npm으로 설치하고 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
     },
     {
         question: "어떤 산업에 적용되나요?",
@@ -244,9 +244,9 @@ const FAQ_EN: FaqEntry[] = [
             "GS (Good Software) certification is Korea's national software quality certification, operated by the Ministry of Science and ICT under the Software Promotion Act. Accredited labs test functional suitability, performance efficiency, reliability, and security against the ISO/IEC 25000 series of international standards. Grade 1 is the highest level — meaning XGEN Agentic AI Platform's quality is verified by independent, accredited testing rather than vendor claims. For buyers, it qualifies XGEN for public-procurement programs (Excellent Procurement Product designation, split-order eligibility, priority purchase) and counts as a scored technical credential in many public RFP evaluations.",
     },
     {
-        question: "What are the open-source libraries, and how do they relate to XGEN?",
+        question: "What are the public libraries, and how do they relate to XGEN?",
         answer:
-            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as open-source packages. Licenses vary by library: most are published under MIT or Apache-2.0, so please check the terms in each repository. They install via pip or npm and run directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
+            "We publish the document-ingestion, knowledge-graph, and agent technologies that power XGEN as packages. Licenses vary by library: most are published under MIT or Apache-2.0, and some are not open source, so please check the terms in each repository. They install via pip or npm and run directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
     },
     {
         question: "Which industries is it applied to?",
@@ -298,7 +298,7 @@ export const dict: Record<Locale, Dict> = {
         hero: {
             badge: (n) => `${n}개 라이브러리 · 브라우저에서 바로 체험`,
             desc: (n) =>
-                `XGEN 플랫폼을 떠받치는 ${n}개의 오픈소스 라이브러리, pip·npm으로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요`,
+                `XGEN 플랫폼을 떠받치는 ${n}개의 공개 라이브러리, pip·npm으로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요`,
             browse: "도구 둘러보기",
             viewGithub: "GitHub에서 보기",
         },
@@ -308,7 +308,7 @@ export const dict: Record<Locale, Dict> = {
             titleA: (n) => `${n}개의 라이브러리`,
             titleB: "설치는 한 번, 활용은 계속",
             licenseNote:
-                "라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 사용 조건은 각 저장소에서 확인해 주세요.",
+                "라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 「소스 공개」·「독점 라이선스」 표시 항목은 오픈소스가 아닙니다. 사용 조건은 각 저장소에서 확인해 주세요.",
         },
         categories: {
             all: "전체",
@@ -398,7 +398,7 @@ export const dict: Record<Locale, Dict> = {
         hero: {
             badge: (n) => `${n} libraries · live in your browser`,
             desc: (n) =>
-                `${n} open-source libraries powering the XGEN platform — install them with pip or npm, or try every tool right here in your browser`,
+                `${n} public libraries powering the XGEN platform — install them with pip or npm, or try every tool right here in your browser`,
             browse: "Browse tools",
             viewGithub: "View on GitHub",
         },
@@ -408,7 +408,7 @@ export const dict: Record<Locale, Dict> = {
             titleA: (n) => `${n} libraries`,
             titleB: "One install, endless use",
             licenseNote:
-                "Licenses vary by library. Most are published under MIT or Apache-2.0; please check the terms in each repository.",
+                "Licenses vary by library. Most are published under MIT or Apache-2.0; items marked Source-available or Proprietary are not open source. Please check the terms in each repository.",
         },
         categories: {
             all: "All",

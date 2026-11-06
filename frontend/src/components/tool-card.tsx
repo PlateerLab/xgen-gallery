@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, Copy, Play } from "lucide-react";
 import { useState } from "react";
-import { CATEGORIES, repoUrlFor, type Tool } from "@/lib/tools";
+import { CATEGORIES, repoUrlFor, TOOL_LICENSE, type Tool } from "@/lib/tools";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/components/i18n-provider";
 import { TOOL_I18N } from "@/lib/i18n";
@@ -61,6 +61,11 @@ export function ToolCard({ tool }: { tool: Tool }) {
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#10b981]/10 px-2 py-0.5 text-[11.5px] font-semibold text-[#0d9268]">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                             {t.toolCard.liveDemo}
+                        </span>
+                    )}
+                    {tool.license && (
+                        <span className="rounded-full border border-[#f59e0b]/40 bg-[#f59e0b]/10 px-2 py-0.5 text-[11.5px] font-semibold text-[#b45309]">
+                            {TOOL_LICENSE[tool.license][locale]}
                         </span>
                     )}
                 </div>

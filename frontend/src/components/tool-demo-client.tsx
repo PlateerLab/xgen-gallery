@@ -11,7 +11,7 @@ import {
     type InputField,
     type OutputField,
 } from "@plateerlab/xgen-gallery";
-import { repoUrlFor, type Tool } from "@/lib/tools";
+import { repoUrlFor, TOOL_LICENSE, type Tool } from "@/lib/tools";
 import { demoManifestFor } from "@/lib/demo-manifests";
 import { cn } from "@/lib/cn";
 import { formatBytes } from "@/lib/format";
@@ -285,6 +285,14 @@ function DemoRunner({
                     </Link>
                 </div>
             </header>
+
+            {tool.license && (
+                <p className="mt-6 rounded-xl border border-[#f59e0b]/40 bg-[#f59e0b]/10 px-4 py-3 text-[14.5px] leading-relaxed text-[#92400e]">
+                    <strong className="font-semibold">{TOOL_LICENSE[tool.license][locale]}</strong>
+                    {" — "}
+                    {locale === "en" ? TOOL_LICENSE[tool.license].noteEn : TOOL_LICENSE[tool.license].noteKo}
+                </p>
+            )}
 
             {/* Samples */}
             {manifest.samples.length > 0 && (

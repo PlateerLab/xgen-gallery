@@ -379,8 +379,8 @@ const ALL_NAV_GROUPS: NavGroup[] = [
         order: 2,
         label: "Open Source",
         concept: "tools",
-        blurb: "XGEN을 떠받치는 오픈소스 라이브러리와 실전 레시피.",
-        blurbEn: "The open-source libraries behind XGEN, plus recipes for putting them to work.",
+        blurb: "XGEN을 떠받치는 공개 라이브러리와 실전 레시피.",
+        blurbEn: "The public libraries behind XGEN, plus recipes for putting them to work.",
         items: [
             {
                 // 라벨 클릭은 갤러리 전체, 하위는 카테고리 딥링크(?cat=…).

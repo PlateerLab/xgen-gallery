@@ -108,7 +108,7 @@ const COPY: Record<Locale, Copy> = {
         allPosts: "글 전체 보기",
         repos: {
             title: "AI Labs가 만드는 것",
-            lead: "연구 결과는 문서에 머물지 않습니다. 오픈소스 라이브러리와 프로젝트로 공개되어 Plateer AI Labs GitHub Organization에서 누구나 확인할 수 있습니다.",
+            lead: "연구 결과는 문서에 머물지 않습니다. 공개 라이브러리와 프로젝트로 공개되어 Plateer AI Labs GitHub Organization에서 누구나 확인할 수 있습니다.",
             org: "GitHub Organization 열기",
             gallery: "라이브러리 전체 보기",
         },
@@ -148,7 +148,7 @@ const COPY: Record<Locale, Copy> = {
         allPosts: "See all posts",
         repos: {
             title: "What they build",
-            lead: "Our research does not stay in papers. It ships as open-source libraries and projects, public to anyone on the Plateer AI Labs GitHub organization.",
+            lead: "Our research does not stay in papers. It ships as public libraries and projects, public to anyone on the Plateer AI Labs GitHub organization.",
             org: "Open the GitHub organization",
             gallery: "Browse all libraries",
         },

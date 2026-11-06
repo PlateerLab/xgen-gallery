@@ -66,7 +66,7 @@ interface DocCopy {
 const COPY: Record<Locale, DocCopy> = {
     ko: {
         ldDescription:
-            "XGEN 플랫폼과 오픈소스 라이브러리 사용을 위한 가이드와 레퍼런스 — 플랫폼 매뉴얼, 아키텍처, 라이브러리 설치·사용 가이드.",
+            "XGEN 플랫폼과 공개 라이브러리 사용을 위한 가이드와 레퍼런스 — 플랫폼 매뉴얼, 아키텍처, 라이브러리 설치·사용 가이드.",
         guides: [
             ["사용자 매뉴얼", "설치·설정부터 워크스페이스·에이전트 운영까지 플랫폼 표준 사용 가이드"],
             ["플랫폼 아키텍처", "엔진·프레임워크·런타임 구성과 온프레미스 배포 구조"],
@@ -85,14 +85,14 @@ const COPY: Record<Locale, DocCopy> = {
         ],
         heroTitle: "XGEN 플랫폼과 라이브러리 가이드",
         heroLead:
-            "플랫폼 사용자 매뉴얼부터 오픈소스 라이브러리 설치·사용 가이드까지 — XGEN을 도입하고 개발하는 데 필요한 문서를 한곳에 모았습니다",
+            "플랫폼 사용자 매뉴얼부터 공개 라이브러리 설치·사용 가이드까지 — XGEN을 도입하고 개발하는 데 필요한 문서를 한곳에 모았습니다",
         ctaManual: "사용자 매뉴얼 열기",
         ctaGallery: "라이브러리 갤러리",
         platformTitle: "플랫폼 가이드",
         platformLead: "XGEN 플랫폼을 설치·설정하고 운영하는 데 필요한 표준 문서입니다.",
         libraryTitle: "라이브러리 가이드",
         libraryLeadA:
-            "XGEN을 떠받치는 기술을 오픈소스 라이브러리로 공개합니다. 문서 수집·변환부터 지식 그래프, 에이전트 도구까지 ",
+            "XGEN을 떠받치는 기술을 라이브러리로 공개합니다. 문서 수집·변환부터 지식 그래프, 에이전트 도구까지 ",
         libraryCount: (n) => `${n}종`,
         libraryLeadB: "을 라이브러리별 라이선스로 제공하며, ",
         libraryLeadC: "한 줄로 설치해 사내 환경에서 바로 활용할 수 있습니다.",
@@ -108,7 +108,7 @@ const COPY: Record<Locale, DocCopy> = {
     },
     en: {
         ldDescription:
-            "Guides and reference for the XGEN platform and its open-source libraries — the platform manual, architecture, and library installation and usage guides.",
+            "Guides and reference for the XGEN platform and its public libraries — the platform manual, architecture, and library installation and usage guides.",
         guides: [
             ["User manual", "The standard platform guide, from installation and configuration through workspace and agent operations"],
             ["Platform architecture", "How the engines, frameworks, and runtime fit together, and the on-premise deployment structure"],
@@ -127,7 +127,7 @@ const COPY: Record<Locale, DocCopy> = {
         ],
         heroTitle: "Guides for the XGEN platform and libraries",
         heroLead:
-            "From the platform user manual to installation and usage guides for the open-source libraries — the documentation you need to adopt and build on XGEN, in one place",
+            "From the platform user manual to installation and usage guides for the public libraries — the documentation you need to adopt and build on XGEN, in one place",
         ctaManual: "Open the user manual",
         ctaGallery: "Library gallery",
         platformTitle: "Platform guides",
@@ -135,7 +135,7 @@ const COPY: Record<Locale, DocCopy> = {
             "The standard documentation for installing, configuring, and operating the XGEN platform.",
         libraryTitle: "Library guides",
         libraryLeadA:
-            "The technology behind XGEN is published as open-source libraries. From document ingestion and transformation through knowledge graphs to agent tooling, ",
+            "The technology behind XGEN is published as libraries. From document ingestion and transformation through knowledge graphs to agent tooling, ",
         libraryCount: (n) => `all ${n}`,
         libraryLeadB: " are offered under their own licenses, and ",
         libraryLeadC: "installs in one line for immediate use in your own environment.",

@@ -16,7 +16,7 @@ const SLIDE_DURATION = 7000;
  */
 const COPY = {
     ko: {
-        lead: "XGEN을 떠받치는 오픈소스 라이브러리. pip·npm으로 설치하거나, 모든 도구를 지금 여기 브라우저에서 체험하세요.",
+        lead: "XGEN을 떠받치는 공개 라이브러리. pip·npm으로 설치하거나, 모든 도구를 지금 여기 브라우저에서 체험하세요.",
         prev: "이전",
         next: "다음",
         sdkGate: "권한 판정",
@@ -35,7 +35,7 @@ const COPY = {
         ],
     },
     en: {
-        lead: "The open-source libraries behind XGEN. Install them with pip or npm, or try every tool right here in your browser.",
+        lead: "The public libraries behind XGEN. Install them with pip or npm, or try every tool right here in your browser.",
         prev: "Previous",
         next: "Next",
         sdkGate: "permission gate",

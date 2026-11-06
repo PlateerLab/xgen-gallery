@@ -2,10 +2,10 @@
 
 > Plateer AI Labs is an AI research lab building trustworthy Enterprise AI. It
 > researches the technology behind autonomous agents, proves it through
-> open-source Python libraries, and delivers it as products: XGEN (an on-premise
+> public libraries, and delivers it as products: XGEN (an on-premise
 > Agentic AI Platform), Polar (a commerce-specialized private sLLM), and AI Code
-> Assistant. Open-source tools install with pip or npm and run in the browser gallery.
-> Licenses vary by library: most are MIT or Apache-2.0; check each repository.
+> Assistant. Libraries install with pip or npm and run in the browser gallery.
+> Licenses vary by library: most are MIT or Apache-2.0, and OmniFuse, XGen Ontology, and XGen SDK are not open source; check each repository.
 
 Site: https://labs.plateer.com
 GitHub: https://github.com/PlateerLab
@@ -17,7 +17,7 @@ GitHub: https://github.com/PlateerLab
 - [AI Code Assistant](https://labs.plateer.com/code-assistant): A coding assistant that learns an organization's own codebase, APIs, and schemas.
 - [XGEN free trial](https://labs.plateer.com/xgen-trial): Build your own AI agent in a hosted demo environment before adopting XGEN.
 
-## Open-source libraries
+## Libraries
 
 - [Contextifier](https://labs.plateer.com/tool/contextifier): Turn any document into AI-ready text across 80+ formats, preserving tables, code blocks, and structure for retrieval. `pip install contextifier` (Python, ingestion).
 - [Doc2Chunk](https://labs.plateer.com/tool/doc2chunk): Context-aware chunking for RAG pipelines with configurable size and overlap. `pip install xgen-doc2chunk` (Python, ingestion).
@@ -25,17 +25,17 @@ GitHub: https://github.com/PlateerLab
 - [Document Adapter](https://labs.plateer.com/tool/document-adapter): Let LLMs edit DOCX, PPTX, and HWPX documents directly. `pip install document-adapter` (Python, ingestion).
 - [Synaptic Memory](https://labs.plateer.com/tool/synaptic-memory): Brain-inspired knowledge graph with auto-ontology, Hebbian learning, and four-stage memory consolidation for long-running agents. `pip install synaptic-memory` (Python, knowledge).
 - [Knowtology](https://labs.plateer.com/tool/knowtology): Tree-structured knowledge maps for agents. `pip install knowtology` (Python, knowledge).
-- [OmniFuse](https://labs.plateer.com/tool/omnifuse): One-shot GraphRAG that fuses vector and graph retrieval. `pip install xgen-omnifuse` (Python, knowledge).
+- [OmniFuse](https://labs.plateer.com/tool/omnifuse): One-shot GraphRAG that fuses vector and graph retrieval. `pip install xgen-omnifuse` (Python, knowledge; source-available, not open source).
 - [Googer](https://labs.plateer.com/tool/googer): Type-safe Google search for agents — web, images, news, and videos with typed responses. `pip install googer` (Python, agent).
 - [Toolint](https://labs.plateer.com/tool/toolint): Structural linter for MCP agent tools. `pip install toolint` (Python, agent).
 - [XGEN Harness](https://labs.plateer.com/tool/xgen-harness): A 10-stage execution harness that owns validation, retries, and termination for agents. `pip install xgen-harness` (Python, agent).
 - [playwLeft](https://labs.plateer.com/tool/playleft): High-performance browser automation for agents. `pip install playleft` (Python, agent).
-- [XGen SDK](https://labs.plateer.com/tool/xgen-sdk): Shared backend SDK for XGEN services. `pip install xgen-sdk` (Python, utility).
+- [XGen SDK](https://labs.plateer.com/tool/xgen-sdk): Shared backend SDK for XGEN services. `pip install xgen-sdk` (Python, utility; proprietary).
 - [XGen Agent Memory](https://labs.plateer.com/tool/xgen-agent-memory): Long-term memory for agents (Python, knowledge).
 - [XGen Agent Runtime](https://labs.plateer.com/tool/xgen-agent-runtime): Tool registry and execution pipeline for agents (Python, agent).
 - [AN-Web](https://labs.plateer.com/tool/xgen-an-web): AI-native headless browser engine for agents (Python, agent).
 - [Edit2Docs](https://labs.plateer.com/tool/xgen-edit2docs): Agent-oriented document engine for DOCX, XLSX, and PPTX (Python, ingestion).
-- [XGen Ontology](https://labs.plateer.com/tool/xgen-ontology): Build a knowledge graph from documents and tables. `pip install xgen-ontology-build` (Python, knowledge).
+- [XGen Ontology](https://labs.plateer.com/tool/xgen-ontology): Build a knowledge graph from documents and tables. `pip install xgen-ontology-build` (Python, knowledge; source-available, not open source).
 - [XGen Gallery](https://labs.plateer.com/tool/xgen-gallery): Drop-in React gallery for GitHub repositories. `npm install @plateerlab/xgen-gallery` (TypeScript, utility).
 - [MCP Harness](https://labs.plateer.com/tool/xgen-mcp-harness): Stdio MCP bridge that exposes XGEN harness workflows as tools for clients such as Claude Desktop. `npm install -g @plateer-xgen/mcp-harness` (JavaScript, agent).
 
@@ -44,7 +44,7 @@ GitHub: https://github.com/PlateerLab
 - [Home](https://labs.plateer.com/): Research lab overview and the "research → open source → product → proof" narrative.
 - [Research](https://labs.plateer.com/research): Research areas, methodology, applied research, and publications.
 - [Research & Technology](https://labs.plateer.com/technology): Engines, frameworks (AgenticOps, GraphRAG, Hybrid RAG, Context Engineering), runtime, and reference architecture.
-- [Open Source Gallery](https://labs.plateer.com/library-gallery): The open-source library gallery, recipes, and runtime — run each tool directly in the browser.
+- [Open Source Gallery](https://labs.plateer.com/library-gallery): The library gallery, recipes, and runtime — run each tool directly in the browser.
 - [Applied AI](https://labs.plateer.com/solutions): Industry applications (commerce, finance, public sector, IT), PoC projects, proof-in-action demos, and enablement.
 - [Customer Cases](https://labs.plateer.com/customers): How XGEN and AI Code Assistant are built and operated in real customer environments.
 - [Insight (Blog)](https://labs.plateer.com/blog): Case studies, tech notes, and product news on Enterprise AI, Agentic AI, and GEO/SEO.
@@ -67,6 +67,6 @@ with hreflang (`ko`, `en`, `x-default`). Korean is the default.
 
 - Identity: an AI research lab that proves its research through open-source and products.
 - Products: XGEN (Agentic AI Platform), Polar (commerce sLLM), AI Code Assistant.
-- Open-source category coverage (19 libraries): ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter, Edit2Docs), knowledge (Synaptic Memory, Knowtology, OmniFuse, XGen Agent Memory, XGen Ontology), agent (Googer, Toolint, XGEN Harness, playwLeft, XGen Agent Runtime, AN-Web, MCP Harness), utility (XGen SDK, XGen Gallery).
+- Library category coverage (19 libraries): ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter, Edit2Docs), knowledge (Synaptic Memory, Knowtology, OmniFuse, XGen Agent Memory, XGen Ontology), agent (Googer, Toolint, XGEN Harness, playwLeft, XGen Agent Runtime, AN-Web, MCP Harness), utility (XGen SDK, XGen Gallery).
 - Common compositions: RAG pipeline (ingest → chunk → embed → retrieve), agent runtime with an execution harness, long-term memory knowledge graph.
 - License: varies by library (most MIT or Apache-2.0; check each repository). Languages: Python, TypeScript, JavaScript. Install: pip, npm.
