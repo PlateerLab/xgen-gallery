@@ -1,18 +1,12 @@
 export type ToolCategory = "ingestion" | "knowledge" | "agent" | "utility";
 
 /** 오픈소스 라이선스가 아닌 항목만 표시한다. 생략하면 별도 표기 없음. */
-export type ToolLicense = "source-available" | "proprietary";
+export type ToolLicense = "proprietary";
 
 export const TOOL_LICENSE: Record<
     ToolLicense,
     { ko: string; en: string; noteKo: string; noteEn: string }
 > = {
-    "source-available": {
-        ko: "소스 공개 · 사용 제한",
-        en: "Source-available",
-        noteKo: "오픈소스 라이선스가 아닙니다. 소스 열람과 평가를 위해 공개되며, 제품·서비스·내부 업무에 사용하려면 저작권자의 서면 허가가 필요합니다. 전체 조건은 저장소의 LICENSE를 확인해 주세요.",
-        noteEn: "This is not an open-source license. The source is published for reading and evaluation; use in products, services, or internal work requires written permission from the copyright holder. See LICENSE in the repository for the full terms.",
-    },
     proprietary: {
         ko: "독점 라이선스",
         en: "Proprietary",
@@ -151,7 +145,6 @@ export const TOOLS: Tool[] = [
         install: "pip install xgen-omnifuse",
         hasDemo: true,
         language: "Python",
-        license: "source-available",
     },
     {
         id: "toolint",
@@ -261,7 +254,6 @@ export const TOOLS: Tool[] = [
         install: "pip install xgen-ontology-build",
         hasDemo: true,
         language: "Python",
-        license: "source-available",
         addedAt: "2026-09-03",
     },
     {

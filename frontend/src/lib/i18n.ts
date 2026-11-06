@@ -308,7 +308,7 @@ export const dict: Record<Locale, Dict> = {
             titleA: (n) => `${n}개의 라이브러리`,
             titleB: "설치는 한 번, 활용은 계속",
             licenseNote:
-                "라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 「소스 공개」·「독점 라이선스」 표시 항목은 오픈소스가 아닙니다. 사용 조건은 각 저장소에서 확인해 주세요.",
+                "라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 「독점 라이선스」 표시 항목은 오픈소스가 아닙니다. 사용 조건은 각 저장소에서 확인해 주세요.",
         },
         categories: {
             all: "전체",
@@ -408,7 +408,7 @@ export const dict: Record<Locale, Dict> = {
             titleA: (n) => `${n} libraries`,
             titleB: "One install, endless use",
             licenseNote:
-                "Licenses vary by library. Most are published under MIT or Apache-2.0; items marked Source-available or Proprietary are not open source. Please check the terms in each repository.",
+                "Licenses vary by library. Most are published under MIT or Apache-2.0; items marked Proprietary are not open source. Please check the terms in each repository.",
         },
         categories: {
             all: "All",
