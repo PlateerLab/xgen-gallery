@@ -189,7 +189,7 @@ const CASES: {
     {
         icon: Library,
         title: "Library Gallery",
-        desc: "XGEN을 떠받치는 오픈소스 라이브러리 모음 — pip 설치·브라우저 체험",
+        desc: "XGEN을 떠받치는 오픈소스 라이브러리 모음 — pip·npm 설치·브라우저 체험",
         href: "/library-gallery",
     },
 ];
@@ -308,7 +308,7 @@ const EN = {
         "The core XGEN AI engines that handle ingestion, retrieval, and reasoning",
         "Application frameworks that compose agents, workflows, and knowledge",
         "The execution runtime that keeps AI running reliably in enterprise environments",
-        "The open-source libraries behind XGEN — pip install, try it in the browser",
+        "The open-source libraries behind XGEN — pip or npm install, try it in the browser",
     ],
     headerLead:
         "Public agencies and large enterprises have to account for data sovereignty, security, audit trails, organizational governance, and operational stability — and AI has to move past experiment and into the actual work process",

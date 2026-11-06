@@ -172,6 +172,32 @@ const DICT: Record<string, string> = {
     "예: admin.role:read":
         "e.g. admin.role:read",
 
+    // ── xgen-mcp-harness ─────────────────────────────
+    "XGEN의 하네스 워크플로우를 stdio MCP 도구로 노출합니다. 실행 옵션에 따라 노출 도구와 인증 경로가 달라지는 지점을 확인합니다.":
+        "Expose XGEN harness workflows as stdio MCP tools, and see how run options change the exposed tools and the sign-in path.",
+    "XGEN 주소 (--host)": "XGEN address (--host)",
+    "노출 범위": "Exposure scope",
+    "클러스터 전체": "Whole cluster",
+    "워크플로우 1개 (--workflow)": "One workflow (--workflow)",
+    "인증 방식": "Sign-in method",
+    "브라우저 로그인 (OAuth 2.1 + PKCE)": "Browser sign-in (OAuth 2.1 + PKCE)",
+    "XGEN_TOKEN 환경변수": "XGEN_TOKEN environment variable",
+    "동작 요약": "Behavior summary",
+    "tools/list 결과": "tools/list result",
+    "MCP 클라이언트 설정": "MCP client config",
+    "클러스터 전체 노출": "Expose the whole cluster",
+    "게시된 워크플로우와 메타 도구 3개를 함께 노출": "Expose published workflows plus three meta tools",
+    "첫 실행에서 브라우저 로그인 후 토큰을 저장하고, 게시된 워크플로우 2개와 메타 도구 3개를 노출합니다.":
+        "On first run it signs in through the browser, stores the token, and exposes two published workflows plus three meta tools.",
+    "워크플로우 하나만 노출": "Expose a single workflow",
+    "--workflow를 주면 메타 도구 없이 지정한 도구만 노출": "With --workflow, only that tool is exposed, without meta tools",
+    "지정한 워크플로우 1개만 도구로 노출합니다. 메타 도구는 합류하지 않습니다.":
+        "Only the specified workflow is exposed as a tool. Meta tools are not added.",
+    "CI 자동화": "CI automation",
+    "XGEN_TOKEN을 주면 브라우저 로그인을 건너뜀": "With XGEN_TOKEN, browser sign-in is skipped",
+    "XGEN_TOKEN이 있어 브라우저 로그인을 건너뜁니다. 노출 도구는 클러스터 전체와 같습니다.":
+        "XGEN_TOKEN is set, so browser sign-in is skipped. The exposed tools are the same as the whole-cluster run.",
+
     // ── xgen-gallery ─────────────────────────────────
     "GitHub 조직 저장소를 검색·언어 필터가 있는 React 갤러리로 렌더링합니다. 같은 데이터에서 필터와 limit이 어떻게 적용되는지 확인합니다.":
         "Render a GitHub organization's repositories as a React gallery with search and language filters. See how filters and limit affect the same data set.",

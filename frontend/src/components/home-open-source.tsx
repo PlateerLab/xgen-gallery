@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * 홈 오픈소스 신뢰 섹션 — 연구소가 "연구를 오픈소스로 증명한다"는 서사의 핵심 자산.
- * 프로덕션급 파이썬 라이브러리를 카테고리·설치 명령과 함께 앞세운다(개수는 TOOLS.length).
+ * 오픈소스 라이브러리를 카테고리·설치 명령과 함께 앞세운다(개수는 TOOLS.length).
  * (지표는 실측만: 라이브러리 수·카테고리·MIT·pip·브라우저 실행 — 스타/설치수 등 미검증 수치 금지)
  */
 
@@ -47,7 +47,7 @@ const COPY: Record<
 > = {
     ko: {
         title: "오픈소스로 기술력을 검증합니다",
-        leadA: "Plateer AI Labs는 XGEN의 핵심 기술을 프로덕션 수준의 Python 라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,",
+        leadA: "Plateer AI Labs는 XGEN의 핵심 기술을 오픈소스 라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,",
         leadB: "으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.",
         statLibs: "오픈소스 라이브러리",
         statLibsSuffix: "종",
@@ -59,7 +59,7 @@ const COPY: Record<
     },
     en: {
         title: "We prove the engineering in the open",
-        leadA: "The core technology behind XGEN is published as production-grade Python libraries. Use them freely under the MIT license, install with",
+        leadA: "The core technology behind XGEN is published as open-source libraries. Use them freely under the MIT license, install with",
         leadB: ", or run them straight from the browser gallery.",
         statLibs: "Open-source libraries",
         statLibsSuffix: "",

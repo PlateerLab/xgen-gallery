@@ -962,6 +962,112 @@ const xgenGallery: DemoManifest = {
 };
 
 /**
+ * MCP Harness — 실제 호출은 XGEN 서버가 있어야 하므로, 실행 인자와 환경변수에 따라
+ * 노출되는 도구와 인증 경로가 어떻게 갈리는지를 결정적으로 보여준다.
+ */
+const mcpHarness: DemoManifest = {
+    projectName: "xgen-mcp-harness",
+    title: "MCP Harness Demo",
+    description:
+        "XGEN의 하네스 워크플로우를 stdio MCP 도구로 노출합니다. 실행 옵션에 따라 노출 도구와 인증 경로가 달라지는 지점을 확인합니다.",
+    icon: "⇄",
+    inputs: [
+        {
+            key: "host",
+            type: "text",
+            label: "XGEN 주소 (--host)",
+            placeholder: "https://xgen.example.com",
+        },
+        {
+            key: "scope",
+            type: "select",
+            label: "노출 범위",
+            options: [
+                { value: "cluster", label: "클러스터 전체" },
+                { value: "workflow", label: "워크플로우 1개 (--workflow)" },
+            ],
+            default: "cluster",
+        },
+        {
+            key: "auth",
+            type: "select",
+            label: "인증 방식",
+            options: [
+                { value: "oauth", label: "브라우저 로그인 (OAuth 2.1 + PKCE)" },
+                { value: "token", label: "XGEN_TOKEN 환경변수" },
+            ],
+            default: "oauth",
+        },
+    ],
+    outputs: [
+        { key: "summary", type: "text", label: "동작 요약" },
+        { key: "tools", type: "json", label: "tools/list 결과" },
+        { key: "config", type: "json", label: "MCP 클라이언트 설정" },
+    ],
+    samples: [
+        {
+            label: "클러스터 전체 노출",
+            description: "게시된 워크플로우와 메타 도구 3개를 함께 노출",
+            inputs: { host: "https://xgen.example.com", scope: "cluster", auth: "oauth" },
+            mockOutput: {
+                summary: "첫 실행에서 브라우저 로그인 후 토큰을 저장하고, 게시된 워크플로우 2개와 메타 도구 3개를 노출합니다.",
+                tools: [
+                    "run_contract_review",
+                    "run_weekly_report",
+                    "search_tools",
+                    "discover_tools",
+                    "discover_prompt",
+                ],
+                config: {
+                    command: "npx",
+                    args: ["-y", "@plateer-xgen/mcp-harness", "--host", "https://xgen.example.com"],
+                },
+            },
+        },
+        {
+            label: "워크플로우 하나만 노출",
+            description: "--workflow를 주면 메타 도구 없이 지정한 도구만 노출",
+            inputs: { host: "https://xgen.example.com", scope: "workflow", auth: "oauth" },
+            mockOutput: {
+                summary: "지정한 워크플로우 1개만 도구로 노출합니다. 메타 도구는 합류하지 않습니다.",
+                tools: ["run_contract_review"],
+                config: {
+                    command: "npx",
+                    args: [
+                        "-y",
+                        "@plateer-xgen/mcp-harness",
+                        "--host",
+                        "https://xgen.example.com",
+                        "--workflow",
+                        "wf_contract_review",
+                    ],
+                },
+            },
+        },
+        {
+            label: "CI 자동화",
+            description: "XGEN_TOKEN을 주면 브라우저 로그인을 건너뜀",
+            inputs: { host: "https://xgen.example.com", scope: "cluster", auth: "token" },
+            mockOutput: {
+                summary: "XGEN_TOKEN이 있어 브라우저 로그인을 건너뜁니다. 노출 도구는 클러스터 전체와 같습니다.",
+                tools: [
+                    "run_contract_review",
+                    "run_weekly_report",
+                    "search_tools",
+                    "discover_tools",
+                    "discover_prompt",
+                ],
+                config: {
+                    command: "npx",
+                    args: ["-y", "@plateer-xgen/mcp-harness", "--host", "https://xgen.example.com"],
+                    env: { XGEN_TOKEN: "<access_token>" },
+                },
+            },
+        },
+    ],
+};
+
+/**
  * Contextifier — 저장소가 `xgen-contextifier` 로 개명되면서 npm 레지스트리 키
  * (`Contextifier`)와 어긋나, 있던 큐레이션 데모가 조용히 폴백으로 떨어져 있었다.
  * 매니페스트를 이 파일에 다시 옮겨 적는 대신 레지스트리 항목을 새 이름으로 다시 건다.
@@ -986,6 +1092,7 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-edit2docs": edit2docs,
     "xgen-ontology-build": xgenOntology,
     "xgen-gallery": xgenGallery,
+    "xgen-mcp-harness": mcpHarness,
 };
 
 /**

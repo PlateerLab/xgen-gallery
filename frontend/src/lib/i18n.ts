@@ -81,6 +81,18 @@ export const TOOL_I18N: Record<
                 "웹·이미지·뉴스·동영상 검색. 타입이 보장된 응답으로 스크래핑 고생이 필요 없습니다.",
         },
     },
+    "xgen-mcp-harness": {
+        en: {
+            tagline: "Call XGEN harness workflows from stdio MCP clients",
+            description:
+                "A stdio MCP bridge that exposes harness workflows saved in XGEN as tools for clients such as Claude Desktop. Handles OAuth 2.1 + PKCE sign-in and token refresh; Node 18+, no dependencies.",
+        },
+        ko: {
+            tagline: "stdio MCP 클라이언트에서 XGEN 하네스 워크플로우 호출",
+            description:
+                "XGEN에 저장한 하네스 워크플로우를 Claude Desktop 같은 stdio MCP 클라이언트의 도구로 노출하는 브리지입니다. OAuth 2.1 + PKCE 로그인과 토큰 갱신을 처리하며, 의존성 없이 Node 18 이상에서 동작합니다.",
+        },
+    },
 };
 
 export interface FaqEntry {
@@ -195,7 +207,7 @@ const FAQ_KO: FaqEntry[] = [
     {
         question: "오픈소스 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
         answer:
-            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 프로덕션급 파이썬 라이브러리로 공개합니다. 모두 MIT 라이선스로 무료·상업적 사용이 가능하고 pip로 설치하며, 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
+            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 오픈소스 라이브러리로 공개합니다. 모두 MIT 라이선스로 무료·상업적 사용이 가능하고 pip·npm으로 설치하며, 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
     },
     {
         question: "어떤 산업에 적용되나요?",
@@ -233,7 +245,7 @@ const FAQ_EN: FaqEntry[] = [
     {
         question: "What are the open-source libraries, and how do they relate to XGEN?",
         answer:
-            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as production-grade Python packages. All are MIT-licensed, free for commercial use, installable via pip, and runnable directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
+            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as open-source packages. All are MIT-licensed, free for commercial use, installable via pip or npm, and runnable directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
     },
     {
         question: "Which industries is it applied to?",
@@ -285,7 +297,7 @@ export const dict: Record<Locale, Dict> = {
         hero: {
             badge: (n) => `${n}개 라이브러리 · 브라우저에서 바로 체험`,
             desc: (n) =>
-                `XGEN 플랫폼을 떠받치는 ${n}개의 오픈소스 라이브러리, pip로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요`,
+                `XGEN 플랫폼을 떠받치는 ${n}개의 오픈소스 라이브러리, pip·npm으로 설치하거나 모든 도구를 지금 여기 브라우저에서 체험하세요`,
             browse: "도구 둘러보기",
             viewGithub: "GitHub에서 보기",
         },
@@ -383,7 +395,7 @@ export const dict: Record<Locale, Dict> = {
         hero: {
             badge: (n) => `${n} libraries · live in your browser`,
             desc: (n) =>
-                `${n} open-source libraries powering the XGEN platform — install them with pip, or try every tool right here in your browser`,
+                `${n} open-source libraries powering the XGEN platform — install them with pip or npm, or try every tool right here in your browser`,
             browse: "Browse tools",
             viewGithub: "View on GitHub",
         },

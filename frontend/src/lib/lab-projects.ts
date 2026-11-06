@@ -63,7 +63,7 @@ export const LAB_PROJECTS: LabProject[] = [
         desc: "에이전트가 바깥 세계와 닿는 지점을 다듬는 도구들. 검색과 브라우저 조작, 도구 정의 검증을 맡습니다.",
         descEn:
             "The tools where agents meet the outside world — search, browser control, and tool-definition linting.",
-        toolIds: ["googer", "toolint", "playleft"],
+        toolIds: ["googer", "toolint", "playleft", "xgen-mcp-harness"],
     },
 ];
 

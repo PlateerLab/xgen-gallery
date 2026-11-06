@@ -251,6 +251,18 @@ export const TOOLS: Tool[] = [
         language: "TypeScript",
         addedAt: "2026-09-07",
     },
+    {
+        id: "xgen-mcp-harness",
+        repo: "xgen-mcp-harness",
+        name: "MCP Harness",
+        tagline: "Call XGEN harness workflows from stdio MCP clients",
+        description:
+            "A stdio MCP bridge that exposes harness workflows saved in XGEN as tools for clients such as Claude Desktop. Handles OAuth 2.1 + PKCE sign-in and token refresh; Node 18+, no dependencies.",
+        category: "agent",
+        install: "npm install -g @plateer-xgen/mcp-harness",
+        language: "JavaScript",
+        addedAt: "2026-11-06",
+    },
 ];
 
 /**

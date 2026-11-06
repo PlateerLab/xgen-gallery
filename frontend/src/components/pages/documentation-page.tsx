@@ -79,7 +79,7 @@ const COPY: Record<Locale, DocCopy> = {
             utility: "유틸리티",
         },
         usageSteps: [
-            ["설치", "pip install 한 줄로 사내 개발 환경에 라이브러리를 바로 설치합니다."],
+            ["설치", "pip·npm 명령 한 줄로 사내 개발 환경에 라이브러리를 바로 설치합니다."],
             ["조합·활용", "수집·지식·에이전트 목적에 맞는 라이브러리를 조합해 RAG·에이전트 파이프라인을 구성합니다."],
             ["확장·운영", "MCP 런타임과 XGEN 플랫폼에 연동해 온프레미스 환경에서 안정적으로 운영합니다."],
         ],
@@ -92,7 +92,7 @@ const COPY: Record<Locale, DocCopy> = {
         platformLead: "XGEN 플랫폼을 설치·설정하고 운영하는 데 필요한 표준 문서입니다.",
         libraryTitle: "라이브러리 가이드",
         libraryLeadA:
-            "XGEN을 떠받치는 기술을 프로덕션급 파이썬 라이브러리로 공개합니다. 문서 수집·변환부터 지식 그래프, 에이전트 도구까지 ",
+            "XGEN을 떠받치는 기술을 오픈소스 라이브러리로 공개합니다. 문서 수집·변환부터 지식 그래프, 에이전트 도구까지 ",
         libraryCount: (n) => `${n}종`,
         libraryLeadB: "을 모두 MIT 라이선스로 제공하며, ",
         libraryLeadC: "한 줄로 설치해 사내 환경에서 바로 활용할 수 있습니다.",
@@ -121,7 +121,7 @@ const COPY: Record<Locale, DocCopy> = {
             utility: "Utilities",
         },
         usageSteps: [
-            ["Install", "One pip install line puts the library straight into your development environment."],
+            ["Install", "One pip or npm command puts the library straight into your development environment."],
             ["Compose", "Combine the ingestion, knowledge, and agent libraries that fit the job into a RAG or agent pipeline."],
             ["Extend and operate", "Connect to the MCP runtime and the XGEN platform, and run it reliably on-premise."],
         ],
@@ -135,7 +135,7 @@ const COPY: Record<Locale, DocCopy> = {
             "The standard documentation for installing, configuring, and operating the XGEN platform.",
         libraryTitle: "Library guides",
         libraryLeadA:
-            "The technology behind XGEN is published as production-grade Python libraries. From document ingestion and transformation through knowledge graphs to agent tooling, ",
+            "The technology behind XGEN is published as open-source libraries. From document ingestion and transformation through knowledge graphs to agent tooling, ",
         libraryCount: (n) => `all ${n}`,
         libraryLeadB: " are MIT-licensed, and ",
         libraryLeadC: "installs in one line for immediate use in your own environment.",

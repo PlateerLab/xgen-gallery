@@ -83,7 +83,7 @@ const STATS: { n: string; label: string; sub: string }[] = [
     { n: "110+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
     { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
     // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생 — 라이브러리를 추가·삭제하면 자동 반영된다.
-    { n: String(TOOLS.length), label: "오픈소스 라이브러리", sub: "MIT · pip 설치" },
+    { n: String(TOOLS.length), label: "오픈소스 라이브러리", sub: "MIT · pip·npm 설치" },
 ];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
