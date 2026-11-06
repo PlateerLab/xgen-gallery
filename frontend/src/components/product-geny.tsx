@@ -14,7 +14,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * Product 핵심 기술 — Geny(Agent 실행 환경) 소개 블록.
- * 왼쪽 키 메시지·오른쪽 움직이는 그림·아래 항목 카드 구성을 따른다.
+ * 중앙 정렬한 키 메시지 아래에 움직이는 그림과 항목 카드를 둔다.
  */
 const ICONS: LucideIcon[] = [Brain, FolderOpen, Search, Hammer, CalendarClock, RefreshCw];
 
@@ -174,19 +174,19 @@ export function ProductGeny({ locale }: { locale: Locale }) {
     const t = COPY[locale];
     return (
         <div id="geny" className="mt-16 scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] pt-16">
-            <div className="grid items-center gap-8 lg:grid-cols-[1.55fr_1fr]">
-                <div>
-                    <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                        Agent Runtime · Geny
-                    </p>
-                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
-                        {t.title}
-                    </h3>
-                    <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                        {t.lead}
-                    </p>
+            <div className="text-center">
+                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                    Agent Runtime · Geny
+                </p>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-3xl">
+                    {t.title}
+                </h3>
+                <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                    {t.lead}
+                </p>
+                <div className="mx-auto mt-8 max-w-xl">
+                    <GenyArt />
                 </div>
-                <GenyArt />
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
