@@ -145,14 +145,14 @@ export const PRODUCT_EN = {
             items: ["API tool registration and calling", "MCP standard integration", "Centralized credential profiles"],
         },
         {
+            ko: "Approval routing and AI risk review",
+            desc: "Assign collaborating departments, governance officers, or information-security managers as approvers for an AI service risk review. Configure approval routes by organization and risk level, then manage every review, decision, and audit record consistently.",
+            items: ["Risk-based review requests", "Cross-functional, governance, and security approval routes", "Review decisions and audit records"],
+        },
+        {
             ko: "Deployment and operation",
             desc: "Deploy the agentflow you designed so users and external systems can call it. Embed it into an external site with a snippet, or run it on a schedule.",
             items: ["Deploy, embed, share", "Scheduled execution (cron)", "Version and deployment state"],
-        },
-        {
-            ko: "AI risk review and approval routing",
-            desc: "Assign collaborating departments, governance officers, or information-security managers as approvers for an AI service risk review. Configure approval routes by organization and risk level, then manage every review, decision, and audit record consistently.",
-            items: ["Risk-based review requests", "Cross-functional, governance, and security approval routes", "Review decisions and audit records"],
         },
         {
             ko: "Dashboard and monitoring",

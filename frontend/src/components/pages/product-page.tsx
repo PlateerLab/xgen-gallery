@@ -257,18 +257,18 @@ const FEATURES: {
         items: ["API 도구 등록 · 호출", "MCP 표준 연동", "인증 프로필 중앙 관리"],
     },
     {
+        icon: ShieldCheck,
+        tag: "AI Governance",
+        ko: "결재선과 AI 위험도 심사",
+        desc: "AI 서비스의 위험도 심사에 참여할 협업부서와 거버넌스 담당자 또는 정보보호관리자를 결재자로 지정합니다. 조직과 위험 수준에 맞는 결재선을 구성하고, 검토·승인 과정과 이력을 일관되게 관리합니다.",
+        items: ["위험도 기반 심사 요청", "협업부서 · 거버넌스 · 정보보호 결재선", "검토 · 승인 이력과 감사 로그"],
+    },
+    {
         icon: Rocket,
         tag: "Deploy · Operate",
         ko: "배포와 운영",
         desc: "설계한 에이전트플로우를 사용자·외부 시스템이 호출할 수 있도록 배포합니다. 임베드 코드로 외부 웹에 삽입하고, 스케줄로 자동 실행합니다.",
         items: ["배포 · 임베드 · 공유", "스케줄 자동 실행 (Cron)", "버전 · 배포 상태 관리"],
-    },
-    {
-        icon: ShieldCheck,
-        tag: "AI Governance",
-        ko: "AI 위험도 심사와 결재선",
-        desc: "AI 서비스의 위험도 심사에 참여할 협업부서와 거버넌스 담당자 또는 정보보호관리자를 결재자로 지정합니다. 조직과 위험 수준에 맞는 결재선을 구성하고, 검토·승인 과정과 이력을 일관되게 관리합니다.",
-        items: ["위험도 기반 심사 요청", "협업부서 · 거버넌스 · 정보보호 결재선", "검토 · 승인 이력과 감사 로그"],
     },
     {
         icon: LayoutDashboard,
@@ -351,8 +351,8 @@ const FEATURE_SCREENS = [
     SCREENS[0], // 에이전트플로우 설계 → 캔버스
     SCREENS[2], // 지식 관리와 검색 → 온톨로지
     SCREENS[3], // 도구 연동과 확장 → API 도구
-    SCREENS[4], // 배포와 운영 → 배포 승인
     SCREENS[7], // AI 거버넌스 → AI 위험도
+    SCREENS[4], // 배포와 운영 → 배포 승인
     SCREENS[5], // 대시보드·모니터링 → 통합 관리 센터
 ];
 /** 에디토리얼 로우에 쓰이지 않은 나머지 화면 — 하단 보조 스트립. */
@@ -1098,7 +1098,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                         <div className={flip ? "lg:order-1" : ""}>
                                             {i === 0 ? (
                                                 <DexOnDeviceScreens locale={locale} />
-                                            ) : i === 4 ? (
+                                            ) : i === 3 ? (
                                                 <GovernanceApprovalScreens locale={locale} />
                                             ) : i === 5 ? (
                                                 <OperationsScreens locale={locale} />
