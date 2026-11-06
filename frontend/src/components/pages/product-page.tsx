@@ -24,6 +24,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { ProductHero } from "@/components/product-hero";
 import { ProductGeny } from "@/components/product-geny";
+import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
 import { PathFinderArt } from "@/components/pathfinder-art";
@@ -1231,6 +1232,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         </Link>
 
                         <ProductGeny locale={locale} />
+                        <ProductIsolation locale={locale} />
                     </div>
                 </section>
 
