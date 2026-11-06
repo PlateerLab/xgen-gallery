@@ -28,7 +28,7 @@ const STAGES = [
     {
         ko: "오픈소스",
         en: "Open Source",
-        desc: ["MIT License 기반", "오픈소스 공개"],
+        desc: ["라이브러리별 라이선스로", "오픈소스 공개"],
         icon: "code",
     },
     {

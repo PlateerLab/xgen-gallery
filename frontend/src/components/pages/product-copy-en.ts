@@ -51,7 +51,7 @@ export const PRODUCT_EN = {
         ["110+", "Built-in tools and plugins", "Extensible with your own"],
         ["Grade 1", "National GS certification", "Verified by third-party testing"],
         // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생.
-        [String(TOOLS.length), "Open-source libraries", "MIT · install with pip or npm"],
+        [String(TOOLS.length), "Open-source libraries", "Install with pip or npm"],
     ] as [string, string, string][],
 
     sections: [
@@ -267,8 +267,8 @@ export const PRODUCT_EN = {
             a: "Yes. Agentflow's drag-based visual canvas lets you design a workflow without code, validate it in live chat, and deploy it as an API or workflow.",
         },
         {
-            q: "Are the open-source licenses safe from a procurement and legal perspective?",
-            a: "The open source that makes up XGEN is MIT, Apache 2.0, and BSD family — no GPL-family components with source-disclosure obligations, so commercial and internal distribution carries no obligation to publish source. We check and provide the obligations attached to each license type (copyright notices, NOTICE files), and can prepare a component-by-component license inventory on request.",
+            q: "How are open-source licenses managed from a procurement and legal perspective?",
+            a: "We check and provide the obligations attached to each license type of the open source that makes up XGEN (copyright notices, NOTICE files). Components and obligations can vary with the delivered version and configuration, so we prepare a component-by-component license inventory during evaluation.",
         },
     ],
 

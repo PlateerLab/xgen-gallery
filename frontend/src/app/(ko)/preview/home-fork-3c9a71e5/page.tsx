@@ -67,7 +67,7 @@ function VariantA() {
             icon: Terminal,
             eyebrow: "For developers",
             title: `오픈소스 라이브러리 ${N}종`,
-            desc: "XGEN을 떠받치는 파이썬 라이브러리. MIT 라이선스, pip 설치, 브라우저에서 바로 실행",
+            desc: "XGEN을 떠받치는 파이썬 라이브러리. pip·npm 설치, 브라우저에서 바로 실행",
             cta: "라이브러리 갤러리",
             href: "/library-gallery",
             accent: "#0f766e",

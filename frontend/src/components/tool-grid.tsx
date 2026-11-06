@@ -62,6 +62,9 @@ export function ToolGrid({ cat }: { cat?: string }) {
                             {t.toolsSection.titleB}
                         </span>
                     </h2>
+                    <p className="mt-4 text-[14px] text-[var(--color-ink-muted)]">
+                        {t.toolsSection.licenseNote}
+                    </p>
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center gap-2">

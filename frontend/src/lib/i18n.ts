@@ -163,6 +163,7 @@ export interface Dict {
          */
         titleA: (count: number) => string;
         titleB: string;
+        licenseNote: string;
     };
     categories: { all: string; ingestion: string; knowledge: string; agent: string };
     toolCard: { liveDemo: string; openDemo: string; openRepo: string };
@@ -207,7 +208,7 @@ const FAQ_KO: FaqEntry[] = [
     {
         question: "오픈소스 라이브러리는 무엇이고 XGEN과 어떤 관계인가요?",
         answer:
-            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 오픈소스 라이브러리로 공개합니다. 모두 MIT 라이선스로 무료·상업적 사용이 가능하고 pip·npm으로 설치하며, 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
+            "XGEN을 떠받치는 문서 인제스션·지식그래프·에이전트 기술을 오픈소스 라이브러리로 공개합니다. 라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 사용 조건은 각 저장소에서 확인해 주세요. pip·npm으로 설치하고 브라우저 갤러리에서 바로 실행해볼 수 있습니다. 연구를 오픈소스로 검증하고 그 위에 제품(XGEN)을 만든다는 원칙을 따릅니다.",
     },
     {
         question: "어떤 산업에 적용되나요?",
@@ -245,7 +246,7 @@ const FAQ_EN: FaqEntry[] = [
     {
         question: "What are the open-source libraries, and how do they relate to XGEN?",
         answer:
-            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as open-source packages. All are MIT-licensed, free for commercial use, installable via pip or npm, and runnable directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
+            "We open-source the document-ingestion, knowledge-graph, and agent technologies that power XGEN as open-source packages. Licenses vary by library: most are published under MIT or Apache-2.0, so please check the terms in each repository. They install via pip or npm and run directly in the browser gallery — research proven in the open, with the product (XGEN) built on top.",
     },
     {
         question: "Which industries is it applied to?",
@@ -306,6 +307,8 @@ export const dict: Record<Locale, Dict> = {
             eyebrow: "/ 도구",
             titleA: (n) => `${n}개의 라이브러리`,
             titleB: "설치는 한 번, 활용은 계속",
+            licenseNote:
+                "라이브러리마다 라이선스가 다릅니다. 대부분 MIT 또는 Apache-2.0으로 공개되며, 사용 조건은 각 저장소에서 확인해 주세요.",
         },
         categories: {
             all: "전체",
@@ -404,6 +407,8 @@ export const dict: Record<Locale, Dict> = {
             eyebrow: "/ tools",
             titleA: (n) => `${n} libraries`,
             titleB: "One install, endless use",
+            licenseNote:
+                "Licenses vary by library. Most are published under MIT or Apache-2.0; please check the terms in each repository.",
         },
         categories: {
             all: "All",

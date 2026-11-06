@@ -1060,7 +1060,6 @@ function DefaultViz({ tool }: { tool: Tool }) {
                 className="flex items-center justify-between font-mono text-[12px] text-[var(--color-ink-subtle)]"
             >
                 <span>{tool.language}</span>
-                <span>MIT</span>
             </motion.div>
 
             {/* 설치 한 줄 — 이 갤러리에서 가장 실용적인 정보 */}

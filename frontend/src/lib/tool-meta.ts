@@ -21,8 +21,8 @@ function clamp(text: string, max: number): string {
 }
 
 const SUFFIX: Record<Locale, (t: Tool) => string> = {
-    ko: (t) => `설치: ${t.install} · 언어: ${t.language} · 오픈소스(MIT).`,
-    en: (t) => `Install: ${t.install} · Language: ${t.language} · Open source (MIT).`,
+    ko: (t) => `설치: ${t.install} · 언어: ${t.language}.`,
+    en: (t) => `Install: ${t.install} · Language: ${t.language}.`,
 };
 
 export function toolMetadata(tool: Tool, locale: Locale): Metadata {

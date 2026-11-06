@@ -68,13 +68,6 @@ export function softwareApplicationLd(tool: Tool) {
         softwareRequirements: tool.install,
         downloadUrl: repoUrl,
         codeRepository: repoUrl,
-        license: "https://opensource.org/licenses/MIT",
-        isAccessibleForFree: true,
-        offers: {
-            "@type": "Offer",
-            price: 0,
-            priceCurrency: "USD",
-        },
         author: { "@id": ORG_ID },
         publisher: { "@id": ORG_ID },
     };

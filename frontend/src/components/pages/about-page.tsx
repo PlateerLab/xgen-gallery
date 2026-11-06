@@ -164,7 +164,7 @@ const COPY: Record<Locale, AboutCopy> = {
                     icon: Boxes,
                     title: "오픈소스",
                     sub: "Open Source",
-                    desc: "MIT 라이선스로 공개해 누구나 검증할 수 있게",
+                    desc: "소스를 공개해 누구나 확인할 수 있게",
                     href: "/library-gallery",
                 },
                 {
@@ -365,7 +365,7 @@ const COPY: Record<Locale, AboutCopy> = {
                 {
                     icon: Boxes,
                     title: "Open Source",
-                    desc: "Published under MIT so anyone can verify it",
+                    desc: "Source published so anyone can review it",
                     href: "/library-gallery",
                 },
                 {

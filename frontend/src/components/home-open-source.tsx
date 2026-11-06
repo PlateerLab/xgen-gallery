@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * 홈 오픈소스 신뢰 섹션 — 연구소가 "연구를 오픈소스로 증명한다"는 서사의 핵심 자산.
  * 오픈소스 라이브러리를 카테고리·설치 명령과 함께 앞세운다(개수는 TOOLS.length).
- * (지표는 실측만: 라이브러리 수·카테고리·MIT·pip·브라우저 실행 — 스타/설치수 등 미검증 수치 금지)
+ * (지표는 실측만: 라이브러리 수·카테고리·라이선스(라이브러리별)·설치 경로·브라우저 실행 — 스타/설치수 등 미검증 수치 금지)
  */
 
 const CAT_LABEL: Record<ToolCategory, string> = {
@@ -41,31 +41,34 @@ const COPY: Record<
         statCats: string;
         statCatsSuffix: string;
         statLicense: string;
+        statLicenseValue: string;
         statInstall: string;
         cta: (n: number) => string;
     }
 > = {
     ko: {
         title: "오픈소스로 기술력을 검증합니다",
-        leadA: "Plateer AI Labs는 XGEN의 핵심 기술을 오픈소스 라이브러리로 공개합니다. MIT 라이선스로 자유롭게 사용하고,",
+        leadA: "Plateer AI Labs는 XGEN의 핵심 기술을 오픈소스 라이브러리로 공개합니다. 사용 조건은 라이브러리별 라이선스를 따르며,",
         leadB: "으로 설치해 브라우저에서 바로 실행해볼 수 있습니다.",
         statLibs: "오픈소스 라이브러리",
         statLibsSuffix: "종",
         statCats: "카테고리",
         statCatsSuffix: "개 영역",
         statLicense: "라이선스",
+        statLicenseValue: "라이브러리별",
         statInstall: "설치",
         cta: (n) => `${n}개 라이브러리 전체 보기 · 갤러리에서 바로 실행`,
     },
     en: {
         title: "We prove the engineering in the open",
-        leadA: "The core technology behind XGEN is published as open-source libraries. Use them freely under the MIT license, install with",
+        leadA: "The core technology behind XGEN is published as open-source libraries. Terms follow each library's license. Install with",
         leadB: ", or run them straight from the browser gallery.",
         statLibs: "Open-source libraries",
         statLibsSuffix: "",
         statCats: "Categories",
         statCatsSuffix: "",
         statLicense: "License",
+        statLicenseValue: "Per library",
         statInstall: "Install",
         cta: (n) => `Browse all ${n} libraries · run them in the gallery`,
     },
@@ -84,8 +87,8 @@ export function HomeOpenSource({ locale = "ko" }: { locale?: Locale }) {
     const stats: { k: string; num?: number; suffix?: string; text?: string }[] = [
         { k: t.statLibs, num: TOOLS.length, suffix: t.statLibsSuffix },
         { k: t.statCats, num: catCount.length, suffix: t.statCatsSuffix },
-        { k: t.statLicense, text: "MIT" },
-        { k: t.statInstall, text: "pip" },
+        { k: t.statLicense, text: t.statLicenseValue },
+        { k: t.statInstall, text: "pip · npm" },
     ];
 
     return (
