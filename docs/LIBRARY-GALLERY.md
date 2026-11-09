@@ -32,6 +32,29 @@ curl -s "https://registry.npmjs.org/-/v1/search?text=%40plateer-xgen&size=250" |
   node -e 'let s=""; process.stdin.on("data",d=>s+=d).on("end",()=>{for(const x of JSON.parse(s).objects||[])if(x.package.name.startsWith("@plateer-xgen/"))console.log(x.package.name)})'
 ```
 
+세 자리는 이름에 `xgen` 이 들어가거나 조직 저장소에 있을 때만 걸린다. 이름이 다른 패키지는
+4번에서만 걸린다(2026-11-09 점검에서 `mantis-engine` 이 이렇게 걸렸다. PyPI 메타데이터는
+`PlateerLab/mantis` 를 가리킨다). 이미 실린 패키지의 PyPI 소유 계정이 올린 패키지를 다시 훑는다.
+
+```bash
+# 4) 이미 실린 PyPI 패키지의 소유 계정 → 그 계정이 올린 패키지 → 저장소 링크가 PlateerLab 인 것만 후보
+python3 - <<'EOF'
+import xmlrpc.client, json, re, urllib.request
+c = xmlrpc.client.ServerProxy("https://pypi.org/pypi")
+users = {u for p in ["contextifier", "xgen-harness", "xgen-sdk", "synaptic-memory", "xgen-omnifuse", "xgen-doc2chunk"]
+         for _, u in c.package_roles(p)}
+for u in sorted(users):
+    for n in sorted({n for _, n in c.user_packages(u)}):
+        try: i = json.load(urllib.request.urlopen(f"https://pypi.org/pypi/{n}/json"))["info"]
+        except Exception: continue  # 배포 파일이 없는 이름은 JSON 이 404
+        if re.search(r"github\.com/PlateerLab/", json.dumps(i.get("project_urls") or {}) + (i.get("home_page") or ""), re.I):
+            print(u, n, i["version"])
+EOF
+```
+
+후보가 가리키는 저장소가 404(비공개·삭제)이면 등록을 보류하고 보고한다. 카드 링크가 죽고,
+공개된 다른 저장소로 대신 걸면 그 저장소의 선언 이름·판이 배포본과 다를 수 있다.
+
 ### 이미 실린 항목도 매주 다시 조회한다
 
 판별은 등록 때 한 번으로 끝나지 않는다. 레지스트리에서 내려가거나, 포크·개명으로 `install` 의
