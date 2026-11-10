@@ -141,8 +141,8 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
     },
     "code-assistant": {
         key: "code-assistant",
-        name: "Code Assistant",
-        tagline: "AI 코드 어시스턴트",
+        name: "AI Coding Assistant",
+        tagline: "AI 코딩 어시스턴트",
         taglineEn: "An AI coding assistant",
         href: "/code-assistant",
         accent: "#7c5cff",
@@ -175,8 +175,8 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
         key: "it-services",
         ko: "IT·제조",
         en: "IT & Manufacturing",
-        blurb: "기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
-        blurbEn: "Customer cases applying AI to development and engineering — technical documentation",
+        blurb: "AI 코딩 어시스턴트·기술 문서 등 개발·엔지니어링 업무에 적용한 고객 사례",
+        blurbEn: "Customer cases applying AI to development and engineering — AI coding assistants and technical documentation",
     },
 };
 
@@ -298,26 +298,26 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "semiconductor-code-assistant",
-        title: "사내 개발 환경에 맞춘 Code Assistant를 전사로 확산하다",
+        title: "사내 개발 환경에 맞춘 AI 코딩 어시스턴트를 전사로 확산하다",
         titleEn:
-            "Code Assistant, rolled out company-wide",
+            "An AI coding assistant, rolled out company-wide",
         customer: "국내 반도체 제조 대기업",
         customerEn: "A large semiconductor manufacturer",
         customerAnonymous: true,
         industry: "it-services",
         products: ["code-assistant"],
         summary:
-            "반도체 제조 대기업의 사내 개발 환경에 Code Assistant를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
+            "반도체 제조 대기업의 사내 개발 환경에 AI 코딩 어시스턴트를 도입해 Local LLM 연동과 한글 답변 품질을 개선하고 전사로 확산한 사례",
         summaryEn:
-            "A Code Assistant in a semiconductor manufacturer's internal development environment, connected to a local LLM and rolled out company-wide",
+            "An AI coding assistant in a semiconductor manufacturer's internal development environment, connected to a local LLM and rolled out company-wide",
         challenge:
             "외부 코드 어시스턴트는 보안상 사용이 어려웠고, 사내 환경에서 한글 기술 질의에 대한 답변 품질을 끌어올려야 했다.",
         challengeEn:
             "External coding assistants were not usable for security reasons, and answer quality for Korean-language technical questions had to be raised inside the internal environment.",
         solution:
-            "사내 Local LLM에 연동한 Code Assistant를 구축하고, 한글 답변 품질을 개선했다. 사내 교육을 병행해 실제 활용을 전사로 확산했다.",
+            "사내 Local LLM에 연동한 AI 코딩 어시스턴트를 구축하고, 한글 답변 품질을 개선했다. 사내 교육을 병행해 실제 활용을 전사로 확산했다.",
         solutionEn:
-            "A Code Assistant was built against the internal local LLM, with Korean answer quality improved. Training ran alongside, spreading real usage across the company.",
+            "An AI coding assistant was built against the internal local LLM, with Korean answer quality improved. Training ran alongside, spreading real usage across the company.",
         highlights: [
             "사내 Local LLM 연동",
             "한글 답변 품질 개선",
@@ -334,30 +334,30 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "defense-code-assistant",
-        title: "폐쇄망 개발 환경에 XGEN 기반 Code Assistant를 구축하다",
+        title: "폐쇄망 개발 환경에 XGEN 기반 AI 코딩 어시스턴트를 구축하다",
         titleEn:
-            "Code Assistant in an air-gapped network",
+            "An XGEN-based AI coding assistant in an air-gapped network",
         customer: "국내 방산·시스템 기업",
         customerEn: "A defense and systems company",
         customerAnonymous: true,
         industry: "it-services",
-        products: ["code-assistant"],
+        products: ["code-assistant", "xgen"],
         summary:
-            "강한 보안 요건의 폐쇄망 개발 환경에 XGEN 기반 Code Assistant를 온프레미스로 구축한 사례",
+            "강한 보안 요건의 폐쇄망 개발 환경에 XGEN 기반 AI 코딩 어시스턴트를 온프레미스로 구축한 사례",
         summaryEn:
-            "An XGEN-based Code Assistant deployed on-premise into an air-gapped development environment with strict security requirements",
+            "An XGEN-based AI coding assistant deployed on-premise into an air-gapped development environment with strict security requirements",
         challenge:
             "외부 연결이 차단된 폐쇄망에서 개발 생산성을 높일 코드 어시스턴트가 필요했다.",
         challengeEn:
             "An air-gapped environment with no external connectivity still needed a coding assistant to raise development productivity.",
         solution:
-            "XGEN 기반 Code Assistant를 온프레미스로 구축해, 폐쇄망 안에서 코드 지원을 제공했다.",
+            "XGEN 기반 AI 코딩 어시스턴트를 온프레미스로 구축해, 폐쇄망 안에서 코드 지원을 제공했다.",
         solutionEn:
-            "An XGEN-based Code Assistant was deployed on-premise, providing code support entirely inside the closed network.",
-        highlights: ["온프레미스 · 폐쇄망 구축", "XGEN 기반 Code Assistant"],
+            "An XGEN-based AI coding assistant was deployed on-premise, providing code support entirely inside the closed network.",
+        highlights: ["온프레미스 · 폐쇄망 구축", "XGEN 기반 AI 코딩 어시스턴트"],
         highlightsEn: [
             "On-premise, air-gapped deployment",
-            "XGEN-based Code Assistant",
+            "XGEN-based AI coding assistant",
         ],
         status: "구축 완료",
         published: "2026-01-31",
@@ -395,20 +395,20 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
 ];
 
-// Code Assistant 사례 원본은 보존하되 공개 목록·상세·관련 사례에서 제외한다.
-export const CASE_STUDIES = ALL_CASE_STUDIES.filter((c) => !c.products.includes("code-assistant"));
+// Code Assistant 제품 페이지는 비공개지만, 폐쇄망 AI 코딩 어시스턴트 구축 사례는 고객사례로 공개한다.
+export const CASE_STUDIES = ALL_CASE_STUDIES;
 
 // ── 조회 헬퍼 ────────────────────────────────────────────────────────────────
 
 /** 발행된 사례(초안 제외)를 최신순으로. */
 export function getAllCases(): CaseStudy[] {
-    return CASE_STUDIES.filter((c) => !c.draft && !c.products.includes("code-assistant")).sort(
+    return CASE_STUDIES.filter((c) => !c.draft).sort(
         (a, b) => b.published.localeCompare(a.published),
     );
 }
 
 export function getCaseBySlug(slug: string): CaseStudy | undefined {
-    return CASE_STUDIES.find((c) => c.slug === slug && !c.draft && !c.products.includes("code-assistant"));
+    return CASE_STUDIES.find((c) => c.slug === slug && !c.draft);
 }
 
 export function getCasesByIndustry(industry: IndustryKey): CaseStudy[] {

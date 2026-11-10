@@ -93,7 +93,7 @@ export async function CustomersPageContent({
     const recent = cases.slice(0, 3); // 최근 사례 — 키비주얼 슬라이드 배너
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
-        product && product !== "code-assistant" && product in PRODUCTS ? (product as ProductKey) : "all";
+        product && product in PRODUCTS ? (product as ProductKey) : "all";
 
     const ld = [
         breadcrumbLd([
