@@ -327,11 +327,12 @@ function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
 
     return (
         // 카드 크기는 썸네일(16:9) + 고정 높이 캡션으로 통일한다(제목 1줄·설명 2줄).
-        // 데스크톱에서 마우스를 올리면 카드 크기는 그대로 두고, 썸네일 위에 제목·설명 전문을
-        // 오버레이로 띄운다. 오버레이는 클릭을 통과시켜 썸네일을 눌러 바로 재생할 수 있다.
+        // 데스크톱에서 캡션(설명 영역)에 마우스를 올리면 카드 크기는 그대로 두고, 캡션 자리에
+        // 제목·설명 전문을 담은 팝업 레이어를 띄운다. 레이어는 카드 아래로 넘칠 수 있어
+        // 카드는 overflow를 열고, 썸네일 쪽에서 모서리를 자른다.
         // 터치 기기(md 미만)는 호버가 없으므로 캡션에 전문을 그대로 보여 준다.
-        <figure className="group/card flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
-            <div className="relative">
+        <figure className="relative flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white hover:z-30 focus-within:z-30">
+            <div className="overflow-hidden rounded-t-2xl">
                 <YouTubeFacade
                     demo={demo}
                     loaded={player.loaded}
@@ -339,19 +340,8 @@ function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
                     onPlay={play}
                     locale={locale}
                 />
-                {!player.loaded && (
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 z-10 hidden flex-col justify-end bg-[#070b1c]/85 p-5 text-white opacity-0 transition-opacity duration-200 md:flex md:group-hover/card:opacity-100"
-                    >
-                        <p className="text-[15px] font-bold leading-snug tracking-tight">{demoTitle(demo, en)}</p>
-                        <p className="mt-2 overflow-hidden text-[13px] leading-relaxed text-white/85">
-                            {demoDesc(demo, en)}
-                        </p>
-                    </div>
-                )}
             </div>
-            <figcaption className="p-5 md:h-[146px]">
+            <figcaption tabIndex={0} className="group/cap relative rounded-b-2xl p-5 outline-none md:h-[146px]">
                 <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] md:line-clamp-1">
                     {demoTitle(demo, en)}
                 </h2>
@@ -369,6 +359,24 @@ function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
                 {demo.chapters && demo.chapters.length > 0 && (
                     <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
                 )}
+                {/* 설명 팝업 레이어 — 캡션 위치에서 겹쳐 뜬다(데스크톱 전용). */}
+                <div
+                    aria-hidden
+                    className="pointer-events-none invisible absolute -inset-x-px top-0 z-10 hidden translate-y-1 rounded-xl border border-[var(--color-line)] bg-white p-5 opacity-0 shadow-[0_18px_40px_-16px_rgba(7,11,28,0.35)] transition duration-150 md:block md:group-hover/cap:visible md:group-hover/cap:translate-y-0 md:group-hover/cap:opacity-100 md:group-focus/cap:visible md:group-focus/cap:translate-y-0 md:group-focus/cap:opacity-100"
+                >
+                    <p className="text-[16px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                        {demoTitle(demo, en)}
+                    </p>
+                    {demo.uploadDate && (
+                        <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
+                            <CalendarDays className="h-3.5 w-3.5" />
+                            {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
+                        </p>
+                    )}
+                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                        {demoDesc(demo, en)}
+                    </p>
+                </div>
             </figcaption>
         </figure>
     );
