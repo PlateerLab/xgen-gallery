@@ -326,41 +326,50 @@ function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
     const en = locale === "en";
 
     return (
-        // 카드 크기는 썸네일(16:9) + 고정 높이 캡션으로 통일한다. 데스크톱에서는 제목 1줄·설명 2줄로
-        // 줄였다가, 마우스를 올리거나 키보드 포커스가 들어오면 캡션이 썸네일 위로 펼쳐져 전문을 보여 준다.
-        // 터치 기기(md 미만)는 호버가 없으므로 처음부터 전문을 보여 준다.
-        <figure className="group/card relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
-            <YouTubeFacade
-                demo={demo}
-                loaded={player.loaded}
-                start={player.start}
-                onPlay={play}
-                locale={locale}
-            />
-            <div className="relative md:h-[146px]">
-                <figcaption
-                    tabIndex={0}
-                    className="bg-white p-5 outline-none md:absolute md:inset-x-0 md:bottom-0 md:z-20 md:transition-shadow md:duration-200 md:group-hover/card:shadow-[0_-16px_28px_-18px_rgba(7,11,28,0.45)] md:focus-visible:shadow-[0_-16px_28px_-18px_rgba(7,11,28,0.45)]"
-                >
-                    <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] md:line-clamp-1 md:group-hover/card:line-clamp-none md:group-focus-within/card:line-clamp-none">
-                        {demoTitle(demo, en)}
-                    </h2>
-                    {demo.uploadDate && (
-                        <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
-                            <CalendarDays className="h-3.5 w-3.5" />
-                            <time dateTime={demo.uploadDate}>
-                                {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
-                            </time>
+        // 카드 크기는 썸네일(16:9) + 고정 높이 캡션으로 통일한다(제목 1줄·설명 2줄).
+        // 데스크톱에서 마우스를 올리면 카드 크기는 그대로 두고, 썸네일 위에 제목·설명 전문을
+        // 오버레이로 띄운다. 오버레이는 클릭을 통과시켜 썸네일을 눌러 바로 재생할 수 있다.
+        // 터치 기기(md 미만)는 호버가 없으므로 캡션에 전문을 그대로 보여 준다.
+        <figure className="group/card flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
+            <div className="relative">
+                <YouTubeFacade
+                    demo={demo}
+                    loaded={player.loaded}
+                    start={player.start}
+                    onPlay={play}
+                    locale={locale}
+                />
+                {!player.loaded && (
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 z-10 hidden flex-col justify-end bg-[#070b1c]/85 p-5 text-white opacity-0 transition-opacity duration-200 md:flex md:group-hover/card:opacity-100"
+                    >
+                        <p className="text-[15px] font-bold leading-snug tracking-tight">{demoTitle(demo, en)}</p>
+                        <p className="mt-2 overflow-hidden text-[13px] leading-relaxed text-white/85">
+                            {demoDesc(demo, en)}
                         </p>
-                    )}
-                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] md:line-clamp-2 md:group-hover/card:line-clamp-none md:group-focus-within/card:line-clamp-none">
-                        {demoDesc(demo, en)}
-                    </p>
-                    {demo.chapters && demo.chapters.length > 0 && (
-                        <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
-                    )}
-                </figcaption>
+                    </div>
+                )}
             </div>
+            <figcaption className="p-5 md:h-[146px]">
+                <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] md:line-clamp-1">
+                    {demoTitle(demo, en)}
+                </h2>
+                {demo.uploadDate && (
+                    <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
+                        <CalendarDays className="h-3.5 w-3.5" />
+                        <time dateTime={demo.uploadDate}>
+                            {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
+                        </time>
+                    </p>
+                )}
+                <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] md:line-clamp-2">
+                    {demoDesc(demo, en)}
+                </p>
+                {demo.chapters && demo.chapters.length > 0 && (
+                    <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
+                )}
+            </figcaption>
         </figure>
     );
 }
