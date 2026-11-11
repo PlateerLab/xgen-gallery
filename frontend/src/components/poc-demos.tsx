@@ -86,6 +86,7 @@ const ALL_DEMOS: Demo[] = [
         desc: "XGEN의 DexOn 워크스페이스를 통해 사용자의 로컬 개발 환경과 Agent를 연결하고, 자연어 지시로 코드를 작성·수정하는 바이브 코딩 과정을 실제 화면으로 소개합니다.",
         descEn:
             "A hands-on introduction to vibe coding with XGEN's DexOn workspace, connecting an agent to the user's local development environment to write and modify code from natural-language instructions.",
+        uploadDate: "2026-10-12",
     },
     {
         id: "4RiH3ThyIg0",
@@ -164,6 +165,7 @@ const ALL_DEMOS: Demo[] = [
         desc: "XGEN Agent 작업실에서 에이전트 제작부터 RAG·도구 연동·품질 평가·협업까지 전체 기능을 실제 화면으로 시연합니다.",
         descEn:
             "A full walkthrough of XGEN Agent Workshop on the real product screen — building agents, RAG, tool integration, quality evaluation, and collaboration.",
+        uploadDate: "2026-07-20",
     },
     {
         id: "4T7tT2nTXfw",
@@ -324,34 +326,41 @@ function DemoCard({ demo, locale }: { demo: Demo; locale: Locale }) {
     const en = locale === "en";
 
     return (
-        <figure className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
+        // 카드 크기는 썸네일(16:9) + 고정 높이 캡션으로 통일한다. 데스크톱에서는 제목 1줄·설명 2줄로
+        // 줄였다가, 마우스를 올리거나 키보드 포커스가 들어오면 캡션이 썸네일 위로 펼쳐져 전문을 보여 준다.
+        // 터치 기기(md 미만)는 호버가 없으므로 처음부터 전문을 보여 준다.
+        <figure className="group/card relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
             <YouTubeFacade
                 demo={demo}
                 loaded={player.loaded}
                 start={player.start}
                 onPlay={play}
-                fill
                 locale={locale}
             />
-            <figcaption className="p-5">
-                <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                    {demoTitle(demo, en)}
-                </h2>
-                {demo.uploadDate && (
-                    <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
-                        <CalendarDays className="h-3.5 w-3.5" />
-                        <time dateTime={demo.uploadDate}>
-                            {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
-                        </time>
+            <div className="relative md:h-[146px]">
+                <figcaption
+                    tabIndex={0}
+                    className="bg-white p-5 outline-none md:absolute md:inset-x-0 md:bottom-0 md:z-20 md:transition-shadow md:duration-200 md:group-hover/card:shadow-[0_-16px_28px_-18px_rgba(7,11,28,0.45)] md:focus-visible:shadow-[0_-16px_28px_-18px_rgba(7,11,28,0.45)]"
+                >
+                    <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] md:line-clamp-1 md:group-hover/card:line-clamp-none md:group-focus-within/card:line-clamp-none">
+                        {demoTitle(demo, en)}
+                    </h2>
+                    {demo.uploadDate && (
+                        <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[var(--color-ink-subtle)]">
+                            <CalendarDays className="h-3.5 w-3.5" />
+                            <time dateTime={demo.uploadDate}>
+                                {t.uploaded(demo.uploadDate.replaceAll("-", "."))}
+                            </time>
+                        </p>
+                    )}
+                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] md:line-clamp-2 md:group-hover/card:line-clamp-none md:group-focus-within/card:line-clamp-none">
+                        {demoDesc(demo, en)}
                     </p>
-                )}
-                <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                    {demoDesc(demo, en)}
-                </p>
-                {demo.chapters && demo.chapters.length > 0 && (
-                    <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
-                )}
-            </figcaption>
+                    {demo.chapters && demo.chapters.length > 0 && (
+                        <ChapterList chapters={demo.chapters} onSeek={play} en={en} />
+                    )}
+                </figcaption>
+            </div>
         </figure>
     );
 }
