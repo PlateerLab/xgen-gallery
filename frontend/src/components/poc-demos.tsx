@@ -68,6 +68,17 @@ const COPY: Record<
 
 const ALL_DEMOS: Demo[] = [
     {
+        // 제목은 유튜브 원본과 동일하게 유지한다. 화면은 구축 예정 시안, 데이터는 시연용 가상 데이터라 설명에 함께 밝힌다.
+        id: "Qm3crIymQuc",
+        title: "XGEN AI기반 신제품 개발(NPD)업무지원시스템 | 규제 변경 공고가 검토 보고가 되기까지",
+        titleEn:
+            "XGEN AI-based New Product Development (NPD) work support system | from a regulatory change notice to a review report",
+        desc: "XGEN Agentic AI Platform으로 구성한 신제품 개발(NPD) 업무지원 시스템 시연입니다. 규제 변경 공고 한 건이 조사·비교·초안 작성을 거쳐 검토 보고로 정리되기까지를 하나의 포털에서 보여 줍니다. 화면은 구축 예정 시안이며, 데이터는 시연용 가상 데이터입니다.",
+        descEn:
+            "A demo of an AI-based New Product Development (NPD) work support system built on the XGEN Agentic AI Platform. One regulatory change notice is carried through research, comparison, and drafting to a review report in a single portal. The screens are planned designs and all data is fictional demo data.",
+        uploadDate: "2026-11-11",
+    },
+    {
         // 제목은 유튜브 원본과 동일하게 유지한다.
         id: "0ql6M_P9qRw",
         title: "XGEN의 DexOn 워크스페이스 — 자연어로 코딩하기",
