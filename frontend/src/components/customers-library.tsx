@@ -42,7 +42,7 @@ function Thumb({
         <div
             className={`relative flex flex-col justify-end overflow-hidden rounded-2xl text-white ${className ?? ""}`}
         >
-            <IndustryVisual industry={c.industry} className="absolute inset-0" />
+            <IndustryVisual industry={c.industry} variant={c.visual} className="absolute inset-0" />
             {/* 뱃지 가독성용 스크림 — 산업 비주얼이 밝아 상단만 살짝 눌러준다 */}
             <div
                 aria-hidden

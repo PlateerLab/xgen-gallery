@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import type { IndustryKey } from "@/lib/customers";
+import type { CaseVisual, IndustryKey } from "@/lib/customers";
 
 /**
  * 산업(Industry)을 상징하는 브랜드 SVG 키비주얼. 고객사례 카드 배경으로 쓴다.
@@ -16,6 +16,56 @@ const GRAD: Record<IndustryKey, [string, string, string]> = {
     public: ["#24a3e0", "#1a4bb2", "#0a1436"],
     "it-services": ["#00cfd8", "#1976d6", "#0b1a3e"],
 };
+
+// 같은 산업 안에서 사례를 구분해야 할 때 쓰는 별도 씬. 팔레트는 같은 브랜드 범위 안에서 더 깊게 잡는다.
+const VARIANT_GRAD: Record<CaseVisual, [string, string, string]> = {
+    airgap: ["#1aa6d8", "#164fb8", "#081230"],
+};
+
+/** 폐쇄망 — 점선 경계 안의 서버·보안 방패, 바깥 클라우드와의 연결은 끊겨 있다. */
+function AirgapMotif() {
+    return (
+        <g>
+            {/* 폐쇄망 경계 */}
+            <rect x="92" y="50" width="196" height="120" rx="14" fill="#e6f6fb" fillOpacity="0.06" stroke="#9fe6f5" strokeWidth="2.5" strokeDasharray="9 7" />
+            {/* 내부 서버 랙 */}
+            <g fill="#eef7fb">
+                <rect x="110" y="72" width="40" height="78" rx="5" />
+                <rect x="230" y="72" width="40" height="78" rx="5" />
+            </g>
+            <g fill="#1f4f9a" opacity="0.45">
+                {[110, 230].map((x) =>
+                    [82, 100, 118, 136].map((y) => (
+                        <rect key={`${x}-${y}`} x={x + 7} y={y} width="26" height="8" rx="2" />
+                    )),
+                )}
+            </g>
+            <g fill="#22d3ee">
+                {[110, 230].map((x) => (
+                    <circle key={`led${x}`} cx={x + 33} cy="86" r="2.2" />
+                ))}
+            </g>
+            {/* 내부 연결 */}
+            <g stroke="#67e8f9" strokeWidth="2.5" fill="none">
+                <path d="M150 111 H172" />
+                <path d="M208 111 H230" />
+            </g>
+            {/* 보안 방패 + 자물쇠 */}
+            <path d="M190 78 l22 8 v16 c0 17 -11 27 -22 32 c-11 -5 -22 -15 -22 -32 v-16 z" fill="#2563eb" stroke="#bfe3ff" strokeWidth="2" />
+            <rect x="181" y="100" width="18" height="14" rx="3" fill="#eef7fb" />
+            <path d="M184 100 v-4 a6 6 0 0 1 12 0 v4" fill="none" stroke="#eef7fb" strokeWidth="2.8" />
+            {/* 외부 클라우드 — 연결 차단 */}
+            <g opacity="0.55">
+                <path d="M326 70 a12 12 0 0 1 22 -6 a10 10 0 0 1 14 12 a8 8 0 0 1 -2 16 h-32 a11 11 0 0 1 -2 -22 z" fill="#dbe9ff" />
+            </g>
+            <path d="M288 92 L304 86" stroke="#9fe6f5" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 5" />
+            <g stroke="#ffb4b4" strokeWidth="3" strokeLinecap="round">
+                <line x1="309" y1="80" x2="319" y2="90" />
+                <line x1="319" y1="80" x2="309" y2="90" />
+            </g>
+        </g>
+    );
+}
 
 /**
  * 산업별 리치 씬 — 배경 실루엣 + 주요 오브젝트(면) + 액센트를 겹쳐 입체감을 준다.
@@ -190,13 +240,16 @@ function Motif({ industry }: { industry: IndustryKey }) {
 
 export function IndustryVisual({
     industry,
+    variant,
     className,
 }: {
     industry: IndustryKey;
+    /** 사례별 대체 씬 — 같은 산업 사례끼리 썸네일이 겹칠 때 쓴다. */
+    variant?: CaseVisual;
     className?: string;
 }) {
-    const [from, mid, to] = GRAD[industry];
-    const gid = `iv-${industry}`;
+    const [from, mid, to] = variant ? VARIANT_GRAD[variant] : GRAD[industry];
+    const gid = `iv-${variant ?? industry}`;
     return (
         <svg
             viewBox="0 0 400 250"
@@ -240,7 +293,7 @@ export function IndustryVisual({
                 fill={`url(#${gid}-streak)`}
             />
             <rect width="400" height="250" fill={`url(#${gid}-glow)`} />
-            <Motif industry={industry} />
+            {variant === "airgap" ? <AirgapMotif /> : <Motif industry={industry} />}
         </svg>
     );
 }

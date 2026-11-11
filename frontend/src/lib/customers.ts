@@ -32,6 +32,8 @@ export function caseLinkEnabled(slug: string): boolean {
 
 export type ProductKey = "xgen" | "polar" | "code-assistant";
 export type IndustryKey = "commerce" | "finance" | "public" | "it-services";
+/** 산업 기본 썸네일 대신 쓰는 사례별 씬(industry-visual.tsx). */
+export type CaseVisual = "airgap";
 export type CaseStatus = "구축중" | "운영 중" | "구축 완료" | "확산 중" | "구축·운영 중";
 
 /** 상태 라벨 영문 표기 — `/en` 화면에서 쓴다. */
@@ -118,6 +120,8 @@ export interface CaseStudy {
     published: string;
     /** 대표 사례(상단 노출). */
     featured?: boolean;
+    /** 썸네일 씬 — 같은 산업 사례와 구분이 필요할 때만 지정한다. */
+    visual?: CaseVisual;
     /** true면 목록/색인에서 제외(작성 중). */
     draft?: boolean;
 }
@@ -361,6 +365,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
         ],
         status: "구축 완료",
         published: "2026-01-31",
+        visual: "airgap",
     },
     {
         slug: "public-procurement-search",

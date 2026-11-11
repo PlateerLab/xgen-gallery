@@ -33,6 +33,7 @@ export function FeaturedCaseCard({
                 {/* 산업 상징 비주얼 */}
                 <IndustryVisual
                     industry={item.industry}
+                    variant={item.visual}
                     className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
                 />
                 {/* 하단 가독성 그라디언트 */}
