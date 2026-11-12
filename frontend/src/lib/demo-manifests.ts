@@ -1075,6 +1075,88 @@ const mcpHarness: DemoManifest = {
 const contextifier = getDemoManifest("Contextifier");
 
 /**
+ * Ontlas — 실제 실행은 정의 파일과 원천 DB가 있어야 하므로, README의 예시 커머스 도메인
+ * (revenueByCategory 질의)을 기준으로 같은 질의가 저장소별 언어로 어떻게 컴파일되는지를
+ * 결정적으로 보여준다. 출력 질의문은 이해를 돕기 위한 예시이며 실제 생성 결과와 다를 수 있다.
+ */
+const ontlas: DemoManifest = {
+    projectName: "ontlas",
+    title: "Ontlas Demo",
+    description:
+        "하나의 온톨로지 질의를 배포 환경의 저장소에 맞는 질의 언어로 컴파일합니다. 예시 커머스 도메인의 카테고리별 매출 질의를 대상으로 출력이 어떻게 달라지는지 확인합니다.",
+    icon: "◎",
+    inputs: [
+        {
+            key: "query",
+            type: "select",
+            label: "온톨로지 질의",
+            options: [{ value: "revenueByCategory", label: "revenueByCategory — 카테고리별 매출" }],
+            default: "revenueByCategory",
+        },
+        {
+            key: "target",
+            type: "select",
+            label: "대상 저장소 (질의 언어)",
+            options: [
+                { value: "sql", label: "SQL (SQLite)" },
+                { value: "cypher", label: "Cypher (그래프 DB)" },
+                { value: "sparql", label: "SPARQL (RDF 저장소)" },
+            ],
+            default: "sql",
+        },
+    ],
+    outputs: [
+        { key: "summary", type: "text", label: "동작 요약" },
+        { key: "compiled", type: "text", label: "컴파일된 질의(예시)" },
+        { key: "result", type: "json", label: "결과 행(예시 데이터)" },
+    ],
+    samples: [
+        {
+            label: "SQL로 실행",
+            description: "원천 테이블에 바로 질의",
+            inputs: { query: "revenueByCategory", target: "sql" },
+            mockOutput: {
+                summary: "온톨로지에 정의한 주문·주문항목·상품·카테고리 관계를 원천 테이블 매핑에 따라 SQL로 컴파일해 원천 DB에서 실행합니다.",
+                compiled:
+                    "SELECT c.name AS category, SUM(i.amount) AS revenue\nFROM order_item i\nJOIN product p ON p.product_id = i.product_id\nJOIN category c ON c.category_id = p.category_id\nGROUP BY c.name\nORDER BY revenue DESC",
+                result: [
+                    { category: "의류", revenue: 1250000 },
+                    { category: "잡화", revenue: 830000 },
+                ],
+            },
+        },
+        {
+            label: "Cypher로 실행",
+            description: "같은 질의를 그래프 DB용으로",
+            inputs: { query: "revenueByCategory", target: "cypher" },
+            mockOutput: {
+                summary: "같은 질의 정의를 그래프 DB용 Cypher로 컴파일합니다. 저장소가 바뀌어도 질의 정의는 그대로입니다.",
+                compiled:
+                    "MATCH (i:OrderItem)-[:ofProduct]->(p:Product)-[:inCategory]->(c:Category)\nRETURN c.name AS category, sum(i.amount) AS revenue\nORDER BY revenue DESC",
+                result: [
+                    { category: "의류", revenue: 1250000 },
+                    { category: "잡화", revenue: 830000 },
+                ],
+            },
+        },
+        {
+            label: "SPARQL로 실행",
+            description: "RDF로 투영한 그래프에 질의",
+            inputs: { query: "revenueByCategory", target: "sparql" },
+            mockOutput: {
+                summary: "원천 행을 RDF로 투영한 그래프에 SPARQL로 질의합니다. 저장소별 결과가 같은지는 적합성 테스트로 비교할 수 있습니다.",
+                compiled:
+                    "SELECT ?category (SUM(?amount) AS ?revenue) WHERE {\n  ?i a :OrderItem ; :amount ?amount ; :ofProduct ?p .\n  ?p :inCategory ?c . ?c :name ?category .\n} GROUP BY ?category ORDER BY DESC(?revenue)",
+                result: [
+                    { category: "의류", revenue: 1250000 },
+                    { category: "잡화", revenue: 830000 },
+                ],
+            },
+        },
+    ],
+};
+
+/**
  * XGen Ontology — 저장소가 jinsoo96/xgen-ontology 에서 PlateerLab/xgen-ontology-build 로
  * 옮겨지고 패키지도 xgen-ontology-build 로 개명됐다(xgen-ontology 는 0.16까지만 가는 셈).
  * 키를 저장소 이름 그대로 다시 걸어 큐레이션 데모가 폴백으로 떨어지지 않게 한다.
@@ -1093,6 +1175,7 @@ export const LOCAL_DEMO_MANIFESTS: Record<string, DemoManifest> = {
     "xgen-ontology-build": xgenOntology,
     "xgen-gallery": xgenGallery,
     "xgen-mcp-harness": mcpHarness,
+    ontlas,
 };
 
 /**

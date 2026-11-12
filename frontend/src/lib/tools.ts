@@ -281,6 +281,19 @@ export const TOOLS: Tool[] = [
         language: "JavaScript",
         addedAt: "2026-11-06",
     },
+    {
+        id: "ontlas",
+        repo: "ontlas",
+        name: "Ontlas",
+        tagline: "One ontology space for files, databases, and documents",
+        description:
+            "Define a business domain once and bind it to source tables, or draft it from files. One ontology query compiles to SQL, Cypher, GQL, SPARQL, SQL/PGQ, or Gremlin for the store a deployment has, and documents become searchable passages tied to the definitions they name. Zero hard dependencies in the core.",
+        category: "knowledge",
+        install: "pip install ontlas",
+        hasDemo: true,
+        language: "Python",
+        addedAt: "2026-11-12",
+    },
 ];
 
 /**

@@ -198,6 +198,31 @@ const DICT: Record<string, string> = {
     "XGEN_TOKEN이 있어 브라우저 로그인을 건너뜁니다. 노출 도구는 클러스터 전체와 같습니다.":
         "XGEN_TOKEN is set, so browser sign-in is skipped. The exposed tools are the same as the whole-cluster run.",
 
+    // ── ontlas ─────────────────────────────
+    "하나의 온톨로지 질의를 배포 환경의 저장소에 맞는 질의 언어로 컴파일합니다. 예시 커머스 도메인의 카테고리별 매출 질의를 대상으로 출력이 어떻게 달라지는지 확인합니다.":
+        "Compile one ontology query into the query language of the store a deployment has, and see how the output changes for a revenue-by-category query on the example commerce domain.",
+    "온톨로지 질의": "Ontology query",
+    "revenueByCategory — 카테고리별 매출": "revenueByCategory — revenue by category",
+    "대상 저장소 (질의 언어)": "Target store (query language)",
+    "Cypher (그래프 DB)": "Cypher (graph DB)",
+    "SPARQL (RDF 저장소)": "SPARQL (RDF store)",
+    "컴파일된 질의(예시)": "Compiled query (example)",
+    "결과 행(예시 데이터)": "Result rows (example data)",
+    "SQL로 실행": "Run as SQL",
+    "원천 테이블에 바로 질의": "Query the source tables directly",
+    "Cypher로 실행": "Run as Cypher",
+    "같은 질의를 그래프 DB용으로": "The same query for a graph DB",
+    "SPARQL로 실행": "Run as SPARQL",
+    "RDF로 투영한 그래프에 질의": "Query the graph projected to RDF",
+    "온톨로지에 정의한 주문·주문항목·상품·카테고리 관계를 원천 테이블 매핑에 따라 SQL로 컴파일해 원천 DB에서 실행합니다.":
+        "The order, order-item, product, and category relations defined in the ontology are compiled to SQL through the source-table bindings and run on the source DB.",
+    "같은 질의 정의를 그래프 DB용 Cypher로 컴파일합니다. 저장소가 바뀌어도 질의 정의는 그대로입니다.":
+        "The same query definition compiles to Cypher for a graph DB. The query definition stays the same when the store changes.",
+    "원천 행을 RDF로 투영한 그래프에 SPARQL로 질의합니다. 저장소별 결과가 같은지는 적합성 테스트로 비교할 수 있습니다.":
+        "SPARQL runs on a graph of source rows projected to RDF. A conformance test can compare whether each store returns the same rows.",
+    "의류": "Apparel",
+    "잡화": "Accessories",
+
     // ── xgen-gallery ─────────────────────────────────
     "GitHub 조직 저장소를 검색·언어 필터가 있는 React 갤러리로 렌더링합니다. 같은 데이터에서 필터와 limit이 어떻게 적용되는지 확인합니다.":
         "Render a GitHub organization's repositories as a React gallery with search and language filters. See how filters and limit affect the same data set.",

@@ -39,7 +39,7 @@ export const LAB_PROJECTS: LabProject[] = [
         desc: "기업의 문서와 데이터를 검색 가능한 지식 구조로 바꾸는 연구. 지식 그래프와 GraphRAG, 에이전트 기억을 다룹니다.",
         descEn:
             "Turning enterprise documents and data into knowledge an agent can reason over — knowledge graphs, GraphRAG, and agent memory.",
-        toolIds: ["knowtology", "synaptic-memory", "omnifuse", "xgen-agent-memory"],
+        toolIds: ["knowtology", "synaptic-memory", "omnifuse", "xgen-agent-memory", "ontlas"],
     },
     {
         id: "ingestion",

@@ -93,6 +93,18 @@ export const TOOL_I18N: Record<
                 "XGEN에 저장한 하네스 워크플로우를 Claude Desktop 같은 stdio MCP 클라이언트의 도구로 노출하는 브리지입니다. OAuth 2.1 + PKCE 로그인과 토큰 갱신을 처리하며, 의존성 없이 Node 18 이상에서 동작합니다.",
         },
     },
+    ontlas: {
+        en: {
+            tagline: "One ontology space for files, databases, and documents",
+            description:
+                "Define a business domain once and bind it to source tables, or draft it from files. One ontology query compiles to SQL, Cypher, GQL, SPARQL, SQL/PGQ, or Gremlin for the store a deployment has, and documents become searchable passages tied to the definitions they name. Zero hard dependencies in the core.",
+        },
+        ko: {
+            tagline: "파일·DB·문서를 하나의 온톨로지 공간으로",
+            description:
+                "비즈니스 도메인을 한 번 정의해 원천 테이블에 연결하거나 파일에서 초안을 만듭니다. 하나의 온톨로지 질의를 배포 환경의 저장소에 맞춰 SQL·Cypher·GQL·SPARQL·SQL/PGQ·Gremlin으로 컴파일하고, 문서는 정의와 연결된 검색 단락이 됩니다. 코어는 필수 의존성이 없습니다.",
+        },
+    },
 };
 
 export interface FaqEntry {

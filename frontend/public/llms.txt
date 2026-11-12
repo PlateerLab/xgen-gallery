@@ -38,6 +38,7 @@ GitHub: https://github.com/PlateerLab
 - [XGen Ontology](https://labs.plateer.com/tool/xgen-ontology): Build a knowledge graph from documents and tables. `pip install xgen-ontology-build` (Python, knowledge).
 - [XGen Gallery](https://labs.plateer.com/tool/xgen-gallery): Drop-in React gallery for GitHub repositories. `npm install @plateerlab/xgen-gallery` (TypeScript, utility).
 - [MCP Harness](https://labs.plateer.com/tool/xgen-mcp-harness): Stdio MCP bridge that exposes XGEN harness workflows as tools for clients such as Claude Desktop. `npm install -g @plateer-xgen/mcp-harness` (JavaScript, agent).
+- [Ontlas](https://labs.plateer.com/tool/ontlas): One ontology space for files, databases, and documents; one query compiles to SQL, Cypher, GQL, SPARQL, SQL/PGQ, or Gremlin. `pip install ontlas` (Python, knowledge).
 
 ## Pages
 
@@ -67,6 +68,6 @@ with hreflang (`ko`, `en`, `x-default`). Korean is the default.
 
 - Identity: an AI research lab that proves its research through open-source and products.
 - Products: XGEN (Agentic AI Platform), Polar (commerce sLLM), AI Code Assistant.
-- Library category coverage (19 libraries): ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter, Edit2Docs), knowledge (Synaptic Memory, Knowtology, OmniFuse, XGen Agent Memory, XGen Ontology), agent (Googer, Toolint, XGEN Harness, playwLeft, XGen Agent Runtime, AN-Web, MCP Harness), utility (XGen SDK, XGen Gallery).
+- Library category coverage (20 libraries): ingestion (Contextifier, Doc2Chunk, f2a, Document Adapter, Edit2Docs), knowledge (Synaptic Memory, Knowtology, OmniFuse, XGen Agent Memory, XGen Ontology, Ontlas), agent (Googer, Toolint, XGEN Harness, playwLeft, XGen Agent Runtime, AN-Web, MCP Harness), utility (XGen SDK, XGen Gallery).
 - Common compositions: RAG pipeline (ingest → chunk → embed → retrieve), agent runtime with an execution harness, long-term memory knowledge graph.
 - License: varies by library (most MIT or Apache-2.0; check each repository). Languages: Python, TypeScript, JavaScript. Install: pip, npm.
