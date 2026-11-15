@@ -23,7 +23,7 @@ export function HeroSlider({
     const [paused, setPaused] = useState(false);
     const [reduced, setReduced] = useState(false);
     const n = slides.length;
-    const ms = durations?.[idx] ?? 9000;
+    const ms = durations?.[idx] ?? 4500;
     const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {

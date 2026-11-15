@@ -369,7 +369,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <HeroSlider
                         ariaLabel={ko ? "메인 키 비주얼" : "Main key visual"}
                         labels={ko ? ["Enterprise AI", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Polar 커머스 sLLM", "Ontlas 온톨로지 솔루션"] : ["Enterprise AI", "XGEN AI security for finance", "XGEN for Commerce", "Polar commerce sLLM", "Ontlas ontology solution"]}
-                        durations={[9000, 10000, 9000, 9000, 12000]}
+                        durations={[4500, 5000, 4500, 4500, 6000]}
                         slides={[
                     <div key="enterprise" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
