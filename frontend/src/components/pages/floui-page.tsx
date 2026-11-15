@@ -28,7 +28,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * FloUI 기능 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
+ * FloUI 기능 상세 — /xgen 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
  * 패스파인더·DexOn 상세와 같은 순서를 쓴다: 무엇이 다른가 → 어떻게 동작하는가 →
  * 무엇이 만들어지는가 → 어디에 쓰나. 도입을 검토하는 쪽이 3분 안에 판단하는
@@ -197,7 +197,7 @@ const COPY: Record<Locale, FlouiCopy> = {
             {
                 label: "EasyMode",
                 desc: "코딩 없이, 약 90초면 에이전트가 완성됩니다.",
-                href: "/product#build",
+                href: "/product/xgen#build",
                 art: "easy-mode",
             },
             {
@@ -340,7 +340,7 @@ const COPY: Record<Locale, FlouiCopy> = {
             {
                 label: "EasyMode",
                 desc: "No coding — an agent in about 90 seconds.",
-                href: "/product#build",
+                href: "/product/xgen#build",
                 art: "easy-mode",
             },
             {
@@ -386,7 +386,7 @@ export function FloUIPageContent({ locale }: { locale: Locale }) {
                 data={[
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Product", path: en ? "/en/product" : "/product" },
+                        { name: "XGEN", path: en ? "/en/product/xgen" : "/product/xgen" },
                         { name: "FloUI", path: en ? "/en/floui" : "/floui" },
                     ]),
                     {
@@ -682,7 +682,7 @@ export function FloUIPageContent({ locale }: { locale: Locale }) {
                                         href={href(r.href)}
                                         className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                     >
-                                        {/* /product 특장점 카드와 같은 그림 — 두 화면이 어긋나지 않는다 */}
+                                        {/* /xgen 특장점 카드와 같은 그림 — 두 화면이 어긋나지 않는다 */}
                                         <span className="mb-5 block">
                                             <FeatureArt art={r.art} locale={locale} />
                                         </span>

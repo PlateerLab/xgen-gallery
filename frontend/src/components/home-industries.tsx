@@ -102,7 +102,7 @@ export function HomeIndustries({ locale = "ko" }: { locale?: Locale }) {
         <section className="border-t border-[var(--color-line)] bg-white">
             <div className="mx-auto max-w-7xl px-6 py-28">
                 <p className="font-mono text-[13px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                    / Applied AI
+                    / Solutions
                 </p>
                 <h2 className="mt-3 max-w-3xl mx-auto text-center text-4xl font-semibold tracking-tight md:text-5xl">
                     {t.title}

@@ -55,18 +55,11 @@ export function SiteFooter({ hideCta = false }: { hideCta?: boolean } = {}) {
     }[] = [
         ...NAV_GROUPS.filter((g) => !g.hidden).map((g) => ({
             key: g.key,
-            label: g.label,
+            label: locale === "ko" && g.labelKo ? g.labelKo : g.label,
             href: g.external ?? g.route ?? `/${g.key}`,
             external: !!g.external,
         })),
-        // XGEN 제품 사이트 — 푸터에서만 노출(요청). GNB에도 넣으려면 NAV_GROUPS에 추가한다.
-        {
-            key: "xgen-site",
-            label: "XGEN",
-            href: "https://www.xgen.im/",
-            external: true,
-            sameOwner: true,
-        },
+        // XGEN product site (xgen.im) link removed from footer (2026-11).
     ];
     // About 목록 — 조직·구독·정책 링크. 외부 링크가 위, 내부 링크가 아래로 온다.
     // Explore가 "볼 거리"라면 이쪽은 연구소 자체와 문서에 대한 링크다.
@@ -79,14 +72,16 @@ export function SiteFooter({ hideCta = false }: { hideCta?: boolean } = {}) {
         /** Next 라우터 밖의 정적 경로 — 같은 탭이되 클라이언트 내비게이션은 쓰지 않는다 */
         plain?: boolean;
     }[] = [
-        // About 은 여기에 두지 않는다 — GNB 로고 옆 About 이 그 자리를 맡는다.
-        ...ABOUT_GROUP.items.map((it) => ({
+        // 2026-11: GNB 「컴퍼니」를 없애고 회사 링크를 이 Company 열로 모았다.
+        // About(/about)·Plateer(본사) 링크는 푸터에서 뺐다(요청) — 헤더 로고가 두 곳으로 연결한다.
+        ...ABOUT_GROUP.items.filter((it) => it.id !== "company" && it.id !== "github").map((it) => ({
             key: it.id,
             label: locale === "ko" && it.labelKo ? it.labelKo : it.label,
             href: it.external ?? it.route ?? sectionHref(ABOUT_GROUP.key, it.id),
             external: !!it.external,
         })),
         // Members — GNB 검색바 옆 아이콘에서 푸터로 이동(요청)
+        { key: "about", label: "About", href: "/about" },
         { key: "members", label: t.footer.members, href: "/members" },
         // 뉴스레터 구독 — 한 번 뺐다가 되살렸다(요청). GNB Insight 와 목록의
         // 구독 위젯(SubscribeCta)에도 있지만, 그 둘은 글을 보러 온 사람이

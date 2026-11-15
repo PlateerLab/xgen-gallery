@@ -173,7 +173,7 @@ function DexVibeSlide({ onPlay }: { onPlay: () => void }) {
                     {ko ? "소개 영상 보기" : "Watch the demo"}
                 </button>
                 <Link
-                    href={localeHref(locale, "/product")}
+                    href={localeHref(locale, "/product/xgen")}
                     className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
                 >
                     {ko ? "XGEN 주요 기능 보기" : "See XGEN features"}
@@ -338,7 +338,7 @@ function XgenPlatformSlide() {
                 }}
                 secondary={{
                     label: locale === "ko" ? "제품 보기" : "See the product",
-                    href: localeHref(locale, "/product"),
+                    href: localeHref(locale, "/product/xgen"),
                 }}
             />
         </>
@@ -457,7 +457,7 @@ function SecurityRecheckSlide() {
             <HeroActions
                 primary={{
                     label: locale === "ko" ? "XGEN 제품보기" : "View XGEN",
-                    href: localeHref(locale, "/product"),
+                    href: localeHref(locale, "/product/xgen"),
                 }}
                 secondary={{
                     label: locale === "ko" ? "보안·거버넌스 보기" : "Security and governance",
@@ -526,7 +526,7 @@ function SecuritySlide() {
                         locale === "ko"
                             ? "인증·품질 보기"
                             : "Certification and quality",
-                    href: localeHref(locale, "/product#certification"),
+                    href: localeHref(locale, "/product/xgen#certification"),
                 }}
             />
         </>

@@ -28,7 +28,7 @@ export function EasyModePageContent({ locale }: { locale: Locale }) {
                         <p className="mt-6 text-[17px] leading-8 text-[var(--color-ink-muted)]">{en ? "EasyMode brings knowledge, prompts and tools together in a guided no-code builder. Create an agent, then validate it directly in chat." : "EasyMode는 지식·프롬프트·도구를 조합하는 가이드형 노코드 빌더입니다. 비개발자도 업무용 Agent를 생성·조립하고, 만드는 즉시 채팅으로 검증할 수 있습니다."}</p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Link className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] px-6 py-3 font-semibold" href={localeHref(locale, "/xgen-trial")}>{en ? "Try XGEN free" : "XGEN 무료 체험"}<ArrowRight className="h-4 w-4" /></Link>
-                            <Link className="inline-flex items-center px-4 py-3 text-[var(--color-ink-muted)]" href={localeHref(locale, "/product#build")}>{en ? "Explore core features" : "핵심 기능 보기"}</Link>
+                            <Link className="inline-flex items-center px-4 py-3 text-[var(--color-ink-muted)]" href={localeHref(locale, "/product/xgen#build")}>{en ? "Explore core features" : "핵심 기능 보기"}</Link>
                         </div>
                     </div>
                     <div className="min-w-0"><EasyModeArt locale={locale} /></div>

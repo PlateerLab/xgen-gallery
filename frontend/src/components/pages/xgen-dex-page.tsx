@@ -30,7 +30,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * XGEN의 DexOn 워크스페이스 상세 — /product 의 특장점 카드에서 「자세히 보기」로 들어온다.
+ * XGEN의 DexOn 워크스페이스 상세 — /xgen 의 특장점 카드에서 「자세히 보기」로 들어온다.
  *
  * 순서를 "무엇을 하는 기능인가 → 어떻게 동작하는가 → 무엇을 제공하는가" 로 둔다.
  * 도입을 검토하는 쪽이 3분 안에 판단하는 자리이고, 설치 절차와 화면은 블로그
@@ -286,7 +286,7 @@ const COPY: Record<Locale, DexCopy> = {
             {
                 label: "EasyMode",
                 desc: "코딩 없이, 약 90초면 에이전트가 완성됩니다.",
-                href: "/product#build",
+                href: "/product/xgen#build",
                 art: "easy-mode",
             },
             {
@@ -479,7 +479,7 @@ const COPY: Record<Locale, DexCopy> = {
             {
                 label: "EasyMode",
                 desc: "No coding — an agent in about 90 seconds.",
-                href: "/en/product#build",
+                href: "/en/product/xgen#build",
                 art: "easy-mode",
             },
             {
@@ -528,7 +528,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 data={[
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "XGEN", path: en ? "/en/product" : "/product" },
+                        { name: "XGEN", path: en ? "/en/product/xgen" : "/product/xgen" },
                         { name: "DexOn", path: en ? "/en/xgen-dex" : "/xgen-dex" },
                     ]),
                     {
@@ -545,7 +545,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                 ]}
             />
 
-            <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
                 <div className="relative mx-auto w-full max-w-4xl px-6 pt-16 text-center">
                     <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
@@ -1054,7 +1054,7 @@ export function XgenDexPageContent({ locale }: { locale: Locale }) {
                                         href={r.href}
                                         className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:-translate-y-0.5 hover:border-[#bcd0f5]"
                                     >
-                                        {/* /product 특장점 카드와 같은 그림 — 두 화면이 어긋나지 않는다 */}
+                                        {/* /xgen 특장점 카드와 같은 그림 — 두 화면이 어긋나지 않는다 */}
                                         <div className="mb-5">
                                             <FeatureArt art={r.art} locale={locale} />
                                         </div>

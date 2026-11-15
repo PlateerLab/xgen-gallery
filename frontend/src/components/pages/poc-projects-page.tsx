@@ -33,11 +33,11 @@ export function PocProjectsPageContent({ locale }: { locale: Locale }) {
                     },
                 ])}
             />
-            <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                        Applied AI
+                        Solutions
                     </p>
                     <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-5xl">
                         PoC Projects

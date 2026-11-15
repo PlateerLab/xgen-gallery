@@ -132,7 +132,7 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
         name: "XGEN",
         tagline: "맞춤 Agentic AI 플랫폼",
         taglineEn: "A tailored agentic AI platform",
-        href: "/product",
+        href: "/product/xgen",
         accent: "#2f7bff",
     },
     polar: {
@@ -140,7 +140,7 @@ export const PRODUCTS: Record<ProductKey, ProductMeta> = {
         name: "Polar",
         tagline: "커머스 특화 Private sLLM",
         taglineEn: "A private sLLM built for commerce",
-        href: "/polar",
+        href: "/product/polar",
         accent: "#0f9d8f",
     },
     "code-assistant": {

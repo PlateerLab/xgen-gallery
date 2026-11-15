@@ -30,13 +30,13 @@ export default function ReleasesPage() {
                     ),
                     breadcrumbLd([
                         { name: "Home", path: "/" },
-                        { name: "Product", path: "/product" },
+                        { name: "Support", path: "/support" },
                         { name: "Release notes", path: "/releases" },
                     ]),
                 ]}
             />
             <SiteNav overlay />
-            <section className="relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
+            <section className="kv-hero relative flex h-[560px] items-center overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="releases" />
                 <div className="relative mx-auto w-full max-w-5xl px-6 pt-16">
                     <ReleasesHeader />

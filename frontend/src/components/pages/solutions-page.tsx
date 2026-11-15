@@ -17,6 +17,7 @@ import { GroupPage } from "@/components/onepage";
 import { getGroup } from "@/lib/nav";
 import { IndustryStreamsArt } from "@/components/hero-streams-art";
 import { localeHref } from "@/lib/locale-path";
+import { SolutionsUseCases } from "@/components/solutions-use-cases";
 import type { Locale } from "@/lib/i18n";
 
 /**
@@ -265,7 +266,7 @@ function SolutionsHero({ locale }: { locale: Locale }) {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="max-w-3xl">
                 <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
-                    Applied AI
+                    Solutions
                 </p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
                     Applied AI by Industry
@@ -407,6 +408,7 @@ export function SolutionsPageContent({ locale }: { locale: Locale }) {
             locale={locale}
             hero={<SolutionsHero locale={locale} />}
             content={{
+                "use-cases": <SolutionsUseCases locale={locale} />,
                 "ai-agents": <AgenticAI locale={locale} />,
             }}
         />

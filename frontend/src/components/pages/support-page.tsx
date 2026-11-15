@@ -92,7 +92,7 @@ const COPY: Record<Locale, SupportCopy> = {
                 target: "16시간 이내",
             },
         ],
-        heroEyebrow: "Applied AI · 운영·기술지원",
+        heroEyebrow: "Support · 운영·기술지원",
         heroTitle: "구축을 넘어, 운영까지 책임집니다",
         heroLead:
             "온프레미스 환경에서 XGEN이 안정적으로 돌아가도록 유지보수, 장애 대응, 모니터링, 운영지원을 제공합니다. 구축 이후에도 현장과 함께 운영을 지속 지원합니다.",
@@ -167,7 +167,7 @@ const COPY: Record<Locale, SupportCopy> = {
                 target: "Within 16 hours",
             },
         ],
-        heroEyebrow: "Applied AI · Operations and support",
+        heroEyebrow: "Support · Operations and support",
         heroTitle: "Past the build — we stay responsible for operations",
         heroLead:
             "Maintenance, incident response, monitoring, and operations support that keep XGEN running steadily on-premise. After the build, we stay with the site and keep supporting operations.",
@@ -247,14 +247,13 @@ export function SupportPageContent({ locale }: { locale: Locale }) {
                     },
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Applied AI", path: "/solutions" },
                         { name: t.breadcrumb, path: localeHref(locale, "/support") },
                     ]),
                 ]}
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">

@@ -60,7 +60,7 @@ function VariantA() {
             title: "XGEN Agentic AI Platform",
             desc: "원하는 LLM과 온프레미스·망분리 인프라 위에서 AI 에이전트를 설계·운영합니다",
             cta: "제품 보기",
-            href: "/product",
+            href: "/product/xgen",
             accent: "#2f7bff",
         },
         {
@@ -150,7 +150,7 @@ function VariantC() {
                         무엇을 찾고 계신가요?
                     </span>
                     <Link
-                        href="/product"
+                        href="/product/xgen"
                         className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-1.5 text-[14.5px] font-semibold text-white transition hover:bg-white/10"
                     >
                         엔터프라이즈 AI 플랫폼

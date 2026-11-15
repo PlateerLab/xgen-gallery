@@ -245,7 +245,7 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                     { name: "Architecture", path: self },
                 ])}
             />
-            <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="architecture" />
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
@@ -408,7 +408,7 @@ export function ArchitecturePageContent({ locale }: { locale: Locale }) {
                             {t.platformNote}
                         </p>
                         <Link
-                            href={localeHref(locale, "/product")}
+                            href={localeHref(locale, "/product/xgen")}
                             className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             {t.platformCta}

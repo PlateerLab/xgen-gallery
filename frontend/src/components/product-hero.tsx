@@ -111,7 +111,7 @@ export function ProductHero({ locale = "ko" }: { locale?: Locale }) {
     }, [active]);
 
     return (
-        <section className="relative min-h-[755px] overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
+        <section className="kv-hero relative min-h-[755px] overflow-hidden border-b border-white/10 bg-[#070b1c] text-white">
             {/* 배경 글로우 */}
             <div
                 aria-hidden

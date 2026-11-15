@@ -48,7 +48,7 @@ const COPY: Record<
             ["버전 고정", "검증한 시점의 Agent를 고정본으로 보존해 서비스에 배포합니다. 원본 개선과 서비스 운영을 분리합니다."],
         ],
         relation: "Geny는 Agent가 어떻게 일할지를, DexOn은 Agent가 어디까지 일할지를 담당합니다. 함께 쓰면 허용된 범위에서 사용자 기기의 업무 환경까지 활용할 수 있습니다.",
-        status: "Geny의 주요 기능은 운영 환경에 배포되어 있으며, 정식 활성화 전 안정성과 품질을 검증하고 있습니다. 제공 범위는 환경과 구성에 따라 달라질 수 있습니다.",
+        status: "Geny는 운영 환경에 정식 활성화되어 제공됩니다. 제공 범위는 환경과 구성에 따라 달라질 수 있습니다.",
         cta: "Geny 자세히 보기",
     },
     en: {
@@ -68,7 +68,7 @@ const COPY: Record<
             ["Version pinning", "Preserves an agent as verified and deploys that pinned copy, keeping improvement separate from service operation."],
         ],
         relation: "Geny defines how an agent works; DexOn defines how far it can reach. Together, an agent can use the work environment on user devices within the allowed scope.",
-        status: "Geny's main features are deployed to production and are being verified for stability and quality before general activation. Availability can vary by environment and configuration.",
+        status: "Geny is generally available in production. Availability can vary by environment and configuration.",
         cta: "Learn more about Geny",
     },
 };

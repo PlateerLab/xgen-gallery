@@ -14,7 +14,7 @@ const COPY = {
         linksTitle: "이 페이지를 찾으셨나요?",
         links: [
             { href: "/blog", label: "AI Labs 인사이트", note: "연구·제품·현장의 최신 글" },
-            { href: "/product", label: "XGEN 제품 소개", note: "기능과 도입 방식 살펴보기" },
+            { href: "/product/xgen", label: "XGEN 제품 소개", note: "기능과 도입 방식 살펴보기" },
             { href: "/contact", label: "문의하기", note: "찾는 자료를 직접 요청하기" },
         ],
     },
@@ -27,7 +27,7 @@ const COPY = {
         linksTitle: "Were you looking for one of these?",
         links: [
             { href: "/blog", label: "AI Labs insights", note: "Latest research, product, and field notes" },
-            { href: "/product", label: "Explore XGEN", note: "Capabilities and adoption paths" },
+            { href: "/product/xgen", label: "Explore XGEN", note: "Capabilities and adoption paths" },
             { href: "/contact", label: "Contact us", note: "Ask us to help locate a resource" },
         ],
     },

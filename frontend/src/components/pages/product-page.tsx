@@ -22,7 +22,9 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
-import { ProductHero } from "@/components/product-hero";
+import { InlinePromoBand } from "@/components/product-xgen/inline-promo-band";
+import { CompareStack } from "@/components/product-xgen/compare-stack";
+import { WhyXgenHero, WhyXgenDifference, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
 import { ProductGeny } from "@/components/product-geny";
 import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
@@ -92,6 +94,9 @@ const STATS: { n: string; label: string; sub: string }[] = [
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
 /** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(SectionIndex 공용). */
 const PRODUCT_SECTIONS = [
+    { id: "why", label: "Why XGEN" },
+    { id: "evolution", label: "AX 진화" },
+    { id: "capabilities", label: "핵심 역량" },
     { id: "platform", label: "제품 개요" },
     { id: "value", label: "도입 효과" },
     { id: "features", label: "핵심 기능" },
@@ -643,9 +648,6 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
     const GOV_L = en
         ? GOV.map((x, i) => ({ ...x, title: E.gov[i][0], desc: E.gov[i][1] }))
         : GOV;
-    const ROLES_L = en
-        ? ROLES.map((x, i) => ({ ...x, ko: E.roles[i][0], desc: E.roles[i][1] }))
-        : ROLES;
     const TECH_LAYERS_L = en
         ? TECH_LAYERS.map((x, i) => ({ ...x, title: E.techLayers[i][0], desc: E.techLayers[i][1] }))
         : TECH_LAYERS;
@@ -655,13 +657,13 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
         .slice(0, 3);
     return (
         <>
-            <SiteNav overlay />
+            <SiteNav overlay showPromotion={false} />
             <JsonLd
                 data={[
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
-                        "@id": absoluteUrl("/product#software"),
+                        "@id": absoluteUrl("/product/xgen#software"),
                         name: "XGEN",
                         applicationCategory: "BusinessApplication",
                         applicationSubCategory: "Enterprise Agentic AI Platform",
@@ -670,7 +672,7 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             en
                                 ? E.ldDescription
                                 : "기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·통제하는 온프레미스 Enterprise AI 플랫폼. 에이전트플로우 캔버스·지식(RAG)·도구(MCP)·배포·거버넌스·대시보드로 구성된다.",
-                        url: absoluteUrl("/product"),
+                        url: absoluteUrl("/product/xgen"),
                         author: { "@type": "Organization", name: SITE.name, url: SITE.url },
                         publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
                         featureList: [
@@ -697,13 +699,14 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     },
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Product", path: "/product" },
+                        { name: "XGEN", path: "/product/xgen" },
                     ]),
                 ]}
             />
 
             {/* Hero — 2슬라이드 키비주얼(소개영상 + Model-Agnostic 로고) */}
-            <ProductHero locale={locale} />
+            {/* 이전 키비주얼 ProductHero 는 남겨 둔다(되돌릴 때 이 줄만 바꾼다) */}
+            <WhyXgenHero locale={locale} />
 
             {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
@@ -765,6 +768,11 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
+                {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
+                <WhyXgenDifference locale={locale} />
+                <WhyXgenEvolution locale={locale} />
+                <WhyXgenCapabilities locale={locale} />
+
                 {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
                 <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
                     <div
@@ -806,6 +814,9 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         </div>
                     </div>
                 </section>
+
+                {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
+                <InlinePromoBand locale={locale} />
 
                 {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                 <section
@@ -999,59 +1010,17 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             </div>
                         </div>
 
-                        {/* 기존 방식 대비 전환 — 운영 모델 관점(성과의 근거) */}
-                        <h3 className="mx-auto mt-16 text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
-                            {en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
-                        </h3>
-                        <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
-                        </p>
-                        <div className="mx-auto mt-8 max-w-4xl divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
-                            {(en ? E.compare : COMPARE_KO).map((o, i) => (
-                                <div
-                                    key={o.title}
-                                    className="grid gap-5 py-10 md:grid-cols-[128px_1fr] md:gap-10 lg:grid-cols-[168px_1fr]"
-                                >
-                                    <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[48px] font-extrabold leading-none text-transparent md:text-[64px]">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                    <div>
-                                        <h4 className="text-[21px] font-bold tracking-tight text-[var(--color-ink)] md:text-[25px]">
-                                            {o.title}
-                                        </h4>
-                                        <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
-                                            <div className="rounded-xl bg-[var(--color-surface-alt)] px-4 py-3">
-                                                <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11.5px] font-bold text-[var(--color-ink-subtle)] ring-1 ring-[var(--color-line)]">
-                                                    {en ? E.labelBefore : "기존"}
-                                                </span>
-                                                <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                                    {o.before}
-                                                </p>
-                                            </div>
-                                            <ArrowRight className="mx-auto hidden h-5 w-5 flex-none text-[#2f7bff] sm:block" />
-                                            <div className="rounded-xl border border-[#bcd0f5] bg-[#eef4ff] px-4 py-3">
-                                                <span className="inline-flex items-center rounded-full bg-[#2f7bff] px-2.5 py-0.5 text-[11.5px] font-bold text-white">
-                                                    XGEN
-                                                </span>
-                                                <p className="mt-1 text-[14px] font-medium leading-relaxed text-[var(--color-ink)]">
-                                                    {o.after}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="mt-4 flex items-center gap-2.5 rounded-r-xl border-l-[3px] border-[#1f9d6b] bg-[#e7f7f0]/60 px-4 py-2.5">
-                                            <span className="inline-flex flex-none items-center rounded-full bg-[#1f9d6b] px-2 py-0.5 text-[11px] font-bold text-white">
-                                                {en ? E.labelEffect : "성과"}
-                                            </span>
-                                            <span className="text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)]">
-                                                {o.effect}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </section>
+
+                {/* 기존 방식 대비 — 카페24 유튜브 쇼핑 카드 스택 패턴 */}
+                <CompareStack
+                    items={en ? E.compare : COMPARE_KO}
+                    title={en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
+                    lead={en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
+                    labelBefore={en ? E.labelBefore : "기존"}
+                    labelEffect={en ? E.labelEffect : "성과"}
+                />
 
                 {/* Features */}
                 <section
@@ -1236,41 +1205,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                     </div>
                 </section>
 
-                {/* Roles — 역할별 경험 (제품 사용 관점: 신뢰 블록 앞에 배치) */}
-                <section
-                    id="roles"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Roles
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.rolesTitle : "하나의 플랫폼, 역할에 맞는 경험"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.rolesLead : "하나의 플랫폼에서도 역할과 권한에 따라 최적화된 업무 환경이 구성됩니다. 각 사용자는 자신의 업무에 필요한 기능과 정보만 제공받아 더욱 효율적으로 AI를 활용할 수 있습니다."}
-                        </p>
-                        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                            {ROLES_L.map((r) => (
-                                <div
-                                    key={r.en}
-                                    className="rounded-2xl border border-[var(--color-line)] bg-white p-6"
-                                >
-                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#2461d8]">
-                                        {r.en}
-                                    </p>
-                                    <h3 className="mt-3 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {r.ko}
-                                    </h3>
-                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {r.desc}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                {/* Roles — 역할별 경험(xgen.im 3역할, 탭 자동 순환) */}
+                <WhyXgenRoles locale={locale} />
 
                 {/* On-Premise */}
                 <section
@@ -1636,10 +1572,10 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             Get Started
                         </p>
                         <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">
-                            {en ? E.closingTitle : "업무에 바로 투입되는 기업용 AI를 확인해 보세요"}
+                            {en ? "Turn AI projects into assets that keep evolving" : "AI 프로젝트를 계속 진화하는 자산으로"}
                         </h2>
                         <p className="mx-auto mt-5 max-w-2xl text-center text-[16px] leading-relaxed text-white/70">
-                            {en ? E.closingLead : "조직의 보안·권한·감사 요건을 만족하는 Agentic AI 플랫폼. 데모에서 설계·배포·통제의 전체 흐름을 직접 보여드립니다."}
+                            {en ? "Start with a 15-day trial in your browser, or see the full build–deploy–govern flow in a demo." : "브라우저에서 15일 체험으로 시작하거나, 데모에서 설계·배포·통제의 전체 흐름을 확인해 보세요."}
                         </p>
                         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                             <Link
@@ -1648,6 +1584,12 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             >
                                 {en ? E.closingDemo : "데모 요청하기"}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+                            <Link
+                                href={localeHref(locale, "/xgen-trial")}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
+                            >
+                                {en ? "15-day free trial" : "15일 무료 체험"}
                             </Link>
                             <Link
                                 href={localeHref(locale, "/xgen-brief-k7m4")}

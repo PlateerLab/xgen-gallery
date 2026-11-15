@@ -44,7 +44,7 @@ export function ProofHero({ locale = "ko" }: { locale?: Locale }) {
             {/* 좌: 카피 + CTA */}
             <div>
                 <p className="text-[15px] font-semibold tracking-tight text-[#5eead4]">
-                    Applied AI · Proof in Action
+                    Solutions · Proof in Action
                 </p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
                     {t.title}

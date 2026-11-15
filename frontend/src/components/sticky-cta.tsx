@@ -27,7 +27,9 @@ export function StickyCta() {
         pathname.startsWith("/newsletter") ||
         pathname === "/hackathon" ||
         pathname === "/events" ||
-        pathname.startsWith("/events/");
+        pathname.startsWith("/events/") ||
+        // 제품 마이크로사이트는 자체 하단 CTA를 쓴다
+        /^(\/en)?\/products\/[^/]+\/?$/.test(pathname);
     if (!mounted || hidden) return null;
 
     const en = locale === "en";

@@ -37,8 +37,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/members`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
         { url: `${SITE.url}/newsletter`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
         { url: `${SITE.url}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+        { url: `${SITE.url}/updates`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/xgen-brief-k7m4`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-        { url: `${SITE.url}/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${SITE.url}/product/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/pathfinder`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/vibe-coding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/easy-mode`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -71,7 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Top-level GNB one-pages (Research, Technology, Product, …). external 링크 그룹은
     // /{key} 페이지가 없으므로 사이트맵에서 제외한다(현재 external 그룹 없음).
     const groupRoutes: MetadataRoute.Sitemap = NAV_GROUPS.filter(
-        // external/route 그룹, 그리고 /product로 리다이렉트되는 레거시 products 그룹 제외.
+        // external/route 그룹, 그리고 /xgen로 리다이렉트되는 레거시 products 그룹 제외.
         (g) => !g.external && !g.route && g.key !== "products",
     ).map((g) => ({
         url: `${SITE.url}/${g.key}`,

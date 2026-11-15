@@ -173,7 +173,7 @@ export function DocumentationPageContent({ locale }: { locale: Locale }) {
 
     return (
         <>
-            <SiteNav />
+            <SiteNav overlay />
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: home },
@@ -182,9 +182,9 @@ export function DocumentationPageContent({ locale }: { locale: Locale }) {
             />
 
             {/* Hero */}
-            <section className="relative overflow-hidden border-b border-white/10 text-white">
+            <section data-nav-theme="dark" className="kv-hero relative flex items-center overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="resources" />
-                <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">
                     <p className="text-[16px] font-semibold tracking-tight text-[#5eead4]">
                         Resources · Documentation
                     </p>

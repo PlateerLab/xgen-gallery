@@ -85,6 +85,8 @@ const CATEGORY_BY_KEY: Record<string, Tab> = {
     product: "제품 소식",
     labs: "Tech Note",
     industry: "Industry Note",
+    news: "News",
+    xinsight: "X Insight",
     // 탭에서는 감췄지만 기존 링크·북마크가 죽지 않도록 키는 남겨 둔다.
     case: "Case Study",
 };
@@ -93,10 +95,27 @@ const KEY_BY_CATEGORY: Partial<Record<Tab, string>> = {
     "Tech Note": "labs",
     "Industry Note": "industry",
     "Case Study": "case",
+    News: "news",
+    "X Insight": "xinsight",
 };
 
 /** 카테고리별 브랜드 테마 — 커버 없는 글의 썸네일에 쓰인다. */
 const CAT_THEME: Record<string, { grad: string; ink: string; word: string }> = {
+    News: {
+        grad: "linear-gradient(135deg,#e8f7fd 0%,#cfeefb 100%)",
+        ink: "#0089c4",
+        word: "NEWS",
+    },
+    "X Insight": {
+        grad: "linear-gradient(135deg,#eef3ff 0%,#dbe6ff 100%)",
+        ink: "#185aea",
+        word: "INSIGHT",
+    },
+    "Event Report": {
+        grad: "linear-gradient(135deg,#f1f3f7 0%,#e2e6ee 100%)",
+        ink: "#0b1224",
+        word: "EVENT",
+    },
     "제품 소식": {
         grad: "linear-gradient(135deg,#eaf1ff 0%,#d3e4ff 100%)",
         ink: "#2461d8",

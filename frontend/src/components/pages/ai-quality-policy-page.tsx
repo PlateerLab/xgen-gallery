@@ -307,7 +307,7 @@ export function AiQualityPolicyPageContent({
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: localePath(locale, "/") },
-                    { name: "Product", path: localePath(locale, "/product") },
+                    { name: "Company", path: localePath(locale, "/about") },
                     {
                         name: t.breadcrumb,
                         path: localePath(locale, "/ai-quality-policy"),
@@ -316,7 +316,7 @@ export function AiQualityPolicyPageContent({
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[500px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[500px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 {/* 좌: 카피 / 우: 키비주얼. lg 미만에서는 키비주얼이 아래로 쌓인다. */}
                 <div className="relative mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 px-6 pt-16 lg:grid-cols-2 lg:gap-12">

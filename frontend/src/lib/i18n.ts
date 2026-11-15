@@ -129,6 +129,8 @@ export interface Dict {
         tagline: string;
         /** 상단 프로모션 배너(15일 무료 체험). */
         promo: string;
+        /** 배너 앞 강조 배지 */
+        promoBadge: string;
         promoCta: string;
         promoClose: string;
         /** 검색바 왼쪽 XGEN 제품 사이트 아웃링크. */
@@ -282,16 +284,17 @@ export const dict: Record<Locale, Dict> = {
             github: "GitHub",
             star: "GitHub에서 별 주기",
             tagline: "Plateer AI Labs for Enterprise AI·AX",
-            promo: "XGEN 15일 무료 체험 — 설치 없이 브라우저에서 바로 시작하세요",
+            promo: "설치 없이 브라우저에서 XGEN을 바로 시작해 보세요",
+            promoBadge: "15일 무료 체험",
             promoCta: "체험 신청",
             promoClose: "배너 닫기",
-            productSite: "XGEN 제품보기",
+            productSite: "Company",
         },
         footer: {
             tools: "도구",
             contact: "문의",
             explore: "Explore",
-            about: "Company",
+            about: "Plateer AI Labs",
             blurb: "Plateer AI Labs는 기업이 신뢰할 수 있는 AI 플랫폼을 만들기 위한 핵심 기술을 연구하고 공유합니다. XGEN을 구성하는 문서 인제스션, 지식그래프, 에이전트 프레임워크 등 검증된 AI 기술을 오픈소스로 공개하여 누구나 쉽게 설치하고, 실험하고, 서비스에 적용할 수 있도록 지원합니다.",
             members: "AI Lab Members",
             newsletter: "랩 뉴스레터 구독",
@@ -381,17 +384,18 @@ export const dict: Record<Locale, Dict> = {
             github: "GitHub",
             star: "Star on GitHub",
             tagline: "Plateer AI Labs for Enterprise AI·AX",
-            promo: "Try XGEN free for 15 days — nothing to install, runs in your browser",
+            promo: "Start XGEN right in your browser — nothing to install",
+            promoBadge: "15-day free trial",
             promoCta: "Start free trial",
             promoClose: "Dismiss banner",
-            // 한국어("XGEN 제품보기")보다 길면 GNB에서 줄바꿈되어 메뉴와 겹친다 — 짧게 유지.
-            productSite: "XGEN site",
+            // GNB에서 줄바꿈되면 메뉴와 겹친다 — 짧게 유지.
+            productSite: "Company",
         },
         footer: {
             tools: "Tools",
             contact: "Contact",
             explore: "Explore",
-            about: "Company",
+            about: "Plateer AI Labs",
             blurb: "Plateer AI Labs researches and shares the core technologies behind AI platforms enterprises can trust. The document ingestion, knowledge graph, and agent frameworks that make up XGEN are published as open source, so anyone can install them, experiment, and put them into production.",
             members: "AI Lab Members",
             newsletter: "Newsletter",

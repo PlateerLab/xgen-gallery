@@ -740,3 +740,228 @@ img {
     width: min(560px, 100%);
     transform: translateX(-50%);
 }
+
+/* GNB 드롭다운 — 열릴 때 살짝 내려오며 나타난다(마키나락스 GNB 패턴). */
+@keyframes gnbPanelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.gnb-panel { animation: gnbPanelIn 0.3s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .gnb-panel { animation: none; } }
+
+/* ------ Polar 제품 페이지 모션 — polar-motion.tsx ------ */
+@keyframes polarFloatA { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes polarFloatB { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@keyframes polarKen { from { transform: scale(1.04); } to { transform: scale(1.12); } }
+@keyframes polarGlow { 0%,100% { opacity: 0.55; } 50% { opacity: 0.9; } }
+@keyframes polarFlow { from { background-position: 0 0; } to { background-position: 0 24px; } }
+@keyframes polarPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+.polar-hero-photo { animation: polarKen 14s ease-in-out infinite alternate; }
+.polar-hero-glow {
+    position: absolute; inset: -12% -8%;
+    background: radial-gradient(closest-side, rgba(0,172,238,0.35), rgba(24,90,234,0.18) 55%, transparent 75%);
+    filter: blur(30px); animation: polarGlow 6s ease-in-out infinite;
+}
+.polar-chip { animation: polarFloatA 5.5s ease-in-out infinite; }
+.polar-edge { stroke: rgba(125,211,252,0.35); stroke-width: 1.2; stroke-dasharray: 4 6; animation: polarEdgeFlow 3s linear infinite; }
+.polar-edge-hub { stroke: rgba(95,208,255,0.6); stroke-width: 1.6; }
+@keyframes polarEdgeFlow { to { stroke-dashoffset: -40; } }
+.polar-hub { animation: polarHubPulse 3.2s ease-in-out infinite; }
+@keyframes polarHubPulse { 0%,100% { box-shadow: 0 0 28px rgba(56,189,248,0.45); } 50% { box-shadow: 0 0 52px rgba(56,189,248,0.75); } }
+.polar-chip-0 { top: 8%; left: -6%; }
+.polar-chip-1 { top: 44%; right: -7%; animation-name: polarFloatB; animation-duration: 6.5s; }
+.polar-chip-2 { bottom: 9%; left: 6%; animation-delay: -2s; }
+.polar-flow-v {
+    display: block; width: 2px; height: 26px; border-radius: 2px;
+    background: var(--color-line);
+}
+.polar-flow-sm { height: 14px; }
+.polar-flow-on {
+    background-image: linear-gradient(180deg, #2f7bff 0 40%, transparent 40% 100%);
+    background-size: 2px 12px; animation: polarFlow 0.8s linear infinite;
+}
+.polar-pulse { animation: polarPulse 1.2s ease-in-out infinite; }
+.polar-zoom { transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.group:hover .polar-zoom { transform: scale(1.06); }
+@media (prefers-reduced-motion: reduce) {
+    .polar-hero-photo, .polar-hero-glow, .polar-chip, .polar-flow-on, .polar-pulse, .polar-edge, .polar-hub { animation: none; }
+    .group:hover .polar-zoom { transform: none; }
+}
+@media (max-width: 620px) {
+    .polar-chip-0 { left: 2%; top: 4%; }
+    .polar-chip-1 { right: 2%; }
+}
+@keyframes polarHeroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.polar-hero-in { animation: polarHeroIn 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+@media (prefers-reduced-motion: reduce) { .polar-hero-in { animation: none; } }
+
+/* 서브 페이지 키 비주얼 높이 — 메인 인트로 히어로(헤더 포함 약 690px)와 같게 맞춘다. 데스크톱(≥1024px)만 고정하고, 좁은 화면은 내용 높이를 따른다. */
+@media (min-width: 1024px) {
+  .kv-hero { height: 690px !important; min-height: 0 !important; }
+  .kv-hero .kv-fill { min-height: 0 !important; height: 100%; }
+}
+
+/* ------ /product/xgen Why XGEN 마케팅 섹션 모션 — product-xgen/why-xgen.tsx ------ */
+@keyframes whyIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes whyKen { from { transform: scale(1.03); } to { transform: scale(1.1); } }
+@keyframes whyGlow { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+@keyframes whyBand { from { background-position: 0 50%; } to { background-position: -1376px 50%; } }
+@keyframes whyProgress { from { width: 0; } to { width: 100%; } }
+.why-in { opacity: 0; animation: whyIn 0.8s cubic-bezier(0.22,1,0.36,1) forwards; }
+.why-d1 { animation-delay: 0.05s; } .why-d2 { animation-delay: 0.18s; } .why-d3 { animation-delay: 0.32s; }
+.why-d4 { animation-delay: 0.46s; } .why-d5 { animation-delay: 0.6s; }
+.why-ken { animation: whyKen 14s ease-in-out infinite alternate; }
+.why-glow { animation: whyGlow 5s ease-in-out infinite; }
+.why-band { background: url(/product/why/particle-band.webp) repeat-x 0 50% / auto 100%; animation: whyBand 40s linear infinite;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
+.why-word { display: inline-block; opacity: 0.12; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+.why-word-in { opacity: 1; transform: none; }
+.why-progress { animation: whyProgress 5s linear forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .why-in { opacity: 1; animation: none; }
+  .why-ken, .why-glow, .why-band, .why-progress { animation: none; }
+  .why-word { opacity: 1; transform: none; transition: none; }
+}
+
+/* /product/xgen 히어로 — 검정 바탕 + 파티클 흐름 배경, 다른 서브 페이지(690px)보다 높게 */
+@keyframes whyHeroDrift { 0%,100% { transform: translateX(0) scale(1); } 50% { transform: translateX(-1.2%) scale(1.04); } }
+.why-hero-bg { background: url(/product/why/hero-particle.webp) no-repeat 50% 50% / 190% auto; animation: whyHeroDrift 18s ease-in-out infinite; }
+@media (min-width: 1024px) {
+  .kv-hero.why-hero-tall { height: max(1000px, min(100vh, 1120px)) !important; }
+  .why-hero-bg { background-size: min(1800px, 112%) auto; }
+}
+@media (prefers-reduced-motion: reduce) { .why-hero-bg { animation: none; } }
+
+/* /product/xgen 「기존 방식 대비」 카드 스택 — 1024px 이상에서 카드가 앞 카드 위로 겹쳐 쌓인다 */
+@media (min-width: 1024px) {
+    .cmp-stack-card { top: calc(var(--nav-h, 84px) + 58px + 24px + var(--stack-i, 0) * 18px); }
+}
+
+/* 메인(구매 여정) 섹션별 모션 — home-v2/journey-motion.tsx */
+.jr-rise { opacity: 0; transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.jr-from-up { transform: translateY(32px); }
+.jr-from-left { transform: translateX(-40px); }
+.jr-from-right { transform: translateX(40px); }
+.jr-from-scale { transform: scale(0.94); }
+.jr-rise.jr-in { opacity: 1; transform: none; }
+@keyframes jr-progress { from { width: 0; } to { width: 100%; } }
+.jr-progress { animation: jr-progress 6s linear forwards; }
+@keyframes jr-caption { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.jr-caption { animation: jr-caption 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.jr-steps-line { transform: scaleX(0); transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s; }
+.jr-steps-in .jr-steps-line { transform: scaleX(1); }
+.jr-step { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; transition-delay: calc(var(--i) * 0.35s + 0.2s); }
+.jr-steps-in .jr-step { opacity: 1; transform: none; }
+.jr-step-dot { transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease; transition-delay: calc(var(--i) * 0.35s + 0.4s); }
+.jr-steps-in .jr-step-dot { background: #185aea; border-color: #185aea; color: #fff; }
+/* 제품 벤토 — 대표 카드 이미지가 천천히 확대(켄 번즈) */
+@keyframes jr-kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+.jr-kenburns { animation: jr-kenburns 14s ease-in-out infinite alternate; }
+/* 검증 띠 — 흐르는 그라디언트 테두리 */
+@keyframes jr-sheen { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+.jr-sheen { background-image: linear-gradient(90deg, #00acee, #185aea, #7b5cff, #00acee); background-size: 200% 100%; animation: jr-sheen 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .jr-rise, .jr-step, .jr-steps-line, .jr-step-dot { opacity: 1; transform: none; transition: none; }
+    .jr-progress, .jr-caption, .jr-kenburns, .jr-sheen { animation: none; }
+}
+
+/* ── 산업별 페이지 본문(industry-body) ── */
+.ind-body .ind-wrap { max-width: 1280px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+@media (min-width: 768px) {
+  .ind-body .ind-steps::before { content: ""; position: absolute; }
+  .ind-body .ind-steps > li:not(:last-child)::after {
+    content: ""; position: absolute; top: 18px; left: 44px; right: -24px; height: 2px;
+    background: linear-gradient(90deg, #185aea 0%, #bcd0f5 100%);
+  }
+}
+@media (max-width: 620px) {
+  .ind-body .ind-wrap { padding-left: 20px; padding-right: 20px; }
+}
+
+/* 메인 히어로 슬라이드 — home-v2/hero-slider.tsx, redteam-visual.tsx */
+.hero-slide { opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s linear 0.7s; }
+.hero-slide[data-active="true"] { opacity: 1; visibility: visible; transform: none; transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s; }
+.hero-slide-bar { width: 0; animation-name: hero-slide-fill; animation-timing-function: linear; animation-fill-mode: forwards; }
+@keyframes hero-slide-fill { to { width: 100%; } }
+.redteam-pulse { animation: redteam-pulse 1.6s ease-in-out infinite; }
+@keyframes redteam-pulse { 50% { opacity: 0.35; box-shadow: 0 0 0 4px rgba(255, 93, 93, 0.15); } }
+.hero-slide[data-active="true"] .redteam-row { animation: redteam-row 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-slide[data-active="true"] .redteam-res { animation: redteam-res 0.5s ease both; }
+@keyframes redteam-row { from { opacity: 0; transform: translateX(-12px); } }
+@keyframes redteam-res { from { opacity: 0; transform: scale(0.8); } }
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide, .hero-slide[data-active="true"] { transition: none; transform: none; }
+    .redteam-pulse, .hero-slide[data-active="true"] .redteam-row, .hero-slide[data-active="true"] .redteam-res { animation: none; }
+}
+
+/* 메인 히어로 슬라이드별 모션 구분 — 1 네트워크 흐름 · 2 빨간 스캔 · 3 콜아웃 부유 · 4 타이핑·막대 */
+.hero-slide[data-active="true"] .ent-photo { animation: ent-zoom 12s ease-out both; }
+@keyframes ent-zoom { from { transform: scale(1.08); } }
+.ent-flow { stroke-dasharray: 8 92; animation: ent-flow 4.4s linear infinite; }
+@keyframes ent-flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+.hero-slide[data-active="true"] .ent-node { animation: ent-node 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes ent-node { from { opacity: 0; transform: translateY(10px) scale(0.96); } }
+.ent-dot { animation: ent-dot 4.4s ease-in-out infinite; }
+@keyframes ent-dot { 0%, 20%, 100% { box-shadow: 0 0 0 0 rgba(0, 172, 238, 0); } 10% { box-shadow: 0 0 0 5px rgba(0, 172, 238, 0.35); } }
+.rt-photo { filter: brightness(1.7) contrast(0.9); }
+.rt-scan { background: linear-gradient(180deg, transparent, rgba(255, 93, 93, 0.22) 85%, rgba(255, 93, 93, 0.7) 100%); animation: rt-scan 3.2s linear infinite; }
+@keyframes rt-scan { from { transform: translateY(-100%); } to { transform: translateY(420%); } }
+.cm-photo { filter: brightness(1.12); }
+.hero-slide[data-active="true"] .cm-float { animation: redteam-row 0.6s cubic-bezier(0.22, 1, 0.36, 1) both, cm-float 5s ease-in-out infinite; }
+@keyframes cm-float { 50% { transform: translateY(-5px); } }
+.hero-slide[data-active="true"] .pl-typing { animation: pl-type 2.2s steps(24) both; }
+@keyframes pl-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.pl-caret { animation: pl-caret 1s step-end infinite; }
+@keyframes pl-caret { 50% { opacity: 0; } }
+.hero-slide[data-active="true"] .pl-bar { animation: pl-bar 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both; }
+@keyframes pl-bar { from { width: 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide[data-active="true"] .ent-photo, .ent-flow, .hero-slide[data-active="true"] .ent-node, .ent-dot, .rt-scan,
+    .hero-slide[data-active="true"] .cm-float, .hero-slide[data-active="true"] .pl-typing, .pl-caret, .hero-slide[data-active="true"] .pl-bar { animation: none; }
+    .rt-scan { display: none; }
+}
+
+/* ── 메인 4번 슬라이드 Polar 다이어그램(pd-*) ── */
+.pd-svg { overflow: visible; }
+.pd-edge-base { fill: none; stroke: rgba(255,255,255,0.18); stroke-width: 1.5; }
+.pd-edge { fill: none; stroke: #5fd0ff; stroke-width: 1.8; stroke-dasharray: 4 6; opacity: 0.55; }
+.hero-slide[data-active="true"] .pd-edge { animation: pd-flow 1.2s linear infinite; }
+.hero-slide[data-active="true"] .pd-edge-up { animation-direction: reverse; }
+@keyframes pd-flow { to { stroke-dashoffset: -20; } }
+.pd-node { fill: rgba(255,255,255,0.9); stroke: rgba(255,255,255,0.6); }
+.pd-node-out { fill: rgba(238,245,255,0.92); }
+.pd-rag { fill: rgba(255,255,255,0.88); }
+.pd-label { font-size: 12px; font-weight: 700; fill: #0b1224; }
+.pd-label-out { fill: #185aea; }
+.pd-sub { font-size: 10px; fill: #4b5563; }
+.pd-core-title { font-size: 15px; font-weight: 800; fill: #fff; }
+.pd-core-step { font-size: 10.5px; font-weight: 600; fill: rgba(255,255,255,0.88); }
+.pd-core rect { filter: drop-shadow(0 0 14px rgba(124,92,255,0.55)); }
+.hero-slide[data-active="true"] .pd-core rect { animation: pd-core 2s ease-in-out infinite; }
+@keyframes pd-core { 50% { filter: drop-shadow(0 0 26px rgba(95,208,255,0.75)); } }
+/* 레인 순차 강조: 8초 주기, 레인당 2초 */
+.pd-lane { opacity: 0.5; }
+.hero-slide[data-active="true"] .pd-lane { animation: pd-lane 8s ease-in-out infinite both; }
+@keyframes pd-lane { 0% { opacity: 0.5; } 4%, 22% { opacity: 1; } 28%, 100% { opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide[data-active="true"] .pd-edge,
+  .hero-slide[data-active="true"] .pd-core rect,
+  .hero-slide[data-active="true"] .pd-lane { animation: none; }
+  .pd-lane { opacity: 1; }
+}
+
+/* ── 메인 3번 슬라이드 XGEN 플랫폼 레이어 스택(xv-*) ── */
+.xv-shot { opacity: 0; }
+.xv-shot:first-child { opacity: 1; }
+.hero-slide[data-active="true"] .xv-shot { animation: xv-shot 12s ease-in-out infinite both; }
+@keyframes xv-shot { 0%, 23% { opacity: 1; } 27%, 96% { opacity: 0; } 100% { opacity: 1; } }
+.hero-slide[data-active="true"] .xv-layer { animation: xv-layer 12s ease-in-out infinite both; }
+@keyframes xv-layer {
+  0%, 23% { border-color: #185aea; background: #fff; box-shadow: 0 10px 24px -16px rgba(24,90,234,0.7); transform: translateX(6px); }
+  27%, 100% { border-color: #d9e4fb; background: rgba(255,255,255,0.8); box-shadow: none; transform: none; }
+}
+.hero-slide[data-active="true"] .xv-layer .xv-no { animation: xv-no 12s ease-in-out infinite both; animation-delay: inherit; }
+@keyframes xv-no { 0%, 23% { background: #185aea; color: #fff; } 27%, 100% { background: #eef3ff; color: #185aea; } }
+.xv-pulse { animation: xv-pulse 1.6s ease-in-out infinite; }
+@keyframes xv-pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide[data-active="true"] .xv-shot, .hero-slide[data-active="true"] .xv-layer,
+  .hero-slide[data-active="true"] .xv-layer .xv-no, .xv-pulse { animation: none; }
+}

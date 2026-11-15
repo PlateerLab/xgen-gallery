@@ -40,8 +40,23 @@ export const HACKATHON_EVENT: LabEvent = {
     draft: true,
 };
 
+/** xgen.im 블로그 Report 글(2026-11 이관) — 행사 현장 스케치를 이벤트 기록으로 남긴다. */
+export const AI_WORK_SUMMIT_2026_REPORT: LabEvent = {
+    id: "ai-work-summit-2026",
+    name: "AI Work Summit 2026",
+    headline: "현장 스케치 — AI 시대에 기업 플랫폼의 주권은 어떻게 바뀌는가",
+    description: "6월 11일 서울 양재 엘타워에서 열린 제6회 AI Work Summit에 XGEN이 참가한 현장 리포트.",
+    href: "/blog/xgenim-report-171866120",
+    year: "2026",
+    category: "Report",
+    audience: "기업 AI 도입 담당자",
+    venue: "서울 양재 엘타워",
+    startsAt: "2026-06-11T09:00:00+09:00",
+    endsAt: "2026-06-11T18:00:00+09:00",
+};
+
 // Keep completed events in this registry so their pages remain available.
-export const LAB_EVENTS: readonly LabEvent[] = [HACKATHON_EVENT];
+export const LAB_EVENTS: readonly LabEvent[] = [HACKATHON_EVENT, AI_WORK_SUMMIT_2026_REPORT];
 
 export function getEventStatus(event: LabEvent, now = Date.now()): EventStatus {
     const reached = (date?: string) => date !== undefined && now >= Date.parse(date);

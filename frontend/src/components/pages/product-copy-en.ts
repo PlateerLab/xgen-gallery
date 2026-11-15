@@ -55,6 +55,9 @@ export const PRODUCT_EN = {
     ] as [string, string, string][],
 
     sections: [
+        { id: "why", label: "Why XGEN" },
+        { id: "evolution", label: "AX Evolution" },
+        { id: "capabilities", label: "6 Capabilities" },
         { id: "platform", label: "Overview" },
         { id: "value", label: "Business value" },
         { id: "features", label: "Capabilities" },
@@ -346,7 +349,7 @@ export const PRODUCT_EN = {
         "Past feature advantage — five outcomes that become organizational strength on day one: efficiency, risk, trust, flexibility, and regulatory readiness, all on one platform.",
     compareTitle: "What actually changes versus the old approach",
     compareLead:
-        "The same AI, operated differently. Past build-style SI and PoC-bound approaches,",
+        "The same AI, operated differently. Moving past build-style SI and PoC-bound approaches, XGEN shifts to a model where business teams run AI on a finished platform.",
     compare: [
         {
             title: "An operating platform, not build-style SI",

@@ -22,14 +22,15 @@ export function LibraryGalleryPageContent({
             <JsonLd
                 data={breadcrumbLd([
                     { name: "Home", path: localePath(locale, "/") },
+                    { name: "Technology", path: localePath(locale, "/technology") },
                     {
-                        name: "Open Source",
+                        name: "Library Gallery",
                         path: localePath(locale, "/library-gallery"),
                     },
                 ])}
             />
             {/* 히어로 — LivePreview가 좌(키 메시지+캡션+컨트롤)/우(일러스트) 전체를 렌더 */}
-            <section className="relative overflow-hidden border-b border-white/10 text-white">
+            <section className="kv-hero relative overflow-hidden border-b border-white/10 text-white">
                 <SceneBackground concept="tools" />
                 <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-28 md:pb-20 md:pt-36">
                     <LivePreview />

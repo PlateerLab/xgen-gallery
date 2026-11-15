@@ -423,7 +423,7 @@ export function CodeAssistantPageContent({ locale }: { locale: Locale }) {
                     },
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Product", path: localeHref(locale, "/product") },
+                        { name: "Product", path: localeHref(locale, "/product/xgen") },
                         {
                             name: "Code Assistant",
                             path: localeHref(locale, "/code-assistant"),

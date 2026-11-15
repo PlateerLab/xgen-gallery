@@ -223,7 +223,7 @@ function TechnologyHero({ locale }: { locale: Locale }) {
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </Link>
                     <Link
-                        href={localeHref(locale, "/product")}
+                        href={localeHref(locale, "/product/xgen")}
                         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                     >
                         {t.ctaProduct}

@@ -17,10 +17,10 @@ import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
 import {
     INDUSTRIES,
-    PRODUCTS,
     getCasesByIndustry,
     type IndustryKey,
 } from "@/lib/customers";
+import { IndustryBody } from "@/components/industry/industry-body";
 
 /**
  * 산업별 고객사례 페이지(/customers/[domain]) — 커머스/금융/공공/IT서비스.
@@ -50,7 +50,7 @@ const COPY: Record<Locale, {
 }> = {
     ko: {
         comingSoon: "Coming soon · 준비 중",
-        eyebrow: "Applied AI · 고객사례",
+        eyebrow: "Solutions · 고객사례",
         suffix: "고객사례",
         allCases: "전체 고객사례",
         contact: "도입 문의",
@@ -58,7 +58,7 @@ const COPY: Record<Locale, {
     },
     en: {
         comingSoon: "Coming soon",
-        eyebrow: "Applied AI · Customer cases",
+        eyebrow: "Solutions · Customer cases",
         suffix: "customer cases",
         allCases: "All customer cases",
         contact: "Get in touch",
@@ -111,7 +111,7 @@ export async function IndustryPageContent({
             <SiteNav overlay />
             <JsonLd data={ld} />
 
-            <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 py-24 text-white">
+            <section className="kv-hero relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 py-24 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     {cases.length === 0 && (
@@ -159,45 +159,7 @@ export async function IndustryPageContent({
                 </div>
             </section>
 
-            {cases.length > 0 && (
-                <main className="mx-auto w-full max-w-7xl px-6 py-16">
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {cases.map((c) => (
-                            <Link
-                                key={c.slug}
-                                href={localeHref(locale, `/customers/case/${c.slug}`)}
-                                className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                            >
-                                <div className="flex flex-wrap items-center gap-1.5">
-                                    {c.products.map((p) => (
-                                        <span
-                                            key={p}
-                                            className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12.5px] font-bold"
-                                            style={{
-                                                borderColor: `${PRODUCTS[p].accent}33`,
-                                                backgroundColor: `${PRODUCTS[p].accent}12`,
-                                                color: PRODUCTS[p].accent,
-                                            }}
-                                        >
-                                            {PRODUCTS[p].name}
-                                        </span>
-                                    ))}
-                                </div>
-                                <h2 className="mt-3 text-[18px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                    {(en && c.titleEn) || c.title}
-                                </h2>
-                                <p className="mt-2 line-clamp-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {(en && c.summaryEn) || c.summary}
-                                </p>
-                                <span className="mt-4 inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-[#2461d8] transition group-hover:text-[#1b4fb0]">
-                                    {t.more}
-                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                </span>
-                            </Link>
-                        ))}
-                    </div>
-                </main>
-            )}
+            <IndustryBody domain={domain} locale={locale} cases={cases} />
 
             <SiteFooter />
         </>

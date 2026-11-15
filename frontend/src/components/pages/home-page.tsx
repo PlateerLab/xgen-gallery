@@ -22,6 +22,10 @@ import type { Locale } from "@/lib/i18n";
 import { getAllPosts } from "@/lib/blog";
 import { getIssues } from "@/lib/newsletter";
 import { getAllCases, caseLinkEnabled } from "@/lib/customers";
+import { HomeIntro, newsCasePhoto } from "@/components/home-v2/home-intro";
+import type { NewsItem } from "@/components/home-v2/news-tabs";
+import { PRODUCT_TAGS } from "@/lib/product-tags";
+import { localeHref } from "@/lib/locale-path";
 
 /**
  * 홈 — 한국어(`/`)와 영어(`/en`)가 공유하는 본문.
@@ -31,7 +35,121 @@ import { getAllCases, caseLinkEnabled } from "@/lib/customers";
  * 뉴스레터·고객사례처럼 영문 필드가 선택적인 소스는 값이 있는 항목만 노출한다 —
  * 한국어 제목이 영문 페이지에 섞이면 페이지 언어 신호가 흐려지고 방문자도 읽지 못한다.
  */
+/**
+ * 메인 v2 (개발 환경 시안) — Microsoft Teams 제품 페이지 구성을 XGEN에 맞춘 레이아웃.
+ * 이전 레이아웃은 아래 HomePageContentLegacy 로 그대로 남겨 두었다. 되돌리려면
+ * app/(ko)/page.tsx·app/(en)/en/page.tsx 가 쓰는 HomePageContent 본문을 Legacy 호출로 바꾸면 된다.
+ */
+function getHeroProps(locale: Locale) {
+    const isKo = locale === "ko";
+    // 로케일별 원문을 읽으므로 스트립에 세울 때 별도 필터가 필요 없다.
+    const posts = getAllPosts(locale);
+    const usable = posts;
+    // 최신 제품 소식은 스트립 윗줄 대표 자리에, 최신 현장 리포트는 아래 3단의
+    // 첫 칸에 세운다. 서로 다른 카테고리를 함께 보여 메인에서 새 현장 리포트로
+    // 바로 이어질 수 있게 한다.
+    const newsPosts = usable.filter((p) => p.category === "제품 소식");
+    const fieldReportPosts = usable.filter((p) => p.category === "Industry Note");
+    const toHeroPost = (p: (typeof posts)[number]) => ({
+        slug: p.slug,
+        title: p.title,
+        category: p.category,
+        date: p.date,
+    });
+    const featuredPost = newsPosts[0] ? toHeroPost(newsPosts[0]) : null;
+    const fieldReport = fieldReportPosts[0] ? toHeroPost(fieldReportPosts[0]) : null;
+    // 최근 Tech Note(블로그) — 헤드라인 뉴스 3단 중 하나. 최신 1건만 넘긴다
+    // (Hero가 techPosts[0]을 그대로 세운다).
+    const techPosts = usable
+        .filter((x) => x.category === "Tech Note")
+        .slice(0, 1)
+        .map(toHeroPost);
+    const iss = getIssues()[0];
+    const issTitle = isKo ? iss?.title : iss?.titleEn;
+    const latestIssue =
+        iss && issTitle
+            ? { slug: iss.slug, title: issTitle, vol: iss.vol, date: iss.date }
+            : null;
+    // 최근 고객사례 — 상세본이 공개된(링크 가능한) 사례 중 가장 최신 1건.
+    // 헤드라인(title)이 아니라 한 줄 요약(summary)을 넘긴다 — 히어로 스트립은 폭을
+    // 넉넉히 주고 말줄임으로 끊는 자리라, 짧은 헤드라인보다 요약이 더 많이 읽힌다.
+    const kase = getAllCases().find((c) => caseLinkEnabled(c.slug));
+    const caseText = isKo ? kase?.summary.replace(/^플래티어는\s+/, "") : kase?.summaryEn;
+    const latestCase = kase && caseText ? { slug: kase.slug, text: caseText } : null;
+
+    return { featuredPost, fieldReport, techPosts, latestIssue, latestCase };
+}
+
+/**
+ * 「XGEN의 새로운 소식 살펴보기」 카테고리 항목 — 예전 메인 뉴스 띠의 출처를 그대로 쓴다.
+ * 블로그(XGEN 프리뷰·현장 리포트·테크 노트)와 공개된 고객사례에서 카테고리별 최신 3건. 뉴스레터는 제외.
+ */
+function getNewsFeed(locale: Locale): NewsItem[] {
+    const ko = locale === "ko";
+    const h = (p: string) => localeHref(locale, p);
+    const dot = (d: string) => d.slice(0, 10).replace(/-/g, ".");
+    const posts = getAllPosts(locale);
+    // 제품 소식의 제품 구분: 태그에 제품명이 있으면 그 제품, 없으면 XGEN(DexOn·Geny·PathFinder 등은 XGEN 기능)
+    const productOf = (tags: string[]) =>
+        PRODUCT_TAGS.find((t) => tags.some((x) => x.toLowerCase() === t.toLowerCase())) ?? "XGEN";
+    const blog = (category: string, cat: NewsItem["cat"], label: string, n = 3): NewsItem[] =>
+        posts
+            .filter((p) => p.category === category)
+            .slice(0, n)
+            .map((p) => ({
+                ...(cat === "product" ? { product: productOf(p.tags) } : {}),
+                cat,
+                img: p.thumb ?? p.cover ?? "/og-v2.png",
+                fit: "cover",
+                eyebrow: `${label} · ${dot(p.date)}`,
+                title: p.title,
+                desc: p.description,
+                href: h(`/blog/${p.slug}`),
+                cta: ko ? "글 읽기" : "Read the post",
+                date: p.date.slice(0, 10),
+            }));
+    const cases: NewsItem[] = getAllCases()
+        .filter((c) => caseLinkEnabled(c.slug) && (ko || (c.titleEn && c.summaryEn)))
+        .slice(0, 3)
+        .map((c) => ({
+            cat: "case",
+            img: newsCasePhoto(c),
+            fit: "cover",
+            eyebrow: `${ko ? "고객 사례" : "Customer story"} · ${dot(c.published)}`,
+            title: ko ? c.title : (c.titleEn as string),
+            desc: ko ? c.summary.replace(/^플래티어는\s+/, "") : (c.summaryEn as string),
+            href: h(`/customers/case/${c.slug}`),
+            cta: ko ? "사례 보기" : "Read the story",
+            date: c.published.slice(0, 10),
+        }));
+    return [
+        ...blog("News", "news", ko ? "뉴스" : "News"),
+        ...blog("제품 소식", "product", ko ? "제품 소식" : "Product news", 6),
+        ...cases,
+        ...blog("Industry Note", "field", ko ? "현장 리포트" : "Field report"),
+        ...blog("X Insight", "insight", ko ? "인사이트" : "Insight"),
+        ...blog("Tech Note", "tech", ko ? "테크 노트" : "Tech note"),
+    ];
+}
+
 export function HomePageContent({ locale }: { locale: Locale }) {
+    // 인트로(제품) 페이지 — Microsoft Teams 제품 페이지 레이아웃(home-v2/home-intro.tsx).
+    // 이전 Teams식 시안은 home-v2/home-teams.tsx 의 HomeTeams 로 남아 있다.
+    const cases = getAllCases()
+        .filter((c) => caseLinkEnabled(c.slug) && (locale === "ko" || (c.titleEn && c.summaryEn)))
+        .slice(0, 3);
+    return (
+        <>
+            <SiteNav overlay />
+            <main>
+                <HomeIntro locale={locale} cases={cases} feed={getNewsFeed(locale)} />
+            </main>
+            <SiteFooter />
+        </>
+    );
+}
+
+export function HomePageContentLegacy({ locale }: { locale: Locale }) {
     const isKo = locale === "ko";
 
     // 로케일별 원문을 읽으므로 스트립에 세울 때 별도 필터가 필요 없다.

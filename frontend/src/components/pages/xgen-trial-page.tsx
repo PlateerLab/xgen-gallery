@@ -135,7 +135,7 @@ export function XgenTrialPageContent({ locale }: { locale: Locale }) {
                 data={[
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Product", path: "/product" },
+                        { name: "Support", path: "/support" },
                         { name: t.breadcrumb, path: localeHref(locale, "/xgen-trial") },
                     ]),
                     {

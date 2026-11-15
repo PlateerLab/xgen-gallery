@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import {
@@ -6,7 +5,6 @@ import {
     Rocket,
     FileText,
     Mail,
-    ArrowRight,
     type LucideIcon,
 } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
@@ -16,6 +14,7 @@ import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { DemoForm } from "@/components/demo-form";
 import { getIssuesFor } from "@/lib/newsletter";
+import { NewsletterIssueList } from "@/components/newsletter/newsletter-issue-list";
 
 /** 아이콘만 여기 둔다 — 문구는 로케일별 COPY.benefits 에서 인덱스로 맞춘다. */
 const BENEFIT_ICONS: LucideIcon[] = [Sparkles, Rocket, FileText];
@@ -94,7 +93,7 @@ export function NewsletterIndexPageContent({ locale }: { locale: Locale }) {
                 data={[
                     breadcrumbLd([
                         { name: "Home", path: localePath(locale, "/") },
-                        { name: "Insight", path: localePath(locale, "/blog") },
+                        { name: "News · Insight", path: localePath(locale, "/blog") },
                         {
                             name: t.breadcrumb,
                             path: localePath(locale, "/newsletter"),
@@ -104,7 +103,7 @@ export function NewsletterIndexPageContent({ locale }: { locale: Locale }) {
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[440px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[440px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="insights" />
                 <div className="relative mx-auto w-full max-w-3xl px-6 pt-16 text-center">
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur">
@@ -119,7 +118,7 @@ export function NewsletterIndexPageContent({ locale }: { locale: Locale }) {
                 </div>
             </section>
 
-            <main className="mx-auto max-w-3xl px-6 py-20">
+            <main className="mx-auto max-w-[1280px] px-6 py-20 md:px-8">
                 {/* 혜택 */}
                 <div className="grid gap-4 sm:grid-cols-3">
                     {t.benefits.map((b, i) => {
@@ -143,48 +142,33 @@ export function NewsletterIndexPageContent({ locale }: { locale: Locale }) {
                     })}
                 </div>
 
+                {/* 목록(좌) · 구독 폼(우) 분할 — 1024px 미만에서는 목록 → 폼 순서로 한 열 */}
+                <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
                 {/* 지난 호 아카이브 */}
                 {issues.length > 0 && (
-                    <div className="mt-14">
+                    <div className="min-w-0">
                         <h2 className="text-xl font-bold tracking-tight text-[var(--color-ink)]">
                             {t.archive}
                         </h2>
                         <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                             {t.archiveDesc}
                         </p>
-                        <div className="mt-5 space-y-3">
-                            {issues.map((it) => (
-                                <Link
-                                    key={it.slug}
-                                    href={localePath(locale, `/newsletter/${it.slug}`)}
-                                    className="group flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[var(--color-line-strong)]"
-                                >
-                                    <span className="flex-none rounded-lg bg-[#2f7bff]/10 px-2.5 py-1 font-mono text-[13px] font-bold text-[#2461d8]">
-                                        vol.{it.vol}
-                                    </span>
-                                    <div className="min-w-0">
-                                        <time
-                                            dateTime={it.date}
-                                            className="text-[13px] text-[var(--color-ink-subtle)]"
-                                        >
-                                            {it.date.replaceAll("-", ".")}
-                                        </time>
-                                        <h3 className="mt-0.5 text-[16px] font-bold tracking-tight text-[var(--color-ink)] group-hover:underline">
-                                            {it.title}
-                                        </h3>
-                                        <p className="mt-1 line-clamp-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {it.summary}
-                                        </p>
-                                    </div>
-                                    <ArrowRight className="ml-auto h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5" />
-                                </Link>
-                            ))}
-                        </div>
+                        <NewsletterIssueList
+                            locale={locale}
+                            items={issues.map((it) => ({
+                                slug: it.slug,
+                                vol: it.vol,
+                                date: it.date,
+                                title: it.title,
+                                summary: it.summary,
+                                href: localePath(locale, `/newsletter/${it.slug}`),
+                            }))}
+                        />
                     </div>
                 )}
 
                 {/* 구독 폼 */}
-                <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7">
+                <div id="subscribe" className="scroll-mt-32 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-7 lg:sticky lg:top-28">
                     <h2 className="text-xl font-bold tracking-tight text-[var(--color-ink)]">
                         {t.subscribe}
                     </h2>
@@ -194,6 +178,7 @@ export function NewsletterIndexPageContent({ locale }: { locale: Locale }) {
                     <div className="mt-5">
                         <DemoForm initialType="newsletter" />
                     </div>
+                </div>
                 </div>
             </main>
             <SiteFooter />

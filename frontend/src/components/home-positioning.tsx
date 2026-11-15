@@ -38,7 +38,7 @@ const COPY: Record<Locale, Copy> = {
         steps: [
             { n: "01", icon: FlaskConical, title: "연구", sub: "Research", desc: "신뢰·주권·조합 가능한 Enterprise AI를 현실로 만드는 기초 연구", href: "/research" },
             { n: "02", icon: Boxes, title: "오픈소스", sub: "Open Source", desc: "연구를 떠받치는 검증된 라이브러리를 오픈소스로 공개", href: "/library-gallery" },
-            { n: "03", icon: Layers, title: "제품", sub: "Product", desc: "XGEN·Polar로 기업 현장에 적용", href: "/product" },
+            { n: "03", icon: Layers, title: "제품", sub: "Product", desc: "XGEN·Polar로 기업 현장에 적용", href: "/product/xgen" },
             { n: "04", icon: BadgeCheck, title: "실증", sub: "Proof", desc: "고객사례와 국가 공인 인증으로 성과를 증명", href: "/customers" },
         ],
     },
@@ -54,7 +54,7 @@ const COPY: Record<Locale, Copy> = {
         steps: [
             { n: "01", icon: FlaskConical, title: "Research", desc: "Foundational work on Enterprise AI that is trustworthy, sovereign, and composable", href: "/research" },
             { n: "02", icon: Boxes, title: "Open Source", desc: "The proven libraries underneath that research, published in the open", href: "/library-gallery" },
-            { n: "03", icon: Layers, title: "Product", desc: "Applied in the enterprise as XGEN and Polar", href: "/product" },
+            { n: "03", icon: Layers, title: "Product", desc: "Applied in the enterprise as XGEN and Polar", href: "/product/xgen" },
             { n: "04", icon: BadgeCheck, title: "Proof", desc: "Results evidenced by customer cases and national certification", href: "/customers" },
         ],
     },

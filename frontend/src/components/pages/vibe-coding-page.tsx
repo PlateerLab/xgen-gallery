@@ -101,12 +101,12 @@ export function VibeCodingPageContent({ locale }: { locale: Locale }) {
                 },
                 breadcrumbLd([
                     { name: "Home", path: locale === "en" ? "/en" : "/" },
-                    { name: "XGEN", path: localeHref(locale, "/product") },
+                    { name: "XGEN", path: localeHref(locale, "/product/xgen") },
                     { name: "Vibe Coding in DexOn", path },
                 ]),
             ]} />
 
-                <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+                <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                     <SceneBackground concept="products" />
                     <div className="relative mx-auto w-full max-w-4xl px-6 pt-16 text-center">
                         <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm"><Code2 className="h-3.5 w-3.5 text-[#7dd3fc]" />{t.badge}</p>

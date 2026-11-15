@@ -59,7 +59,7 @@ const T: Record<
 
 /**
  * 인증·품질 — 획득한 GS인증(주역)과 진행 중 AI-MASTER(조역)를 비대칭 2카드로.
- * 제품 신뢰의 근거라 Product 페이지(/product#certification)에 렌더한다.
+ * 제품 신뢰의 근거라 Product 페이지(/product/xgen#certification)에 렌더한다.
  * 표시 정보는 대외 공개 가능한 사실만(발급기관·심사 방식·상태); 사내 정보 제외.
  */
 export function CertificationQuality({

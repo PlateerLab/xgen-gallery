@@ -24,6 +24,11 @@ export const BLOG_CATEGORIES = [
     "Tech Note",
     "제품 소식",
     "Industry Note",
+    // 2026-11 xgen.im 블로그 이관: 보도자료(News), 기업 AI 인사이트(X Insight),
+    // 행사 현장 리포트(Event Report — 목록 탭에는 두지 않고 /events 에서 연결).
+    "News",
+    "X Insight",
+    "Event Report",
 ] as const;
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
@@ -35,8 +40,10 @@ export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
  * 이 배열에 "Case Study" 를 넣기만 하면 된다.
  */
 export const VISIBLE_BLOG_CATEGORIES = [
+    "News",
     "제품 소식",
     "Industry Note",
+    "X Insight",
     "Tech Note",
 ] as const;
 
@@ -53,7 +60,7 @@ export const CATEGORY_CANONICAL: Record<string, string> = {
  * 카테고리의 화면 표기 — 정규값(한국어)을 로케일에 맞는 라벨로 바꾼다.
  *
  * 저장 값과 표기가 다를 수 있다: "제품 소식"은 프론트매터·필터·URL(`?cat=product`)이
- * 함께 쓰는 키라 그대로 두고, 화면에는 "XGEN Preview"(국문 "XGEN 프리뷰")로 보여준다.
+ * 함께 쓰는 키라 그대로 두고, 화면에는 "Product News"(국문 "제품 소식")로 보여준다.
  * 표기를 또 바꿀 일이 있으면 이 표만 고치면 된다 — 글 데이터는 손대지 않는다.
  *
  * 국문은 한글 표기를 쓴다 — GNB 메뉴(lib/nav.ts 의 labelKo)와 같은 문구로 맞춰
@@ -62,16 +69,22 @@ export const CATEGORY_CANONICAL: Record<string, string> = {
  */
 export const CATEGORY_LABEL: Record<Locale, Record<string, string>> = {
     ko: {
-        "제품 소식": "XGEN 프리뷰",
+        "제품 소식": "제품 소식",
         "Tech Note": "테크 노트",
         "Case Study": "케이스 스터디",
         "Industry Note": "현장 리포트",
+        News: "뉴스",
+        "X Insight": "인사이트",
+        "Event Report": "이벤트 리포트",
     },
     en: {
-        "제품 소식": "XGEN Preview",
+        "제품 소식": "Product News",
         "Tech Note": "Tech Note",
         "Case Study": "Case Study",
         "Industry Note": "Field Report",
+        News: "News",
+        "X Insight": "Insight",
+        "Event Report": "Event Report",
     },
 };
 

@@ -92,7 +92,7 @@ const COPY: Record<Locale, SecCopy> = {
         ldHeadline: "XGEN 가드레일 · 통제 정책",
         ldDescription:
             "XGEN Agentic AI Platform의 보안·거버넌스 통제 — 가드 모델, PII 마스킹, 금칙어 필터, 감사 로그, AI 위험도 등급.",
-        heroEyebrow: "Applied AI · Security & Governance",
+        heroEyebrow: "Products · Security & Governance",
         heroTitle: (
             <>
                 공격자의 시선으로 검증하고
@@ -305,7 +305,7 @@ const COPY: Record<Locale, SecCopy> = {
         ldHeadline: "XGEN guardrails and control policies",
         ldDescription:
             "Security and governance controls in the XGEN Agentic AI Platform — guard models, PII masking, blocklist filters, audit logs, and AI risk grading.",
-        heroEyebrow: "Applied AI · Security & Governance",
+        heroEyebrow: "Products · Security & Governance",
         heroTitle: (
             <>
                 Tested through an attacker&apos;s eyes,
@@ -554,7 +554,7 @@ export function SecurityPageContent({ locale }: { locale: Locale }) {
                     },
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "Applied AI", path: localeHref(locale, "/solutions") },
+                        { name: "XGEN", path: localeHref(locale, "/product/xgen") },
                         {
                             name: "Security & Governance",
                             path: localeHref(locale, "/security-and-governance"),
@@ -564,7 +564,7 @@ export function SecurityPageContent({ locale }: { locale: Locale }) {
             />
 
             {/* Hero */}
-            <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="solutions" />
                 <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 pt-16 lg:grid-cols-[1.05fr_0.95fr]">
                     <div>

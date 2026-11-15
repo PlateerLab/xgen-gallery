@@ -172,7 +172,7 @@ const COPY: Record<Locale, AboutCopy> = {
                     title: "XGEN 플랫폼",
                     sub: "AI Platform",
                     desc: "연구 성과를 Enterprise AI 플랫폼으로 제품화",
-                    href: "/product",
+                    href: "/product/xgen",
                 },
                 {
                     icon: BadgeCheck,
@@ -202,7 +202,7 @@ const COPY: Record<Locale, AboutCopy> = {
                         `GS 인증 1등급 ${CERTIFICATIONS.length}건`,
                         "AI-MASTER 진행 중",
                     ],
-                    href: "/product#certification",
+                    href: "/product/xgen#certification",
                 },
                 {
                     icon: Boxes,
@@ -372,7 +372,7 @@ const COPY: Record<Locale, AboutCopy> = {
                     icon: Layers,
                     title: "XGEN Platform",
                     desc: "Research turned into an enterprise AI platform",
-                    href: "/product",
+                    href: "/product/xgen",
                 },
                 {
                     icon: BadgeCheck,
@@ -400,7 +400,7 @@ const COPY: Record<Locale, AboutCopy> = {
                         `${CERTIFICATIONS.length} Grade 1 GS certifications`,
                         "AI-MASTER in testing",
                     ],
-                    href: "/product#certification",
+                    href: "/product/xgen#certification",
                 },
                 {
                     icon: Boxes,
@@ -559,7 +559,7 @@ export function AboutPageContent({ locale }: { locale: Locale }) {
             >
             {/* Hero */}
             {/* 배경·베일은 바깥 래퍼가 전담한다 — 여기서 따로 덮으면 경계가 생긴다 */}
-            <section className="relative flex min-h-[520px] items-center overflow-hidden py-28 text-white">
+            <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden py-28 text-white">
                 <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                     <div className="grid items-center gap-10 lg:grid-cols-[1.06fr_0.94fr]">
                         <div>

@@ -40,7 +40,7 @@ function GroupHero({
     locale: Locale;
 }) {
     return (
-        <section className="relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+        <section className="kv-hero relative flex min-h-[560px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
             <SceneBackground concept={group.concept} />
             <div className="relative mx-auto w-full max-w-7xl px-6 pt-16">
                 {content ?? <DefaultGroupHero group={group} locale={locale} />}
@@ -239,7 +239,7 @@ export function GroupPage({
             />
             <GroupHero group={group} content={hero} locale={locale} />
             {/* 섹션 인덱스 — 히어로의 quick-jump는 스크롤하면 사라지므로, 페이지 내내
-                상단에 고정되는 스티키 인덱스를 둔다(/architecture·/product와 동일 패턴). */}
+                상단에 고정되는 스티키 인덱스를 둔다(/architecture·/xgen와 동일 패턴). */}
             {sections.length > 1 && (
                 <SectionIndex
                     sections={sections.map((it) => ({

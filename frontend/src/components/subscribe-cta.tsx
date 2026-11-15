@@ -49,7 +49,7 @@ const CONFIG: Record<
             </>
         ),
         // 노출 카테고리와 맞춘다 — Case Study 는 목록 탭에서 감췄다(blog-categories.ts).
-        desc: "XGEN 프리뷰·현장 리포트·테크 노트, 플래티어 AI Labs의 새 인사이트를 메일로 알려드립니다",
+        desc: "제품 소식·현장 리포트·테크 노트, 플래티어 AI Labs의 새 인사이트를 메일로 알려드립니다",
         doneDesc: "새 글이 올라오면 메일로 알려드릴게요",
     },
 };
@@ -63,7 +63,7 @@ export function SubscribeCta() {
     const [status, setStatus] = useState<Status>("idle");
 
     /**
-     * 구독은 뉴스레터 하나다. XGEN 프리뷰·테크 노트에는 구독을 두지 않고,
+     * 구독은 뉴스레터 하나다. 제품 소식·테크 노트에는 구독을 두지 않고,
      * 현장 리포트는 구독이 아니라 약식 리드 수집(본문 게이트)으로 받는다.
      * 전 카테고리 새 글 알림(kind="blog")은 기능과 시트를 남긴 채 화면에서만
      * 감춘다 — 되살릴 때는 아래 SHOW_BLOG 만 true 로 바꾸면 된다.

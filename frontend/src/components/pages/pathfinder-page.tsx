@@ -225,7 +225,7 @@ export function PathFinderPageContent({ locale }: { locale: Locale }) {
                     },
                     breadcrumbLd([
                         { name: "Home", path: home },
-                        { name: "XGEN", path: "/product" },
+                        { name: "XGEN", path: "/product/xgen" },
                         { name: "PathFinder", path: "/pathfinder" },
                     ]),
                     faqPageLd(FAQ.map((f) => ({ question: f.q, answer: f.a }))),
@@ -233,7 +233,7 @@ export function PathFinderPageContent({ locale }: { locale: Locale }) {
             />
 
             {/* HERO */}
-            <section className="relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
+            <section className="kv-hero relative flex min-h-[520px] items-center overflow-hidden border-b border-white/10 py-28 text-white">
                 <SceneBackground concept="products" />
                 <div className="relative mx-auto w-full max-w-4xl px-6 pt-16 text-center">
                     <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
@@ -474,7 +474,7 @@ export function PathFinderPageContent({ locale }: { locale: Locale }) {
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                             <Link
-                                href={localeHref(locale, "/product")}
+                                href={localeHref(locale, "/product/xgen")}
                                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[15px] font-semibold text-white/90 transition hover:border-white/50 hover:text-white"
                             >
                                 {t.closingProduct}

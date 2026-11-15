@@ -39,7 +39,7 @@ const COPY: Record<
     ko: {
         ldName: "Plateer AI Labs 고객사례",
         breadcrumb: "고객사례",
-        heroEyebrow: "Applied AI · 고객 사례",
+        heroEyebrow: "Solutions · 고객사례",
         heroTitle: "Enterprise AI는 실제 업무에서 검증됩니다",
         heroLead:
             "XGEN을 금융, 커머스, 공공, IT·제조 등 다양한 산업 현장에 구축하고 운영한 사례를 소개합니다. 제품과 산업별로 원하는 사례를 찾아보세요.",
@@ -59,7 +59,7 @@ const COPY: Record<
     en: {
         ldName: "Plateer AI Labs customer cases",
         breadcrumb: "Customer cases",
-        heroEyebrow: "Applied AI · Customer cases",
+        heroEyebrow: "Solutions · Customer cases",
         heroTitle: "Enterprise AI proves itself in the actual work",
         heroLead:
             "Cases where XGEN were built and operated across finance, commerce, public sector, and IT and manufacturing. Browse by product or by industry.",
@@ -115,7 +115,7 @@ export async function CustomersPageContent({
             <SiteNav overlay />
             <JsonLd data={ld} />
 
-            <section className="relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 bg-[#070b1c] py-24 text-white">
+            <section className="kv-hero relative flex min-h-[56vh] items-center overflow-hidden border-b border-white/10 bg-[#070b1c] py-24 text-white">
                 <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_60%_at_78%_16%,rgba(47,123,255,0.18),transparent_60%)]"

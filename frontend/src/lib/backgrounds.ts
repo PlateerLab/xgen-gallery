@@ -39,11 +39,12 @@ export const CONCEPTS: Record<ConceptId, BgConcept> = {
         glow1: "rgba(47,123,255,0.30)",
         glow2: "rgba(120,90,255,0.22)",
     },
+    // 브라운(앰버) 톤은 다크 드롭다운 패널(딥네이비)과 어긋나 딥그린으로 바꿨다.
     tools: {
-        label: "Ember · Toolkit",
-        base: "#0c0a06",
-        glow1: "rgba(245,158,11,0.26)",
-        glow2: "rgba(244,114,22,0.18)",
+        label: "Grove · Toolkit",
+        base: "#04140f",
+        glow1: "rgba(16,185,129,0.26)",
+        glow2: "rgba(34,211,238,0.16)",
     },
     members: {
         label: "Constellation · People",
@@ -99,11 +100,12 @@ export const CONCEPTS: Record<ConceptId, BgConcept> = {
         glow1: "rgba(16,185,129,0.26)",
         glow2: "rgba(45,212,191,0.18)",
     },
+    // 다크 드롭다운 패널(#0b1224)과 같은 딥네이비로 맞췄다(이전: 브라운·앰버).
     insights: {
         label: "Beacon · Insights",
-        base: "#0c0a06",
-        glow1: "rgba(245,158,11,0.26)",
-        glow2: "rgba(244,114,22,0.18)",
+        base: "#0b1224",
+        glow1: "rgba(47,123,255,0.28)",
+        glow2: "rgba(0,172,238,0.18)",
     },
     resources: {
         label: "Atlas · Resources",

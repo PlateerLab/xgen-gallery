@@ -138,7 +138,7 @@ export function QualitySecurity({ locale = "ko" }: { locale?: Locale }) {
                         </div>
 
                         <Link
-                            href={localeHref(locale, "/product#certification")}
+                            href={localeHref(locale, "/product/xgen#certification")}
                             className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                         >
                             {t.more}

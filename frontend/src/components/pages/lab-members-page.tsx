@@ -85,9 +85,9 @@ const COPY: Record<Locale, Copy> = {
                 {
                     key: "product",
                     icon: Sparkles,
-                    title: "XGEN 프리뷰",
+                    title: "제품 소식",
                     desc: "새로 준비하는 기능을 먼저 소개합니다. 무엇을 왜 만들고 있는지, 어떻게 쓰는지까지 담습니다.",
-                    cta: "프리뷰 보기",
+                    cta: "제품 소식 보기",
                 },
                 {
                     key: "labs",
@@ -125,9 +125,9 @@ const COPY: Record<Locale, Copy> = {
                 {
                     key: "product",
                     icon: Sparkles,
-                    title: "XGEN Preview",
+                    title: "Product News",
                     desc: "A first look at what we are building — what it does, why we are building it, and how it is used.",
-                    cta: "See previews",
+                    cta: "See product news",
                 },
                 {
                     key: "labs",
@@ -357,7 +357,7 @@ export function LabMembersPageContent({ locale }: { locale: Locale }) {
                 </section>
 
                 {/*
-                  이 사람들이 무엇을 내놓는지 — XGEN 프리뷰·테크 노트·현장 리포트.
+                  이 사람들이 무엇을 내놓는지 — 제품 소식·테크 노트·현장 리포트.
                   블로그 카테고리 세 갈래로 그대로 보낸다(키는 blog-list.tsx 참고).
                 */}
                 <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">

@@ -21,7 +21,7 @@ export function ProofInActionPageContent({ locale }: { locale: Locale }) {
                     },
                 ])}
             />
-            <section className="relative overflow-hidden border-b border-white/10 py-24 pt-36 text-white">
+            <section className="kv-hero relative overflow-hidden border-b border-white/10 py-24 pt-36 text-white">
                 <SceneBackground concept="products" />
                 <div className="relative mx-auto w-full max-w-7xl px-6">
                     <ProofHero locale={locale} />

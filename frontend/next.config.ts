@@ -123,8 +123,19 @@ const nextConfig: NextConfig = {
                 permanent: true,
             },
             // 중복/스크래치 페이지 정리 — 단일 정식 경로로 영구 리다이렉트.
-            { source: '/products', destination: '/product', permanent: true },
+            // 제품 허브는 /product(목록)·/product/<제품> 구조다. /products/xgen 은 보류 중인 시안.
             { source: '/research-areas2', destination: '/research', permanent: true },
+            // 제품 주소를 /product 아래로 모은다(/product/xgen, /product/polar, /product/ontlas).
+            // 이전 주소로 공유된 링크가 끊기지 않게 넘긴다.
+            { source: '/xgen', destination: '/product/xgen', permanent: true },
+            { source: '/en/xgen', destination: '/en/product/xgen', permanent: true },
+            { source: '/polar', destination: '/product/polar', permanent: true },
+            { source: '/en/polar', destination: '/en/product/polar', permanent: true },
+            { source: '/products', destination: '/product', permanent: true },
+            { source: '/en/products', destination: '/en/product', permanent: true },
+            // Ontlas 제품 페이지는 준비 중 — 그동안 라이브러리 상세로 임시 이동(307).
+            { source: '/product/ontlas', destination: '/tool/ontlas', permanent: false },
+            { source: '/en/product/ontlas', destination: '/en/tool/ontlas', permanent: false },
             // 고객 검토용 히든 프리뷰 → 정식 공개본(고객 컨펌 완료). 검토 단계에서
             // 고객사에 공유했던 URL이라 끊지 않고 정식 경로로 넘긴다.
             {
