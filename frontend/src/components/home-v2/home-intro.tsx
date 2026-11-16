@@ -11,6 +11,7 @@ import { IntroStickyNav } from "@/components/home-v2/intro-sticky-nav";
 import { PlateerCustomerBand } from "@/components/home-v2/plateer-customer-band";
 import { ProvenPerformance } from "@/components/home-v2/proven-performance";
 import { XgenPlatformShowcase } from "@/components/home-v2/xgen-platform-showcase";
+import { ProofTicker } from "@/components/home-v2/proof-ticker";
 import { NewsTabs, type NewsItem } from "@/components/home-v2/news-tabs";
 import { Rise, Num, ChallengeExplorer, IndustryPanels, StepTrack } from "@/components/home-v2/journey-motion";
 import { PRODUCT_PROFILES } from "@/lib/product-profiles";
@@ -233,7 +234,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             img: "/intro/xgen-adobe.webp",
             title: "XGEN",
             category: ko ? "기업형 에이전틱 AI 플랫폼" : "Enterprise agentic AI platform",
-            desc: ko ? "Agent와 App을 만들고, 사내 시스템과 연결해, 결재와 감사 아래에서 운영합니다." : "Build agents and apps, connect them to internal systems, and run them under approval and audit.",
+            desc: ko ? "AI Agent의 제작·연결·운영을 하나의 플랫폼에서. 사내 시스템과 연결해 결재와 감사 아래에서 운영합니다." : "Build, connect and run AI agents on one platform, linked to internal systems and run under approval and audit.",
             points: ko ? ["바이브코딩·EasyMode·캔버스 제작", "PathFinder로 사내 API 연결", "결재선·위험도 심사·감사 로그"] : ["Vibe coding, EasyMode, canvas", "Internal APIs via PathFinder", "Approval routes, risk review, audit logs"],
             href: h("/product/xgen"),
             cta: ko ? "XGEN 살펴보기" : "Explore XGEN",
@@ -386,7 +387,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <div key="enterprise" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
                             <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                Plateer AI Labs <span className="font-normal text-[var(--color-ink-muted)]">· {ko ? "엔터프라이즈 AI 제품과 기술" : "Enterprise AI products & technology"}</span>
+                                Plateer AI Labs <span className="font-normal text-[var(--color-ink-muted)]">· {ko ? "온프레미스·망분리 환경을 위한 기업형 Agentic AI 플랫폼" : "Enterprise agentic AI platform for on-prem and air-gapped environments"}</span>
                             </p>
                             <h1 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
                                 {P.hero.titleA[locale]}
@@ -394,9 +395,17 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             </h1>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
                                 {ko
-                                    ? "Plateer AI Labs는 엔터프라이즈 AI를 연구하고 XGEN·X2BEE·Polar·Ontlas로 제품화해 고객 현장에 적용합니다. 온프레미스와 망분리 환경을 지원합니다."
-                                    : "Plateer AI Labs researches enterprise AI and delivers it through XGEN, X2BEE, Polar, and Ontlas, with support for on-prem and air-gapped environments."}
+                                    ? "1,086개 고객사와 함께해 온 플래티어가 XGEN·X2BEE·Polar·Ontlas로 연구부터 현장 적용까지 이어갑니다."
+                                    : "Plateer, working with 1,086 customers, carries enterprise AI from research to the field with XGEN, X2BEE, Polar and Ontlas."}
                             </p>
+                            <ProofTicker
+                                label={ko ? "공개된 인증과 운영 사실" : "Published certification and operating facts"}
+                                items={
+                                    ko
+                                        ? ["GS 1등급 품질 인증 (XGEN · 26-0296)", "온프레미스·망분리 구성 지원", "보안 재점검: 기존 고위험 재발 0건 (2026.11, 격리 환경)", "제주은행 사내 생성형 AI 플랫폼 운영 중"]
+                                        : ["GS Grade 1 quality certification (XGEN · 26-0296)", "On-prem and air-gapped deployment support", "Security re-test: 0 recurrences of prior high-risk findings (Nov 2026, isolated env.)", "In-house generative AI platform running at Jeju Bank"]
+                                }
+                            />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <a href="#products" className={BTN_PRIMARY}>
                                     {ko ? "제품 살펴보기" : "Explore products"}
@@ -570,8 +579,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <Rise>
                         <Eyebrow step="01" label={ko ? "과제 정의" : "Define the challenge"} />
                         <SectionHead
-                            title={ko ? "해결하고 싶은 업무 과제가 있으신가요?" : "Do you have a business challenge to solve?"}
-                            lead={ko ? "기업의 다양한 업무 과제에 맞는 AI 솔루션과 실제 적용 사례를 확인해 보세요." : "Explore AI solutions and real-world use cases for a range of enterprise business challenges."}
+                            title={ko ? "우리 회사 AI 도입, 어디서부터 시작할까요?" : "Where should your AI adoption start?"}
+                            lead={ko ? "업무 과제를 고르면 맞는 제품과 사례를 보여 드립니다." : "Pick a task to see the matching products and cases."}
                         />
                     </Rise>
                     <Rise delay={120} className="mt-12">
@@ -682,7 +691,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                         <Eyebrow step="03" label={ko ? "적용 범위 확인" : "Check the fit"} />
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                             <SectionHead
-                                title={ko ? "산업과 업무에 맞춰 적용합니다" : "Applied by industry and by workflow"}
+                                title={ko ? "금융, 커머스, 공공, IT·제조까지 업무 현장의 AI 과제를 고객과 함께 풀어 왔습니다." : "From finance and commerce to public and IT/manufacturing, we\u2019ve worked through field AI challenges with our customers."}
                                 lead={ko ? "같은 산업, 같은 업무의 적용 사례에서 우리 회사에 맞는 범위를 가늠해 보세요." : "Gauge the right scope from deployments in your industry and workflow."}
                             />
                             <Link href={h("/solutions")} className={`${LINK} flex-none`}>
@@ -851,9 +860,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                 <div aria-hidden className="pointer-events-none absolute -bottom-48 -left-32 h-[420px] w-[420px] rounded-full bg-[#00acee]/20 blur-[120px]" />
                 <div className={`${PAD} relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between`}>
                     <div className="max-w-2xl">
-                        <h2 className="text-[30px] font-semibold leading-tight tracking-tight md:text-[40px]">{ko ? "기업 환경에 맞는 AI 도입 방안을 함께 찾아보세요" : "Find the right AI adoption plan for your enterprise"}</h2>
+                        <h2 className="text-[30px] font-semibold leading-tight tracking-tight md:text-[40px]">{ko ? "1,086개 고객사가 플래티어와 함께하는 데는 이유가 있습니다." : "There\u2019s a reason 1,086 customers work with Plateer."}</h2>
                         <p className="mt-4 text-[17px] leading-relaxed text-white/75">
-                            {ko ? "업무 과제와 기존 인프라, 보안 요건을 고려해 적합한 솔루션 구성과 PoC 추진 방안을 제안합니다." : "Based on your business challenges, existing infrastructure, and security requirements, we propose a suitable solution setup and PoC plan."}
+                            {ko ? "우리 환경에 맞는 구성과 PoC 범위부터 함께 정해 보세요. (고객사 수는 플래티어 전체 기준)" : "Let\u2019s start by scoping the setup and PoC that fit your environment. (Customer count across Plateer.)"}
                         </p>
                     </div>
                     <div className="flex flex-col gap-3 sm:flex-row">
