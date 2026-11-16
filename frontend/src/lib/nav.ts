@@ -528,6 +528,12 @@ const ALL_NAV_GROUPS: NavGroup[] = [
                 colBreak: true,
             },
             {
+                // PLATEER IDT의 XGEN TMS 소개 페이지로 나가는 아웃링크(새 탭 + ↗).
+                label: "XGEN TMS",
+                id: "m-xgen-tms",
+                external: "https://idt.plateer.com/devops/xgen_tms",
+            },
+            {
                 // 제품 페이지가 준비될 때까지 메뉴에서는 클릭되지 않게 둔다.
                 label: "Ontlas",
                 id: "m-ontlas",
