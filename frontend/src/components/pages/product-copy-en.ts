@@ -279,7 +279,7 @@ export const PRODUCT_EN = {
         },
         {
             q: "Can we build agents without coding?",
-            a: "Yes. Agentflow's drag-based visual canvas lets you design a workflow without code, validate it in live chat, and deploy it as an API or workflow.",
+            a: "Yes, in two ways. With vibe coding in DexOn, you describe what you need in natural language to build agents and apps, and you can switch to full coding to write or edit the code directly. Alternatively, Agentflow's drag-based visual canvas lets you design a workflow without code. You then validate the agent in live chat and deploy it as an API or workflow.",
         },
         {
             q: "How are open-source licenses managed from a procurement and legal perspective?",
