@@ -249,7 +249,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
         {
             img: "/intro/xgen-tms.webp",
             title: "XGEN TMS",
-            category: ko ? "AI 기반 테스트 관리 솔루션" : "AI-based test management",
+            category: ko ? "기업형 AI 기반 통합 테스트 관리 플랫폼" : "Enterprise AI-based integrated test management platform",
             desc: ko ? "요구사항부터 테스트 설계·실행·결함·회귀 범위까지 QA 수명주기를 하나의 품질 운영 체계로 관리합니다. 폐쇄망 환경도 지원합니다." : "Manages the QA lifecycle, from requirements to test design, runs, defects, and regression scope, in one quality operations workflow. Supports air-gapped environments.",
             points: [],
             href: "https://idt.plateer.com/devops/xgen_tms",

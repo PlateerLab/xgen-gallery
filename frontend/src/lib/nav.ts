@@ -529,7 +529,8 @@ const ALL_NAV_GROUPS: NavGroup[] = [
             },
             {
                 // PLATEER IDT의 XGEN TMS 소개 페이지로 나가는 아웃링크(새 탭 + ↗).
-                label: "XGEN TMS",
+                label: "XGEN TMS (Enterprise AI-based Integrated Test Management Platform)",
+                labelKo: "XGEN TMS (기업형 AI 기반 통합 테스트 관리 플랫폼)",
                 id: "m-xgen-tms",
                 external: "https://idt.plateer.com/devops/xgen_tms",
             },
