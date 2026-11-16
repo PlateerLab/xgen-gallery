@@ -586,7 +586,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             lead={ko ? "AI 플랫폼부터 커머스, 도메인 특화 모델, 데이터 활용 환경까지. 기업의 업무와 목적에 맞는 솔루션을 살펴보세요." : "From AI platforms to commerce, domain-specific models, and data environments, explore solutions that fit your business and goals."}
                         />
                     </Rise>
-                    <div className="mt-12 grid gap-5 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(260px,auto))]">
+                    <div className="mt-12 grid gap-5 lg:grid-cols-4 lg:grid-rows-[repeat(2,auto)]">
                         {products.map((p, i) => {
                             const lead = i === 0;
                             const wide = false;
@@ -598,13 +598,13 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                     className={lead ? "lg:col-span-2 lg:row-span-2" : wide ? "lg:col-span-2" : ""}
                                 >
                                     {lead ? (
-                                        <SmartLink href={p.href} external={p.external} className="group relative isolate flex h-full min-h-[440px] flex-col justify-end overflow-hidden rounded-[24px] bg-[#0b1224] text-white [transform:translateZ(0)]">
+                                        <SmartLink href={p.href} external={p.external} className="group relative isolate flex h-full min-h-[380px] flex-col justify-end overflow-hidden rounded-[24px] bg-[#0b1224] text-white [transform:translateZ(0)]">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img src={p.img} alt="" loading="lazy" className="jr-kenburns absolute inset-0 h-full w-full object-cover opacity-80" />
                                             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0b1224] via-[#0b1224]/55 to-transparent" />
-                                            <div className="relative p-8 md:p-10">
+                                            <div className="relative p-7 md:p-8">
                                                 <p className="text-[13px] font-semibold text-[#5fd0ff]">{p.category}</p>
-                                                <h3 className="mt-2 text-[40px] font-bold tracking-tight md:text-[48px]">{p.title}</h3>
+                                                <h3 className="mt-1.5 text-[34px] font-bold tracking-tight md:text-[40px]">{p.title}</h3>
                                                 <p className="mt-3 max-w-lg text-[16px] leading-relaxed text-white/80">{p.desc}</p>
                                                 <ul className="mt-6 flex flex-wrap gap-2">
                                                     {p.points.map((pt) => (
@@ -625,22 +625,22 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                             external={p.external}
                                             className={`group flex h-full overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white transition duration-300 ${p.href ? "hover:-translate-y-1 hover:border-[#185aea] hover:shadow-[0_24px_48px_-28px_rgba(24,90,234,0.55)]" : ""} ${wide ? "flex-col sm:flex-row" : "flex-col"}`}
                                         >
-                                            <div className={`relative overflow-hidden ${wide ? "aspect-[16/10] sm:aspect-auto sm:w-[46%]" : "aspect-[16/9]"}`}>
+                                            <div className={`relative overflow-hidden ${wide ? "aspect-[16/10] sm:aspect-auto sm:w-[46%]" : "aspect-[2/1] lg:aspect-[16/7]"}`}>
                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                                 <img src={p.img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]" />
-                                                {p.badge && <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-[var(--color-ink)]">{p.badge}</span>}
+                                                {p.badge && <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-[11px] font-semibold text-[var(--color-ink)]">{p.badge}</span>}
                                             </div>
-                                            <div className="flex flex-1 flex-col p-6">
-                                                <p className="text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{p.category}</p>
-                                                <h3 className="mt-1 text-[24px] font-bold tracking-tight text-[var(--color-ink)]">{p.title}</h3>
-                                                <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">{p.desc}</p>
+                                            <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
+                                                <p className="truncate text-[12px] font-semibold text-[#185aea]">{p.category}</p>
+                                                <h3 className="mt-0.5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">{p.title}</h3>
+                                                <p className="mt-1.5 line-clamp-2 flex-1 text-[13.5px] leading-[1.55] text-[var(--color-ink-muted)]">{p.desc}</p>
                                                 {p.href ? (
-                                                    <span className={`${LINK} mt-4`}>
+                                                    <span className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#185aea] group-hover:underline">
                                                         {p.cta}
                                                         {p.external ? <ArrowUpRight className="h-4 w-4" /> : <Arrow />}
                                                     </span>
                                                 ) : p.points.length === 0 ? null : (
-                                                    <ul className="mt-4 space-y-1.5 border-t border-[var(--color-line)] pt-4">
+                                                    <ul className="mt-3 space-y-1 border-t border-[var(--color-line)] pt-3">
                                                         {p.points.map((pt) => (
                                                             <li key={pt} className="flex gap-2 text-[13.5px] leading-snug text-[var(--color-ink)]">
                                                                 <span aria-hidden className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-[#185aea]" />
