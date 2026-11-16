@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 히어로 1번 슬라이드 비주얼 — 기업 빌딩 사진 위에 Plateer AI Labs 허브와
- * 제품 4종(XGEN · X2BEE · Polar · Ontlas)을 연결선으로 겹친다. 연결선 위로 빛점이 흐르고
+ * 제품 5종(XGEN · X2BEE · XGEN TMS · Polar · Ontlas)을 연결선으로 겹친다. 연결선 위로 빛점이 흐르고
  * 제품 카드가 차례로 켜진다. 허브 아래에 온프레미스·망분리 지원 칩을 둔다.
  * 2번(빨간 스캔 + 목록 줄), 3번(콜아웃), 4번(라벤더 벤토)과 구분되는 「허브 네트워크」 모션이다.
  */
@@ -12,15 +12,17 @@ export function EnterpriseVisual({ locale, overlayImg, overlayAlt }: { locale: L
     const nodes = ko
         ? [
               { k: "XGEN", s: "기업형 에이전틱 AI 플랫폼", x: 4, y: 7 },
-              { k: "X2BEE", s: "에이전틱 커머스 플랫폼", x: 64, y: 7 },
-              { k: "Polar", s: "커머스 특화 sLLM", x: 66, y: 37 },
-              { k: "Ontlas", s: "의미 계층 온톨로지 솔루션", x: 62, y: 66 },
+              { k: "X2BEE", s: "에이전틱 커머스 플랫폼", x: 64, y: 5 },
+              { k: "XGEN TMS", s: "AI 기반 통합 테스트 관리 플랫폼", x: 66, y: 26 },
+              { k: "Polar", s: "커머스 특화 sLLM", x: 66, y: 47 },
+              { k: "Ontlas", s: "의미 계층 온톨로지 솔루션", x: 62, y: 68 },
           ]
         : [
               { k: "XGEN", s: "Enterprise agentic AI platform", x: 4, y: 7 },
-              { k: "X2BEE", s: "Agentic commerce platform", x: 64, y: 7 },
-              { k: "Polar", s: "Commerce sLLM", x: 66, y: 37 },
-              { k: "Ontlas", s: "Semantic-layer ontology", x: 62, y: 66 },
+              { k: "X2BEE", s: "Agentic commerce platform", x: 64, y: 5 },
+              { k: "XGEN TMS", s: "AI test management platform", x: 66, y: 26 },
+              { k: "Polar", s: "Commerce sLLM", x: 66, y: 47 },
+              { k: "Ontlas", s: "Semantic-layer ontology", x: 62, y: 68 },
           ];
     const hub = { x: 40, y: 40 };
     const lines = nodes.map((n) => {
