@@ -115,8 +115,8 @@ const COPY = {
         rolesTitle: "각자의 역할에만 집중할 수 있는 환경",
         rolesLead: "기획자도, 개발자도, 관리자도. XGEN은 각자의 자리에서 AI를 쓰고, 만들고, 통제할 수 있게 합니다.",
         roles: [
-            { tag: "임직원·대고객", ko: "일반 사용자", desc: "대화형 Agent에게 물으면 검색·요약·문서 활용부터 실제 업무 실행까지 이어집니다. 결과는 근거와 함께 검토합니다.", img: "/product/screen-teams.png", alt: "대화형 Agent 사용 화면" },
-            { tag: "기획자·현업", ko: "Agent 개발자", desc: "캔버스로 워크플로우를 설계하고 API는 도구로 등록합니다. 테스트부터 배포까지 하나의 흐름으로 진행합니다.", img: "/product/agent-builder-canvas.png", alt: "Agent 빌더 캔버스 화면" },
+            { tag: "임직원·대고객", ko: "일반 사용자", desc: "대화형 Agent에게 물으면 검색·요약·문서 활용부터 실제 업무 실행까지 이어집니다. 코드를 몰라도 DexOn에서 말로 요청하는 바이브코딩으로 필요한 Agent와 App을 직접 만들 수 있습니다. 결과는 근거와 함께 검토합니다.", img: "/product/screen-teams.png", alt: "대화형 Agent 사용 화면" },
+            { tag: "기획자·현업", ko: "Agent 개발자", desc: "캔버스로 워크플로우를 설계하고 API는 도구로 등록합니다. 바이브코딩으로 시작한 결과물도 코드를 직접 작성·수정하는 풀코딩으로 이어갈 수 있습니다. 테스트부터 배포까지 하나의 흐름으로 진행합니다.", img: "/product/agent-builder-canvas.png", alt: "Agent 빌더 캔버스 화면" },
             { tag: "IT·보안", ko: "플랫폼 관리자", desc: "권한(RBAC/ABAC), 보안 정책, 감사 로그, 모니터링, 배포 승인을 한곳에서 운영합니다. 폐쇄망에서도 같은 방식으로 관리합니다.", img: "/product/operations-dashboard.png", alt: "운영 대시보드 화면" },
         ],
         note: "제공 범위와 동작은 배포 환경과 구성에 따라 달라질 수 있습니다.",
@@ -167,8 +167,8 @@ const COPY = {
         rolesTitle: "Everyone focuses on their own role",
         rolesLead: "Planners, developers and administrators each use, build and govern AI from where they sit.",
         roles: [
-            { tag: "Employees · customers", ko: "End users", desc: "Ask a conversational agent and go from search, summaries and documents to actual task execution. Results are reviewed with their evidence.", img: "/product/screen-teams.png", alt: "Conversational agent screen" },
-            { tag: "Planners · business", ko: "Agent builders", desc: "Design workflows on the canvas and register APIs as tools. Testing through deployment runs in a single flow.", img: "/product/agent-builder-canvas.png", alt: "Agent builder canvas" },
+            { tag: "Employees · customers", ko: "End users", desc: "Ask a conversational agent and go from search, summaries and documents to actual task execution. Without writing code, users can build the agents and apps they need through vibe coding in DexOn, simply by describing them. Results are reviewed with their evidence.", img: "/product/screen-teams.png", alt: "Conversational agent screen" },
+            { tag: "Planners · business", ko: "Agent builders", desc: "Design workflows on the canvas and register APIs as tools. Work started with vibe coding can continue as full coding, writing and editing the code directly. Testing through deployment runs in a single flow.", img: "/product/agent-builder-canvas.png", alt: "Agent builder canvas" },
             { tag: "IT · security", ko: "Platform admins", desc: "Run permissions (RBAC/ABAC), security policy, audit logs, monitoring and deployment approval in one place — the same way in air-gapped networks.", img: "/product/operations-dashboard.png", alt: "Operations dashboard" },
         ],
         note: "Scope and behavior depend on the deployment environment and configuration.",

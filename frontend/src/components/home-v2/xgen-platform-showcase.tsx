@@ -52,6 +52,16 @@ const T = {
     },
 } as const;
 
+/** 영상 위에 겹치는 실제 화면 캡처 (토큰 분포 · 결재 · 시스템 개요 · 평가 · 정책).
+ * 영상 오른쪽 채팅 창(가로 65% 이후)은 가리지 않도록, 탐색기·선택된 파일 영역(약 15~63%) 안에만 배치한다. */
+const OVERLAYS = [
+    { src: "/intro/xgen-ov-tokens.webp", w: 397, h: 246, pos: "left-[16.5%] top-[6%] w-[22%]", show: "lg:block", delay: "0s" },
+    { src: "/intro/xgen-ov-approval.webp", w: 496, h: 256, pos: "left-[38%] top-[14%] w-[24.5%]", show: "lg:block", delay: "-2.2s" },
+    { src: "/intro/xgen-ov-system.webp", w: 817, h: 349, pos: "left-[16.5%] top-[45%] w-[30%]", show: "lg:block", delay: "-4.1s" },
+    { src: "/intro/xgen-ov-eval.webp", w: 574, h: 268, pos: "left-[37%] top-[58%] w-[25.5%]", show: "xl:block", delay: "-1.3s" },
+    { src: "/intro/xgen-ov-policy.webp", w: 755, h: 243, pos: "left-[22%] bottom-[2%] w-[32%]", show: "xl:block", delay: "-5.4s" },
+] as const;
+
 const CARD = "rounded-[16px] bg-white text-[#111827] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] ring-1 ring-black/5";
 
 export function XgenPlatformShowcase({ locale = "ko" }: { locale?: Locale }) {
@@ -88,62 +98,33 @@ export function XgenPlatformShowcase({ locale = "ko" }: { locale?: Locale }) {
                 <Rise delay={150} className="relative mx-auto mt-14 max-w-[1120px] md:mt-20">
                     {/* 실제 XGEN 화면 */}
                     <div className="overflow-hidden rounded-[14px] bg-white ring-1 ring-white/10 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]">
-                        <img
-                            src="/intro/xgen-canvas-showcase.webp"
-                            alt={t.imgAlt}
+                        <video
+                            src="/intro/xgen-showcase.mp4"
+                            poster="/intro/xgen-showcase-poster.jpg"
+                            aria-label={t.imgAlt}
                             width={1600}
-                            height={900}
-                            loading="lazy"
+                            height={868}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
                             className="block h-auto w-full"
                         />
                     </div>
 
-                    {/* 겹쳐 띄우는 카드 — 넓은 화면에서만 */}
-                    <div className={`${CARD} absolute -left-10 bottom-[8%] hidden w-[300px] p-5 lg:block`} aria-hidden="true">
-                        <p className="text-[15px] font-bold">{t.system}</p>
-                        <ul className="mt-4 space-y-3">
-                            {t.res.map((r) => (
-                                <li key={r.k}>
-                                    <div className="flex items-center justify-between text-[13px]">
-                                        <span className="text-[#4b5563]">{r.k}</span>
-                                        <span className="flex items-center gap-2">
-                                            <span className="rounded-full bg-[#16a34a]/10 px-2 py-0.5 text-[11px] font-semibold text-[#15803d]">{t.low}</span>
-                                            <span className="font-bold tabular-nums">{r.v}</span>
-                                        </span>
-                                    </div>
-                                    <div className="mt-1.5 h-1.5 rounded-full bg-[#eef0f3]">
-                                        <div className="h-1.5 rounded-full bg-[#22c55e]" style={{ width: `${r.w}%` }} />
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className={`${CARD} absolute -right-10 top-[16%] hidden w-[330px] p-5 lg:block`} aria-hidden="true">
-                        <p className="text-[15px] font-bold">{t.templates}</p>
-                        <ul className="mt-4 space-y-2.5">
-                            {t.tpl.map((name) => (
-                                <li key={name} className="flex items-center justify-between gap-3 rounded-[10px] border border-[#e5e7eb] px-3 py-2.5">
-                                    <span className="truncate text-[13px] font-semibold">{name}</span>
-                                    <span className="shrink-0 rounded-[6px] border border-[#526be8] px-2 py-0.5 text-[11.5px] font-semibold text-[#526be8]">
-                                        {t.run}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className={`${CARD} absolute right-[14%] -bottom-8 hidden w-[260px] p-5 xl:block`} aria-hidden="true">
-                        <p className="text-[15px] font-bold">{t.admin}</p>
-                        <ul className="mt-3 divide-y divide-[#f0f1f4] text-[13px] text-[#374151]">
-                            {t.menu.map((m) => (
-                                <li key={m} className="flex items-center justify-between py-2">
-                                    <span>{m}</span>
-                                    <span className="text-[#9ca3af]">›</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* 영상 위에 겹쳐 띄우는 실제 XGEN 화면 캡처 — 넓은 화면에서만 */}
+                    {OVERLAYS.map((o) => (
+                        <div key={o.src} className={`absolute hidden ${o.pos} ${o.show}`} aria-hidden="true">
+                            <div
+                                className={`${CARD} overflow-hidden motion-safe:animate-[polarFloatA_7s_ease-in-out_infinite]`}
+                                style={{ animationDelay: o.delay }}
+                            >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={o.src} alt="" width={o.w} height={o.h} loading="lazy" decoding="async" className="block h-auto w-full" />
+                            </div>
+                        </div>
+                    ))}
                 </Rise>
 
                 <p className="mx-auto mt-14 max-w-[1120px] text-center text-[12.5px] leading-[1.6] text-white/45 [word-break:keep-all] md:mt-16">
