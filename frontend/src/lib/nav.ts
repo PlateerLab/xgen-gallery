@@ -475,14 +475,14 @@ const ALL_NAV_GROUPS: NavGroup[] = [
             },
         ],
     },
-    // ── 2026-11 GNB 개편: 제품 · 산업별 솔루션 · 테크놀로지 · 고객지원 · 소식·인사이트 ──
+    // ── 2026-11 GNB 개편: 제품 소개 · 산업별 솔루션 · 테크놀로지 · 고객지원 · 소식·인사이트 ──
     // 메뉴 전용 그룹이다(route가 있어 /{key} 원페이지를 만들지 않고 사이트맵에서도 빠진다).
     // 하위 항목은 모두 route를 명시한다 — key가 실제 페이지가 아니므로 sectionHref를 쓰면 안 된다.
     {
         key: "menu-products",
         order: 1,
         label: "Products",
-        labelKo: "제품",
+        labelKo: "제품 소개",
         concept: "products",
         blurb: "XGEN · Polar · X2BEE · Ontlas",
         route: "/",
