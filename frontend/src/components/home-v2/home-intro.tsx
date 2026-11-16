@@ -22,7 +22,7 @@ import type { Locale } from "@/lib/i18n";
  *
  *  인지     회사 전체 메시지 + 근거 지표 + 1,086개사 로고 띠
  *  01 과제   과제별 진입 카드 4장 → 솔루션·제품
- *  02 제품   포트폴리오(XGEN·X2BEE·Polar·Ontlas) 같은 크기 카드 + XGEN 핵심 기능 칩
+ *  02 제품   포트폴리오(XGEN·X2BEE·XGEN TMS·Polar·Ontlas) 같은 크기 카드 + XGEN 핵심 기능 칩
  *  03 적용   산업별 카드 4장 + 업무별 바로가기 3개 → /solutions, /customers/<산업>
  *  04 검증   고객 사례 3건 + 인증·보안 재검증·실증 데모·기술
  *  05 도입   체험·온프레미스·폐쇄망 + PoC·컨설팅·교육·운영 지원
@@ -244,6 +244,16 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             points: ko ? ["커머스 운영 플랫폼", "커머스 AI 기능 체험 사이트 제공", "X2BEE 전용 사이트에서 안내"] : ["Commerce operations platform", "AI experience site available", "Details on the X2BEE site"],
             href: "https://www.x2bee.com/",
             cta: ko ? "X2BEE 사이트" : "X2BEE site",
+            external: true,
+        },
+        {
+            img: "/intro/xgen-tms.webp",
+            title: "XGEN TMS",
+            category: ko ? "AI 기반 테스트 관리 솔루션" : "AI-based test management",
+            desc: ko ? "요구사항부터 테스트 설계·실행·결함·회귀 범위까지 QA 수명주기를 하나의 품질 운영 체계로 관리합니다. 폐쇄망 환경도 지원합니다." : "Manages the QA lifecycle, from requirements to test design, runs, defects, and regression scope, in one quality operations workflow. Supports air-gapped environments.",
+            points: [],
+            href: "https://idt.plateer.com/devops/xgen_tms",
+            cta: ko ? "XGEN TMS 사이트" : "XGEN TMS site",
             external: true,
         },
         {
@@ -579,7 +589,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <div className="mt-12 grid gap-5 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(260px,auto))]">
                         {products.map((p, i) => {
                             const lead = i === 0;
-                            const wide = i === 1;
+                            const wide = false;
                             return (
                                 <Rise
                                     key={p.title}
