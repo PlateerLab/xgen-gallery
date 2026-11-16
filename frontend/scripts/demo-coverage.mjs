@@ -31,12 +31,30 @@ function readTools() {
     return out;
 }
 
-/** demo-manifests.ts 의 LOCAL_DEMO_MANIFESTS 키(= 저장소 이름) 목록. */
+/**
+ * demo-manifests.ts 의 LOCAL_DEMO_MANIFESTS 키(= 저장소 이름) 목록.
+ *
+ * 키는 세 가지 꼴로 들어온다 — `"xgen-sdk": xgenSdk`(따옴표 키), `ontlas,`(단축 속성),
+ * `...(x ? { "xgen-contextifier": x } : {})`(조건부 스프레드). 따옴표 키만 읽으면
+ * 단축 속성으로 넣은 매니페스트가 폴백으로 잘못 집계된다(2026-11-16 Ontlas).
+ */
 function readLocalKeys() {
     const text = src("demo-manifests.ts");
     const start = text.indexOf("export const LOCAL_DEMO_MANIFESTS");
-    const block = text.slice(start, text.indexOf("};", start));
-    return [...block.matchAll(/"([^"]+)":/g)].map((m) => m[1]);
+    const open = text.indexOf("{", start);
+    const block = text.slice(open + 1, text.indexOf("\n};", open));
+    const keys = [];
+    for (const raw of block.split("\n")) {
+        const line = raw.replace(/\/\/.*$/, "").trim();
+        if (!line) continue;
+        if (line.startsWith("...")) {
+            for (const m of line.matchAll(/["']([^"']+)["']\s*:/g)) keys.push(m[1]);
+            continue;
+        }
+        const m = line.match(/^(?:["']([^"']+)["']|([A-Za-z_$][\w$]*))\s*[:,]?/);
+        if (m) keys.push(m[1] ?? m[2]);
+    }
+    return keys;
 }
 
 const tools = readTools();

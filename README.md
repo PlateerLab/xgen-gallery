@@ -1,6 +1,6 @@
 # xgen-gallery
 
-PlateerLab 오픈소스 라이브러리 19종을 브라우저에서 직접 체험할 수 있는 playground입니다. Next.js 기반 갤러리 프론트엔드와 FastAPI 백엔드, 그리고 synaptic-memory MCP 서버가 Docker Compose로 묶여 있습니다.
+PlateerLab 오픈소스 라이브러리 20종을 브라우저에서 직접 체험할 수 있는 playground입니다. Next.js 기반 갤러리 프론트엔드와 FastAPI 백엔드, 그리고 synaptic-memory MCP 서버가 Docker Compose로 묶여 있습니다.
 
 ## 포함된 도구
 
@@ -20,6 +20,7 @@ PlateerLab 오픈소스 라이브러리 19종을 브라우저에서 직접 체�
 | OmniFuse | knowledge | 벡터와 그래프를 한 번에 융합하는 backend-agnostic GraphRAG |
 | XGen Agent Memory | knowledge | 시맨틱·BM25·타입 엣지 그래프 탐색을 SQLite 한 파일로 융합 |
 | **XGen Ontology** | knowledge | 문서·표를 정제된 지식 그래프로 만들고 one-shot GraphRAG로 검색 |
+| Ontlas | knowledge | 도메인 온톨로지를 한 번 정의해 원천 표에 바인딩하고, 하나의 질의를 SQL·Cypher·SPARQL 등 저장소별 질의로 컴파일 |
 | Googer | agent | 타입 안전 구글 검색 (web/images/news/videos) |
 | Toolint | agent | 에이전트 툴 패키지 전용 AST 정적 분석기 |
 | XGEN Harness | agent | 검증·재시도·종료를 모델 바깥에서 소유하는 10단계 실행 하네스 |
