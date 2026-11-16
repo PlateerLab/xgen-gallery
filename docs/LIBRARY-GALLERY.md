@@ -38,13 +38,22 @@ curl -s "https://registry.npmjs.org/-/v1/search?text=%40plateer-xgen&size=250" |
 
 ```bash
 # 4) 이미 실린 PyPI 패키지의 소유 계정 → 그 계정이 올린 패키지 → 저장소 링크가 PlateerLab 인 것만 후보
+#    XML-RPC 는 연달아 부르면 HTTPTooManyRequests 로 끊긴다 — 호출마다 쉬고, 걸리면 물러섰다 다시 부른다
 python3 - <<'EOF'
-import xmlrpc.client, json, re, urllib.request
+import xmlrpc.client, json, re, time, urllib.request
 c = xmlrpc.client.ServerProxy("https://pypi.org/pypi")
-users = {u for p in ["contextifier", "xgen-harness", "xgen-sdk", "synaptic-memory", "xgen-omnifuse", "xgen-doc2chunk"]
-         for _, u in c.package_roles(p)}
+def rpc(f, *a):
+    for k in range(8):
+        time.sleep(2.5)
+        try: return f(*a)
+        except xmlrpc.client.Fault as e:
+            if "TooMany" not in str(e): raise
+            time.sleep(5 * (k + 1))
+    raise RuntimeError("PyPI XML-RPC rate limit")
+users = {u for p in ["contextifier", "xgen-harness", "xgen-sdk", "synaptic-memory", "xgen-omnifuse", "xgen-doc2chunk", "ontlas"]
+         for _, u in rpc(c.package_roles, p)}
 for u in sorted(users):
-    for n in sorted({n for _, n in c.user_packages(u)}):
+    for n in sorted({n for _, n in rpc(c.user_packages, u)}):
         try: i = json.load(urllib.request.urlopen(f"https://pypi.org/pypi/{n}/json"))["info"]
         except Exception: continue  # 배포 파일이 없는 이름은 JSON 이 404
         if re.search(r"github\.com/PlateerLab/", json.dumps(i.get("project_urls") or {}) + (i.get("home_page") or ""), re.I):
@@ -53,7 +62,13 @@ EOF
 ```
 
 후보가 가리키는 저장소가 404(비공개·삭제)이면 등록을 보류하고 보고한다. 카드 링크가 죽고,
-공개된 다른 저장소로 대신 걸면 그 저장소의 선언 이름·판이 배포본과 다를 수 있다.
+공개된 다른 저장소로 대신 걸면 그 저장소의 선언 이름·판이 배포본과 다를 수 있다(2026-11-16 점검:
+`mantis-engine` 0.6.0 의 선언 저장소 `PlateerLab/mantis` 는 여전히 404, 개인 계정 `jinsoo96/mantis` 는
+공개지만 `pyproject.toml` 이 `mantis` 0.3.0 이라 배포본과 맞지 않아 보류).
+
+조직 저장소의 `package.json` 이름이 npm 에서 200 이 나와도 바로 후보로 보지 않는다. 남의 패키지와
+이름만 같을 수 있다 — `private: true` 인지, 레지스트리 항목의 `repository` 가 그 저장소인지 함께 본다
+(2026-11-16: `xgen-side` 의 `agent-browser` 는 npm 에서 `vercel-labs/agent-browser` 였다).
 
 ### 이미 실린 항목도 매주 다시 조회한다
 
@@ -116,6 +131,8 @@ cd frontend && npm run demo:coverage
 
 1. `src/lib/demo-manifests.ts` 에 매니페스트를 추가하고 `LOCAL_DEMO_MANIFESTS` 에
    **저장소 이름 그대로**(`tool.repo`) 등록한다. 키가 틀리면 폴백이 계속 뜬다.
+   `ontlas,` 같은 단축 속성도 된다. `demo:coverage` 는 2026-11-16 전까지 따옴표 키만 읽어서
+   단축 속성으로 넣은 Ontlas 를 폴백으로 잘못 셌다. 지금은 따옴표 키·단축 속성·조건부 스프레드를 모두 읽는다.
 2. 한국어 문구를 썼다면 `src/lib/demo-i18n.ts` 의 `DICT` 에 영문을 함께 넣는다.
    `mockOutput` 안의 문자열까지 전부 번역 대상이다(깊이 순회, 키는 제외).
    **같은 키를 두 번 넣으면 타입 오류**가 나니 넣기 전에 사전에 이미 있는지 본다.
