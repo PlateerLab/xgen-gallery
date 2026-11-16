@@ -55,11 +55,11 @@ const T = {
 /** 영상 위에 겹치는 실제 화면 캡처 (토큰 분포 · 결재 · 시스템 개요 · 평가 · 정책).
  * 영상 오른쪽 채팅 창(가로 65% 이후)은 가리지 않도록, 탐색기·선택된 파일 영역(약 15~63%) 안에만 배치한다. */
 const OVERLAYS = [
-    { src: "/intro/xgen-ov-tokens.webp", w: 397, h: 246, pos: "left-[16.5%] top-[31%] w-[22%]", show: "lg:block", delay: "0s" },
-    { src: "/intro/xgen-ov-approval.webp", w: 496, h: 256, pos: "left-[38%] top-[14%] w-[24.5%]", show: "lg:block", delay: "-2.2s" },
+    { src: "/intro/xgen-ov-tokens.webp", w: 397, h: 246, pos: "left-[12%] top-[31%] w-[22%]", show: "lg:block", delay: "0s" },
+    { src: "/intro/xgen-ov-approval.webp", w: 496, h: 256, pos: "left-[31%] top-[14%] w-[21%]", show: "lg:block", delay: "-2.2s" },
     { src: "/intro/xgen-ov-system.webp", w: 817, h: 349, pos: "left-[16.5%] top-[57%] w-[30%]", show: "lg:block", delay: "-4.1s" },
-    { src: "/intro/xgen-ov-eval.webp", w: 574, h: 268, pos: "left-[37%] top-[40%] w-[25.5%]", show: "xl:block", delay: "-1.3s" },
-    { src: "/intro/xgen-ov-policy.webp", w: 755, h: 243, pos: "left-[22%] bottom-[0%] w-[32%]", show: "xl:block", delay: "-5.4s" },
+    { src: "/intro/xgen-ov-eval.webp", w: 574, h: 268, pos: "left-[30%] top-[40%] w-[22%]", show: "xl:block", delay: "-1.3s" },
+    { src: "/intro/xgen-ov-policy.webp", w: 755, h: 243, pos: "left-[20%] bottom-[0%] w-[32%]", show: "xl:block", delay: "-5.4s" },
 ] as const;
 
 const CARD = "rounded-[16px] bg-white text-[#111827] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] ring-1 ring-black/5";
