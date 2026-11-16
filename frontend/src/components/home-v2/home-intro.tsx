@@ -10,6 +10,7 @@ import { EnterpriseVisual } from "@/components/home-v2/enterprise-visual";
 import { IntroStickyNav } from "@/components/home-v2/intro-sticky-nav";
 import { PlateerCustomerBand } from "@/components/home-v2/plateer-customer-band";
 import { ProvenPerformance } from "@/components/home-v2/proven-performance";
+import { XgenPlatformShowcase } from "@/components/home-v2/xgen-platform-showcase";
 import { NewsTabs, type NewsItem } from "@/components/home-v2/news-tabs";
 import { Rise, Num, ChallengeExplorer, IndustryPanels, StepTrack } from "@/components/home-v2/journey-motion";
 import { PRODUCT_PROFILES } from "@/lib/product-profiles";
@@ -557,6 +558,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             </section>
 
             {/* 인지 단계 신뢰 신호 — 고객 로고를 첫 화면 바로 아래에 */}
+            <XgenPlatformShowcase locale={locale} />
             <ProvenPerformance locale={locale} />
             <PlateerCustomerBand locale={locale} />
 
