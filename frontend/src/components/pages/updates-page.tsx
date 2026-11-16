@@ -204,7 +204,20 @@ export function UpdatesPageContent({
                         <ul className="mt-8 grid gap-6 md:grid-cols-2">
                             {events.map(({ event, status, dateLabel }) => (
                                 <li key={event.id}>
-                                    <Link href={event.href} className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition-colors hover:border-[#185aea]/40">
+                                    {event.disabled ? (<div className="flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6">
+                                        <div className="flex flex-wrap items-center gap-2 text-[13px]">
+                                            <span className={status === "ended" ? "rounded-full bg-[#f0f0f4] px-2.5 py-0.5 font-semibold text-[var(--color-ink-muted)]" : "rounded-full bg-[#185aea]/10 px-2.5 py-0.5 font-semibold text-[#185aea]"}>
+                                                {STATUS_LABEL[locale][status]}
+                                            </span>
+                                            <span className="text-[var(--color-ink-muted)]">{event.category}</span>
+                                        </div>
+                                        <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">{event.name}</h3>
+                                        {locale === "ko" && <p className="mt-2 line-clamp-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">{event.headline}</p>}
+                                        <p className="mt-auto pt-5 text-[13px] text-[var(--color-ink-muted)]">
+                                            {dateLabel}
+                                            {locale === "ko" && event.venue ? ` · ${event.venue}` : ""}
+                                        </p>
+                                    </div>) : (<Link href={event.href} className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition-colors hover:border-[#185aea]/40">
                                         <div className="flex flex-wrap items-center gap-2 text-[13px]">
                                             <span className={status === "ended" ? "rounded-full bg-[#f0f0f4] px-2.5 py-0.5 font-semibold text-[var(--color-ink-muted)]" : "rounded-full bg-[#185aea]/10 px-2.5 py-0.5 font-semibold text-[#185aea]"}>
                                                 {STATUS_LABEL[locale][status]}
@@ -217,7 +230,7 @@ export function UpdatesPageContent({
                                             {dateLabel}
                                             {locale === "ko" && event.venue ? ` · ${event.venue}` : ""}
                                         </p>
-                                    </Link>
+                                    </Link>)}
                                 </li>
                             ))}
                         </ul>

@@ -22,6 +22,8 @@
 .eventLink { display: flex; flex-direction: column; height: 100%; }
 .poster { display: flex; flex-direction: column; height: 280px; padding: 25px; background: #274de6; border-radius: 12px; color: #fff; overflow: hidden; transition: background .2s; }
 .eventLink:hover .poster { background: #1c3bc6; }
+.eventLink[data-disabled="true"] { cursor: default; }
+.eventLink[data-disabled="true"]:hover .poster { background: #274de6; }
 .posterTop, .posterBottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em; color: #dce6ff; }
 .posterName { margin-top: 32px; font-family: var(--font-mono); font-size: 11px; color: #dfebff; }
 .poster > strong { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin: 10px 0 20px; font-size: 24px; line-height: 1.35; font-weight: 750; letter-spacing: -.04em; color: #dfffab; }

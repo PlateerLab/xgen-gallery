@@ -35,7 +35,8 @@ export function EventsPageContent({ items }: { items: EventListing[] }) {
                         <div className={styles.eventGrid}>
                             {visible.map(({ event, status, dateLabel }) => (
                                 <article className={styles.card} key={event.id}>
-                                    <a href={event.href} {...(event.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={styles.eventLink} aria-label={`${event.name} ${event.year} — ${event.headline}${event.href.startsWith("http") ? ", 새 탭에서 열기" : ""}`}>
+                                    {event.disabled ? (
+                                        <div className={styles.eventLink} data-disabled="true">
                                         <div className={styles.poster}>
                                             <div className={styles.posterTop}><span>PLATEER LABS</span><span>{event.year}</span></div>
                                             <p className={styles.posterName}>{event.name}</p>
@@ -47,8 +48,24 @@ export function EventsPageContent({ items }: { items: EventListing[] }) {
                                         <p className={styles.cardHeadline}>{event.headline}</p>
                                         <p className={styles.description}>{event.description}</p>
                                         <div className={styles.cardDetails}><span>{dateLabel}</span><span>{event.venue ?? "장소 추후 안내"}</span><span>{event.audience}</span></div>
-                                        <span className={styles.cardAction}>{status === "ended" ? "지난 행사 보기" : "행사 자세히 보기"}{event.href.startsWith("http") && <span className={styles.newTab}>새 탭</span>}</span>
-                                    </a>
+                                        <span className={styles.cardAction}>{event.disabled ? "상세 안내 준비 중" : status === "ended" ? "지난 행사 보기" : "행사 자세히 보기"}{event.href.startsWith("http") && <span className={styles.newTab}>새 탭</span>}</span>
+                                        </div>
+                                    ) : (
+                                        <a href={event.href} {...(event.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={styles.eventLink} aria-label={`${event.name} ${event.year} — ${event.headline}${event.href.startsWith("http") ? ", 새 탭에서 열기" : ""}`}>
+                                        <div className={styles.poster}>
+                                            <div className={styles.posterTop}><span>PLATEER LABS</span><span>{event.year}</span></div>
+                                            <p className={styles.posterName}>{event.name}</p>
+                                            <strong>{event.headline}</strong>
+                                            <div className={styles.posterBottom}><span>{event.category}</span><span>PLATEER / EVENTS</span></div>
+                                        </div>
+                                        <div className={styles.cardMeta}><span className={styles.status} data-status={status}>{EVENT_STATUS_META[status].label}</span><span>{event.category}</span></div>
+                                        <h3>{event.name} {event.year}</h3>
+                                        <p className={styles.cardHeadline}>{event.headline}</p>
+                                        <p className={styles.description}>{event.description}</p>
+                                        <div className={styles.cardDetails}><span>{dateLabel}</span><span>{event.venue ?? "장소 추후 안내"}</span><span>{event.audience}</span></div>
+                                        <span className={styles.cardAction}>{event.disabled ? "상세 안내 준비 중" : status === "ended" ? "지난 행사 보기" : "행사 자세히 보기"}{event.href.startsWith("http") && <span className={styles.newTab}>새 탭</span>}</span>
+                                        </a>
+                                    )}
                                 </article>
                             ))}
                         </div>

@@ -18,6 +18,8 @@ export interface LabEvent {
     startsAt?: string;
     endsAt?: string;
     draft?: boolean;
+    /** true면 목록 카드가 링크 없이 표시된다(상세 페이지 비공개 등). */
+    disabled?: boolean;
 }
 
 export const EVENT_STATUS_META: Record<EventStatus, { label: string; empty: string }> = {
@@ -38,6 +40,7 @@ export const HACKATHON_EVENT: LabEvent = {
     category: "해커톤",
     audience: "플래티어 전사 직원",
     draft: true,
+    disabled: true,
 };
 
 /** xgen.im 블로그 Report 글(2026-11 이관) — 행사 현장 스케치를 이벤트 기록으로 남긴다. */
