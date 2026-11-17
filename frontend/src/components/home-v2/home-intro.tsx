@@ -415,8 +415,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             </h1>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "기업의 보안·통제 체계 안에서 AI Agent가 사내 시스템과 업무 환경을 연결해 일하고, 실행 결과로 계속 개선됩니다."
-                                    : "Within your security and control framework, AI agents connect internal systems and work environments, do the work, and keep improving from their results."}
+                                    ? "XGEN은 기업의 보안과 통제 체계를 유지하면서, 다양한 LLM 기반의 AI Agent가 사내 시스템과 사용자 업무 환경을 연결해 자율적으로 업무를 수행하고, 실행 결과를 바탕으로 지속적으로 개선되도록 지원하는 플랫폼입니다."
+                                    : "XGEN keeps your security and control framework in place while AI agents built on a range of LLMs connect internal systems and user work environments, carry out work autonomously, and keep improving based on their results."}
                             </p>
                             <KeyPoints
                                 items={
