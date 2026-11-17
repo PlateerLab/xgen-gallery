@@ -400,8 +400,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                 {!hero && (
                     <HeroSlider
                         ariaLabel={ko ? "메인 키 비주얼" : "Main key visual"}
-                        labels={ko ? ["XGEN 에이전틱 AI 플랫폼", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Polar 커머스 sLLM", "Ontlas 온톨로지 솔루션"] : ["XGEN agentic AI platform", "XGEN AI security for finance", "XGEN for Commerce", "Polar commerce sLLM", "Ontlas ontology solution"]}
-                        durations={[4500, 5000, 4500, 4500, 6000]}
+                        labels={ko ? ["XGEN 에이전틱 AI 플랫폼", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Ontlas 온톨로지 솔루션", "Polar 커머스 sLLM"] : ["XGEN agentic AI platform", "XGEN AI security for finance", "XGEN for Commerce", "Ontlas ontology solution", "Polar commerce sLLM"]}
+                        durations={[4500, 5000, 4500, 6000, 4500]}
                         slides={[
                     <div key="enterprise" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
@@ -499,6 +499,40 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                         </div>
                         <CommerceVisual locale={locale} />
                     </div>,
+                    <div key="ontlas" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
+                        <div>
+                            <p className="text-[15px] font-semibold text-white">
+                                Ontlas <span className="font-normal text-white/65">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
+                            </p>
+                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
+                                {ko ? "기업의 데이터를," : "Turning enterprise data"}
+                                <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로" : "into verified AI knowledge:"}
+<br className="hidden sm:block" /> {ko ? "Ontlas (온트라스)" : "Ontlas"}
+                            </h2>
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
+                                {ko
+                                    ? "Ontlas는 기업 문서와 DB에서 업무 개념과 관계를 추출하고, 일관된 기준으로 지식을 구조화하는 도메인 온톨로지 솔루션입니다. 지식의 출처를 추적하고 품질을 검증하여, AI Agent가 근거 있는 판단과 업무 수행에 활용할 수 있도록 지원합니다."
+                                    : "Ontlas is a domain ontology solution that extracts business concepts and relationships from enterprise documents and databases and structures knowledge on consistent criteria. It traces where knowledge comes from and verifies its quality, so AI agents can use it as grounded evidence for decisions and work."}
+                            </p>
+                            <KeyPoints items={ko ? ["산업별 도메인 온톨로지", "파일·DB·문서 의미 연결", "Agent 근거·맥락 활용"] : ["Industry domain ontologies", "Files, DBs & docs linked by meaning", "Context and evidence for agents"]} />
+                            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                                <Link href={h("/contact")} className={BTN_PRIMARY}>
+                                    {ko ? "Ontlas 도입 문의" : "Ask about Ontlas"}
+                                </Link>
+                                {/* 숨김: 온톨로지 기술 보기 버튼
+                                <Link href={h("/technology")} className={BTN_SECONDARY_DARK}>
+                                    {ko ? "온톨로지 기술 보기" : "Ontology technology"}
+                                </Link>
+                                */}
+                            </div>
+                            <p className="mt-4 text-[13.5px] text-white/65">
+                                {ko
+                                    ? "적용 범위는 원천 데이터와 구성에 따라 달라집니다."
+                                    : "Scope depends on your source data and configuration."}
+                            </p>
+                        </div>
+                        <OntlasVisual locale={locale} />
+                    </div>,
                     <div key="polar" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
                             <p className="text-[15px] font-semibold text-white">
@@ -528,40 +562,6 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             </p>
                         </div>
                         <PolarVisual locale={locale} />
-                    </div>,
-                    <div key="ontlas" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
-                        <div>
-                            <p className="text-[15px] font-semibold text-white">
-                                Ontlas <span className="font-normal text-white/65">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
-                            </p>
-                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
-                                {ko ? "기업의 데이터를," : "Turning enterprise data"}
-                                <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로" : "into verified AI knowledge:"}
-<br className="hidden sm:block" /> Ontlas
-                            </h2>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
-                                {ko
-                                    ? "Ontlas는 기업 문서와 DB에서 업무 개념과 관계를 추출하고, 일관된 기준으로 지식을 구조화하는 도메인 온톨로지 솔루션입니다. 지식의 출처를 추적하고 품질을 검증하여, AI Agent가 근거 있는 판단과 업무 수행에 활용할 수 있도록 지원합니다."
-                                    : "Ontlas is a domain ontology solution that extracts business concepts and relationships from enterprise documents and databases and structures knowledge on consistent criteria. It traces where knowledge comes from and verifies its quality, so AI agents can use it as grounded evidence for decisions and work."}
-                            </p>
-                            <KeyPoints items={ko ? ["산업별 도메인 온톨로지", "파일·DB·문서 의미 연결", "Agent 근거·맥락 활용"] : ["Industry domain ontologies", "Files, DBs & docs linked by meaning", "Context and evidence for agents"]} />
-                            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                                <Link href={h("/contact")} className={BTN_PRIMARY}>
-                                    {ko ? "Ontlas 도입 문의" : "Ask about Ontlas"}
-                                </Link>
-                                {/* 숨김: 온톨로지 기술 보기 버튼
-                                <Link href={h("/technology")} className={BTN_SECONDARY_DARK}>
-                                    {ko ? "온톨로지 기술 보기" : "Ontology technology"}
-                                </Link>
-                                */}
-                            </div>
-                            <p className="mt-4 text-[13.5px] text-white/65">
-                                {ko
-                                    ? "적용 범위는 원천 데이터와 구성에 따라 달라집니다."
-                                    : "Scope depends on your source data and configuration."}
-                            </p>
-                        </div>
-                        <OntlasVisual locale={locale} />
                     </div>,
                         ]}
                     />
