@@ -505,8 +505,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                 Ontlas <span className="font-normal text-white/65">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
                             </p>
                             <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
-                                {ko ? "기업의 데이터를," : "Turning enterprise data"}
-                                <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로" : "into verified AI knowledge:"}
+                                {ko ? "기업의 데이터를" : "Turning enterprise data"}
+                                <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로," : "into verified AI knowledge:"}
 <br className="hidden sm:block" /> Ontlas
                             </h2>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
