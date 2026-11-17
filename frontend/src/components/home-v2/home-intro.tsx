@@ -401,7 +401,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <HeroSlider
                         ariaLabel={ko ? "메인 키 비주얼" : "Main key visual"}
                         labels={ko ? ["XGEN 에이전틱 AI 플랫폼", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Ontlas 온톨로지 솔루션", "Polar 커머스 sLLM"] : ["XGEN agentic AI platform", "XGEN AI security for finance", "XGEN for Commerce", "Ontlas ontology solution", "Polar commerce sLLM"]}
-                        durations={[4500, 5000, 4500, 6000, 4500]}
+                        durations={[5000, 5000, 5000, 6000, 5000]}
                         slides={[
                     <div key="enterprise" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
@@ -507,7 +507,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
                                 {ko ? "기업의 데이터를," : "Turning enterprise data"}
                                 <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로" : "into verified AI knowledge:"}
-<br className="hidden sm:block" /> {ko ? "Ontlas (온트라스)" : "Ontlas"}
+<br className="hidden sm:block" /> Ontlas
                             </h2>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
