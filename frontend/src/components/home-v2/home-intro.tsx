@@ -161,9 +161,9 @@ function MaybeLink({ href, external, className, children }: { href: string; exte
 /** 히어로 슬라이드의 강점 칩 3개 — 다크 스킨 글래스 칩 */
 function KeyPoints({ items }: { items: string[] }) {
     return (
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="kp-row -mx-1 mt-6 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {items.map((t) => (
-                <li key={t} className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[13px] font-medium text-white/85 backdrop-blur-md">
+                <li key={t} className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1.5 text-[12.5px] font-medium text-white/85 backdrop-blur-md">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#5fd0ff]" />
                     {t}
                 </li>
