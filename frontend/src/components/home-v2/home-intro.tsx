@@ -557,8 +557,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             </div>
                             <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko
-                                    ? "Ontlas 제품 페이지는 준비 중입니다. 적용 범위는 원천 데이터와 구성에 따라 달라집니다."
-                                    : "The Ontlas product page is in preparation. Scope depends on your source data and configuration."}
+                                    ? "적용 범위는 원천 데이터와 구성에 따라 달라집니다."
+                                    : "Scope depends on your source data and configuration."}
                             </p>
                         </div>
                         <OntlasVisual locale={locale} />
