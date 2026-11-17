@@ -35,12 +35,12 @@ export function ProvenPerformance({ locale = "ko" }: { locale?: Locale }) {
                         return (
                             <Rise key={t.label} delay={i * 90} className="text-right">
                                 <dt className="text-[13.5px] font-semibold text-white/55 md:text-[15px]">{t.label}</dt>
-                                <dd className="mt-2 flex items-baseline justify-end gap-1 whitespace-nowrap">
-                                    {prefix && <span className="text-[17px] font-bold sm:text-[20px] md:text-[30px]">{t.unit}</span>}
-                                    <span className="text-[36px] sm:text-[44px] font-extrabold leading-none tracking-tight md:text-[72px]">
+                                <dd className="mt-2 flex flex-wrap items-baseline justify-end gap-x-1">
+                                    {prefix && <span className="text-[14px] font-bold sm:text-[20px] md:text-[30px]">{t.unit}</span>}
+                                    <span className="text-[30px] sm:text-[44px] font-extrabold leading-none tracking-tight md:text-[72px]">
                                         <Num value={s.value} />
                                     </span>
-                                    {!prefix && <span className="text-[17px] font-bold sm:text-[20px] md:text-[30px]">{t.unit}</span>}
+                                    {!prefix && <span className="text-[14px] font-bold sm:text-[20px] md:text-[30px]">{t.unit}</span>}
                                 </dd>
                             </Rise>
                         );

@@ -47,7 +47,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 .ov-g{opacity:0;animation:ov-cycle 12s infinite}
                 .ov-tab{animation:ov-tab 12s infinite}
                 @keyframes ov-cycle{0%{opacity:0}3%,30%{opacity:1}34%,100%{opacity:0}}
-                @keyframes ov-tab{0%{background:transparent;color:#5eead4}3%,30%{background:#14b8a6;color:#04140f}34%,100%{background:transparent;color:#5eead4}}
+                @keyframes ov-tab{0%{background:transparent;color:#9fe4ff}3%,30%{background:#185aea;color:#ffffff}34%,100%{background:transparent;color:#9fe4ff}}
                 .ov-edge{stroke-dasharray:5 5;animation:ov-flow 1.4s linear infinite}
                 @keyframes ov-flow{to{stroke-dashoffset:-20}}
                 .ov-ring{transform-origin:260px 150px;animation:ov-ring 2.4s ease-out infinite}
@@ -56,32 +56,36 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 .ov-photo{animation:ov-photo 20s ease-in-out infinite alternate}
                 @keyframes ov-photo{from{transform:scale(1.04)}to{transform:scale(1.12)}}
                 @keyframes ov-layer{0%,100%{opacity:.55}50%{opacity:1}}
+                .ov-mesh{animation:ov-drift 24s ease-in-out infinite alternate}
+                @keyframes ov-drift{from{transform:translate(-1.5%,-1%) scale(1.04)}to{transform:translate(1.5%,1%) scale(1.08)}}
+                .ov-tw{animation:ov-tw 4s ease-in-out infinite}
+                @keyframes ov-tw{0%,100%{fill-opacity:.35}50%{fill-opacity:1}}
+                .ov-sweep{animation:ov-sweep 9s ease-in-out infinite}
+                @keyframes ov-sweep{0%{transform:translateX(0)}60%,100%{transform:translateX(400%)}}
                 @media (prefers-reduced-motion:reduce){
-                    .ov-g,.ov-tab,.ov-edge,.ov-ring,.ov-layer,.ov-photo{animation:none}
+                    .ov-g,.ov-tab,.ov-edge,.ov-ring,.ov-layer,.ov-photo,.ov-mesh,.ov-tw,.ov-sweep{animation:none}
                     .ov-g:first-of-type{opacity:1}
-                    .ov-tab:first-child{background:#14b8a6;color:#04140f}
+                    .ov-tab:first-child{background:#185aea;color:#ffffff}
                 }
             `}</style>
-            <div className="relative overflow-hidden rounded-[24px] bg-[#04140f] p-5 ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(20,184,166,0.4)] sm:p-7">
-                {/* 배경 실사(노드·연결 로프 망, CC0) + 반투명 밝은 레이어 */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/intro/ontlas-bg.webp"
-                    alt=""
-                    aria-hidden
-                    className="ov-photo pointer-events-none absolute inset-0 h-full w-full object-cover"
-                />
-                <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(20,184,166,0.16),transparent_70%),linear-gradient(160deg,rgba(4,20,15,0.86)_0%,rgba(4,20,15,0.62)_50%,rgba(11,18,36,0.88)_100%)]"
-                />
+            <div className="relative overflow-hidden rounded-[24px] bg-[#0b1224] p-5 ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(24,90,234,0.4)] sm:p-7">
+                <div aria-hidden className="pointer-events-none absolute inset-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(55%_50%_at_18%_12%,rgba(24,90,234,0.38),transparent_70%),radial-gradient(50%_45%_at_88%_92%,rgba(95,208,255,0.20),transparent_70%),radial-gradient(70%_60%_at_50%_50%,rgba(19,37,79,0.55),transparent_80%)]" />
+                    <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(rgba(159,228,255,0.35)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(75%_70%_at_50%_45%,#000_20%,transparent_85%)]" />
+                    <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" className="ov-mesh absolute inset-0 h-full w-full">
+                        <g stroke="#5fd0ff" strokeOpacity={0.16} strokeWidth={1}><line x1="198" y1="75" x2="171" y2="189"/><line x1="198" y1="75" x2="238" y2="182"/><line x1="388" y1="41" x2="328" y2="37"/><line x1="388" y1="41" x2="433" y2="134"/><line x1="321" y1="167" x2="381" y2="170"/><line x1="321" y1="167" x2="328" y2="37"/><line x1="321" y1="167" x2="238" y2="182"/><line x1="44" y1="228" x2="115" y2="260"/><line x1="44" y1="228" x2="33" y2="297"/><line x1="44" y1="228" x2="69" y2="166"/><line x1="51" y1="49" x2="82" y2="106"/><line x1="51" y1="49" x2="69" y2="166"/><line x1="256" y1="366" x2="189" y2="361"/><line x1="256" y1="366" x2="315" y2="386"/><line x1="256" y1="366" x2="285" y2="296"/><line x1="82" y1="106" x2="69" y2="166"/><line x1="374" y1="418" x2="315" y2="386"/><line x1="374" y1="418" x2="389" y2="354"/><line x1="576" y1="30" x2="508" y2="135"/><line x1="576" y1="30" x2="491" y2="79"/><line x1="508" y1="135" x2="433" y2="134"/><line x1="508" y1="135" x2="491" y2="79"/><line x1="508" y1="135" x2="565" y2="202"/><line x1="508" y1="135" x2="497" y2="216"/><line x1="189" y1="361" x2="107" y2="342"/><line x1="115" y1="260" x2="192" y2="262"/><line x1="115" y1="260" x2="107" y2="342"/><line x1="381" y1="170" x2="433" y2="134"/><line x1="192" y1="262" x2="171" y2="189"/><line x1="471" y1="311" x2="413" y2="266"/><line x1="471" y1="311" x2="563" y2="307"/><line x1="471" y1="311" x2="517" y2="353"/><line x1="315" y1="386" x2="285" y2="296"/><line x1="315" y1="386" x2="389" y2="354"/><line x1="433" y1="134" x2="491" y2="79"/><line x1="33" y1="297" x2="25" y2="386"/><line x1="33" y1="297" x2="107" y2="342"/><line x1="413" y1="266" x2="389" y2="354"/><line x1="497" y1="416" x2="517" y2="353"/><line x1="497" y1="416" x2="553" y2="435"/><line x1="171" y1="189" x2="238" y2="182"/><line x1="563" y1="307" x2="517" y2="353"/><line x1="517" y1="353" x2="553" y2="435"/><line x1="25" y1="386" x2="107" y2="342"/><line x1="565" y1="202" x2="497" y2="216"/></g>
+                        <g fill="#9fe4ff" fillOpacity={0.55}><circle cx="198" cy="75" r="2.6" className="ov-tw" style={{animationDelay:"0s"}}/><circle cx="388" cy="41" r="1.6"/><circle cx="321" cy="167" r="1.6"/><circle cx="44" cy="228" r="1.6"/><circle cx="51" cy="49" r="1.6"/><circle cx="256" cy="366" r="2.6" className="ov-tw" style={{animationDelay:"5s"}}/><circle cx="82" cy="106" r="1.6"/><circle cx="374" cy="418" r="1.6"/><circle cx="576" cy="30" r="1.6"/><circle cx="508" cy="135" r="1.6"/><circle cx="189" cy="361" r="2.6" className="ov-tw" style={{animationDelay:"3s"}}/><circle cx="115" cy="260" r="1.6"/><circle cx="381" cy="170" r="1.6"/><circle cx="328" cy="37" r="1.6"/><circle cx="192" cy="262" r="1.6"/><circle cx="471" cy="311" r="2.6" className="ov-tw" style={{animationDelay:"1s"}}/><circle cx="315" cy="386" r="1.6"/><circle cx="433" cy="134" r="1.6"/><circle cx="33" cy="297" r="1.6"/><circle cx="413" cy="266" r="1.6"/><circle cx="497" cy="416" r="2.6" className="ov-tw" style={{animationDelay:"6s"}}/><circle cx="285" cy="296" r="1.6"/><circle cx="171" cy="189" r="1.6"/><circle cx="563" cy="307" r="1.6"/><circle cx="517" cy="353" r="1.6"/><circle cx="238" cy="182" r="2.6" className="ov-tw" style={{animationDelay:"4s"}}/><circle cx="69" cy="166" r="1.6"/><circle cx="25" cy="386" r="1.6"/><circle cx="491" cy="79" r="1.6"/><circle cx="107" cy="342" r="1.6"/><circle cx="565" cy="202" r="2.6" className="ov-tw" style={{animationDelay:"2s"}}/><circle cx="553" cy="435" r="1.6"/><circle cx="497" cy="216" r="1.6"/><circle cx="389" cy="354" r="1.6"/></g>
+                    </svg>
+                    <div className="ov-sweep absolute inset-y-0 -left-1/2 w-1/2 bg-[linear-gradient(100deg,transparent,rgba(159,228,255,0.07),transparent)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,18,36,0.25)_0%,transparent_35%,transparent_70%,rgba(11,18,36,0.55)_100%)]" />
+                </div>
                 <div className="relative flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-[#2dd4bf]" />
+                        <span className="h-2 w-2 rounded-full bg-[#5fd0ff]" />
                         <span className="text-[12px] font-bold tracking-wide text-white">ONTLAS</span>
                         <span className="hidden text-[11px] text-white/65 sm:inline">· {ko ? "도메인 온톨로지" : "domain ontology"}</span>
                     </div>
-                    <div className="flex gap-1 rounded-full border border-white/15 bg-[#04140f]/70 p-1 backdrop-blur-md" aria-hidden>
+                    <div className="flex gap-1 rounded-full border border-white/15 bg-[#0b1224]/70 p-1 backdrop-blur-md" aria-hidden>
                         {domains.map((d, i) => (
                             <span key={d.tab} className="ov-tab rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold" style={{ animationDelay: `${i * 4}s` }}>
                                 {d.tab}
@@ -91,7 +95,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* 도메인별 개념 그래프 — 같은 자리에서 교차 */}
-                <div className="relative mt-4 rounded-[16px] border border-white/12 bg-[#04140f]/55 backdrop-blur-md shadow-[0_18px_40px_-26px_rgba(0,0,0,0.8)]">
+                <div className="relative mt-4 rounded-[16px] border border-white/12 bg-[#0b1224]/55 backdrop-blur-md shadow-[0_18px_40px_-26px_rgba(0,0,0,0.8)]">
                     <svg
                         viewBox="0 0 520 300"
                         className="block h-auto w-full"
@@ -102,7 +106,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                 : "Concept diagram of business concepts and relationships for commerce, manufacturing, and finance"
                         }
                     >
-                        <circle className="ov-ring" cx={260} cy={150} r={36} fill="none" stroke="#2dd4bf" strokeWidth={2} />
+                        <circle className="ov-ring" cx={260} cy={150} r={36} fill="none" stroke="#5fd0ff" strokeWidth={2} />
                         {domains.map((d, di) => (
                             <g key={d.tab} className="ov-g" style={{ animationDelay: `${di * 4}s` }}>
                                 {EDGES.map(([a, b], ei) => {
@@ -113,9 +117,9 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                     const w = d.rels[ei].length * (ko ? 12 : 6.6) + 14;
                                     return (
                                         <g key={ei}>
-                                            <line className="ov-edge" x1={x1} y1={y1} x2={x2} y2={y2} stroke="#2dd4bf" strokeOpacity={0.55} strokeWidth={1.6} />
-                                            <rect x={mx - w / 2} y={my - 10} width={w} height={20} rx={10} fill="#06231c" stroke="rgba(45,212,191,0.45)" />
-                                            <text x={mx} y={my + 4} textAnchor="middle" fontSize={11} fill="#5eead4">
+                                            <line className="ov-edge" x1={x1} y1={y1} x2={x2} y2={y2} stroke="#5fd0ff" strokeOpacity={0.55} strokeWidth={1.6} />
+                                            <rect x={mx - w / 2} y={my - 10} width={w} height={20} rx={10} fill="#0f1d3a" stroke="rgba(95,208,255,0.45)" />
+                                            <text x={mx} y={my + 4} textAnchor="middle" fontSize={11} fill="#9fe4ff">
                                                 {d.rels[ei]}
                                             </text>
                                         </g>
@@ -131,7 +135,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                         </g>
                                     ) : (
                                         <g key={ni}>
-                                            <rect x={x - 52} y={y - 18} width={104} height={36} rx={18} fill="#0a1f1a" stroke="#2dd4bf" strokeWidth={1.5} />
+                                            <rect x={x - 52} y={y - 18} width={104} height={36} rx={18} fill="#111c36" stroke="#5fd0ff" strokeWidth={1.5} />
                                             <text x={x} y={y + 5} textAnchor="middle" fontSize={13.5} fontWeight={600} fill="#ffffff">
                                                 {d.nodes[ni]}
                                             </text>
@@ -142,7 +146,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                         ))}
                         <defs>
                             <linearGradient id="ovHub" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0%" stopColor="#14b8a6" />
+                                <stop offset="0%" stopColor="#5fd0ff" />
                                 <stop offset="100%" stopColor="#185aea" />
                             </linearGradient>
                         </defs>
@@ -151,8 +155,8 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
 
                 {/* 의미 계층 ↔ 원천 데이터 */}
                 <div className="relative mt-3 grid gap-2 sm:grid-cols-[1fr_auto] sm:items-stretch">
-                    <div className="ov-layer flex items-center justify-between gap-3 rounded-[12px] border border-dashed border-[#2dd4bf]/60 bg-[#04140f]/60 px-3 py-2 backdrop-blur-md">
-                        <span className="text-[12.5px] font-bold text-[#5eead4]">{ko ? "의미 계층" : "Semantic layer"}</span>
+                    <div className="ov-layer flex items-center justify-between gap-3 rounded-[12px] border border-dashed border-[#5fd0ff]/60 bg-[#0b1224]/60 px-3 py-2 backdrop-blur-md">
+                        <span className="text-[12.5px] font-bold text-[#9fe4ff]">{ko ? "의미 계층" : "Semantic layer"}</span>
                         <span className="flex flex-wrap justify-end gap-1.5">
                             {(ko ? ["파일", "DB", "문서"] : ["Files", "DB", "Docs"]).map((s) => (
                                 <span key={s} className="rounded-md bg-white/10 px-2 py-0.5 text-[11.5px] text-white/85">
@@ -161,7 +165,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                             ))}
                         </span>
                     </div>
-                    <div className="flex items-center gap-1.5 rounded-[12px] border border-white/12 bg-[#04140f]/60 px-3 py-2 backdrop-blur-md">
+                    <div className="flex items-center gap-1.5 rounded-[12px] border border-white/12 bg-[#0b1224]/60 px-3 py-2 backdrop-blur-md">
                         {["SQL", "Cypher", "SPARQL", "MCP"].map((q) => (
                             <span key={q} className="rounded-full bg-[#5fd0ff]/15 px-2 py-0.5 text-[11px] font-semibold text-[#9fe4ff]">
                                 {q}

@@ -72,7 +72,7 @@ export function ReleasesView({ releases }: { releases: Release[] }) {
 
 function ReleaseEntry({ release }: { release: Release }) {
     return (
-        <article className="grid gap-8 md:grid-cols-[160px_1fr]">
+        <article className="grid grid-cols-1 gap-8 md:grid-cols-[160px_1fr]">
             <aside className="md:sticky md:top-20 md:self-start">
                 <div className="text-[14px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink-subtle)]">
                     {formatDate(release.date)}

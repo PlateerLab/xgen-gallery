@@ -161,7 +161,7 @@ function MaybeLink({ href, external, className, children }: { href: string; exte
 /** 히어로 슬라이드의 강점 칩 3개 — 다크 스킨 글래스 칩 */
 function KeyPoints({ items }: { items: string[] }) {
     return (
-        <ul className="kp-row -mx-1 mt-6 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul className="kp-row -mx-1 mt-6 hidden gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {items.map((t) => (
                 <li key={t} className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1.5 text-[12.5px] font-medium text-white/85 backdrop-blur-md">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#5fd0ff]" />
@@ -395,7 +395,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             <section data-nav-theme="dark" className={`relative isolate overflow-hidden bg-black text-white ${hero ? "" : "pt-[calc(var(--nav-h,80px)+40px)]"}`}>
                 {/* /product/xgen 히어로와 같은 다크 톤 — 검정 바탕 + 아래쪽 파티클 띠 + 은은한 빛 */}
                 <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(42%_48%_at_8%_32%,rgba(24,90,234,0.22),transparent_70%),radial-gradient(36%_42%_at_92%_45%,rgba(0,172,238,0.12),transparent_70%)]" />
-                <div aria-hidden className="why-hero-bg pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] opacity-70 lg:h-[38%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]" />
+                <div aria-hidden className="intro-arc-bg pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[320px] lg:h-[46%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] bg-gradient-to-b from-transparent via-black/30 to-black/70 lg:h-[38%]" />
                 {!hero && (
                     <HeroSlider
@@ -415,8 +415,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                             </h1>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "XGEN은 기업의 보안과 통제 체계를 유지하면서, 다양한 LLM 기반의 AI Agent가 사내 시스템과 사용자 업무 환경을 연결해 자율적으로 일하고, 실행 결과를 바탕으로 지속적으로 개선되도록 지원하는 Agentic AI 플랫폼입니다."
-                                    : "XGEN is an agentic AI platform that keeps your security and control framework in place while AI agents built on a range of LLMs connect internal systems and user work environments, work autonomously, and keep improving based on their results."}
+                                    ? "기업의 보안·통제 체계 안에서 AI Agent가 사내 시스템과 업무 환경을 연결해 일하고, 실행 결과로 계속 개선됩니다."
+                                    : "Within your security and control framework, AI agents connect internal systems and work environments, do the work, and keep improving from their results."}
                             </p>
                             <KeyPoints
                                 items={
@@ -433,12 +433,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                     {contact}
                                 </Link>
                             </div>
-                            <p className="mt-4 text-[13.5px] text-white/65">
-                                {ko ? "XGEN은 15일 동안 브라우저에서 무료로 체험할 수 있습니다." : "XGEN offers a 15-day free trial in your browser."}{" "}
-                                <Link href={h("/xgen-trial")} className="font-semibold text-[#5fd0ff] hover:underline">
-                                    {ko ? "체험 신청 ›" : "Start ›"}
-                                </Link>
-                            </p>
+                            
                         </div>
                         <EnterpriseVisual locale={locale} overlayImg={P.hero.main.img} overlayAlt={P.hero.main.alt[locale]} />
                     </div>,
@@ -448,9 +443,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                 XGEN <span className="mx-1 font-normal text-white/65">|</span> AI Red Teaming <span className="font-normal text-white/65">· {ko ? "금융권 AI 보안 점검 대응" : "AI security testing for finance"}</span>
                             </p>
                             <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
-                                {ko ? "금융권 AI 보안," : "AI security for finance,"}
+                                {ko ? "금융권 AI 보안" : "AI security for finance"}
                                 <br className="hidden sm:block" /> {ko ? "공격 검증부터" : "from attack testing"}
-<br className="hidden sm:block" /> {ko ? "실행 통제까지" : "to execution control"}
+<br className="hidden sm:block" /> {ko ? "실행 통제까지, XGEN" : "to execution control: XGEN"}
                             </h2>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
@@ -480,9 +475,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                 XGEN <span className="font-normal text-white/65">for Commerce · Agentic Commerce</span>
                             </p>
                             <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
-                                {ko ? "커머스 현장 경험을" : "Commerce know-how,"}
-                                <br className="hidden sm:block" /> {ko ? "담은 쇼핑·운영" : "built into shopping"}
-<br className="hidden sm:block" /> {ko ? "AI Agent" : "and operations agents"}
+                                {ko ? "AI가 쇼핑하고," : "AI that shops,"}
+                                <br className="hidden sm:block" /> {ko ? "AI가 운영하는" : "AI that runs"}
+<br className="hidden sm:block" /> {ko ? "커머스" : "your commerce"}
                             </h2>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko

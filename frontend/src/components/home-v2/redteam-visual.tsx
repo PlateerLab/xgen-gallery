@@ -43,7 +43,7 @@ export function RedTeamVisual({ locale }: { locale: Locale }) {
                             <li
                                 key={r.kind}
                                 className="redteam-row grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-lg border border-white/12 bg-[#0b1224]/72 px-3 py-2 shadow-[0_8px_24px_-14px_rgba(0,0,0,0.7)] backdrop-blur-md"
-                                style={{ animationDelay: `${i * 0.55}s` }}
+                                style={{ animationDelay: `${0.5 + i * 0.4}s` }}
                             >
                                 <div className="min-w-0">
                                     <p className="text-[11.5px] font-semibold text-[#ff8a8a]">{r.kind}</p>
@@ -51,7 +51,7 @@ export function RedTeamVisual({ locale }: { locale: Locale }) {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="hidden text-[10.5px] text-white/55 sm:inline">{r.by}</span>
-                                    <span className="redteam-res rounded-md border border-[#5fd0ff]/40 bg-[#5fd0ff]/15 px-2 py-0.5 text-[11.5px] font-semibold text-[#9fe4ff]" style={{ animationDelay: `${i * 0.55 + 0.3}s` }}>
+                                    <span className="redteam-res rounded-md border border-[#5fd0ff]/40 bg-[#5fd0ff]/15 px-2 py-0.5 text-[11.5px] font-semibold text-[#9fe4ff]" style={{ animationDelay: `${0.75 + i * 0.4}s` }}>
                                         {r.res}
                                     </span>
                                 </div>
@@ -69,10 +69,10 @@ export function RedTeamVisual({ locale }: { locale: Locale }) {
             </div>
 
             {/* 겹치는 카드 — 재점검 결과(각주 3) */}
-            <div className="absolute -bottom-6 -left-2 w-[90%] sm:-left-8 sm:w-[62%] rounded-xl border border-white/15 bg-[#0b1224]/90 p-4 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-md sm:p-5">
-                <p className="text-[12px] font-semibold text-white/65">
+            <div className="rt-result absolute bottom-[3%] right-[5%] w-[90%] sm:w-[62%] rounded-xl border border-[#ba8cff]/25 bg-[#0b1224]/80 bg-[linear-gradient(135deg,rgba(24,90,234,0.22),rgba(160,130,255,0.20)_55%,rgba(186,140,255,0.26))] p-4 shadow-[0_24px_60px_-24px_rgba(160,130,255,0.35)] backdrop-blur-md sm:p-5">
+                <p className="text-[12px] font-semibold text-white/80">
                     {ko ? "자율 침투 테스트 재점검" : "Autonomous pentest re-test"}
-                    <sup className="ml-0.5 text-[#5fd0ff]">3</sup>
+                    <sup className="ml-0.5 text-[#bfeaff]">3</sup>
                 </p>
                 <div className="mt-3 grid grid-cols-3 gap-2">
                     {[
@@ -80,9 +80,9 @@ export function RedTeamVisual({ locale }: { locale: Locale }) {
                         { v: "96.5%", k: ko ? "비로그인 요청 차단" : "Unauth. requests blocked" },
                         { v: ko ? "0건" : "0", k: ko ? "민감 정보 노출" : "Sensitive data exposed" },
                     ].map((m) => (
-                        <div key={m.k} className="border-l border-white/20 pl-2.5">
+                        <div key={m.k} className="border-l border-white/30 pl-2.5">
                             <p className="whitespace-nowrap text-[18px] font-bold tracking-tight text-white sm:text-[22px]">{m.v}</p>
-                            <p className="mt-0.5 text-[11px] leading-snug text-white/55">{m.k}</p>
+                            <p className="mt-0.5 text-[11px] leading-snug text-white/75">{m.k}</p>
                         </div>
                     ))}
                 </div>

@@ -639,7 +639,7 @@ function HarnessPipeline({ locale }: { locale: Locale }) {
 function WrapperCompilerDiagram({ locale }: { locale: Locale }) {
     const L = T[locale];
     return (
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
             {/* Wrapper — 엔진이 플랫폼 안에 남음 */}
             <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6">
                 <h4 className="text-[16px] font-bold text-[var(--color-ink)]">

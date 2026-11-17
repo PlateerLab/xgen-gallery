@@ -600,7 +600,7 @@ export function BlogList({
                     )}
 
                     {/* 좌: 전체 아티클 / 우: 인기 글 */}
-                    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
                         <div>
                             <h2 className="mb-5 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">
                                 {t.allArticles}
@@ -662,7 +662,7 @@ export function BlogList({
                             {totalPages > 1 && (
                                 <nav
                                     aria-label={t.allArticles}
-                                    className="mt-8 flex items-center justify-center gap-1.5"
+                                    className="mt-8 flex flex-wrap items-center justify-center gap-1.5"
                                 >
                                     {safePage === 1 ? (
                                         <span
