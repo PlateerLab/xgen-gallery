@@ -140,7 +140,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
         .slice(0, 3);
     return (
         <>
-            <SiteNav overlay />
+            <SiteNav overlay showPromotion={false} />
             <main>
                 <HomeIntro locale={locale} cases={cases} feed={getNewsFeed(locale)} />
             </main>

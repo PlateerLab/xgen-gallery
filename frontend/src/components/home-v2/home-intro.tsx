@@ -11,7 +11,7 @@ import { IntroStickyNav } from "@/components/home-v2/intro-sticky-nav";
 import { PlateerCustomerBand } from "@/components/home-v2/plateer-customer-band";
 import { ProvenPerformance } from "@/components/home-v2/proven-performance";
 import { XgenPlatformShowcase } from "@/components/home-v2/xgen-platform-showcase";
-import { ProofTicker } from "@/components/home-v2/proof-ticker";
+import { InlinePromoBand } from "@/components/product-xgen/inline-promo-band";
 import { NewsTabs, type NewsItem } from "@/components/home-v2/news-tabs";
 import { Rise, Num, ChallengeExplorer, IndustryPanels, StepTrack } from "@/components/home-v2/journey-motion";
 import { PRODUCT_PROFILES } from "@/lib/product-profiles";
@@ -42,6 +42,8 @@ const BTN_PRIMARY =
     "inline-flex h-11 items-center justify-center rounded-[4px] bg-[#185aea] px-6 text-[15px] font-semibold text-white transition hover:bg-[#1249c2]";
 const BTN_SECONDARY =
     "inline-flex h-11 items-center justify-center rounded-[4px] border border-[var(--color-ink)] bg-white px-6 text-[15px] font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface-hover)]";
+const BTN_SECONDARY_DARK =
+    "inline-flex h-11 items-center justify-center rounded-[4px] border border-white/40 bg-transparent px-6 text-[15px] font-semibold text-white transition hover:bg-white/10";
 const LINK = "group inline-flex items-center gap-1 text-[15px] font-semibold text-[#185aea] hover:underline";
 const SCROLL = "scroll-mt-[calc(var(--nav-h,80px)+80px)]";
 
@@ -156,6 +158,20 @@ function MaybeLink({ href, external, className, children }: { href: string; exte
     );
 }
 
+/** 히어로 슬라이드의 강점 칩 3개 — 다크 스킨 글래스 칩 */
+function KeyPoints({ items }: { items: string[] }) {
+    return (
+        <ul className="mt-6 flex flex-wrap gap-2">
+            {items.map((t) => (
+                <li key={t} className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[13px] font-medium text-white/85 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#5fd0ff]" />
+                    {t}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
 function Eyebrow({ step, label }: { step: string; label: string }) {
     return (
         <p className="mb-4 flex items-center gap-2 text-[13px] font-semibold tracking-wide text-[#185aea]">
@@ -198,7 +214,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             img: "/intro/automation.webp",
             title: ko ? "반복 업무를 에이전트로 자동화" : "Automate recurring work with agents",
             desc: ko ? "사내 시스템을 도구로 연결해, 조회·정리·보고 같은 반복 업무를 에이전트가 처리하게 합니다." : "Connect internal systems as tools so agents handle recurring lookups, summaries, and reports.",
-            tags: ["XGEN", "PathFinder", "EasyMode"],
+            tags: ["XGEN", "EasyMode"],
             href: h("/solutions#automation"),
             cta: ko ? "업무 자동화 사례" : "Automation use cases",
         },
@@ -235,7 +251,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             title: "XGEN",
             category: ko ? "기업형 에이전틱 AI 플랫폼" : "Enterprise agentic AI platform",
             desc: ko ? "AI Agent의 제작·연결·운영을 하나의 플랫폼에서. 사내 시스템과 연결해 결재와 감사 아래에서 운영합니다." : "Build, connect and run AI agents on one platform, linked to internal systems and run under approval and audit.",
-            points: ko ? ["바이브코딩·EasyMode·캔버스 제작", "PathFinder로 사내 API 연결", "결재선·위험도 심사·감사 로그"] : ["Vibe coding, EasyMode, canvas", "Internal APIs via PathFinder", "Approval routes, risk review, audit logs"],
+            points: ko ? ["바이브코딩·EasyMode·캔버스 제작", "사내 시스템·API 연결", "결재선·위험도 심사·감사 로그"] : ["Vibe coding, EasyMode, canvas", "Internal systems and APIs", "Approval routes, risk review, audit logs"],
             href: h("/product/xgen"),
             cta: ko ? "XGEN 살펴보기" : "Explore XGEN",
         },
@@ -285,7 +301,6 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
     const xgenFeatures = [
         { label: "Vibe Coding in DexOn", href: h("/vibe-coding") },
         { label: "DexOn", href: h("/xgen-dex") },
-        { label: "PathFinder", href: h("/pathfinder") },
         { label: "EasyMode", href: h("/easy-mode") },
         { label: "Geny", href: h("/product/xgen#geny") },
     ];
@@ -377,46 +392,50 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
         <>
             {/* 인지 — 회사 전체 메시지 */}
             {hero}
-            <section data-nav-theme="light" className={hero ? "bg-white" : "bg-white pt-[calc(var(--nav-h,80px)+40px)]"}>
+            <section data-nav-theme="dark" className={`relative isolate overflow-hidden bg-black text-white ${hero ? "" : "pt-[calc(var(--nav-h,80px)+40px)]"}`}>
+                {/* /product/xgen 히어로와 같은 다크 톤 — 검정 바탕 + 아래쪽 파티클 띠 + 은은한 빛 */}
+                <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(42%_48%_at_8%_32%,rgba(24,90,234,0.22),transparent_70%),radial-gradient(36%_42%_at_92%_45%,rgba(0,172,238,0.12),transparent_70%)]" />
+                <div aria-hidden className="why-hero-bg pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] opacity-70 lg:h-[38%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] bg-gradient-to-b from-transparent via-black/30 to-black/70 lg:h-[38%]" />
                 {!hero && (
                     <HeroSlider
                         ariaLabel={ko ? "메인 키 비주얼" : "Main key visual"}
-                        labels={ko ? ["Enterprise AI", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Polar 커머스 sLLM", "Ontlas 온톨로지 솔루션"] : ["Enterprise AI", "XGEN AI security for finance", "XGEN for Commerce", "Polar commerce sLLM", "Ontlas ontology solution"]}
+                        labels={ko ? ["XGEN 에이전틱 AI 플랫폼", "XGEN 금융권 AI 보안", "XGEN for Commerce", "Polar 커머스 sLLM", "Ontlas 온톨로지 솔루션"] : ["XGEN agentic AI platform", "XGEN AI security for finance", "XGEN for Commerce", "Polar commerce sLLM", "Ontlas ontology solution"]}
                         durations={[4500, 5000, 4500, 4500, 6000]}
                         slides={[
                     <div key="enterprise" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
-                            <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                Plateer AI Labs <span className="font-normal text-[var(--color-ink-muted)]">· {ko ? "온프레미스·망분리 환경을 위한 기업형 Agentic AI 플랫폼" : "Enterprise agentic AI platform for on-prem and air-gapped environments"}</span>
+                            <p className="text-[15px] font-semibold text-white">
+                                XGEN <span className="font-normal text-white/65">· {ko ? "기업형 Agentic AI 플랫폼" : "Enterprise agentic AI platform"}</span>
                             </p>
-                            <h1 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
-                                {P.hero.titleA[locale]}
-                                <br className="hidden sm:block" /> {P.hero.titleB[locale]}
+                            <h1 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
+                                {ko ? "강력한 거버넌스 위에서," : "On strong governance,"}
+                                <br className="hidden sm:block" /> {ko ? "스스로 진화하는" : "a self-evolving"}
+                                <br className="hidden sm:block" /> {ko ? "Agentic AI Platform" : "Agentic AI Platform"}
                             </h1>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "1,086개 고객사와 함께해 온 플래티어가 XGEN·X2BEE·Polar·Ontlas로 연구부터 현장 적용까지 이어갑니다."
-                                    : "Plateer, working with 1,086 customers, carries enterprise AI from research to the field with XGEN, X2BEE, Polar and Ontlas."}
+                                    ? "XGEN은 기업의 보안과 통제 체계를 유지하면서, 다양한 LLM 기반의 AI Agent가 사내 시스템과 사용자 업무 환경을 연결해 자율적으로 일하고, 실행 결과를 바탕으로 지속적으로 개선되도록 지원하는 Agentic AI 플랫폼입니다."
+                                    : "XGEN is an agentic AI platform that keeps your security and control framework in place while AI agents built on a range of LLMs connect internal systems and user work environments, work autonomously, and keep improving based on their results."}
                             </p>
-                            <ProofTicker
-                                label={ko ? "공개된 인증과 운영 사실" : "Published certification and operating facts"}
+                            <KeyPoints
                                 items={
                                     ko
-                                        ? ["GS 1등급 품질 인증 (XGEN · 26-0296)", "온프레미스·망분리 구성 지원", "보안 재점검: 기존 고위험 재발 0건 (2026.11, 격리 환경)", "제주은행 사내 생성형 AI 플랫폼 운영 중"]
-                                        : ["GS Grade 1 quality certification (XGEN · 26-0296)", "On-prem and air-gapped deployment support", "Security re-test: 0 recurrences of prior high-risk findings (Nov 2026, isolated env.)", "In-house generative AI platform running at Jeju Bank"]
+                                        ? ["Claude·GPT·사내 sLLM 선택", "권한·결재·감사 로그 통제", "사내 시스템·MCP 도구 연결"]
+                                        : ["Claude, GPT, or in-house sLLM", "Access, approval & audit controls", "Systems & MCP tools connected"]
                                 }
                             />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <a href="#products" className={BTN_PRIMARY}>
                                     {ko ? "제품 살펴보기" : "Explore products"}
                                 </a>
-                                <Link href={h("/contact")} className={BTN_SECONDARY}>
+                                <Link href={h("/contact")} className={BTN_SECONDARY_DARK}>
                                     {contact}
                                 </Link>
                             </div>
-                            <p className="mt-4 text-[13.5px] text-[var(--color-ink-muted)]">
+                            <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko ? "XGEN은 15일 동안 브라우저에서 무료로 체험할 수 있습니다." : "XGEN offers a 15-day free trial in your browser."}{" "}
-                                <Link href={h("/xgen-trial")} className="font-semibold text-[#185aea] hover:underline">
+                                <Link href={h("/xgen-trial")} className="font-semibold text-[#5fd0ff] hover:underline">
                                     {ko ? "체험 신청 ›" : "Start ›"}
                                 </Link>
                             </p>
@@ -425,27 +444,29 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     </div>,
                     <div key="redteam" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
-                            <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                XGEN <span className="mx-1 font-normal text-[var(--color-ink-muted)]">|</span> AI Red Teaming <span className="font-normal text-[var(--color-ink-muted)]">· {ko ? "금융권 AI 보안 점검 대응" : "AI security testing for finance"}</span>
+                            <p className="text-[15px] font-semibold text-white">
+                                XGEN <span className="mx-1 font-normal text-white/65">|</span> AI Red Teaming <span className="font-normal text-white/65">· {ko ? "금융권 AI 보안 점검 대응" : "AI security testing for finance"}</span>
                             </p>
-                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
+                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
                                 {ko ? "금융권 AI 보안," : "AI security for finance,"}
-                                <br className="hidden sm:block" /> {ko ? "공격 검증부터 실행 통제까지" : "from attack testing to execution control"}
+                                <br className="hidden sm:block" /> {ko ? "공격 검증부터" : "from attack testing"}
+<br className="hidden sm:block" /> {ko ? "실행 통제까지" : "to execution control"}
                             </h2>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
                                     ? "프롬프트 인젝션, 탈옥, 개인정보 유출 유도, 권한 우회 등 주요 공격 시나리오를 점검합니다. 가드 모델과 개인정보 마스킹, 금칙어 필터, 접근 권한 통제를 적용하고, 탐지·차단 이력을 감사 로그로 관리해 보안 점검과 감사 대응을 지원합니다."
                                     : "Test key attack scenarios such as prompt injection, jailbreaks, PII extraction, and privilege bypass. XGEN applies a guard model, PII masking, keyword filters, and access control, and keeps detection and blocking history in the audit log to support security reviews and audits."}
                             </p>
+                            <KeyPoints items={ko ? ["가드 모델·개인정보 마스킹", "접근 권한·결재선 통제", "탐지·차단 이력 감사 로그"] : ["Guard model & PII masking", "Access control & approvals", "Audit log of detections"]} />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Link href={h("/security-and-governance")} className={BTN_PRIMARY}>
                                     {ko ? "보안·거버넌스 보기" : "Security & governance"}
                                 </Link>
-                                <Link href={h("/contact")} className={BTN_SECONDARY}>
+                                <Link href={h("/contact")} className={BTN_SECONDARY_DARK}>
                                     {contact}
                                 </Link>
                             </div>
-                            <p className="mt-4 text-[13.5px] text-[var(--color-ink-muted)]">
+                            <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko
                                     ? "특정 기관의 인증·승인을 뜻하지 않으며, 대응 범위는 고객 환경과 구성에 따라 달라집니다."
                                     : "This does not imply certification or approval by any authority; coverage depends on your environment and configuration."}
@@ -455,27 +476,29 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     </div>,
                     <div key="xgen-commerce" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
-                            <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                XGEN <span className="font-normal text-[var(--color-ink-muted)]">for Commerce · Agentic Commerce</span>
+                            <p className="text-[15px] font-semibold text-white">
+                                XGEN <span className="font-normal text-white/65">for Commerce · Agentic Commerce</span>
                             </p>
-                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
-                                {ko ? "AI가 쇼핑하고," : "AI that shops,"}
-                                <br className="hidden sm:block" /> {ko ? "AI가 운영하는 커머스" : "AI that runs commerce"}
+                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
+                                {ko ? "커머스 현장 경험을" : "Commerce know-how,"}
+                                <br className="hidden sm:block" /> {ko ? "담은 쇼핑·운영" : "built into shopping"}
+<br className="hidden sm:block" /> {ko ? "AI Agent" : "and operations agents"}
                             </h2>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "고객이 원하는 것을 말하면 쇼핑 에이전트가 상품을 추천하고 주문서까지 안내합니다. 상품 등록·기획전·상담 같은 반복 업무는 에이전트가 초안을 만들고 담당자가 확정하며, 커머스 기능을 API로 연결해 기존 화면을 유지한 채 AI 기능을 더합니다."
-                                    : "Customers say what they want, and a shopping agent recommends products and guides them to checkout. For repetitive work like product listing, promotions, and customer service, agents draft and staff confirm, and commerce functions connect through APIs so you can add AI without changing existing screens."}
+                                    ? "플래티어의 커머스 구축 경험을 바탕으로 상품 검색·추천·상담·상품 등록 업무에 맞춘 에이전트를 기존 커머스 시스템에 API로 연결합니다. 에이전트가 초안을 만들고 담당자가 확정합니다."
+                                    : "Drawing on Plateer's commerce delivery experience, XGEN connects agents for product search, recommendations, customer service, and product listing to your existing commerce systems through APIs. Agents draft; staff confirm."}
                             </p>
+                            <KeyPoints items={ko ? ["검색·추천·상담 에이전트", "기존 화면 유지, API 연결", "에이전트 초안 → 담당자 확정"] : ["Search, recommend & service agents", "Keep your screens, connect via API", "Agents draft, staff confirm"]} />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <a href="https://ai-exp.x2bee.com" target="_blank" rel="noopener noreferrer" className={BTN_PRIMARY}>
                                     {ko ? "X2BEE 체험하기 ↗" : "Try X2BEE ↗"}
                                 </a>
-                                <Link href={h("/customers/commerce")} className={BTN_SECONDARY}>
+                                <Link href={h("/customers/commerce")} className={BTN_SECONDARY_DARK}>
                                     {ko ? "커머스 적용 사례" : "Commerce case studies"}
                                 </Link>
                             </div>
-                            <p className="mt-4 text-[13.5px] text-[var(--color-ink-muted)]">
+                            <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko ? "적용 범위는 연동하는 커머스 시스템과 구성에 따라 달라집니다." : "Scope depends on the commerce systems you connect and your configuration."}
                             </p>
                         </div>
@@ -483,27 +506,29 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     </div>,
                     <div key="polar" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
-                            <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                Polar <span className="font-normal text-[var(--color-ink-muted)]">· Private sLLM for Commerce</span>
+                            <p className="text-[15px] font-semibold text-white">
+                                Polar <span className="font-normal text-white/65">· Private sLLM for Commerce</span>
                             </p>
-                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
-                                {ko ? "커머스 데이터로 학습한" : "A private sLLM"}
-                                <br className="hidden sm:block" /> {ko ? "Private sLLM, Polar" : "trained for commerce, Polar"}
+                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
+                                {ko ? "커머스 업무에 특화된" : "An enterprise sLLM"}
+                                <br className="hidden sm:block" /> {ko ? "기업용 sLLM," : "built for commerce:"}
+<br className="hidden sm:block" /> {ko ? "Polar" : "Polar"}
                             </h2>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "Polar는 플래티어가 개발한 이커머스 특화 sLLM입니다. 시맨틱 검색, 상품평 요약, 맞춤 추천, 고객 문의 응대에 맞춰 도메인 데이터 학습·RAG·Fine-Tuning을 적용하고, 고객 인프라 안에서 운영해 기업 데이터를 외부로 보내지 않는 구성을 지원합니다."
-                                    : "Polar is an e-commerce sLLM developed by Plateer. It applies domain training, RAG, and fine-tuning for semantic search, review summaries, recommendations, and customer service, and runs inside your infrastructure so enterprise data can stay in-house."}
+                                    ? "Polar는 이커머스 데이터로 학습한 플래티어의 sLLM입니다. 시맨틱 검색, 상품평 요약, 맞춤 추천, 고객 문의 응대에 쓰고, 고객 인프라 안에 배치해 기업 데이터를 외부로 보내지 않는 구성을 지원합니다."
+                                    : "Polar is Plateer's sLLM trained on e-commerce data. It serves semantic search, review summaries, recommendations, and customer service, and can be deployed inside your infrastructure so enterprise data stays in-house."}
                             </p>
+                            <KeyPoints items={ko ? ["커머스 도메인 학습", "RAG·Fine-Tuning 적용", "고객 인프라 안 배치"] : ["Commerce domain training", "RAG & fine-tuning", "Deployed in your infra"]} />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Link href={h("/product/polar")} className={BTN_PRIMARY}>
                                     {ko ? "Polar 살펴보기" : "Explore Polar"}
                                 </Link>
-                                <Link href={h("/contact")} className={BTN_SECONDARY}>
+                                <Link href={h("/contact")} className={BTN_SECONDARY_DARK}>
                                     {ko ? "Polar 도입 문의" : "Ask about Polar"}
                                 </Link>
                             </div>
-                            <p className="mt-4 text-[13.5px] text-[var(--color-ink-muted)]">
+                            <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko ? "학습 데이터와 성능은 고객 데이터·인프라 구성에 따라 달라집니다." : "Training data and performance depend on your data and infrastructure."}
                             </p>
                         </div>
@@ -511,27 +536,31 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     </div>,
                     <div key="ontlas" className={`${PAD} grid items-center gap-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14`}>
                         <div>
-                            <p className="text-[15px] font-semibold text-[var(--color-ink)]">
-                                Ontlas <span className="font-normal text-[var(--color-ink-muted)]">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
+                            <p className="text-[15px] font-semibold text-white">
+                                Ontlas <span className="font-normal text-white/65">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
                             </p>
-                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
-                                {ko ? "흩어진 기업 데이터에" : "Connect meaning and relationships"}
-                                <br className="hidden sm:block" /> {ko ? "의미와 관계를 연결합니다" : "across scattered enterprise data"}
+                            <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
+                                {ko ? "AI가 신뢰하고" : "Knowledge AI can trust"}
+                                <br className="hidden sm:block" /> {ko ? "활용할 수 있는 지식으로," : "and put to work:"}
+<br className="hidden sm:block" /> {ko ? "Ontlas" : "Ontlas"}
                             </h2>
-                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-[var(--color-ink-muted)]">
+                            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
-                                    ? "Ontlas는 제조·커머스·금융 등 산업별 업무 개념과 데이터 간 관계를 체계화하는 온톨로지 솔루션입니다. 파일·DB·문서에 분산된 정보를 공통의 의미 체계로 연결해, 일관된 기준으로 데이터를 탐색하고 AI Agent가 업무 맥락과 근거를 활용할 수 있도록 지원합니다."
-                                    : "Ontlas is an ontology solution that structures industry-specific business concepts and the relationships between data in sectors such as manufacturing, commerce, and finance. It connects information spread across files, databases, and documents through a shared semantic model, so data can be explored on a consistent basis and AI agents can use business context and evidence."}
+                                    ? "Ontlas는 기업 문서와 DB에서 업무 개념과 관계를 추출하고, 일관된 기준으로 지식을 구조화하는 도메인 온톨로지 솔루션입니다. 지식의 출처를 추적하고 품질을 검증하여, AI Agent가 근거 있는 판단과 업무 수행에 활용할 수 있도록 지원합니다."
+                                    : "Ontlas is a domain ontology solution that extracts business concepts and relationships from enterprise documents and databases and structures knowledge on consistent criteria. It traces where knowledge comes from and verifies its quality, so AI agents can use it as grounded evidence for decisions and work."}
                             </p>
+                            <KeyPoints items={ko ? ["산업별 도메인 온톨로지", "파일·DB·문서 의미 연결", "Agent 근거·맥락 활용"] : ["Industry domain ontologies", "Files, DBs & docs linked by meaning", "Context and evidence for agents"]} />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Link href={h("/contact")} className={BTN_PRIMARY}>
                                     {ko ? "Ontlas 도입 문의" : "Ask about Ontlas"}
                                 </Link>
-                                <Link href={h("/technology")} className={BTN_SECONDARY}>
+                                {/* 숨김: 온톨로지 기술 보기 버튼
+                                <Link href={h("/technology")} className={BTN_SECONDARY_DARK}>
                                     {ko ? "온톨로지 기술 보기" : "Ontology technology"}
                                 </Link>
+                                */}
                             </div>
-                            <p className="mt-4 text-[13.5px] text-[var(--color-ink-muted)]">
+                            <p className="mt-4 text-[13.5px] text-white/65">
                                 {ko
                                     ? "Ontlas 제품 페이지는 준비 중입니다. 적용 범위는 원천 데이터와 구성에 따라 달라집니다."
                                     : "The Ontlas product page is in preparation. Scope depends on your source data and configuration."}
@@ -545,9 +574,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                 <div className={`${PAD} pb-12 ${hero ? "pt-12" : "pt-6"}`}>
                     <dl className="grid grid-cols-2 gap-y-6 md:grid-cols-4">
                         {proof.map((x, i) => (
-                            <Rise key={x.label} delay={i * 90} className="border-l border-[var(--color-line-strong)] pl-5">
-                                <dt className="text-[13px] text-[var(--color-ink-muted)]">{x.label}</dt>
-                                <dd className="mt-1 text-[24px] font-semibold tracking-tight text-[var(--color-ink)]">
+                            <Rise key={x.label} delay={i * 90} className="border-l border-white/20 pl-5">
+                                <dt className="text-[13px] text-white/65">{x.label}</dt>
+                                <dd className="mt-1 text-[24px] font-semibold tracking-tight text-white">
                                     {i === 0 ? (
                                         <>
                                             <Num value={1086} />
@@ -559,7 +588,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                         x.value
                                     )}
                                 </dd>
-                                <dd className="text-[12.5px] text-[var(--color-ink-subtle)]">{x.sub}</dd>
+                                <dd className="text-[12.5px] text-white/45">{x.sub}</dd>
                             </Rise>
                         ))}
                     </dl>
@@ -567,6 +596,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             </section>
 
             {/* 인지 단계 신뢰 신호 — 고객 로고를 첫 화면 바로 아래에 */}
+            {/* 15일 체험 띠배너 — 솔루션 쇼케이스 시작 지점 */}
+            <InlinePromoBand locale={locale} />
             <XgenPlatformShowcase locale={locale} />
             <ProvenPerformance locale={locale} />
             <PlateerCustomerBand locale={locale} />

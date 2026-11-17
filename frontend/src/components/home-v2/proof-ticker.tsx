@@ -27,10 +27,10 @@ export function ProofTicker({ items, label, interval = 3200 }: { items: string[]
 
     if (still) {
         return (
-            <ul aria-label={label} className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-[13.5px] text-[var(--color-ink-muted)]">
+            <ul aria-label={label} className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-[13.5px] text-white/65">
                 {items.map((t) => (
                     <li key={t} className="flex items-center gap-1.5">
-                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#185aea]" />
+                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#5fd0ff]" />
                         {t}
                     </li>
                 ))}
@@ -45,13 +45,13 @@ export function ProofTicker({ items, label, interval = 3200 }: { items: string[]
                     <li key={t}>{t}</li>
                 ))}
             </ul>
-            <div aria-hidden className="relative h-[42px] overflow-hidden text-[14px] leading-[21px] sm:h-[22px] text-[var(--color-ink)]">
+            <div aria-hidden className="relative h-[42px] overflow-hidden text-[14px] leading-[21px] sm:h-[22px] text-white">
                 {items.map((t, n) => (
                     <p
                         key={t}
                         className={`absolute inset-x-0 top-0 flex items-start gap-2 transition-all duration-500 ${n === i ? "translate-y-0 opacity-100" : n === (i - 1 + items.length) % items.length ? "-translate-y-full opacity-0" : "translate-y-full opacity-0"}`}
                     >
-                        <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-[#185aea]" />
+                        <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-[#5fd0ff]" />
                         <span className="line-clamp-2 sm:truncate">{t}</span>
                     </p>
                 ))}

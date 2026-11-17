@@ -900,10 +900,10 @@ img {
 @keyframes ent-node { from { opacity: 0; transform: translateY(10px) scale(0.96); } }
 .ent-dot { animation: ent-dot 4.4s ease-in-out infinite; }
 @keyframes ent-dot { 0%, 20%, 100% { box-shadow: 0 0 0 0 rgba(0, 172, 238, 0); } 10% { box-shadow: 0 0 0 5px rgba(0, 172, 238, 0.35); } }
-.rt-photo { filter: brightness(1.7) contrast(0.9); }
+.rt-photo { filter: brightness(1.15) saturate(0.9) contrast(1.05); }
 .rt-scan { background: linear-gradient(180deg, transparent, rgba(255, 93, 93, 0.22) 85%, rgba(255, 93, 93, 0.7) 100%); animation: rt-scan 3.2s linear infinite; }
 @keyframes rt-scan { from { transform: translateY(-100%); } to { transform: translateY(420%); } }
-.cm-photo { filter: brightness(1.12); }
+.cm-photo { filter: brightness(0.92) saturate(0.9) contrast(1.05); }
 .hero-slide[data-active="true"] .cm-float { animation: redteam-row 0.6s cubic-bezier(0.22, 1, 0.36, 1) both, cm-float 5s ease-in-out infinite; }
 @keyframes cm-float { 50% { transform: translateY(-5px); } }
 .hero-slide[data-active="true"] .pl-typing { animation: pl-type 2.2s steps(24) both; }
@@ -964,4 +964,14 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .hero-slide[data-active="true"] .xv-shot, .hero-slide[data-active="true"] .xv-layer,
   .hero-slide[data-active="true"] .xv-layer .xv-no, .xv-pulse { animation: none; }
+}
+
+/* 메인 히어로 슬라이드별 영역 배경(hero-slider backgrounds) — 2번 레드티밍 */
+.hero-bg { opacity: 0; transition: opacity 0.7s ease; }
+.hero-bg[data-active="true"] { opacity: 1; }
+.rt-bg-photo { filter: brightness(1.1) contrast(1.05); }
+.hero-bg[data-active="true"] .rt-bg-photo { animation: ent-zoom 12s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg { transition: none; }
+    .hero-bg[data-active="true"] .rt-bg-photo { animation: none; }
 }

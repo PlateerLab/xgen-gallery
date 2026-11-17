@@ -11,8 +11,8 @@ import { Rise } from "@/components/home-v2/journey-motion";
  */
 const T = {
     ko: {
-        lead: "XGEN 플랫폼을 직접 경험해 보세요.",
-        title: "AI Agent의 제작·연결·운영을 하나의 플랫폼에서",
+        lead: "Agent 생성부터 업무 실행과 운영까지, XGEN의 실제 환경을 확인해 보세요.",
+        title: "AI Agent가 일하는 방식, 직접 경험해 보세요.",
         trial: "체험 신청하기",
         contact: "문의하기",
         imgAlt: "XGEN Canvas에서 사용자 질문 입력, 멀티턴 DB, 정보 검색 노드를 에이전트에 연결한 에이전트플로우 편집 화면",
@@ -31,8 +31,8 @@ const T = {
         note: "XGEN 화면을 옮긴 예시이며, 표시된 값은 시험 환경 기준입니다. 메뉴와 기능 범위는 버전과 구성에 따라 다릅니다.",
     },
     en: {
-        lead: "Experience the XGEN platform yourself.",
-        title: "Build, connect and run AI agents on one platform",
+        lead: "From creating agents to running and operating real work, see XGEN in an actual environment.",
+        title: "See how AI agents work, firsthand.",
         trial: "Request a trial",
         contact: "Contact us",
         imgAlt: "XGEN Canvas editing an agent flow that connects a user input, a multi-turn DB and a retrieval node to an agent",
@@ -56,9 +56,7 @@ const T = {
  * 영상 오른쪽 채팅 창(가로 65% 이후)은 가리지 않도록, 탐색기·선택된 파일 영역(약 15~63%) 안에만 배치한다. */
 const OVERLAYS = [
     { src: "/intro/xgen-ov-tokens.webp", w: 397, h: 246, pos: "left-[12%] top-[31%] w-[22%]", show: "lg:block", delay: "0s" },
-    { src: "/intro/xgen-ov-approval.webp", w: 496, h: 256, pos: "left-[31%] top-[14%] w-[21%]", show: "lg:block", delay: "-2.2s" },
     { src: "/intro/xgen-ov-system.webp", w: 817, h: 349, pos: "left-[16.5%] top-[57%] w-[30%]", show: "lg:block", delay: "-4.1s" },
-    { src: "/intro/xgen-ov-eval.webp", w: 574, h: 268, pos: "left-[30%] top-[40%] w-[22%]", show: "xl:block", delay: "-1.3s" },
     { src: "/intro/xgen-ov-policy.webp", w: 755, h: 243, pos: "left-[20%] bottom-[0%] w-[32%]", show: "xl:block", delay: "-5.4s" },
 ] as const;
 
@@ -75,10 +73,10 @@ export function XgenPlatformShowcase({ locale = "ko" }: { locale?: Locale }) {
         >
             <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8">
                 <Rise className="text-center">
-                    <p className="text-[22px] font-medium leading-[1.35] tracking-tight text-white/85 md:text-[36px]">{t.lead}</p>
-                    <h2 id="xgen-showcase-title" className="mt-2 text-[24px] font-bold leading-[1.3] tracking-tight [word-break:keep-all] md:text-[40px]">
+                    <h2 id="xgen-showcase-title" className="text-[26px] font-bold leading-[1.3] tracking-tight [word-break:keep-all] md:text-[40px]">
                         {t.title}
                     </h2>
+                    <p className="mx-auto mt-4 max-w-[720px] text-[15.5px] font-normal leading-[1.6] text-white/70 [word-break:keep-all] md:text-[18px]">{t.lead}</p>
                     <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-10">
                         <Link
                             href={h("/xgen-trial")}

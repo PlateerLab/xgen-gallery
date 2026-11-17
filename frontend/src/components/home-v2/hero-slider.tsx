@@ -12,11 +12,14 @@ export function HeroSlider({
     slides,
     labels,
     durations,
+    backgrounds,
     ariaLabel,
 }: {
     slides: React.ReactNode[];
     labels: string[];
     durations?: number[];
+    /** 슬라이드별 영역 배경. 부모 section 전체에 깔리고 활성 슬라이드일 때만 보인다 */
+    backgrounds?: (React.ReactNode | null)[];
     ariaLabel: string;
 }) {
     const [idx, setIdx] = useState(0);
@@ -54,6 +57,13 @@ export function HeroSlider({
             onFocusCapture={() => setPaused(true)}
             onBlurCapture={() => setPaused(false)}
         >
+            {backgrounds?.map((b, i) =>
+                b ? (
+                    <div key={`bg-${i}`} aria-hidden className="hero-bg pointer-events-none absolute inset-0 -z-10 overflow-hidden" data-active={i === idx ? "true" : "false"}>
+                        {b}
+                    </div>
+                ) : null,
+            )}
             <div className="grid">
                 {slides.map((s, i) => (
                     <div
@@ -82,16 +92,16 @@ export function HeroSlider({
                                 onClick={() => go(i)}
                                 className="group min-w-[150px] max-w-[240px] flex-1 text-left"
                             >
-                                <span className="block h-[3px] w-full overflow-hidden rounded-full bg-[var(--color-line)]">
+                                <span className="block h-[3px] w-full overflow-hidden rounded-full bg-white/15">
                                     <span
                                         key={`${idx}-${i}`}
-                                        className={i === idx ? "hero-slide-bar block h-full bg-[#185aea]" : i < idx ? "block h-full w-full bg-[#185aea]/40" : "block h-full w-0"}
+                                        className={i === idx ? "hero-slide-bar block h-full bg-[linear-gradient(90deg,#00acee,#185aea)]" : i < idx ? "block h-full w-full bg-white/40" : "block h-full w-0"}
                                         style={i === idx ? { animationDuration: `${ms}ms`, animationPlayState: paused || reduced ? "paused" : "running" } : undefined}
                                     />
                                 </span>
                                 <span
                                     className={`mt-2 block truncate text-[13px] ${
-                                        i === idx ? "font-semibold text-[var(--color-ink)]" : "text-[var(--color-ink-muted)] group-hover:text-[var(--color-ink)]"
+                                        i === idx ? "font-semibold text-white" : "text-white/55 group-hover:text-white"
                                     }`}
                                 >
                                     <span className="mr-1.5 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
@@ -105,7 +115,7 @@ export function HeroSlider({
                             type="button"
                             onClick={() => go(idx - 1)}
                             aria-label="Previous slide"
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line-strong)] text-[var(--color-ink)] transition hover:bg-[var(--color-surface-hover)]"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white transition hover:bg-white/10"
                         >
                             <ChevronLeft className="h-4 w-4" />
                         </button>
@@ -113,7 +123,7 @@ export function HeroSlider({
                             type="button"
                             onClick={() => go(idx + 1)}
                             aria-label="Next slide"
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line-strong)] text-[var(--color-ink)] transition hover:bg-[var(--color-surface-hover)]"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white transition hover:bg-white/10"
                         >
                             <ChevronRight className="h-4 w-4" />
                         </button>

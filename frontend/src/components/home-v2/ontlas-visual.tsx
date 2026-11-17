@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * 메인 히어로 마지막 슬라이드 비주얼 — Ontlas(의미 계층 온톨로지 솔루션).
- * 다른 슬라이드와 겹치지 않는 패턴: 밝은 틸 톤 바탕의 "도메인 전환 개념 그래프".
+ * 다른 슬라이드와 겹치지 않는 패턴: 딥그린 다크 바탕의 "도메인 전환 개념 그래프"(다크 스킨).
  *   커머스 → 제조 → 금융 도메인 탭이 4초씩 차례로 켜지고, 같은 자리의 개념 그래프가
  *   해당 도메인의 개념·관계로 바뀐다(12초 주기). 아래에는 원천 데이터(파일·DB·문서)와
  *   그 위의 의미 계층, 질의 방식 칩. 동작 줄이기 설정이면 첫 도메인 그래프로 정지.
@@ -47,7 +47,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 .ov-g{opacity:0;animation:ov-cycle 12s infinite}
                 .ov-tab{animation:ov-tab 12s infinite}
                 @keyframes ov-cycle{0%{opacity:0}3%,30%{opacity:1}34%,100%{opacity:0}}
-                @keyframes ov-tab{0%{background:transparent;color:#0f766e}3%,30%{background:#0f766e;color:#fff}34%,100%{background:transparent;color:#0f766e}}
+                @keyframes ov-tab{0%{background:transparent;color:#5eead4}3%,30%{background:#14b8a6;color:#04140f}34%,100%{background:transparent;color:#5eead4}}
                 .ov-edge{stroke-dasharray:5 5;animation:ov-flow 1.4s linear infinite}
                 @keyframes ov-flow{to{stroke-dashoffset:-20}}
                 .ov-ring{transform-origin:260px 150px;animation:ov-ring 2.4s ease-out infinite}
@@ -59,10 +59,10 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 @media (prefers-reduced-motion:reduce){
                     .ov-g,.ov-tab,.ov-edge,.ov-ring,.ov-layer,.ov-photo{animation:none}
                     .ov-g:first-of-type{opacity:1}
-                    .ov-tab:first-child{background:#0f766e;color:#fff}
+                    .ov-tab:first-child{background:#14b8a6;color:#04140f}
                 }
             `}</style>
-            <div className="relative overflow-hidden rounded-[24px] bg-[#e6f6f3] p-5 ring-1 ring-[#cdeae4] sm:p-7">
+            <div className="relative overflow-hidden rounded-[24px] bg-[#04140f] p-5 ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(20,184,166,0.4)] sm:p-7">
                 {/* 배경 실사(노드·연결 로프 망, CC0) + 반투명 밝은 레이어 */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -73,15 +73,15 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 />
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(240,251,248,0.78)_0%,rgba(230,246,243,0.42)_50%,rgba(244,248,255,0.7)_100%)]"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(20,184,166,0.16),transparent_70%),linear-gradient(160deg,rgba(4,20,15,0.86)_0%,rgba(4,20,15,0.62)_50%,rgba(11,18,36,0.88)_100%)]"
                 />
                 <div className="relative flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-[#0f766e]" />
-                        <span className="text-[12px] font-bold tracking-wide text-[#0b1224]">ONTLAS</span>
-                        <span className="hidden text-[11px] text-[#4b5563] sm:inline">· {ko ? "도메인 온톨로지" : "domain ontology"}</span>
+                        <span className="h-2 w-2 rounded-full bg-[#2dd4bf]" />
+                        <span className="text-[12px] font-bold tracking-wide text-white">ONTLAS</span>
+                        <span className="hidden text-[11px] text-white/65 sm:inline">· {ko ? "도메인 온톨로지" : "domain ontology"}</span>
                     </div>
-                    <div className="flex gap-1 rounded-full border border-[#bfe3dc] bg-white/80 p-1" aria-hidden>
+                    <div className="flex gap-1 rounded-full border border-white/15 bg-[#04140f]/70 p-1 backdrop-blur-md" aria-hidden>
                         {domains.map((d, i) => (
                             <span key={d.tab} className="ov-tab rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold" style={{ animationDelay: `${i * 4}s` }}>
                                 {d.tab}
@@ -91,7 +91,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* 도메인별 개념 그래프 — 같은 자리에서 교차 */}
-                <div className="relative mt-4 rounded-[16px] border border-[#cdeae4] bg-white/65 backdrop-blur-[2px] shadow-[0_18px_40px_-26px_rgba(11,18,36,0.45)]">
+                <div className="relative mt-4 rounded-[16px] border border-white/12 bg-[#04140f]/55 backdrop-blur-md shadow-[0_18px_40px_-26px_rgba(0,0,0,0.8)]">
                     <svg
                         viewBox="0 0 520 300"
                         className="block h-auto w-full"
@@ -102,7 +102,7 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                 : "Concept diagram of business concepts and relationships for commerce, manufacturing, and finance"
                         }
                     >
-                        <circle className="ov-ring" cx={260} cy={150} r={36} fill="none" stroke="#14b8a6" strokeWidth={2} />
+                        <circle className="ov-ring" cx={260} cy={150} r={36} fill="none" stroke="#2dd4bf" strokeWidth={2} />
                         {domains.map((d, di) => (
                             <g key={d.tab} className="ov-g" style={{ animationDelay: `${di * 4}s` }}>
                                 {EDGES.map(([a, b], ei) => {
@@ -113,9 +113,9 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                     const w = d.rels[ei].length * (ko ? 12 : 6.6) + 14;
                                     return (
                                         <g key={ei}>
-                                            <line className="ov-edge" x1={x1} y1={y1} x2={x2} y2={y2} stroke="#5eb8ab" strokeWidth={1.6} />
-                                            <rect x={mx - w / 2} y={my - 10} width={w} height={20} rx={10} fill="#ffffff" stroke="#bfe3dc" />
-                                            <text x={mx} y={my + 4} textAnchor="middle" fontSize={11} fill="#0f766e">
+                                            <line className="ov-edge" x1={x1} y1={y1} x2={x2} y2={y2} stroke="#2dd4bf" strokeOpacity={0.55} strokeWidth={1.6} />
+                                            <rect x={mx - w / 2} y={my - 10} width={w} height={20} rx={10} fill="#06231c" stroke="rgba(45,212,191,0.45)" />
+                                            <text x={mx} y={my + 4} textAnchor="middle" fontSize={11} fill="#5eead4">
                                                 {d.rels[ei]}
                                             </text>
                                         </g>
@@ -131,8 +131,8 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
                                         </g>
                                     ) : (
                                         <g key={ni}>
-                                            <rect x={x - 52} y={y - 18} width={104} height={36} rx={18} fill="#ffffff" stroke="#14b8a6" strokeWidth={1.5} />
-                                            <text x={x} y={y + 5} textAnchor="middle" fontSize={13.5} fontWeight={600} fill="#0b1224">
+                                            <rect x={x - 52} y={y - 18} width={104} height={36} rx={18} fill="#0a1f1a" stroke="#2dd4bf" strokeWidth={1.5} />
+                                            <text x={x} y={y + 5} textAnchor="middle" fontSize={13.5} fontWeight={600} fill="#ffffff">
                                                 {d.nodes[ni]}
                                             </text>
                                         </g>
@@ -151,25 +151,25 @@ export function OntlasVisual({ locale }: { locale: Locale }) {
 
                 {/* 의미 계층 ↔ 원천 데이터 */}
                 <div className="relative mt-3 grid gap-2 sm:grid-cols-[1fr_auto] sm:items-stretch">
-                    <div className="ov-layer flex items-center justify-between gap-3 rounded-[12px] border border-dashed border-[#5eb8ab] bg-white/70 px-3 py-2">
-                        <span className="text-[12.5px] font-bold text-[#0f766e]">{ko ? "의미 계층" : "Semantic layer"}</span>
+                    <div className="ov-layer flex items-center justify-between gap-3 rounded-[12px] border border-dashed border-[#2dd4bf]/60 bg-[#04140f]/60 px-3 py-2 backdrop-blur-md">
+                        <span className="text-[12.5px] font-bold text-[#5eead4]">{ko ? "의미 계층" : "Semantic layer"}</span>
                         <span className="flex flex-wrap justify-end gap-1.5">
                             {(ko ? ["파일", "DB", "문서"] : ["Files", "DB", "Docs"]).map((s) => (
-                                <span key={s} className="rounded-md bg-[#e6f6f3] px-2 py-0.5 text-[11.5px] text-[#134e4a]">
+                                <span key={s} className="rounded-md bg-white/10 px-2 py-0.5 text-[11.5px] text-white/85">
                                     {s}
                                 </span>
                             ))}
                         </span>
                     </div>
-                    <div className="flex items-center gap-1.5 rounded-[12px] border border-[#d9e4fb] bg-white/80 px-3 py-2">
+                    <div className="flex items-center gap-1.5 rounded-[12px] border border-white/12 bg-[#04140f]/60 px-3 py-2 backdrop-blur-md">
                         {["SQL", "Cypher", "SPARQL", "MCP"].map((q) => (
-                            <span key={q} className="rounded-full bg-[#eef3ff] px-2 py-0.5 text-[11px] font-semibold text-[#185aea]">
+                            <span key={q} className="rounded-full bg-[#5fd0ff]/15 px-2 py-0.5 text-[11px] font-semibold text-[#9fe4ff]">
                                 {q}
                             </span>
                         ))}
                     </div>
                 </div>
-                <p className="relative mt-3 text-[11.5px] text-[#4b5563]">
+                <p className="relative mt-3 text-[11.5px] text-white/55">
                     {ko ? "개념도 · 도메인과 개념 구성은 예시입니다" : "Concept diagram · domains and concepts are examples"}
                 </p>
             </div>

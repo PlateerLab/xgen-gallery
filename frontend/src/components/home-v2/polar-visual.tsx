@@ -33,7 +33,16 @@ export function PolarVisual({ locale }: { locale: Locale }) {
 
     return (
         <div className="relative">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-[#0b1224] sm:aspect-[4/3]">
+            {/* 다크 스킨 — 전역 .pd-* 흰 노드를 이 비주얼 안에서만 어두운 글래스 노드로 덮는다 */}
+            <style>{`
+                .pdk .pd-node{fill:rgba(11,18,36,0.72);stroke:rgba(255,255,255,0.22)}
+                .pdk .pd-node-out{fill:rgba(124,92,255,0.16);stroke:rgba(167,139,250,0.55)}
+                .pdk .pd-rag{fill:rgba(11,18,36,0.8);stroke:rgba(95,208,255,0.45)}
+                .pdk .pd-label{fill:#fff}
+                .pdk .pd-label-out{fill:#c4b5fd}
+                .pdk .pd-sub{fill:rgba(255,255,255,0.6)}
+            `}</style>
+            <div className="pdk relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-[#0b1224] ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(124,92,255,0.45)] sm:aspect-[4/3]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/polar/mk/hero-photo.webp"
@@ -41,7 +50,7 @@ export function PolarVisual({ locale }: { locale: Locale }) {
                     aria-hidden
                     className="absolute inset-0 h-full w-full object-cover object-[65%_center]"
                 />
-                <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,18,36,0.72),rgba(11,18,36,0.55))]" />
+                <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(124,92,255,0.18),transparent_70%),linear-gradient(180deg,rgba(11,18,36,0.8),rgba(11,18,36,0.66))]" />
 
                 <div className="absolute inset-x-[5%] top-[6%] flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
@@ -49,7 +58,6 @@ export function PolarVisual({ locale }: { locale: Locale }) {
                         <span className="text-[12px] font-semibold tracking-wide text-white">POLAR sLLM</span>
                         <span className="hidden text-[11px] text-white/70 sm:inline">· {ko ? "작동 방식 · LLM + RAG" : "how it works · LLM + RAG"}</span>
                     </div>
-                    <span className="rounded-full border border-white/25 bg-[#0b1224]/40 px-2 py-0.5 text-[10.5px] text-white/75">{ko ? "개념도" : "Concept diagram"}</span>
                 </div>
 
                 <svg
