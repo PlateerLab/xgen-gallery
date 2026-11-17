@@ -46,7 +46,7 @@ export function RedTeamVisual({ locale }: { locale: Locale }) {
                                 style={{ animationDelay: `${0.5 + i * 0.4}s` }}
                             >
                                 <div className="min-w-0">
-                                    <p className="text-[11.5px] font-semibold text-[#ff8a8a]">{r.kind}</p>
+                                    <p className="text-[11.5px] font-semibold text-[#7fb2ff]">{r.kind}</p>
                                     <p className="truncate text-[12px] text-white/90">“{r.text}”</p>
                                 </div>
                                 <div className="flex items-center gap-2">

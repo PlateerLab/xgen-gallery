@@ -69,11 +69,12 @@ export function XgenPlatformShowcase({ locale = "ko" }: { locale?: Locale }) {
         <section
             data-nav-theme="dark"
             aria-labelledby="xgen-showcase-title"
-            className="overflow-hidden bg-[linear-gradient(180deg,#2b2e38_0%,#25272f_55%,#222222_100%)] pt-20 pb-16 text-white md:pt-28 md:pb-24"
+            className="overflow-hidden bg-[linear-gradient(180deg,#000000_0%,#16181f_22%,#25272f_60%,#222222_100%)] pt-16 pb-16 text-white md:pt-20 md:pb-24"
         >
             <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8">
                 <Rise className="text-center">
-                    <h2 id="xgen-showcase-title" className="text-[26px] font-bold leading-[1.3] tracking-tight [word-break:keep-all] md:text-[40px]">
+                    <p className="text-[12.5px] font-semibold uppercase tracking-[0.22em] text-[#5fd0ff]">Product Tour</p>
+                    <h2 id="xgen-showcase-title" className="mt-4 text-[26px] font-bold leading-[1.3] tracking-tight [word-break:keep-all] md:text-[40px]">
                         {t.title}
                     </h2>
                     <p className="mx-auto mt-4 max-w-[720px] text-[15.5px] font-normal leading-[1.6] text-white/70 [word-break:keep-all] md:text-[18px]">{t.lead}</p>

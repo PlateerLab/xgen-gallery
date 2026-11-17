@@ -50,6 +50,7 @@ export function HeroSlider({
     return (
         <div
             role="region"
+            className="lg:flex lg:flex-1 lg:flex-col"
             aria-roledescription="carousel"
             aria-label={ariaLabel}
             onMouseEnter={() => setPaused(true)}
@@ -64,7 +65,7 @@ export function HeroSlider({
                     </div>
                 ) : null,
             )}
-            <div className="grid">
+            <div className="grid lg:flex-1 lg:content-center">
                 {slides.map((s, i) => (
                     <div
                         key={i}

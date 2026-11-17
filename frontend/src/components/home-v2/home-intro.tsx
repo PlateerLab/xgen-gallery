@@ -392,11 +392,11 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
         <>
             {/* 인지 — 회사 전체 메시지 */}
             {hero}
-            <section data-nav-theme="dark" className={`relative isolate overflow-hidden bg-black text-white ${hero ? "" : "pt-[calc(var(--nav-h,80px)+40px)]"}`}>
+            <section data-nav-theme="dark" className={`relative isolate overflow-hidden bg-black text-white lg:flex lg:min-h-[clamp(760px,100svh,980px)] lg:flex-col ${hero ? "" : "pt-[calc(var(--nav-h,80px)+40px)]"}`}>
                 {/* /product/xgen 히어로와 같은 다크 톤 — 검정 바탕 + 아래쪽 파티클 띠 + 은은한 빛 */}
                 <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(42%_48%_at_8%_32%,rgba(24,90,234,0.22),transparent_70%),radial-gradient(36%_42%_at_92%_45%,rgba(0,172,238,0.12),transparent_70%)]" />
                 <div aria-hidden className="intro-arc-bg pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[320px] lg:h-[46%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]" />
-                <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] bg-gradient-to-b from-transparent via-black/30 to-black/70 lg:h-[38%]" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px] bg-gradient-to-b from-transparent via-black/40 to-black lg:h-[38%]" />
                 {!hero && (
                     <HeroSlider
                         ariaLabel={ko ? "메인 키 비주얼" : "Main key visual"}
@@ -566,8 +566,8 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                         ]}
                     />
                 )}
-                <div className={`${PAD} pb-12 ${hero ? "pt-12" : "pt-6"}`}>
-                    <dl className="grid grid-cols-2 gap-y-6 md:grid-cols-4">
+                <div className={`${PAD} pb-12 lg:pb-14 ${hero ? "pt-12" : "pt-8"}`}>
+                    <dl className="grid grid-cols-2 gap-y-6 border-t border-white/10 pt-7 md:grid-cols-4">
                         {proof.map((x, i) => (
                             <Rise key={x.label} delay={i * 90} className="border-l border-white/20 pl-5">
                                 <dt className="text-[13px] text-white/65">{x.label}</dt>
