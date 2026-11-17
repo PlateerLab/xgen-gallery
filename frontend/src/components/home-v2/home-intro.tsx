@@ -540,9 +540,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                 Ontlas <span className="font-normal text-white/65">· {ko ? "의미 기반 온톨로지 솔루션" : "Semantic ontology solution"}</span>
                             </p>
                             <h2 className="mt-5 text-[34px] font-bold leading-[1.15] tracking-[-0.025em] text-white sm:text-[44px] lg:text-[52px]">
-                                {ko ? "AI가 신뢰하고" : "Knowledge AI can trust"}
-                                <br className="hidden sm:block" /> {ko ? "활용할 수 있는 지식으로," : "and put to work:"}
-<br className="hidden sm:block" /> {ko ? "Ontlas" : "Ontlas"}
+                                {ko ? "기업의 데이터를," : "Turning enterprise data"}
+                                <br className="hidden sm:block" /> {ko ? "검증된 AI 지식으로" : "into verified AI knowledge:"}
+<br className="hidden sm:block" /> Ontlas
                             </h2>
                             <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/65">
                                 {ko
@@ -597,10 +597,10 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
 
             {/* 인지 단계 신뢰 신호 — 고객 로고를 첫 화면 바로 아래에 */}
             {/* 15일 체험 띠배너 — 솔루션 쇼케이스 시작 지점 */}
-            <InlinePromoBand locale={locale} />
             <XgenPlatformShowcase locale={locale} />
             <ProvenPerformance locale={locale} />
             <PlateerCustomerBand locale={locale} />
+            <InlinePromoBand locale={locale} />
 
             <IntroStickyNav items={sections} cta={{ label: contact, href: "/contact" }} />
 
