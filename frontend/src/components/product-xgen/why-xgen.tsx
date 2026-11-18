@@ -237,7 +237,7 @@ export function WhyXgenHero({ locale }: { locale: Locale }) {
                 {/* 물결 띠 — 데모 요청하기 버튼과 4단계 바 사이 정중앙에 XGEN */}
                 <div className="why-in why-d5 relative mt-10 flex min-h-[220px] w-full max-w-5xl flex-1 items-center justify-center sm:min-h-[300px] lg:min-h-[340px]">
                     <div aria-hidden className="why-band pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-screen -translate-x-1/2 -translate-y-1/2 sm:h-[360px] lg:h-[440px]">
-                        <video className="why-band-video h-full w-full object-cover" src="/product/why/hero-dn13-band-loop.mp4" poster="/product/why/hero-dn13-band-loop-poster.jpg" autoPlay muted loop playsInline preload="auto" />
+                        <video className="h-full w-full object-cover" src="/product/why/hero-td310-aurora.mp4" poster="/product/why/hero-td310-aurora-poster.jpg" autoPlay muted loop playsInline preload="auto" />
                     </div>
                     <p className="why-band-word why-band-in relative select-none text-[64px] font-black leading-none tracking-[-0.03em] sm:text-[88px] lg:text-[112px]">XGEN</p>
                 </div>
