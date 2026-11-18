@@ -71,8 +71,9 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 const COPY = {
     ko: {
         heroEyebrow: "XGEN · Enterprise Agentic AI Platform",
-        heroTitleA: "Beyond Adoption,",
-        heroTitleB: "Build for Operation",
+        heroTitleA: "‘자율적으로 일하는 AI’를 넘어,",
+        heroTitleB: "기업의 통제 아래, 사용자 업무 환경까지 확장해",
+        heroTitleC: "스스로 일하고 개선되는 AI Agent",
         heroSub: "도입에서 멈추지 않고, 운영으로 이어지는 기업 AI",
         heroLead:
             "XGEN은 기업 AI를 단계적으로 진화시키는 AX Evolution Platform입니다. 한 번 만든 Agent와 지식, 도구를 운영 자산으로 쌓아 다음 업무로 확장합니다.",
@@ -123,8 +124,9 @@ const COPY = {
     },
     en: {
         heroEyebrow: "XGEN · Enterprise Agentic AI Platform",
-        heroTitleA: "Beyond Adoption,",
-        heroTitleB: "Build for Operation",
+        heroTitleA: "Beyond ‘AI that works on its own’,",
+        heroTitleB: "under enterprise control, extending into users’ workspaces —",
+        heroTitleC: "AI agents that work and improve on their own",
         heroSub: "Enterprise AI that keeps going after adoption — into operation",
         heroLead:
             "XGEN is an AX Evolution Platform that grows enterprise AI step by step. Agents, knowledge and tools you build become operational assets you extend to the next workload.",
@@ -195,17 +197,22 @@ export function WhyXgenHero({ locale }: { locale: Locale }) {
             className="kv-hero why-hero-tall relative overflow-hidden bg-black text-white"
         >
             {/* 배경 — 검정 바탕 위 파티클 흐름 (xgen.im 키비주얼) */}
-            <div aria-hidden className="why-hero-bg pointer-events-none absolute inset-x-0 bottom-[60px] h-[260px] sm:h-[320px] lg:bottom-[70px] lg:h-[42%]" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(62%_52%_at_50%_40%,rgba(0,0,0,0.58),rgba(0,0,0,0.22)_62%,rgba(0,0,0,0)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,#000_0%,rgba(0,0,0,0.35)_16%,rgba(0,0,0,0)_50%,rgba(0,0,0,0.6)_82%,#000_100%)]" />
+            </div>
 
             <div className="kv-fill relative mx-auto flex min-h-[880px] w-full max-w-7xl flex-col items-center px-6 pb-16 lg:pb-24 pt-[calc(var(--nav-h,84px)+64px)] text-center lg:pt-[calc(var(--nav-h,84px)+88px)]">
                 <p className="why-in why-d1 font-mono text-[13px] uppercase tracking-[0.18em] text-white/75 md:text-[14px]">
                     {t.heroEyebrow}
                 </p>
-                <h1 className="why-in why-d2 mt-5 text-[40px] font-bold leading-[1.1] tracking-tight md:text-[64px]">
+                <h1 className="why-in why-d2 mt-5 text-[30px] font-bold leading-[1.2] tracking-tight [word-break:keep-all] md:text-[46px]">
                     {t.heroTitleA}
                     <br />
+                    <span className="text-white/85">{t.heroTitleB}</span>
+                    <br />
                     <span className="bg-gradient-to-r from-[#5fd0ff] via-[#7aa8ff] to-[#b49cff] bg-clip-text text-transparent">
-                        {t.heroTitleB}
+                        {t.heroTitleC}
                     </span>
                 </h1>
                 <p className="why-in why-d3 mt-6 text-[18px] font-semibold text-white/90 [word-break:keep-all] md:text-[21px]">{t.heroSub}</p>
@@ -227,7 +234,15 @@ export function WhyXgenHero({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* AX 진화 4단계 — 파티클 띠의 색 흐름(회색→노랑→보라→시안)과 같은 순서로 순환 */}
-                <div className="why-in why-d5 mt-auto grid w-full max-w-4xl grid-cols-4 gap-2 pt-[300px] sm:pt-[360px] lg:pt-0">
+                {/* 물결 띠 — 데모 요청하기 버튼과 4단계 바 사이 정중앙에 XGEN */}
+                <div className="why-in why-d5 relative mt-10 flex min-h-[220px] w-full max-w-5xl flex-1 items-center justify-center sm:min-h-[300px] lg:min-h-[340px]">
+                    <div aria-hidden className="why-band pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-screen -translate-x-1/2 -translate-y-1/2 sm:h-[360px] lg:h-[440px]">
+                        <video className="why-band-video h-full w-full object-cover" src="/product/why/hero-dn13-band-loop.mp4" poster="/product/why/hero-dn13-band-loop-poster.jpg" autoPlay muted loop playsInline preload="auto" />
+                    </div>
+                    <p className="why-band-word why-band-in relative select-none text-[64px] font-black leading-none tracking-[-0.03em] sm:text-[88px] lg:text-[112px]">XGEN</p>
+                </div>
+
+                <div className="why-in why-d5 mt-8 grid w-full max-w-4xl grid-cols-4 gap-2">
                     {t.heroStages.map((s, i) => (
                         <div key={s} className="flex flex-col items-center gap-2">
                             <span
