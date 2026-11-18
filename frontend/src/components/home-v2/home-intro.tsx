@@ -426,9 +426,9 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                                 }
                             />
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                                <a href="#products" className={BTN_PRIMARY}>
-                                    {ko ? "제품 살펴보기" : "Explore products"}
-                                </a>
+                                <Link href={h("/product/xgen")} className={BTN_PRIMARY}>
+                                    {ko ? "XGEN 살펴보기" : "Explore XGEN"}
+                                </Link>
                                 <Link href={h("/contact")} className={BTN_SECONDARY_DARK}>
                                     {contact}
                                 </Link>
