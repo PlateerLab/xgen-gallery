@@ -32,17 +32,17 @@ export const PRODUCT_EN = {
         {
             q: "Adopted AI, but it stalled at the pilot?",
             desc: "A great many AI projects finish at technical validation and never reach the actual work.",
-            imgAlt: "Illustration of a flow that stops at validation and pilot and never deploys into operation",
+            imgAlt: "A team discussing a project around laptops and documents",
         },
         {
             q: "Data and systems scattered?",
             desc: "Documents, knowledge, and legacy sit apart, so the AI never grasps the organization's context.",
-            imgAlt: "Illustration of data silos — documents, databases, and folders sitting unconnected",
+            imgAlt: "Tall stacks of paper documents on an office desk",
         },
         {
             q: "Security and regulation ruling out cloud AI?",
             desc: "Data sovereignty, audit, and approval requirements make external AI hard to adopt.",
-            imgAlt: "Illustration of a security shield protecting data, with transmission to external cloud AI blocked",
+            imgAlt: "An administrator checking equipment with a tablet in a server room",
         },
     ],
 

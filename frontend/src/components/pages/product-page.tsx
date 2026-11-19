@@ -65,20 +65,20 @@ const CHALLENGES: { q: string; desc: string; img: string; imgAlt: string }[] = [
     {
         q: "AI를 도입했지만, 파일럿에서 멈췄나요?",
         desc: "기술 검증에서 끝나고 실제 업무에 배포되지 못하는 AI 프로젝트가 많습니다.",
-        img: "/product/challenge-1-pilot.svg",
-        imgAlt: "검증·파일럿에서 멈추고 운영까지 배포되지 못하는 흐름 일러스트",
+        img: "/product/challenge-1-pilot.webp",
+        imgAlt: "노트북과 자료를 앞에 두고 프로젝트를 논의하는 회의 장면",
     },
     {
         q: "데이터와 시스템이 흩어져 있나요?",
         desc: "문서·지식·레거시가 분산돼 있어 AI가 조직의 맥락을 이해하지 못합니다.",
-        img: "/product/challenge-2-silo.svg",
-        imgAlt: "문서·데이터베이스·폴더가 연결되지 않고 흩어진 데이터 사일로 일러스트",
+        img: "/product/challenge-2-silo.webp",
+        imgAlt: "사무실 책상 위에 높이 쌓인 문서 더미",
     },
     {
         q: "보안·규제 때문에 클라우드 AI를 못 쓰나요?",
         desc: "데이터 주권·감사·승인 요건 때문에 외부 AI를 도입하기 어렵습니다.",
-        img: "/product/challenge-3-security.svg",
-        imgAlt: "보안 방패가 데이터를 지키고 외부 클라우드 AI로의 전송이 차단된 일러스트",
+        img: "/product/challenge-3-security.webp",
+        imgAlt: "서버실에서 태블릿으로 장비를 점검하는 관리자",
     },
 ];
 
@@ -743,23 +743,23 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                         </h2>
                         <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
                             {CHALLENGES_L.map((c, i) => (
-                                <div key={c.q}>
+                                <div key={c.q} className="flex h-full flex-col">
                                     <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
                                         0{i + 1}
                                     </span>
                                     <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
                                         {c.q}
                                     </h3>
-                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    <p className="mt-3 pb-6 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                                         {c.desc}
                                     </p>
                                     {/* 맥락 일러스트 — 텍스트 아래 */}
-                                    <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
+                                    <div className="mt-auto overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={c.img}
                                             alt={c.imgAlt}
-                                            className="block h-auto w-full"
+                                            className="block aspect-[16/10] w-full object-cover"
                                         />
                                     </div>
                                 </div>
