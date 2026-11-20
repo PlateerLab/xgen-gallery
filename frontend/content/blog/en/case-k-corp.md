@@ -45,4 +45,4 @@ If someone is answering the same question over and over, that answer can become 
 - Finance-specific AI that shows its sources → [Bank J's AI chatbot](/en/blog/case-j-bank)
 - An HR chatbot automating internal inquiries 24/7 → [Company P's internal HR chatbot](/en/blog/case-p-corp)
 
-If you want to validate it against your own operational systems, get in touch through [PoC and technical consultation](/en/contact).
+If you want to validate it against your own operational systems, get in touch through [product consultation](/en/contact).

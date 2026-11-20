@@ -709,7 +709,7 @@ const ALL_NAV_GROUPS: NavGroup[] = [
                 children: [
                     { label: "XGEN Trial (15 days)", labelKo: "XGEN 체험 신청 (15일)", id: "m-trial", route: "/xgen-trial" },
                     { label: "X2BEE AI", id: "m-x2bee", external: "https://ai-exp.x2bee.com" },
-                    { label: "PoC · Tech consulting", labelKo: "PoC · 기술 상담", id: "m-contact", route: "/contact?type=poc&from=nav" },
+                    { label: "Product consultation", labelKo: "제품 상담", id: "m-contact", route: "/contact?type=poc&from=nav" },
                     { label: "Request a solution brochure", labelKo: "솔루션 소개서 신청하기", id: "m-brochure", route: "/contact?type=brochure&from=nav" },
                 ],
             },
@@ -772,8 +772,8 @@ export function getGroup(key: string): NavGroup | undefined {
 
 /** Primary call-to-action — opens the XGEN demo-request one-page (/demo). */
 export const DEMO_CTA = {
-    ko: "PoC · 기술 상담",
-    en: "PoC · Tech consulting",
+    ko: "제품 상담",
+    en: "Product consultation",
     href: "/contact?type=poc&from=nav",
 };
 

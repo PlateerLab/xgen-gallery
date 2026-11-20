@@ -48,4 +48,4 @@ In an industry where trust and security come first — finance, the public secto
 - Actionable AI handling public procurement → [Public agency K's SRM AI chatbot](/en/blog/case-k-corp)
 - RAG over multimodal data → [Company S](/en/blog/case-s-corp)
 
-If you want to test it against your own regulations and data, get in touch through [PoC and technical consultation](/en/contact).
+If you want to test it against your own regulations and data, get in touch through [product consultation](/en/contact).

@@ -232,7 +232,7 @@ const FAQ_KO: FaqEntry[] = [
     {
         question: "도입은 어떻게 시작하나요? 무료 체험이 있나요?",
         answer:
-            "제품 데모, XGEN 15일 무료 체험, PoC·기술 상담을 한 양식에서 접수합니다. 현장에 배치되는 FDE(Forward Deployed Engineer)가 요구사항 발굴부터 설계·구현·내재화까지 함께하며, 문의 유형을 선택해 남겨주시면 영업일 1~2일 이내에 연락드립니다.",
+            "제품 데모, XGEN 15일 무료 체험, 제품 상담을 한 양식에서 접수합니다. 현장에 배치되는 FDE(Forward Deployed Engineer)가 요구사항 발굴부터 설계·구현·내재화까지 함께하며, 문의 유형을 선택해 남겨주시면 영업일 1~2일 이내에 연락드립니다.",
     },
 ];
 
@@ -270,7 +270,7 @@ const FAQ_EN: FaqEntry[] = [
     {
         question: "How do we get started? Is there a free trial?",
         answer:
-            "Request a product demo, a 15-day XGEN free trial, or a PoC / technical consultation from a single form. A Forward Deployed Engineer works with you from requirements through design, implementation, and enablement. Pick an inquiry type and we'll reply within 1–2 business days.",
+            "Request a product demo, a 15-day XGEN free trial, or a product consultation from a single form. A Forward Deployed Engineer works with you from requirements through design, implementation, and enablement. Pick an inquiry type and we'll reply within 1–2 business days.",
     },
 ];
 

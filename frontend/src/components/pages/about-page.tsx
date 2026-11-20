@@ -318,7 +318,7 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         cta: {
             title: "함께 시작해 볼까요",
-            desc: "XGEN을 무료로 체험하거나, PoC·기술 상담을 신청하세요.",
+            desc: "XGEN을 무료로 체험하거나, 제품 상담을 신청하세요.",
             trial: "XGEN 체험하기",
             contact: "도입·PoC 상담",
         },
@@ -516,7 +516,7 @@ const COPY: Record<Locale, AboutCopy> = {
         },
         cta: {
             title: "Let's get started",
-            desc: "Try XGEN free, or request a PoC and technical consultation.",
+            desc: "Try XGEN free, or request a product consultation.",
             trial: "Try XGEN",
             contact: "Talk about a PoC",
         },

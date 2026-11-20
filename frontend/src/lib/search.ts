@@ -29,7 +29,7 @@ const PAGES: SearchDoc[] = [
     { title: "AI Lab Members", subtitle: "연구 멤버 프로필·기여 활동", url: "/members", type: "페이지", keywords: "멤버 팀 team lab members 랩" },
     { title: "PoC Projects", subtitle: "산업별 PoC 실증 사례", url: "/poc-projects", type: "페이지", keywords: "poc 실증 사례" },
     { title: "Technical Consulting", subtitle: "AI 도입 전략·PoC·아키텍처 컨설팅", url: "/technical-consulting", type: "페이지", keywords: "컨설팅 consulting" },
-    { title: "PoC · 기술 상담", subtitle: "문의·상담 신청", url: "/contact", type: "페이지", keywords: "문의 상담 contact 데모" },
+    { title: "제품 상담", subtitle: "문의·상담 신청", url: "/contact", type: "페이지", keywords: "문의 상담 contact 데모" },
 ];
 
 const ARCHITECTURE: SearchDoc[] = [

@@ -44,4 +44,4 @@ If the critical knowledge sits with a few people and the organization is bound t
 - E-commerce that improved search, support, and code at once → [Company I](/en/blog/case-i-media)
 - Finance-specific AI that shows its sources → [Bank J's AI chatbot](/en/blog/case-j-bank)
 
-If you want to build a dedicated AI on your own data, get in touch through [PoC and technical consultation](/en/contact).
+If you want to build a dedicated AI on your own data, get in touch through [product consultation](/en/contact).

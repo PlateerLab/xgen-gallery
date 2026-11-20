@@ -26,11 +26,11 @@ const COPY: Record<
     }
 > = {
     ko: {
-        eyebrow: "Plateer AI Labs · 데모 · 무료 체험 · 기술 상담 · 뉴스레터",
-        title: "데모 · 체험 · 기술 상담 · 뉴스레터",
+        eyebrow: "Plateer AI Labs · 데모 · 무료 체험 · 제품 상담 · 뉴스레터",
+        title: "데모 · 체험 · 제품 상담 · 뉴스레터",
         lead: (
             <>
-                제품 데모, XGEN 15일 무료 체험, PoC 및 기술 상담, 뉴스레터 구독을
+                제품 데모, XGEN 15일 무료 체험, 제품 상담, 뉴스레터 구독을
                 신청할 수 있습니다. 문의 유형을 선택해 접수해 주시면 담당자가{" "}
                 <br className="hidden md:inline" />
                 영업일 기준 1~2일 이내에 연락드립니다.
@@ -46,7 +46,7 @@ const COPY: Record<
             </>
         ),
         benefits: [
-            "제품 데모 · 15일 무료 체험 · PoC 상담을 한 번에 신청",
+            "제품 데모 · 15일 무료 체험 · 제품 상담을 한 번에 신청",
             "과제 정의부터 PoC 설계·수행까지 전문가가 1:1로 지원",
             "기술 요건에 맞는 솔루션과 레퍼런스 아키텍처 제안",
         ],
@@ -62,12 +62,12 @@ const COPY: Record<
         trialCta: "체험 안내 자세히 보기",
     },
     en: {
-        eyebrow: "Plateer AI Labs · Demo · Free trial · Technical consultation · Newsletter",
+        eyebrow: "Plateer AI Labs · Demo · Free trial · Product consultation · Newsletter",
         title: "Demo, trial, consultation, and newsletter",
         lead: (
             <>
-                Request a product demo, a 15-day XGEN free trial, a PoC and
-                technical consultation, or a newsletter subscription. Pick an
+                Request a product demo, a 15-day XGEN free trial, a product
+                consultation, or a newsletter subscription. Pick an
                 inquiry type, and we will get back to you{" "}
                 <br className="hidden md:inline" />
                 within one to two business days.

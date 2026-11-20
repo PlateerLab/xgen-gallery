@@ -49,4 +49,4 @@ If market data is abundant but connecting it to a decision takes time, the insig
 - E-commerce that improved search, support, and code at once → [Company I](/en/blog/case-i-media)
 - Finance-specific AI that shows its sources → [Bank J's AI chatbot](/en/blog/case-j-bank)
 
-If you are curious what is possible with your data, get in touch through [PoC and technical consultation](/en/contact).
+If you are curious what is possible with your data, get in touch through [product consultation](/en/contact).

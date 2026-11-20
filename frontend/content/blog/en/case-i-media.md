@@ -43,4 +43,4 @@ Missed search results, a flood of inquiries, and slow improvement usually arrive
 - AI turning retail trends into reports → [Home-shopping retailer L's insight reporter](/en/blog/case-l-homeshopping)
 - RAG that handles multimodal data → [Company S's multimodal RAG Editor](/en/blog/case-s-corp)
 
-If you are considering adoption, leave us the problem at [PoC and technical consultation](/en/contact). Someone will get back to you within one to two business days.
+If you are considering adoption, leave us the problem at [product consultation](/en/contact). Someone will get back to you within one to two business days.

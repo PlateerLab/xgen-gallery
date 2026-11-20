@@ -44,4 +44,4 @@ If rules and procedures exist in a document somewhere but you still end up askin
 - Public-sector AI that actually carries out procurement work → [Public agency K's SRM AI chatbot](/en/blog/case-k-corp)
 - RAG over multimodal data → [Company S](/en/blog/case-s-corp)
 
-If you want to build an internal chatbot on your organization's own knowledge, get in touch through [PoC and technical consultation](/en/contact).
+If you want to build an internal chatbot on your organization's own knowledge, get in touch through [product consultation](/en/contact).
