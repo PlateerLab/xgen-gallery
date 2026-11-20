@@ -31,7 +31,7 @@ const COPY = {
             "제품 데모 요청",
             "XGEN 15일 무료 체험 신청",
             "PoC · 기술 상담",
-            "도입 · 견적 문의",
+            "솔루션 소개서 신청하기",
             "뉴스레터 구독하기",
             "현장 리포트 구독하기",
             "기타",
@@ -72,9 +72,9 @@ const COPY = {
                 "과제에 맞는 PoC 범위와 일정을 함께 설계합니다",
             ],
             [
-                "접수하신 내용을 담당자가 검토합니다",
-                "영업일 1–2일 내 이메일 또는 전화로 연락드립니다",
-                "요건에 맞는 도입 방식과 견적을 제안드립니다",
+                "접수하신 내용을 담당자가 확인합니다",
+                "요청하신 솔루션에 맞는 소개서를 준비합니다",
+                "영업일 1–2일 내 입력하신 이메일로 보내드립니다",
             ],
             [
                 "접수하신 내용을 담당자가 검토합니다",
@@ -122,7 +122,7 @@ const COPY = {
             "Product demo",
             "XGEN 15-day free trial",
             "PoC / Tech consultation",
-            "Pricing / Rollout inquiry",
+            "Request a solution brochure",
             "Newsletter subscription",
             "Field report subscription",
             "Other",
@@ -164,9 +164,9 @@ const COPY = {
                 "We design the PoC scope and timeline together",
             ],
             [
-                "A researcher reviews your request",
-                "We reach out by email or phone within 1–2 business days",
-                "We propose a rollout approach and quote that fit your requirements",
+                "Our team reviews your request",
+                "We prepare the brochure for the solution you asked about",
+                "We email it to you within 1–2 business days",
             ],
             [
                 "We review your subscription request",
@@ -241,7 +241,7 @@ const TYPE_PARAM_TO_INDEX: Record<string, number> = {
     demo: 0,
     trial: 1,
     poc: 2,
-    pricing: 3,
+    brochure: 3,
     newsletter: 4,
     fieldReport: 5,
     other: 6,
@@ -284,7 +284,7 @@ export function DemoForm({
         }));
 
     // 진입 소스에 따라 문의 유형 프리셋: ?type= 우선, 없으면 레퍼러로 추론
-    //  · ?type=demo|trial|poc|pricing  · 레퍼러가 /xgen-trial → 무료 체험
+    //  · ?type=demo|trial|poc|brochure  · 레퍼러가 /xgen-trial → 무료 체험
     useEffect(() => {
         let idx: number | undefined = initialType
             ? TYPE_PARAM_TO_INDEX[initialType]
