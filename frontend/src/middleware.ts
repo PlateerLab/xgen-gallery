@@ -1,3 +1,4 @@
+import { XGENIM_HOSTS, xgenimTarget } from "@/lib/xgenim-redirects";
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
@@ -85,6 +86,14 @@ export async function middleware(req: NextRequest) {
     if (LEGACY_HOSTS.includes(host)) {
         const target = new URL(
             req.nextUrl.pathname + req.nextUrl.search,
+            CANONICAL_ORIGIN,
+        );
+        return NextResponse.redirect(target, 301);
+    }
+    // xgen.im 통합 — 매핑표대로 301. 마케팅 쿼리(utm_·gclid·n_ 등)는 보존한다(규칙 7).
+    if (XGENIM_HOSTS.includes(host)) {
+        const target = new URL(
+            xgenimTarget(req.nextUrl.pathname, req.nextUrl.search),
             CANONICAL_ORIGIN,
         );
         return NextResponse.redirect(target, 301);

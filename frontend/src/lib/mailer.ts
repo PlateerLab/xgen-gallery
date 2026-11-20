@@ -30,6 +30,15 @@ const EXTRA_INTERNAL_TO = [
 const CONTACT_INTERNAL_TO =
     process.env.MAIL_CONTACT_TO ||
     ["chat2plex@gmail.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
+/**
+ * 상담 문의 내부 알림 참조(CC) — 구독 신청(뉴스레터·현장 리포트)을 뺀 문의 유형에만 붙인다.
+ * env MAIL_CONTACT_CC로 오버라이드 가능(쉼표 구분).
+ */
+const CONTACT_INTERNAL_CC =
+    process.env.MAIL_CONTACT_CC ||
+    ["hyeppy@plateer.com", "anncool01@plateer.com", "sangkyun@plateer.com"].join(", ");
+/** 참조를 붙이지 않는 문의 유형 태그(type=). */
+const CONTACT_CC_EXCLUDED_TYPES = new Set(["newsletter", "fieldReport"]);
 const BROCHURE_INTERNAL_TO =
     process.env.MAIL_BROCHURE_TO ||
     ["swan@plateer.com", "xgen@plateer.com", ...EXTRA_INTERNAL_TO].join(", ");
@@ -53,6 +62,7 @@ function getTransport(): nodemailer.Transporter | null {
 
 export interface Mail {
     to: string;
+    cc?: string;
     subject: string;
     text: string;
     html?: string;
@@ -70,6 +80,7 @@ export async function sendMail(m: Mail): Promise<boolean> {
         await t.sendMail({
             from: `${FROM_NAME} <${FROM_ADDR}>`,
             to: m.to,
+            cc: m.cc || undefined,
             replyTo: m.replyTo || FROM_ADDR,
             subject: m.subject,
             text: m.text,
@@ -117,7 +128,7 @@ export interface ContactLead {
 const INQUIRY_SUBJECT_LABEL: Record<string, string> = {
     demo: "제품 데모 요청",
     trial: "XGEN 15일 무료 체험",
-    poc: "제품 상담",
+    poc: "제품 도입 문의",
     brochure: "솔루션 소개서 신청",
     newsletter: "뉴스레터 구독",
     fieldReport: "현장 리포트 구독",
@@ -125,6 +136,16 @@ const INQUIRY_SUBJECT_LABEL: Record<string, string> = {
 };
 function inquirySubjectLabel(d: ContactLead): string {
     return (d.inquiryTypeKey && INQUIRY_SUBJECT_LABEL[d.inquiryTypeKey]) || d.inquiryType || "상담 문의";
+}
+
+/** 구독 신청(뉴스레터·현장 리포트)이 아니면 내부 알림 참조 수신처를 돌려준다. */
+function contactInternalCc(d: ContactLead): string | undefined {
+    const key = String(d.inquiryTypeKey || "").trim();
+    if (key) return CONTACT_CC_EXCLUDED_TYPES.has(key) ? undefined : CONTACT_INTERNAL_CC;
+    // 태그가 없을 때는 문의 유형 문구로 구독 신청을 걸러낸다.
+    const label = String(d.inquiryType || "");
+    if (/구독|subscribe/i.test(label)) return undefined;
+    return CONTACT_INTERNAL_CC;
 }
 
 /** 신청자에게 접수 확인 메일. */
@@ -181,6 +202,7 @@ export function contactInternalMail(d: ContactLead): Mail {
     ];
     return {
         to: CONTACT_INTERNAL_TO,
+        cc: contactInternalCc(d),
         replyTo: String(d.email || "").trim() || FROM_ADDR,
         subject: `[${inquirySubjectLabel(d)}] ${d.name || ""} (${d.company || ""})`,
         text: lines.join("\n"),

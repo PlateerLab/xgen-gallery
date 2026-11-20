@@ -32,7 +32,7 @@ const COPY = {
         inquiryTypeOptions: [
             "제품 데모 요청",
             "XGEN 15일 무료 체험 신청",
-            "제품 상담",
+            "제품 도입 문의",
             "솔루션 소개서 신청하기",
             "뉴스레터 구독하기",
             "현장 리포트 구독하기",
@@ -123,7 +123,7 @@ const COPY = {
         inquiryTypeOptions: [
             "Product demo",
             "XGEN 15-day free trial",
-            "Product consultation",
+            "Product adoption inquiry",
             "Request a solution brochure",
             "Newsletter subscription",
             "Field report subscription",

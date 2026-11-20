@@ -5,7 +5,7 @@
  *     UTM·검색키워드·광고 클릭 ID를 localStorage(plt_lead_src)에 30일 저장한다.
  *  2) 문의폼은 제출 직전 readLeadAttribution()으로 9개 값을 읽어 함께 보낸다
  *     (React 폼이라 숨김 input의 DOM 값 대신 저장값을 직접 읽는다).
- *  3) 제출 성공 시 pushLeadConversion()이 dataLayer에 generate_lead를 남긴다.
+ *  3) 제출 성공 시 pushLeadConversion()이 GA4(gtag)에 generate_lead 이벤트를 남긴다.
  *
  * 필드 이름은 가이드의 숨김 항목 name과 같다. 단, 가이드의 `referrer`(외부 이전 사이트)는
  * 기존 상담 폼의 `referrer`(레퍼러 페이지 — 폼 직전에 보던 페이지)와 이름이 겹쳐
@@ -113,9 +113,19 @@ export type LeadFormName = "xgen_contact" | "xgen_trial" | "xgen_brochure";
 export function pushLeadConversion(formName: LeadFormName) {
     if (typeof window === "undefined") return;
     try {
-        const w = window as unknown as { dataLayer?: unknown[] };
+        const w = window as unknown as {
+            dataLayer?: unknown[];
+            gtag?: (...args: unknown[]) => void;
+        };
         w.dataLayer = w.dataLayer || [];
-        w.dataLayer.push({ event: "generate_lead", form_name: formName });
+        // GA4(G-TSE0FC0VCQ) 이벤트로 보낸다. gtag.js 로드 전이면 같은 큐 형식으로 넣어 로드 후 처리되게 한다.
+        const gtag =
+            w.gtag ||
+            function () {
+                // eslint-disable-next-line prefer-rest-params
+                (w.dataLayer as unknown[]).push(arguments);
+            };
+        gtag("event", "generate_lead", { form_name: formName });
     } catch {
         /* 전환 이벤트 실패가 접수를 막지 않게 */
     }
