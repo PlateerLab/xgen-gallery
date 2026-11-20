@@ -112,12 +112,26 @@ export interface ContactLead {
     receivedAt?: string;
 }
 
+/** 문의 유형 태그(type=)별 메일 제목용 이름. 국문·영문 폼 모두 같은 제목이 되도록 키로 정한다. */
+const INQUIRY_SUBJECT_LABEL: Record<string, string> = {
+    demo: "제품 데모 요청",
+    trial: "XGEN 15일 무료 체험",
+    poc: "제품 상담",
+    brochure: "솔루션 소개서 신청",
+    newsletter: "뉴스레터 구독",
+    fieldReport: "현장 리포트 구독",
+    other: "기타 문의",
+};
+function inquirySubjectLabel(d: ContactLead): string {
+    return (d.inquiryTypeKey && INQUIRY_SUBJECT_LABEL[d.inquiryTypeKey]) || d.inquiryType || "상담 문의";
+}
+
 /** 신청자에게 접수 확인 메일. */
 export function contactConfirmMail(d: ContactLead): Mail {
     const name = d.name || "고객";
     return {
         to: String(d.email || "").trim(),
-        subject: "[Plateer AI Labs] 상담 신청이 접수되었습니다",
+        subject: `[Plateer AI Labs] 문의가 접수되었습니다 (${inquirySubjectLabel(d)})`,
         text: [
             `${name}님, 안녕하세요.`,
             "",
@@ -164,7 +178,7 @@ export function contactInternalMail(d: ContactLead): Mail {
     return {
         to: CONTACT_INTERNAL_TO,
         replyTo: String(d.email || "").trim() || FROM_ADDR,
-        subject: `[상담 문의] ${d.inquiryType || ""} - ${d.name || ""} (${d.company || ""})`,
+        subject: `[${inquirySubjectLabel(d)}] ${d.name || ""} (${d.company || ""})`,
         text: lines.join("\n"),
     };
 }
