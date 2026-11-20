@@ -16,6 +16,8 @@ interface DemoRequest {
     jobTitle?: string;
     phone?: string;
     inquiryType?: string;
+    /** 문의 유형 URL 태그(?type= 값): demo·trial·poc·brochure·newsletter·fieldReport·other */
+    inquiryTypeKey?: string;
     referralPath?: string;
     referrer?: string;
     inquiry?: string;

@@ -105,6 +105,7 @@ export interface ContactLead {
     jobTitle?: string;
     phone?: string;
     inquiryType?: string;
+    inquiryTypeKey?: string;
     inquiry?: string;
     referrer?: string;
     referralPath?: string;
@@ -145,7 +146,7 @@ export function contactConfirmMail(d: ContactLead): Mail {
 /** 내부 팀 알림(상담). */
 export function contactInternalMail(d: ContactLead): Mail {
     const lines = [
-        `• 문의 유형: ${d.inquiryType || ""}`,
+        `• 문의 유형: ${d.inquiryType || ""}${d.inquiryTypeKey ? ` (type=${d.inquiryTypeKey})` : ""}`,
         `• 성함: ${d.name || ""}`,
         `• 이메일: ${d.email || ""}`,
         `• 연락처: ${d.phone || ""}`,

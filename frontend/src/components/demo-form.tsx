@@ -247,6 +247,31 @@ const TYPE_PARAM_TO_INDEX: Record<string, number> = {
     other: 6,
 };
 
+/** 옵션 인덱스 → URL 태그(?type=). TYPE_PARAM_TO_INDEX의 역방향. */
+const INDEX_TO_TYPE: string[] = Object.entries(TYPE_PARAM_TO_INDEX)
+    .sort((a, b) => a[1] - b[1])
+    .map(([k]) => k);
+
+/** /contact 단독 페이지에서만 주소창의 ?type= 을 선택한 문의 유형으로 맞춘다(모달은 건드리지 않음). */
+function syncTypeToUrl(idx: number) {
+    try {
+        const path = window.location.pathname;
+        if (!/^(\/en)?\/contact\/?$/.test(path)) return;
+        const key = INDEX_TO_TYPE[idx];
+        const params = new URLSearchParams(window.location.search);
+        if (key) params.set("type", key);
+        else params.delete("type");
+        const q = params.toString();
+        window.history.replaceState(
+            window.history.state,
+            "",
+            path + (q ? `?${q}` : "") + window.location.hash,
+        );
+    } catch {
+        /* 주소 갱신 실패는 무시 */
+    }
+}
+
 const REQUIRED_CONSENTS = [
     "agreePrivacyPolicy",
     "agreePrivacyCollect",
@@ -310,6 +335,7 @@ export function DemoForm({
                 ...f,
                 inquiryType: c.inquiryTypeOptions[idx as number],
             }));
+            syncTypeToUrl(idx);
         }
     }, [c.inquiryTypeOptions, initialType]);
 
@@ -367,7 +393,16 @@ export function DemoForm({
             const res = await fetch("/api/demo-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ...fields, referrer }),
+                body: JSON.stringify({
+                    ...fields,
+                    referrer,
+                    inquiryTypeKey:
+                        INDEX_TO_TYPE[
+                            (c.inquiryTypeOptions as readonly string[]).indexOf(
+                                fields.inquiryType,
+                            )
+                        ] || "",
+                }),
             });
             if (!res.ok) throw new Error(String(res.status));
             setStatus("done");
@@ -480,7 +515,12 @@ export function DemoForm({
                     placeholder={c.inquiryTypePlaceholder}
                     options={c.inquiryTypeOptions}
                     value={fields.inquiryType}
-                    onChange={(v) => set("inquiryType", v)}
+                    onChange={(v) => {
+                        set("inquiryType", v);
+                        syncTypeToUrl(
+                            (c.inquiryTypeOptions as readonly string[]).indexOf(v),
+                        );
+                    }}
                     error={errors.inquiryType}
                 />
                 <Field
