@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { readLeadAttribution, pushLeadConversion } from "@/lib/lead-attribution";
+import { LeadSourceFields } from "@/components/lead-source-script";
 import { X, Check, ArrowRight, Monitor, CircleCheck } from "lucide-react";
 
 /**
@@ -109,9 +111,10 @@ export function TrialSignupForm({
             const res = await fetch("/api/trial-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify(fields),
+                body: JSON.stringify({ ...fields, ...readLeadAttribution() }),
             });
             if (!res.ok) throw new Error(String(res.status));
+            pushLeadConversion("xgen_trial");
             setStatus("done");
         } catch {
             setStatus("idle");
@@ -168,6 +171,7 @@ export function TrialSignupForm({
                             </div>
                         ) : (
                             <form onSubmit={submit} className="px-7 py-8">
+                                <LeadSourceFields />
                                 <p className="text-[13px] font-semibold tracking-tight text-[#2461d8]">
                                     XGEN · 15일 무료 체험
                                 </p>

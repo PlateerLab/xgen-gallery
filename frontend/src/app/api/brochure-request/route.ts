@@ -1,4 +1,5 @@
 import { NextResponse, after } from "next/server";
+import { pickLeadAttribution } from "@/lib/lead-attribution";
 import { resolveBrochure, DEFAULT_BROCHURE } from "@/lib/brochures";
 // brochureMail(요청자 자동 발송)은 담당자 수동 발송으로 전환하며 호출을 뺐다.
 // 되돌릴 때 다시 import 하면 된다 — lib/mailer.ts에 그대로 남아 있다.
@@ -84,6 +85,8 @@ export async function POST(req: Request) {
         brochureName: brochure.name,
         receivedAt: new Date().toISOString(),
         source: "labs-site/xgen-brief-k7m4",
+        // 유입 경로(UTM) 9개 — 문자열·500자로 정리해 시트·메일에 전달
+        ...pickLeadAttribution(body),
     };
 
     // 접수 응답 먼저 — 시트 적재(웹훅) + 담당자 알림(앱 O365 SMTP·발신 xgen)은 백그라운드.

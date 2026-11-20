@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Check, Clock, ArrowRight, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { cn } from "@/lib/cn";
+import { readLeadAttribution, pushLeadConversion } from "@/lib/lead-attribution";
+import { LeadSourceFields } from "@/components/lead-source-script";
 
 /* Localized copy — self-contained so the rest of i18n stays untouched. */
 const COPY = {
@@ -390,21 +392,32 @@ export function DemoForm({
             } catch {
                 referrer = "";
             }
+            const inquiryTypeKey =
+                INDEX_TO_TYPE[
+                    (c.inquiryTypeOptions as readonly string[]).indexOf(
+                        fields.inquiryType,
+                    )
+                ] || "";
             const res = await fetch("/api/demo-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
                     ...fields,
                     referrer,
-                    inquiryTypeKey:
-                        INDEX_TO_TYPE[
-                            (c.inquiryTypeOptions as readonly string[]).indexOf(
-                                fields.inquiryType,
-                            )
-                        ] || "",
+                    inquiryTypeKey,
+                    // 유입 경로(UTM) 9개 — 마케팅팀 UTM 설정 가이드
+                    ...readLeadAttribution(),
                 }),
             });
             if (!res.ok) throw new Error(String(res.status));
+            // 전환 이벤트(GTM) — 문의 유형별 form_name, 개인정보 없음
+            pushLeadConversion(
+                inquiryTypeKey === "trial"
+                    ? "xgen_trial"
+                    : inquiryTypeKey === "brochure"
+                      ? "xgen_brochure"
+                      : "xgen_contact",
+            );
             setStatus("done");
             onSuccess?.(fields.email.trim());
         } catch {
@@ -503,6 +516,7 @@ export function DemoForm({
             onSubmit={onSubmit}
             className="relative overflow-hidden rounded-[20px] border border-[var(--color-line)] bg-white p-5 shadow-[0_20px_50px_-30px_rgba(20,40,80,0.5)] sm:p-6"
         >
+            <LeadSourceFields />
             {/* 상단 스카이블루 워시 — 위에서 회사 필드 부근까지 부드럽게 페이드 */}
             <div
                 aria-hidden

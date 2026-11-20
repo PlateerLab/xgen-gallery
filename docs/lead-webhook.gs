@@ -31,13 +31,20 @@ var BROCHURE_TYPES = {
 };
 function brochureType(d){ return (d && BROCHURE_TYPES[d.asset]) || BROCHURE_TYPES["xgen-brochure"]; }
 
+// 유입 경로(UTM) — 솔루션마케팅팀 UTM 설정 가이드(2026-11-20). 앱이 함께 보낸다.
+// (가이드의 referrer=외부 이전 사이트는 기존 '레퍼러 페이지'와 겹쳐 lead_referrer 키로 받는다)
+var LEAD_SRC_COLS = [
+  ["utm_source","utm_source"], ["utm_medium","utm_medium"], ["utm_campaign","utm_campaign"],
+  ["utm_term","utm_term"], ["utm_content","utm_content"], ["search_keyword","검색키워드"],
+  ["landing_page","첫 방문 페이지"], ["lead_referrer","이전 사이트"], ["click_id","광고클릭ID"]
+];
 var CONTACT_COLS = [
   ["receivedAt","수신시각"], ["inquiryType","문의 유형"], ["referrer","레퍼러 페이지"],
   ["name","성함"], ["email","이메일"], ["phone","연락처"], ["company","회사"],
   ["department","부서"], ["jobTitle","직급"], ["referralPath","방문경로"], ["inquiry","상담 내용"],
   ["agreePrivacyPolicy","개인정보취급방침 동의"], ["agreePrivacyCollect","개인정보 수집·이용 동의"],
   ["agreeMarketing","마케팅 수신 동의"]
-];
+].concat(LEAD_SRC_COLS);
 // '소개서' 열에는 종류 표시명(XGEN / AI Code Assistant)을 기록(brochureType 필드).
 var BROCHURE_COLS = [
   ["receivedAt","수신시각"], ["brochureType","소개서"],
@@ -45,7 +52,7 @@ var BROCHURE_COLS = [
   ["department","부서"], ["jobTitle","직급"], ["referralPath","방문경로"],
   ["agreePrivacyPolicy","개인정보취급방침 동의"], ["agreePrivacyCollect","개인정보 수집·이용 동의"],
   ["agreeMarketing","마케팅 수신 동의"]
-];
+].concat(LEAD_SRC_COLS);
 var SUB_COLS = [
   ["receivedAt","수신시각"], ["kind","구분"], ["email","이메일"], ["subscribed","구독여부"],
   // 현장 리포트 게이트(kind="field-report")는 리드 정보를 함께 받는다.
@@ -77,6 +84,12 @@ function sheetFor(name, cols){
   if (sh.getLastRow() >= 1) {
     var first = sh.getRange(1,1,1,headers.length).getValues()[0];
     need = (first.join("|") !== headers.join("|"));
+    // 기존 머리행이 새 머리행의 앞부분과 같으면(열만 뒤에 추가된 경우) 그 자리에서 확장한다.
+    if (need){
+      var filled = first.filter(function(v){ return v !== ""; }).length;
+      var prefix = filled > 0 && first.slice(0, filled).join("|") === headers.slice(0, filled).join("|");
+      if (prefix){ sh.getRange(1,1,1,headers.length).setValues([headers]); need = false; }
+    }
   }
   if (need){ sh.insertRowBefore(1); sh.getRange(1,1,1,headers.length).setValues([headers]); sh.setFrozenRows(1); }
   return sh;

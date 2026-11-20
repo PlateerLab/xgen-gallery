@@ -1,4 +1,5 @@
 import { NextResponse, after } from "next/server";
+import { pickLeadAttribution } from "@/lib/lead-attribution";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,6 +62,8 @@ export async function POST(req: Request) {
         ...body,
         receivedAt: new Date().toISOString(),
         source: "gallery-site/xgen-trial",
+        // 유입 경로(UTM) 9개 — 문자열·500자로 정리해 시트·메일에 전달
+        ...pickLeadAttribution(body),
     };
 
     const webhook = process.env.TRIAL_WEBHOOK_URL || process.env.DEMO_WEBHOOK_URL;

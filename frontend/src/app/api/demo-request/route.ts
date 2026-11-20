@@ -1,4 +1,5 @@
 import { NextResponse, after } from "next/server";
+import { pickLeadAttribution } from "@/lib/lead-attribution";
 import {
     sendMail,
     contactConfirmMail,
@@ -83,6 +84,8 @@ export async function POST(req: Request) {
         ...body,
         receivedAt: new Date().toISOString(),
         source: "gallery-site/demo-page",
+        // 유입 경로(UTM) 9개 — 문자열·500자로 정리해 시트·메일에 전달
+        ...pickLeadAttribution(body),
     };
 
     // 응답을 먼저 보내고, 시트 적재(Apps Script 웹훅) + 이메일 발송(앱 O365 SMTP·발신 xgen)은

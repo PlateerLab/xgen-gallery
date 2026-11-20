@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { readLeadAttribution, pushLeadConversion } from "@/lib/lead-attribution";
+import { LeadSourceFields } from "@/components/lead-source-script";
 import { Check, Send, FileText, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { cn } from "@/lib/cn";
@@ -153,9 +155,10 @@ export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
             const res = await fetch("/api/brochure-request", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ...fields, asset }),
+                body: JSON.stringify({ ...fields, asset, ...readLeadAttribution() }),
             });
             if (!res.ok) throw new Error(String(res.status));
+            pushLeadConversion("xgen_brochure");
             // 접수만 확인한다 — 소개서는 담당자가 확인 후 메일로 보낸다.
             setStatus("done");
         } catch {
@@ -191,6 +194,7 @@ export function BrochureForm({ asset = DEFAULT_BROCHURE }: { asset?: string }) {
             onSubmit={onSubmit}
             className="rounded-2xl border border-[var(--color-line)] bg-white p-7 shadow-xl sm:p-8"
         >
+            <LeadSourceFields />
             <div className="mb-5 flex items-start gap-3">
                 <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
                     <FileText className="h-5 w-5" />

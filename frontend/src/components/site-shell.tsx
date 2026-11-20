@@ -9,6 +9,7 @@ import { StickyCta } from "@/components/sticky-cta";
 import { SubscribeCta } from "@/components/subscribe-cta";
 import { ContentGuard } from "@/components/content-guard";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { LeadSourceScript } from "@/components/lead-source-script";
 import { LocaleSuggestion } from "@/components/locale-suggestion";
 import type { Locale } from "@/lib/i18n";
 
@@ -34,6 +35,8 @@ export function SiteShell({
             <head>
                 {/* Google Analytics — 모든 페이지 공통(한 곳에서 관리) */}
                 <GoogleAnalytics />
+                {/* 문의폼 유입 경로(UTM) 저장 — 모든 페이지 공통 */}
+                <LeadSourceScript />
                 {/* Pretendard (same font as konantech) — self-hosted variable
                     woff2, preloaded so it renders as early as possible. */}
                 <link

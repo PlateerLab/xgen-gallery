@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { leadAttributionRows } from "@/lib/lead-attribution";
 
 /**
  * CTA 이메일 발송 — Office 365 SMTP(smtp.office365.com)로 xgen@plateer.com에서 발송한다.
@@ -169,6 +170,9 @@ export function contactInternalMail(d: ContactLead): Mail {
         `• 직급: ${d.jobTitle || ""}`,
         `• 방문경로: ${d.referralPath || ""}`,
         `• 레퍼러 페이지: ${d.referrer || ""}`,
+        "",
+        `[유입 경로]`,
+        ...leadAttributionRows(d).map(([k, v]) => `• ${k}: ${v}`),
         "",
         `• 문의 사항:`,
         d.inquiry || "",
@@ -342,6 +346,7 @@ export function brochureInternalMail(d: BrochureLead, b: BrochureInfo): Mail {
         ["직급", d.jobTitle || ""],
         ["방문경로", d.referralPath || ""],
         ["마케팅 수신 동의", d.agreeMarketing ? "Y" : "N"],
+        ...leadAttributionRows(d),
     ];
 
     return {
