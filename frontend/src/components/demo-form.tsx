@@ -410,7 +410,7 @@ export function DemoForm({
                 }),
             });
             if (!res.ok) throw new Error(String(res.status));
-            // 전환 이벤트(GTM) — 문의 유형별 form_name, 개인정보 없음
+            // 전환 이벤트(GA4 generate_lead + 네이버 lead) — 문의 유형별 form_name, 개인정보 없음
             pushLeadConversion(
                 inquiryTypeKey === "trial"
                     ? "xgen_trial"

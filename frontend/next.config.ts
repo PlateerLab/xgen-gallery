@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     outputFileTracingRoot: path.join(__dirname),
     eslint: { ignoreDuringBuilds: true },
     typescript: { ignoreBuildErrors: true },
+    // 끝 슬래시 정리는 middleware에서 한다. 기본 동작은 middleware보다 먼저 같은 호스트로
+    // 308을 보내 xgen.im 주소가 2단계로 이동했다(xgen.im은 한 번에 labs로 301).
+    skipTrailingSlashRedirect: true,
     images: {
         remotePatterns: [
             { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
@@ -143,7 +146,13 @@ const nextConfig: NextConfig = {
                 destination: '/customers/case/jeju-bank-genai-platform',
                 permanent: true,
             },
-        ];
+        ].map((r) => ({
+            ...r,
+            // xgen.im 호스트는 middleware가 매핑표대로 한 번에 labs로 301 한다.
+            // 여기 규칙이 먼저 걸리면 xgen.im/polar → xgen.im/product/polar → (매핑 없음)
+            // /product/xgen 처럼 엉뚱한 곳으로 간다.
+            missing: [{ type: 'host' as const, value: '(?:www\\.)?xgen\\.im' }],
+        }));
     },
     async rewrites() {
         // 갤러리 데모 API를 same-origin(/gallery-api)으로 프록시한다. 브라우저는

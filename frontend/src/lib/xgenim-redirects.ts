@@ -30,10 +30,14 @@ const PATH_MAP: Record<string, string> = {
     "/blog": "/blog",
     "/17": "/blog",
     "/contact": "/contact",
-    "/request": "/contact",
+    "/request": "/contact?type=brochure",
     "/trial": "/xgen-trial",
     "/trial-form": "/xgen-trial",
     "/form_newsletter": "/newsletter#subscribe",
+    // 크롤러·AI용 파일 — labs 쪽 같은 파일로 보낸다(제품 페이지로 보내지 않게).
+    "/sitemap.xml": "/sitemap.xml",
+    "/robots.txt": "/robots.txt",
+    "/llms.txt": "/llms.txt",
 };
 
 /** 아임웹 블로그 글 idx → labs 글 slug */
@@ -82,7 +86,13 @@ export function xgenimTarget(pathname: string, search: string): string {
     }
 
     for (const k of IMWEB_KEYS) q.delete(k);
-    const [path, hash] = dest.split("#");
-    const qs = q.toString();
+    const [pathQ, hash] = dest.split("#");
+    const [path, destQs] = pathQ.split("?");
+    // 매핑에 들어 있는 값(예: /request → type=brochure)을 먼저 두고, 원래 쿼리를 모두 덧붙인다.
+    const merged = new URLSearchParams(destQs || "");
+    q.forEach((v, k) => {
+        if (!(k === "type" && merged.has("type"))) merged.append(k, v);
+    });
+    const qs = merged.toString();
     return `${path}${qs ? `?${qs}` : ""}${hash ? `#${hash}` : ""}`;
 }

@@ -129,4 +129,20 @@ export function pushLeadConversion(formName: LeadFormName) {
     } catch {
         /* 전환 이벤트 실패가 접수를 막지 않게 */
     }
+    // 네이버 검색광고 전환(lead) — generate_lead와 같은 시점. 개인정보는 넣지 않는다.
+    try {
+        const nw = window as unknown as {
+            wcs?: { trans: (c: object) => void };
+            wcs_add?: Record<string, string>;
+        };
+        if (nw.wcs) {
+            if (!nw.wcs_add) nw.wcs_add = {};
+            nw.wcs_add["wa"] = "s_1129c6843c7";
+            const conv: Record<string, string> = {};
+            conv.type = "lead";
+            nw.wcs.trans(conv);
+        }
+    } catch {
+        /* 전환 스크립트 실패가 접수를 막지 않게 */
+    }
 }

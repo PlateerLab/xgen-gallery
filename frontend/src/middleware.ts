@@ -99,6 +99,15 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(target, 301);
     }
 
+    // 끝 슬래시 정리(next.config skipTrailingSlashRedirect 대신 여기서) — 기존과 같은 308.
+    const pn = req.nextUrl.pathname;
+    if (pn.length > 1 && pn.endsWith("/")) {
+        // nextUrl.clone()은 원래 끝 슬래시를 기억해 다시 붙이므로 일반 URL로 만든다.
+        const url = new URL(req.url);
+        url.pathname = pn.replace(/\/+$/, "") || "/";
+        return NextResponse.redirect(url.toString(), 308);
+    }
+
     return NextResponse.next();
 }
 

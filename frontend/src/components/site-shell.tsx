@@ -10,6 +10,7 @@ import { SubscribeCta } from "@/components/subscribe-cta";
 import { ContentGuard } from "@/components/content-guard";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { LeadSourceScript } from "@/components/lead-source-script";
+import { NaverAnalytics } from "@/components/naver-analytics";
 import { LocaleSuggestion } from "@/components/locale-suggestion";
 import type { Locale } from "@/lib/i18n";
 
@@ -37,6 +38,8 @@ export function SiteShell({
                 <GoogleAnalytics />
                 {/* 문의폼 유입 경로(UTM) 저장 — 모든 페이지 공통 */}
                 <LeadSourceScript />
+                {/* 네이버 검색광고 전환 측정(wcslog) — 모든 페이지 공통 */}
+                <NaverAnalytics />
                 {/* Pretendard (same font as konantech) — self-hosted variable
                     woff2, preloaded so it renders as early as possible. */}
                 <link
