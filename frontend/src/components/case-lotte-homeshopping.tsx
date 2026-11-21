@@ -168,8 +168,8 @@ const KO: Copy = {
     s1Close:
         "결국 필요한 것은 업무마다 Agent를 만들고, 내놓은 뒤에도 계속 다듬어 가며 운영할 수 있는 기반이었습니다.",
     s2Kicker: "선택의 이유",
-    s2Title: "나란히 놓고 따져 본 끝에 XGEN을 골랐습니다",
-    s2Lead: "롯데홈쇼핑은 검토하던 다른 플랫폼과 XGEN을 나란히 놓고 비교했습니다. 고객이 꼽은 차이는 세 가지였습니다.",
+    s2Title: "롯데홈쇼핑이 XGEN을 선택한 세 가지 이유",
+    s2Lead: "롯데홈쇼핑은 여러 AI 플랫폼을 검토하며 자사의 업무 환경과 요구사항에 적합한 솔루션을 비교했습니다. 그 과정에서 XGEN을 선택하게 된 핵심 요인은 세 가지였습니다.",
     s2Points: [
         "구축 기간이 짧았습니다.",
         "구조가 비교적 가벼웠습니다.",
@@ -226,7 +226,7 @@ const KO: Copy = {
         {
             no: "04",
             title: "방송 품질·심의",
-            after: "실시간 방송 심의를 돕는 시미시미와 방송 품질 점검 결과를 등록하는 Moni가 현장에서 쓰이고 있습니다.",
+            after: "실시간 방송 심의를 돕는 Agent와 방송 품질 점검 결과를 등록하는 Agent가 현장에서 쓰이고 있습니다.",
             status: "운영 중",
         },
     ],
@@ -395,8 +395,8 @@ const EN: Copy = {
     s1Close:
         "In the end, they needed a foundation for building an agent for each task and continuing to refine and run it long after launch.",
     s2Kicker: "Why XGEN",
-    s2Title: "After a side-by-side look, they chose XGEN",
-    s2Lead: "Lotte Homeshopping weighed XGEN against the other platforms it had been considering. The customer points to three differences.",
+    s2Title: "Three reasons Lotte Homeshopping chose XGEN",
+    s2Lead: "Lotte Homeshopping reviewed several AI platforms and compared which one fit its own work environment and requirements. Three factors ultimately led it to choose XGEN.",
     s2Points: [
         "It could be built in less time.",
         "Its structure was relatively light.",
@@ -453,7 +453,7 @@ const EN: Copy = {
         {
             no: "04",
             title: "Broadcast quality and review",
-            after: "Simisimi, which supports real-time broadcast review, and Moni, which records broadcast quality-check results, are in use on the floor.",
+            after: "An agent that supports real-time broadcast review and an agent that records broadcast quality-check results are in use on the floor.",
             status: "In operation",
         },
     ],
