@@ -19,7 +19,7 @@ import type { Locale } from "@/lib/i18n";
  * 넣지 않은 것: 비교 대상 경쟁사명, 수행 인력·고객 담당자 실명(인터뷰 응답자 제외),
  * 서버·접속 정보, 계약·일정 내부 사항, 도입 후 절감 수치(측정 전).
  *
- * 공개 전 고객 확인이 필요하다 — `preview` 를 켜면 확인 요청 항목이 함께 보인다.
+ * 공개 전 고객 확인이 필요하다 — `preview` 를 켜면 검토본 안내 띠가 보인다.
  * 확인이 끝나면 lib/customers.ts 에 사례를 등록하고 case-detail-page 의
  * CUSTOM_BODIES 에 이 컴포넌트를 연결한다(제주은행과 같은 절차).
  */
@@ -102,8 +102,6 @@ type Copy = {
     q4: string;
     speaker: string;
     speakerOrg: string;
-    sourceTitle: string;
-    sources: string[];
     meta: [string, string][];
     metaTitle: string;
     logoSrc: string;
@@ -113,8 +111,6 @@ type Copy = {
     allCases: string;
     contact: string;
     previewBand: string;
-    reviewTitle: string;
-    reviewItems: string[];
 };
 
 const KO: Copy = {
@@ -311,12 +307,6 @@ const KO: Copy = {
     q4: "최종 목표는 중요한 의사결정만 사람이 하고, 나머지는 AI가 최대한 자율적으로 처리하는 것입니다.",
     speaker: "오주영 과장",
     speakerOrg: "롯데홈쇼핑 AX팀",
-    sourceTitle: "이 사례의 출처",
-    sources: [
-        "롯데홈쇼핑 AX팀 서면 인터뷰 — 인용은 원문 그대로 옮겼습니다.",
-        "플래티어 프로젝트 기록 — 통제 정책, 운영 구성, 모델 서빙 기록",
-        "수치와 일정은 2026년 11월 기준이며, 운영 상황에 따라 바뀔 수 있습니다.",
-    ],
     metaTitle: "고객 정보",
     logoSrc: "/customers/lotte-homeshopping/logo-ko.png",
     logoAlt: "롯데홈쇼핑 로고",
@@ -334,17 +324,6 @@ const KO: Copy = {
     contact: "도입 문의",
     previewBand:
         "고객 검토본 · 검색 색인 제외 — 롯데홈쇼핑 확인을 거쳐 정식 공개합니다.",
-    reviewTitle: "확인 요청 항목",
-    reviewItems: [
-        "롯데홈쇼핑 로고와 사옥 사진 사용 승인 — 승인되지 않으면 공개본에서 뺍니다",
-        "고객사 실명과 응답자 실명·직함 공개 여부",
-        "인용문 4개의 원문 사용 여부",
-        "수치와 일정: 건당 약 20분, 500쪽+, 900명, 4개 부서, 10/14 오픈, 11/24 오픈 목표",
-        "Moni의 역할: 인터뷰에서는 「방송 품질 점검 결과 등록」, 프로젝트 기록에서는 「임직원·협력사 업무 문의」로 적혀 있어 어느 쪽이 맞는지",
-        "모델명과 사내 GPU 구성 공개 범위",
-        "「향후 개선 과제」 문단과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
-        "「현업과 함께 다듬고 있는 과제」 4개를 공개해도 되는지",
-    ],
 };
 
 const EN: Copy = {
@@ -541,12 +520,6 @@ const EN: Copy = {
     q4: "The end goal is for people to make only the important decisions, and for AI to handle the rest as autonomously as possible.",
     speaker: "Juyoung Oh",
     speakerOrg: "AX Team, Lotte Homeshopping",
-    sourceTitle: "Sources for this case",
-    sources: [
-        "Written interview with the Lotte Homeshopping AX team — quotes are translated from the original.",
-        "Plateer project records — control policies, operating setup, and model-serving records",
-        "Figures and dates are as of November 2026 and may change with operations.",
-    ],
     metaTitle: "Customer profile",
     logoSrc: "/customers/lotte-homeshopping/logo-en.png",
     logoAlt: "Lotte Homeshopping logo",
@@ -564,17 +537,6 @@ const EN: Copy = {
     contact: "Get in touch",
     previewBand:
         "Customer review draft · excluded from search — to be published after Lotte Homeshopping's confirmation.",
-    reviewTitle: "Items to confirm",
-    reviewItems: [
-        "Approval to use the Lotte Homeshopping logo and headquarters photo — removed from the published version if not approved",
-        "Use of the customer name and the respondent's name and title",
-        "Use of the four quotes as written",
-        "Figures and dates: ~20 min per item, 500+ pages, 900 people, 4 departments, 10/14 launch, 11/24 target",
-        "Moni's role: the interview says recording broadcast quality-check results, project records say work inquiries for employees and partners",
-        "How much of the model names and in-house GPU setup may be published",
-        "Whether the open-issue paragraph and the Geny follow-up stay in the public version, and whether the three customer needs are worded correctly",
-        "Whether the four tasks being refined may be published",
-    ],
 };
 
 const H2 = "text-[22px] font-bold leading-snug tracking-tight text-[var(--color-ink)] md:text-[25px]";
@@ -954,32 +916,6 @@ export function LotteHomeshoppingCaseBody({
                             </div>
                             <PullQuote text={t.q4} who={t.speaker} org={t.speakerOrg} />
                         </Section>
-
-                        {/* 출처 */}
-                        <section className="border-t border-[var(--color-line)] pt-8">
-                            <h2 className="text-[15px] font-bold text-[var(--color-ink)]">{t.sourceTitle}</h2>
-                            <ul className="mt-3 space-y-1.5">
-                                {t.sources.map((s) => (
-                                    <li key={s} className="text-[13.5px] leading-relaxed text-[var(--color-ink-subtle)]">
-                                        · {s}
-                                    </li>
-                                ))}
-                            </ul>
-                        </section>
-
-                        {preview && (
-                            <section className="border border-[#f3d9a4] bg-[#fff8e8] p-5">
-                                <h2 className="text-[15px] font-bold text-[#8a5a00]">{t.reviewTitle}</h2>
-                                <ol className="mt-3 space-y-2">
-                                    {t.reviewItems.map((r, i) => (
-                                        <li key={r} className="flex gap-2.5 text-[14px] leading-relaxed text-[#6b4700]">
-                                            <span className="w-5 flex-none font-mono font-bold">{i + 1}</span>
-                                            {r}
-                                        </li>
-                                    ))}
-                                </ol>
-                            </section>
-                        )}
 
                         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] pt-6">
                             <Link
