@@ -189,7 +189,7 @@ const KO: Copy = {
         },
     ],
     s3Body: [
-        "XGEN은 롯데홈쇼핑 인프라 안의 쿠버네티스(K3s) 클러스터 위에서 돌아가고, 배포 이미지는 사내 레지스트리에서 관리합니다. 2026년 3월에는 XGEN 2.0의 통합 서비스 구조로 옮겨, 돌봐야 할 서비스 수를 줄였습니다.",
+        "XGEN은 롯데홈쇼핑 인프라 안의 쿠버네티스(K3s) 클러스터 위에서 돌아가고, 배포 이미지는 사내 레지스트리에서 관리합니다. 2026년 3월에는 XGEN agentflow의 통합 서비스 구조로 옮겨, 돌봐야 할 서비스 수를 줄였습니다.",
         "API와 MCP로 도구를 잇는 방식이 하나로 정해져 있다 보니, 사내 시스템 연동도 한 번 만든 패턴을 다음 업무에서 다시 꺼내 쓸 수 있게 됐습니다.",
     ],
     q2: "필요한 업무를 코드 없이 워크플로우로 조립해서 바로 배포할 수 있습니다. 차세대 시스템 매뉴얼, 상품백과 챗봇, 엑셀 생성기도 모두 이 방식으로 만들었습니다.",
@@ -409,7 +409,7 @@ const EN: Copy = {
         },
     ],
     s3Body: [
-        "XGEN runs on a Kubernetes (K3s) cluster inside Lotte Homeshopping's own infrastructure, with deployment images kept in an internal registry. In March 2026 it moved to XGEN 2.0's consolidated service structure, leaving fewer services to look after.",
+        "XGEN runs on a Kubernetes (K3s) cluster inside Lotte Homeshopping's own infrastructure, with deployment images kept in an internal registry. In March 2026 it moved to the consolidated service structure of XGEN agentflow, leaving fewer services to look after.",
         "Because tools connect through APIs and MCP in one consistent way, an integration built for one internal system became a pattern the team could reuse for the next task.",
     ],
     q2: "We can assemble the work we need as workflows, without code, and deploy them right away. The next-generation system manual, the product-encyclopedia chatbot and the Excel generator were all built this way.",
