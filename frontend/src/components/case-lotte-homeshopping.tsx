@@ -109,6 +109,10 @@ type Copy = {
     sources: string[];
     meta: [string, string][];
     metaTitle: string;
+    logoSrc: string;
+    logoAlt: string;
+    heroAlt: string;
+    heroCredit: string;
     allCases: string;
     contact: string;
     previewBand: string;
@@ -312,6 +316,10 @@ const KO: Copy = {
         "수치와 일정은 2026년 11월 기준이며, 운영 상황에 따라 바뀔 수 있습니다.",
     ],
     metaTitle: "고객 정보",
+    logoSrc: "/customers/lotte-homeshopping/logo-ko.png",
+    logoAlt: "롯데홈쇼핑 로고",
+    heroAlt: "서울 영등포구 양평동의 롯데홈쇼핑 사옥",
+    heroCredit: "사진·로고: 롯데홈쇼핑 공식 홈페이지(lottehomeshopping.com)",
     meta: [
         ["고객", "롯데홈쇼핑"],
         ["업종", "커머스 · TV홈쇼핑"],
@@ -326,6 +334,7 @@ const KO: Copy = {
         "고객 검토본 · 검색 색인 제외 — 롯데홈쇼핑 확인을 거쳐 정식 공개합니다.",
     reviewTitle: "확인 요청 항목",
     reviewItems: [
+        "롯데홈쇼핑 로고와 사옥 사진(공식 홈페이지 공개 이미지) 사용 승인 — 승인되지 않으면 공개본에서 뺍니다",
         "고객사 실명(롯데홈쇼핑)과 응답자 실명·직함(오주영 과장, AX팀) 공개 여부",
         "인용문 4개(처음 문제, 코드 없는 조립, 운영 만족도, 최종 목표)의 원문 사용 여부",
         "수치와 일정: 건당 약 20분, 500쪽+, 900명, 4개 부서, 10/14 오픈, 11/24 오픈 목표",
@@ -532,6 +541,10 @@ const EN: Copy = {
         "Figures and dates are as of November 2026 and may change with operations.",
     ],
     metaTitle: "Customer profile",
+    logoSrc: "/customers/lotte-homeshopping/logo-en.png",
+    logoAlt: "Lotte Homeshopping logo",
+    heroAlt: "Lotte Homeshopping headquarters in Yangpyeong-dong, Yeongdeungpo-gu, Seoul",
+    heroCredit: "Photo and logo: Lotte Homeshopping official website (lottehomeshopping.com)",
     meta: [
         ["Customer", "Lotte Homeshopping"],
         ["Industry", "Commerce · TV home shopping"],
@@ -546,6 +559,7 @@ const EN: Copy = {
         "Customer review draft · excluded from search — to be published after Lotte Homeshopping's confirmation.",
     reviewTitle: "Items to confirm",
     reviewItems: [
+        "Approval to use the Lotte Homeshopping logo and headquarters photo (public images from the official website) — removed from the published version if not approved",
         "Use of the customer name (Lotte Homeshopping) and the respondent's name and title",
         "Use of the four quotes as written",
         "Figures and dates: ~20 min per item, 500+ pages, 900 people, 4 departments, 10/14 launch, 11/24 target",
@@ -626,6 +640,14 @@ export function LotteHomeshoppingCaseBody({
                             {t.breadcrumbIndustry}
                         </Link>
                     </nav>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={t.logoSrc}
+                        alt={t.logoAlt}
+                        width={locale === "en" ? 187 : 355}
+                        height={locale === "en" ? 69 : 74}
+                        className="mt-7 h-9 w-auto md:h-10"
+                    />
                     <div className="mt-5 flex flex-wrap items-center gap-2">
                         <span className="inline-flex items-center rounded-full border border-[#2f7bff]/30 bg-[#2f7bff]/[0.07] px-3 py-1 text-[12.5px] font-bold text-[#2461d8]">
                             XGEN
@@ -652,6 +674,19 @@ export function LotteHomeshoppingCaseBody({
                     </p>
                 </div>
             </header>
+
+            {/* 고객사 사진 — 롯데홈쇼핑 공식 홈페이지 공개 이미지 */}
+            <figure className="mx-auto max-w-6xl px-6 pt-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/customers/lotte-homeshopping/building.webp"
+                    alt={t.heroAlt}
+                    width={1920}
+                    height={596}
+                    className="h-[180px] w-full border border-[var(--color-line)] object-cover sm:h-[240px] lg:h-auto"
+                />
+                <figcaption className="mt-2 text-[12.5px] text-[var(--color-ink-subtle)]">{t.heroCredit}</figcaption>
+            </figure>
 
             <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
                 {/* 고객 정보 — 데스크톱은 오른쪽 고정, 모바일은 본문 위 */}
