@@ -92,6 +92,8 @@ type Copy = {
     s7Needs: { need: string; answer: string }[];
     s7NeedLabel: string;
     s7AnswerLabel: string;
+    s7ApproachTitle: string;
+    s7Approach: string;
     s7Note: string;
     s7Link: string;
     s8Kicker: string;
@@ -283,6 +285,8 @@ const KO: Copy = {
             answer: "Geny는 연결된 Tool을 한꺼번에 읽지 않고 현재 업무에 필요한 Tool을 찾아 씁니다(Tool Search). 로컬 도구는 DexOn으로, 다른 시스템의 도구는 API·MCP로 연결합니다. 실행은 XGEN의 권한·거버넌스 범위 안에서만 허용됩니다.",
         },
     ],
+    s7ApproachTitle: "고객 피드백에 대응하는 방식",
+    s7Approach: "플래티어는 현장에서 나온 고객 피드백을 XGEN 개선 과제로 받아, 솔루션을 고치고 고객 환경에 적용하는 방식으로 대응합니다. 위 세 가지 요구도 이 방식으로 Geny 경로를 먼저 제안하고, 적용 범위와 순서를 고객과 함께 정해 빠르게 반영해 나가고 있습니다.",
     s7Note: "OpenAI 호환 API 엔드포인트 자체의 도구 호출 제약은 그대로이며, 위 방법은 Geny Agent 안에서 도구를 쓰는 경로입니다. 롯데홈쇼핑 환경에 Geny와 DexOn을 적용하는 범위와 일정은 XGEN 버전과 구성에 따라 협의해 정합니다.",
     s7Link: "Geny 자세히 보기",
     s8Kicker: "다음 계획",
@@ -501,6 +505,8 @@ const EN: Copy = {
             answer: "Geny finds the tools the current task needs instead of loading every connected tool at once (Tool Search). Local tools connect through DexOn, and tools in other systems connect through APIs or MCP. Execution is allowed only within XGEN's permission and governance scope.",
         },
     ],
+    s7ApproachTitle: "How we respond to customer feedback",
+    s7Approach: "Plateer takes customer feedback from the field as XGEN improvement items, then responds by improving the solution and applying it to the customer's environment. For the three needs above, we followed the same approach: we proposed the Geny path first and are moving quickly, agreeing the scope and order of rollout with the customer.",
     s7Note: "The tool-calling limit of the OpenAI-compatible API endpoint itself remains; the approach above is how tools are used inside a Geny agent. The scope and timing of applying Geny and DexOn to Lotte Homeshopping's environment will be agreed based on the XGEN version and configuration.",
     s7Link: "Learn more about Geny",
     s8Kicker: "What's next",
@@ -874,6 +880,10 @@ export function LotteHomeshoppingCaseBody({
                                         </li>
                                     ))}
                                 </ol>
+                                <div className="mt-4 border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-5 py-4">
+                                    <p className="text-[14px] font-bold text-[var(--color-ink)]">{t.s7ApproachTitle}</p>
+                                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{t.s7Approach}</p>
+                                </div>
                                 <p className="mt-3 text-[13px] leading-relaxed text-[var(--color-ink-subtle)]">{t.s7Note}</p>
                                 <Link
                                     href={localeHref(locale, "/blog/product-xgeny")}
