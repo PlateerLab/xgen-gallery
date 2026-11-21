@@ -119,11 +119,12 @@ const KO: Copy = {
     breadcrumbIndustry: "커머스",
     badgeCustomer: "커머스 · 롯데홈쇼핑",
     badgeStatus: "운영·확산 중",
-    title: "롯데홈쇼핑, 챗봇에서 시작해 부서별 업무를 수행하는 AI Agent로",
+    title: "롯데홈쇼핑, 챗봇에서 시작해\n부서별 업무를 수행하는 AI\u00a0Agent로",
     lead: [
-        "시작은 하나의 챗봇이었습니다. 이제 롯데홈쇼핑 AX팀은 XGEN을 활용해 새로운 업무에 필요한 AI Agent를 직접 만들고, 현업에 적용하는 단계로 나아가고 있습니다.",
+        "시작은 하나의 챗봇이었습니다.",
+        "이제 롯데홈쇼핑 AX팀은 XGEN을 활용해 새로운 업무에 필요한 AI\u00a0Agent를 직접 만들고, 현업에 적용하는 단계로 나아가고 있습니다.",
         "보안이 중요한 사내 데이터는 내부 GPU 환경에서 운영하는 AI 모델로 처리하고, 복잡한 추론이 필요한 업무에는 클라우드 AI 모델을 활용합니다.",
-        "위해상품 판매차단과 차세대 시스템 업무 안내에서 시작한 AI Agent의 활용 범위는 재경 업무와 방송 품질·심의 영역으로 점차 확대되고 있습니다.",
+        "위해상품 판매차단과 차세대 시스템 업무 안내에서 시작한 AI\u00a0Agent의 활용 범위는 재경 업무와 방송 품질·심의 영역으로 점차 확대되고 있습니다.",
     ],
     takeawaysTitle: "핵심 요약",
     takeaways: [
@@ -332,9 +333,10 @@ const EN: Copy = {
     breadcrumbIndustry: "Commerce",
     badgeCustomer: "Commerce · Lotte Homeshopping",
     badgeStatus: "In operation · Rolling out",
-    title: "Lotte Homeshopping: from a chatbot to AI agents that carry out work in each department",
+    title: "Lotte Homeshopping:\nfrom a chatbot to AI agents that carry out work in each department",
     lead: [
-        "It started with a single chatbot. Now Lotte Homeshopping's AX team is moving into a stage where it builds the AI agents new work calls for in XGEN and puts them to use in the business.",
+        "It started with a single chatbot.",
+        "Now Lotte Homeshopping's AX team is moving into a stage where it builds the AI agents new work calls for in XGEN and puts them to use in the business.",
         "Sensitive internal data is handled by AI models running on in-house GPUs, while work that calls for complex reasoning uses cloud AI models.",
         "What began with blocking sales of hazardous products and guiding staff through the next-generation system is gradually expanding into finance and broadcast quality and review.",
     ],
@@ -632,12 +634,19 @@ export function LotteHomeshoppingCaseBody({
                     <p className="mt-7 text-[12px] font-bold uppercase tracking-[0.14em] text-[var(--color-ink-subtle)]">
                         Customer Story
                     </p>
-                    <h1 className="mt-2 max-w-4xl text-[30px] font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[42px]">
-                        {t.title}
+                    <h1 className="mt-2 max-w-4xl break-keep text-balance text-[30px] font-bold leading-[1.25] tracking-tight text-[var(--color-ink)] md:text-[42px]">
+                        {t.title.split("\n").map((line, i) => (
+                            <span key={line} className="md:block">
+                                {i > 0 && " "}
+                                {line}
+                            </span>
+                        ))}
                     </h1>
-                    <div className="mt-5 max-w-3xl space-y-3 text-[17.5px] leading-relaxed text-[var(--color-ink-muted)] md:text-[19px]">
-                        {t.lead.map((para) => (
-                            <p key={para}>{para}</p>
+                    <div className="mt-6 max-w-[44rem] space-y-4 break-keep text-pretty text-[17.5px] leading-[1.75] text-[var(--color-ink-muted)] md:text-[19px]">
+                        {t.lead.map((para, i) => (
+                            <p key={para} className={i === 0 ? "font-semibold text-[var(--color-ink)]" : undefined}>
+                                {para}
+                            </p>
                         ))}
                     </div>
                 </div>
