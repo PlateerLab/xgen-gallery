@@ -279,8 +279,8 @@ const KO: Copy = {
     s7AnswerLabel: "Geny에서는",
     s7Needs: [
         {
-            need: "내 PC에 있는 PPT MCP를 따로 붙여 쓰고 싶다",
-            answer: "DexOn과 함께 쓰면 Geny Agent가 허용된 범위 안에서 사용자 PC의 MCP·파일·앱을 도구로 씁니다. PPT MCP를 서버로 옮기지 않아도, 그 PC에서 그대로 돌아갑니다.",
+            need: "내 PC에 있는 어플리케이션에 MCP를 따로 붙여 쓰고 싶다",
+            answer: "DexOn과 함께 쓰면 Geny Agent가 허용된 범위 안에서 사용자 PC의 MCP·파일·앱을 도구로 씁니다. PC의 어플리케이션과 MCP를 서버로 옮기지 않아도, 그 PC에서 그대로 돌아갑니다.",
         },
         {
             need: "외부 자원을, 넣으면 결과가 나오는 방식으로 쉽게 쓰고 싶다",
@@ -509,8 +509,8 @@ const EN: Copy = {
     s7AnswerLabel: "With Geny",
     s7Needs: [
         {
-            need: "To plug in a PowerPoint MCP server that runs on their own PC",
-            answer: "Used with DexOn, a Geny agent can use MCP servers, files and apps on the user's PC as tools, within the allowed scope. The PowerPoint MCP doesn't have to move to the server; it keeps running on that PC.",
+            need: "To attach MCP to applications on their own PC",
+            answer: "Used with DexOn, a Geny agent can use MCP servers, files and apps on the user's PC as tools, within the allowed scope. The applications and their MCP servers don't have to move to the server; they keep running on that PC.",
         },
         {
             need: "To use external resources easily: put something in, get a result out",
