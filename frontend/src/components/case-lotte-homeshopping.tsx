@@ -134,15 +134,15 @@ const KO: Copy = {
     takeaways: [
         [
             "필요한 업무는 바로 만들어 씁니다",
-            "위해상품 판매차단, 차세대 시스템(A1+) 매뉴얼 안내, 상품백과 챗봇, 엑셀 생성기. 모두 코드 없이 워크플로우로 엮어 배포했습니다.",
+            "위해상품 판매차단, 차세대 시스템 매뉴얼 안내, 상품백과 챗봇, 엑셀 생성기. 모두 코드 없이 워크플로우로 엮어 배포했습니다.",
         ],
         [
             "데이터가 머물 곳에 맞춰 모델을 고릅니다",
-            "밖으로 나갈 수 없는 데이터는 사내 GPU의 오픈 모델(Gemma·Qwen 계열)이, 깊은 추론은 Claude 같은 클라우드 모델이 처리합니다. 두 모델을 한 플랫폼 안에서 함께 씁니다.",
+            "밖으로 나갈 수 없는 데이터는 사내 GPU의 오픈 모델이, 깊은 추론은 Claude 같은 클라우드 모델이 처리합니다. 두 모델을 한 플랫폼 안에서 함께 씁니다.",
         ],
         [
             "한 부서에서 다음 부서로 넓혀 갑니다",
-            "부서마다 요구를 듣고 그에 맞는 Agent를 만드는 방식(AX Foundry)을 MD, 방송편성, CS, 재경으로 넓혀 가고 있습니다.",
+            "부서마다 요구를 듣고 그에 맞는 Agent를 만드는 방식을 MD, 방송편성, CS, 재경으로 넓혀 가고 있습니다.",
         ],
     ],
     statsTitle: "숫자로 보는 출발점",
@@ -150,10 +150,10 @@ const KO: Copy = {
         ["약 20분", "도입 전, 위해상품 한 건을 아이몰에서 손으로 대조하던 시간"],
         ["500쪽+", "담당자가 직접 뒤져 읽어야 했던 차세대 시스템 매뉴얼"],
         ["900명", "A1+ 도우미를 먼저 만난 임직원·협력사"],
-        ["4개 부서", "AX Foundry가 다음으로 향하는 부서(MD·방송편성·CS·재경)"],
+        ["4개 부서", "부서별 Agent가 다음으로 향하는 부서"],
     ],
     statsNote:
-        "고객이 알려 준 도입 전 업무 조건과 적용 범위입니다(2026년 11월 기준). 도입 뒤 얼마나 줄었는지는 아직 측정 전이라 싣지 않았습니다.",
+        "고객이 알려 준 도입 전 업무 조건과 적용 범위입니다. 도입 뒤 얼마나 줄었는지는 아직 측정 전이라 싣지 않았습니다.",
     s1Kicker: "출발점",
     s1Title: "요구는 하나씩 늘었고, 챗봇 하나로는 버거웠습니다",
     s1Body: [
@@ -193,7 +193,7 @@ const KO: Copy = {
         },
     ],
     s3Body: [
-        "XGEN은 롯데홈쇼핑 인프라 안의 쿠버네티스(K3s) 클러스터 위에서 돌아가고, 배포 이미지는 사내 레지스트리에서 관리합니다. 2026년 3월에는 XGEN agentflow의 통합 서비스 구조로 옮겨, 돌봐야 할 서비스 수를 줄였습니다.",
+        "XGEN은 롯데홈쇼핑 인프라 안의 쿠버네티스 클러스터 위에서 돌아가고, 배포 이미지는 사내 레지스트리에서 관리합니다. 2026년 3월에는 XGEN agentflow의 통합 서비스 구조로 옮겨, 돌봐야 할 서비스 수를 줄였습니다.",
         "API와 MCP로 도구를 잇는 방식이 하나로 정해져 있다 보니, 사내 시스템 연동도 한 번 만든 패턴을 다음 업무에서 다시 꺼내 쓸 수 있게 됐습니다.",
     ],
     q2: "필요한 업무를 코드 없이 워크플로우로 조립해서 바로 배포할 수 있습니다. 차세대 시스템 매뉴얼, 상품백과 챗봇, 엑셀 생성기도 모두 이 방식으로 만들었습니다.",
@@ -212,7 +212,7 @@ const KO: Copy = {
         },
         {
             no: "02",
-            title: "차세대 시스템(A1+) 매뉴얼",
+            title: "차세대 시스템 매뉴얼",
             before: "500쪽이 넘는 매뉴얼에서 필요한 대목을 직접 찾아 읽어야 했습니다.",
             after: "「차세대 A1+ 도우미」에게 물으면 어느 화면으로 가야 하는지까지 차근차근 짚어 줍니다.",
             status: "임직원·협력사 900명에게 먼저 공개",
@@ -247,11 +247,11 @@ const KO: Copy = {
     s5Items: [
         [
             "입력 검사",
-            "채팅과 첨부 문서, 이미지는 유해 콘텐츠 검사와 개인정보 탐지(정규식·개체명 인식)를 차례로 거칩니다. 개인정보가 보이면 요청을 잠시 멈추고 계속할지 묻습니다. 계속하기로 하면 그 부분을 가린(마스킹) 채로 보냅니다. 이미지는 글자를 뽑아낸 뒤(OCR) 같은 검사를 거칩니다.",
+            "채팅과 첨부 문서, 이미지는 유해 콘텐츠 검사와 개인정보 탐지를 차례로 거칩니다. 개인정보가 보이면 요청을 잠시 멈추고 계속할지 묻습니다. 계속하기로 하면 그 부분을 가린 채로 보냅니다. 이미지는 글자를 뽑아낸 뒤 같은 검사를 거칩니다.",
         ],
         [
             "답변 기준",
-            "임직원·협력사 업무 문의 Agent는 품질(QA) 질문에는 지식베이스에서 확인되는 내용만 답하고, 근거가 없으면 답하지 않습니다. SCM·MD·CS 질문에는 추론을 허용하되, 추론한 대목에는 [추론]이라고 표시합니다.",
+            "임직원·협력사 업무 문의 Agent는 품질 질문에는 지식베이스에서 확인되는 내용만 답하고, 근거가 없으면 답하지 않습니다. SCM·MD·CS 질문에는 추론을 허용하되, 추론한 대목에는 [추론]이라고 표시합니다.",
         ],
         [
             "단계적 배포",
@@ -265,7 +265,7 @@ const KO: Copy = {
     ],
     s6ListTitle: "운영하며 함께 풀어 낸 일",
     s6List: [
-        "Gemma 4가 배포 직후 응답하지 않던 문제는 모델 체크포인트, vLLM, transformers가 서로 다른 버전 규칙을 따르면서 생겼습니다. 버전을 맞춰 고정하자 정상으로 돌아왔습니다(2026년 8월).",
+        "Gemma 4가 배포 직후 응답하지 않던 문제는 모델 체크포인트, vLLM, transformers가 서로 다른 버전 규칙을 따르면서 생겼습니다. 버전을 맞춰 고정하자 정상으로 돌아왔습니다.",
         "노드를 다시 띄울 때 외부 이미지 저장소에 닿지 못해 배포가 멈춘 일도 있었습니다. 같은 사설망 환경에서 그대로 재현해 보고, 필요한 이미지 목록과 사내 레지스트리 운영 방안으로 정리했습니다.",
     ],
     q3: "기반 모델부터 XGEN 워크플로우, LLM이 내놓는 결과까지 현재는 만족스러운 수준으로 내부 시스템을 운영하고 있습니다.",
@@ -282,11 +282,11 @@ const KO: Copy = {
         },
         {
             need: "외부 자원을, 넣으면 결과가 나오는 방식으로 쉽게 쓰고 싶다",
-            answer: "연결한 Tool은 입력과 출력이 정해진 단위로 등록됩니다. 필요한 Tool이 없으면 Agent가 직접 코드를 짜고 테스트해 Workspace에 저장해 두고(Tool Creation), 다음 업무에서 다시 꺼내 씁니다.",
+            answer: "연결한 Tool은 입력과 출력이 정해진 단위로 등록됩니다. 필요한 Tool이 없으면 Agent가 직접 코드를 짜고 테스트해 Workspace에 저장해 두고, 다음 업무에서 다시 꺼내 씁니다.",
         },
         {
             need: "로컬이나 다른 시스템에 있는 내 도구를 워크플로우에 그냥 붙이고 싶다",
-            answer: "Geny는 연결된 Tool을 한꺼번에 불러오지 않고, 지금 업무에 필요한 것만 찾아 씁니다(Tool Search). 로컬 도구는 DexOn으로, 다른 시스템의 도구는 API·MCP로 잇습니다. 실행은 XGEN의 권한·거버넌스가 허용하는 범위 안에서만 이뤄집니다.",
+            answer: "Geny는 연결된 Tool을 한꺼번에 불러오지 않고, 지금 업무에 필요한 것만 찾아 씁니다. 로컬 도구는 DexOn으로, 다른 시스템의 도구는 API·MCP로 잇습니다. 실행은 XGEN의 권한·거버넌스가 허용하는 범위 안에서만 이뤄집니다.",
         },
     ],
     s7ApproachTitle: "현장의 목소리가 다음 개선이 됩니다",
@@ -296,7 +296,7 @@ const KO: Copy = {
     s8Kicker: "다음 이야기",
     s8Title: "한 부서에서 다음 부서로, Agent가 일하는 자리를 넓힙니다",
     s8Body: [
-        "롯데홈쇼핑은 부서마다 요구를 듣고 그에 맞는 Agent를 만드는 방식(AX Foundry)을 MD, 방송편성, CS, 재경으로 넓혀 가고 있습니다. 현업이 필요한 순간에 바로 꺼내 쓸 수 있도록 Agent 환경도 함께 다듬고 있습니다.",
+        "롯데홈쇼핑은 부서마다 요구를 듣고 그에 맞는 Agent를 만드는 방식을 MD, 방송편성, CS, 재경으로 넓혀 가고 있습니다. 현업이 필요한 순간에 바로 꺼내 쓸 수 있도록 Agent 환경도 함께 다듬고 있습니다.",
     ],
     s8ListTitle: "현업과 함께 다듬고 있는 과제",
     s8List: [
@@ -311,7 +311,7 @@ const KO: Copy = {
     speakerOrg: "롯데홈쇼핑 AX팀",
     sourceTitle: "이 사례의 출처",
     sources: [
-        "롯데홈쇼핑 AX팀 서면 인터뷰(2026.11.12) — 인용은 원문 그대로 옮겼습니다.",
+        "롯데홈쇼핑 AX팀 서면 인터뷰 — 인용은 원문 그대로 옮겼습니다.",
         "플래티어 프로젝트 기록 — 통제 정책, 운영 구성, 모델 서빙 기록",
         "수치와 일정은 2026년 11월 기준이며, 운영 상황에 따라 바뀔 수 있습니다.",
     ],
@@ -319,7 +319,7 @@ const KO: Copy = {
     logoSrc: "/customers/lotte-homeshopping/logo-ko.png",
     logoAlt: "롯데홈쇼핑 로고",
     heroAlt: "서울 영등포구 양평동의 롯데홈쇼핑 사옥",
-    heroCredit: "사진·로고: 롯데홈쇼핑 공식 홈페이지(lottehomeshopping.com)",
+    heroCredit: "사진·로고: 롯데홈쇼핑 공식 홈페이지",
     meta: [
         ["고객", "롯데홈쇼핑"],
         ["업종", "커머스 · TV홈쇼핑"],
@@ -334,13 +334,13 @@ const KO: Copy = {
         "고객 검토본 · 검색 색인 제외 — 롯데홈쇼핑 확인을 거쳐 정식 공개합니다.",
     reviewTitle: "확인 요청 항목",
     reviewItems: [
-        "롯데홈쇼핑 로고와 사옥 사진(공식 홈페이지 공개 이미지) 사용 승인 — 승인되지 않으면 공개본에서 뺍니다",
-        "고객사 실명(롯데홈쇼핑)과 응답자 실명·직함(오주영 과장, AX팀) 공개 여부",
-        "인용문 4개(처음 문제, 코드 없는 조립, 운영 만족도, 최종 목표)의 원문 사용 여부",
+        "롯데홈쇼핑 로고와 사옥 사진 사용 승인 — 승인되지 않으면 공개본에서 뺍니다",
+        "고객사 실명과 응답자 실명·직함 공개 여부",
+        "인용문 4개의 원문 사용 여부",
         "수치와 일정: 건당 약 20분, 500쪽+, 900명, 4개 부서, 10/14 오픈, 11/24 오픈 목표",
         "Moni의 역할: 인터뷰에서는 「방송 품질 점검 결과 등록」, 프로젝트 기록에서는 「임직원·협력사 업무 문의」로 적혀 있어 어느 쪽이 맞는지",
-        "모델명(Gemma 4 31B, Qwen 3.8 27B, Qwen3.8-Flash-Next 125B A6B, Claude)과 사내 GPU 구성 공개 범위",
-        "「남은 과제」 문단(API 엔드포인트 제약)과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
+        "모델명과 사내 GPU 구성 공개 범위",
+        "「남은 과제」 문단과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
         "「현업과 함께 다듬고 있는 과제」 4개를 공개해도 되는지",
     ],
 };
@@ -363,11 +363,11 @@ const EN: Copy = {
         ],
         [
             "The data decides the model",
-            "Data that can't leave the company is handled by open models on in-house GPUs (Gemma and Qwen families). Harder reasoning goes to cloud models such as Claude. Both run side by side on one platform.",
+            "Data that can't leave the company is handled by open models on in-house GPUs. Harder reasoning goes to cloud models such as Claude. Both run side by side on one platform.",
         ],
         [
             "One department, then the next",
-            "AX Foundry, a way of listening to each department and building agents around its needs, is now extending to merchandising, broadcast scheduling, customer service and finance.",
+            "A way of listening to each department and building agents around its needs is now extending to merchandising, broadcast scheduling, customer service and finance.",
         ],
     ],
     statsTitle: "Where they started, in numbers",
@@ -375,10 +375,10 @@ const EN: Copy = {
         ["~20 min", "Before adoption: the time it took to check one hazardous product by hand on the online mall"],
         ["500+ pages", "The next-generation system manual staff had to dig through themselves"],
         ["900", "Employees and partners who got early access to the A1+ assistant"],
-        ["4 departments", "Where AX Foundry is heading next (MD, scheduling, CS, finance)"],
+        ["4 departments", "Where department agents are heading next"],
     ],
     statsNote:
-        "These are the pre-adoption working conditions and scope shared by the customer (as of November 2026). Time saved after adoption hasn't been measured yet, so it isn't included here.",
+        "These are the pre-adoption working conditions and scope shared by the customer. Time saved after adoption hasn't been measured yet, so it isn't included here.",
     s1Kicker: "Where it began",
     s1Title: "The asks kept growing, and one chatbot couldn't keep up",
     s1Body: [
@@ -418,7 +418,7 @@ const EN: Copy = {
         },
     ],
     s3Body: [
-        "XGEN runs on a Kubernetes (K3s) cluster inside Lotte Homeshopping's own infrastructure, with deployment images kept in an internal registry. In March 2026 it moved to the consolidated service structure of XGEN agentflow, leaving fewer services to look after.",
+        "XGEN runs on a Kubernetes cluster inside Lotte Homeshopping's own infrastructure, with deployment images kept in an internal registry. In March 2026 it moved to the consolidated service structure of XGEN agentflow, leaving fewer services to look after.",
         "Because tools connect through APIs and MCP in one consistent way, an integration built for one internal system became a pattern the team could reuse for the next task.",
     ],
     q2: "We can assemble the work we need as workflows, without code, and deploy them right away. The next-generation system manual, the product-encyclopedia chatbot and the Excel generator were all built this way.",
@@ -437,7 +437,7 @@ const EN: Copy = {
         },
         {
             no: "02",
-            title: "Next-generation system (A1+) manual",
+            title: "Next-generation system manual",
             before: "Staff had to hunt for the right passage in a manual of more than 500 pages.",
             after: "Ask the \"A1+ assistant\" and it walks you through step by step, right down to which screen to open.",
             status: "Early access for 900 employees and partners",
@@ -472,11 +472,11 @@ const EN: Copy = {
     s5Items: [
         [
             "Input checks",
-            "Chat text, attached documents and images go through a harmful-content check and then personal-data detection (regular expressions plus named-entity recognition). If personal data turns up, the request pauses and asks whether to continue. If the user continues, that part is masked before sending. Images get the same checks after their text is extracted by OCR.",
+            "Chat text, attached documents and images go through a harmful-content check and then personal-data detection. If personal data turns up, the request pauses and asks whether to continue. If the user continues, that part is masked before sending. Images get the same checks after their text is extracted.",
         ],
         [
             "Answer rules",
-            "The work-inquiry agent for employees and partners answers quality (QA) questions only with what the knowledge base confirms, and stays silent when there are no grounds. For SCM, MD and CS questions it may reason, but labels any inferred part with [Inference].",
+            "The work-inquiry agent for employees and partners answers quality questions only with what the knowledge base confirms, and stays silent when there are no grounds. For SCM, MD and CS questions it may reason, but labels any inferred part with [Inference].",
         ],
         [
             "Staged rollout",
@@ -490,7 +490,7 @@ const EN: Copy = {
     ],
     s6ListTitle: "Worked out together along the way",
     s6List: [
-        "When Gemma 4 wouldn't respond right after deployment, the cause was the model checkpoint, vLLM and transformers following different version conventions. Aligning and pinning the versions brought it back (August 2026).",
+        "When Gemma 4 wouldn't respond right after deployment, the cause was the model checkpoint, vLLM and transformers following different version conventions. Aligning and pinning the versions brought it back.",
         "At one point a deployment stalled because nodes couldn't reach an external image registry on restart. The team reproduced it in the same private-network setup and turned it into a list of required images and a plan for running an internal registry.",
     ],
     q3: "From the base models to XGEN workflows and the results the LLM produces, we are currently running our internal systems at a satisfactory level.",
@@ -507,11 +507,11 @@ const EN: Copy = {
         },
         {
             need: "To use external resources easily: put something in, get a result out",
-            answer: "Connected tools are registered as units with defined inputs and outputs. If the right tool doesn't exist yet, the agent writes and tests the code itself, saves it to its Workspace (Tool Creation), and reaches for it again next time.",
+            answer: "Connected tools are registered as units with defined inputs and outputs. If the right tool doesn't exist yet, the agent writes and tests the code itself, saves it to its Workspace, and reaches for it again next time.",
         },
         {
             need: "To simply attach their own tools, local or in other systems, to a workflow",
-            answer: "Instead of loading every connected tool at once, Geny finds just the ones the current task needs (Tool Search). Local tools connect through DexOn, and tools in other systems connect through APIs or MCP. Nothing runs outside what XGEN's permissions and governance allow.",
+            answer: "Instead of loading every connected tool at once, Geny finds just the ones the current task needs. Local tools connect through DexOn, and tools in other systems connect through APIs or MCP. Nothing runs outside what XGEN's permissions and governance allow.",
         },
     ],
     s7ApproachTitle: "What we hear in the field becomes the next improvement",
@@ -521,7 +521,7 @@ const EN: Copy = {
     s8Kicker: "What's next",
     s8Title: "One department, then the next: more places for agents to work",
     s8Body: [
-        "Lotte Homeshopping is extending AX Foundry, its way of listening to each department and building agents around its needs, to merchandising, broadcast scheduling, customer service and finance. The agent environment is being refined too, so business teams can reach for it the moment they need it.",
+        "Lotte Homeshopping is extending its way of listening to each department and building agents around its needs, to merchandising, broadcast scheduling, customer service and finance. The agent environment is being refined too, so business teams can reach for it the moment they need it.",
     ],
     s8ListTitle: "Being refined with the business teams",
     s8List: [
@@ -536,7 +536,7 @@ const EN: Copy = {
     speakerOrg: "AX Team, Lotte Homeshopping",
     sourceTitle: "Sources for this case",
     sources: [
-        "Written interview with the Lotte Homeshopping AX team (2026.11.12) — quotes are translated from the original.",
+        "Written interview with the Lotte Homeshopping AX team — quotes are translated from the original.",
         "Plateer project records — control policies, operating setup, and model-serving records",
         "Figures and dates are as of November 2026 and may change with operations.",
     ],
@@ -544,7 +544,7 @@ const EN: Copy = {
     logoSrc: "/customers/lotte-homeshopping/logo-en.png",
     logoAlt: "Lotte Homeshopping logo",
     heroAlt: "Lotte Homeshopping headquarters in Yangpyeong-dong, Yeongdeungpo-gu, Seoul",
-    heroCredit: "Photo and logo: Lotte Homeshopping official website (lottehomeshopping.com)",
+    heroCredit: "Photo and logo: Lotte Homeshopping official website",
     meta: [
         ["Customer", "Lotte Homeshopping"],
         ["Industry", "Commerce · TV home shopping"],
@@ -559,13 +559,13 @@ const EN: Copy = {
         "Customer review draft · excluded from search — to be published after Lotte Homeshopping's confirmation.",
     reviewTitle: "Items to confirm",
     reviewItems: [
-        "Approval to use the Lotte Homeshopping logo and headquarters photo (public images from the official website) — removed from the published version if not approved",
-        "Use of the customer name (Lotte Homeshopping) and the respondent's name and title",
+        "Approval to use the Lotte Homeshopping logo and headquarters photo — removed from the published version if not approved",
+        "Use of the customer name and the respondent's name and title",
         "Use of the four quotes as written",
         "Figures and dates: ~20 min per item, 500+ pages, 900 people, 4 departments, 10/14 launch, 11/24 target",
         "Moni's role: the interview says recording broadcast quality-check results, project records say work inquiries for employees and partners",
         "How much of the model names and in-house GPU setup may be published",
-        "Whether the open-issue paragraph (API endpoint limits) and the Geny follow-up stay in the public version, and whether the three customer needs are worded correctly",
+        "Whether the open-issue paragraph and the Geny follow-up stay in the public version, and whether the three customer needs are worded correctly",
         "Whether the four tasks being refined may be published",
     ],
 };
