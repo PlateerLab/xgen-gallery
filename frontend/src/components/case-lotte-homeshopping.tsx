@@ -545,8 +545,8 @@ const P = "text-[16.5px] leading-[1.8] text-[var(--color-ink-muted)]";
 
 function PullQuote({ text, who, org }: { text: string; who: string; org: string }) {
     return (
-        <figure className="my-8 border-l-4 border-[#2f7bff] bg-[var(--color-surface-alt)] px-6 py-5">
-            <Quote aria-hidden className="h-5 w-5 rotate-180 text-[#2461d8]/30" />
+        <figure className="my-8 border-l-4 border-[#2f7bff] bg-[#eef4ff] px-6 py-5">
+            <Quote aria-hidden className="h-5 w-5 rotate-180 text-[#2461d8]/40" />
             <blockquote className="mt-2 text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[19px]">
                 {text}
             </blockquote>
