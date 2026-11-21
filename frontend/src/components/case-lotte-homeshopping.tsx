@@ -673,7 +673,9 @@ export function LotteHomeshoppingCaseBody({
             <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
                 {/* 고객 정보 — 데스크톱은 오른쪽 고정, 모바일은 본문 위 */}
                 <aside className="lg:order-2">
-                    <div className="lg:sticky lg:top-24">
+                    {/* 고정 위치는 GNB(+체험 배너) 실제 높이 `--nav-h` 아래 24px. 배너를 닫으면 따라 올라간다.
+                        상자 전체가 화면에 들어가는 높이(≥720px)에서만 고정 — 낮은 화면에서 아래가 잘리지 않게. */}
+                    <div className="transition-[top] duration-200 motion-reduce:transition-none [@media(min-width:1024px)_and_(min-height:720px)]:sticky [@media(min-width:1024px)_and_(min-height:720px)]:top-[calc(var(--nav-h,121px)+24px)]">
                         <div className="border border-[var(--color-line)] bg-white">
                             <p className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-5 py-3 text-[13px] font-bold text-[var(--color-ink)]">
                                 {t.metaTitle}
