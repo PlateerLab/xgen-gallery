@@ -88,6 +88,12 @@ type Copy = {
     s7Kicker: string;
     s7Title: string;
     s7Body: string;
+    s7NeedsTitle: string;
+    s7Needs: { need: string; answer: string }[];
+    s7NeedLabel: string;
+    s7AnswerLabel: string;
+    s7Note: string;
+    s7Link: string;
     s8Kicker: string;
     s8Title: string;
     s8Body: string[];
@@ -259,7 +265,26 @@ const KO: Copy = {
     q3: "기반 모델부터 XGEN 워크플로우, LLM이 내놓는 결과까지 현재는 만족스러운 수준으로 내부 시스템을 운영하고 있습니다.",
     s7Kicker: "남은 과제",
     s7Title: "고객이 꼽은 개선점",
-    s7Body: "XGEN이 내부에 열어 주는 API 엔드포인트는 OpenAI 호환 v1/chat/completions 방식입니다. 그래서 이 API로 XGEN을 부르는 도구에서는 MCP나 도구 호출을 자유롭게 쓰는 데 제약이 있습니다. 고객은 다음 버전에서 이 부분이 개선되기를 기대하고 있습니다.",
+    s7Body: "XGEN이 내부에 열어 주는 API 엔드포인트는 OpenAI 호환 v1/chat/completions 방식입니다. 그래서 이 API로 XGEN을 부르는 도구에서는 MCP나 도구 호출을 자유롭게 쓰는 데 제약이 있습니다. 고객이 원한 것은 아래 세 가지였고, 이 요구는 XGEN의 Agent 실행 환경인 Geny에서 다룰 수 있습니다.",
+    s7NeedsTitle: "고객 요구와 Geny에서의 방법",
+    s7NeedLabel: "고객 요구",
+    s7AnswerLabel: "Geny에서의 방법",
+    s7Needs: [
+        {
+            need: "사용자 PC에 있는 PPT MCP를 따로 붙여 쓰고 싶다",
+            answer: "Geny Agent는 DexOn과 함께 쓰면 허용된 범위에서 사용자 PC의 MCP·파일·애플리케이션을 도구로 씁니다. 로컬 PPT MCP를 서버로 옮기지 않고 그 PC에서 실행합니다.",
+        },
+        {
+            need: "외부 자원을 입력값을 넣으면 출력값이 나오는 방식으로 쉽게 쓰고 싶다",
+            answer: "연결한 Tool은 입력과 출력이 정해진 단위로 등록됩니다. 필요한 Tool이 없으면 Agent가 코드를 작성하고 테스트해 Workspace에 저장하고(Tool Creation), 다음 업무에서 다시 씁니다.",
+        },
+        {
+            need: "워크플로우에 내 도구(로컬 또는 다른 시스템의 도구)를 그냥 붙이고 싶다",
+            answer: "Geny는 연결된 Tool을 한꺼번에 읽지 않고 현재 업무에 필요한 Tool을 찾아 씁니다(Tool Search). 로컬 도구는 DexOn으로, 다른 시스템의 도구는 API·MCP로 연결합니다. 실행은 XGEN의 권한·거버넌스 범위 안에서만 허용됩니다.",
+        },
+    ],
+    s7Note: "OpenAI 호환 API 엔드포인트 자체의 도구 호출 제약은 그대로이며, 위 방법은 Geny Agent 안에서 도구를 쓰는 경로입니다. 롯데홈쇼핑 환경에 Geny와 DexOn을 적용하는 범위와 일정은 XGEN 버전과 구성에 따라 협의해 정합니다.",
+    s7Link: "Geny 자세히 보기",
     s8Kicker: "다음 계획",
     s8Title: "부서별 맞춤 Agent를 만드는 구조로 넓힙니다",
     s8Body: [
@@ -302,7 +327,7 @@ const KO: Copy = {
         "수치와 일정: 건당 약 20분, 500쪽+, 900명, 4개 부서, 10/14 오픈, 11/24 오픈 목표",
         "Moni의 역할: 인터뷰에서는 「방송 품질 점검 결과 등록」, 프로젝트 기록에서는 「임직원·협력사 업무 문의」로 적혀 있어 어느 쪽이 맞는지",
         "모델명(Gemma 4 31B, Qwen 3.8 27B, Qwen3.8-Flash-Next 125B A6B, Claude)과 사내 GPU 구성 공개 범위",
-        "「남은 과제」 문단(API 엔드포인트 제약)을 공개본에 둘지",
+        "「남은 과제」 문단(API 엔드포인트 제약)과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
         "「현업과 함께 다듬고 있는 과제」 4개를 공개해도 되는지",
     ],
 };
@@ -458,7 +483,26 @@ const EN: Copy = {
     q3: "From the base models to XGEN workflows and the results the LLM produces, we are currently running our internal systems at a satisfactory level.",
     s7Kicker: "Open issue",
     s7Title: "An improvement the customer pointed out",
-    s7Body: "The API endpoint XGEN exposes internally follows the OpenAI-compatible v1/chat/completions format. As a result, tools that call XGEN through this API are limited in how freely they can use MCP or tool calling. The customer hopes this will be improved in the next version.",
+    s7Body: "The API endpoint XGEN exposes internally follows the OpenAI-compatible v1/chat/completions format. As a result, tools that call XGEN through this API are limited in how freely they can use MCP or tool calling. The customer asked for the three things below, and Geny, XGEN's agent runtime, can address them.",
+    s7NeedsTitle: "What the customer asked for, and how Geny handles it",
+    s7NeedLabel: "Customer need",
+    s7AnswerLabel: "How Geny handles it",
+    s7Needs: [
+        {
+            need: "Attach a PowerPoint MCP server that runs on the user's own PC",
+            answer: "Used with DexOn, a Geny agent can use MCP servers, files and applications on the user's PC as tools, within the allowed scope. The local PowerPoint MCP runs on that PC instead of being moved to the server.",
+        },
+        {
+            need: "Use external resources easily, as input in and output out",
+            answer: "Connected tools are registered as units with defined inputs and outputs. When a needed tool does not exist, the agent writes and tests the code, saves it to its Workspace (Tool Creation), and reuses it in later work.",
+        },
+        {
+            need: "Simply plug my own tools, local or in other systems, into a workflow",
+            answer: "Geny finds the tools the current task needs instead of loading every connected tool at once (Tool Search). Local tools connect through DexOn, and tools in other systems connect through APIs or MCP. Execution is allowed only within XGEN's permission and governance scope.",
+        },
+    ],
+    s7Note: "The tool-calling limit of the OpenAI-compatible API endpoint itself remains; the approach above is how tools are used inside a Geny agent. The scope and timing of applying Geny and DexOn to Lotte Homeshopping's environment will be agreed based on the XGEN version and configuration.",
+    s7Link: "Learn more about Geny",
     s8Kicker: "What's next",
     s8Title: "Extending a structure for department-specific agents",
     s8Body: [
@@ -501,7 +545,7 @@ const EN: Copy = {
         "Figures and dates: ~20 min per item, 500+ pages, 900 people, 4 departments, 10/14 launch, 11/24 target",
         "Moni's role: the interview says recording broadcast quality-check results, project records say work inquiries for employees and partners",
         "How much of the model names and in-house GPU setup may be published",
-        "Whether the open-issue paragraph (API endpoint limits) stays in the public version",
+        "Whether the open-issue paragraph (API endpoint limits) and the Geny follow-up stay in the public version, and whether the three customer needs are worded correctly",
         "Whether the four tasks being refined may be published",
     ],
 };
@@ -812,6 +856,33 @@ export function LotteHomeshoppingCaseBody({
                         {/* 7. 남은 과제 */}
                         <Section kicker={t.s7Kicker} title={t.s7Title}>
                             <p className={P}>{t.s7Body}</p>
+                            <div>
+                                <p className="text-[15px] font-bold text-[var(--color-ink)]">{t.s7NeedsTitle}</p>
+                                <ol className="mt-3 border-t border-[var(--color-line)]">
+                                    {t.s7Needs.map((n, i) => (
+                                        <li key={n.need} className="grid gap-2 border-b border-[var(--color-line)] py-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-6">
+                                            <div>
+                                                <p className="text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
+                                                    {String(i + 1).padStart(2, "0")} · {t.s7NeedLabel}
+                                                </p>
+                                                <p className="mt-1 text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)]">{n.need}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-[12.5px] font-semibold text-[#2461d8]">{t.s7AnswerLabel}</p>
+                                                <p className="mt-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">{n.answer}</p>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ol>
+                                <p className="mt-3 text-[13px] leading-relaxed text-[var(--color-ink-subtle)]">{t.s7Note}</p>
+                                <Link
+                                    href={localeHref(locale, "/blog/product-xgeny")}
+                                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#2461d8] hover:underline"
+                                >
+                                    {t.s7Link}
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
                         </Section>
 
                         {/* 8. 다음 계획 */}
