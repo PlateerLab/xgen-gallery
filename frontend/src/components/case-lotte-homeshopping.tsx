@@ -40,13 +40,10 @@ type Copy = {
     badgeStatus: string;
     title: string;
     lead: string;
-    dateLabel: string;
-    readTime: string;
     takeawaysTitle: string;
     takeaways: [string, string][];
     statsTitle: string;
     stats: [string, string][];
-    statsNote: string;
     s1Kicker: string;
     s1Title: string;
     s1Body: string[];
@@ -127,9 +124,7 @@ const KO: Copy = {
     badgeCustomer: "커머스 · 롯데홈쇼핑",
     badgeStatus: "운영·확산 중",
     title: "롯데홈쇼핑, 챗봇 하나에서 시작해 부서마다 일하는 AI Agent로",
-    lead: "시작은 챗봇 하나였습니다. 지금 롯데홈쇼핑 AX팀은 새로운 업무가 생기면 XGEN에서 코드 없이 워크플로우를 엮어 Agent를 내놓습니다. 회사 밖으로 나가면 안 되는 데이터는 사내 GPU의 모델이 맡고, 깊이 생각해야 하는 일은 클라우드 모델이 맡습니다. 위해상품 판매차단과 차세대 시스템 안내로 첫발을 뗐고, 이제 재경과 방송 품질·심의 업무까지 손이 닿고 있습니다.",
-    dateLabel: "2026.11.21 정리",
-    readTime: "약 6분",
+    lead: "시작은 챗봇 하나였습니다. 지금 롯데홈쇼핑 AX팀은 새로운 업무가 생기면 XGEN에서 코드 없이 Agent를 내놓습니다. 회사 밖으로 나가면 안 되는 데이터는 사내 GPU의 모델이 맡고, 깊이 생각해야 하는 일은 클라우드 모델이 맡습니다. 위해상품 판매차단과 차세대 시스템 안내로 첫발을 뗐고, 이제 재경과 방송 품질·심의 업무까지 손이 닿고 있습니다.",
     takeawaysTitle: "핵심 요약",
     takeaways: [
         [
@@ -152,14 +147,12 @@ const KO: Copy = {
         ["900명", "A1+ 도우미를 먼저 만난 임직원·협력사"],
         ["4개 부서", "부서별 Agent가 다음으로 향하는 부서"],
     ],
-    statsNote:
-        "고객이 알려 준 도입 전 업무 조건과 적용 범위입니다. 도입 뒤 얼마나 줄었는지는 아직 측정 전이라 싣지 않았습니다.",
     s1Kicker: "출발점",
     s1Title: "요구는 하나씩 늘었고, 챗봇 하나로는 버거웠습니다",
     s1Body: [
         "롯데홈쇼핑의 생성형 AI는 외국계 시스템의 챗봇에서 출발했습니다. 써 보는 부서가 늘수록 바라는 것도 늘었습니다. 묻는 말에 답해 주는 것만으로는 부족했습니다. 아이몰을 검색해 결과를 엑셀로 뽑아 주고, 사내 시스템의 어느 화면으로 가야 하는지 짚어 주는 일까지 맡기고 싶어졌습니다.",
     ],
-    q1: "처음에는 외국계 시스템 챗봇으로 시작했습니다. 여기에 요건이 하나씩 늘면서 워크플로우 단위로 만들고 운영(LLMOps)할 수 있는 기반이 필요해졌습니다.",
+    q1: "처음에는 외국계 시스템 챗봇으로 시작했습니다. 여기에 요건이 하나씩 늘면서 워크플로우 단위로 만들고 운영(AIOps)할 수 있는 기반이 필요해졌습니다.",
     reqTitle: "새 기반에 바란 세 가지",
     reqs: [
         ["모델", "Claude 같은 클라우드 모델과 Gemma·Qwen 같은 온프레미스 모델을 한 플랫폼에서 함께 쓰고 싶었습니다."],
@@ -352,9 +345,7 @@ const EN: Copy = {
     badgeCustomer: "Commerce · Lotte Homeshopping",
     badgeStatus: "In operation · Rolling out",
     title: "Lotte Homeshopping: from one chatbot to AI agents at work across departments",
-    lead: "It started with a single chatbot. Today, when a new need comes up, Lotte Homeshopping's AX team builds a workflow in XGEN without writing code and puts an agent to work. Data that has to stay inside the company goes to models on in-house GPUs, and the harder thinking goes to cloud models. The first steps were blocking sales of hazardous products and guiding staff through a new core system. Now the work is reaching into finance and broadcast quality and review.",
-    dateLabel: "Compiled 2026.11.21",
-    readTime: "About 6 min",
+    lead: "It started with a single chatbot. Today, when a new need comes up, Lotte Homeshopping's AX team builds an agent in XGEN without writing code and puts it to work. Data that has to stay inside the company goes to models on in-house GPUs, and the harder thinking goes to cloud models. The first steps were blocking sales of hazardous products and guiding staff through a new core system. Now the work is reaching into finance and broadcast quality and review.",
     takeawaysTitle: "Key takeaways",
     takeaways: [
         [
@@ -377,14 +368,12 @@ const EN: Copy = {
         ["900", "Employees and partners who got early access to the A1+ assistant"],
         ["4 departments", "Where department agents are heading next"],
     ],
-    statsNote:
-        "These are the pre-adoption working conditions and scope shared by the customer. Time saved after adoption hasn't been measured yet, so it isn't included here.",
     s1Kicker: "Where it began",
     s1Title: "The asks kept growing, and one chatbot couldn't keep up",
     s1Body: [
         "Lotte Homeshopping's generative-AI journey began with a chatbot from a foreign vendor's system. The more departments tried it, the more they wanted from it. Answering questions wasn't enough anymore. Teams wanted it to search the online mall and hand back the results in Excel, and to point staff to the right screen in internal systems.",
     ],
-    q1: "We started with a chatbot from a foreign vendor's system. As requirements were added one at a time, we needed a foundation where we could build and operate (LLMOps) at the level of workflows.",
+    q1: "We started with a chatbot from a foreign vendor's system. As requirements were added one at a time, we needed a foundation where we could build and operate (AIOps) at the level of workflows.",
     reqTitle: "Three things they needed from a new foundation",
     reqs: [
         ["Models", "Cloud models such as Claude and on-premise models such as Gemma and Qwen, used together on one platform."],
@@ -669,9 +658,6 @@ export function LotteHomeshoppingCaseBody({
                     <p className="mt-5 max-w-3xl text-[17.5px] leading-relaxed text-[var(--color-ink-muted)] md:text-[19px]">
                         {t.lead}
                     </p>
-                    <p className="mt-5 text-[13.5px] text-[var(--color-ink-subtle)]">
-                        <time dateTime="2026-11-21">{t.dateLabel}</time> · {t.readTime}
-                    </p>
                 </div>
             </header>
 
@@ -744,7 +730,6 @@ export function LotteHomeshoppingCaseBody({
                                 </div>
                             ))}
                         </dl>
-                        <p className="mt-2.5 text-[13px] leading-relaxed text-[var(--color-ink-subtle)]">{t.statsNote}</p>
                     </section>
 
                     <div className="mt-12 space-y-12">
