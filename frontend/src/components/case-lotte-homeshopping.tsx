@@ -39,7 +39,7 @@ type Copy = {
     badgeCustomer: string;
     badgeStatus: string;
     title: string;
-    lead: string;
+    lead: string[];
     takeawaysTitle: string;
     takeaways: [string, string][];
     statsTitle: string;
@@ -123,13 +123,17 @@ const KO: Copy = {
     breadcrumbIndustry: "커머스",
     badgeCustomer: "커머스 · 롯데홈쇼핑",
     badgeStatus: "운영·확산 중",
-    title: "롯데홈쇼핑, 챗봇 하나에서 시작해 부서마다 일하는 AI Agent로",
-    lead: "시작은 챗봇 하나였습니다. 지금 롯데홈쇼핑 AX팀은 새로운 업무가 생기면 XGEN에서 코드 없이 Agent를 내놓습니다. 회사 밖으로 나가면 안 되는 데이터는 사내 GPU의 모델이 맡고, 깊이 생각해야 하는 일은 클라우드 모델이 맡습니다. 위해상품 판매차단과 차세대 시스템 안내로 첫발을 뗐고, 이제 재경과 방송 품질·심의 업무까지 손이 닿고 있습니다.",
+    title: "롯데홈쇼핑, 챗봇에서 시작해 부서별 업무를 수행하는 AI Agent로",
+    lead: [
+        "시작은 하나의 챗봇이었습니다. 이제 롯데홈쇼핑 AX팀은 XGEN을 활용해 새로운 업무에 필요한 AI Agent를 직접 만들고, 현업에 적용하는 단계로 나아가고 있습니다.",
+        "보안이 중요한 사내 데이터는 내부 GPU 환경에서 운영하는 AI 모델로 처리하고, 복잡한 추론이 필요한 업무에는 클라우드 AI 모델을 활용합니다.",
+        "위해상품 판매차단과 차세대 시스템 업무 안내에서 시작한 AI Agent의 활용 범위는 재경 업무와 방송 품질·심의 영역으로 점차 확대되고 있습니다.",
+    ],
     takeawaysTitle: "핵심 요약",
     takeaways: [
         [
             "필요한 업무는 바로 만들어 씁니다",
-            "위해상품 판매차단, 차세대 시스템 매뉴얼 안내, 상품백과 챗봇, 엑셀 생성기. 모두 코드 없이 워크플로우로 엮어 배포했습니다.",
+            "위해상품 판매차단, 차세대 시스템 매뉴얼 안내, 상품백과 챗봇, 엑셀 생성기. 이 모든 업무는 별도의 코딩 없이 워크플로우로 구성하고, AI Agent로 만들어 현업에 배포했습니다.",
         ],
         [
             "데이터가 머물 곳에 맞춰 모델을 고릅니다",
@@ -344,13 +348,17 @@ const EN: Copy = {
     breadcrumbIndustry: "Commerce",
     badgeCustomer: "Commerce · Lotte Homeshopping",
     badgeStatus: "In operation · Rolling out",
-    title: "Lotte Homeshopping: from one chatbot to AI agents at work across departments",
-    lead: "It started with a single chatbot. Today, when a new need comes up, Lotte Homeshopping's AX team builds an agent in XGEN without writing code and puts it to work. Data that has to stay inside the company goes to models on in-house GPUs, and the harder thinking goes to cloud models. The first steps were blocking sales of hazardous products and guiding staff through a new core system. Now the work is reaching into finance and broadcast quality and review.",
+    title: "Lotte Homeshopping: from a chatbot to AI agents that carry out work in each department",
+    lead: [
+        "It started with a single chatbot. Now Lotte Homeshopping's AX team is moving into a stage where it builds the AI agents new work calls for in XGEN and puts them to use in the business.",
+        "Sensitive internal data is handled by AI models running on in-house GPUs, while work that calls for complex reasoning uses cloud AI models.",
+        "What began with blocking sales of hazardous products and guiding staff through the next-generation system is gradually expanding into finance and broadcast quality and review.",
+    ],
     takeawaysTitle: "Key takeaways",
     takeaways: [
         [
             "If the team needs it, they build it",
-            "Hazardous-product sales blocking, help with the next-generation A1+ system manual, a product-encyclopedia chatbot and an Excel generator were all built as workflows, without code, and deployed.",
+            "Hazardous-product sales blocking, help with the next-generation system manual, a product-encyclopedia chatbot and an Excel generator: all of it was set up as workflows without separate coding, turned into AI agents and deployed to the business.",
         ],
         [
             "The data decides the model",
@@ -655,9 +663,11 @@ export function LotteHomeshoppingCaseBody({
                     <h1 className="mt-2 max-w-4xl text-[30px] font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[42px]">
                         {t.title}
                     </h1>
-                    <p className="mt-5 max-w-3xl text-[17.5px] leading-relaxed text-[var(--color-ink-muted)] md:text-[19px]">
-                        {t.lead}
-                    </p>
+                    <div className="mt-5 max-w-3xl space-y-3 text-[17.5px] leading-relaxed text-[var(--color-ink-muted)] md:text-[19px]">
+                        {t.lead.map((para) => (
+                            <p key={para}>{para}</p>
+                        ))}
+                    </div>
                 </div>
             </header>
 
