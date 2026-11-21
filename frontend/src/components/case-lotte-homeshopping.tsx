@@ -208,7 +208,7 @@ const KO: Copy = {
             title: "위해상품 판매차단",
             before: "유통물류진흥원의 위해상품 목록을 담당자가 아이몰에서 한 건씩 손으로 대조했습니다. 한 건에 20분 남짓 걸리던 일입니다.",
             after: "이제 Agent가 아이몰을 검색하고, 대조 결과를 엑셀로 건넵니다.",
-            status: "2026.10.14 운영 오픈",
+            status: "운영 중",
         },
         {
             no: "02",
@@ -222,7 +222,7 @@ const KO: Copy = {
             title: "택시비 영수증 전표 처리",
             before: "영수증 내용을 손으로 옮겨 적고, 카드 내역과 하나하나 맞춰 봤습니다.",
             after: "사진 한 장을 올리면 판독부터 법인카드 매칭, 품의 작성까지 이어집니다. 재경팀은 마지막 검증에만 집중합니다.",
-            status: "연동 진행 중 · 2026.11.24 오픈 목표",
+            status: "연동 진행 중",
         },
         {
             no: "04",
@@ -433,7 +433,7 @@ const EN: Copy = {
             title: "Blocking sales of hazardous products",
             before: "Staff checked the Korea distribution agency's hazardous-product list against the online mall by hand, one item at a time. Each one took about 20 minutes.",
             after: "Now an agent searches the online mall and hands over the results in Excel.",
-            status: "In operation since 2026.10.14",
+            status: "In operation",
         },
         {
             no: "02",
@@ -447,7 +447,7 @@ const EN: Copy = {
             title: "Taxi receipt expense processing",
             before: "Receipt details were typed in by hand and matched line by line against card statements.",
             after: "Upload one photo and it moves through reading, corporate-card matching and drafting the approval request. The finance team can focus on the final check.",
-            status: "Integration in progress · target launch 2026.11.24",
+            status: "Integration in progress",
         },
         {
             no: "04",
