@@ -270,9 +270,9 @@ const KO: Copy = {
         "Gemma 4가 배포 직후 응답하지 않던 문제는 모델 체크포인트, vLLM, transformers가 서로 다른 버전 규칙을 따르면서 생겼습니다. 버전을 맞춰 고정하자 정상으로 돌아왔습니다.",
         "노드를 다시 띄울 때 외부 이미지 저장소에 닿지 못해 배포가 멈춘 일도 있었습니다. 같은 사설망 환경에서 그대로 재현해 보고, 필요한 이미지 목록과 사내 레지스트리 운영 방안으로 정리했습니다.",
     ],
-    q3: "기반 모델부터 XGEN 워크플로우, LLM이 내놓는 결과까지 현재는 만족스러운 수준으로 내부 시스템을 운영하고 있습니다.",
-    s7Kicker: "남은 과제",
-    s7Title: "고객이 들려준 아쉬움, 그리고 플래티어의 답",
+    q3: "기반 AI 모델부터 XGEN 워크플로우, LLM 응답 결과까지 전반적으로 만족스러운 수준이며, 현재 사내 시스템에서도 안정적으로 운영하고 있습니다.",
+    s7Kicker: "향후 개선 과제",
+    s7Title: "실제 운영에서 확인한 개선 과제, 함께 발전시키는 XGEN",
     s7Body: "아쉬운 점도 솔직하게 들었습니다. XGEN이 사내에 열어 주는 API 엔드포인트는 OpenAI 호환 v1/chat/completions 방식입니다. 그래서 이 API로 XGEN을 부르는 도구에서는 MCP나 도구 호출을 마음껏 쓰기 어렵습니다. 고객이 바란 것은 아래 세 가지였고, XGEN의 Agent 실행 환경인 Geny에서 풀어 갈 수 있습니다.",
     s7NeedsTitle: "고객의 바람과 Geny의 방법",
     s7NeedLabel: "고객의 바람",
@@ -342,7 +342,7 @@ const KO: Copy = {
         "수치와 일정: 건당 약 20분, 500쪽+, 900명, 4개 부서, 10/14 오픈, 11/24 오픈 목표",
         "Moni의 역할: 인터뷰에서는 「방송 품질 점검 결과 등록」, 프로젝트 기록에서는 「임직원·협력사 업무 문의」로 적혀 있어 어느 쪽이 맞는지",
         "모델명과 사내 GPU 구성 공개 범위",
-        "「남은 과제」 문단과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
+        "「향후 개선 과제」 문단과 Geny 보완 설명을 공개본에 둘지, 고객 요구 3가지의 표현이 맞는지",
         "「현업과 함께 다듬고 있는 과제」 4개를 공개해도 되는지",
     ],
 };
@@ -500,9 +500,9 @@ const EN: Copy = {
         "When Gemma 4 wouldn't respond right after deployment, the cause was the model checkpoint, vLLM and transformers following different version conventions. Aligning and pinning the versions brought it back.",
         "At one point a deployment stalled because nodes couldn't reach an external image registry on restart. The team reproduced it in the same private-network setup and turned it into a list of required images and a plan for running an internal registry.",
     ],
-    q3: "From the base models to XGEN workflows and the results the LLM produces, we are currently running our internal systems at a satisfactory level.",
-    s7Kicker: "Still to solve",
-    s7Title: "What the customer wished were better, and how Plateer is answering",
+    q3: "From the base AI models to XGEN workflows and the LLM responses, we are satisfied overall, and it is running stably on our internal systems today.",
+    s7Kicker: "Next improvements",
+    s7Title: "Improvements found in real operation, and XGEN growing with the customer",
     s7Body: "We heard the frustrations too, and plainly. The API endpoint XGEN exposes internally follows the OpenAI-compatible v1/chat/completions format, so tools that call XGEN through it can't use MCP or tool calling as freely as the team would like. The customer asked for the three things below, and Geny, XGEN's agent runtime, offers a way to get there.",
     s7NeedsTitle: "What the customer wanted, and how Geny handles it",
     s7NeedLabel: "What they wanted",
@@ -900,7 +900,7 @@ export function LotteHomeshoppingCaseBody({
                             <PullQuote text={t.q3} who={t.speaker} org={t.speakerOrg} />
                         </Section>
 
-                        {/* 7. 남은 과제 */}
+                        {/* 7. 향후 개선 과제 */}
                         <Section kicker={t.s7Kicker} title={t.s7Title}>
                             <p className={P}>{t.s7Body}</p>
                             <div>
