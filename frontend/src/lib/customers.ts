@@ -299,6 +299,9 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
         status: "구축 완료",
         published: "2026-01-15",
         featured: true,
+        // 2026-11-21 블라인드: 같은 고객의 실명 사례(/preview/lotte-homeshopping-30f6477b)가
+        // 고객 검토 중이다. 확인이 끝나면 새 사례로 합치고 이 주소는 넘긴다.
+        draft: true,
     },
     {
         slug: "semiconductor-code-assistant",
