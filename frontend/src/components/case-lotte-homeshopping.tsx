@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n";
  *
  * 구성은 Cohere 고객사례(cohere.com/customer-stories/ada) 순서를 따른다.
  *   핵심 요약 3줄 → 처음 문제(고객 인용) → 요구사항 3가지 → 선정 과정 →
- *   핵심 결정 → 바뀐 업무(예전/지금) → 함께 푼 문제 → 남은 과제 → 다음 계획
+ *   핵심 결정 → 바뀐 업무(Before/After) → 함께 푼 문제 → 남은 과제 → 다음 계획
  * 오른쪽(모바일은 위) 정보 상자에 업종·제품·구성·적용 업무를 모은다.
  *
  * 출처
@@ -196,8 +196,8 @@ const KO: Copy = {
     s4Kicker: "달라진 일상",
     s4Title: "같은 일, 달라진 방식",
     s4Lead: "고객이 직접 꼽은 업무별 변화입니다. 아직 연동을 이어 가고 있는 업무도 있습니다.",
-    beforeLabel: "예전",
-    afterLabel: "지금",
+    beforeLabel: "Before",
+    afterLabel: "After",
     tasks: [
         {
             no: "01",
@@ -410,7 +410,7 @@ const EN: Copy = {
     s4Title: "Same work, a different way of doing it",
     s4Lead: "Changes the customer pointed to, task by task. Some integrations are still under way.",
     beforeLabel: "Before",
-    afterLabel: "Now",
+    afterLabel: "After",
     tasks: [
         {
             no: "01",
