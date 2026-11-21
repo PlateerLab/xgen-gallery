@@ -43,7 +43,7 @@ type Copy = {
     takeawaysTitle: string;
     takeaways: [string, string][];
     statsTitle: string;
-    stats: [string, string][];
+    stats: [string, string, string][];
     s1Kicker: string;
     s1Title: string;
     s1Body: string[];
@@ -144,12 +144,12 @@ const KO: Copy = {
             "부서마다 요구를 듣고 그에 맞는 Agent를 만드는 방식을 MD, 방송편성, CS, 재경으로 넓혀 가고 있습니다.",
         ],
     ],
-    statsTitle: "숫자로 보는 출발점",
+    statsTitle: "숫자로 보는 롯데홈쇼핑의 AX 전환",
     stats: [
-        ["약 20분", "도입 전, 위해상품 한 건을 아이몰에서 손으로 대조하던 시간"],
-        ["500쪽+", "담당자가 직접 뒤져 읽어야 했던 차세대 시스템 매뉴얼"],
-        ["900명", "A1+ 도우미를 먼저 만난 임직원·협력사"],
-        ["4개 부서", "부서별 Agent가 다음으로 향하는 부서"],
+        ["약 20분", "위해상품 1건 처리", "도입 전, 아이몰에서 위해상품 1건을 수작업으로 판매차단하는 데 소요된 시간"],
+        ["500쪽+", "차세대 시스템 매뉴얼", "담당자가 직접 검색하고 확인해야 했던 방대한 업무 매뉴얼"],
+        ["900명", "AI 업무 안내 대상", "A1+ 업무 안내 Agent를 활용하는 임직원 및 협력사 대상 규모"],
+        ["4개 부서", "AI Agent 확산 영역", "위해상품·시스템 안내에서 재경 및 방송 품질·심의 업무로 확대"],
     ],
     s1Kicker: "출발점",
     s1Title: "요구는 하나씩 늘었고, 챗봇 하나로는 버거웠습니다",
@@ -369,12 +369,12 @@ const EN: Copy = {
             "A way of listening to each department and building agents around its needs is now extending to merchandising, broadcast scheduling, customer service and finance.",
         ],
     ],
-    statsTitle: "Where they started, in numbers",
+    statsTitle: "LOTTE Homeshopping's AX shift, in numbers",
     stats: [
-        ["~20 min", "Before adoption: the time it took to check one hazardous product by hand on the online mall"],
-        ["500+ pages", "The next-generation system manual staff had to dig through themselves"],
-        ["900", "Employees and partners who got early access to the A1+ assistant"],
-        ["4 departments", "Where department agents are heading next"],
+        ["~20 min", "Handling one hazardous product", "Before adoption, the time it took to block one hazardous product from sale on the online mall by hand"],
+        ["500+ pages", "Next-generation system manual", "The extensive work manual staff had to search and check themselves"],
+        ["900", "People supported by AI work guidance", "Employees and partners covered by the A1+ work guidance agent"],
+        ["4 departments", "Where AI agents are spreading", "From hazardous-product and system guidance to finance and broadcast quality and review work"],
     ],
     s1Kicker: "Where it began",
     s1Title: "The asks kept growing, and one chatbot couldn't keep up",
@@ -732,11 +732,12 @@ export function LotteHomeshoppingCaseBody({
                     {/* 숫자 */}
                     <section className="mt-8">
                         <h2 className="text-[15px] font-bold text-[var(--color-ink)]">{t.statsTitle}</h2>
-                        <dl className="mt-3 grid grid-cols-2 border-l border-t border-[var(--color-line)] md:grid-cols-4">
-                            {t.stats.map(([v, label]) => (
-                                <div key={v} className="border-b border-r border-[var(--color-line)] bg-white p-4">
-                                    <dd className="text-[24px] font-bold tracking-tight text-[#2461d8]">{v}</dd>
-                                    <dt className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)]">{label}</dt>
+                        <dl className="mt-3 grid grid-cols-1 border-l border-t border-[var(--color-line)] sm:grid-cols-2">
+                            {t.stats.map(([v, label, desc]) => (
+                                <div key={v} className="flex flex-col border-b border-r border-[var(--color-line)] bg-white p-5">
+                                    <dd className="order-1 text-[24px] font-bold tracking-tight text-[#2461d8]">{v}</dd>
+                                    <dt className="order-2 mt-2 text-[15px] font-bold text-[var(--color-ink)]">{label}</dt>
+                                    <dd className="order-3 mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{desc}</dd>
                                 </div>
                             ))}
                         </dl>
