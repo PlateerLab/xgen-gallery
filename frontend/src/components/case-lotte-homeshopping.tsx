@@ -90,8 +90,7 @@ type Copy = {
     s7NeedLabel: string;
     s7AnswerLabel: string;
     s7ApproachTitle: string;
-    s7Approach: string;
-    s7Note: string;
+    s7Approach: string[];
     s7Link: string;
     s8Kicker: string;
     s8Title: string;
@@ -288,9 +287,12 @@ const KO: Copy = {
             answer: "Geny는 연결된 Tool을 한꺼번에 불러오지 않고, 지금 업무에 필요한 것만 찾아 씁니다. 로컬 도구는 DexOn으로, 다른 시스템의 도구는 API·MCP로 잇습니다. 실행은 XGEN의 권한·거버넌스가 허용하는 범위 안에서만 이뤄집니다.",
         },
     ],
-    s7ApproachTitle: "현장의 목소리가 다음 개선이 됩니다",
-    s7Approach: "플래티어는 현장에서 들은 아쉬움을 XGEN의 개선 과제로 받아 솔루션을 고치고, 그 결과를 다시 고객 환경에 적용합니다. 이번 세 가지 바람에도 먼저 Geny라는 길을 제안했습니다. 어디까지, 어떤 순서로 적용할지는 고객과 함께 정해 빠르게 반영해 가고 있습니다.",
-    s7Note: "참고로 OpenAI 호환 API 엔드포인트 자체의 도구 호출 제약은 그대로 남아 있습니다. 위 방법은 Geny Agent 안에서 도구를 쓰는 경로입니다. 롯데홈쇼핑 환경에 Geny와 DexOn을 어디까지, 언제 적용할지는 XGEN 버전과 구성에 맞춰 협의해 정합니다.",
+    s7ApproachTitle: "현장의 피드백을 XGEN의 지속적인 개선으로 연결합니다",
+    s7Approach: [
+        "플래티어는 고객의 실제 운영 과정에서 확인된 요구사항과 개선 과제를 XGEN의 제품 발전에 반영하고 있습니다.",
+        "롯데홈쇼핑이 제시한 세 가지 개선 요구에 대해서도 Geny 기반의 개선 방향을 제안했으며, 고객과 함께 적용 범위와 우선순위를 구체화하고 있습니다.",
+        "앞으로도 현장의 피드백을 제품 개선으로 연결하고, 개선된 기능을 실제 업무 환경에 단계적으로 적용해 나갈 계획입니다.",
+    ],
     s7Link: "Geny 자세히 보기",
     s8Kicker: "다음 이야기",
     s8Title: "한 부서에서 다음 부서로, Agent가 일하는 자리를 넓힙니다",
@@ -502,9 +504,12 @@ const EN: Copy = {
             answer: "Instead of loading every connected tool at once, Geny finds just the ones the current task needs. Local tools connect through DexOn, and tools in other systems connect through APIs or MCP. Nothing runs outside what XGEN's permissions and governance allow.",
         },
     ],
-    s7ApproachTitle: "What we hear in the field becomes the next improvement",
-    s7Approach: "Plateer takes the frustrations we hear in the field as XGEN improvement items, improves the solution, and brings the result back into the customer's environment. For these three needs, we started by proposing the Geny path. How far to take it, and in what order, we're deciding together with the customer and moving quickly.",
-    s7Note: "For clarity: the tool-calling limit of the OpenAI-compatible API endpoint itself remains. The approach above is how tools are used inside a Geny agent. How far and when Geny and DexOn are applied in Lotte Homeshopping's environment will be agreed based on the XGEN version and configuration.",
+    s7ApproachTitle: "Turning field feedback into continuous XGEN improvement",
+    s7Approach: [
+        "Plateer feeds the requirements and improvement items found in customers' real operations back into how XGEN develops as a product.",
+        "For the three improvements Lotte Homeshopping raised, we proposed a direction built on Geny, and we are working with the customer to define its scope and priorities.",
+        "We will keep turning field feedback into product improvements and roll the improved features out to real work environments step by step.",
+    ],
     s7Link: "Learn more about Geny",
     s8Kicker: "What's next",
     s8Title: "One department, then the next: more places for agents to work",
@@ -894,9 +899,10 @@ export function LotteHomeshoppingCaseBody({
                                 </ol>
                                 <div className="mt-4 border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-5 py-4">
                                     <p className="text-[14px] font-bold text-[var(--color-ink)]">{t.s7ApproachTitle}</p>
-                                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{t.s7Approach}</p>
+                                    {t.s7Approach.map((para) => (
+                                        <p key={para} className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{para}</p>
+                                    ))}
                                 </div>
-                                <p className="mt-3 text-[13px] leading-relaxed text-[var(--color-ink-subtle)]">{t.s7Note}</p>
                                 <Link
                                     href={localeHref(locale, "/blog/product-xgeny")}
                                     className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#2461d8] hover:underline"
