@@ -220,13 +220,13 @@ const KO: Copy = {
         },
         {
             no: "04",
-            title: "택시비 영수증 전표 처리",
+            title: "영수증 전표 처리",
             before: "영수증 내용을 손으로 옮겨 적고, 카드 내역과 하나하나 맞춰 봤습니다.",
             after: "사진 한 장을 올리면 판독부터 법인카드 매칭, 품의 작성까지 이어집니다. 재경팀은 마지막 검증에만 집중합니다.",
             status: "연동 진행 중",
         },
     ],
-    flowTitle: "택시비 전표는 이렇게 흘러갑니다",
+    flowTitle: "영수증 전표는 이렇게 흘러갑니다",
     flowNote: "마지막 판단은 사람이 합니다. Agent가 쓴 품의는 재경팀 검증을 거친 뒤에야 처리됩니다.",
     flow: [
         { who: "직원", step: "영수증 사진 업로드" },
@@ -436,13 +436,13 @@ const EN: Copy = {
         },
         {
             no: "04",
-            title: "Taxi receipt expense processing",
+            title: "Receipt expense processing",
             before: "Receipt details were typed in by hand and matched line by line against card statements.",
             after: "Upload one photo and it moves through reading, corporate-card matching and drafting the approval request. The finance team can focus on the final check.",
             status: "Integration in progress",
         },
     ],
-    flowTitle: "How a taxi expense moves through",
+    flowTitle: "How a receipt expense moves through",
     flowNote: "A person makes the final call. Approval requests drafted by the agent are processed only after the finance team verifies them.",
     flow: [
         { who: "Employee", step: "Upload receipt photo" },
