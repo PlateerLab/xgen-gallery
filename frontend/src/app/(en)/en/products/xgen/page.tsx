@@ -6,7 +6,8 @@ export const metadata = pageMetadata({
     title: "XGEN — Enterprise Agentic AI Platform",
     description:
         "XGEN lets enterprises build, deploy, and govern agents and apps on their own data and infrastructure, with on-premise and air-gapped deployment.",
-    path: "/products/xgen",
+    // 보류 중인 시안 — 정식 주소 /product/xgen 을 대표 주소로 지정(중복 색인 방지).
+    path: "/product/xgen",
     locale: "en",
 });
 

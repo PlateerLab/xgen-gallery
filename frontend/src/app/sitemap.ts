@@ -39,6 +39,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/updates`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         { url: `${SITE.url}/xgen-brief-k7m4`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+        // xgen.im 메인·구글 광고가 연결되는 한글 제품 페이지 — 영문판만 들어가 있던 누락 보완.
+        { url: `${SITE.url}/product/xgen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+        { url: `${SITE.url}/xgen-dex`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/product/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/pathfinder`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/vibe-coding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -166,7 +169,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     */
     const noIndexed = (e: MetadataRoute.Sitemap[number]) => {
         const path = e.url.slice(SITE.url.length).replace(/^\/en/, "");
-        return path === "/code-assistant" || path === "/members" || path.startsWith("/members/");
+        return (
+            path === "/code-assistant" ||
+            path === "/members" ||
+            path.startsWith("/members/") ||
+            // 보류 시안 — canonical 이 /product/xgen 이라 사이트맵에 넣지 않는다.
+            path === "/products/xgen"
+        );
     };
 
     const eventRoutes: MetadataRoute.Sitemap = LAB_EVENTS.filter((event) => !event.draft).map((event) => ({
@@ -176,5 +185,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
-    return [...koreanRoutes, ...englishRoutes, ...eventRoutes].filter((e) => !noIndexed(e));
+    // 같은 URL이 두 목록에서 나오면(예: 이벤트 href가 블로그 글) 먼저 나온 항목만 남긴다.
+    const seen = new Set<string>();
+    return [...koreanRoutes, ...englishRoutes, ...eventRoutes].filter((e) => {
+        if (noIndexed(e) || seen.has(e.url)) return false;
+        seen.add(e.url);
+        return true;
+    });
 }

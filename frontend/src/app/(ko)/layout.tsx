@@ -16,7 +16,7 @@ const OG_DESCRIPTION =
 export const metadata: Metadata = {
     ...SHELL_METADATA_BASE,
     title: {
-        default: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
+        default: `${SITE.name} — 기업용 AI 에이전트 플랫폼 XGEN`,
         template: `%s · ${SITE.name}`,
     },
     description: SITE.description,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         siteName: SITE.name,
-        title: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
+        title: `${SITE.name} — 기업용 AI 에이전트 플랫폼 XGEN`,
         description: OG_DESCRIPTION,
         url: SITE.url,
         locale: "ko_KR",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: `${SITE.name} — 기업용 Agentic AI 플랫폼 XGEN`,
+        title: `${SITE.name} — 기업용 AI 에이전트 플랫폼 XGEN`,
         description: OG_DESCRIPTION,
         images: [SITE.ogImage],
     },

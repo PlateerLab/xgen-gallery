@@ -27,6 +27,7 @@ import type { Locale } from "@/lib/i18n";
 const COPY: Record<
     Locale,
     {
+        heroTitle: string;
         heroLead: string;
         heroDesc: string;
         artIndustries: string[];
@@ -42,6 +43,7 @@ const COPY: Record<
     }
 > = {
     ko: {
+        heroTitle: "산업별 AI 솔루션",
         heroLead: "산업별 업무를 이해하는 Enterprise AI를 연구하고 실증합니다",
         heroDesc:
             "금융, 공공, 커머스, IT 서비스 등 다양한 산업의 업무 특성과 규제를 반영한 AI 기술을 연구하며, 실제 PoC와 프로젝트를 통해 검증된 Enterprise AI 적용 사례를 제공합니다",
@@ -146,6 +148,7 @@ const COPY: Record<
         ],
     },
     en: {
+        heroTitle: "Applied AI by Industry",
         heroLead:
             "We research and validate Enterprise AI that understands the work each industry actually does",
         heroDesc:
@@ -269,7 +272,7 @@ function SolutionsHero({ locale }: { locale: Locale }) {
                     Solutions
                 </p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                    Applied AI by Industry
+                    {t.heroTitle}
                 </h1>
                 <p className="mt-5 text-lg font-medium leading-relaxed text-white/85">
                     {t.heroLead}
