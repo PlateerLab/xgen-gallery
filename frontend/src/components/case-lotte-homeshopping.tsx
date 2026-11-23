@@ -166,9 +166,9 @@ const KO: Copy = {
     s2Title: "롯데홈쇼핑이 XGEN을 선택한 세 가지 이유",
     s2Lead: "롯데홈쇼핑은 여러 AI 플랫폼을 검토하며 자사의 업무 환경과 요구사항에 적합한 솔루션을 비교했습니다. 그 과정에서 XGEN을 선택하게 된 핵심 요인은 세 가지였습니다.",
     s2Points: [
-        "기능별 모듈로 구성되어 있어, 필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
         "구조가 비교적 가벼웠습니다.",
         "사용자가 직접 바꿀 수 있는 범위가 넓었습니다.",
+        "기능별 모듈로 구성되어 있어, 필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
     ],
     s2Close: "플래티어가 플랫폼을 직접 만들어 온 기술력도 선택에 힘을 보탰다고 고객은 말합니다.",
     s3Kicker: "핵심 결정",
@@ -382,9 +382,9 @@ const EN: Copy = {
     s2Title: "Three reasons Lotte Homeshopping chose XGEN",
     s2Lead: "Lotte Homeshopping reviewed several AI platforms and compared which one fit its own work environment and requirements. Three factors ultimately led it to choose XGEN.",
     s2Points: [
-        "Built from functional modules, it let the team pick only the modules it needed, assemble them quickly and onboard the business teams fast.",
         "Its structure was relatively light.",
         "Users had more room to change things themselves.",
+        "Built from functional modules, it let the team pick only the modules it needed, assemble them quickly and onboard the business teams fast.",
     ],
     s2Close: "The customer says the fact that Plateer built the platform in-house also counted in its favor.",
     s3Kicker: "The key decision",
