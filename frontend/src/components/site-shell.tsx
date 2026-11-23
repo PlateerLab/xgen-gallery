@@ -81,4 +81,10 @@ export const SHELL_METADATA_BASE: Metadata = {
         follow: true,
         googleBot: { index: true, follow: true, "max-image-preview": "large" },
     },
+    // 네이버 서치어드바이저 소유 확인 — <meta name="naver-site-verification">로 출력된다.
+    verification: {
+        other: {
+            "naver-site-verification": "a78bf00e6f3b7e90e839d3e015a4a7c1e5bf50a9",
+        },
+    },
 };
