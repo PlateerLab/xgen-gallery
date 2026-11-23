@@ -194,7 +194,7 @@ const KO: Copy = {
     q2: "필요한 업무를 코드 없이 워크플로우로 구성해 바로 배포할 수 있습니다. 차세대 시스템 매뉴얼, 상품백과 챗봇, 엑셀 생성기도 모두 이 방식으로 만들었습니다.",
     s4Kicker: "달라진 일상",
     s4Title: "같은 일, 달라진 방식",
-    s4Lead: "고객이 직접 꼽은 업무별 변화입니다. 아직 연동을 이어 가고 있는 업무도 있습니다.",
+    s4Lead: "고객이 직접 체감한 업무별 변화입니다. 일부 업무는 현재 연동을 진행하며 활용 범위를 넓혀가고 있습니다.",
     beforeLabel: "Before",
     afterLabel: "Now",
     tasks: [
@@ -410,7 +410,7 @@ const EN: Copy = {
     q2: "We can build the work we need as workflows, without code, and deploy them right away. The next-generation system manual, the product-encyclopedia chatbot and the Excel generator were all built this way.",
     s4Kicker: "What changed",
     s4Title: "Same work, a different way of doing it",
-    s4Lead: "Changes the customer pointed to, task by task. Some integrations are still under way.",
+    s4Lead: "Changes the customer has felt firsthand, task by task. Some tasks are still being integrated, widening the scope of use.",
     beforeLabel: "Before",
     afterLabel: "Now",
     tasks: [
