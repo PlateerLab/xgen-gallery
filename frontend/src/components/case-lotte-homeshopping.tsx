@@ -157,8 +157,8 @@ const KO: Copy = {
     reqTitle: "새로운 AI 플랫폼에 요구한 세 가지 조건",
     reqs: [
         ["모델", "Claude 같은 클라우드 모델과 Gemma·Qwen 같은 온프레미스 모델을 한 플랫폼에서 함께 쓰고 싶었습니다."],
-        ["데이터 경계", "밖으로 나가면 안 되는 데이터는 사내 GPU에서 처리하고, 어려운 추론만 클라우드로 보내야 했습니다."],
         ["운영", "현업의 요구가 바뀌면 사용자가 직접 손볼 수 있어야 했습니다."],
+        ["데이터 경계", "밖으로 나가면 안 되는 데이터는 사내 GPU에서 처리하고, 어려운 추론만 클라우드로 보내야 했습니다."],
     ],
     s1Close:
         "결국 필요한 것은 업무마다 Agent를 만들고, 내놓은 뒤에도 계속 다듬어 가며 운영할 수 있는 기반이었습니다.",
@@ -373,8 +373,8 @@ const EN: Copy = {
     reqTitle: "Three requirements for a new AI platform",
     reqs: [
         ["Models", "Cloud models such as Claude and on-premise models such as Gemma and Qwen, used together on one platform."],
-        ["Data boundary", "Data that must stay inside processed on in-house GPUs, with only the hard reasoning sent to the cloud."],
         ["Operations", "Room for business users to adjust things themselves when needs change."],
+        ["Data boundary", "Data that must stay inside processed on in-house GPUs, with only the hard reasoning sent to the cloud."],
     ],
     s1Close:
         "In the end, they needed a foundation for building an agent for each task and continuing to refine and run it long after launch.",
