@@ -305,7 +305,7 @@ const KO: Copy = {
         "전시 영역 자동 세팅",
         "페르소나 봇",
     ],
-    s8Note: "아직 검토와 현업 테스트 단계에 있는 과제라, 범위와 일정은 달라질 수 있습니다.",
+    s8Note: "현재 검토 및 현업 테스트 단계로, 적용 범위와 일정은 변경될 수 있습니다.",
     q4: "최종 목표는 업무 지시와 결과 평가를 사람이 하고, 업무 과정은 AI가 최대한 자율적으로 처리하는 것입니다.",
     speaker: "오주영 책임",
     speakerOrg: "롯데홈쇼핑 AX팀",
@@ -521,7 +521,7 @@ const EN: Copy = {
         "Automatic setup of display areas",
         "Persona bot",
     ],
-    s8Note: "These are still in review and user testing, so scope and timing may change.",
+    s8Note: "These are currently in review and user testing, so the scope of application and timing may change.",
     q4: "The end goal is for people to assign the work and evaluate the results, while AI handles the work in between as autonomously as possible.",
     speaker: "Juyoung Oh",
     speakerOrg: "AX Team, Lotte Homeshopping",
@@ -550,8 +550,8 @@ const P = "text-[16.5px] leading-[1.8] text-[var(--color-ink-muted)]";
 
 function PullQuote({ text, who, org }: { text: string; who: string; org: string }) {
     return (
-        <figure className="my-8 border-l-4 border-[#2f7bff] bg-[#eef4ff] px-6 py-5">
-            <Quote aria-hidden className="h-5 w-5 rotate-180 text-[#2461d8]/40" />
+        <figure className="my-8 border-l-4 border-emerald-500 bg-emerald-50 px-6 py-5">
+            <Quote aria-hidden className="h-5 w-5 rotate-180 text-emerald-600/50" />
             <blockquote className="mt-2 text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[19px]">
                 {text}
             </blockquote>
