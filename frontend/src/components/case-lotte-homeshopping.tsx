@@ -143,7 +143,7 @@ const KO: Copy = {
     stats: [
         ["약 20분", "위해상품 1건 처리", "도입 전, 아이몰에서 위해상품 1건을 수작업으로 판매차단하는 데 소요된 시간"],
         ["500 Page +", "차세대 시스템 매뉴얼", "담당자가 직접 검색하고 확인해야 했던 방대한 업무 매뉴얼"],
-        ["900명", "AI 업무 안내 대상", "A1+ 업무 안내 Agent를 활용하는 임직원 및 협력사 대상 규모"],
+        ["900명 +", "AI 업무 안내 대상", "A1+ 업무 안내 Agent를 활용하는 임직원 및 협력사 대상 규모"],
         ["4개 부서", "AI Agent 확산 영역", "영업 및 지원(재경 및 방송품질 심의 업무로 확대)"],
     ],
     s1Kicker: "출발점",
@@ -359,7 +359,7 @@ const EN: Copy = {
     stats: [
         ["~20 min", "Handling one hazardous product", "Before adoption, the time it took to block one hazardous product from sale on the online mall by hand"],
         ["500 Pages +", "Next-generation system manual", "The extensive work manual staff had to search and check themselves"],
-        ["900", "People supported by AI work guidance", "Employees and partners covered by the A1+ work guidance agent"],
+        ["900 +", "People supported by AI work guidance", "Employees and partners covered by the A1+ work guidance agent"],
         ["4 departments", "Where AI agents are spreading", "Sales and support (expanding to finance and broadcast quality review)"],
     ],
     s1Kicker: "Where it began",
