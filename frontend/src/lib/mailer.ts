@@ -36,7 +36,7 @@ const CONTACT_INTERNAL_TO =
  */
 const CONTACT_INTERNAL_CC =
     process.env.MAIL_CONTACT_CC ||
-    ["hyeppy@plateer.com", "anncool01@plateer.com", "sangkyun@plateer.com", "58dbe890.sys4u.co.kr@apac.teams.ms"].join(", ");
+    ["hyeppy@plateer.com", "anncool01@plateer.com", "sangkyun@plateer.com", "58dbe890.sys4u.co.kr@apac.teams.ms", "go2dy@plateer.com", "jhr01175@plateer.com"].join(", ");
 /** 참조를 붙이지 않는 문의 유형 태그(type=). */
 const CONTACT_CC_EXCLUDED_TYPES = new Set(["newsletter", "fieldReport"]);
 const BROCHURE_INTERNAL_TO =
