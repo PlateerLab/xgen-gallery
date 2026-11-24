@@ -5,12 +5,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef } from "react";
 
 /**
- * 네이버 검색광고 공통 스크립트(wcslog.js) — xgen.im에서 쓰던 것과 같은 계정(s_1129c6843c7).
+ * 네이버 검색광고 공통 스크립트(wcslog.js) — labs.plateer.com 전환추적 공통 인증키(s_17cf66bfdc4d).
+ * (이전 xgen.im 키 s_1129c6843c7에서 교체, NHN DATA 설치 안내 2026-11-24)
  * 모든 페이지 공통(site-shell <head>). 이 사이트는 화면만 바뀌는 구조(Next.js)라
  * 페이지가 바뀔 때마다 wcs_do(_nasa)를 한 번씩 다시 실행한다(마케팅팀 요청).
  * 폼 접수 전환(wcs.trans)은 lib/lead-attribution.ts 의 pushLeadConversion 에서 보낸다.
  */
-export const NAVER_WA = "s_1129c6843c7";
+export const NAVER_WA = "s_17cf66bfdc4d";
 
 type NaverWindow = Window & {
     wcs?: { inflow: (d: string) => void; trans: (c: object) => void };
