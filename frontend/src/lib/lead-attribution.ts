@@ -137,7 +137,8 @@ export function pushLeadConversion(formName: LeadFormName) {
         };
         if (nw.wcs) {
             if (!nw.wcs_add) nw.wcs_add = {};
-            nw.wcs_add["wa"] = "s_1129c6843c7";
+            // components/naver-analytics.tsx 의 NAVER_WA와 같은 값이어야 한다.
+            nw.wcs_add["wa"] = "s_17cf66bfdc4d";
             const conv: Record<string, string> = {};
             conv.type = "lead";
             nw.wcs.trans(conv);
