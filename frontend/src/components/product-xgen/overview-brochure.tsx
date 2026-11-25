@@ -19,9 +19,6 @@ import {
     ArrowLeftRight,
     TrendingUp,
     ScrollText,
-    Database,
-    Wrench,
-    Cpu,
 } from "lucide-react";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
@@ -92,181 +89,119 @@ const L = {
 
 /* ======================================================================
  * 1. The Challenge — 소개서 p.9
+ *
+ * 웹 에디토리얼 구성(카드·아이콘·말풍선 없이 타이포그래피와 가는 선만):
+ *   머리글 + 가로선
+ *   헤드라인·리드(7칸) | 큰 숫자 하나(5칸, 세로 가는 선으로 분리)
+ *   멈추는 세 지점 — 위쪽 굵은 선 하나로 시작하는 3단 본문
+ *   결론 한 문장 → 다음 섹션 「XGEN은 다릅니다」로 넘어간다
  * ==================================================================== */
 
 const CHALLENGE = {
     ko: {
-        title: (
-            <>
-                AI Agent를 도입한 기업은
-                <br className="hidden md:block" /> 왜 같은 문제를 다시 마주할까요?
-            </>
-        ),
-        lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 도구와 모델이 바뀌면 다시 멈춥니다.",
-        voicesLabel: "이런 이야기, 낯설지 않으시죠?",
-        voices: [
-            { who: "현업 담당자", q: "자료가 부서마다 흩어져 있어서, AI가 정작 필요한 답을 찾지 못해요.", tag: "파편화된 데이터로 인한 AI 활용 한계" },
-            { who: "IT·보안 담당자", q: "사내 문서를 AI에 넣어도 되는지, 검토가 끝나지 않아 진행이 멈췄어요.", tag: "AI 활용 시 내부 데이터 유출 우려" },
-            { who: "AX 추진 담당자", q: "만든 사람은 다른 과제로 옮겼고, 지금은 손볼 사람이 없어요.", tag: "AI 도입 이후 운영 인력·체계 부재" },
+        title: ["파일럿은 성공했습니다.", "문제는 그다음입니다."],
+        lead: "도입 직후에는 기대한 대로 돌아가던 AI Agent도 데이터가 쌓이고, 도구가 바뀌고, 새 모델이 나오면 다시 멈춥니다. 써 보는 조직은 많지만 실제 운영까지 가는 사례가 드문 이유입니다.",
+        statA: { v: "71", d: "에이전트를 사용하는 조직" },
+        statB: { v: "11", d: "실제 운영 단계에 도달한 활용 사례" },
+        source: "출처: Camunda, State of Agentic Orchestration & Automation 2026",
+        whyLabel: "멈추는 세 지점",
+        why: [
+            { k: "Data", t: "새 데이터가 반영되지 않습니다", d: "문서와 데이터는 매일 늘어나는데 AI가 그 변화를 따라가지 못해, 답이 조금씩 낡아 갑니다." },
+            { k: "Tool", t: "연결이 하나씩 끊깁니다", d: "새 시스템과 API가 생길 때마다 연동을 다시 만들어야 하고, 기존 연결은 손보는 사람이 없으면 그대로 멈춥니다." },
+            { k: "Model", t: "모델 교체가 매번 처음부터입니다", d: "더 나은 LLM이 나와도 교체하고 다시 검증하는 체계가 없어, 바꾸는 일 자체가 하나의 프로젝트가 됩니다." },
         ],
-        voicesNote: "도입 기업에서 자주 듣는 상황을 재구성한 예시입니다.",
-        statsLabel: "써 보는 조직은 많지만, 운영까지 가는 사례는 적습니다",
-        stats: [
-            { v: 71, d: "에이전트를 사용하는 조직" },
-            { v: 11, d: "실제 운영 단계에 도달한 활용 사례" },
-            { v: 48, d: "업무 흐름과 분리된 채 운영되는 사례" },
-        ],
-        statsSource: "출처: Camunda, State of Agentic Orchestration & Automation 2026",
-        timelineLabel: "도입 이후, 이렇게 멈춥니다",
-        timeline: [
-            { k: "LAUNCH", t: "도입 직후", d: "파일럿에서는 기대한 대로 동작합니다.", status: "정상 동작", lv: 0 },
-            { k: "DATA", t: "새 데이터가 쌓이면", d: "새로운 데이터가 계속 생기지만 반영되지 않아, 답이 점점 낡아 갑니다.", status: "데이터 변화를 흡수하는 구조 부족", lv: 1 },
-            { k: "TOOL", t: "새 도구·API가 생기면", d: "새로운 Tool과 API가 계속 등장하고, 기존 연결은 하나씩 끊깁니다.", status: "Tool 변화에 대응하는 구조 부족", lv: 2 },
-            { k: "MODEL", t: "새 모델이 나오면", d: "LLM이 바뀔 때마다 교체와 검증을 처음부터 다시 해야 합니다.", status: "Model 교체·운영 체계 부족", lv: 3 },
-        ],
-        conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
-        conclusionB: "변화에 대응하지 못하는 플랫폼",
-        conclusionC: "입니다.",
+        closeLabel: "원인",
+        closeA: "서로 다른 문제처럼 보이지만, 원인은 하나입니다.",
+        closeB: "변화에 대응하지 못하는 플랫폼.",
     },
     en: {
-        title: (
-            <>
-                Why do companies that adopted AI agents
-                <br className="hidden md:block" /> keep running into the same problems?
-            </>
-        ),
-        lead: "AI that worked right after launch stalls again once the data, tools and models change.",
-        voicesLabel: "Does any of this sound familiar?",
-        voices: [
-            { who: "Business user", q: "Our documents are scattered across teams, so the AI can't find the answer we actually need.", tag: "Fragmented data limits how AI can be used" },
-            { who: "IT & security", q: "We still haven't settled whether internal documents can go into the AI, so the project is on hold.", tag: "Concern about internal data leaving the company" },
-            { who: "AX lead", q: "The person who built it moved to another project, and now no one can maintain it.", tag: "No team or process to run AI after launch" },
+        title: ["The pilot worked.", "The trouble starts after."],
+        lead: "An AI agent that ran as expected at launch stalls again as data piles up, tools change and new models arrive. That is why so many organizations try agents, yet so few use cases reach production.",
+        statA: { v: "71", d: "of organizations use agents" },
+        statB: { v: "11", d: "of use cases reached production" },
+        source: "Source: Camunda, State of Agentic Orchestration & Automation 2026",
+        whyLabel: "Where it stalls",
+        why: [
+            { k: "Data", t: "New data never makes it in", d: "Documents and data grow every day, but the AI can't keep up, so its answers slowly go stale." },
+            { k: "Tool", t: "Connections break one by one", d: "Every new system or API means rebuilding an integration, and existing ones stop working when no one maintains them." },
+            { k: "Model", t: "Every model swap starts from zero", d: "Better LLMs keep arriving, but without a way to swap and revalidate them, each change becomes a project of its own." },
         ],
-        voicesNote: "Illustrative situations based on what adopting companies often tell us.",
-        statsLabel: "Many organizations try agents; few use cases reach production",
-        stats: [
-            { v: 71, d: "of organizations use agents" },
-            { v: 11, d: "of use cases reached production" },
-            { v: 48, d: "run apart from business workflows" },
-        ],
-        statsSource: "Source: Camunda, State of Agentic Orchestration & Automation 2026",
-        timelineLabel: "How it stalls after launch",
-        timeline: [
-            { k: "LAUNCH", t: "Right after launch", d: "In the pilot, it works as expected.", status: "Working", lv: 0 },
-            { k: "DATA", t: "As new data piles up", d: "New data keeps arriving but isn't reflected, so answers slowly go stale.", status: "No structure to absorb data changes", lv: 1 },
-            { k: "TOOL", t: "As new tools and APIs appear", d: "New tools and APIs keep appearing, and existing connections break one by one.", status: "No structure to keep up with tool changes", lv: 2 },
-            { k: "MODEL", t: "As new models arrive", d: "Every LLM change means swapping and validating from scratch.", status: "No process to swap and run models", lv: 3 },
-        ],
-        conclusionA: "They look like separate problems, but they share one cause:",
-        conclusionB: "a platform that cannot keep up with change",
-        conclusionC: ".",
+        closeLabel: "The cause",
+        closeA: "They look like separate problems, but they share one cause:",
+        closeB: "a platform that can't keep up with change.",
     },
 };
-
-/** 단계별 상태 — 색만으로 구분하지 않도록 번호·문구를 함께 표기한다. */
-const CHALLENGE_LV = [
-    { dot: "bg-[#16a34a]", text: "text-[#15803d]", ring: "border-[#16a34a]" },
-    { dot: "bg-[#d97706]", text: "text-[#b45309]", ring: "border-[#d97706]" },
-    { dot: "bg-[#ea580c]", text: "text-[#c2410c]", ring: "border-[#ea580c]" },
-    { dot: "bg-[#dc2626]", text: "text-[#b4232a]", ring: "border-[#dc2626]" },
-];
 
 export function XgenChallenge({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const c = CHALLENGE[en ? "en" : "ko"];
-    const icon = (k: string) =>
-        k === "DATA" ? <Database className="h-5 w-5" /> : k === "TOOL" ? <Wrench className="h-5 w-5" /> : k === "MODEL" ? <Cpu className="h-5 w-5" /> : <Check className="h-5 w-5" />;
+    const rule = "bg-[#a1a1aa]";
     return (
         <section className="border-t border-[#d4d4d8] bg-[#e7e7ea]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                <SectionHead eyebrow="The Challenge" title={c.title} lead={c.lead} />
-
-                {/* ① 현장의 말 — 문제점 3개를 담당자의 목소리로 */}
-                <p className={`${SECTION_BODY_GAP} text-center text-[15px] font-bold tracking-tight text-[var(--color-ink)]`}>{c.voicesLabel}</p>
-                <ol className="mt-6 grid gap-5 lg:grid-cols-3">
-                    {c.voices.map((v, i) => (
-                        <li key={v.tag} className="flex flex-col">
-                            <div className="relative flex-1 rounded-2xl border border-[var(--color-line)] bg-white px-6 pb-6 pt-5">
-                                <div className="flex items-center gap-2">
-                                    <span className="font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                                    <span className="text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{v.who}</span>
-                                </div>
-                                <p className="mt-3 text-[17px] font-bold leading-[1.55] tracking-tight text-[var(--color-ink)] [word-break:keep-all]">
-                                    “{v.q}”
-                                </p>
-                                {/* 말풍선 꼬리 */}
-                                <span
-                                    aria-hidden
-                                    className="absolute -bottom-[9px] left-8 h-4 w-4 rotate-45 border-b border-r border-[var(--color-line)] bg-white"
-                                />
-                            </div>
-                            <p className="mt-4 flex items-start gap-1.5 pl-6 text-[13.5px] font-semibold text-[#b4232a] [word-break:keep-all]">
-                                <ArrowDown className="mt-[3px] h-3.5 w-3.5 flex-none" aria-hidden />
-                                {v.tag}
-                            </p>
-                        </li>
-                    ))}
-                </ol>
-                <p className="mt-5 text-center text-[12.5px] text-[var(--color-ink-muted)]">※ {c.voicesNote}</p>
-
-                {/* ② 숫자 — 공개 조사 수치(출처 표기) */}
-                <div className="mt-16 rounded-2xl border border-[var(--color-line)] bg-white px-6 py-8 md:px-10">
-                    <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{c.statsLabel}</p>
-                    <div className="mt-6 grid gap-6 lg:grid-cols-3 lg:gap-10">
-                        {c.stats.map((s, i) => (
-                            <div key={s.d}>
-                                <div className="flex items-baseline gap-1">
-                                    <span className={cn("text-[44px] font-extrabold leading-none tracking-tight", i === 1 ? "text-[#b4232a]" : "text-[var(--color-ink)]")}>
-                                        {s.v}
-                                    </span>
-                                    <span className="text-[20px] font-bold text-[var(--color-ink-muted)]">%</span>
-                                </div>
-                                <div className="mt-3 h-2.5 w-full bg-[#ececef]" aria-hidden>
-                                    <div className={cn("h-full", i === 1 ? "bg-[#dc2626]" : "bg-[#52525b]")} style={{ width: `${s.v}%` }} />
-                                </div>
-                                <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="mt-6 text-[12.5px] text-[var(--color-ink-muted)]">※ {c.statsSource}</p>
+                {/* 머리글 — 왼쪽 정렬 + 끝까지 이어지는 가는 선 */}
+                <div className="flex items-center gap-4">
+                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">The Challenge</p>
+                    <span aria-hidden className={`h-px flex-1 ${rule}`} />
                 </div>
 
-                {/* ③ 시간 흐름 — 도입 직후 → DATA → TOOL → MODEL, 상태가 한 단계씩 나빠짐 */}
-                <p className="mt-16 text-center font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-muted)]">Why it happens</p>
-                <p className="mt-2 text-center text-[15px] font-bold tracking-tight text-[var(--color-ink)]">{c.timelineLabel}</p>
-                <ol className="relative mt-8 grid gap-4 lg:grid-cols-4">
-                    {/* 가로 연결선(1024px 이상) */}
-                    <span aria-hidden className="absolute left-[12%] right-[12%] top-6 hidden h-0.5 bg-[#a1a1aa] lg:block" />
-                    {c.timeline.map((x, i) => {
-                        const lv = CHALLENGE_LV[x.lv];
-                        return (
-                            <li key={x.k} className="relative flex gap-4 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
-                                <span
-                                    aria-hidden
-                                    className={cn("relative z-10 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border bg-white text-[var(--color-ink)]", lv.ring)}
-                                >
-                                    {icon(x.k)}
-                                </span>
-                                <div className="flex-1 rounded-2xl border border-[var(--color-line)] bg-white px-5 py-5 lg:mt-4 lg:w-full">
-                                    <p className="font-mono text-[12px] font-bold tracking-widest text-[var(--color-ink-muted)]">
-                                        {String(i + 1).padStart(2, "0")} · {x.k}
-                                    </p>
-                                    <p className="mt-1.5 text-[17px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{x.t}</p>
-                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{x.d}</p>
-                                    <p className={cn("mt-3 inline-flex items-start gap-1.5 text-left text-[13px] font-semibold [word-break:keep-all]", lv.text)}>
-                                        <span className={cn("mt-[6px] h-2 w-2 flex-none rounded-full", lv.dot)} aria-hidden />
-                                        {x.status}
-                                    </p>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ol>
+                <div className="mt-10 grid gap-y-12 lg:mt-14 lg:grid-cols-12 lg:gap-x-12">
+                    {/* 헤드라인·리드 */}
+                    <div className="lg:col-span-7">
+                        <h2 className="text-[34px] font-bold leading-[1.18] tracking-[-0.025em] text-[var(--color-ink)] [word-break:keep-all] md:text-[56px]">
+                            <span className="block text-[#71717a]">{c.title[0]}</span>
+                            <span className="block">{c.title[1]}</span>
+                        </h2>
+                        <p className="mt-8 max-w-[36em] text-[16px] leading-[1.8] text-[#3f3f46] [word-break:keep-all] md:text-[18px]">{c.lead}</p>
+                    </div>
 
-                <p className="mx-auto mt-14 max-w-3xl text-center text-[19px] font-bold leading-[1.5] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">
-                    {c.conclusionA}<br className="hidden md:block" /> <span className="text-[#2461d8]">{c.conclusionB}</span>
-                    {c.conclusionC}
-                </p>
+                    {/* 큰 숫자 하나 — 71%는 작게 받치고 11%를 크게 */}
+                    <figure className="border-t border-[#a1a1aa] pt-8 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-1">
+                        <div className="flex items-baseline gap-4">
+                            <span className="text-[36px] font-bold leading-none tracking-tight text-[#71717a] tabular-nums">
+                                {c.statA.v}
+                                <span className="text-[20px]">%</span>
+                            </span>
+                            <span className="text-[14px] leading-snug text-[#52525b] [word-break:keep-all]">{c.statA.d}</span>
+                        </div>
+                        <div className="mt-6 flex items-start">
+                            <span className="text-[112px] font-extrabold leading-[0.82] tracking-[-0.05em] text-[var(--color-ink)] tabular-nums md:text-[168px]">
+                                {c.statB.v}
+                            </span>
+                            <span className="ml-1 mt-1 text-[36px] font-bold leading-none text-[var(--color-ink)] md:text-[52px]">%</span>
+                        </div>
+                        <figcaption className="mt-5">
+                            <p className="text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[19px]">{c.statB.d}</p>
+                            <p className="mt-4 text-[12.5px] leading-relaxed text-[#71717a]">{c.source}</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                {/* 멈추는 세 지점 — 박스 없이 위쪽 선 하나로 단을 나눈다 */}
+                <div className="mt-20 lg:mt-28">
+                    <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">{c.whyLabel}</p>
+                    <ol className="mt-6 grid gap-y-10 lg:grid-cols-3 lg:gap-x-12">
+                        {c.why.map((w, i) => (
+                            <li key={w.k} className="border-t-2 border-[var(--color-ink)] pt-5">
+                                <p className="flex items-baseline justify-between font-mono text-[12px] font-semibold uppercase tracking-widest text-[#52525b]">
+                                    <span>{String(i + 1).padStart(2, "0")}</span>
+                                    <span>{w.k}</span>
+                                </p>
+                                <h3 className="mt-5 text-[20px] font-bold leading-[1.4] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[22px]">{w.t}</h3>
+                                <p className="mt-3 text-[15px] leading-[1.75] text-[#52525b] [word-break:keep-all]">{w.d}</p>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+
+                {/* 결론 — 다음 섹션(XGEN은 다릅니다)으로 넘기는 한 문장 */}
+                <div className="mt-20 grid gap-y-4 border-t border-[#a1a1aa] pt-10 lg:mt-28 lg:grid-cols-12 lg:gap-x-12">
+                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#52525b] lg:col-span-3 lg:pt-3">{c.closeLabel}</p>
+                    <p className="text-[24px] font-bold leading-[1.45] tracking-[-0.02em] text-[var(--color-ink)] [word-break:keep-all] md:text-[34px] lg:col-span-9">
+                        {c.closeA}
+                        <span className="block text-[#2461d8]">{c.closeB}</span>
+                    </p>
+                </div>
             </div>
         </section>
     );
