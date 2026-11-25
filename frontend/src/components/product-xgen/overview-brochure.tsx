@@ -69,10 +69,10 @@ function NextLinks({ locale, links, dark = false, center = false }: { locale: Lo
                     key={l.href}
                     href={localeHref(locale, l.href)}
                     className={cn(
-                        "inline-flex items-center gap-1 rounded-full border px-3.5 py-1.5 text-[13.5px] font-semibold transition",
+                        "inline-flex items-center gap-1 rounded-full border-2 px-3.5 py-1.5 text-[13.5px] font-semibold transition",
                         dark
                             ? "border-white/20 text-white/85 hover:border-white/60 hover:text-white"
-                            : "border-[var(--color-line)] bg-white text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                            : "border-[var(--color-line-strong)] bg-white text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
                     )}
                 >
                     {T(en, l.label)}
@@ -148,7 +148,7 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                 {/* 문제점 3 */}
                 <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
                     {c.problems.map((p, i) => (
-                        <li key={p} className="flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white px-6 py-6">
+                        <li key={p} className="flex items-center gap-4 rounded-2xl border-2 border-[var(--color-line-strong)] bg-white px-6 py-6">
                             <span className="font-mono text-[15px] font-bold text-[#2f7bff]">0{i + 1}</span>
                             <span className="text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p}</span>
                         </li>
@@ -161,11 +161,11 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                 </p>
                 <div className="mt-5 grid gap-4 lg:grid-cols-3">
                     {c.causes.map((x) => (
-                        <div key={x.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white">
+                        <div key={x.k} className="flex flex-col rounded-2xl border-2 border-[var(--color-line-strong)] bg-white">
                             <div className="px-6 pb-5 pt-6">
                                 <span
                                     aria-hidden
-                                    className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#6aa8ff_0%,#2f7bff_50%,#1b4fc4_100%)] text-white shadow-[0_10px_24px_-10px_rgba(36,97,216,0.7)]"
+                                    className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#2f7bff] text-white"
                                 >
                                     {x.k === "DATA" ? <Database className="h-5 w-5" /> : x.k === "TOOL" ? <Wrench className="h-5 w-5" /> : <Cpu className="h-5 w-5" />}
                                 </span>
@@ -175,7 +175,7 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                                 </div>
                                 <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{x.d}</p>
                             </div>
-                            <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line)] px-6 py-3.5 text-[13.5px] font-semibold text-[#b4232a]">
+                            <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line-strong)] px-6 py-3.5 text-[13.5px] font-semibold text-[#b4232a]">
                                 <ArrowDown className="h-3.5 w-3.5 flex-none" aria-hidden />
                                 {x.gap}
                             </div>
@@ -273,8 +273,8 @@ const PARADIGM = {
 /** 참고 이미지 ① — 겹친 창 목업의 작은 창 틀 */
 function MiniWindow({ label, className, children }: { label: string; className?: string; children?: ReactNode }) {
     return (
-        <div className={cn("overflow-hidden rounded-xl border border-[#dfe5ee] bg-white shadow-[0_18px_40px_-24px_rgba(20,40,80,0.35)]", className)}>
-            <div className="flex items-center gap-2 border-b border-[#eef1f6] px-3 py-2">
+        <div className={cn("overflow-hidden rounded-xl border-2 border-[#c5cedb] bg-white", className)}>
+            <div className="flex items-center gap-2 border-b border-[#dde3ec] px-3 py-2">
                 <span aria-hidden className="flex gap-1">
                     <span className="h-2 w-2 rounded-full bg-[#ff6159]" />
                     <span className="h-2 w-2 rounded-full bg-[#ffbd2e]" />
@@ -289,7 +289,7 @@ function MiniWindow({ label, className, children }: { label: string; className?:
 
 function ParadigmColHead({ tag, name, after = false }: { tag: string; name: string; after?: boolean }) {
     return (
-        <div className="flex flex-wrap items-center gap-3 border-b border-[var(--color-line)] pb-4">
+        <div className="flex flex-wrap items-center gap-3 border-b border-[var(--color-line-strong)] pb-4">
             <span
                 className={cn(
                     "rounded-full px-3.5 py-1 font-mono text-[13px] font-bold tracking-widest",
@@ -344,7 +344,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                             <MiniWindow label={b.windows[0]} className="relative ml-[20%]">
                                 <div className="flex flex-col gap-2.5 bg-[#fafbfc] p-4">
                                     <p className="self-end rounded-2xl rounded-br-md bg-[#e9edf3] px-3.5 py-2 text-[13px] text-[var(--color-ink)]">{b.q}</p>
-                                    <p className="max-w-[92%] rounded-2xl rounded-bl-md border border-[#e3e8ef] bg-white px-3.5 py-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{b.a}</p>
+                                    <p className="max-w-[92%] rounded-2xl rounded-bl-md border-2 border-[#cdd5e1] bg-white px-3.5 py-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{b.a}</p>
                                     <p className="mt-1 inline-flex items-center justify-center gap-1.5 text-center text-[12px] font-semibold text-[#b4232a]">
                                         <RotateCcw className="h-3.5 w-3.5" />
                                         {b.after}
@@ -364,7 +364,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
 
                     {/* 가운데 원형 화살표 */}
                     <div aria-hidden className="flex items-center justify-center">
-                        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-[#dfe5ee] bg-white text-[var(--color-ink)] shadow-[0_10px_30px_-12px_rgba(20,40,80,0.3)]">
+                        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#c5cedb] bg-white text-[var(--color-ink)]">
                             <ArrowRight className="hidden h-5 w-5 lg:block" />
                             <ArrowDown className="h-5 w-5 lg:hidden" />
                         </span>
@@ -373,13 +373,13 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                     {/* AFTER — 목표 한 줄로 시작해 결과·다음 단계까지 한 화면에 */}
                     <div className="min-w-0">
                         <ParadigmColHead tag={a.tag} name={a.name} after />
-                        <div aria-hidden className="mt-8 overflow-hidden rounded-2xl border border-[#cddcf7] bg-white shadow-[0_30px_70px_-36px_rgba(36,97,216,0.55)]">
-                            <div className="flex items-center gap-3 border-b border-[#e3ebf9] bg-[#f7faff] px-5 py-3.5">
+                        <div aria-hidden className="mt-8 overflow-hidden rounded-2xl border-2 border-[#9fbcef] bg-white">
+                            <div className="flex items-center gap-3 border-b border-[#c9d8f3] bg-[#f7faff] px-5 py-3.5">
                                 <Search className="h-4 w-4 flex-none text-[#2f7bff]" />
                                 <span className="truncate text-[14.5px] font-semibold text-[var(--color-ink)]">{a.goal}</span>
                             </div>
                             <div className="p-4 sm:p-5">
-                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#cddcf7] bg-[#eef4ff] px-3 py-1 font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-[#9fbcef] bg-[#eef4ff] px-3 py-1 font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">
                                     <Sparkles className="h-3.5 w-3.5" />
                                     {a.badge}
                                 </span>
@@ -390,7 +390,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                                     <b className="text-[var(--color-ink)]">{a.nextK}:</b> {a.next}
                                 </p>
                                 <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_1.25fr]">
-                                    <div className="rounded-xl border border-[#e6ebf3] p-3.5">
+                                    <div className="rounded-xl border-2 border-[#cfd7e3] p-3.5">
                                         <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.stepsT}</p>
                                         <ol className="relative mt-3 flex flex-col gap-3">
                                             <span className="absolute bottom-2 left-[9px] top-2 w-px bg-[#cddcf7]" />
@@ -404,7 +404,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                                             ))}
                                         </ol>
                                     </div>
-                                    <div className="rounded-xl border border-[#e6ebf3] p-3.5">
+                                    <div className="rounded-xl border-2 border-[#cfd7e3] p-3.5">
                                         <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.tableT}</p>
                                         <div className="mt-2 flex justify-between text-[11px] text-[var(--color-ink-subtle)]">
                                             <span>{a.cols[0]}</span>
@@ -423,7 +423,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="mt-3 rounded-xl border border-[#e6ebf3] p-3.5">
+                                <div className="mt-3 rounded-xl border-2 border-[#cfd7e3] p-3.5">
                                     <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.approvalT}</p>
                                     <ul className="mt-2 grid gap-2 sm:grid-cols-2">
                                         {a.approval.map((x, i) => (
@@ -518,7 +518,7 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                         <li
                             key={s.en}
                             className={cn(
-                                "flex flex-col rounded-2xl border p-6",
+                                "flex flex-col rounded-2xl border-2 p-6",
                                 i === 3 ? "border-[#5fb4ff]/60 bg-[#2f7bff]/[0.14]" : "border-white/12 bg-white/[0.04]",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
@@ -559,7 +559,7 @@ type Stage = {
     what: Txt;
     tech: string[];
     result: { ko: string[]; en: string[] };
-    screen: { type: "img"; src: string; w: number; h: number; alt: Txt; url: string } | { type: "orchestration" } | { type: "evolve" };
+    screen: { type: "img"; src: string; w: number; h: number; alt: Txt; url: string } | { type: "orchestration" } | { type: "evolve" } | { type: "governance" };
     links: DeepLink[];
 };
 
@@ -659,7 +659,7 @@ const STAGES: Stage[] = [
             ko: ["기업 보안·통제 체계 유지", "위험 등급에 따른 실행 통제", "GS인증 1등급 (국가공인 SW 품질인증)"],
             en: ["Existing security controls stay in place", "Execution control by risk grade", "GS Certification Grade 1 (national SW quality)"],
         },
-        screen: { type: "img", src: "/product/governance-risk-grades.png", w: 2000, h: 832, url: "XGEN · AI Governance · Risk grades", alt: { ko: "XGEN AI 위험도 등급 설정 화면", en: "XGEN AI risk grade settings screen" } },
+        screen: { type: "governance" },
         links: [
             L.security,
             { label: { ko: "보안·거버넌스 상세", en: "Security & Governance" }, href: "/security-and-governance" },
@@ -670,14 +670,14 @@ const STAGES: Stage[] = [
 
 function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
     return (
-        <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)]">
-            <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5">
+        <figure className="overflow-hidden rounded-2xl border-2 border-[var(--color-line-strong)] bg-white">
+            <div className="flex items-center gap-3 border-b border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] px-4 py-2.5">
                 <span aria-hidden className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
                 </span>
-                <span className="min-w-0 flex-1 truncate rounded-md border border-[var(--color-line)] bg-white px-3 py-1 text-[12px] text-[var(--color-ink-subtle)]">{url}</span>
+                <span className="min-w-0 flex-1 truncate rounded-md border-[1.5px] border-[var(--color-line-strong)] bg-white px-3 py-1 text-[12px] text-[var(--color-ink-subtle)]">{url}</span>
             </div>
             {children}
         </figure>
@@ -703,27 +703,27 @@ function OrchestrationMock({ en }: { en: boolean }) {
                 <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
                     {en ? "Find out why this week’s top product sales dropped" : "이번 주 매출이 급감한 상품의 원인을 분석해줘"}
                 </p>
-                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] bg-white px-5 py-2.5 text-center">
+                <div className="mx-auto mt-5 w-fit rounded-xl border-2 border-[#6f9ef0] bg-white px-5 py-2.5 text-center">
                     <p className="font-mono text-[11px] font-bold tracking-widest text-[#2461d8]">ORCHESTRATOR</p>
                     <p className="text-[13px] font-semibold text-[var(--color-ink)]">{en ? "Plans and routes the work" : "업무 계획 · 분배"}</p>
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                     {agents.map((a) => (
-                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5">
+                        <div key={a.n} className="rounded-xl border-2 border-[var(--color-line-strong)] bg-white p-3.5">
                             <p className="text-[13px] font-bold text-[var(--color-ink)]">{a.n}</p>
                             <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">{a.d}</p>
-                            <p className="mt-2.5 border-t border-[var(--color-line)] pt-2 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
+                            <p className="mt-2.5 border-t border-[var(--color-line-strong)] pt-2 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
                         </div>
                     ))}
                 </div>
                 <p className="mt-3 text-center font-mono text-[11px] text-[var(--color-ink-subtle)]">A2A · {en ? "agents share results" : "Agent 간 결과 공유"}</p>
-                <div className="mt-3 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] leading-relaxed text-[var(--color-ink)]">
+                <div className="mt-3 rounded-xl border-2 border-[#9fbcef] bg-white p-4 text-[13px] leading-relaxed text-[var(--color-ink)]">
                     {en
                         ? "Weaker price competitiveness against rivals and more negative reviews about delivery delays look like the main causes."
                         : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line-strong)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Illustrative example." : "※ 화면 속 내용은 예시입니다."}
             </figcaption>
         </BrowserFrame>
@@ -749,14 +749,14 @@ function EvolveMock({ en }: { en: boolean }) {
                 <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
                     {en ? "From now on, also check internal policy and answer with sources" : "앞으로는 사내 규정까지 찾아서 근거와 함께 답변해줘"}
                 </p>
-                <div className="mt-5 rounded-xl border border-[var(--color-line)] bg-white p-5">
+                <div className="mt-5 rounded-xl border-2 border-[var(--color-line-strong)] bg-white p-5">
                     <p className="flex items-center gap-2 text-[13px] font-bold text-[var(--color-ink)]">
                         <RefreshCw className="h-4 w-4 text-[#2f7bff]" />
                         {en ? "Workflow change log" : "워크플로 자동 변경 내역"}
                     </p>
                     <ul className="mt-3 flex flex-col gap-2">
                         {changes.map((c) => (
-                            <li key={c.t} className="flex items-center gap-3 rounded-lg border border-[var(--color-line)] px-3 py-2 text-[13px] text-[var(--color-ink-muted)]">
+                            <li key={c.t} className="flex items-center gap-3 rounded-lg border-2 border-[var(--color-line-strong)] px-3 py-2 text-[13px] text-[var(--color-ink-muted)]">
                                 <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[#eef4ff] font-mono text-[12px] font-bold text-[#2461d8]">{c.s}</span>
                                 {c.t}
                             </li>
@@ -768,16 +768,112 @@ function EvolveMock({ en }: { en: boolean }) {
                     </p>
                 </div>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <p className="rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
+                    <p className="rounded-xl border-2 border-[var(--color-line-strong)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
                         {en ? "Agent memory · keeps work context" : "에이전트 기억 · 업무 맥락 유지"}
                     </p>
-                    <p className="rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
+                    <p className="rounded-xl border-2 border-[var(--color-line-strong)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
                         {en ? "Searches only the tools needed · builds one if missing" : "필요한 Tool만 탐색 · 없으면 생성"}
                     </p>
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line-strong)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Illustrative example. Scope depends on version and configuration." : "※ 화면 속 내용은 예시입니다. 적용 범위는 버전과 구성에 따라 다릅니다."}
+            </figcaption>
+        </BrowserFrame>
+    );
+}
+
+/** STAGE F — Agent에 위험 등급을 부여하면 등급별 통제가 붙는 화면을 HTML 도식으로.
+ *  색만으로 구분하지 않도록 등급마다 번호(1~4)와 이름을 함께 쓴다. */
+function GovernanceMock({ en }: { en: boolean }) {
+    const grades = [
+        { n: 1, ko: "저위험", en: "Low", code: "low", c: "#16A34A", bg: "#eefaf2", pol: { ko: "통제 완화", en: "Relaxed controls" } },
+        { n: 2, ko: "중위험", en: "Medium", code: "medium", c: "#D97706", bg: "#fff7e8", pol: { ko: "기본 통제 적용", en: "Standard controls" } },
+        { n: 3, ko: "고위험", en: "High", code: "high", c: "#EA580C", bg: "#fff1e8", pol: { ko: "추가 통제·관리 강화", en: "Added controls" } },
+        { n: 4, ko: "초고위험", en: "Critical", code: "critical", c: "#DC2626", bg: "#fdeeee", pol: { ko: "출시 재검토", en: "Launch review" } },
+    ];
+    const sel = 2; // 예시: 고위험 선택
+    const g = grades[sel];
+    const controls = en
+        ? [
+              { t: "Approval route before execution", v: "Required" },
+              { t: "Sensitive data (PII) masking", v: "On" },
+              { t: "External transfer of results", v: "Blocked" },
+              { t: "Execution trace · audit log", v: "Recorded" },
+          ]
+        : [
+              { t: "실행 전 결재선 승인", v: "필수" },
+              { t: "민감정보(PII) 마스킹", v: "적용" },
+              { t: "결과 외부 전송", v: "차단" },
+              { t: "실행 추적 · 감사 로그", v: "기록" },
+          ];
+    return (
+        <BrowserFrame url="XGEN · AI Governance · Agent risk grade">
+            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+                {/* 대상 Agent */}
+                <div className="flex items-center gap-3 rounded-xl border-2 border-[var(--color-line-strong)] bg-white px-4 py-3">
+                    <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#eef4ff] text-[#2461d8]">
+                        <FileText className="h-[18px] w-[18px]" />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                        <p className="text-[13.5px] font-bold leading-snug text-[var(--color-ink)] [word-break:keep-all]">{en ? "Contract Review Agent" : "계약서 검토 Agent"}</p>
+                        <p className="truncate text-[11.5px] text-[var(--color-ink-subtle)]">{en ? "Agent settings › Risk grade" : "Agent 설정 › 위험도 등급"}</p>
+                    </div>
+                    <span className="flex-none rounded-full border-2 px-2.5 py-0.5 text-[11.5px] font-bold" style={{ borderColor: g.c, color: g.c }}>
+                        {g.n} · {en ? g.en : g.ko}
+                    </span>
+                </div>
+
+                {/* 등급 선택 */}
+                <p className="mt-5 text-[12.5px] font-bold text-[var(--color-ink)]">{en ? "Assign a risk grade" : "위험 등급 부여"}</p>
+                <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                    {grades.map((x, i) => {
+                        const on = i === sel;
+                        return (
+                            <div
+                                key={x.code}
+                                className={cn("relative rounded-xl border-2 bg-white px-3 py-2.5", on ? "" : "border-[var(--color-line-strong)]")}
+                                style={on ? { borderColor: x.c, background: x.bg } : undefined}
+                            >
+                                <div className="flex items-center gap-1.5">
+                                    <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full font-mono text-[11px] font-bold text-white" style={{ background: x.c }}>
+                                        {x.n}
+                                    </span>
+                                    <span className="truncate text-[13px] font-bold" style={{ color: on ? x.c : "var(--color-ink)" }}>
+                                        {en ? x.en : x.ko}
+                                    </span>
+                                    {on ? <Check className="ml-auto h-4 w-4 flex-none" style={{ color: x.c }} /> : null}
+                                </div>
+                                <p className="mt-1 truncate text-[11.5px] text-[var(--color-ink-muted)]">{T(en, x.pol)}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* 등급에 따라 붙는 통제 */}
+                <div className="mt-4 rounded-xl border-2 bg-white p-4" style={{ borderColor: g.c }}>
+                    <p className="flex items-center gap-2 text-[13px] font-bold text-[var(--color-ink)]">
+                        <ShieldCheck className="h-4 w-4" style={{ color: g.c }} />
+                        {en ? `Controls applied at grade ${g.n} · ${g.en}` : `${g.n}등급 · ${g.ko}에 적용되는 통제`}
+                    </p>
+                    <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                        {controls.map((c) => (
+                            <li key={c.t} className="flex min-w-0 items-center justify-between gap-2 rounded-lg border-2 border-[var(--color-line-strong)] px-3 py-2 text-[12.5px] text-[var(--color-ink-muted)]">
+                                <span className="min-w-0 truncate">{c.t}</span>
+                                <span className="flex-none rounded-md bg-[#eef4ff] px-2 py-0.5 text-[11.5px] font-bold text-[#2461d8]">{c.v}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
+                    <span className="mr-auto text-[11.5px] text-[var(--color-ink-subtle)]">{en ? "Grade changes go through the governance approver." : "등급 변경은 거버넌스 담당자 승인 후 반영"}</span>
+                    <span className="rounded-lg border-2 border-[var(--color-line-strong)] bg-white px-3 py-1.5 text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{en ? "Cancel" : "취소"}</span>
+                    <span className="rounded-lg bg-[#2f7bff] px-3 py-1.5 text-[12.5px] font-semibold text-white">{en ? "Request approval" : "승인 요청"}</span>
+                </div>
+            </div>
+            <figcaption className="border-t border-[var(--color-line-strong)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                {en ? "Illustrative example. Grades and controls are configured per organization." : "※ 화면 속 내용은 예시입니다. 등급과 통제 항목은 기관별 설정에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
     );
@@ -819,10 +915,10 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                 >
                                     <span
                                         className={cn(
-                                            "relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border font-mono text-[13px] font-bold transition",
+                                            "relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border-2 font-mono text-[13px] font-bold transition",
                                             active
                                                 ? "border-[#2f7bff] bg-[#2f7bff] text-white shadow-[0_0_0_6px_rgba(47,123,255,0.14)]"
-                                                : "border-[#bcd0f5] bg-white text-[#2f7bff] group-hover:border-[#2f7bff]",
+                                                : "border-[#8fb2f0] bg-white text-[#2f7bff] group-hover:border-[#2f7bff]",
                                         )}
                                     >
                                         {i === 4 ? "F" : `0${i + 1}`}
@@ -841,7 +937,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                     id="xgen-stage-panel"
                     role="tabpanel"
                     aria-labelledby={`xgen-stage-tab-${s.key}`}
-                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10"
+                    className="mt-10 grid gap-8 rounded-2xl border-2 border-[var(--color-line-strong)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10"
                 >
                     <div className="min-w-0">
                         <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">
@@ -861,7 +957,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                 <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">TECH</dt>
                                 <dd className="mt-2 flex flex-wrap gap-1.5">
                                     {s.tech.map((t) => (
-                                        <span key={t} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] font-medium text-[var(--color-ink-muted)]">
+                                        <span key={t} className="rounded-md border-[1.5px] border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] font-medium text-[var(--color-ink-muted)]">
                                             {t}
                                         </span>
                                     ))}
@@ -890,7 +986,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                         "inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-[13.5px] font-semibold transition",
                                         i === 0
                                             ? "bg-[#2f7bff] text-white hover:bg-[#2461d8]"
-                                            : "border border-[var(--color-line)] text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                                            : "border-2 border-[var(--color-line-strong)] text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
                                     )}
                                 >
                                     {T(en, l.label)}
@@ -904,12 +1000,14 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                             <BrowserFrame url={s.screen.url}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full" />
-                                <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                <figcaption className="border-t border-[var(--color-line-strong)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
                                     {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
                                 </figcaption>
                             </BrowserFrame>
                         ) : s.screen.type === "orchestration" ? (
                             <OrchestrationMock en={en} />
+                        ) : s.screen.type === "governance" ? (
+                            <GovernanceMock en={en} />
                         ) : (
                             <EvolveMock en={en} />
                         )}
@@ -1012,10 +1110,10 @@ export function XgenWhyReasons({ locale }: { locale: Locale }) {
                 <SectionHead eyebrow="Why XGEN" title={w.title} lead={w.lead} />
                 <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
                     {w.reasons.map((r, i) => (
-                        <li key={r.t} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7">
+                        <li key={r.t} className="flex flex-col rounded-2xl border-2 border-[var(--color-line-strong)] bg-white p-7">
                             <span className="font-mono text-[28px] font-extrabold leading-none text-[#2f7bff]">0{i + 1}</span>
                             <h3 className="mt-4 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{r.t}</h3>
-                            <ul className="mt-5 flex flex-col gap-3 border-t border-[var(--color-line)] pt-5">
+                            <ul className="mt-5 flex flex-col gap-3 border-t border-[var(--color-line-strong)] pt-5">
                                 {r.b.map((x) => (
                                     <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
                                         <span aria-hidden className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
@@ -1103,12 +1201,12 @@ const LOOP = {
 function DashedArrow() {
     return (
         <div aria-hidden className="flex items-center justify-center text-[#2f7bff] lg:h-[240px]">
-            <svg viewBox="0 0 80 12" className="hidden h-3 w-20 lg:block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="2" y1="6" x2="70" y2="6" strokeDasharray="6 6" />
+            <svg viewBox="0 0 80 12" className="hidden h-3 w-20 lg:block" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="6" x2="70" y2="6" strokeDasharray="7 7" />
                 <polyline points="66,1 74,6 66,11" />
             </svg>
-            <svg viewBox="0 0 12 56" className="h-14 w-3 lg:hidden" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="6" y1="2" x2="6" y2="46" strokeDasharray="6 6" />
+            <svg viewBox="0 0 12 56" className="h-14 w-3 lg:hidden" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="6" y1="2" x2="6" y2="46" strokeDasharray="7 7" />
                 <polyline points="1,42 6,50 11,42" />
             </svg>
         </div>
@@ -1123,11 +1221,11 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="Extended Value" title={c.title} lead={c.lead} />
                 {/* 참고 이미지 ② — 흩어진 입력(원) → 중심 원(루프) → 결과 타일(원). 1024px 미만은 위아래로 쌓는다. */}
-                <div className={`${SECTION_BODY_GAP} rounded-3xl border border-[#e3e9f3] bg-white px-6 py-10 shadow-[0_30px_80px_-50px_rgba(20,40,80,0.45)] lg:px-12 lg:py-14`}>
+                <div className={`${SECTION_BODY_GAP} rounded-3xl border-2 border-[#cfd7e3] bg-white px-6 py-10 lg:px-12 lg:py-14`}>
                     <div className="grid items-start gap-6 lg:grid-cols-[1fr_96px_1fr_96px_1fr] lg:gap-2">
                         {/* 입력 */}
                         <div className="flex flex-col items-center text-center">
-                            <div aria-hidden className="relative h-[240px] w-[240px] rounded-full bg-[#f3f6fb]">
+                            <div aria-hidden className="relative h-[240px] w-[240px] rounded-full border-2 border-[#cfd7e3] bg-[#f7f9fc]">
                                 {[
                                     { I: MessageSquareText, x: "28%", y: "22%" },
                                     { I: ScrollText, x: "72%", y: "22%" },
@@ -1136,7 +1234,7 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
                                     { I: ArrowLeftRight, x: "50%", y: "80%" },
                                 ].map(({ I, x, y }, i) => (
                                     <span key={i} className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1" style={{ left: x, top: y }}>
-                                        <I className="h-6 w-6 text-[#2f7bff]" strokeWidth={1.8} />
+                                        <I className="h-6 w-6 text-[#2f7bff]" strokeWidth={2.25} />
                                         <span className="whitespace-nowrap text-[12px] font-semibold text-[var(--color-ink-muted)]">{c.inShort[i]}</span>
                                     </span>
                                 ))}
@@ -1158,9 +1256,9 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
                         {/* 루프 — 빛나는 중심 원 */}
                         <div className="flex flex-col items-center text-center">
                             <div aria-hidden className="relative flex h-[240px] w-[240px] items-center justify-center">
-                                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(47,123,255,0.16)_0%,rgba(47,123,255,0.06)_55%,transparent_72%)]" />
-                                <span className="absolute inset-[34px] rounded-full bg-[#dfeaff]" />
-                                <span className="relative flex h-[148px] w-[148px] flex-col items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#6aa8ff_0%,#2f7bff_45%,#1b4fc4_100%)] text-white shadow-[0_20px_50px_-12px_rgba(36,97,216,0.7)]">
+                                <span className="absolute inset-[6px] rounded-full border-2 border-dashed border-[#8fb2f0]" />
+                                <span className="absolute inset-[34px] rounded-full border-2 border-[#2f7bff] bg-[#eef4ff]" />
+                                <span className="relative flex h-[148px] w-[148px] flex-col items-center justify-center rounded-full bg-[#2f7bff] text-white">
                                     <span className="text-[24px] font-extrabold tracking-tight">XGEN</span>
                                     <RefreshCw className="mt-1 h-4 w-4 text-white/80" />
                                 </span>
@@ -1186,25 +1284,25 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
 
                         {/* 결과 — 원 안의 2×2 타일 */}
                         <div className="flex flex-col items-center text-center">
-                            <div aria-hidden className="flex h-[240px] w-[240px] items-center justify-center rounded-full bg-[#f3f6fb]">
+                            <div aria-hidden className="flex h-[240px] w-[240px] items-center justify-center rounded-full border-2 border-[#cfd7e3] bg-[#f7f9fc]">
                                 <div className="grid grid-cols-2 gap-2.5">
-                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
-                                        <svg viewBox="0 0 48 28" className="h-7 w-11" fill="none" stroke="#2f7bff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl border-2 border-[#cfd7e3] bg-white">
+                                        <svg viewBox="0 0 48 28" className="h-7 w-11" fill="none" stroke="#2f7bff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="2,24 14,14 24,18 34,8 46,4" />
                                         </svg>
                                     </span>
-                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl border-2 border-[#cfd7e3] bg-white">
                                         <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border-[3px] border-[#2f7bff] text-[#2f7bff]">
                                             <Check className="h-4 w-4" strokeWidth={3} />
                                         </span>
                                     </span>
-                                    <span className="flex h-[74px] w-[74px] flex-col justify-center gap-1.5 rounded-xl bg-white px-4 shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                    <span className="flex h-[74px] w-[74px] flex-col justify-center gap-1.5 rounded-xl border-2 border-[#cfd7e3] bg-white px-4">
                                         <span className="h-1.5 w-full rounded-full bg-[#9cbcf5]" />
                                         <span className="h-1.5 w-4/5 rounded-full bg-[#9cbcf5]" />
                                         <span className="h-1.5 w-3/5 rounded-full bg-[#2f7bff]" />
                                     </span>
-                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
-                                        <RotateCcw className="h-7 w-7 text-[#2f7bff]" strokeWidth={2.2} />
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl border-2 border-[#cfd7e3] bg-white">
+                                        <RotateCcw className="h-7 w-7 text-[#2f7bff]" strokeWidth={2.5} />
                                     </span>
                                 </div>
                             </div>
@@ -1222,7 +1320,7 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
                     <span className="mr-1 text-[13px] font-semibold text-[var(--color-ink-muted)]">{c.govLabel}</span>
                     {c.gov.map((g) => (
-                        <span key={g} className="rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
+                        <span key={g} className="rounded-full border-[1.5px] border-[var(--color-line-strong)] bg-white px-3 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
                             {g}
                         </span>
                     ))}
@@ -1371,10 +1469,10 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                                 aria-controls="xgen-case-panel"
                                 onClick={() => setCur(i)}
                                 className={cn(
-                                    "whitespace-nowrap rounded-full border px-5 py-2.5 text-[14px] font-semibold transition",
+                                    "whitespace-nowrap rounded-full border-2 px-5 py-2.5 text-[14px] font-semibold transition",
                                     i === cur
                                         ? "border-[#2f7bff] bg-[#2f7bff] text-white"
-                                        : "border-[var(--color-line)] bg-white text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                                        : "border-[var(--color-line-strong)] bg-white text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
                                 )}
                             >
                                 {T(en, x.tab)}
@@ -1387,13 +1485,13 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                     id="xgen-case-panel"
                     role="tabpanel"
                     aria-labelledby={`xgen-case-tab-${s.key}`}
-                    className="mt-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:p-10"
+                    className="mt-8 rounded-2xl border-2 border-[var(--color-line-strong)] bg-white p-6 lg:p-10"
                 >
                     <p className="text-[13px] font-semibold text-[#2461d8]">{T(en, s.customer)}</p>
                     <h3 className="mt-1.5 text-[22px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[26px]">{T(en, s.title)}</h3>
 
                     <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                        <div className="rounded-xl border border-[var(--color-line)] p-5">
+                        <div className="rounded-xl border-2 border-[var(--color-line-strong)] p-5">
                             <p className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">{en ? "SCOPE" : "도입 범위"}</p>
                             <ul className="mt-2.5 flex flex-col gap-1.5">
                                 {(en ? s.scope.en : s.scope.ko).map((x) => (
@@ -1404,7 +1502,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                                 ))}
                             </ul>
                         </div>
-                        <div className="rounded-xl border border-[#9cbcf5] bg-[#f5f9ff] p-5">
+                        <div className="rounded-xl border-2 border-[#6f9ef0] bg-[#f5f9ff] p-5">
                             <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">{en ? "OUTCOME" : "도입 효과"}</p>
                             <p className="mt-2.5 text-[15px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">{T(en, s.effect)}</p>
                         </div>
@@ -1417,7 +1515,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                             <span />
                             <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">WITH XGEN</p>
                         </div>
-                        <ul className="flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+                        <ul className="flex flex-col divide-y divide-[var(--color-line-strong)] border-y border-[var(--color-line-strong)]">
                             {s.pairs.map((p) => (
                                 <li key={p.c.ko} className="grid gap-2 py-4 lg:grid-cols-[1fr_32px_1fr] lg:items-center lg:gap-3">
                                     <p className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
@@ -1438,7 +1536,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                         <div className="flex flex-wrap gap-1.5">
                             <span className="mr-1 self-center text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">{en ? "Agents built" : "구축 Agent"}</span>
                             {(en ? s.agents.en : s.agents.ko).map((a) => (
-                                <span key={a} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
+                                <span key={a} className="rounded-md border-[1.5px] border-[var(--color-line-strong)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
                                     {a}
                                 </span>
                             ))}
@@ -1558,13 +1656,13 @@ export function XgenAdoptionPath({ locale }: { locale: Locale }) {
                 <SectionHead eyebrow="How to Start" title={a.title} lead={a.lead} />
                 <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
                     {a.principles.map((p, i) => (
-                        <li key={p.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7">
+                        <li key={p.k} className="flex flex-col rounded-2xl border-2 border-[var(--color-line-strong)] bg-white p-7">
                             <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">
                                 0{i + 1} · {p.k}
                             </p>
                             <h3 className="mt-2 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p.t}</h3>
                             <p className="mb-5 mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.d}</p>
-                            <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                            <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line-strong)] pt-4">
                                 {p.b.map((x) => (
                                     <li key={x} className="flex items-start gap-2 text-[13.5px] text-[var(--color-ink)]">
                                         <Check className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
@@ -1579,14 +1677,14 @@ export function XgenAdoptionPath({ locale }: { locale: Locale }) {
                 <p className="mt-14 font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">{a.stepsLabel}</p>
                 <ol className="mt-4 grid gap-3 lg:grid-cols-5">
                     {a.steps.map((s, i) => (
-                        <li key={s.t} className="relative rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
+                        <li key={s.t} className="relative rounded-xl border-2 border-[var(--color-line-strong)] bg-white px-5 py-4">
                             <p className="font-mono text-[12px] font-bold text-[#2f7bff]">0{i + 1}</p>
                             <p className="mt-1 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">{s.t}</p>
                             <p className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
                         </li>
                     ))}
                 </ol>
-                <div className="mt-6 rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
+                <div className="mt-6 rounded-xl border-2 border-[var(--color-line-strong)] bg-white px-5 py-4">
                     <p className="text-[14.5px] font-semibold text-[var(--color-ink)]">{a.schedule}</p>
                     <p className="mt-1 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">※ {a.scheduleNote}</p>
                 </div>
@@ -1624,7 +1722,7 @@ export function XgenOverviewVideo({ locale }: { locale: Locale }) {
                             : "노드 캔버스부터 Agent를 실행하는 헤드리스 엔진까지, XGEN 플랫폼 전반을 소개합니다."
                     }
                 />
-                <div className={`${SECTION_BODY_GAP} relative aspect-video overflow-hidden rounded-2xl border border-[var(--color-line)] bg-black`}>
+                <div className={`${SECTION_BODY_GAP} relative aspect-video overflow-hidden rounded-2xl border-2 border-[var(--color-line-strong)] bg-black`}>
                     {play ? (
                         <iframe
                             className="absolute inset-0 h-full w-full"
