@@ -2,7 +2,27 @@
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
-import { ArrowRight, ArrowDown, Check, ChevronRight, Play, RefreshCw } from "lucide-react";
+import {
+    ArrowRight,
+    ArrowDown,
+    Check,
+    ChevronRight,
+    Play,
+    RefreshCw,
+    Search,
+    Sparkles,
+    FileText,
+    RotateCcw,
+    ShieldCheck,
+    MessageSquareText,
+    Activity,
+    ArrowLeftRight,
+    TrendingUp,
+    ScrollText,
+    Database,
+    Wrench,
+    Cpu,
+} from "lucide-react";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -143,6 +163,12 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                     {c.causes.map((x) => (
                         <div key={x.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white">
                             <div className="px-6 pb-5 pt-6">
+                                <span
+                                    aria-hidden
+                                    className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#6aa8ff_0%,#2f7bff_50%,#1b4fc4_100%)] text-white shadow-[0_10px_24px_-10px_rgba(36,97,216,0.7)]"
+                                >
+                                    {x.k === "DATA" ? <Database className="h-5 w-5" /> : x.k === "TOOL" ? <Wrench className="h-5 w-5" /> : <Cpu className="h-5 w-5" />}
+                                </span>
                                 <div className="flex items-baseline justify-between gap-3">
                                     <span className="text-[22px] font-extrabold tracking-tight text-[var(--color-ink)]">{x.k}</span>
                                     <span className="text-[12.5px] font-semibold text-[#2461d8]">{x.s}</span>
@@ -177,20 +203,33 @@ const PARADIGM = {
         lead: "기업이 AI에 기대하는 것이 ‘답변’에서 ‘업무의 완료’로 옮겨 가고 있습니다.",
         before: {
             tag: "BEFORE",
-            name: "생성형 AI",
-            sub: "답변 중심",
+            name: "답변 중심의 생성형 AI",
+            windows: ["chat · 새 대화", "drive · 계약서/협력사_2026.pdf", "mail · 법무팀 검토 요청"],
             q: "협력사 계약서에서 위험한 조항 좀 찾아줘",
             a: "일반적으로 위험한 조항은 손해배상, 해지 조건, 책임 제한 등입니다. 원문을 붙여 주시면…",
-            after: "다음 작업은 다시 사람이",
+            after: "파일 찾기·붙여넣기·정리는 다시 사람이",
             points: ["입력에 따라 한 번씩 작업", "최종 결과물 생성에 집중", "사람의 지속적인 개입과 추가 질문이 필요"],
         },
         afterP: {
             tag: "AFTER",
-            name: "AI Agent · XGEN",
-            sub: "업무 완료 중심",
-            goal: "목표 · 협력사 계약서 위험 조항 검토",
-            steps: ["사규·계약 규정 검색", "계약서 문서 분석", "위험 조항 검토 리포트 작성"],
-            wait: "담당자 확인 후 회신",
+            name: "업무 완료 중심의 AI Agent",
+            goal: "협력사 계약서 위험 조항을 검토해 줘",
+            badge: "AI AGENT",
+            summaryK: "검토 결과",
+            summary: "위험 조항 3건 확인 · 손해배상 한도 미설정, 일방 해지 조건",
+            nextK: "다음 단계",
+            next: "담당자 확인 후 협력사에 회신",
+            stepsT: "실행 단계",
+            steps: ["사규·계약 규정 검색", "계약서 문서 분석", "검토 리포트 작성"],
+            tableT: "위험 조항 리포트",
+            cols: ["조항", "위험도"],
+            rows: [
+                { k: "손해배상 한도", v: 86, lv: "높음" },
+                { k: "해지 조건", v: 72, lv: "높음" },
+                { k: "자동 갱신", v: 41, lv: "중간" },
+            ],
+            approvalT: "승인 대기",
+            approval: ["리포트 초안 · 자동 실행", "협력사 회신 · 승인 후 실행"],
             points: ["목표를 세부 작업으로 나눠 스스로 처리", "실행 결과를 바탕으로 개선 루프 적용", "판단과 실행은 AI가, 위험한 작업은 승인 후 실행"],
         },
     },
@@ -199,87 +238,215 @@ const PARADIGM = {
         lead: "What companies expect from AI is shifting from an answer to a finished task.",
         before: {
             tag: "BEFORE",
-            name: "Generative AI",
-            sub: "Answer-centric",
+            name: "Answer-centric generative AI",
+            windows: ["chat · new conversation", "drive · contracts/supplier_2026.pdf", "mail · legal review request"],
             q: "Find the risky clauses in this supplier contract",
             a: "Risky clauses usually involve damages, termination terms and limits of liability. If you paste the text…",
-            after: "The next step is back on a person",
+            after: "Finding, pasting and organizing is back on a person",
             points: ["One-off tasks driven by each input", "Focused on producing a final output", "Needs people to keep stepping in and asking again"],
         },
         afterP: {
             tag: "AFTER",
-            name: "AI Agent · XGEN",
-            sub: "Task-completion-centric",
-            goal: "Goal · review risky clauses in a supplier contract",
-            steps: ["Search internal rules and contract policy", "Analyze the contract document", "Write the clause-review report"],
-            wait: "Reply after the owner confirms",
+            name: "Task-completion AI agent",
+            goal: "Review the risky clauses in the supplier contract",
+            badge: "AI AGENT",
+            summaryK: "Findings",
+            summary: "3 risky clauses · no cap on damages, one-sided termination",
+            nextK: "Next step",
+            next: "Reply to the supplier after the owner confirms",
+            stepsT: "Steps run",
+            steps: ["Search internal rules", "Analyze the contract", "Write the review report"],
+            tableT: "Clause risk report",
+            cols: ["Clause", "Risk"],
+            rows: [
+                { k: "Damages cap", v: 86, lv: "High" },
+                { k: "Termination", v: 72, lv: "High" },
+                { k: "Auto-renewal", v: 41, lv: "Medium" },
+            ],
+            approvalT: "Awaiting approval",
+            approval: ["Report draft · runs automatically", "Supplier reply · runs after approval"],
             points: ["Breaks a goal into sub-tasks and works through them", "Applies an improvement loop based on run results", "AI decides and acts; risky actions run after approval"],
         },
     },
 };
 
+/** 참고 이미지 ① — 겹친 창 목업의 작은 창 틀 */
+function MiniWindow({ label, className, children }: { label: string; className?: string; children?: ReactNode }) {
+    return (
+        <div className={cn("overflow-hidden rounded-xl border border-[#dfe5ee] bg-white shadow-[0_18px_40px_-24px_rgba(20,40,80,0.35)]", className)}>
+            <div className="flex items-center gap-2 border-b border-[#eef1f6] px-3 py-2">
+                <span aria-hidden className="flex gap-1">
+                    <span className="h-2 w-2 rounded-full bg-[#ff6159]" />
+                    <span className="h-2 w-2 rounded-full bg-[#ffbd2e]" />
+                    <span className="h-2 w-2 rounded-full bg-[#28c941]" />
+                </span>
+                <span className="truncate font-mono text-[11px] text-[#9aa4b5]">{label}</span>
+            </div>
+            {children}
+        </div>
+    );
+}
+
+function ParadigmColHead({ tag, name, after = false }: { tag: string; name: string; after?: boolean }) {
+    return (
+        <div className="flex flex-wrap items-center gap-3 border-b border-[var(--color-line)] pb-4">
+            <span
+                className={cn(
+                    "rounded-full px-3.5 py-1 font-mono text-[13px] font-bold tracking-widest",
+                    after ? "bg-[#e6efff] text-[#2461d8]" : "bg-[#eef1f5] text-[#8a94a6]",
+                )}
+            >
+                {tag}
+            </span>
+            <span className={cn("text-[19px] font-bold tracking-tight md:text-[21px]", after ? "text-[#2461d8]" : "text-[var(--color-ink-muted)]")}>{name}</span>
+        </div>
+    );
+}
+
 export function XgenParadigm({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const p = PARADIGM[en ? "en" : "ko"];
+    const b = p.before;
+    const a = p.afterP;
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="Paradigm Shift" title={p.title} lead={p.lead} />
-                <div className={`${SECTION_BODY_GAP} grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-6`}>
-                    {/* BEFORE */}
-                    <div className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 lg:p-8">
-                        <p className="font-mono text-[12px] font-bold tracking-widest text-[var(--color-ink-subtle)]">{p.before.tag}</p>
-                        <h3 className="mt-1 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
-                            {p.before.name} <span className="text-[15px] font-semibold text-[var(--color-ink-subtle)]">· {p.before.sub}</span>
-                        </h3>
-                        <div aria-hidden className="mt-6 flex flex-col gap-3 rounded-xl border border-[var(--color-line)] bg-white p-5">
-                            <p className="self-end rounded-2xl rounded-br-md bg-[var(--color-surface-hover)] px-4 py-2.5 text-[13.5px] text-[var(--color-ink)]">{p.before.q}</p>
-                            <p className="max-w-[90%] rounded-2xl rounded-bl-md border border-[var(--color-line)] px-4 py-2.5 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">{p.before.a}</p>
-                            <p className="mt-1 text-center text-[12.5px] text-[var(--color-ink-subtle)]">— {p.before.after} —</p>
+                <div className={`${SECTION_BODY_GAP} grid gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-8`}>
+                    {/* BEFORE — 따로 노는 창 여러 개를 사람이 오가며 처리 */}
+                    <div className="min-w-0">
+                        <ParadigmColHead tag={b.tag} name={b.name} />
+                        <div aria-hidden className="relative mt-8 pb-2 pr-2 pt-[84px]">
+                            <MiniWindow label={b.windows[2]} className="absolute left-0 top-0 h-[220px] w-[74%]">
+                                <div className="flex gap-3 p-3">
+                                    <div className="w-[22%] space-y-2 pt-1">
+                                        {[0, 1, 2, 3].map((i) => (
+                                            <div key={i} className={cn("h-2 rounded", i === 1 ? "bg-[#c9d9f7]" : "bg-[#eef1f5]")} />
+                                        ))}
+                                    </div>
+                                    <div className="flex-1 space-y-2 pt-1">
+                                        <div className="h-2 w-2/3 rounded bg-[#eef1f5]" />
+                                        <div className="h-2 w-1/2 rounded bg-[#eef1f5]" />
+                                        <div className="h-2 w-3/4 rounded bg-[#eef1f5]" />
+                                    </div>
+                                </div>
+                            </MiniWindow>
+                            <MiniWindow label={b.windows[1]} className="absolute left-[10%] top-[42px] h-[220px] w-[74%]">
+                                <div className="flex gap-3 p-4">
+                                    <FileText className="h-8 w-8 flex-none text-[#c3cad6]" />
+                                    <div className="flex-1 space-y-2 pt-1">
+                                        <div className="h-2 w-full rounded bg-[#eef1f5]" />
+                                        <div className="h-2 w-5/6 rounded bg-[#eef1f5]" />
+                                        <div className="h-2 w-2/3 rounded bg-[#eef1f5]" />
+                                    </div>
+                                </div>
+                            </MiniWindow>
+                            <MiniWindow label={b.windows[0]} className="relative ml-[20%]">
+                                <div className="flex flex-col gap-2.5 bg-[#fafbfc] p-4">
+                                    <p className="self-end rounded-2xl rounded-br-md bg-[#e9edf3] px-3.5 py-2 text-[13px] text-[var(--color-ink)]">{b.q}</p>
+                                    <p className="max-w-[92%] rounded-2xl rounded-bl-md border border-[#e3e8ef] bg-white px-3.5 py-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{b.a}</p>
+                                    <p className="mt-1 inline-flex items-center justify-center gap-1.5 text-center text-[12px] font-semibold text-[#b4232a]">
+                                        <RotateCcw className="h-3.5 w-3.5" />
+                                        {b.after}
+                                    </p>
+                                </div>
+                            </MiniWindow>
                         </div>
-                        <ul className="mt-6 flex flex-col gap-2.5">
-                            {p.before.points.map((x) => (
-                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    <span aria-hidden className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
+                        <ul className="mt-8 flex flex-col gap-2.5">
+                            {b.points.map((x) => (
+                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                    <span aria-hidden className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-[#b3bccb]" />
                                     {x}
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    <div aria-hidden className="flex items-center justify-center text-[#2f7bff]">
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#bcd0f5] bg-white">
+                    {/* 가운데 원형 화살표 */}
+                    <div aria-hidden className="flex items-center justify-center">
+                        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-[#dfe5ee] bg-white text-[var(--color-ink)] shadow-[0_10px_30px_-12px_rgba(20,40,80,0.3)]">
                             <ArrowRight className="hidden h-5 w-5 lg:block" />
                             <ArrowDown className="h-5 w-5 lg:hidden" />
                         </span>
                     </div>
 
-                    {/* AFTER */}
-                    <div className="flex flex-col rounded-2xl border border-[#9cbcf5] bg-white p-6 shadow-[0_24px_60px_-36px_rgba(36,97,216,0.45)] lg:p-8">
-                        <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">{p.afterP.tag}</p>
-                        <h3 className="mt-1 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
-                            {p.afterP.name} <span className="text-[15px] font-semibold text-[#2461d8]">· {p.afterP.sub}</span>
-                        </h3>
-                        <div aria-hidden className="mt-6 rounded-xl border border-[#d7e4fb] bg-[#f5f9ff] p-5">
-                            <p className="text-[13.5px] font-bold text-[var(--color-ink)]">{p.afterP.goal}</p>
-                            <ol className="mt-3 flex flex-col gap-2">
-                                {p.afterP.steps.map((s) => (
-                                    <li key={s} className="flex items-center gap-2.5 text-[13.5px] text-[var(--color-ink-muted)]">
-                                        <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#2f7bff] text-white">
-                                            <Check className="h-3 w-3" />
-                                        </span>
-                                        {s}
-                                    </li>
-                                ))}
-                                <li className="flex items-center gap-2.5 text-[13.5px] font-semibold text-[#2461d8]">
-                                    <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border-2 border-[#2f7bff]" />
-                                    {p.afterP.wait}
-                                </li>
-                            </ol>
+                    {/* AFTER — 목표 한 줄로 시작해 결과·다음 단계까지 한 화면에 */}
+                    <div className="min-w-0">
+                        <ParadigmColHead tag={a.tag} name={a.name} after />
+                        <div aria-hidden className="mt-8 overflow-hidden rounded-2xl border border-[#cddcf7] bg-white shadow-[0_30px_70px_-36px_rgba(36,97,216,0.55)]">
+                            <div className="flex items-center gap-3 border-b border-[#e3ebf9] bg-[#f7faff] px-5 py-3.5">
+                                <Search className="h-4 w-4 flex-none text-[#2f7bff]" />
+                                <span className="truncate text-[14.5px] font-semibold text-[var(--color-ink)]">{a.goal}</span>
+                            </div>
+                            <div className="p-4 sm:p-5">
+                                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#cddcf7] bg-[#eef4ff] px-3 py-1 font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">
+                                    <Sparkles className="h-3.5 w-3.5" />
+                                    {a.badge}
+                                </span>
+                                <p className="mt-3 text-[14px] leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
+                                    <b>{a.summaryK}:</b> {a.summary}
+                                </p>
+                                <p className="text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                    <b className="text-[var(--color-ink)]">{a.nextK}:</b> {a.next}
+                                </p>
+                                <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_1.25fr]">
+                                    <div className="rounded-xl border border-[#e6ebf3] p-3.5">
+                                        <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.stepsT}</p>
+                                        <ol className="relative mt-3 flex flex-col gap-3">
+                                            <span className="absolute bottom-2 left-[9px] top-2 w-px bg-[#cddcf7]" />
+                                            {a.steps.map((st) => (
+                                                <li key={st} className="relative flex items-center gap-2.5 text-[12.5px] text-[var(--color-ink-muted)]">
+                                                    <span className="inline-flex h-[19px] w-[19px] flex-none items-center justify-center rounded-full bg-[#2f7bff] text-white">
+                                                        <Check className="h-3 w-3" />
+                                                    </span>
+                                                    {st}
+                                                </li>
+                                            ))}
+                                        </ol>
+                                    </div>
+                                    <div className="rounded-xl border border-[#e6ebf3] p-3.5">
+                                        <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.tableT}</p>
+                                        <div className="mt-2 flex justify-between text-[11px] text-[var(--color-ink-subtle)]">
+                                            <span>{a.cols[0]}</span>
+                                            <span>{a.cols[1]}</span>
+                                        </div>
+                                        <ul className="mt-1.5 flex flex-col gap-2">
+                                            {a.rows.map((r) => (
+                                                <li key={r.k} className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-1 text-[12px]">
+                                                    <span className="truncate text-[var(--color-ink)]">{r.k}</span>
+                                                    <span className={cn("font-bold", r.v > 60 ? "text-[#d03a3a]" : "text-[#c27a00]")}>{r.lv}</span>
+                                                    <span className="col-span-2 h-1.5 overflow-hidden rounded-full bg-[#eef1f6]">
+                                                        <span className={cn("block h-full rounded-full", r.v > 60 ? "bg-[#2f7bff]" : "bg-[#9cbcf5]")} style={{ width: `${r.v}%` }} />
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="mt-3 rounded-xl border border-[#e6ebf3] p-3.5">
+                                    <p className="text-[12.5px] font-bold text-[var(--color-ink)]">{a.approvalT}</p>
+                                    <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+                                        {a.approval.map((x, i) => (
+                                            <li key={x} className="flex items-center gap-2 text-[12.5px] text-[var(--color-ink-muted)]">
+                                                {i === 0 ? (
+                                                    <span className="inline-flex h-[19px] w-[19px] flex-none items-center justify-center rounded-full bg-[#e6f6ee] text-[#0f7a4a]">
+                                                        <Check className="h-3 w-3" />
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-flex h-[19px] w-[19px] flex-none items-center justify-center rounded-full bg-[#fff3df] text-[#b06a00]">
+                                                        <ShieldCheck className="h-3 w-3" />
+                                                    </span>
+                                                )}
+                                                {x}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <ul className="mt-6 flex flex-col gap-2.5">
-                            {p.afterP.points.map((x) => (
-                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink)]">
+                        <ul className="mt-8 flex flex-col gap-2.5">
+                            {a.points.map((x) => (
+                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
                                     <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
                                     {x}
                                 </li>
@@ -287,7 +454,7 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                         </ul>
                     </div>
                 </div>
-                <p className="mt-6 text-center text-[12.5px] text-[var(--color-ink-subtle)]">
+                <p className="mt-8 text-center text-[12.5px] text-[var(--color-ink-subtle)]">
                     {en ? "※ Screen contents are illustrative." : "※ 화면 속 내용은 예시입니다."}
                 </p>
             </div>
@@ -885,6 +1052,10 @@ const LOOP = {
         ),
         lead: "XGEN의 개선은 개발사의 업데이트에서 끝나지 않습니다. 현업이 결과를 검토하며 남긴 피드백과 실행 기록이 회고를 거쳐 작업지침·도구 구성의 개선으로 이어집니다.",
         inLabel: "입력",
+        inTitle: "현업 피드백과 실행 기록",
+        inShort: ["피드백", "결과 검토", "실행 기록", "품질 평가", "변화 감지"],
+        loopTitle: "XGEN 자기개선 루프",
+        outTitle: "업무에 맞춰 개선되는 Agent",
         inputs: ["현업의 결과 검토와 피드백", "단계별 실행 기록과 품질 평가 결과", "데이터·도구·모델의 변화"],
         loop: [
             { n: "01", t: "실행", d: "Agent가 업무를 수행" },
@@ -908,6 +1079,10 @@ const LOOP = {
         ),
         lead: "Improvement in XGEN does not stop at vendor updates. Feedback left by business users as they review results, together with run records, goes through review and turns into better instructions and tool setups.",
         inLabel: "Inputs",
+        inTitle: "Business feedback and run records",
+        inShort: ["Feedback", "Review", "Run log", "Quality", "Changes"],
+        loopTitle: "XGEN self-improvement loop",
+        outTitle: "Agents that fit your work better",
         inputs: ["Business users’ result reviews and feedback", "Step-by-step run records and quality scores", "Changes in data, tools and models"],
         loop: [
             { n: "01", t: "Run", d: "The agent performs the work" },
@@ -924,6 +1099,22 @@ const LOOP = {
     },
 };
 
+/** 참고 이미지 ② — 원과 원 사이 점선 화살표. 1024px 이상 가로, 그 아래는 세로. */
+function DashedArrow() {
+    return (
+        <div aria-hidden className="flex items-center justify-center text-[#2f7bff] lg:h-[240px]">
+            <svg viewBox="0 0 80 12" className="hidden h-3 w-20 lg:block" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="6" x2="70" y2="6" strokeDasharray="6 6" />
+                <polyline points="66,1 74,6 66,11" />
+            </svg>
+            <svg viewBox="0 0 12 56" className="h-14 w-3 lg:hidden" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="6" y1="2" x2="6" y2="46" strokeDasharray="6 6" />
+                <polyline points="1,42 6,50 11,42" />
+            </svg>
+        </div>
+    );
+}
+
 export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const c = LOOP[en ? "en" : "ko"];
@@ -931,63 +1122,100 @@ export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
         <section id="evolve" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="Extended Value" title={c.title} lead={c.lead} />
-                <div className={`${SECTION_BODY_GAP} grid items-center gap-4 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:gap-5`}>
-                    {/* 입력 */}
-                    <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
-                        <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.inLabel}</p>
-                        <ul className="mt-4 flex flex-col gap-2.5">
-                            {c.inputs.map((x) => (
-                                <li key={x} className="rounded-lg border border-[var(--color-line)] px-3.5 py-2.5 text-[14px] text-[var(--color-ink)] [word-break:keep-all]">
-                                    {x}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div aria-hidden className="flex justify-center text-[#2f7bff]">
-                        <ArrowRight className="hidden h-6 w-6 lg:block" />
-                        <ArrowDown className="h-6 w-6 lg:hidden" />
-                    </div>
-                    {/* 루프 */}
-                    <div className="rounded-2xl border border-[#9cbcf5] bg-white p-6 shadow-[0_24px_60px_-36px_rgba(36,97,216,0.45)]">
-                        <p className="text-center font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">XGEN · Self-Improvement Loop</p>
-                        <ol className="mt-5 grid grid-cols-2 gap-3">
-                            {c.loop.map((s, i) => (
-                                <li
-                                    key={s.n}
-                                    className={cn(
-                                        "rounded-xl border px-4 py-4",
-                                        i === 3 ? "border-[#2f7bff] bg-[#f5f9ff]" : "border-[var(--color-line)] bg-white",
-                                        // 시계 방향으로 읽히게: 01 02 / 04 03
-                                        i === 2 && "order-4",
-                                        i === 3 && "order-3",
-                                    )}
-                                >
-                                    <p className="font-mono text-[12px] font-bold text-[#2f7bff]">{s.n}</p>
-                                    <p className="mt-1 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">{s.t}</p>
-                                    <p className="mt-1 text-[12.5px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
-                                </li>
-                            ))}
-                        </ol>
-                        <p className="mt-4 flex items-center justify-center gap-2 text-center text-[13px] font-semibold text-[#2461d8] [word-break:keep-all]">
-                            <RefreshCw className="h-4 w-4 flex-none" aria-hidden />
-                            {c.loopCaption}
-                        </p>
-                    </div>
-                    <div aria-hidden className="flex justify-center text-[#2f7bff]">
-                        <ArrowRight className="hidden h-6 w-6 lg:block" />
-                        <ArrowDown className="h-6 w-6 lg:hidden" />
-                    </div>
-                    {/* 결과 */}
-                    <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
-                        <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.outLabel}</p>
-                        <ul className="mt-4 flex flex-col gap-2.5">
-                            {c.outputs.map((x) => (
-                                <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
-                                    <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
-                                    {x}
-                                </li>
-                            ))}
-                        </ul>
+                {/* 참고 이미지 ② — 흩어진 입력(원) → 중심 원(루프) → 결과 타일(원). 1024px 미만은 위아래로 쌓는다. */}
+                <div className={`${SECTION_BODY_GAP} rounded-3xl border border-[#e3e9f3] bg-white px-6 py-10 shadow-[0_30px_80px_-50px_rgba(20,40,80,0.45)] lg:px-12 lg:py-14`}>
+                    <div className="grid items-start gap-6 lg:grid-cols-[1fr_96px_1fr_96px_1fr] lg:gap-2">
+                        {/* 입력 */}
+                        <div className="flex flex-col items-center text-center">
+                            <div aria-hidden className="relative h-[240px] w-[240px] rounded-full bg-[#f3f6fb]">
+                                {[
+                                    { I: MessageSquareText, x: "28%", y: "22%" },
+                                    { I: ScrollText, x: "72%", y: "22%" },
+                                    { I: Activity, x: "18%", y: "56%" },
+                                    { I: TrendingUp, x: "82%", y: "56%" },
+                                    { I: ArrowLeftRight, x: "50%", y: "80%" },
+                                ].map(({ I, x, y }, i) => (
+                                    <span key={i} className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1" style={{ left: x, top: y }}>
+                                        <I className="h-6 w-6 text-[#2f7bff]" strokeWidth={1.8} />
+                                        <span className="whitespace-nowrap text-[12px] font-semibold text-[var(--color-ink-muted)]">{c.inShort[i]}</span>
+                                    </span>
+                                ))}
+                                <span className="absolute left-1/2 top-[40%] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#b9cdf3]" />
+                                <span className="absolute left-[36%] top-[66%] h-1.5 w-1.5 rounded-full bg-[#b9cdf3]" />
+                                <span className="absolute right-[36%] top-[66%] h-1.5 w-1.5 rounded-full bg-[#b9cdf3]" />
+                            </div>
+                            <p className="mt-7 font-mono text-[11.5px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.inLabel}</p>
+                            <h3 className="mt-1.5 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{c.inTitle}</h3>
+                            <ul className="mt-3 flex flex-col gap-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                {c.inputs.map((x) => (
+                                    <li key={x}>{x}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <DashedArrow />
+
+                        {/* 루프 — 빛나는 중심 원 */}
+                        <div className="flex flex-col items-center text-center">
+                            <div aria-hidden className="relative flex h-[240px] w-[240px] items-center justify-center">
+                                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(47,123,255,0.16)_0%,rgba(47,123,255,0.06)_55%,transparent_72%)]" />
+                                <span className="absolute inset-[34px] rounded-full bg-[#dfeaff]" />
+                                <span className="relative flex h-[148px] w-[148px] flex-col items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#6aa8ff_0%,#2f7bff_45%,#1b4fc4_100%)] text-white shadow-[0_20px_50px_-12px_rgba(36,97,216,0.7)]">
+                                    <span className="text-[24px] font-extrabold tracking-tight">XGEN</span>
+                                    <RefreshCw className="mt-1 h-4 w-4 text-white/80" />
+                                </span>
+                            </div>
+                            <p className="mt-7 font-mono text-[11.5px] font-bold uppercase tracking-widest text-[#2461d8]">Self-Improvement Loop</p>
+                            <h3 className="mt-1.5 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{c.loopTitle}</h3>
+                            <ol className="mt-4 flex w-full max-w-[340px] flex-col gap-1.5 text-left">
+                                {c.loop.map((s) => (
+                                    <li key={s.n} className="flex items-baseline gap-2.5 text-[13.5px] [word-break:keep-all]">
+                                        <span className="font-mono text-[12px] font-bold text-[#2f7bff]">{s.n}</span>
+                                        <b className="flex-none text-[var(--color-ink)]">{s.t}</b>
+                                        <span className="text-[var(--color-ink-muted)]">{s.d}</span>
+                                    </li>
+                                ))}
+                            </ol>
+                            <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-3.5 py-1.5 text-[12.5px] font-semibold text-[#2461d8] [word-break:keep-all]">
+                                <ShieldCheck className="h-3.5 w-3.5 flex-none" aria-hidden />
+                                {c.loopCaption}
+                            </p>
+                        </div>
+
+                        <DashedArrow />
+
+                        {/* 결과 — 원 안의 2×2 타일 */}
+                        <div className="flex flex-col items-center text-center">
+                            <div aria-hidden className="flex h-[240px] w-[240px] items-center justify-center rounded-full bg-[#f3f6fb]">
+                                <div className="grid grid-cols-2 gap-2.5">
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                        <svg viewBox="0 0 48 28" className="h-7 w-11" fill="none" stroke="#2f7bff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="2,24 14,14 24,18 34,8 46,4" />
+                                        </svg>
+                                    </span>
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border-[3px] border-[#2f7bff] text-[#2f7bff]">
+                                            <Check className="h-4 w-4" strokeWidth={3} />
+                                        </span>
+                                    </span>
+                                    <span className="flex h-[74px] w-[74px] flex-col justify-center gap-1.5 rounded-xl bg-white px-4 shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                        <span className="h-1.5 w-full rounded-full bg-[#9cbcf5]" />
+                                        <span className="h-1.5 w-4/5 rounded-full bg-[#9cbcf5]" />
+                                        <span className="h-1.5 w-3/5 rounded-full bg-[#2f7bff]" />
+                                    </span>
+                                    <span className="flex h-[74px] w-[74px] items-center justify-center rounded-xl bg-white shadow-[0_8px_20px_-12px_rgba(20,40,80,0.35)]">
+                                        <RotateCcw className="h-7 w-7 text-[#2f7bff]" strokeWidth={2.2} />
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="mt-7 font-mono text-[11.5px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.outLabel}</p>
+                            <h3 className="mt-1.5 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{c.outTitle}</h3>
+                            <ul className="mt-3 flex flex-col gap-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                {c.outputs.map((x) => (
+                                    <li key={x}>{x}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
