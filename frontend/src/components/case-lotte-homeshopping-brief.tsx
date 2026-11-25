@@ -23,7 +23,7 @@ import type { Locale } from "@/lib/i18n";
  *   - 이전 챗봇(외산 솔루션)과 다른 플랫폼 비교·선정 과정
  *   - 인프라 구성(쿠버네티스·레지스트리·전환 시점), 모델명, 장애·해결 이력
  *   - 아쉬운 점·API 제약, 다음 과제 목록, 숫자 칸, 담당자 실명, 사옥 사진·로고
- * 인용은 상세본에 실린 고객 문장을 그대로 쓰고, 화자는 팀 단위로만 표기한다.
+ * 인용은 상세본에 실린 오주영 책임의 말(선택 이유 포함)을 쓰되 다른 플랫폼과의 비교는 빼고, 화자는 팀 단위로만 표기한다.
  */
 
 const HIGHLIGHTS = [
@@ -182,9 +182,22 @@ const EN = {
     vocSpeaker: "AX Team, Lotte Homeshopping",
     vocOrg: "Lotte Homeshopping · Commerce",
     vocBadge: "Customer in operation",
-    quotes: [
-        "From the base AI models to XGEN workflows and the LLM responses, we are satisfied overall, and it is running stably on our internal systems today.",
-        "The end goal is for people to assign the work and evaluate the results, while AI handles the work in between as autonomously as possible.",
+    quoteGroups: [
+        {
+            label: "Why we chose XGEN",
+            quotes: [
+                "Its structure was relatively light, and users had more room to change things themselves. Because it is built from functional modules, we could pick only the modules we needed, assemble them quickly and onboard the business teams.",
+                "The technology and experience Plateer has built up by developing its own platform were also an important factor in our choice.",
+            ],
+        },
+        {
+            label: "After putting it into operation",
+            quotes: [
+                "We can build the work we need as workflows, without code, and deploy them right away. The next-generation system manual, the product-encyclopedia chatbot and the Excel generator were all built this way.",
+                "From the base AI models to XGEN workflows and the LLM responses, we are satisfied overall, and it is running stably on our internal systems today.",
+                "The end goal is for people to assign the work and evaluate the results, while AI handles the work in between as autonomously as possible.",
+            ],
+        },
     ],
     allCases: "All customer cases",
     contact: "Get in touch",
@@ -192,9 +205,22 @@ const EN = {
         "Customer review draft (short version) · excluded from search — to be published after Lotte Homeshopping's confirmation.",
 };
 
-const KO_QUOTES = [
-    "기반 AI 모델부터 XGEN 워크플로우, LLM 응답 결과까지 전반적으로 만족스러운 수준이며, 현재 사내 시스템에서도 안정적으로 운영하고 있습니다.",
-    "최종 목표는 업무 지시와 결과 평가를 사람이 하고, 업무 과정은 AI가 최대한 자율적으로 처리하는 것입니다.",
+const KO_QUOTE_GROUPS = [
+    {
+        label: "XGEN을 선택한 이유",
+        quotes: [
+            "구조가 비교적 가볍고, 사용자가 직접 바꿀 수 있는 범위가 넓었습니다. 기능별 모듈로 구성되어 있어 필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
+            "플래티어가 자체 플랫폼을 개발하며 축적해 온 기술력과 경험 역시 선택에 중요한 요인이었습니다.",
+        ],
+    },
+    {
+        label: "운영해 보니",
+        quotes: [
+            "필요한 업무를 코드 없이 워크플로우로 구성해 바로 배포할 수 있습니다. 차세대 시스템 매뉴얼, 상품백과 챗봇, 엑셀 생성기도 모두 이 방식으로 만들었습니다.",
+            "기반 AI 모델부터 XGEN 워크플로우, LLM 응답 결과까지 전반적으로 만족스러운 수준이며, 현재 사내 시스템에서도 안정적으로 운영하고 있습니다.",
+            "최종 목표는 업무 지시와 결과 평가를 사람이 하고, 업무 과정은 AI가 최대한 자율적으로 처리하는 것입니다.",
+        ],
+    },
 ];
 
 const H2 =
@@ -218,7 +244,7 @@ export function LotteHomeshoppingBriefBody({
         ? AREAS.map((a, i) => ({ ...a, title: EN.areas[i][0], desc: EN.areas[i][1], status: EN.areas[i][2] }))
         : AREAS;
     const outcomes = en ? OUTCOMES.map((o, i) => ({ ...o, ...EN.outcomes[i] })) : OUTCOMES;
-    const quotes = en ? EN.quotes : KO_QUOTES;
+    const quoteGroups = en ? EN.quoteGroups : KO_QUOTE_GROUPS;
 
     return (
         <main>
@@ -506,11 +532,20 @@ export function LotteHomeshoppingBriefBody({
                     </figcaption>
 
                     <Quote className="relative mt-6 h-7 w-7 rotate-180 text-emerald-600/40" />
-                    <blockquote className="relative mt-4 space-y-4 break-keep text-left text-[18px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[21px]">
-                        {quotes.map((q) => (
-                            <p key={q}>{q}</p>
+                    <div className="relative mt-4 space-y-8">
+                        {quoteGroups.map((g, i) => (
+                            <div key={g.label} className={i > 0 ? "border-t border-emerald-200 pt-8" : undefined}>
+                                <p className="text-left text-[13.5px] font-bold text-emerald-700">
+                                    {String(i + 1).padStart(2, "0")} · {g.label}
+                                </p>
+                                <blockquote className="mt-3 space-y-4 break-keep text-left text-[17px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[20px]">
+                                    {g.quotes.map((q) => (
+                                        <p key={q}>{q}</p>
+                                    ))}
+                                </blockquote>
+                            </div>
                         ))}
-                    </blockquote>
+                    </div>
                     <div className="relative mt-1 flex justify-end">
                         <Quote className="h-7 w-7 text-emerald-600/40" />
                     </div>
