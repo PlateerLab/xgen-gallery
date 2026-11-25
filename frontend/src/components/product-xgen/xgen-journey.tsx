@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { localeHref } from "@/lib/locale-path";
@@ -26,6 +27,8 @@ export const XGEN_VIEWS: {
     audience?: Txt;
     question?: Txt;
     desc?: Txt;
+    /** 여정 카드 썸네일 (실사, Unsplash License 무료 사진 — 출처는 THUMB_CREDITS) */
+    thumb?: string;
     /** 이 주제에서 이어지는 3depth 상세 페이지 */
     deep?: { label: Txt; href: string }[];
 }[] = [
@@ -33,6 +36,7 @@ export const XGEN_VIEWS: {
     {
         view: "features",
         path: "/product/xgen/features",
+        thumb: "/product/journey/features.jpg",
         label: { ko: "기능·활용", en: "Features & use" },
         step: "02",
         audience: { ko: "현업·실무 담당자", en: "Business and operations teams" },
@@ -51,6 +55,7 @@ export const XGEN_VIEWS: {
     {
         view: "security",
         path: "/product/xgen/security",
+        thumb: "/product/journey/security.jpg",
         label: { ko: "보안·거버넌스", en: "Security & governance" },
         step: "03",
         audience: { ko: "보안·IT 담당자", en: "Security and IT teams" },
@@ -67,6 +72,7 @@ export const XGEN_VIEWS: {
     {
         view: "technology",
         path: "/product/xgen/technology",
+        thumb: "/product/journey/technology.jpg",
         label: { ko: "기술·아키텍처", en: "Technology" },
         step: "04",
         audience: { ko: "아키텍트·개발 리드", en: "Architects and engineering leads" },
@@ -84,6 +90,7 @@ export const XGEN_VIEWS: {
     {
         view: "adoption",
         path: "/product/xgen/adoption",
+        thumb: "/product/journey/adoption.jpg",
         label: { ko: "도입·지원", en: "Adoption & support" },
         step: "05",
         audience: { ko: "구매·도입 담당자", en: "Procurement and adoption owners" },
@@ -100,6 +107,13 @@ export const XGEN_VIEWS: {
     },
 ];
 
+/**
+ * 썸네일 출처 — Unsplash License(무료·상업 이용 가능·출처 표기 의무 없음). 960×540 크롭으로 받아 public/product/journey 에 둠.
+ * features   https://unsplash.com/photos/yd_RKGH_RH4
+ * security   https://unsplash.com/photos/yhJVLxcquEY
+ * technology https://unsplash.com/photos/Im_cQ6hQo10
+ * adoption   https://unsplash.com/photos/jEpZNyFSQwQ
+ */
 const t = (locale: Locale, x: Txt) => (locale === "en" ? x.en : x.ko);
 
 export function xgenViewInfo(view: XgenView) {
@@ -221,10 +235,10 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                         </div>
                     </div>
                 )}
-                <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
                     {overview ? (en ? "Explore by topic" : "주제별로 보기") : en ? "Keep exploring" : "이어서 보기"}
                 </p>
-                <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
                     {overview
                         ? en
                             ? "Find the details your review needs"
@@ -234,38 +248,53 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                           : "XGEN의 다른 주제"}
                 </h2>
                 {overview && (
-                    <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
                         {en
                             ? "Each page gathers what one role or review stage usually asks about, with links to detailed pages and documents."
                             : "역할과 검토 단계마다 주로 묻는 내용을 한 페이지에 모았고, 각 페이지에서 상세 페이지와 문서로 이어집니다."}
                     </p>
                 )}
-                <div className={cn("mt-12 grid gap-5", overview ? "lg:grid-cols-4" : "lg:grid-cols-3")}>
+                {/* 세로형 목록 — 한 줄에 하나씩 쌓는다. 넓은 화면은 썸네일 왼쪽·글 오른쪽, 620px 이하는 썸네일 위·글 아래. */}
+                <ol className="mt-10 flex flex-col gap-4">
                     {cards.map((v) => (
-                        <Link
-                            key={v.view}
-                            href={localeHref(locale, v.path)}
-                            className="group flex h-full flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#2f7bff]"
-                        >
-                            <p className="font-mono text-[12px] font-bold text-[#2f7bff]">
-                                {v.step} · {t(locale, v.label)}
-                            </p>
-                            <h3 className="mt-3 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                {v.question && t(locale, v.question)}
-                            </h3>
-                            <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
-                                {v.audience && t(locale, v.audience)}
-                            </p>
-                            <p className="mt-4 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {v.desc && t(locale, v.desc)}
-                            </p>
-                            <span className="mt-auto inline-flex items-center gap-1 pt-6 text-[14px] font-semibold text-[#2461d8]">
-                                {en ? "View" : "자세히 보기"}
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                            </span>
-                        </Link>
+                        <li key={v.view}>
+                            <Link
+                                href={localeHref(locale, v.path)}
+                                className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#2f7bff] min-[621px]:flex-row"
+                            >
+                                {v.thumb && (
+                                    <div className="relative aspect-[16/9] w-full flex-none overflow-hidden bg-[var(--color-surface-alt)] min-[621px]:aspect-auto min-[621px]:w-[240px] lg:w-[300px]">
+                                        <Image
+                                            src={v.thumb}
+                                            alt=""
+                                            fill
+                                            sizes="(max-width: 620px) 100vw, 300px"
+                                            className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                                        />
+                                    </div>
+                                )}
+                                <div className="flex min-w-0 flex-1 flex-col p-6 lg:p-7">
+                                    <p className="font-mono text-[12px] font-bold text-[#2f7bff]">
+                                        {v.step} · {t(locale, v.label)}
+                                    </p>
+                                    <h3 className="mt-2 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                        {v.question && t(locale, v.question)}
+                                    </h3>
+                                    <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                        {v.audience && t(locale, v.audience)}
+                                    </p>
+                                    <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {v.desc && t(locale, v.desc)}
+                                    </p>
+                                    <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[14px] font-semibold text-[#2461d8]">
+                                        {en ? "View" : "자세히 보기"}
+                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                    </span>
+                                </div>
+                            </Link>
+                        </li>
                     ))}
-                </div>
+                </ol>
             </div>
         </section>
     );
