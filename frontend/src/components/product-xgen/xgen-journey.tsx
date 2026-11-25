@@ -108,11 +108,11 @@ export const XGEN_VIEWS: {
 ];
 
 /**
- * 썸네일 출처 — Adobe Stock 무료 컬렉션(표준 라이선스, x2bee_ds 계정으로 라이선스). 960x540 크롭으로 public/product/journey 에 둠.
- * features   https://stock.adobe.com/images/id/1253834112
+ * 썸네일 출처 — features/adoption=Unsplash License, security/technology=Adobe Stock 무료 컬렉션(표준 라이선스, x2bee_ds 계정으로 라이선스). 960x540 크롭으로 public/product/journey 에 둠.
+ * features   https://unsplash.com/photos/yd_RKGH_RH4 (Unsplash License)
  * security   https://stock.adobe.com/images/id/588640139
  * technology https://stock.adobe.com/images/id/831527108
- * adoption   https://stock.adobe.com/images/id/166766942
+ * adoption   https://unsplash.com/photos/jEpZNyFSQwQ (Unsplash License)
  */
 const t = (locale: Locale, x: Txt) => (locale === "en" ? x.en : x.ko);
 
