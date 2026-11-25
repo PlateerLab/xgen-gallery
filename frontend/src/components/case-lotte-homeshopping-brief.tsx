@@ -22,9 +22,9 @@ import type { Locale } from "@/lib/i18n";
  * 고객이 그룹 관계사·자회사 쪽 반응을 우려해, 압축본에서는 아래를 뺐다.
  *   - 이전 챗봇(외산 솔루션)과 다른 플랫폼 비교·선정 과정
  *   - 인프라 구성(쿠버네티스·레지스트리·전환 시점), 모델명, 장애·해결 이력
- *   - 아쉬운 점·API 제약, 다음 과제 목록, 숫자 칸, 담당자 실명, 사옥 사진·로고
+ *   - 아쉬운 점·API 제약, 다음 과제 목록, 숫자 칸, 사옥 사진·로고
  * Why XGEN은 정리 카드 없이 고객 인용(선택 이유)으로, 맨 아래 Voice of Customer는 「운영해 보니」 인용으로 둔다.
- * 인용은 상세본에 실린 오주영 책임의 말(선택 이유 포함)을 쓰되 다른 플랫폼과의 비교는 빼고, 화자는 팀 단위로만 표기한다.
+ * 인용은 상세본에 실린 오주영 책임의 말(선택 이유 포함)을 쓰되 다른 플랫폼과의 비교는 빼고, 화자는 이름·직책과 팀으로 표기한다(사용자 요청).
  */
 
 const HIGHLIGHTS = [
@@ -181,7 +181,7 @@ const EN = {
         },
     ],
     vocTitle: "In the customer's words",
-    vocSpeaker: "AX Team, Lotte Homeshopping",
+    vocSpeaker: "Juyoung Oh · AX Team, Lotte Homeshopping",
     vocOrg: "Lotte Homeshopping · Commerce",
     vocBadge: "Customer in operation",
     quoteGroups: [
@@ -250,7 +250,7 @@ function VocCard({
                     <Building2 className="h-7 w-7 text-white" />
                 </span>
                 <div className="min-w-0 text-left">
-                    <p className="text-[16px] font-bold text-[var(--color-ink)]">{en ? EN.vocSpeaker : "롯데홈쇼핑 AX팀"}</p>
+                    <p className="text-[16px] font-bold text-[var(--color-ink)]">{en ? EN.vocSpeaker : "오주영 책임 · 롯데홈쇼핑 AX팀"}</p>
                     <p className="mt-0.5 text-[13.5px] font-semibold text-emerald-700">
                         {en ? EN.vocOrg : "롯데홈쇼핑 · 커머스"}
                     </p>
