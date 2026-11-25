@@ -16,7 +16,7 @@ import type { Locale } from "@/lib/i18n";
  * 롯데홈쇼핑 XGEN 고객사례 — **압축본(고객 검토용)**, 2026-11-23.
  *
  * 제주은행 사례(case-jeju-bank.tsx)와 같은 구성으로 줄였다.
- *   Hero → The Challenge → The Solution(+적용 기술) → What We Built → Outcomes → Voice of Customer
+ *   Hero → Why XGEN → The Challenge → The Solution(+적용 기술) → What We Built → Outcomes → Voice of Customer
  *
  * 상세본(case-lotte-homeshopping.tsx, /preview/lotte-homeshopping-30f6477b)은 그대로 둔다.
  * 고객이 그룹 관계사·자회사 쪽 반응을 우려해, 압축본에서는 아래를 뺐다.
@@ -115,6 +115,16 @@ const EN = {
     ),
     heroLead:
         "With XGEN, the AX team now builds the AI agents each task needs and deploys them to the business itself. Starting with blocking sales of hazardous products and guiding staff through the next-generation system, the scope is widening to finance and broadcast quality and review.",
+    whyTitle: "Why Lotte Homeshopping chose XGEN",
+    whyLead:
+        "Lotte Homeshopping chose XGEN as the AI platform that fit its own work environment and requirements. The customer points to three key factors.",
+    whyCards: [
+        ["A relatively light structure", "The platform's structure was relatively light."],
+        ["Users can change more themselves", "Users had more room to change agents themselves as the work changes."],
+        ["Built from functional modules", "The team could pick only the modules it needed, assemble them quickly and onboard the business teams."],
+    ],
+    whyClose:
+        "The customer says the technology and experience Plateer has built up by developing its own platform were also an important factor in the choice.",
     challengeTitle: "From a chatbot that answers to AI agents that work",
     challengeLead:
         "As more departments took up generative AI, answering questions was no longer enough — they needed AI that could carry out real work. Lotte Homeshopping set three conditions for its AI platform.",
@@ -320,6 +330,47 @@ export function LotteHomeshoppingBriefBody({
                             </li>
                         ))}
                     </ul>
+                </div>
+            </section>
+
+            {/* 선택의 이유 — 상세본 「선택의 이유」에서 다른 플랫폼과의 비교 표현만 뺐다 */}
+            <section className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                <div className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
+                    <p className={KICKER}>Why XGEN</p>
+                    <h2 className={`mt-3 ${H2}`}>{en ? EN.whyTitle : "롯데홈쇼핑이 XGEN을 선택한 이유"}</h2>
+                    <p className={LEAD}>
+                        {en
+                            ? EN.whyLead
+                            : "롯데홈쇼핑은 자사의 업무 환경과 요구사항에 맞는 AI 플랫폼으로 XGEN을 선택했습니다. 고객이 꼽은 핵심 요인은 세 가지입니다."}
+                    </p>
+                    <div className="mt-8 grid gap-4 lg:grid-cols-3">
+                        {(en
+                            ? EN.whyCards.map(([t, d]) => ({ t, d }))
+                            : [
+                                  { t: "비교적 가벼운 구조", d: "플랫폼 구조가 비교적 가벼웠습니다." },
+                                  { t: "넓은 사용자 수정 범위", d: "업무가 바뀌면 사용자가 직접 바꿀 수 있는 범위가 넓었습니다." },
+                                  {
+                                      t: "기능별 모듈 구성",
+                                      d: "필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
+                                  },
+                              ]
+                        ).map((c, i) => (
+                            <div key={c.t} className="rounded-2xl border border-[var(--color-line)] bg-white p-5">
+                                <span className="font-mono text-[13px] font-bold text-[#2461d8]">
+                                    {String(i + 1).padStart(2, "0")}
+                                </span>
+                                <p className="mt-2 text-[15.5px] font-bold text-[var(--color-ink)]">{c.t}</p>
+                                <p className="mt-2 break-keep text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {c.d}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                    <p className="mx-auto mt-8 max-w-3xl break-keep text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                        {en
+                            ? EN.whyClose
+                            : "플래티어가 자체 플랫폼을 개발하며 축적해 온 기술력과 경험 역시 선택에 중요한 요인으로 작용했다고 고객은 말합니다."}
+                    </p>
                 </div>
             </section>
 
