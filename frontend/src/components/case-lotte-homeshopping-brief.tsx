@@ -188,8 +188,8 @@ const EN = {
         {
             label: "Why we chose XGEN",
             quotes: [
-                "Its structure was relatively light, and users had more room to change things themselves. Because it is built from functional modules, we could pick only the modules we needed, assemble them quickly and onboard the business teams.",
-                "The technology and experience Plateer has built up by developing its own platform were also an important factor in our choice.",
+                "XGEN has a relatively light structure and a high degree of configuration flexibility, so users had wide room to modify it themselves to fit their work. Its functional-module structure was another strength: we could select only the capabilities we needed, configure them quickly and apply them to the business.",
+                "The technology and experience Plateer has built up by developing its own AI platform were also an important factor in choosing XGEN.",
             ],
         },
         {
@@ -211,8 +211,8 @@ const KO_QUOTE_GROUPS = [
     {
         label: "XGEN을 선택한 이유",
         quotes: [
-            "구조가 비교적 가볍고, 사용자가 직접 바꿀 수 있는 범위가 넓었습니다. 기능별 모듈로 구성되어 있어 필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
-            "플래티어가 자체 플랫폼을 개발하며 축적해 온 기술력과 경험 역시 선택에 중요한 요인이었습니다.",
+            "XGEN은 비교적 가벼운 구조와 높은 구성 유연성을 갖추고 있어 사용자가 업무 요구에 맞게 직접 수정할 수 있는 범위가 넓었습니다. 기능별 모듈 구조를 기반으로 필요한 기능만 선택해 빠르게 구성하고 현업에 적용할 수 있다는 점도 장점이었습니다.",
+            "플래티어가 자체 AI 플랫폼을 개발하며 축적해 온 기술력과 경험 역시 XGEN을 선택하는 데 중요한 요인이었습니다.",
         ],
     },
     {
