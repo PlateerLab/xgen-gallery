@@ -707,11 +707,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* ── 1depth 개요: 「XGEN 소개서(2026.11)」를 TRINITY 흐름으로 재배치 (overview-brochure.tsx) ── */}
                     {/* 문제 제기 → Paradigm Shift → AX Evolution(다크) → 플랫폼 5단계 → Why XGEN → 숫자 밴드 → 자기개선 루프 → 업종 시나리오 → 도입 방식 → 영상 */}
                     <XgenChallenge locale={locale} />
-                    <XgenParadigm locale={locale} />
-                    <XgenEvolutionModel locale={locale} />
-                    <XgenPlatformStages locale={locale} />
-                    <XgenWhyReasons locale={locale} />
-
                     {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
                     <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
                         <div
@@ -756,6 +751,11 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
+
+                    <XgenParadigm locale={locale} />
+                    <XgenEvolutionModel locale={locale} />
+                    <XgenPlatformStages locale={locale} />
+                    <XgenWhyReasons locale={locale} />
 
                     <XgenEvolutionLoop locale={locale} />
                     <XgenScenarios locale={locale} />
