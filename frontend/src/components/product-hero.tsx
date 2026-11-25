@@ -132,7 +132,7 @@ export function ProductHero({ locale = "ko" }: { locale?: Locale }) {
                     <div className="max-w-xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            XGEN · Agentic AI Platform
+                            {locale === "ko" ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
                         </div>
                         <h1 className="mt-7 text-3xl font-bold leading-[1.2] tracking-tight md:text-[42px]">
                             {t.s1TitleA}
@@ -190,7 +190,7 @@ export function ProductHero({ locale = "ko" }: { locale?: Locale }) {
                     <div className="flex justify-center">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            XGEN · Agentic AI Platform
+                            {locale === "ko" ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
                         </div>
                     </div>
                     <h2 className="mx-auto mt-7 max-w-3xl text-3xl font-bold leading-[1.28] tracking-tight md:text-[42px]">
@@ -252,7 +252,7 @@ export function ProductHero({ locale = "ko" }: { locale?: Locale }) {
                     <div className="max-w-xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[13px] text-white/75 backdrop-blur-sm">
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            XGEN · Agentic AI Platform
+                            {locale === "ko" ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
                         </div>
                         <h2 className="mt-7 text-3xl font-bold leading-[1.22] tracking-tight md:text-[40px]">
                             {t.s3TitleA}

@@ -295,7 +295,7 @@ function XgenPlatformSlide() {
         <>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[13px] text-white/70 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                XGEN · Agentic AI Platform
+                {locale === "ko" ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
             </div>
 
             <h1 className={cn(H1_CLS, "mt-7")}>

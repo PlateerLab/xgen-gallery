@@ -725,7 +725,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         />
                         <div className="relative mx-auto max-w-7xl px-6 py-16">
                             <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
-                                XGEN · Agentic AI Platform
+                                {!en ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
                             </p>
                             <h2 className="mt-3 text-center text-3xl font-bold tracking-tight md:text-[40px]">
                                 {en ? E.statsTitleA : "XGEN은 "}
