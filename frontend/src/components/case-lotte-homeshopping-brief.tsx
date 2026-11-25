@@ -23,6 +23,7 @@ import type { Locale } from "@/lib/i18n";
  *   - 이전 챗봇(외산 솔루션)과 다른 플랫폼 비교·선정 과정
  *   - 인프라 구성(쿠버네티스·레지스트리·전환 시점), 모델명, 장애·해결 이력
  *   - 아쉬운 점·API 제약, 다음 과제 목록, 숫자 칸, 담당자 실명, 사옥 사진·로고
+ * Why XGEN은 정리 카드 없이 고객 인용(선택 이유)으로, 맨 아래 Voice of Customer는 「운영해 보니」 인용으로 둔다.
  * 인용은 상세본에 실린 오주영 책임의 말(선택 이유 포함)을 쓰되 다른 플랫폼과의 비교는 빼고, 화자는 팀 단위로만 표기한다.
  */
 
@@ -116,15 +117,6 @@ const EN = {
     heroLead:
         "With XGEN, the AX team now builds the AI agents each task needs and deploys them to the business itself. Starting with blocking sales of hazardous products and guiding staff through the next-generation system, the scope is widening to finance and broadcast quality and review.",
     whyTitle: "Why Lotte Homeshopping chose XGEN",
-    whyLead:
-        "Lotte Homeshopping chose XGEN as the AI platform that fit its own work environment and requirements. The customer points to three key factors.",
-    whyCards: [
-        ["A relatively light structure", "The platform's structure was relatively light."],
-        ["Users can change more themselves", "Users had more room to change agents themselves as the work changes."],
-        ["Built from functional modules", "The team could pick only the modules it needed, assemble them quickly and onboard the business teams."],
-    ],
-    whyClose:
-        "The customer says the technology and experience Plateer has built up by developing its own platform were also an important factor in the choice.",
     challengeTitle: "From a chatbot that answers to AI agents that work",
     challengeLead:
         "As more departments took up generative AI, answering questions was no longer enough — they needed AI that could carry out real work. Lotte Homeshopping set three conditions for its AI platform.",
@@ -241,6 +233,54 @@ const LEAD =
     "mx-auto mt-5 max-w-3xl text-center text-[17px] leading-relaxed text-[var(--color-ink-muted)] break-keep";
 const B = "font-semibold text-[var(--color-ink)]";
 
+/** 고객 인용 상자 — Why XGEN(선택 이유)과 Voice of Customer(운영해 보니)에서 같이 쓴다. */
+function VocCard({
+    en,
+    groups,
+    hideLabel = false,
+}: {
+    en: boolean;
+    groups: { label: string; quotes: string[] }[];
+    hideLabel?: boolean;
+}) {
+    return (
+        <figure className="relative mt-10 overflow-hidden rounded-3xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8 md:p-11">
+            <figcaption className="relative flex items-center gap-4">
+                <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#059669,#10b981)]">
+                    <Building2 className="h-7 w-7 text-white" />
+                </span>
+                <div className="min-w-0 text-left">
+                    <p className="text-[16px] font-bold text-[var(--color-ink)]">{en ? EN.vocSpeaker : "롯데홈쇼핑 AX팀"}</p>
+                    <p className="mt-0.5 text-[13.5px] font-semibold text-emerald-700">
+                        {en ? EN.vocOrg : "롯데홈쇼핑 · 커머스"}
+                    </p>
+                </div>
+                <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3 py-1 text-[12.5px] font-bold text-emerald-600 sm:inline-flex">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    {en ? EN.vocBadge : "운영 중 고객"}
+                </span>
+            </figcaption>
+
+            <Quote className="relative mt-6 h-7 w-7 rotate-180 text-emerald-600/40" />
+            <div className="relative mt-4 space-y-8">
+                {groups.map((g, i) => (
+                    <div key={g.label} className={i > 0 ? "border-t border-emerald-200 pt-8" : undefined}>
+                        {!hideLabel && <p className="mb-3 text-left text-[13.5px] font-bold text-emerald-700">{g.label}</p>}
+                        <blockquote className="space-y-4 break-keep text-left text-[17px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[20px]">
+                            {g.quotes.map((q) => (
+                                <p key={q}>{q}</p>
+                            ))}
+                        </blockquote>
+                    </div>
+                ))}
+            </div>
+            <div className="relative mt-1 flex justify-end">
+                <Quote className="h-7 w-7 text-emerald-600/40" />
+            </div>
+        </figure>
+    );
+}
+
 export function LotteHomeshoppingBriefBody({
     locale = "ko",
     preview = false,
@@ -333,44 +373,12 @@ export function LotteHomeshoppingBriefBody({
                 </div>
             </section>
 
-            {/* 선택의 이유 — 상세본 「선택의 이유」에서 다른 플랫폼과의 비교 표현만 뺐다 */}
+            {/* 선택의 이유 — 정리한 카드 대신 고객의 말(VoC)을 그대로 인용한다. 아래 「고객의 목소리」와 같은 인용 상자 */}
             <section className="border-b border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                 <div className="mx-auto w-full max-w-4xl px-6 py-16 md:py-20">
                     <p className={KICKER}>Why XGEN</p>
                     <h2 className={`mt-3 ${H2}`}>{en ? EN.whyTitle : "롯데홈쇼핑이 XGEN을 선택한 이유"}</h2>
-                    <p className={LEAD}>
-                        {en
-                            ? EN.whyLead
-                            : "롯데홈쇼핑은 자사의 업무 환경과 요구사항에 맞는 AI 플랫폼으로 XGEN을 선택했습니다. 고객이 꼽은 핵심 요인은 세 가지입니다."}
-                    </p>
-                    <div className="mt-8 grid gap-4 lg:grid-cols-3">
-                        {(en
-                            ? EN.whyCards.map(([t, d]) => ({ t, d }))
-                            : [
-                                  { t: "비교적 가벼운 구조", d: "플랫폼 구조가 비교적 가벼웠습니다." },
-                                  { t: "넓은 사용자 수정 범위", d: "업무가 바뀌면 사용자가 직접 바꿀 수 있는 범위가 넓었습니다." },
-                                  {
-                                      t: "기능별 모듈 구성",
-                                      d: "필요한 모듈만 골라 빠르게 구성하고 현업에 온보딩할 수 있었습니다.",
-                                  },
-                              ]
-                        ).map((c, i) => (
-                            <div key={c.t} className="rounded-2xl border border-[var(--color-line)] bg-white p-5">
-                                <span className="font-mono text-[13px] font-bold text-[#2461d8]">
-                                    {String(i + 1).padStart(2, "0")}
-                                </span>
-                                <p className="mt-2 text-[15.5px] font-bold text-[var(--color-ink)]">{c.t}</p>
-                                <p className="mt-2 break-keep text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {c.d}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="mx-auto mt-8 max-w-3xl break-keep text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                        {en
-                            ? EN.whyClose
-                            : "플래티어가 자체 플랫폼을 개발하며 축적해 온 기술력과 경험 역시 선택에 중요한 요인으로 작용했다고 고객은 말합니다."}
-                    </p>
+                    <VocCard en={en} groups={[quoteGroups[0]]} hideLabel />
                 </div>
             </section>
 
@@ -563,44 +571,8 @@ export function LotteHomeshoppingBriefBody({
                 <p className={KICKER}>Voice of Customer</p>
                 <h2 className={`mt-3 ${H2}`}>{en ? EN.vocTitle : "고객의 목소리"}</h2>
 
-                <figure className="relative mt-10 overflow-hidden rounded-3xl border border-emerald-200 bg-emerald-50 p-8 md:p-11">
-                    <figcaption className="relative flex items-center gap-4">
-                        <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#059669,#10b981)]">
-                            <Building2 className="h-7 w-7 text-white" />
-                        </span>
-                        <div className="min-w-0 text-left">
-                            <p className="text-[16px] font-bold text-[var(--color-ink)]">
-                                {en ? EN.vocSpeaker : "롯데홈쇼핑 AX팀"}
-                            </p>
-                            <p className="mt-0.5 text-[13.5px] font-semibold text-emerald-700">
-                                {en ? EN.vocOrg : "롯데홈쇼핑 · 커머스"}
-                            </p>
-                        </div>
-                        <span className="ml-auto hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3 py-1 text-[12.5px] font-bold text-emerald-600 sm:inline-flex">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                            {en ? EN.vocBadge : "운영 중 고객"}
-                        </span>
-                    </figcaption>
-
-                    <Quote className="relative mt-6 h-7 w-7 rotate-180 text-emerald-600/40" />
-                    <div className="relative mt-4 space-y-8">
-                        {quoteGroups.map((g, i) => (
-                            <div key={g.label} className={i > 0 ? "border-t border-emerald-200 pt-8" : undefined}>
-                                <p className="text-left text-[13.5px] font-bold text-emerald-700">
-                                    {String(i + 1).padStart(2, "0")} · {g.label}
-                                </p>
-                                <blockquote className="mt-3 space-y-4 break-keep text-left text-[17px] font-medium leading-relaxed text-[var(--color-ink)] md:text-[20px]">
-                                    {g.quotes.map((q) => (
-                                        <p key={q}>{q}</p>
-                                    ))}
-                                </blockquote>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="relative mt-1 flex justify-end">
-                        <Quote className="h-7 w-7 text-emerald-600/40" />
-                    </div>
-                </figure>
+                {/* 선택 이유 인용은 맨 위 Why XGEN 섹션으로 옮겼다 */}
+                <VocCard en={en} groups={quoteGroups.slice(1)} />
 
                 <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] pt-8">
                     <Link
