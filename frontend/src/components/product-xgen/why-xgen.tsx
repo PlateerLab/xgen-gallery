@@ -70,7 +70,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 const COPY = {
     ko: {
-        heroEyebrow: "XGEN · Enterprise Agentic AI Platform",
+        heroEyebrow: "XGEN · 기업형 에이전틱 AI 플랫폼",
         heroTitleA: "‘자율적으로 일하는 AI’를 넘어,",
         heroTitleB: "기업의 통제 아래, 사용자 업무 환경까지 확장해",
         heroTitleC: "스스로 일하고 개선되는 AI Agent",
