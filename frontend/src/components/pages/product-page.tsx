@@ -40,6 +40,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
+import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
+import { XgenHowItWorks } from "@/components/product-xgen/how-it-works";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -733,14 +735,12 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     <>
                     {/* 문제 제기 — 브로셔 오프너 */}
                     <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                        <div className="mx-auto max-w-7xl px-6 py-24">
-                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                The Challenge
-                            </p>
-                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
-                                {en ? E.challengeTitle : "Enterprise AI, 왜 현장에서 멈출까요"}
-                            </h2>
-                            <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
+                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                            <SectionHead
+                                eyebrow="The Challenge"
+                                title={en ? E.challengeTitle : "Enterprise AI, 왜 현장에서 멈출까요"}
+                            />
+                            <div className={`${SECTION_BODY_GAP} grid gap-x-8 gap-y-12 lg:grid-cols-3`}>
                                 {CHALLENGES_L.map((c, i) => (
                                     <div key={c.q} className="flex h-full flex-col">
                                         <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
@@ -769,6 +769,9 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
                     <WhyXgenDifference locale={locale} />
+
+                    {/* How It Works — 연결→설계→배포→통제→개선 한 흐름(무엇을 하는 플랫폼인지 한눈에) */}
+                    <XgenHowItWorks locale={locale} />
 
                     {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
                     <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
@@ -820,17 +823,13 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         id="platform"
                         className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                     >
-                        <div className="mx-auto max-w-7xl px-6 py-24">
-                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                4 Core Values
-                            </p>
-                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                                {en ? E.pillarsTitle : "엔터프라이즈 AI 운영을 위한 핵심 가치"}
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.pillarsLead : "AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고, 통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈 AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다."}
-                            </p>
-                            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                            <SectionHead
+                                eyebrow="4 Core Values"
+                                title={en ? E.pillarsTitle : "엔터프라이즈 AI 운영을 위한 핵심 가치"}
+                                lead={en ? E.pillarsLead : "AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고, 통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈 AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다."}
+                            />
+                            <div className={`${SECTION_BODY_GAP} grid gap-5 min-[621px]:grid-cols-2 lg:grid-cols-4`}>
                                 {PILLARS_L.map((p) => (
                                     <div
                                         key={p.en}
@@ -862,18 +861,14 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         id="build"
                         className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
                     >
-                        <div className="mx-auto max-w-7xl px-6 py-24">
-                            <p className="text-center font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                Build for Everyone
-                            </p>
-                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                                {en ? E.diffTitle : "현업이 직접 만드는 Enterprise AI"}
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
-                            </p>
-                            {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다 */}
-                            <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-stretch">
+                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                            <SectionHead
+                                eyebrow="Build for Everyone"
+                                title={en ? E.diffTitle : "현업이 직접 만드는 Enterprise AI"}
+                                lead={en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
+                            />
+                            {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다(900px 이하는 한 열) */}
+                            <div className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-2 lg:items-stretch`}>
                                 {DIFFERENTIATORS_L.map((d) => (
                                     <div
                                         key={d.en}
@@ -956,19 +951,15 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* 고객사례 — 최근 3건 + /customers 연계 */}
                     <section
                         id="cases"
-                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
                     >
-                        <div className="mx-auto max-w-7xl px-6 py-24">
-                            <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                Customer Cases
-                            </p>
-                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                                {en ? E.casesTitle : "고객 현장에서 검증됩니다"}
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
-                            </p>
-                            <div className="mt-10 grid gap-5 md:grid-cols-3">
+                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                            <SectionHead
+                                eyebrow="Customer Cases"
+                                title={en ? E.casesTitle : "고객 현장에서 검증됩니다"}
+                                lead={en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
+                            />
+                            <div className={`${SECTION_BODY_GAP} grid gap-5 lg:grid-cols-3`}>
                                 {recentCases.map((c) => (
                                     <Link
                                         key={c.slug}
@@ -1592,8 +1583,8 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                 {/* CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
-                    <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-white/45">
+                    <div className={`mx-auto max-w-4xl px-6 text-center ${SECTION_PAD}`}>
+                        <p className="font-mono text-[12px] font-semibold text-center uppercase tracking-widest text-[#7dd3fc]">
                             Get Started
                         </p>
                         <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">

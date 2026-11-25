@@ -212,7 +212,7 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
     const cards = XGEN_VIEWS.filter((v) => v.view !== "overview" && v.view !== current);
     return (
         <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-            <div className="mx-auto max-w-7xl px-6 py-20">
+            <div className="mx-auto max-w-7xl px-6 py-20 lg:py-[120px]">
                 {!overview && here.deep && (
                     <div className="mb-14 border-b border-[var(--color-line)] pb-12">
                         <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
@@ -235,10 +235,10 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                         </div>
                     </div>
                 )}
-                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">
                     {overview ? (en ? "Explore by topic" : "주제별로 보기") : en ? "Keep exploring" : "이어서 보기"}
                 </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                <h2 className="mt-3 max-w-3xl text-[28px] font-bold leading-[1.3] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                     {overview
                         ? en
                             ? "Find the details your review needs"
@@ -248,14 +248,14 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                           : "XGEN의 다른 주제"}
                 </h2>
                 {overview && (
-                    <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                    <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)] md:text-[17px]">
                         {en
                             ? "Each page gathers what one role or review stage usually asks about, with links to detailed pages and documents."
                             : "역할과 검토 단계마다 주로 묻는 내용을 한 페이지에 모았고, 각 페이지에서 상세 페이지와 문서로 이어집니다."}
                     </p>
                 )}
                 {/* 세로형 목록 — 한 줄에 하나씩 쌓는다. 넓은 화면은 썸네일 왼쪽·글 오른쪽, 620px 이하는 썸네일 위·글 아래. */}
-                <ol className="mt-10 flex flex-col gap-4">
+                <ol className="mt-12 flex flex-col gap-4 lg:mt-16">
                     {cards.map((v) => (
                         <li key={v.view}>
                             <Link

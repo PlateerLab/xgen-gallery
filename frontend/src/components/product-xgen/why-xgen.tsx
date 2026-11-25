@@ -273,8 +273,8 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const words = t.diffStatement.split(" ");
     return (
         <section id="why" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-            <div className="mx-auto max-w-7xl px-6 py-24">
-                <p className="font-mono text-[12px] uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
+            <div className="mx-auto max-w-7xl px-6 py-20 lg:py-[120px]">
+                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">{t.diffEyebrow}</p>
                 <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
                 <p ref={ref} className="mt-6 max-w-5xl text-[28px] font-bold leading-[1.35] tracking-tight text-[var(--color-ink)] md:text-[42px]">
                     {words.map((w, i) => (
