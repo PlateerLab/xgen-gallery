@@ -181,7 +181,7 @@ export const PRODUCT_PROFILES: Record<ProductId, ProductProfile> = {
                     ko: "Memory·Workspace·Tool·Schedule로 이전 맥락을 이어받고 결과물을 다음 업무에 활용합니다.",
                     en: "Memory, workspace, tools, and schedules carry context and results into the next task.",
                 },
-                href: "/product/xgen#geny",
+                href: "/product/xgen/technology#geny",
             },
             {
                 id: "easymode",

@@ -41,6 +41,11 @@ export const EN_ROUTES: readonly string[] = [
     "/floui",
     "/enablement",
     "/product/xgen",
+    // XGEN 2depth 주제 페이지 — 한·영 모두 있다.
+    "/product/xgen/features",
+    "/product/xgen/security",
+    "/product/xgen/technology",
+    "/product/xgen/adoption",
     "/product",
     "/products/xgen",
     "/customers",

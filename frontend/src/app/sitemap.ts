@@ -41,6 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/xgen-brief-k7m4`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         // xgen.im 메인·구글 광고가 연결되는 한글 제품 페이지 — 영문판만 들어가 있던 누락 보완.
         { url: `${SITE.url}/product/xgen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+        // XGEN 2depth 주제 페이지(개요에서 나눈 기능·보안·기술·도입).
+        { url: `${SITE.url}/product/xgen/features`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${SITE.url}/product/xgen/security`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${SITE.url}/product/xgen/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${SITE.url}/product/xgen/adoption`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${SITE.url}/xgen-dex`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/product/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/pathfinder`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

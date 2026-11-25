@@ -302,7 +302,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
         { label: "Vibe Coding in DexOn", href: h("/vibe-coding") },
         { label: "DexOn", href: h("/xgen-dex") },
         { label: "EasyMode", href: h("/easy-mode") },
-        { label: "Geny", href: h("/product/xgen#geny") },
+        { label: "Geny", href: h("/product/xgen/technology#geny") },
     ];
 
     // 03 · 산업·업무별 적용
@@ -321,7 +321,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
 
     // 04 · 검증 — 신뢰 근거
     const trust: (Card & { fn?: number; value: string })[] = [
-        { value: ko ? "GS 1등급" : "GS Grade 1", title: ko ? "제3자 품질 인증" : "Third-party certification", desc: ko ? `XGEN · 인증번호 ${XGEN_GS_CERTIFICATION.no}` : `XGEN · No. ${XGEN_GS_CERTIFICATION.no}`, href: h("/product/xgen#certification"), cta: ko ? "인증 내용" : "Details" },
+        { value: ko ? "GS 1등급" : "GS Grade 1", title: ko ? "제3자 품질 인증" : "Third-party certification", desc: ko ? `XGEN · 인증번호 ${XGEN_GS_CERTIFICATION.no}` : `XGEN · No. ${XGEN_GS_CERTIFICATION.no}`, href: h("/product/xgen/security#certification"), cta: ko ? "인증 내용" : "Details" },
         { value: ko ? "보안 재검증" : "Re-test", title: ko ? "공격자 시선의 침투 테스트" : "Attacker-view pentesting", desc: ko ? "격리 환경에서 권한 통제를 다시 확인" : "Access controls re-checked in isolation", href: h("/security-and-governance#attacker-view"), cta: ko ? "검증 결과" : "Results", fn: 3 },
         { value: ko ? "실증 데모" : "Demos", title: ko ? "실제 화면으로 보는 업무 흐름" : "Workflows on real screens", desc: ko ? "제품 시연과 업무 시나리오 영상" : "Product walkthroughs and scenario videos", href: h("/proof-in-action"), cta: ko ? "영상 보기" : "Watch" },
         { value: `${libCount}`, title: ko ? "연구·공개 라이브러리" : "Research & libraries", desc: ko ? "아키텍처·연구 과제와 공개 라이브러리" : "Architecture, research, and public libraries", href: h("/technology"), cta: ko ? "테크놀로지" : "Technology" },
@@ -362,7 +362,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
             desc: ko
                 ? `공인 시험기관의 제3자 시험을 거쳤습니다. 인증번호 ${XGEN_GS_CERTIFICATION.no}.`
                 : `Tested by an accredited third-party lab. Certificate No. ${XGEN_GS_CERTIFICATION.no}.`,
-            href: "/product/xgen#certification",
+            href: "/product/xgen/security#certification",
             cta: ko ? "인증 내용 보기" : "See the certification",
             fn: 0,
             date: XGEN_GS_CERTIFICATION.date.replace(/\./g, "-"),

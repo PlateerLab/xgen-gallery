@@ -241,7 +241,7 @@ export const INDUSTRY_STORIES: Record<IndustryKey, IndustryStory> = {
         ],
         stack: [
             { name: "XGEN", role: { ko: "내부망 Agent·RAG 플랫폼", en: "Internal-network agent and RAG platform" }, href: "/product/xgen" },
-            { name: "인증·품질", role: { ko: "GS 인증 1등급 (26-0296)", en: "GS certification grade 1 (26-0296)" }, href: "/product/xgen#certification" },
+            { name: "인증·품질", role: { ko: "GS 인증 1등급 (26-0296)", en: "GS certification grade 1 (26-0296)" }, href: "/product/xgen/security#certification" },
             { name: "보안·거버넌스", role: { ko: "권한, 마스킹, 감사 로그", en: "Permissions, masking, audit logs" }, href: "/security-and-governance" },
         ],
         scenarios: [

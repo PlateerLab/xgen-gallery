@@ -355,7 +355,7 @@ export function ProductXgenPageContent({ locale }: { locale: Locale }) {
             desc: ko
                 ? `공인 시험기관의 제3자 시험을 거쳤습니다. 인증번호 ${XGEN_GS_CERTIFICATION.no}.`
                 : `Tested by an accredited third-party lab. Certificate No. ${XGEN_GS_CERTIFICATION.no}.`,
-            href: "/product/xgen#certification",
+            href: "/product/xgen/security#certification",
             cta: ko ? "인증 내용 보기" : "See the certification",
         },
         {

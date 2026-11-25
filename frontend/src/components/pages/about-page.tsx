@@ -202,7 +202,7 @@ const COPY: Record<Locale, AboutCopy> = {
                         `GS 인증 1등급 ${CERTIFICATIONS.length}건`,
                         "AI-MASTER 진행 중",
                     ],
-                    href: "/product/xgen#certification",
+                    href: "/product/xgen/security#certification",
                 },
                 {
                     icon: Boxes,
@@ -400,7 +400,7 @@ const COPY: Record<Locale, AboutCopy> = {
                         `${CERTIFICATIONS.length} Grade 1 GS certifications`,
                         "AI-MASTER in testing",
                     ],
-                    href: "/product/xgen#certification",
+                    href: "/product/xgen/security#certification",
                 },
                 {
                     icon: Boxes,

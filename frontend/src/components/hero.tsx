@@ -526,7 +526,7 @@ function SecuritySlide() {
                         locale === "ko"
                             ? "인증·품질 보기"
                             : "Certification and quality",
-                    href: localeHref(locale, "/product/xgen#certification"),
+                    href: localeHref(locale, "/product/xgen/security#certification"),
                 }}
             />
         </>

@@ -232,7 +232,7 @@ export function HomeTeams({
             eyebrow: "Agent Runtime · Geny",
             title: P.bento.find((x) => x.id === "geny")!.title[locale],
             desc: P.bento.find((x) => x.id === "geny")!.desc[locale],
-            href: "/product/xgen#geny",
+            href: "/product/xgen/technology#geny",
         },
         {
             icon: Network,
@@ -248,7 +248,7 @@ export function HomeTeams({
             desc: ko
                 ? "Harness와 Sandbox를 별도 서비스로 나누고, 에이전트별로 격리된 컨테이너에서 코드를 실행합니다. 격리 수준은 구성에 따라 다를 수 있습니다."
                 : "Harness and Sandbox run as separate services, and code runs in per-agent isolated containers. Isolation depends on configuration.",
-            href: "/product/xgen#isolated-execution",
+            href: "/product/xgen/technology#isolated-execution",
         },
         {
             icon: Boxes,
@@ -433,7 +433,7 @@ export function HomeTeams({
                             {t.certNo} {XGEN_GS_CERTIFICATION.no}
                         </p>
                         <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
-                            <Link href={h("/product/xgen#certification")} className={LINK}>
+                            <Link href={h("/product/xgen/security#certification")} className={LINK}>
                                 {t.gsMore}
                                 <ChevronRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>

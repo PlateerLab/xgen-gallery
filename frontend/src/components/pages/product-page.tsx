@@ -38,7 +38,8 @@ import { OperationsScreens } from "@/components/operations-screens";
 import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
-import { SectionIndex } from "@/components/section-index";
+import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
+import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -92,23 +93,6 @@ const STATS: { n: string; label: string; sub: string }[] = [
 ];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
-/** 제품 페이지 섹션 목차 — 히어로 하단 스티키 인덱스 탭(SectionIndex 공용). */
-const PRODUCT_SECTIONS = [
-    { id: "why", label: "Why XGEN" },
-    { id: "evolution", label: "AX 진화" },
-    { id: "capabilities", label: "핵심 역량" },
-    { id: "platform", label: "제품 개요" },
-    { id: "value", label: "도입 효과" },
-    { id: "features", label: "핵심 기능" },
-    { id: "core-tech", label: "핵심 기술" },
-    { id: "roles", label: "역할별 경험" },
-    { id: "on-premise", label: "온프레미스" },
-    { id: "deployment", label: "도입·구축" },
-    { id: "governance", label: "거버넌스" },
-    { id: "certification", label: "인증·품질" },
-    { id: "cases", label: "고객사례" },
-    { id: "faq", label: "FAQ" },
-];
 
 /** 제품 개요 4축 — 파일럿을 넘어 실제 업무에 배포되는 기업용 AI의 근거. */
 // XGEN 4대 핵심 가치 — 엔터프라이즈 AI의 한계를 넘는 네 축(최신 제품 덱 기준).
@@ -599,7 +583,7 @@ const COMPARE_KO = [
     },
 ];
 
-export function ProductPageContent({ locale }: { locale: Locale }) {
+export function ProductPageContent({ locale, view = "overview" }: { locale: Locale; view?: XgenView }) {
     const en = locale === "en";
     const E = PRODUCT_EN;
     const home = en ? "/en" : "/";
@@ -614,7 +598,6 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
     const STATS_L = en
         ? STATS.map((x, i) => ({ n: E.stats[i][0], label: E.stats[i][1], sub: E.stats[i][2] }))
         : STATS;
-    const SECTIONS_L = en ? E.sections : PRODUCT_SECTIONS;
     const PILLARS_L = en
         ? PILLARS.map((x, i) => ({ ...x, ko: E.pillars[i][0], desc: E.pillars[i][1] }))
         : PILLARS;
@@ -657,10 +640,12 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
         .slice(0, 3);
     return (
         <>
-            <SiteNav overlay showPromotion={false} />
+            {/* 개요는 어두운 히어로 위에 투명 GNB, 2depth 는 밝은 머리말이라 일반 GNB */}
+            <SiteNav overlay={view === "overview"} showPromotion={false} />
             <JsonLd
                 data={[
-                    {
+                    // 제품 정의는 개요(1depth)에만, FAQ 구조화 데이터는 FAQ가 보이는 도입·지원에만 싣는다.
+                    ...(view === "overview" ? [{
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
                         "@id": absoluteUrl("/product/xgen#software"),
@@ -687,8 +672,8 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                                       "Dashboard — 역할별 위젯·실행 이력·시스템 모니터링",
                                   ]),
                         ],
-                    },
-                    {
+                    }] : []),
+                    ...(view === "adoption" ? [{
                         "@context": "https://schema.org",
                         "@type": "FAQPage",
                         mainEntity: FAQ_L.map((f) => ({
@@ -696,874 +681,914 @@ export function ProductPageContent({ locale }: { locale: Locale }) {
                             name: f.q,
                             acceptedAnswer: { "@type": "Answer", text: f.a },
                         })),
-                    },
+                    }] : []),
                     breadcrumbLd([
                         { name: "Home", path: home },
                         { name: "XGEN", path: "/product/xgen" },
+                        ...(view === "overview"
+                            ? []
+                            : [{ name: en ? xgenViewInfo(view).label.en : xgenViewInfo(view).label.ko, path: xgenViewInfo(view).path }]),
                     ]),
                 ]}
             />
 
-            {/* Hero — 2슬라이드 키비주얼(소개영상 + Model-Agnostic 로고) */}
-            {/* 이전 키비주얼 ProductHero 는 남겨 둔다(되돌릴 때 이 줄만 바꾼다) */}
-            <WhyXgenHero locale={locale} />
+            {view === "overview" ? (
+                <>
+                {/* Hero — 2슬라이드 키비주얼(소개영상 + Model-Agnostic 로고) */}
+                {/* 이전 키비주얼 ProductHero 는 남겨 둔다(되돌릴 때 이 줄만 바꾼다) */}
+                <WhyXgenHero locale={locale} />
 
-            {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
-            <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
-                <div className="mx-auto flex max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-6 sm:justify-between">
-                    {TRUST_L.map((t) => (
-                        <div key={t.label} className="flex items-center gap-2.5">
-                            <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
-                                <t.icon className="h-[18px] w-[18px]" />
-                            </span>
-                            <div className="leading-tight">
-                                <p className="text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
-                                    {t.label}
-                                </p>
-                                <p className="text-[12.5px] text-[var(--color-ink-subtle)]">
-                                    {t.sub}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <SectionIndex sections={SECTIONS_L} />
-
-            <main>
-                {/* 문제 제기 — 브로셔 오프너 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            The Challenge
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
-                            {en ? E.challengeTitle : "Enterprise AI, 왜 현장에서 멈출까요"}
-                        </h2>
-                        <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
-                            {CHALLENGES_L.map((c, i) => (
-                                <div key={c.q} className="flex h-full flex-col">
-                                    <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
-                                        0{i + 1}
-                                    </span>
-                                    <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                        {c.q}
-                                    </h3>
-                                    <p className="mt-3 pb-6 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {c.desc}
+                {/* 트러스트 바 — 인증·운영·도입 실적으로 즉시 신뢰 형성 */}
+                <section className="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
+                    <div className="mx-auto flex max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-6 sm:justify-between">
+                        {TRUST_L.map((t) => (
+                            <div key={t.label} className="flex items-center gap-2.5">
+                                <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                    <t.icon className="h-[18px] w-[18px]" />
+                                </span>
+                                <div className="leading-tight">
+                                    <p className="text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {t.label}
                                     </p>
-                                    {/* 맥락 일러스트 — 텍스트 아래 */}
-                                    <div className="mt-auto overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                            src={c.img}
-                                            alt={c.imgAlt}
-                                            className="block aspect-[16/10] w-full object-cover"
-                                        />
-                                    </div>
+                                    <p className="text-[12.5px] text-[var(--color-ink-subtle)]">
+                                        {t.sub}
+                                    </p>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
-                <WhyXgenDifference locale={locale} />
-                <WhyXgenEvolution locale={locale} />
-                <WhyXgenCapabilities locale={locale} />
-
-                {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
-                <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
-                    />
-                    {/* 헤드라인 포커스 스포트라이트 — 방사형 밝은 그라데이션 */}
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute left-1/2 top-[64px] h-[280px] w-[640px] max-w-[92vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(125,211,252,0.3),rgba(47,123,255,0.14)_45%,transparent_75%)] blur-[46px]"
-                    />
-                    <div className="relative mx-auto max-w-7xl px-6 py-16">
-                        <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
-                            XGEN · Agentic AI Platform
-                        </p>
-                        <h2 className="mt-3 text-center text-3xl font-bold tracking-tight md:text-[40px]">
-                            {en ? E.statsTitleA : "XGEN은 "}
-                            <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                                {en ? E.statsHighlight : "다릅니다"}
-                            </span>
-                        </h2>
-                        <p className="mx-auto mt-3 max-w-xl text-center text-[15px] leading-relaxed text-white/60">
-                            {en ? E.statsLead : "파일럿에서 멈추지 않고, 온프레미스에서 실제 운영으로 검증된 숫자로 증명합니다."}
-                        </p>
-                        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
-                        {STATS_L.map((s) => (
-                            <div key={s.label} className="text-center">
-                                <p className="bg-gradient-to-br from-[#00acee] to-[#7dd3fc] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
-                                    {s.n}
-                                </p>
-                                <p className="mt-3 text-[15px] font-bold tracking-tight text-white">
-                                    {s.label}
-                                </p>
-                                <p className="mt-1 text-[13px] text-white/50">
-                                    {s.sub}
-                                </p>
                             </div>
                         ))}
-                        </div>
                     </div>
                 </section>
+                    <XgenHashRedirect locale={locale} />
+                </>
+            ) : (
+                <XgenSubHeader locale={locale} view={view} />
+            )}
 
-                {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
-                <InlinePromoBand locale={locale} />
+            {/* 1depth 개요 ↔ 2depth 주제 페이지 탐색 탭(구 원페이지 섹션 인덱스 대체) */}
+            <XgenSubTabs locale={locale} current={view} />
 
-                {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
-                <section
-                    id="platform"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            4 Core Values
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.pillarsTitle : "엔터프라이즈 AI 운영을 위한 핵심 가치"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.pillarsLead : "AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고, 통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈 AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다."}
-                        </p>
-                        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                            {PILLARS_L.map((p) => (
-                                <div
-                                    key={p.en}
-                                    className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                >
-                                    <div className="border-b border-[#1f57c4] bg-[linear-gradient(160deg,#4f8bf0_0%,#2f6fe0_55%,#1f57c4_100%)] px-5 pt-4">
-                                        <PillarArt variant={p.variant} />
-                                    </div>
-                                    <div className="flex flex-1 flex-col items-center px-4 py-6 text-center">
-                                        <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {p.ko}
+            <main>
+                {/* 1depth 개요 — 무엇이고 왜 필요한가(처음 방문한 의사결정자) */}
+                {view === "overview" && (
+                    <>
+                    {/* 문제 제기 — 브로셔 오프너 */}
+                    <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                The Challenge
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold leading-[1.2] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                                {en ? E.challengeTitle : "Enterprise AI, 왜 현장에서 멈출까요"}
+                            </h2>
+                            <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
+                                {CHALLENGES_L.map((c, i) => (
+                                    <div key={c.q} className="flex h-full flex-col">
+                                        <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
+                                            0{i + 1}
+                                        </span>
+                                        <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                            {c.q}
                                         </h3>
-                                        <p className="mt-0.5 text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            ({p.en})
+                                        <p className="mt-3 pb-6 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {c.desc}
                                         </p>
-                                        <p className="mt-3 text-[12px] leading-[1.6] text-[var(--color-ink-muted)]">
-                                            {p.desc}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* 특장점 — Vibe Coding in DexOn·DexOn·PathFinder·EasyMode (FloUI는 현재 비노출) */}
-                {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
-                <section
-                    id="build"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="text-center font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Build for Everyone
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.diffTitle : "현업이 직접 만드는 Enterprise AI"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
-                        </p>
-                        {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다 */}
-                        <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-stretch">
-                            {DIFFERENTIATORS_L.map((d) => (
-                                <div
-                                    key={d.en}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                >
-                                    {d.en === "Vibe Coding in DexOn" && (
-                                        <div className="mb-6">
-                                            <VibeCodingArt locale={locale} />
-                                        </div>
-                                    )}
-                                    {d.en === "PathFinder" && (
-                                        <div className="mb-6">
-                                            <PathFinderArt locale={locale} />
-                                        </div>
-                                    )}
-                                    {d.en === "EasyMode" && (
-                                        <div className="mb-6">
-                                            <EasyModeArt locale={locale} />
-                                        </div>
-                                    )}
-                                    {d.en === "DexOn" && (
-                                        <div className="mb-6">
-                                            <DexArt locale={locale} />
-                                        </div>
-                                    )}
-                                    <div className="flex items-center justify-between gap-3">
-                                        <div className="flex items-center gap-3">
-                                            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                                <d.icon className="h-5 w-5" />
-                                            </span>
-                                            <div>
-                                                <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
-                                                    {d.en}
-                                                </p>
-                                                <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                    {d.ko}
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        {/* 자세히 보기 — 더 읽을 자리가 있는 카드만 노출한다 */}
-                                        {d.href && (
-                                            <Link
-                                                href={localeHref(locale, d.href)}
-                                                className="group/link inline-flex flex-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                                            >
-                                                {en ? E.diffMore : "자세히 보기"}
-                                                <ArrowRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
-                                            </Link>
-                                        )}
-                                    </div>
-                                    <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
-                                        {d.tagline}
-                                    </p>
-                                    {/* mb-5 — 아래 목록이 mt-auto 라, 최소 간격은 이쪽이 책임진다 */}
-                                    <p className="mt-2.5 mb-5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {d.desc}
-                                    </p>
-                                    {/*
-                                      mt-auto — 설명 길이가 카드마다 다르다. 위에서부터 흘리면
-                                      구분선 높이가 제각각이라 두 열이 어긋나 보인다. 바닥에서
-                                      맞춰야 나란히 놓인 카드의 선이 한 줄로 읽힌다.
-                                    */}
-                                    <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
-                                        {d.items.map((it) => (
-                                            <li
-                                                key={it}
-                                                className="flex items-start gap-2 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]"
-                                            >
-                                                <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                                                {it}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* 도입 효과 — 의사결정자 관점 before → after (검증된 서사 기반) */}
-                <section
-                    id="value"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Business Value
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-4xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.valueLeadTitle : "AI는 구축이 아니라, 기업 운영의 새로운 표준입니다"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.valueLeadA : "기업은 더 이상 AI 모델을 도입하는 것에 머물지 않습니다. 기존 시스템과 AI를 안전하게 연결하고, 보안과 거버넌스를 기반으로 실제 업무에 적용할 수 있는 "}
-                            <span className="font-semibold text-[var(--color-ink)]">
-                                {en ? E.valueHighlight : "운영 플랫폼"}
-                            </span>
-                            {en ? E.valueLeadB : "을 선택합니다. XGEN은 AI를 도입하는 플랫폼이 아니라, 기업의 AI 운영을 지속적으로 확장하는 Enterprise AI 플랫폼입니다."}
-                        </p>
-
-                        {/* 5대 혁신 효과 — 경쟁·가치 우위 관점의 전략 성과(최신 제품 덱) */}
-                        <div className="mt-14">
-                            <h3 className="mx-auto text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
-                                {en ? E.effectsTitle : "XGEN 도입을 통해 달성하는 5대 혁신 효과"}
-                            </h3>
-                            <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.effectsLead : "기능 우위를 넘어, 도입 즉시 조직의 경쟁력이 되는 다섯 가지 성과 — 효율·리스크·신뢰·유연성·규제 대응을 하나의 플랫폼에서 확보합니다."}
-                            </p>
-                            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                                {EFFECTS_L.map((e, i) => (
-                                    <div
-                                        key={e.en}
-                                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                    >
-                                        <span className="h-1.5 w-12 rounded-full bg-[linear-gradient(90deg,#00acee,#185aea)]" />
-                                        <div className="mt-4 flex items-baseline gap-2">
-                                            <span className="font-mono text-[13px] font-extrabold text-[#2461d8]">
-                                                {String(i + 1).padStart(2, "0")}
-                                            </span>
-                                            <span className="font-mono text-[10.5px] font-semibold uppercase tracking-wide text-[#4a6aa8]">
-                                                {e.en}
-                                            </span>
-                                        </div>
-                                        <h4 className="mt-1.5 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                                            {e.ko}
-                                        </h4>
-                                        <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {e.desc}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                {/* 기존 방식 대비 — 카페24 유튜브 쇼핑 카드 스택 패턴 */}
-                <CompareStack
-                    items={en ? E.compare : COMPARE_KO}
-                    title={en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
-                    lead={en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
-                    labelBefore={en ? E.labelBefore : "기존"}
-                    labelEffect={en ? E.labelEffect : "성과"}
-                />
-
-                {/* Features */}
-                <section
-                    id="features"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Features
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.featuresTitle : "설계부터 운영까지, 하나의 흐름으로 연결됩니다"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.featuresLead : "각 기능은 개별 도구가 아니라 하나의 운영 파이프라인으로 이어집니다. 에이전트를 만들고, 배포하고, 운영하고, 개선하는 전 과정이 하나의 플랫폼 안에서 연결됩니다."}
-                        </p>
-
-                        {/* 에디토리얼 — 핵심 기능 6종을 대표 화면과 좌우 교차로 스프레드 */}
-                        <div className="mt-16 space-y-20 md:space-y-24">
-                            {FEATURES_L.map((f, i) => {
-                                const sc = FEATURE_SCREENS_L[i];
-                                const flip = i % 2 === 1;
-                                return (
-                                    <div
-                                        key={f.tag}
-                                        className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16"
-                                    >
-                                        {/* 텍스트 */}
-                                        <div className={flip ? "lg:order-2" : ""}>
-                                            <div className="flex items-baseline gap-3">
-                                                <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[34px] font-extrabold leading-none text-transparent">
-                                                    {String(i + 1).padStart(2, "0")}
-                                                </span>
-                                                <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
-                                                    <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
-                                                        <f.icon className="h-4 w-4" />
-                                                    </span>
-                                                    {f.tag}
-                                                </div>
-                                            </div>
-                                            <h3 className="mt-4 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[30px] md:leading-[1.2]">
-                                                {f.ko}
-                                            </h3>
-                                            <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                                                {f.desc}
-                                            </p>
-                                            {f.groups ? (
-                                                <div className="mt-6 space-y-6">
-                                                    {f.groups.map((g) => (
-                                                        <div key={g.title}>
-                                                            <h4 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                                {g.title}
-                                                            </h4>
-                                                            <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                                                {g.desc}
-                                                            </p>
-                                                            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                                                                {g.items.map((it) => (
-                                                                    <li
-                                                                        key={it}
-                                                                        className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
-                                                                    >
-                                                                        <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
-                                                                        {it}
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ) : (
-                                                <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                                                    {f.items.map((it) => (
-                                                        <li
-                                                            key={it}
-                                                            className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
-                                                        >
-                                                            <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
-                                                            {it}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                        </div>
-                                        {/* 대표 제품 화면 */}
-                                        <div className={flip ? "lg:order-1" : ""}>
-                                            {i === 0 ? (
-                                                <DexOnDeviceScreens locale={locale} />
-                                            ) : i === 3 ? (
-                                                <GovernanceApprovalScreens locale={locale} />
-                                            ) : i === 4 ? (
-                                                <DeploymentScreens locale={locale} />
-                                            ) : i === 5 ? (
-                                                <OperationsScreens locale={locale} />
-                                            ) : (
-                                                <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
-                                                    <Image
-                                                        src={sc.img}
-                                                        alt={sc.alt}
-                                                        width={sc.w}
-                                                        height={sc.h}
-                                                        sizes="(max-width: 1024px) 100vw, 560px"
-                                                        className="h-auto w-full"
-                                                    />
-                                                    <figcaption className="border-t border-[var(--color-line)] bg-white px-5 py-3 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
-                                                        {sc.caption}
-                                                    </figcaption>
-                                                </figure>
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                        {/* 더 많은 화면 — 보조 스트립 */}
-                        <div className="mt-20 border-t border-[var(--color-line)] pt-12">
-                            <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
-                                {en ? E.moreScreens : "더 많은 제품 화면"}
-                            </p>
-                            <div className="mt-5 grid gap-5 sm:grid-cols-3">
-                                {EXTRA_SCREENS_L.map((s) => (
-                                    <figure
-                                        key={s.img}
-                                        className="flex flex-col overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
-                                    >
-                                        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--color-surface-alt)]">
-                                            <Image
-                                                src={s.img}
-                                                alt={s.alt}
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, 360px"
-                                                className="object-cover object-top"
+                                        {/* 맥락 일러스트 — 텍스트 아래 */}
+                                        <div className="mt-auto overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={c.img}
+                                                alt={c.imgAlt}
+                                                className="block aspect-[16/10] w-full object-cover"
                                             />
                                         </div>
-                                        <figcaption className="border-t border-[var(--color-line)] px-4 py-2.5 text-[13px] font-semibold text-[var(--color-ink-muted)]">
-                                            {s.caption}
-                                        </figcaption>
-                                    </figure>
+                                    </div>
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* 핵심 기술 — 검증된 오픈 기술 위, 벤더 종속 없이 (4계층) */}
-                <section
-                    id="core-tech"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Core Technology · 6 Layers
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.techTitle : "엔터프라이즈 AI를 위한 6계층 코어 아키텍처"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.techLeadA : "인프라부터 AI 에이전트까지, 기업의 AI 운영에 필요한 핵심 기술을 하나의 플랫폼으로 통합합니다."}
-                        </p>
-                        <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.techLeadB : "XGEN은 특정 AI 모델이나 클라우드에 종속되지 않습니다. 표준 프로토콜 기반의 6계층 아키텍처를 통해 온프레미스 GPU, 상용 AI API, 사내 시스템을 일관된 방식으로 연결하고 운영할 수 있습니다."}
-                        </p>
-                        {/* 5계층 코어 엔진 — 아이소메트릭 분해 스택 도해(네이티브 SVG) */}
-                        <div className="mt-8 overflow-x-auto">
-                            <div className="mx-auto min-w-[760px] max-w-5xl">
-                                <LayerStackArt locale={locale} />
-                            </div>
-                        </div>
+                    {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
+                    <WhyXgenDifference locale={locale} />
 
-                        {/* 4계층 기술 스택의 참조 아키텍처로 연결 */}
-                        <Link
-                            href={localeHref(locale, "/architecture") + "#platform"}
-                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                        >
-                            {en ? E.techMore : "XGEN 플랫폼 아키텍처 자세히 보기"}
-                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </Link>
-
-                        <ProductGeny locale={locale} />
-                        <ProductIsolation locale={locale} />
-                    </div>
-                </section>
-
-                {/* Roles — 역할별 경험(xgen.im 3역할, 탭 자동 순환) */}
-                <WhyXgenRoles locale={locale} />
-
-                {/* On-Premise */}
-                <section
-                    id="on-premise"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            On-Premise
-                        </p>
-                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.onpremTitle : "데이터는 기업 안에, 안심하고 활용"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.onpremLead : "XGEN은 내부 모델을 사용하는 구성에서 데이터를 기업 보안 경계 내 처리하도록 설계합니다. 외부 연동 시에는 데이터 전송 범위와 공급자의 학습·보존 정책을 확인해야 합니다."}
-                        </p>
-                        <div className="mt-8 grid gap-4 md:grid-cols-3">
-                            {ONPREM_L.map((o) => (
-                                <div
-                                    key={o.title}
-                                    className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
-                                >
-                                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                        <o.icon className="h-5 w-5" />
-                                    </span>
-                                    <h3 className="mt-4 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {o.title}
-                                    </h3>
-                                    <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {o.desc}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* 심화 — 보안·거버넌스 전용 페이지로 연결(이중화 해소) */}
-                        <Link
-                            href="/security-and-governance"
-                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                        >
-                            {en ? E.onpremMore : "보안·거버넌스 아키텍처 자세히 보기"}
-                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </Link>
-                    </div>
-                </section>
-
-                {/* 도입·구축 — 반입에서 운영까지(온프레미스 딜리버리) */}
-                <section
-                    id="deployment"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Deployment
-                        </p>
-                        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.deployTitle : "반입부터 운영까지, 검증된 구축 프로세스"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.deployLead : "폐쇄망 반입부터 실증, 구축, 운영까지 온프레미스 환경에 맞춰 단계적으로 지원합니다. 반입 절차가 완료되면 신속하게 실증을 시작하여 운영 전 검증과 빠른 성과 확보를 지원합니다."}
-                        </p>
-                        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
-                            {DEPLOY_STEPS_L.map((s) => (
-                                <div key={s.no} className="bg-white p-7">
-                                    <span className="font-mono text-[13px] font-bold tracking-widest text-[#2f7bff]">
-                                        {s.no}
-                                    </span>
-                                    <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
-                                        {s.title}
-                                    </h3>
-                                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {s.desc}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-                            {DEPLOY_CHIPS_L.map((c) => (
-                                <span
-                                    key={c}
-                                    className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-3 py-1 font-mono text-[12.5px] font-semibold text-[var(--color-ink-muted)]"
-                                >
-                                    {c}
-                                </span>
-                            ))}
-                        </div>
-                        <Link
-                            href={localeHref(locale, "/architecture") + "#cicd"}
-                            className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                        >
-                            {en ? E.deployMore : "GitOps 배포 파이프라인 자세히 보기"}
-                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </Link>
-
-                        {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
-                        <div className="mt-12 border-t border-[var(--color-line)] pt-10">
-                            <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                                {en ? E.afterTitle : "도입 이후에도 함께합니다"}
-                            </h3>
-                            <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.afterLead : "구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을 위한 기술지원까지 이어집니다."}
+                    {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
+                    <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
+                        />
+                        {/* 헤드라인 포커스 스포트라이트 — 방사형 밝은 그라데이션 */}
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute left-1/2 top-[64px] h-[280px] w-[640px] max-w-[92vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(125,211,252,0.3),rgba(47,123,255,0.14)_45%,transparent_75%)] blur-[46px]"
+                        />
+                        <div className="relative mx-auto max-w-7xl px-6 py-16">
+                            <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
+                                XGEN · Agentic AI Platform
                             </p>
-                            <div className="mt-6">
-                                <PostDeploymentSupport locale={locale} />
+                            <h2 className="mt-3 text-center text-3xl font-bold tracking-tight md:text-[40px]">
+                                {en ? E.statsTitleA : "XGEN은 "}
+                                <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
+                                    {en ? E.statsHighlight : "다릅니다"}
+                                </span>
+                            </h2>
+                            <p className="mx-auto mt-3 max-w-xl text-center text-[15px] leading-relaxed text-white/60">
+                                {en ? E.statsLead : "파일럿에서 멈추지 않고, 온프레미스에서 실제 운영으로 검증된 숫자로 증명합니다."}
+                            </p>
+                            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+                            {STATS_L.map((s) => (
+                                <div key={s.label} className="text-center">
+                                    <p className="bg-gradient-to-br from-[#00acee] to-[#7dd3fc] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
+                                        {s.n}
+                                    </p>
+                                    <p className="mt-3 text-[15px] font-bold tracking-tight text-white">
+                                        {s.label}
+                                    </p>
+                                    <p className="mt-1 text-[13px] text-white/50">
+                                        {s.sub}
+                                    </p>
+                                </div>
+                            ))}
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* Governance — Enterprise Trust (다크 밴드: 신뢰의 포컬 포인트) */}
-                <section
-                    id="governance"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-white/10 bg-[#0a1220] text-white"
-                >
-                    {/* 글로우 클리핑(overflow-hidden)은 반드시 이 안쪽 래퍼에 둔다 —
-                        앵커 대상인 <section>에 직접 주면 그 섹션 자체가 스크롤 컨테이너가
-                        되어 브라우저가 scroll-margin-top을 무시하고 섹션을 뷰포트 최상단
-                        (= 고정 헤더 뒤)에 붙인다. 그러면 인덱스에서 '거버넌스'를 눌렀을 때
-                        제목이 헤더에 가린다. */}
-                    <div className="relative overflow-hidden">
-                        {/* 배경 글로우 — 다크 밴드에 깊이감 */}
-                        <div
-                            aria-hidden
-                            className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/15 blur-[130px]"
-                        />
-                        <div
-                            aria-hidden
-                            className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
-                        />
-                        <div className="relative mx-auto max-w-7xl px-6 py-24">
-                            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-                                <div className="flex h-full flex-col">
-                                    <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[#7dd3fc]">
-                                        Enterprise Trust
-                                    </p>
-                                    <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
-                                        {en ? E.govTitleA : "신뢰할 수 없는 AI는"}
-                                        <br />
-                                        {en ? E.govTitleB : "기업에서 운영될 수 없습니다"}
-                                    </h2>
-                                    <p className="mx-auto mt-5 max-w-md text-center text-[16px] leading-relaxed text-white/65">
-                                        {en ? E.govLead : "XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을 추적하고, 위험한 변경은 배포 전에 검증하며, 승인된 에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제 산업과 온프레미스 환경에서도 신뢰할 수 있는 거버넌스를 제공합니다."}
-                                    </p>
-                                    <Link
-                                        href="/security-and-governance"
-                                        className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
+                    {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
+                    <InlinePromoBand locale={locale} />
+
+                    {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
+                    <section
+                        id="platform"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                4 Core Values
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.pillarsTitle : "엔터프라이즈 AI 운영을 위한 핵심 가치"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.pillarsLead : "AI를 만드는 것에서 끝나지 않습니다. 연결하고, 운영하고, 통제하며, 지속적으로 확장하는 것까지. XGEN은 엔터프라이즈 AI에 필요한 전 과정을 하나의 플랫폼으로 제공합니다."}
+                            </p>
+                            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                {PILLARS_L.map((p) => (
+                                    <div
+                                        key={p.en}
+                                        className="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
                                     >
-                                        {en ? E.onpremMore : "보안·거버넌스 아키텍처 자세히 보기"}
-                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                    </Link>
-                                    {/* 보안 통제 개념도(동심 방어 링 + 좌우 통제 칩) — 하단 정렬로
-                                        오른쪽 카드 박스 높이에 맞춰 아래를 채운다. */}
-                                    <div className="mt-auto hidden pt-10 lg:block">
-                                        <GovernanceArt locale={locale} />
+                                        <div className="border-b border-[#1f57c4] bg-[linear-gradient(160deg,#4f8bf0_0%,#2f6fe0_55%,#1f57c4_100%)] px-5 pt-4">
+                                            <PillarArt variant={p.variant} />
+                                        </div>
+                                        <div className="flex flex-1 flex-col items-center px-4 py-6 text-center">
+                                            <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {p.ko}
+                                            </h3>
+                                            <p className="mt-0.5 text-[14.5px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                ({p.en})
+                                            </p>
+                                            <p className="mt-3 text-[12px] leading-[1.6] text-[var(--color-ink-muted)]">
+                                                {p.desc}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="grid gap-4 sm:grid-cols-2">
-                                    {GOV_L.map((g) => (
-                                        <div
-                                            key={g.title}
-                                            className="rounded-2xl border border-white/10 bg-[linear-gradient(155deg,rgba(47,123,255,0.16)_0%,rgba(125,211,252,0.05)_45%,rgba(255,255,255,0.02)_100%)] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/50 hover:bg-[linear-gradient(155deg,rgba(47,123,255,0.22)_0%,rgba(125,211,252,0.07)_45%,rgba(255,255,255,0.03)_100%)]"
-                                        >
-                                            <div className="flex items-center gap-2.5">
-                                                <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
-                                                <h3 className="text-[15.5px] font-bold tracking-tight text-white">
-                                                    {g.title}
-                                                </h3>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 특장점 — Vibe Coding in DexOn·DexOn·PathFinder·EasyMode (FloUI는 현재 비노출) */}
+                    {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
+                    <section
+                        id="build"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="text-center font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Build for Everyone
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.diffTitle : "현업이 직접 만드는 Enterprise AI"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
+                            </p>
+                            {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다 */}
+                            <div className="mt-8 grid gap-4 md:grid-cols-2 md:items-stretch">
+                                {DIFFERENTIATORS_L.map((d) => (
+                                    <div
+                                        key={d.en}
+                                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    >
+                                        {d.en === "Vibe Coding in DexOn" && (
+                                            <div className="mb-6">
+                                                <VibeCodingArt locale={locale} />
                                             </div>
-                                            <p className="mt-2.5 text-[14px] leading-relaxed text-white/60">
-                                                {g.desc}
+                                        )}
+                                        {d.en === "PathFinder" && (
+                                            <div className="mb-6">
+                                                <PathFinderArt locale={locale} />
+                                            </div>
+                                        )}
+                                        {d.en === "EasyMode" && (
+                                            <div className="mb-6">
+                                                <EasyModeArt locale={locale} />
+                                            </div>
+                                        )}
+                                        {d.en === "DexOn" && (
+                                            <div className="mb-6">
+                                                <DexArt locale={locale} />
+                                            </div>
+                                        )}
+                                        <div className="flex items-center justify-between gap-3">
+                                            <div className="flex items-center gap-3">
+                                                <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                    <d.icon className="h-5 w-5" />
+                                                </span>
+                                                <div>
+                                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                                        {d.en}
+                                                    </p>
+                                                    <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                        {d.ko}
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            {/* 자세히 보기 — 더 읽을 자리가 있는 카드만 노출한다 */}
+                                            {d.href && (
+                                                <Link
+                                                    href={localeHref(locale, d.href)}
+                                                    className="group/link inline-flex flex-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                                                >
+                                                    {en ? E.diffMore : "자세히 보기"}
+                                                    <ArrowRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
+                                                </Link>
+                                            )}
+                                        </div>
+                                        <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
+                                            {d.tagline}
+                                        </p>
+                                        {/* mb-5 — 아래 목록이 mt-auto 라, 최소 간격은 이쪽이 책임진다 */}
+                                        <p className="mt-2.5 mb-5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {d.desc}
+                                        </p>
+                                        {/*
+                                          mt-auto — 설명 길이가 카드마다 다르다. 위에서부터 흘리면
+                                          구분선 높이가 제각각이라 두 열이 어긋나 보인다. 바닥에서
+                                          맞춰야 나란히 놓인 카드의 선이 한 줄로 읽힌다.
+                                        */}
+                                        <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                            {d.items.map((it) => (
+                                                <li
+                                                    key={it}
+                                                    className="flex items-start gap-2 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]"
+                                                >
+                                                    <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
+                                                    {it}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 고객사례 — 최근 3건 + /customers 연계 */}
+                    <section
+                        id="cases"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Customer Cases
+                            </p>
+                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.casesTitle : "고객 현장에서 검증됩니다"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
+                            </p>
+                            <div className="mt-10 grid gap-5 md:grid-cols-3">
+                                {recentCases.map((c) => (
+                                    <Link
+                                        key={c.slug}
+                                        href={localeHref(locale, `/customers/case/${c.slug}`)}
+                                        className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    >
+                                        <div className="flex items-center gap-2 text-[12.5px]">
+                                            <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold text-[#2461d8]">
+                                                {PRODUCTS[c.products[0]].name}
+                                            </span>
+                                            <span className="text-[var(--color-ink-subtle)]">
+                                                {en
+                                                    ? INDUSTRIES[c.industry].en
+                                                    : INDUSTRIES[c.industry].ko}
+                                            </span>
+                                            <time
+                                                dateTime={c.published}
+                                                className="ml-auto text-[var(--color-ink-subtle)]"
+                                            >
+                                                {c.published.slice(0, 7).replace("-", ".")}
+                                            </time>
+                                        </div>
+                                        <h3 className="mt-3 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                            {(en && c.titleEn) || c.title}
+                                        </h3>
+                                        <p className="mt-2 line-clamp-2 flex-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {(en && c.summaryEn) || c.summary}
+                                        </p>
+                                        <p className="mt-4 border-t border-[var(--color-line)] pt-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
+                                            {(en && c.customerEn) || c.customer}
+                                        </p>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="mt-8 flex justify-end">
+                                <Link
+                                    href={localeHref(locale, "/customers") + "?product=xgen"}
+                                    className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                                >
+                                    {en ? E.casesMore : "XGEN 고객사례 전체 보기"}
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                </Link>
+                            </div>
+                        </div>
+                    </section>
+                    </>
+                )}
+
+                {/* 2depth 기능·활용 — 무엇을 만들고 어떻게 쓰나(현업·실무) */}
+                {view === "features" && (
+                    <>
+                    <WhyXgenEvolution locale={locale} />
+                    <WhyXgenCapabilities locale={locale} />
+
+                    {/* Features */}
+                    <section
+                        id="features"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Features
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.featuresTitle : "설계부터 운영까지, 하나의 흐름으로 연결됩니다"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.featuresLead : "각 기능은 개별 도구가 아니라 하나의 운영 파이프라인으로 이어집니다. 에이전트를 만들고, 배포하고, 운영하고, 개선하는 전 과정이 하나의 플랫폼 안에서 연결됩니다."}
+                            </p>
+
+                            {/* 에디토리얼 — 핵심 기능 6종을 대표 화면과 좌우 교차로 스프레드 */}
+                            <div className="mt-16 space-y-20 md:space-y-24">
+                                {FEATURES_L.map((f, i) => {
+                                    const sc = FEATURE_SCREENS_L[i];
+                                    const flip = i % 2 === 1;
+                                    return (
+                                        <div
+                                            key={f.tag}
+                                            className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16"
+                                        >
+                                            {/* 텍스트 */}
+                                            <div className={flip ? "lg:order-2" : ""}>
+                                                <div className="flex items-baseline gap-3">
+                                                    <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[34px] font-extrabold leading-none text-transparent">
+                                                        {String(i + 1).padStart(2, "0")}
+                                                    </span>
+                                                    <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
+                                                        <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[#2f7bff]/10 text-[#2f7bff]">
+                                                            <f.icon className="h-4 w-4" />
+                                                        </span>
+                                                        {f.tag}
+                                                    </div>
+                                                </div>
+                                                <h3 className="mt-4 text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[30px] md:leading-[1.2]">
+                                                    {f.ko}
+                                                </h3>
+                                                <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                    {f.desc}
+                                                </p>
+                                                {f.groups ? (
+                                                    <div className="mt-6 space-y-6">
+                                                        {f.groups.map((g) => (
+                                                            <div key={g.title}>
+                                                                <h4 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                                    {g.title}
+                                                                </h4>
+                                                                <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                                    {g.desc}
+                                                                </p>
+                                                                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                                                                    {g.items.map((it) => (
+                                                                        <li
+                                                                            key={it}
+                                                                            className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
+                                                                        >
+                                                                            <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
+                                                                            {it}
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                                                        {f.items.map((it) => (
+                                                            <li
+                                                                key={it}
+                                                                className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)]"
+                                                            >
+                                                                <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" />
+                                                                {it}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                            {/* 대표 제품 화면 */}
+                                            <div className={flip ? "lg:order-1" : ""}>
+                                                {i === 0 ? (
+                                                    <DexOnDeviceScreens locale={locale} />
+                                                ) : i === 3 ? (
+                                                    <GovernanceApprovalScreens locale={locale} />
+                                                ) : i === 4 ? (
+                                                    <DeploymentScreens locale={locale} />
+                                                ) : i === 5 ? (
+                                                    <OperationsScreens locale={locale} />
+                                                ) : (
+                                                    <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_30px_70px_-30px_rgba(20,40,80,0.4)]">
+                                                        <Image
+                                                            src={sc.img}
+                                                            alt={sc.alt}
+                                                            width={sc.w}
+                                                            height={sc.h}
+                                                            sizes="(max-width: 1024px) 100vw, 560px"
+                                                            className="h-auto w-full"
+                                                        />
+                                                        <figcaption className="border-t border-[var(--color-line)] bg-white px-5 py-3 text-[13.5px] font-semibold text-[var(--color-ink-muted)]">
+                                                            {sc.caption}
+                                                        </figcaption>
+                                                    </figure>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* 더 많은 화면 — 보조 스트립 */}
+                            <div className="mt-20 border-t border-[var(--color-line)] pt-12">
+                                <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {en ? E.moreScreens : "더 많은 제품 화면"}
+                                </p>
+                                <div className="mt-5 grid gap-5 sm:grid-cols-3">
+                                    {EXTRA_SCREENS_L.map((s) => (
+                                        <figure
+                                            key={s.img}
+                                            className="flex flex-col overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] shadow-[0_20px_48px_-24px_rgba(20,40,80,0.35)]"
+                                        >
+                                            <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--color-surface-alt)]">
+                                                <Image
+                                                    src={s.img}
+                                                    alt={s.alt}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 360px"
+                                                    className="object-cover object-top"
+                                                />
+                                            </div>
+                                            <figcaption className="border-t border-[var(--color-line)] px-4 py-2.5 text-[13px] font-semibold text-[var(--color-ink-muted)]">
+                                                {s.caption}
+                                            </figcaption>
+                                        </figure>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Roles — 역할별 경험(xgen.im 3역할, 탭 자동 순환) */}
+                    <WhyXgenRoles locale={locale} />
+
+                    {/* 도입 효과 — 의사결정자 관점 before → after (검증된 서사 기반) */}
+                    <section
+                        id="value"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Business Value
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-4xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.valueLeadTitle : "AI는 구축이 아니라, 기업 운영의 새로운 표준입니다"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-3xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.valueLeadA : "기업은 더 이상 AI 모델을 도입하는 것에 머물지 않습니다. 기존 시스템과 AI를 안전하게 연결하고, 보안과 거버넌스를 기반으로 실제 업무에 적용할 수 있는 "}
+                                <span className="font-semibold text-[var(--color-ink)]">
+                                    {en ? E.valueHighlight : "운영 플랫폼"}
+                                </span>
+                                {en ? E.valueLeadB : "을 선택합니다. XGEN은 AI를 도입하는 플랫폼이 아니라, 기업의 AI 운영을 지속적으로 확장하는 Enterprise AI 플랫폼입니다."}
+                            </p>
+
+                            {/* 5대 혁신 효과 — 경쟁·가치 우위 관점의 전략 성과(최신 제품 덱) */}
+                            <div className="mt-14">
+                                <h3 className="mx-auto text-center text-[22px] font-bold tracking-tight text-[var(--color-ink)] md:text-[26px]">
+                                    {en ? E.effectsTitle : "XGEN 도입을 통해 달성하는 5대 혁신 효과"}
+                                </h3>
+                                <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {en ? E.effectsLead : "기능 우위를 넘어, 도입 즉시 조직의 경쟁력이 되는 다섯 가지 성과 — 효율·리스크·신뢰·유연성·규제 대응을 하나의 플랫폼에서 확보합니다."}
+                                </p>
+                                <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                                    {EFFECTS_L.map((e, i) => (
+                                        <div
+                                            key={e.en}
+                                            className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-5 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                        >
+                                            <span className="h-1.5 w-12 rounded-full bg-[linear-gradient(90deg,#00acee,#185aea)]" />
+                                            <div className="mt-4 flex items-baseline gap-2">
+                                                <span className="font-mono text-[13px] font-extrabold text-[#2461d8]">
+                                                    {String(i + 1).padStart(2, "0")}
+                                                </span>
+                                                <span className="font-mono text-[10.5px] font-semibold uppercase tracking-wide text-[#4a6aa8]">
+                                                    {e.en}
+                                                </span>
+                                            </div>
+                                            <h4 className="mt-1.5 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                                {e.ko}
+                                            </h4>
+                                            <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                                {e.desc}
                                             </p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
 
-                {/* Certifications & Quality — 국가 공인 품질/신뢰성 인증(구 /solutions#certification 이전) */}
-                <section
-                    id="certification"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Certifications & Quality
-                        </p>
-                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.certTitle : "국가 공인 품질·신뢰성 인증"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.certLead : "XGEN은 GS인증 1등급을 획득했고, AI 신뢰성 인증(AI-MASTER) 시험을 받고 있습니다. 제3자 시험기관이 제품의 품질과 신뢰성을 검증합니다."}
-                        </p>
-                        <div className="mt-10">
-                            <CertificationQuality locale={locale} />
                         </div>
-                        {/* AI 품질 방침 카드 — 인증이 "검증받은 결과"라면, 방침은 그 앞의 기준이다.
-                            주소는 lib/ai-policy-link.ts 가 단일 출처(푸터 About 링크와 같은 값). */}
-                        <Link
-                            href={AI_POLICY_HREF[locale]}
-                            className="group mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] sm:flex-row sm:items-center sm:justify-between"
-                        >
-                            <div>
-                                <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
-                                    {en ? "AI Quality Policy" : "AI 품질 방침"}
-                                </p>
-                                <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {en
-                                        ? "Beyond certification — we publish the standards for trustworthy enterprise AI, defining everything from safety, accountability, and controllability to where our responsibility ends and yours begins."
-                                        : "인증을 넘어, 신뢰할 수 있는 Enterprise AI를 위한 기준을 공개합니다. 안전성·책임성·통제 가능성부터 공급자와 고객사의 책임 범위까지 명확하게 정의합니다."}
-                                </p>
-                            </div>
-                            <span className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]">
-                                {en ? "Read the policy" : "방침 보기"}
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                            </span>
-                        </Link>
-                        {/* 보안·규제·조달 요건 상담 — 의사결정자 전환 경로 */}
-                        <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                {en ? E.certNote : "보안·규제·조달 요건을 검토 중이신가요? 요건에 맞춰 아키텍처와 통제 방안을 함께 정리해 드립니다."}
+                    </section>
+
+                    {/* 기존 방식 대비 — 카페24 유튜브 쇼핑 카드 스택 패턴 */}
+                    <CompareStack
+                        items={en ? E.compare : COMPARE_KO}
+                        title={en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
+                        lead={en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
+                        labelBefore={en ? E.labelBefore : "기존"}
+                        labelEffect={en ? E.labelEffect : "성과"}
+                    />
+                    </>
+                )}
+
+                {/* 2depth 보안·거버넌스 — 데이터와 AI 통제(보안·IT) */}
+                {view === "security" && (
+                    <>
+                    {/* On-Premise */}
+                    <section
+                        id="on-premise"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                On-Premise
                             </p>
-                            <Link
-                                href={localeHref(locale, "/contact") + "?type=poc&from=product"}
-                                className="group inline-flex flex-none items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
-                            >
-                                {en ? E.certCta : "보안·요건 상담"}
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                            </Link>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 고객사례 — 최근 3건 + /customers 연계 */}
-                <section
-                    id="cases"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                >
-                    <div className="mx-auto max-w-7xl px-6 py-24">
-                        <p className="text-center font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Customer Cases
-                        </p>
-                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.casesTitle : "고객 현장에서 검증됩니다"}
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-                            {en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
-                        </p>
-                        <div className="mt-10 grid gap-5 md:grid-cols-3">
-                            {recentCases.map((c) => (
-                                <Link
-                                    key={c.slug}
-                                    href={localeHref(locale, `/customers/case/${c.slug}`)}
-                                    className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                >
-                                    <div className="flex items-center gap-2 text-[12.5px]">
-                                        <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold text-[#2461d8]">
-                                            {PRODUCTS[c.products[0]].name}
+                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.onpremTitle : "데이터는 기업 안에, 안심하고 활용"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.onpremLead : "XGEN은 내부 모델을 사용하는 구성에서 데이터를 기업 보안 경계 내 처리하도록 설계합니다. 외부 연동 시에는 데이터 전송 범위와 공급자의 학습·보존 정책을 확인해야 합니다."}
+                            </p>
+                            <div className="mt-8 grid gap-4 md:grid-cols-3">
+                                {ONPREM_L.map((o) => (
+                                    <div
+                                        key={o.title}
+                                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6"
+                                    >
+                                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <o.icon className="h-5 w-5" />
                                         </span>
-                                        <span className="text-[var(--color-ink-subtle)]">
-                                            {en
-                                                ? INDUSTRIES[c.industry].en
-                                                : INDUSTRIES[c.industry].ko}
-                                        </span>
-                                        <time
-                                            dateTime={c.published}
-                                            className="ml-auto text-[var(--color-ink-subtle)]"
-                                        >
-                                            {c.published.slice(0, 7).replace("-", ".")}
-                                        </time>
+                                        <h3 className="mt-4 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {o.title}
+                                        </h3>
+                                        <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {o.desc}
+                                        </p>
                                     </div>
-                                    <h3 className="mt-3 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                        {(en && c.titleEn) || c.title}
-                                    </h3>
-                                    <p className="mt-2 line-clamp-2 flex-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {(en && c.summaryEn) || c.summary}
-                                    </p>
-                                    <p className="mt-4 border-t border-[var(--color-line)] pt-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
-                                        {(en && c.customerEn) || c.customer}
-                                    </p>
-                                </Link>
-                            ))}
-                        </div>
-                        <div className="mt-8 flex justify-end">
+                                ))}
+                            </div>
+
+                            {/* 심화 — 보안·거버넌스 전용 페이지로 연결(이중화 해소) */}
                             <Link
-                                href={localeHref(locale, "/customers") + "?product=xgen"}
-                                className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                                href="/security-and-governance"
+                                className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
                             >
-                                {en ? E.casesMore : "XGEN 고객사례 전체 보기"}
+                                {en ? E.onpremMore : "보안·거버넌스 아키텍처 자세히 보기"}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </Link>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
-                <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                    <div className="mx-auto max-w-7xl px-6 py-16">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            Resources
-                        </p>
-                        <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
-                            {en ? E.resourcesTitle : "개발자·도입 담당자를 위한 자료"}
-                        </h2>
-                        <div className="mt-8 grid gap-4 md:grid-cols-3">
-                            {RESOURCES_L.map((r) => (
-                                <Link
-                                    key={r.title}
-                                    href={r.href}
-                                    className="group flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                >
-                                    <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                        <r.icon className="h-5 w-5" />
-                                    </span>
-                                    <span className="min-w-0 flex-1">
-                                        <span className="block text-[16px] font-bold tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                            {r.title}
-                                        </span>
-                                        <span className="mt-0.5 block text-[13.5px] text-[var(--color-ink-muted)]">
-                                            {r.desc}
-                                        </span>
-                                    </span>
-                                    <ArrowRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2461d8]" />
-                                </Link>
-                            ))}
+                    {/* Governance — Enterprise Trust (다크 밴드: 신뢰의 포컬 포인트) */}
+                    <section
+                        id="governance"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-white/10 bg-[#0a1220] text-white"
+                    >
+                        {/* 글로우 클리핑(overflow-hidden)은 반드시 이 안쪽 래퍼에 둔다 —
+                            앵커 대상인 <section>에 직접 주면 그 섹션 자체가 스크롤 컨테이너가
+                            되어 브라우저가 scroll-margin-top을 무시하고 섹션을 뷰포트 최상단
+                            (= 고정 헤더 뒤)에 붙인다. 그러면 인덱스에서 '거버넌스'를 눌렀을 때
+                            제목이 헤더에 가린다. */}
+                        <div className="relative overflow-hidden">
+                            {/* 배경 글로우 — 다크 밴드에 깊이감 */}
+                            <div
+                                aria-hidden
+                                className="pointer-events-none absolute -right-40 -top-48 h-[540px] w-[540px] rounded-full bg-[#2f7bff]/15 blur-[130px]"
+                            />
+                            <div
+                                aria-hidden
+                                className="pointer-events-none absolute -bottom-48 left-[20%] h-[420px] w-[420px] rounded-full bg-[#00acee]/10 blur-[130px]"
+                            />
+                            <div className="relative mx-auto max-w-7xl px-6 py-24">
+                                <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+                                    <div className="flex h-full flex-col">
+                                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[#7dd3fc]">
+                                            Enterprise Trust
+                                        </p>
+                                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight md:text-[34px] md:leading-[1.15]">
+                                            {en ? E.govTitleA : "신뢰할 수 없는 AI는"}
+                                            <br />
+                                            {en ? E.govTitleB : "기업에서 운영될 수 없습니다"}
+                                        </h2>
+                                        <p className="mx-auto mt-5 max-w-md text-center text-[16px] leading-relaxed text-white/65">
+                                            {en ? E.govLead : "XGEN은 누가, 무엇을, 언제 수행했는지 모든 활동을 추적하고, 위험한 변경은 배포 전에 검증하며, 승인된 에이전트만 운영 환경에 배포되도록 설계되었습니다. 규제 산업과 온프레미스 환경에서도 신뢰할 수 있는 거버넌스를 제공합니다."}
+                                        </p>
+                                        <Link
+                                            href="/security-and-governance"
+                                            className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7dd3fc] transition hover:text-white"
+                                        >
+                                            {en ? E.onpremMore : "보안·거버넌스 아키텍처 자세히 보기"}
+                                            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                        </Link>
+                                        {/* 보안 통제 개념도(동심 방어 링 + 좌우 통제 칩) — 하단 정렬로
+                                            오른쪽 카드 박스 높이에 맞춰 아래를 채운다. */}
+                                        <div className="mt-auto hidden pt-10 lg:block">
+                                            <GovernanceArt locale={locale} />
+                                        </div>
+                                    </div>
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        {GOV_L.map((g) => (
+                                            <div
+                                                key={g.title}
+                                                className="rounded-2xl border border-white/10 bg-[linear-gradient(155deg,rgba(47,123,255,0.16)_0%,rgba(125,211,252,0.05)_45%,rgba(255,255,255,0.02)_100%)] p-6 backdrop-blur-sm transition hover:border-[#7dd3fc]/50 hover:bg-[linear-gradient(155deg,rgba(47,123,255,0.22)_0%,rgba(125,211,252,0.07)_45%,rgba(255,255,255,0.03)_100%)]"
+                                            >
+                                                <div className="flex items-center gap-2.5">
+                                                    <span className="h-2 w-2 rotate-45 rounded-[2px] bg-[#7dd3fc]" />
+                                                    <h3 className="text-[15.5px] font-bold tracking-tight text-white">
+                                                        {g.title}
+                                                    </h3>
+                                                </div>
+                                                <p className="mt-2.5 text-[14px] leading-relaxed text-white/60">
+                                                    {g.desc}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* FAQ */}
-                <section
-                    id="faq"
-                    className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                >
-                    <div className="mx-auto max-w-4xl px-6 py-24">
-                        <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                            FAQ
-                        </p>
-                        <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                            {en ? E.faqTitle : "자주 묻는 질문"}
-                        </h2>
-                        <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
-                            {FAQ_L.map((f) => (
-                                <details key={f.q} className="group px-6 py-5">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
-                                        {f.q}
-                                        <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
-                                    </summary>
-                                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                        {f.a}
+                    {/* Certifications & Quality — 국가 공인 품질/신뢰성 인증(구 /solutions#certification 이전) */}
+                    <section
+                        id="certification"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Certifications & Quality
+                            </p>
+                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.certTitle : "국가 공인 품질·신뢰성 인증"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.certLead : "XGEN은 GS인증 1등급을 획득했고, AI 신뢰성 인증(AI-MASTER) 시험을 받고 있습니다. 제3자 시험기관이 제품의 품질과 신뢰성을 검증합니다."}
+                            </p>
+                            <div className="mt-10">
+                                <CertificationQuality locale={locale} />
+                            </div>
+                            {/* AI 품질 방침 카드 — 인증이 "검증받은 결과"라면, 방침은 그 앞의 기준이다.
+                                주소는 lib/ai-policy-link.ts 가 단일 출처(푸터 About 링크와 같은 값). */}
+                            <Link
+                                href={AI_POLICY_HREF[locale]}
+                                className="group mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] sm:flex-row sm:items-center sm:justify-between"
+                            >
+                                <div>
+                                    <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)]">
+                                        {en ? "AI Quality Policy" : "AI 품질 방침"}
                                     </p>
-                                </details>
-                            ))}
+                                    <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {en
+                                            ? "Beyond certification — we publish the standards for trustworthy enterprise AI, defining everything from safety, accountability, and controllability to where our responsibility ends and yours begins."
+                                            : "인증을 넘어, 신뢰할 수 있는 Enterprise AI를 위한 기준을 공개합니다. 안전성·책임성·통제 가능성부터 공급자와 고객사의 책임 범위까지 명확하게 정의합니다."}
+                                    </p>
+                                </div>
+                                <span className="inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8]">
+                                    {en ? "Read the policy" : "방침 보기"}
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                </span>
+                            </Link>
+                            {/* 보안·규제·조달 요건 상담 — 의사결정자 전환 경로 */}
+                            <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
+                                <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {en ? E.certNote : "보안·규제·조달 요건을 검토 중이신가요? 요건에 맞춰 아키텍처와 통제 방안을 함께 정리해 드립니다."}
+                                </p>
+                                <Link
+                                    href={localeHref(locale, "/contact") + "?type=poc&from=product"}
+                                    className="group inline-flex flex-none items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
+                                >
+                                    {en ? E.certCta : "보안·요건 상담"}
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                    </>
+                )}
+
+                {/* 2depth 기술·아키텍처 — 구조(아키텍트·개발 리드) */}
+                {view === "technology" && (
+                    <>
+                    {/* 핵심 기술 — 검증된 오픈 기술 위, 벤더 종속 없이 (4계층) */}
+                    <section
+                        id="core-tech"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Core Technology · 6 Layers
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.techTitle : "엔터프라이즈 AI를 위한 6계층 코어 아키텍처"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.techLeadA : "인프라부터 AI 에이전트까지, 기업의 AI 운영에 필요한 핵심 기술을 하나의 플랫폼으로 통합합니다."}
+                            </p>
+                            <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.techLeadB : "XGEN은 특정 AI 모델이나 클라우드에 종속되지 않습니다. 표준 프로토콜 기반의 6계층 아키텍처를 통해 온프레미스 GPU, 상용 AI API, 사내 시스템을 일관된 방식으로 연결하고 운영할 수 있습니다."}
+                            </p>
+                            {/* 5계층 코어 엔진 — 아이소메트릭 분해 스택 도해(네이티브 SVG) */}
+                            <div className="mt-8 overflow-x-auto">
+                                <div className="mx-auto min-w-[760px] max-w-5xl">
+                                    <LayerStackArt locale={locale} />
+                                </div>
+                            </div>
+
+                            {/* 4계층 기술 스택의 참조 아키텍처로 연결 */}
+                            <Link
+                                href={localeHref(locale, "/architecture") + "#platform"}
+                                className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            >
+                                {en ? E.techMore : "XGEN 플랫폼 아키텍처 자세히 보기"}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+
+                            <ProductGeny locale={locale} />
+                            <ProductIsolation locale={locale} />
+                        </div>
+                    </section>
+                    </>
+                )}
+
+                {/* 2depth 도입·지원 — 절차·지원·FAQ(구매·도입) */}
+                {view === "adoption" && (
+                    <>
+                    {/* 도입·구축 — 반입에서 운영까지(온프레미스 딜리버리) */}
+                    <section
+                        id="deployment"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-7xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Deployment
+                            </p>
+                            <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.deployTitle : "반입부터 운영까지, 검증된 구축 프로세스"}
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
+                                {en ? E.deployLead : "폐쇄망 반입부터 실증, 구축, 운영까지 온프레미스 환경에 맞춰 단계적으로 지원합니다. 반입 절차가 완료되면 신속하게 실증을 시작하여 운영 전 검증과 빠른 성과 확보를 지원합니다."}
+                            </p>
+                            <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+                                {DEPLOY_STEPS_L.map((s) => (
+                                    <div key={s.no} className="bg-white p-7">
+                                        <span className="font-mono text-[13px] font-bold tracking-widest text-[#2f7bff]">
+                                            {s.no}
+                                        </span>
+                                        <h3 className="mt-4 text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
+                                            {s.title}
+                                        </h3>
+                                        <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {s.desc}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+                                {DEPLOY_CHIPS_L.map((c) => (
+                                    <span
+                                        key={c}
+                                        className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-3 py-1 font-mono text-[12.5px] font-semibold text-[var(--color-ink-muted)]"
+                                    >
+                                        {c}
+                                    </span>
+                                ))}
+                            </div>
+                            <Link
+                                href={localeHref(locale, "/architecture") + "#cicd"}
+                                className="group ml-auto mt-8 flex w-fit items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
+                            >
+                                {en ? E.deployMore : "GitOps 배포 파이프라인 자세히 보기"}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                            </Link>
+
+                            {/* 도입 이후 지원 — 교육·운영/기술지원 연계 */}
+                            <div className="mt-12 border-t border-[var(--color-line)] pt-10">
+                                <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
+                                    {en ? E.afterTitle : "도입 이후에도 함께합니다"}
+                                </h3>
+                                <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    {en ? E.afterLead : "구축으로 끝나지 않습니다. 조직 내재화를 위한 교육과 안정적 운영을 위한 기술지원까지 이어집니다."}
+                                </p>
+                                <div className="mt-6">
+                                    <PostDeploymentSupport locale={locale} />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* FAQ */}
+                    <section
+                        id="faq"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
+                    >
+                        <div className="mx-auto max-w-4xl px-6 py-24">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                FAQ
+                            </p>
+                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
+                                {en ? E.faqTitle : "자주 묻는 질문"}
+                            </h2>
+                            <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
+                                {FAQ_L.map((f) => (
+                                    <details key={f.q} className="group px-6 py-5">
+                                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
+                                            {f.q}
+                                            <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
+                                        </summary>
+                                        <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                            {f.a}
+                                        </p>
+                                    </details>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
+                    <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+                        <div className="mx-auto max-w-7xl px-6 py-16">
+                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                                Resources
+                            </p>
+                            <h2 className="mx-auto mt-3 text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] md:text-[28px]">
+                                {en ? E.resourcesTitle : "개발자·도입 담당자를 위한 자료"}
+                            </h2>
+                            <div className="mt-8 grid gap-4 md:grid-cols-3">
+                                {RESOURCES_L.map((r) => (
+                                    <Link
+                                        key={r.title}
+                                        href={r.href}
+                                        className="group flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
+                                    >
+                                        <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
+                                            <r.icon className="h-5 w-5" />
+                                        </span>
+                                        <span className="min-w-0 flex-1">
+                                            <span className="block text-[16px] font-bold tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
+                                                {r.title}
+                                            </span>
+                                            <span className="mt-0.5 block text-[13.5px] text-[var(--color-ink-muted)]">
+                                                {r.desc}
+                                            </span>
+                                        </span>
+                                        <ArrowRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2461d8]" />
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                    </>
+                )}
+
+                {/* 여정 안내 — 다음에 볼 주제와 3depth 상세 자료 */}
+                <XgenJourney locale={locale} current={view} />
 
                 {/* CTA */}
                 <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
