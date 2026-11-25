@@ -53,6 +53,7 @@ import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
 import type { Locale } from "@/lib/i18n";
 import { TOOLS } from "@/lib/tools";
+import { XgenDifferentPrism } from "@/components/product-xgen/different-prism";
 
 /** 히어로 직후 트러스트 바 — 인증·운영·도입 실적(대외 공개 사실만). */
 const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
@@ -707,47 +708,8 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* ── 1depth 개요: 「XGEN 소개서(2026.11)」를 TRINITY 흐름으로 재배치 (overview-brochure.tsx) ── */}
                     {/* 문제 제기 → Paradigm Shift → AX Evolution(다크) → 플랫폼 5단계 → Why XGEN → 숫자 밴드 → 자기개선 루프 → 업종 시나리오 → 도입 방식 → 영상 */}
                     <XgenChallenge locale={locale} />
-                    {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
-                    <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
-                        <div
-                            aria-hidden
-                            className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(47,123,255,0.16),transparent_65%)]"
-                        />
-                        {/* 헤드라인 포커스 스포트라이트 — 방사형 밝은 그라데이션 */}
-                        <div
-                            aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-[64px] h-[280px] w-[640px] max-w-[92vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(125,211,252,0.3),rgba(47,123,255,0.14)_45%,transparent_75%)] blur-[46px]"
-                        />
-                        <div className="relative mx-auto max-w-7xl px-6 py-16">
-                            <p className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-white/55">
-                                {!en ? "XGEN · 기업형 Agentic AI Platform" : "XGEN · Enterprise Agentic AI Platform"}
-                            </p>
-                            <h2 className="mt-3 text-center text-3xl font-bold tracking-tight md:text-[40px]">
-                                {en ? E.statsTitleA : "XGEN은 "}
-                                <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">
-                                    {en ? E.statsHighlight : "다릅니다"}
-                                </span>
-                            </h2>
-                            <p className="mx-auto mt-3 max-w-xl text-center text-[15px] leading-relaxed text-white/60">
-                                {en ? E.statsLead : "파일럿에서 멈추지 않고, 온프레미스에서 실제 운영으로 검증된 숫자로 증명합니다."}
-                            </p>
-                            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
-                            {STATS_L.map((s) => (
-                                <div key={s.label} className="text-center">
-                                    <p className="bg-gradient-to-br from-[#00acee] to-[#7dd3fc] bg-clip-text text-[44px] font-extrabold leading-none tracking-tight text-transparent md:text-[52px]">
-                                        {s.n}
-                                    </p>
-                                    <p className="mt-3 text-[15px] font-bold tracking-tight text-white">
-                                        {s.label}
-                                    </p>
-                                    <p className="mt-1 text-[13px] text-white/50">
-                                        {s.sub}
-                                    </p>
-                                </div>
-                            ))}
-                            </div>
-                        </div>
-                    </section>
+                    {/* 숫자로 보는 XGEN — 프리즘 키비주얼(TRINITY PRISM 벤치마킹) + 실측 사실 4개 */}
+                    <XgenDifferentPrism locale={locale} stats={STATS_L} />
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
