@@ -103,17 +103,30 @@ const CHALLENGE = {
             </>
         ),
         lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 도구와 모델이 바뀌면 다시 멈춥니다.",
-        problems: ["파편화된 데이터로 인한 AI 활용 한계", "AI 활용 시 내부 데이터 유출 우려", "AI 도입 이후 운영 인력·체계 부재"],
-        whyLabel: "Why it happens",
-        causes: [
-            { k: "DATA", s: "계속 새로 생성", d: "새로운 데이터가 계속 생깁니다.", gap: "데이터 변화를 흡수하는 구조 부족" },
-            { k: "TOOL", s: "빠르게 늘어남", d: "새로운 Tool과 API가 계속 등장합니다.", gap: "Tool 변화에 대응하는 구조 부족" },
-            { k: "MODEL", s: "지속적으로 진화", d: "LLM과 AI 기술은 계속 바뀝니다.", gap: "Model 교체·운영 체계 부족" },
+        voicesLabel: "이런 이야기, 낯설지 않으시죠?",
+        voices: [
+            { who: "현업 담당자", q: "자료가 부서마다 흩어져 있어서, AI가 정작 필요한 답을 찾지 못해요.", tag: "파편화된 데이터로 인한 AI 활용 한계" },
+            { who: "IT·보안 담당자", q: "사내 문서를 AI에 넣어도 되는지, 검토가 끝나지 않아 진행이 멈췄어요.", tag: "AI 활용 시 내부 데이터 유출 우려" },
+            { who: "AX 추진 담당자", q: "만든 사람은 다른 과제로 옮겼고, 지금은 손볼 사람이 없어요.", tag: "AI 도입 이후 운영 인력·체계 부재" },
+        ],
+        voicesNote: "도입 기업에서 자주 듣는 상황을 재구성한 예시입니다.",
+        statsLabel: "써 보는 조직은 많지만, 운영까지 가는 사례는 적습니다",
+        stats: [
+            { v: 71, d: "에이전트를 사용하는 조직" },
+            { v: 11, d: "실제 운영 단계에 도달한 활용 사례" },
+            { v: 48, d: "업무 흐름과 분리된 채 운영되는 사례" },
+        ],
+        statsSource: "출처: Camunda, State of Agentic Orchestration & Automation 2026",
+        timelineLabel: "도입 이후, 이렇게 멈춥니다",
+        timeline: [
+            { k: "LAUNCH", t: "도입 직후", d: "파일럿에서는 기대한 대로 동작합니다.", status: "정상 동작", lv: 0 },
+            { k: "DATA", t: "새 데이터가 쌓이면", d: "새로운 데이터가 계속 생기지만 반영되지 않아, 답이 점점 낡아 갑니다.", status: "데이터 변화를 흡수하는 구조 부족", lv: 1 },
+            { k: "TOOL", t: "새 도구·API가 생기면", d: "새로운 Tool과 API가 계속 등장하고, 기존 연결은 하나씩 끊깁니다.", status: "Tool 변화에 대응하는 구조 부족", lv: 2 },
+            { k: "MODEL", t: "새 모델이 나오면", d: "LLM이 바뀔 때마다 교체와 검증을 처음부터 다시 해야 합니다.", status: "Model 교체·운영 체계 부족", lv: 3 },
         ],
         conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
         conclusionB: "변화에 대응하지 못하는 플랫폼",
         conclusionC: "입니다.",
-        note: "에이전트 사용 조직 71% · 실제 운영에 도달한 활용 사례 11% · 업무 흐름과 분리 운영 48% (출처: Camunda, State of Agentic Orchestration & Automation 2026)",
     },
     en: {
         title: (
@@ -123,71 +136,137 @@ const CHALLENGE = {
             </>
         ),
         lead: "AI that worked right after launch stalls again once the data, tools and models change.",
-        problems: ["Fragmented data limits how AI can be used", "Concern about internal data leaving the company", "No team or process to run AI after launch"],
-        whyLabel: "Why it happens",
-        causes: [
-            { k: "DATA", s: "Constantly created", d: "New data keeps arriving.", gap: "No structure to absorb data changes" },
-            { k: "TOOL", s: "Rapidly multiplying", d: "New tools and APIs keep appearing.", gap: "No structure to keep up with tool changes" },
-            { k: "MODEL", s: "Always evolving", d: "LLMs and AI technology keep changing.", gap: "No process to swap and run models" },
+        voicesLabel: "Does any of this sound familiar?",
+        voices: [
+            { who: "Business user", q: "Our documents are scattered across teams, so the AI can't find the answer we actually need.", tag: "Fragmented data limits how AI can be used" },
+            { who: "IT & security", q: "We still haven't settled whether internal documents can go into the AI, so the project is on hold.", tag: "Concern about internal data leaving the company" },
+            { who: "AX lead", q: "The person who built it moved to another project, and now no one can maintain it.", tag: "No team or process to run AI after launch" },
+        ],
+        voicesNote: "Illustrative situations based on what adopting companies often tell us.",
+        statsLabel: "Many organizations try agents; few use cases reach production",
+        stats: [
+            { v: 71, d: "of organizations use agents" },
+            { v: 11, d: "of use cases reached production" },
+            { v: 48, d: "run apart from business workflows" },
+        ],
+        statsSource: "Source: Camunda, State of Agentic Orchestration & Automation 2026",
+        timelineLabel: "How it stalls after launch",
+        timeline: [
+            { k: "LAUNCH", t: "Right after launch", d: "In the pilot, it works as expected.", status: "Working", lv: 0 },
+            { k: "DATA", t: "As new data piles up", d: "New data keeps arriving but isn't reflected, so answers slowly go stale.", status: "No structure to absorb data changes", lv: 1 },
+            { k: "TOOL", t: "As new tools and APIs appear", d: "New tools and APIs keep appearing, and existing connections break one by one.", status: "No structure to keep up with tool changes", lv: 2 },
+            { k: "MODEL", t: "As new models arrive", d: "Every LLM change means swapping and validating from scratch.", status: "No process to swap and run models", lv: 3 },
         ],
         conclusionA: "They look like separate problems, but they share one cause:",
         conclusionB: "a platform that cannot keep up with change",
         conclusionC: ".",
-        note: "71% of organizations use agents · 11% of use cases reached production · 48% run apart from business workflows (Source: Camunda, State of Agentic Orchestration & Automation 2026)",
     },
 };
+
+/** 단계별 상태 — 색만으로 구분하지 않도록 번호·문구를 함께 표기한다. */
+const CHALLENGE_LV = [
+    { dot: "bg-[#16a34a]", text: "text-[#15803d]", ring: "border-[#16a34a]" },
+    { dot: "bg-[#d97706]", text: "text-[#b45309]", ring: "border-[#d97706]" },
+    { dot: "bg-[#ea580c]", text: "text-[#c2410c]", ring: "border-[#ea580c]" },
+    { dot: "bg-[#dc2626]", text: "text-[#b4232a]", ring: "border-[#dc2626]" },
+];
 
 export function XgenChallenge({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const c = CHALLENGE[en ? "en" : "ko"];
+    const icon = (k: string) =>
+        k === "DATA" ? <Database className="h-5 w-5" /> : k === "TOOL" ? <Wrench className="h-5 w-5" /> : k === "MODEL" ? <Cpu className="h-5 w-5" /> : <Check className="h-5 w-5" />;
     return (
-        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+        <section className="border-t border-[#d4d4d8] bg-[#e7e7ea]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="The Challenge" title={c.title} lead={c.lead} />
 
-                {/* 문제점 3 */}
-                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
-                    {c.problems.map((p, i) => (
-                        <li key={p} className="flex items-center gap-4 rounded-2xl border-2 border-[var(--color-line-strong)] bg-white px-6 py-6">
-                            <span className="font-mono text-[15px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                            <span className="text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p}</span>
+                {/* ① 현장의 말 — 문제점 3개를 담당자의 목소리로 */}
+                <p className={`${SECTION_BODY_GAP} text-center text-[15px] font-bold tracking-tight text-[var(--color-ink)]`}>{c.voicesLabel}</p>
+                <ol className="mt-6 grid gap-5 lg:grid-cols-3">
+                    {c.voices.map((v, i) => (
+                        <li key={v.tag} className="flex flex-col">
+                            <div className="relative flex-1 rounded-2xl border-2 border-[#c4c4cc] bg-white px-6 pb-6 pt-5">
+                                <div className="flex items-center gap-2">
+                                    <span className="font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                                    <span className="text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{v.who}</span>
+                                </div>
+                                <p className="mt-3 text-[17px] font-bold leading-[1.55] tracking-tight text-[var(--color-ink)] [word-break:keep-all]">
+                                    “{v.q}”
+                                </p>
+                                {/* 말풍선 꼬리 */}
+                                <span
+                                    aria-hidden
+                                    className="absolute -bottom-[9px] left-8 h-4 w-4 rotate-45 border-b-2 border-r-2 border-[#c4c4cc] bg-white"
+                                />
+                            </div>
+                            <p className="mt-4 flex items-start gap-1.5 pl-6 text-[13.5px] font-semibold text-[#b4232a] [word-break:keep-all]">
+                                <ArrowDown className="mt-[3px] h-3.5 w-3.5 flex-none" aria-hidden />
+                                {v.tag}
+                            </p>
                         </li>
                     ))}
                 </ol>
+                <p className="mt-5 text-center text-[12.5px] text-[var(--color-ink-muted)]">※ {c.voicesNote}</p>
 
-                {/* 원인 — Data · Tool · Model */}
-                <p className="mt-14 text-center font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                    {c.whyLabel}
-                </p>
-                <div className="mt-5 grid gap-4 lg:grid-cols-3">
-                    {c.causes.map((x) => (
-                        <div key={x.k} className="flex flex-col rounded-2xl border-2 border-[var(--color-line-strong)] bg-white">
-                            <div className="px-6 pb-5 pt-6">
-                                <span
-                                    aria-hidden
-                                    className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#2f7bff] text-white"
-                                >
-                                    {x.k === "DATA" ? <Database className="h-5 w-5" /> : x.k === "TOOL" ? <Wrench className="h-5 w-5" /> : <Cpu className="h-5 w-5" />}
-                                </span>
-                                <div className="flex items-baseline justify-between gap-3">
-                                    <span className="text-[22px] font-extrabold tracking-tight text-[var(--color-ink)]">{x.k}</span>
-                                    <span className="text-[12.5px] font-semibold text-[#2461d8]">{x.s}</span>
+                {/* ② 숫자 — 공개 조사 수치(출처 표기) */}
+                <div className="mt-16 rounded-2xl border-2 border-[#c4c4cc] bg-white px-6 py-8 md:px-10">
+                    <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{c.statsLabel}</p>
+                    <div className="mt-6 grid gap-6 lg:grid-cols-3 lg:gap-10">
+                        {c.stats.map((s, i) => (
+                            <div key={s.d}>
+                                <div className="flex items-baseline gap-1">
+                                    <span className={cn("text-[44px] font-extrabold leading-none tracking-tight", i === 1 ? "text-[#b4232a]" : "text-[var(--color-ink)]")}>
+                                        {s.v}
+                                    </span>
+                                    <span className="text-[20px] font-bold text-[var(--color-ink-muted)]">%</span>
                                 </div>
-                                <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{x.d}</p>
+                                <div className="mt-3 h-2.5 w-full bg-[#ececef]" aria-hidden>
+                                    <div className={cn("h-full", i === 1 ? "bg-[#dc2626]" : "bg-[#52525b]")} style={{ width: `${s.v}%` }} />
+                                </div>
+                                <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
                             </div>
-                            <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line-strong)] px-6 py-3.5 text-[13.5px] font-semibold text-[#b4232a]">
-                                <ArrowDown className="h-3.5 w-3.5 flex-none" aria-hidden />
-                                {x.gap}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                    <p className="mt-6 text-[12.5px] text-[var(--color-ink-muted)]">※ {c.statsSource}</p>
                 </div>
 
-                <p className="mx-auto mt-12 max-w-3xl text-center text-[19px] font-bold leading-[1.5] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">
+                {/* ③ 시간 흐름 — 도입 직후 → DATA → TOOL → MODEL, 상태가 한 단계씩 나빠짐 */}
+                <p className="mt-16 text-center font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-muted)]">Why it happens</p>
+                <p className="mt-2 text-center text-[15px] font-bold tracking-tight text-[var(--color-ink)]">{c.timelineLabel}</p>
+                <ol className="relative mt-8 grid gap-4 lg:grid-cols-4">
+                    {/* 가로 연결선(1024px 이상) */}
+                    <span aria-hidden className="absolute left-[12%] right-[12%] top-6 hidden h-0.5 bg-[#a1a1aa] lg:block" />
+                    {c.timeline.map((x, i) => {
+                        const lv = CHALLENGE_LV[x.lv];
+                        return (
+                            <li key={x.k} className="relative flex gap-4 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+                                <span
+                                    aria-hidden
+                                    className={cn("relative z-10 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border-2 bg-white text-[var(--color-ink)]", lv.ring)}
+                                >
+                                    {icon(x.k)}
+                                </span>
+                                <div className="flex-1 rounded-2xl border-2 border-[#c4c4cc] bg-white px-5 py-5 lg:mt-4 lg:w-full">
+                                    <p className="font-mono text-[12px] font-bold tracking-widest text-[var(--color-ink-muted)]">
+                                        {String(i + 1).padStart(2, "0")} · {x.k}
+                                    </p>
+                                    <p className="mt-1.5 text-[17px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{x.t}</p>
+                                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{x.d}</p>
+                                    <p className={cn("mt-3 inline-flex items-start gap-1.5 text-left text-[13px] font-semibold [word-break:keep-all]", lv.text)}>
+                                        <span className={cn("mt-[6px] h-2 w-2 flex-none rounded-full", lv.dot)} aria-hidden />
+                                        {x.status}
+                                    </p>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ol>
+
+                <p className="mx-auto mt-14 max-w-3xl text-center text-[19px] font-bold leading-[1.5] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">
                     {c.conclusionA}<br className="hidden md:block" /> <span className="text-[#2461d8]">{c.conclusionB}</span>
                     {c.conclusionC}
                 </p>
-                <p className="mx-auto mt-6 max-w-3xl text-center text-[12.5px] leading-relaxed text-[var(--color-ink-subtle)]">※ {c.note}</p>
             </div>
         </section>
     );
