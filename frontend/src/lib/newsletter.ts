@@ -13,7 +13,9 @@ export type Badge =
     | "수정"
     | "개발중"
     | "연구중"
-    | "준비중";
+    | "준비중"
+    | "검증중"
+    | "설계중";
 
 /**
  * 본문 이미지 — 원본 메일에 실린 화면 캡처.
@@ -46,7 +48,7 @@ export interface ReleaseItem {
 
 export interface ProgressItem {
     title: string;
-    badge: Extract<Badge, "개발중" | "연구중">;
+    badge: Extract<Badge, "개발중" | "연구중" | "검증중" | "설계중">;
     percent: number;
     body: Body;
     figure?: Figure;
@@ -129,6 +131,252 @@ export interface Issue {
     papers: PaperItem[];
     upcoming: UpcomingItem[];
 }
+
+const vol7: Issue = {
+  slug: "vol-7",
+  vol: 7,
+  date: "2026-11-20",
+  title: "AI Agent의 확산, 이제는 연결과 운영까지 관리해야 할 때",
+  titleEn: "As AI agents spread, connections and operations need managing too",
+  summary:
+    "늘어나는 AI Agent와 연결 도구를 관리하기 위한 XGEN의 11월 업데이트를 소개합니다.",
+  intro: [
+    "AI Agent를 쓰는 업무가 늘어나면서, 에이전트와 연결 도구를 관리하는 일도 함께 중요해지고 있습니다. 이번 호에서는 이를 위한 XGEN의 11월 업데이트를 소개합니다.",
+    "AI Agent가 질문에 답하는 데서 나아가 실제 업무를 처리하려면 메일, 문서, 사내 시스템 같은 도구와 연결되어야 합니다. MCP(Model Context Protocol)는 이 연결에 쓰이는 표준 프로토콜입니다. 연결된 에이전트와 도구가 늘어날수록 운영 담당자가 파악해야 할 것도 많아집니다. 어떤 에이전트가 어떤 도구를 쓰는지, 누가 얼마나 사용하는지, 특정 서버를 내리면 어떤 업무가 멈추는지입니다. Microsoft도 11월 17일 Ignite에서 자사 에이전트 관리 제품에 MCP 서버 관리 기능을 추가했습니다.",
+    "XGEN은 11월 업데이트에서 MCP 관리 기능을 [MCP 서버 관리]와 [MCP 카탈로그 관리] 두 화면으로 나눠 새로 구성했습니다. 모든 MCP 호출을 한곳에서 기록해 사용량과 오류 현황을 확인할 수 있고, 같은 MCP 서버도 사용자마다 각자의 계정으로 연결해 쓸 수 있습니다. 이 기능은 11월 18일 검증 환경에 반영했으며, 다음 운영 릴리즈에 포함될 예정입니다.",
+    "앞서 11월 12일 운영 릴리즈에는 10월에 검증 환경에서 소개한 기능과, 지난 호에서 남은 과제로 안내한 보안 개선 3건을 반영했습니다. 이 밖에 에이전트가 기억한 내용을 사용자가 직접 확인하고 고칠 수 있는 기록 메모리, 화면이 바뀌면 매뉴얼을 자동으로 갱신하는 매뉴얼 업데이터 소식도 함께 전합니다.",
+  ],
+  sections: {
+    releasesTitle: "11월 XGEN 주요 업데이트",
+    releasesDesc:
+      "main은 11월 12일 운영 릴리즈, stage는 11월 18일 검증 환경에 반영된 기능, dev는 개발 환경에서 운영 중인 기능입니다.",
+    statsTitle: "숫자로 보는 MCP 서버 관리",
+    figuresTitle: "XGEN으로 만든 사내 서비스",
+    figuresDesc:
+      "헤이플은 XGEN 에이전트를 Teams에 연결한 플래티어 사내 AI 비서로, 11월 4일 운영 환경으로 전환했습니다. Voice Note는 회의 녹음이나 녹음 파일로 받아쓰기와 AI 노트를 만들고, Word 파일로 OneDrive·SharePoint에 저장하거나 메일 초안으로 보낼 수 있습니다.",
+    progressDesc:
+      "현재 개발과 실험을 통해 완성도와 품질을 높이고 있는 과제입니다. 관심 있는 주제가 있다면 언제든 의견을 들려주세요.",
+    papersDesc: "이번 호의 매뉴얼 업데이터와 같은 문제를 다룬 11월 연구입니다.",
+    upcomingTitle: "11월 콘텐츠와 XGEN 채널",
+    upcomingDesc: "XGEN 활용과 기술 검토에 참고할 콘텐츠를 소개합니다.",
+  },
+  releases: [
+    {
+      title: "MCP 서버 관리 · 누가, 어느 에이전트에서, 어떤 도구를 얼마나 쓰는지 한눈에 봅니다",
+      badge: "신규",
+      stage: "stage",
+      body: "호출 기록과 대시보드. XGEN 서버를 거치는 MCP 호출을 한 지점에서 기록합니다. 호출마다 사용자, 에이전트, 도구, 성공 여부, 호출 위치가 남고, 90일 동안 조회하거나 엑셀로 내려받을 수 있습니다. 대시보드에서는 호출 수, 오류율, 응답 시간과 많이 쓰는 도구·에이전트 순위를 확인합니다.\n\n도구에 넘긴 값과 결과, 개인 변수 값은 저장하지 않으며, 기록 저장에 실패해도 호출은 그대로 진행됩니다.\n\n사용처 확인. 서버 설정을 바꾸거나 내리기 전에, [사용처]에서 이 서버를 쓰는 에이전트와 배포 상태를 먼저 확인할 수 있습니다.\n\n공용 변수와 개인 변수. 모두가 같이 쓰는 값은 공용 변수로, 사람마다 다른 값(예: 각자의 Google 계정)은 개인 변수로 나눕니다. MCP 서버 코드를 고치지 않고도 같은 서버를 사용자마다 자기 계정으로 쓸 수 있습니다.\n\nMCP 카탈로그. 사용자 PC에 설치하는 MCP는 데스크톱 앱 DexOn이 맡습니다. 관리자가 카탈로그에 설치 방법을 정의해 두면, 사용자는 변수만 입력하면 됩니다. GitHub, Notion, Jira·Confluence 등 14종을 버전을 고정해 기본으로 제공합니다.\n\n현재 검증 환경(stage)에 반영돼 있으며, 다음 운영 릴리즈에 포함할 예정입니다.",
+      figures: [
+        {
+          src: "/newsletter/vol-7/mcp-catalog.jpg",
+          width: 1024,
+          height: 640,
+          caption: "[MCP 카탈로그 관리] 기본 제공 MCP 14종과 항목별 설치 현황입니다. (개발 환경)",
+        },
+      ],
+    },
+    {
+      title: "보안 후속 조치 · 지난 호의 남은 과제 3건, 운영 환경에 반영했습니다",
+      badge: "개선",
+      stage: "main",
+      body: "지난 호에서 ARTEX 점검 후 조치 중이라고 안내한 3건을 11월 12일 운영 릴리즈에 반영했습니다.\n\n게스트 계정 남용 방지. 게스트 가입 횟수와 하루 토큰 사용량에 한도를 두었습니다.\n\n허용한 주소에서만 호출. 모든 출처를 허용하던 CORS 설정을 허용 목록 방식으로 바꿨습니다.\n\n로그인 토큰 재사용 탐지. 이미 쓴 갱신 토큰이 다시 들어오면 탐지합니다. 기본값은 꺼져 있으며, 고객 환경에 맞춰 켤 수 있습니다.\n\n조치 후 재검증은 이어서 진행하고, 결과는 다음 호에서 공유하겠습니다.",
+    },
+    {
+      title: "로그 원본 · 암호화해 보관하고, 사유를 남겨야 열립니다",
+      badge: "신규",
+      stage: "main",
+      body: "서비스별 원본 로그를 암호화해 30일 동안 보관합니다. 조회하거나 내려받으려면 사유를 입력해야 하고, 사유와 열람 기록은 [열람 이력]에 남습니다. 장애·보안 사고를 조사할 때 누가, 왜 원본을 열었는지 확인할 수 있습니다. 내려받은 파일은 이후 사용 내역을 추적할 수 없으므로, 다운로드 권한은 꼭 필요한 관리자에게만 주는 것을 권장합니다.",
+      figures: [
+        {
+          src: "/newsletter/vol-7/log-raw.jpg",
+          width: 1024,
+          height: 640,
+          caption: "[로그 원본] 서비스별 하루 단위 암호화 파일 목록입니다. (개발 환경)",
+        },
+      ],
+    },
+    {
+      title: "Agent 자원 관리 · 에이전트마다 저장 공간 한도를 둡니다",
+      badge: "신규",
+      stage: "main",
+      body: "에이전트마다 작업 공간과 샌드박스 디스크 사용량을 보여 주고 한도를 적용합니다. 샌드박스는 기본 20GiB, 최대 60GiB이며, 그 이상은 결재를 거쳐 요청합니다. 관리자는 한도에 가까운 에이전트와 오래 쓰지 않는 공간을 한 화면에서 확인할 수 있습니다.",
+    },
+    {
+      title: "기록 메모리 · 에이전트가 기억한 내용을 보고 고칩니다",
+      badge: "신규",
+      stage: "stage",
+      body: "에이전트가 대화에서 알게 된 내용을 규칙, 사실, 상태, 결정, 절차로 나눠 기록합니다. 사용자는 [메모리] 탭에서 이 기록을 직접 보고 고칠 수 있고, 고칠 때마다 버전이 남아 이전 상태로 되돌릴 수 있습니다. 에이전트가 무엇을 기억하는지 사람이 확인할 수 있어야 업무를 맡길 수 있다는 판단에서 만든 기능입니다.",
+    },
+    {
+      title: "서브 에이전트 · 만든 에이전트를 다른 에이전트 안에서 씁니다",
+      badge: "신규",
+      stage: "stage",
+      body: "Agent Geny가 사용자 계정으로 에이전트를 만들고, 기존 에이전트를 서브 에이전트로 불러 쓸 수 있습니다. 예를 들어 ‘자료 조사’와 ‘보고서 작성’ 에이전트를 순서대로 부르는 상위 에이전트를 구성할 수 있습니다. Geny가 만들 수 있는 에이전트는 사용자당 하루 20개로 제한했습니다.",
+    },
+    {
+      title: "매뉴얼 업데이터 · 화면이 바뀌면 매뉴얼이 따라 바뀝니다",
+      badge: "신규",
+      stage: "dev",
+      body: "XGEN 화면 85개마다 버튼, 입력칸, 노출 조건을 적은 ‘화면 계약’ 파일이 있습니다. 11월 17일부터 매뉴얼 업데이터가 매일 바뀐 계약을 확인해, 영향을 받는 챕터의 화면을 다시 캡처하고 고쳐야 할 문장만 다시 작성합니다. 캡처 속 이름·연락처는 가린 뒤 반영합니다. 11월 16~19일에 챕터 38개를 고치고 이미지 438장을 새로 찍었으며, 지금은 개발 환경 매뉴얼에 적용돼 있습니다.",
+      figures: [
+        {
+          src: "/newsletter/vol-7/manual-updater.jpg",
+          width: 1024,
+          height: 685,
+          caption: "업데이터가 화면을 직접 캡처해 넣은 매뉴얼 챕터입니다. 개인 정보는 회색 막대로 가렸습니다. (개발 환경)",
+        },
+      ],
+    },
+  ],
+  also: [
+    "신규 · 실행 중 [대기열] — 에이전트가 답하는 동안 보낸 메시지를 [지금 추가]로 바로 반영하거나, [대기열]에 넣어 답이 끝난 뒤 순서대로 처리합니다. (stage)",
+    "개선 · 음성 구간 감지 — Silero VAD로 말소리가 있는 구간만 골라 받아쓰기해, 긴 녹음 파일의 무음 구간 오인식을 줄입니다. (stage)",
+    "개선 · 평가 양식 — 응답 품질 평가 양식에서 데이터 항목과 계산식을 끌어 놓아 구성하고, 결재 전에 미리 봅니다. (stage)",
+    "신규 · 체험존 예시 데이터 — 새 체험존에 가상 회사의 문서, API 도구 6개, 에이전트 5개를 미리 담아 바로 써 볼 수 있습니다. (main)",
+    "신규 · 워크플로별 LLM 키 — 워크플로마다 사용할 LLM API 키를 지정해, 비용을 워크플로별로 나눠 집계할 수 있는 기반을 마련했습니다. 기본은 꺼져 있습니다. (main)",
+  ],
+  stats: {
+    items: [
+      { value: "90일", label: "MCP 호출 기록 보관" },
+      { value: "사용자별", label: "개인 변수로 따로 실행" },
+      { value: "14종", label: "기본 제공 MCP 카탈로그" },
+    ],
+    note: "MCP 서버 관리는 11월 18일 검증 환경(stage)에 반영된 기능이며, 다음 운영 릴리즈에 포함할 예정입니다.",
+    link: {
+      label: "전체 릴리즈 노트 보기",
+      url: "https://labs.plateer.com/releases",
+    },
+  },
+  figures: [
+    {
+      src: "/newsletter/vol-7/heyple.jpg",
+      width: 1024,
+      height: 638,
+      caption: "Teams 안에서 연 헤이플 앱입니다. 회사 규정을 바탕으로 질문에 답하고 있습니다. 이름은 가렸습니다.",
+    },
+  ],
+  inProgress: [
+    {
+      title: "DevStudio · 대화로 만든 앱을 서버에 올려 운영",
+      badge: "개발중",
+      percent: 60,
+      body: "대화로 만든 앱을 XGEN 서버에 배포하고 운영하는 기능입니다. 11월에는 HTTPS 인증서, 블루그린 배포, 새 버전이 30초 안에 멈추면 이전 버전으로 되돌리는 자동 복구를 넣었습니다. 배포 전에는 결재를 거칩니다.",
+    },
+    {
+      title: "Geny · 정식 운영을 앞두고 품질 검증 중",
+      badge: "검증중",
+      percent: 90,
+      body: "Geny의 주요 기능은 운영 환경에 배포돼 실제 사용 환경에서 품질을 검증하고 있습니다. 검증이 끝나는 대로 운영 환경에서 활성화할 예정입니다.",
+    },
+    {
+      title: "도구 권한 · 역할별로 쓸 수 있는 도구를 나눕니다",
+      badge: "설계중",
+      percent: 20,
+      body: "에이전트가 쓸 수 있는 도구를 사용자 역할에 따라 나누는 기능입니다. 회사 DB는 정해진 노드로만 접근하고, 샌드박스에서 실행하는 코드는 네트워크 접근을 막는 것을 원칙으로 설계하고 있습니다.",
+    },
+    {
+      title: "Ontlas · 업종별 온톨로지 어댑터",
+      badge: "연구중",
+      percent: 30,
+      body: "업무 데이터를 업종별 표준 개념에 맞춰 연결하는 온톨로지 연구입니다. 금융 업종은 표준 온톨로지 FIBO를 기반으로 한 어댑터를 만들고 있습니다.",
+    },
+  ],
+  news: [
+    {
+      n: "01",
+      title: "Microsoft · Agent 365에서 MCP 서버까지 관리합니다",
+      body: "Microsoft는 11월 17일 Ignite에서 Agent 365 관리 화면에 MCP 서버를 함께 올리고, 서버를 차단하기 전에 그 서버를 쓰는 에이전트와 플러그인을 먼저 보여 주는 기능을 발표했습니다. 직원 PC의 로컬 에이전트와 MCP 서버를 탐지하는 기능도 미리보기로 공개했습니다.\n\n영향 범위를 먼저 보여 준다는 점은 XGEN MCP 서버 관리의 [사용처]와 같은 접근입니다.",
+      source: "Microsoft Tech Community",
+      readTime: "3min",
+      url: "https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-microsoft-agent-365-ignite-2026/4571753",
+    },
+    {
+      n: "02",
+      title: "GitHub · 저장소 관리를 맡는 에이전트 워크플로 정식 출시",
+      body: "GitHub는 10월 28일 Agentic Workflows를 정식 출시했습니다. 마크다운으로 적은 저장소 관리 작업을 에이전트가 GitHub Actions에서 정기적으로 수행하며, 에이전트는 기본적으로 읽기 권한만 갖고 격리된 환경에서 실행됩니다.\n\n기본은 읽기 전용, 쓰기는 정해진 경로로만 허용하는 방식은 XGEN이 설계 중인 도구 권한과 같은 방향입니다.",
+      source: "GitHub",
+      readTime: "2min",
+      url: "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/",
+    },
+    {
+      n: "03",
+      title: "Google · 출시한 제품을 계속 고치는 에이전트",
+      body: "Google Labs는 11월 18일 Stitch Loop를 공개했습니다. 서비스 지표에 연결된 에이전트가 개선점을 찾아 PR로 올리고 사람의 승인을 받는 과정을 반복합니다. 아직 실험 단계입니다.\n\n사람이 승인하고 기록은 저장소에 남기는 구조는 이번 호의 매뉴얼 업데이터와 같습니다.",
+      source: "Google",
+      readTime: "3min",
+      url: "https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/",
+    },
+  ],
+  reading: [
+    {
+      n: "01",
+      title: "Mintlify · 스스로 갱신되는 문서의 구조",
+      body: "개발 문서 서비스 Mintlify는 10월 30일 자동 문서 갱신 시스템의 구조를 공개했습니다. 하루 한 번 에이전트가 고칠 곳을 찾아 문서 PR을 만들고, 기억은 정해진 형식으로 git에 저장합니다. PR 채택률이 70%에서 90%로 올랐다고 밝혔으며, 자체 측정치입니다.\n\n이번 호의 매뉴얼 업데이터와 거의 같은 구조입니다.",
+      source: "Mintlify",
+      readTime: "7min",
+      url: "https://www.mintlify.com/blog/harness-and-memory-architecture-behind-self-updating-docs",
+    },
+    {
+      n: "02",
+      title: "Anthropic · 에이전트 기억은 무엇으로 이루어지나",
+      body: "Anthropic은 11월 6일 에이전트 기억의 구성 요소를 정리한 글을 공개했습니다. 작업 기록을 쌓아 두기보다, 작업이 없는 시간에 기록을 다시 읽고 노트와 위키로 정리하는 ‘드리밍’ 과정을 제안합니다.\n\n기억은 쌓는 것보다 정리하고 고치는 일이 중요하다는 결론으로, XGEN 기록 메모리가 사람이 기록을 고치고 되돌릴 수 있게 한 것과 같은 이유입니다.",
+      source: "Anthropic",
+      readTime: "13min",
+      url: "https://www.anthropic.com/research/components-of-agent-memory",
+    },
+    {
+      n: "03",
+      title: "Claude Code 팀 · 에이전트에게 검증 수단부터 쥐여 줍니다",
+      body: "Claude Code 팀은 11월 16일 코드 대부분을 Claude가 작성하는 환경에서 결과를 검증하는 방법을 소개했습니다. 에이전트가 스스로 결과를 확인할 수 있도록 테스트를 먼저 갖춰 두고, 같은 검사에 세 번 실패하면 사람을 부르게 하는 방식입니다.\n\n매뉴얼 업데이터가 자동 반영 전에 품질 검사를 거치게 한 것도 같은 원칙입니다.",
+      source: "claude.dev",
+      readTime: "10min",
+      url: "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
+    },
+  ],
+  papers: [
+    {
+      arxiv: "2611.23142",
+      title: "Mind the Gap · 문서 유지보수를 맡은 멀티 에이전트, 실제 운영 기록",
+      authors: "Lorenzo Masoero · Amazon · IAAI-27 채택",
+      body: "A/B 테스트 분석 서비스의 실제 문의 창구에 멀티 에이전트를 붙여, 문의에 답하면서 문서에 빠지거나 틀린 부분을 찾도록 한 연구입니다. 운영에 영향을 주지 않는 섀도 모드로 43일 동안 문의 499건을 처리해 문서의 빈틈 92곳을 찾았고, 답변 속 확인 가능한 주장 302개 중 81.1%가 사실과 맞았습니다.",
+      url: "https://arxiv.org/abs/2611.23142",
+    },
+  ],
+  upcoming: [
+    {
+      title: "플래티어 AI랩스 · 테크노트",
+      subtitle: "회의 녹음 STT와 화자분리를 설계하며 판단이 네 번 바뀌었습니다",
+      href: "/blog/meeting-stt-diarization-design",
+      body: "지난 호에서 소개한 ‘화자별 회의록’ 기능의 설계 과정을 담당 연구원이 정리했습니다. 화자분리 모델을 어디서 돌릴지, 대용량 녹음 파일을 어떻게 올릴지 등의 판단이 어떻게 바뀌었는지 담았습니다. 폐쇄망이나 자체 서버 환경을 검토하는 팀에 참고가 될 글입니다.",
+      figure: {
+        src: "/newsletter/vol-7/technote-stt.jpg",
+        width: 1200,
+        height: 630,
+        caption: "회의 녹음 STT와 화자분리 설계 과정을 정리한 테크노트입니다.",
+      },
+    },
+    {
+      title: "플래티어 AI랩스 유튜브",
+      subtitle: "말로 하는 앱 개발 · DexOn으로 코딩하기 (1분 53초)",
+      body: "DexOn에 만들고 싶은 앱을 음성으로 설명하자, AI Agent가 개발 계획 수립부터 백엔드와 화면 구현, 실행 및 수정까지 수행해 ‘실시간 주문 관제’ 앱을 완성했습니다.\n\n단 한 번의 요청으로 앱을 완성하기까지 걸린 시간은 8분 39초였습니다.",
+      figure: {
+        src: "/newsletter/vol-7/dexon-video.jpg",
+        width: 1024,
+        height: 576,
+        caption: "DexOn으로 ‘실시간 주문 관제’ 앱을 만드는 영상입니다.",
+      },
+      link: {
+        label: "영상 보기",
+        url: "https://www.youtube.com/watch?v=0ql6M_P9qRw",
+      },
+    },
+    {
+      title: "지난 뉴스레터 보러가기",
+      href: "/newsletter",
+      body: "지난 뉴스레터는 플래티어 AI랩스 아카이브에서 확인할 수 있습니다.",
+    },
+  ],
+};
 
 const vol6: Issue = {
   slug: "vol-6",
@@ -1467,14 +1715,19 @@ export function localizeIssue(issue: Issue, locale: Locale): Issue {
     if (locale !== "en") return issue;
     const en = NEWSLETTER_EN[issue.slug];
     if (!en) return issue;
+    const captions = (figs: Figure[] | undefined, over: string[] | undefined) =>
+        figs && over ? figs.map((f, i) => ({ ...f, caption: over[i] ?? f.caption })) : figs;
     const zip = <
-        T extends { body: string; figure?: Figure },
+        T extends { body: string; figure?: Figure; figures?: Figure[] },
         U extends {
             title?: string;
             subtitle?: string;
             stage?: string;
             body: string;
             figure?: string;
+            figures?: string[];
+            authors?: string;
+            linkLabel?: string;
         },
     >(
         base: T[],
@@ -1483,6 +1736,7 @@ export function localizeIssue(issue: Issue, locale: Locale): Issue {
         base.map((item, i) => {
             const o = over[i];
             if (!o) return item;
+            const link = (item as { link?: { label: string; url: string } }).link;
             return {
                 ...item,
                 ...(o.title ? { title: o.title } : {}),
@@ -1492,11 +1746,14 @@ export function localizeIssue(issue: Issue, locale: Locale): Issue {
                 ...(item.figure && o.figure
                     ? { figure: { ...item.figure, caption: o.figure } }
                     : {}),
+                ...(item.figures && o.figures
+                    ? { figures: captions(item.figures, o.figures) }
+                    : {}),
+                ...(o.authors ? { authors: o.authors } : {}),
+                ...(link && o.linkLabel ? { link: { ...link, label: o.linkLabel } } : {}),
                 body: o.body,
             } as T;
         });
-    const captions = (figs: Figure[] | undefined, over: string[] | undefined) =>
-        figs && over ? figs.map((f, i) => ({ ...f, caption: over[i] ?? f.caption })) : figs;
     return {
         ...issue,
         title: issue.titleEn ?? issue.title,
@@ -1510,6 +1767,7 @@ export function localizeIssue(issue: Issue, locale: Locale): Issue {
                 ? {
                       items: issue.stats.items.map((s, i) => ({
                           ...s,
+                          value: en.stats?.values?.[i] ?? s.value,
                           label: en.stats?.items[i] ?? s.label,
                       })),
                       note: en.stats.note ?? issue.stats.note,
@@ -1544,7 +1802,7 @@ export function getIssueFor(slug: string, locale: Locale): Issue | undefined {
 }
 
 /** 최신호가 앞. 새 호는 이 배열 맨 앞에 추가한다. */
-export const ISSUES: Issue[] = [vol6, vol5, vol4, vol3, vol2, vol1];
+export const ISSUES: Issue[] = [vol7, vol6, vol5, vol4, vol3, vol2, vol1];
 
 export function getIssues(): Issue[] {
     return [...ISSUES].sort((a, b) => (a.date < b.date ? 1 : -1));

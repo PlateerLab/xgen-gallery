@@ -26,6 +26,8 @@ const BADGE_STYLE: Record<Badge, string> = {
     개발중: "bg-[#2f7bff]/12 text-[#2461d8]",
     연구중: "bg-[#7c5cff]/12 text-[#6a44e0]",
     준비중: "bg-[var(--color-surface-alt)] text-[var(--color-ink-subtle)]",
+    검증중: "bg-[#10b981]/12 text-[#047857]",
+    설계중: "bg-[#0ea5e9]/12 text-[#0369a1]",
 };
 
 function BadgeChip({ badge, en }: { badge: Badge; en: boolean }) {

@@ -19,6 +19,8 @@ export const BADGE_EN: Record<Badge, string> = {
     개발중: "In development",
     연구중: "Research",
     준비중: "Coming",
+    검증중: "In validation",
+    설계중: "In design",
 };
 
 /**
@@ -32,6 +34,12 @@ interface ItemEn {
     stage?: string;
     body: string;
     figure?: string;
+    /** 기능 아래 화면 캡처(figures) 캡션 — 한국어 figures 와 인덱스로 대응한다. */
+    figures?: string[];
+    /** 논문 저자 줄에 한국어가 섞인 호만 옮긴다. */
+    authors?: string;
+    /** 항목 아래 외부 링크 라벨 — 한국어 라벨인 호만 옮긴다. */
+    linkLabel?: string;
 }
 
 interface IssueEn {
@@ -41,7 +49,13 @@ interface IssueEn {
     releases: ItemEn[];
     also?: string[];
     /** items 는 숫자 아래 라벨만 — 숫자 자체는 로케일과 무관하다. */
-    stats?: { items: string[]; note?: string; linkLabel?: string };
+    stats?: {
+        items: string[];
+        /** 숫자 대신 글자가 든 값(「90일」 등)만 옮긴다. 없으면 한국어 값을 그대로 쓴다. */
+        values?: string[];
+        note?: string;
+        linkLabel?: string;
+    };
     /** 「이번 호의 한 장면」 캡션 — 한국어 figures 와 인덱스로 대응한다. */
     figures?: string[];
     inProgress: ItemEn[];
@@ -52,6 +66,161 @@ interface IssueEn {
 }
 
 export const NEWSLETTER_EN: Record<string, IssueEn> = {
+    "vol-7": {
+        summary:
+            "XGEN's November update for managing a growing number of AI agents and the tools they connect to.",
+        intro: [
+            "As more work runs through AI agents, managing those agents and the tools they connect to matters more. This issue covers XGEN's November update for that job.",
+            "For an AI agent to move beyond answering questions and actually do work, it has to connect to tools such as mail, documents, and internal systems. MCP (Model Context Protocol) is the standard protocol for that connection. The more agents and tools are connected, the more an operator has to keep track of: which agent uses which tool, who uses how much, and what work stops if a given server is taken down. Microsoft also added MCP server management to its agent management product at Ignite on November 17.",
+            "In the November update, XGEN rebuilt MCP management as two screens, [MCP Server Management] and [MCP Catalog Management]. Every MCP call is logged in one place, so usage and errors can be reviewed, and each user can connect to the same MCP server with their own account. This went to the validation environment on November 18 and is planned for the next production release.",
+            "Before that, the November 12 production release included the features introduced in the validation environment in October, along with the three security fixes listed as open items in the last issue. This issue also covers record memory, which lets users see and correct what an agent remembers, and the manual updater, which refreshes the manual when a screen changes.",
+        ],
+        sections: {
+            releasesTitle: "XGEN in November",
+            releasesDesc:
+                "main marks the November 12 production release, stage marks features in the validation environment as of November 18, and dev marks features running in the development environment.",
+            statsTitle: "MCP server management in numbers",
+            figuresTitle: "Internal services built on XGEN",
+            figuresDesc:
+                "Heyple is Plateer's internal AI assistant, built by connecting XGEN agents to Teams. It moved to production on November 4. Voice Note turns a meeting recording or an uploaded audio file into a transcript and AI notes, which can be saved as a Word file to OneDrive or SharePoint or sent as a mail draft.",
+            progressDesc:
+                "Work we are refining through development and experiments. If a topic interests you, tell us any time.",
+            papersDesc: "November research on the same problem as this issue's manual updater.",
+            upcomingTitle: "November content and XGEN channels",
+            upcomingDesc: "Content that may help when using or evaluating XGEN.",
+        },
+        releases: [
+            {
+                title: "MCP server management · See who uses which tool, from which agent, and how often",
+                body: "Call log and dashboard. MCP calls that pass through the XGEN server are logged at a single point. Each call records the user, agent, tool, success or failure, and where it was called from, and the log can be searched or exported to Excel for 90 days. The dashboard shows call volume, error rate, response time, and the most-used tools and agents.\n\nArguments passed to tools, their results, and personal variable values are not stored. If writing the log fails, the call still goes through.\n\nUsage check. Before changing or taking down a server, [Usage] shows which agents use it and their deployment status.\n\nShared and personal variables. Values everyone shares go into shared variables; values that differ per person (for example, each person's Google account) go into personal variables. The same server can then run under each user's own account without changing the MCP server code.\n\nMCP catalog. MCP servers installed on a user's PC are handled by the DexOn desktop app. Once an administrator defines the install method in the catalog, users only enter their variables. Fourteen entries, including GitHub, Notion, and Jira·Confluence, ship by default with pinned versions.\n\nThis is in the validation environment (stage) and is planned for the next production release.",
+                figures: [
+                    "[MCP Catalog Management] The 14 default MCP entries and install status per entry. (Development environment)",
+                ],
+            },
+            {
+                title: "Security follow-up · Last issue's three open items are now in production",
+                body: "The three items we described as in progress after the ARTEX review are included in the November 12 production release.\n\nGuest account abuse. Guest sign-ups and daily token usage now have limits.\n\nCalls only from allowed origins. The CORS setting that allowed every origin now uses an allow list.\n\nRefresh token reuse detection. A refresh token that has already been used is detected if it comes back. It is off by default and can be turned on to suit the customer environment.\n\nRe-verification after these fixes continues, and we will share the results in the next issue.",
+            },
+            {
+                title: "Raw logs · Stored encrypted, opened only with a stated reason",
+                body: "Raw logs for each service are encrypted and kept for 30 days. Viewing or downloading them requires a reason, and the reason and access are recorded in [Access History]. When investigating an outage or security incident, you can see who opened the raw logs and why. Downloaded files cannot be tracked after download, so we recommend granting download rights only to administrators who need them.",
+                figures: [
+                    "[Raw Logs] Daily encrypted files per service. (Development environment)",
+                ],
+            },
+            {
+                title: "Agent resource management · A storage limit for each agent",
+                body: "Workspace and sandbox disk usage is shown per agent, with limits applied. The sandbox defaults to 20 GiB with a maximum of 60 GiB; more than that is requested through approval. Administrators can see agents close to their limit and long-unused space on one screen.",
+            },
+            {
+                title: "Record memory · See and correct what an agent remembers",
+                body: "What an agent learns in conversation is recorded as rules, facts, states, decisions, and procedures. Users can view and edit these records in the [Memory] tab, and each edit keeps a version so the previous state can be restored. We built this on the view that work can only be handed to an agent if people can check what it remembers.",
+            },
+            {
+                title: "Sub-agents · Use an agent you built inside another agent",
+                body: "Agent Geny can create agents under the user's account and call existing agents as sub-agents. For example, you can set up a parent agent that calls a 'research' agent and then a 'report writing' agent in order. Geny can create up to 20 agents per user per day.",
+            },
+            {
+                title: "Manual updater · When a screen changes, the manual follows",
+                body: "Each of XGEN's 85 screens has a 'screen contract' file listing its buttons, input fields, and display conditions. Since November 17, the manual updater checks changed contracts daily, re-captures the screens in affected chapters, and rewrites only the sentences that need to change. Names and contact details in captures are masked before they are applied. From November 16 to 19 it revised 38 chapters and took 438 new images; it is currently applied to the development environment manual.",
+                figures: [
+                    "A manual chapter with screens captured by the updater. Personal information is masked with grey bars. (Development environment)",
+                ],
+            },
+        ],
+        also: [
+            "New · [Queue] during a run — Messages sent while an agent is answering can be applied right away with [Add now] or put in the [Queue] to be handled in order after the answer. (stage)",
+            "Improved · Voice activity detection — Silero VAD picks out only the stretches with speech for transcription, reducing misrecognition in silent parts of long recordings. (stage)",
+            "Improved · Evaluation forms — Response quality evaluation forms are built by dragging data fields and formulas, with a preview before approval. (stage)",
+            "New · Sample data for trial zones — New trial zones come with a fictional company's documents, 6 API tools, and 5 agents, ready to try. (main)",
+            "New · LLM key per workflow — Each workflow can use its own LLM API key, laying the groundwork for splitting costs by workflow. Off by default. (main)",
+        ],
+        stats: {
+            values: ["90 days", "Per user", "14"],
+            items: [
+                "MCP call log retention",
+                "Runs with personal variables",
+                "Default MCP catalog entries",
+            ],
+            note: "MCP server management is in the validation environment (stage) as of November 18 and is planned for the next production release.",
+            linkLabel: "See all release notes",
+        },
+        figures: [
+            "The Heyple app opened inside Teams, answering a question based on company policy. Names are masked.",
+        ],
+        inProgress: [
+            {
+                title: "DevStudio · Deploy and run apps built through conversation",
+                body: "This deploys and runs apps built through conversation on the XGEN server. In November we added HTTPS certificates, blue-green deployment, and automatic rollback to the previous version if a new version stops within 30 seconds. Deployment goes through approval first.",
+            },
+            {
+                title: "Geny · Quality validation before general availability",
+                body: "Geny's main features are deployed to production and are being validated for quality in real use. Once validation is complete, we plan to enable it in production.",
+            },
+            {
+                title: "Tool permissions · Splitting available tools by role",
+                body: "This splits the tools an agent can use according to the user's role. The design principles are that company databases are reached only through designated nodes, and code running in the sandbox has no network access.",
+            },
+            {
+                title: "Ontlas · Industry ontology adapters",
+                body: "Ontology research that maps business data to standard concepts for each industry. For finance, we are building an adapter based on FIBO, the standard financial ontology.",
+            },
+        ],
+        news: [
+            {
+                title: "Microsoft · Agent 365 now manages MCP servers too",
+                body: "At Ignite on November 17, Microsoft announced that MCP servers now appear in the Agent 365 admin view, and that before a server is blocked, the agents and plugins that use it are shown first. Detection of local agents and MCP servers on employee PCs was also released in preview.\n\nShowing the impact first is the same approach as [Usage] in XGEN's MCP server management.",
+            },
+            {
+                title: "GitHub · Agentic workflows for repository upkeep are generally available",
+                body: "GitHub made Agentic Workflows generally available on October 28. Agents run repository maintenance tasks written in Markdown on a schedule in GitHub Actions; by default they have read-only access and run in an isolated environment.\n\nRead-only by default, with writes allowed only through set paths, is the same direction as the tool permissions XGEN is designing.",
+            },
+            {
+                title: "Google · An agent that keeps improving a shipped product",
+                body: "Google Labs released Stitch Loop on November 18. An agent connected to service metrics finds improvements, opens PRs, and gets human approval, in a repeating cycle. It is still experimental.\n\nHuman approval with records kept in the repository is the same structure as this issue's manual updater.",
+            },
+        ],
+        reading: [
+            {
+                title: "Mintlify · How self-updating docs are built",
+                body: "On October 30, the developer docs service Mintlify published the architecture of its automatic doc updates. Once a day an agent finds what needs fixing and opens a docs PR, and memory is stored in git in a fixed format. Mintlify says its PR acceptance rate rose from 70% to 90%, by its own measurement.\n\nThis is almost the same structure as this issue's manual updater.",
+            },
+            {
+                title: "Anthropic · What agent memory is made of",
+                body: "On November 6, Anthropic published a piece on the components of agent memory. Rather than piling up work logs, it proposes 'dreaming': rereading the logs during idle time and organizing them into notes and wikis.\n\nThe conclusion is that organizing and correcting memory matters more than accumulating it, which is the same reason XGEN record memory lets people edit and roll back records.",
+            },
+            {
+                title: "The Claude Code team · Give the agent a way to verify first",
+                body: "On November 16, the Claude Code team described how they verify results in an environment where Claude writes most of the code. They set up tests first so the agent can check its own results, and have it call a person after failing the same check three times.\n\nThe manual updater runs quality checks before anything is applied automatically for the same reason.",
+            },
+        ],
+        papers: [
+            {
+                title: "Mind the Gap · A multi-agent system for documentation upkeep, from real operation",
+                authors: "Lorenzo Masoero · Amazon · Accepted at IAAI-27",
+                body: "This study attached a multi-agent system to the real support channel of an A/B test analysis service, answering questions while finding missing or incorrect parts of the documentation. Running in shadow mode with no effect on operations, it handled 499 questions over 43 days and found 92 gaps in the documentation; of 302 verifiable claims in its answers, 81.1% were factually correct.",
+            },
+        ],
+        upcoming: [
+            {
+                title: "Plateer AI Labs · Tech notes",
+                subtitle: "Our decisions changed four times while designing meeting STT and speaker diarization",
+                body: "The researcher behind last issue's 'meeting notes by speaker' feature wrote up the design process: where to run the diarization model, how to upload large recordings, and how those decisions changed. It may help teams evaluating air-gapped or self-hosted environments.",
+                figure: "A tech note on designing meeting STT and speaker diarization.",
+            },
+            {
+                title: "Plateer AI Labs on YouTube",
+                subtitle: "Building an app by voice · Coding with DexOn (1:53)",
+                body: "After the app was described to DexOn by voice, an AI agent planned the work, built the backend and screens, ran and fixed it, and completed a 'real-time order monitoring' app.\n\nFrom a single request to a finished app took 8 minutes 39 seconds.",
+                figure: "A video of building a 'real-time order monitoring' app with DexOn.",
+                linkLabel: "Watch the video",
+            },
+            {
+                title: "Past issues",
+                body: "Past issues are available in the Plateer AI Labs archive.",
+            },
+        ],
+    },
     "vol-1": {
         summary:
             "A Claude Code backend, Google Search going all-in on AI, and context rot — the fortnight in review",
