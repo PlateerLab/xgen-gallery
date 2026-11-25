@@ -90,6 +90,13 @@ const COPY = {
             ["흩어진 프로젝트가 아닌 자산", "Agent·지식·도구를 공유해 다음 업무에서 다시 씁니다."],
             ["고정된 결과가 아닌 개선", "실행 기록과 평가를 바탕으로 작업 방식을 고쳐 나갑니다."],
         ],
+        diffBeforeLabel: "기존 방식",
+        diffAfterLabel: "XGEN",
+        diffBefore: [
+            "PoC를 마치면 운영 단계로 이어지지 못하고 멈춥니다.",
+            "업무마다 따로 만든 프로젝트가 흩어져 다시 쓰기 어렵습니다.",
+            "한 번 만든 결과가 그대로 고정되어 업무 변화를 따라가지 못합니다.",
+        ],
         evoEyebrow: "AX Evolution Model",
         evoTitle: "한 번 구축하면, 계속되는 진화",
         evoLeadA: "기업 AI는 ",
@@ -142,6 +149,13 @@ const COPY = {
             ["Operation, not just a build", "Deployment, monitoring and improvement continue on the same platform after the PoC."],
             ["Assets, not scattered projects", "Agents, knowledge and tools are shared and reused in the next workload."],
             ["Improvement, not fixed output", "Execution records and evaluations are used to refine how work gets done."],
+        ],
+        diffBeforeLabel: "Typical approach",
+        diffAfterLabel: "XGEN",
+        diffBefore: [
+            "Work stops after the PoC instead of moving into operation.",
+            "Projects built separately for each task stay scattered and hard to reuse.",
+            "What was built once stays fixed and falls behind as work changes.",
         ],
         evoEyebrow: "AX Evolution Model",
         evoTitle: "Build once, keep evolving",
@@ -273,30 +287,72 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const words = t.diffStatement.split(" ");
     return (
         <section id="why" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            {/*
+              배치 — 비아이매트릭스 TRINITY 「Paradigm Shift」: 가운데 머리 → BEFORE | → | AFTER 좌우 비교.
+              1024px 미만은 한 열(BEFORE 위, AFTER 아래, 화살표는 아래 방향).
+            */}
             <div className="mx-auto max-w-7xl px-6 py-20 lg:py-[120px]">
-                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">{t.diffEyebrow}</p>
-                <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
-                <p ref={ref} className="mt-6 max-w-5xl text-[28px] font-bold leading-[1.35] tracking-tight text-[var(--color-ink)] md:text-[42px]">
-                    {words.map((w, i) => (
-                        <span key={i}>
-                            <span
-                                className={`why-word${v ? " why-word-in" : ""}`}
-                                style={{ transitionDelay: v ? `${i * 55}ms` : "0ms" }}
-                            >
-                                {w}
+                <div className="text-center">
+                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">{t.diffEyebrow}</p>
+                    <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
+                    <p ref={ref} className="mx-auto mt-5 max-w-4xl text-[26px] font-bold leading-[1.38] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[38px]">
+                        {words.map((w, i) => (
+                            <span key={i}>
+                                <span
+                                    className={`why-word${v ? " why-word-in" : ""}`}
+                                    style={{ transitionDelay: v ? `${i * 55}ms` : "0ms" }}
+                                >
+                                    {w}
+                                </span>
+                                {i < words.length - 1 ? " " : ""}
                             </span>
-                            {i < words.length - 1 ? " " : ""}
+                        ))}
+                    </p>
+                </div>
+                <div className="mt-12 grid items-stretch gap-4 lg:mt-16 lg:grid-cols-[1fr_44px_1fr] lg:gap-6">
+                    {/* BEFORE */}
+                    <Reveal className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 lg:p-8">
+                        <div className="flex items-center gap-3 border-b border-[var(--color-line)] pb-4">
+                            <span className="rounded-full border border-[var(--color-line)] bg-white px-3 py-1 font-mono text-[12px] font-bold tracking-wider text-[var(--color-ink-subtle)]">
+                                BEFORE
+                            </span>
+                            <span className="text-[17px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffBeforeLabel}</span>
+                        </div>
+                        <ul className="mt-2 flex flex-1 flex-col">
+                            {t.diffBefore.map((b, i) => (
+                                <li key={b} className="flex flex-1 items-start gap-3 border-b border-dashed border-[var(--color-line)] py-5 last:border-b-0">
+                                    <span className="mt-0.5 font-mono text-[13px] font-bold text-[var(--color-ink-subtle)]">0{i + 1}</span>
+                                    <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{b}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </Reveal>
+                    {/* 전환 화살표 */}
+                    <div aria-hidden className="flex items-center justify-center">
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[#2f7bff] shadow-[0_6px_18px_-10px_rgba(20,40,80,0.35)]">
+                            <ArrowRight className="h-5 w-5 rotate-90 lg:rotate-0" />
                         </span>
-                    ))}
-                </p>
-                <div className="mt-14 grid gap-px overflow-hidden border-y border-[var(--color-line)] md:grid-cols-3">
-                    {t.diffPoints.map(([h, d], i) => (
-                        <Reveal key={h} delay={i * 120} className="py-7 md:pr-8">
-                            <span className="block font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                            <h3 className="mt-2 text-[19px] font-bold tracking-tight text-[var(--color-ink)]">{h}</h3>
-                            <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">{d}</p>
-                        </Reveal>
-                    ))}
+                    </div>
+                    {/* AFTER */}
+                    <Reveal delay={120} className="flex flex-col rounded-2xl border border-[#bcd0f5] bg-white p-6 shadow-[0_18px_44px_-24px_rgba(36,97,216,0.35)] lg:p-8">
+                        <div className="flex items-center gap-3 border-b border-[#dbe6fb] pb-4">
+                            <span className="rounded-full bg-[#2f7bff]/10 px-3 py-1 font-mono text-[12px] font-bold tracking-wider text-[#2461d8]">
+                                AFTER
+                            </span>
+                            <span className="text-[17px] font-bold tracking-tight text-[#2461d8]">{t.diffAfterLabel}</span>
+                        </div>
+                        <ul className="mt-2 flex flex-1 flex-col">
+                            {t.diffPoints.map(([h, d], i) => (
+                                <li key={h} className="flex flex-1 items-start gap-3 border-b border-dashed border-[#dbe6fb] py-5 last:border-b-0">
+                                    <span className="mt-0.5 font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                                    <div>
+                                        <h3 className="text-[17px] font-bold tracking-tight text-[var(--color-ink)]">{h}</h3>
+                                        <p className="mt-1 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{d}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </Reveal>
                 </div>
             </div>
         </section>

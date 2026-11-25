@@ -44,23 +44,36 @@ export function XgenHowItWorks({ locale }: { locale: Locale }) {
                             : "사내 데이터와 시스템을 연결하고 Agent를 설계해 배포한 뒤, 권한·감사 체계 안에서 운영하며 실행 기록을 바탕으로 개선합니다."
                     }
                 />
-                <ol className={`${SECTION_BODY_GAP} grid gap-3 lg:grid-cols-5 lg:gap-4`}>
+                {/*
+                  배치 — TRINITY 「Process」: 번호 → 원형 노드를 가로선으로 잇고 아래에 단계명·설명,
+                  그 아래 실제 제품 화면(브라우저 프레임). 1024px 미만은 세로선으로 잇는 목록.
+                */}
+                <ol className={`${SECTION_BODY_GAP} relative grid gap-0 lg:grid-cols-5 lg:gap-6`}>
+                    {/* 가로 연결선 — 첫 노드 중심 ~ 마지막 노드 중심 */}
+                    <span
+                        aria-hidden
+                        className="pointer-events-none absolute left-[10%] right-[10%] top-[58px] hidden h-px bg-[linear-gradient(90deg,#9cbcf5,#2f7bff)] lg:block"
+                    />
                     {steps.map((s, i) => {
                         const Icon = ICONS[i];
+                        const last = i === steps.length - 1;
                         return (
-                            <li
-                                key={s.t}
-                                className="relative flex gap-4 rounded-2xl border border-[var(--color-line)] bg-white p-5 lg:flex-col lg:gap-0 lg:p-6"
-                            >
-                                <div className="flex flex-none items-center gap-3 lg:justify-between">
-                                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                        <Icon className="h-5 w-5" aria-hidden />
-                                    </span>
-                                    <span className="hidden font-mono text-[13px] font-bold text-[#2f7bff] lg:inline">
-                                        0{i + 1}
-                                    </span>
-                                </div>
-                                <div className="min-w-0 lg:mt-5">
+                            <li key={s.t} className="relative flex gap-4 pb-8 last:pb-0 lg:flex-col lg:items-center lg:gap-0 lg:pb-0 lg:text-center">
+                                {/* 세로 연결선 — 한 열일 때만 */}
+                                {!last && (
+                                    <span aria-hidden className="absolute left-[27px] top-[56px] bottom-0 w-px bg-[#c9d9f7] lg:hidden" />
+                                )}
+                                <span className="hidden font-mono text-[12.5px] font-bold text-[#2f7bff] lg:block">0{i + 1}</span>
+                                <span
+                                    className={`relative z-10 inline-flex h-14 w-14 flex-none items-center justify-center rounded-full border bg-white lg:mt-3 ${
+                                        last
+                                            ? "border-[#2f7bff] text-[#2461d8] shadow-[0_0_0_6px_rgba(47,123,255,0.12)]"
+                                            : "border-[#bcd0f5] text-[#2f7bff]"
+                                    }`}
+                                >
+                                    <Icon className="h-[22px] w-[22px]" aria-hidden />
+                                </span>
+                                <div className="min-w-0 pt-1 lg:mt-4 lg:pt-0">
                                     <h3 className="text-[18px] font-bold tracking-tight text-[var(--color-ink)]">
                                         <span className="mr-1.5 font-mono text-[13px] text-[#2f7bff] lg:hidden">0{i + 1}</span>
                                         {s.t}
@@ -69,19 +82,38 @@ export function XgenHowItWorks({ locale }: { locale: Locale }) {
                                         {s.d}
                                     </p>
                                 </div>
-                                {/* 단계 사이 화살표 — 5열일 때만 */}
-                                {i < steps.length - 1 && (
-                                    <span
-                                        aria-hidden
-                                        className="absolute -right-[13px] top-1/2 z-10 hidden h-[22px] w-[22px] -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[12px] text-[#2f7bff] lg:flex"
-                                    >
-                                        →
-                                    </span>
-                                )}
                             </li>
                         );
                     })}
                 </ol>
+
+                {/* 실제 제품 화면 — 흐름의 「설계」 단계가 일어나는 Agentflow Canvas */}
+                <figure className="mt-14 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)] lg:mt-16">
+                    <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5">
+                        <span aria-hidden className="flex gap-1.5">
+                            <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                            <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                            <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                        </span>
+                        <span className="min-w-0 flex-1 truncate rounded-md border border-[var(--color-line)] bg-white px-3 py-1 text-[12px] text-[var(--color-ink-subtle)]">
+                            XGEN · Agentflow Canvas
+                        </span>
+                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/product/agent-builder-canvas.png"
+                        alt={en ? "XGEN Agentflow Canvas screen" : "XGEN 에이전트플로우 캔버스 화면"}
+                        width={1600}
+                        height={900}
+                        loading="lazy"
+                        className="block h-auto w-full"
+                    />
+                    <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                        {en
+                            ? "Agentflow Canvas — model, knowledge and tool nodes linked into one agent. Screens vary by version and configuration."
+                            : "에이전트플로우 Canvas — 모델·지식·도구 노드를 엮어 하나의 Agent로 만듭니다. 화면은 버전과 구성에 따라 다를 수 있습니다."}
+                    </figcaption>
+                </figure>
             </div>
         </section>
     );

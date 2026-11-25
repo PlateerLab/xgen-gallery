@@ -42,13 +42,14 @@ import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } 
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
 import { XgenHowItWorks } from "@/components/product-xgen/how-it-works";
+import { CaseScenarios } from "@/components/product-xgen/case-scenarios";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { SITE, absoluteUrl } from "@/lib/site";
-import { getAllCases, PRODUCTS, INDUSTRIES } from "@/lib/customers";
+import { getAllCases, INDUSTRIES, CASE_STATUS_EN } from "@/lib/customers";
 import { localeHref } from "@/lib/locale-path";
 import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
@@ -770,9 +771,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
                     <WhyXgenDifference locale={locale} />
 
-                    {/* How It Works — 연결→설계→배포→통제→개선 한 흐름(무엇을 하는 플랫폼인지 한눈에) */}
-                    <XgenHowItWorks locale={locale} />
-
                     {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
                     <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
                         <div
@@ -817,6 +815,9 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
+
+                    {/* How It Works — 연결→설계→배포→통제→개선 흐름 + 실제 제품 화면(TRINITY Process 배치) */}
+                    <XgenHowItWorks locale={locale} />
 
                     {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                     <section
@@ -959,40 +960,30 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                                 title={en ? E.casesTitle : "고객 현장에서 검증됩니다"}
                                 lead={en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
                             />
-                            <div className={`${SECTION_BODY_GAP} grid gap-5 lg:grid-cols-3`}>
-                                {recentCases.map((c) => (
-                                    <Link
-                                        key={c.slug}
-                                        href={localeHref(locale, `/customers/case/${c.slug}`)}
-                                        className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-6 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                    >
-                                        <div className="flex items-center gap-2 text-[12.5px]">
-                                            <span className="rounded-full bg-[#2f7bff]/10 px-2.5 py-0.5 font-semibold text-[#2461d8]">
-                                                {PRODUCTS[c.products[0]].name}
-                                            </span>
-                                            <span className="text-[var(--color-ink-subtle)]">
-                                                {en
-                                                    ? INDUSTRIES[c.industry].en
-                                                    : INDUSTRIES[c.industry].ko}
-                                            </span>
-                                            <time
-                                                dateTime={c.published}
-                                                className="ml-auto text-[var(--color-ink-subtle)]"
-                                            >
-                                                {c.published.slice(0, 7).replace("-", ".")}
-                                            </time>
-                                        </div>
-                                        <h3 className="mt-3 line-clamp-2 text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] transition group-hover:text-[#2461d8]">
-                                            {(en && c.titleEn) || c.title}
-                                        </h3>
-                                        <p className="mt-2 line-clamp-2 flex-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {(en && c.summaryEn) || c.summary}
-                                        </p>
-                                        <p className="mt-4 border-t border-[var(--color-line)] pt-3 text-[13.5px] font-semibold text-[var(--color-ink)]">
-                                            {(en && c.customerEn) || c.customer}
-                                        </p>
-                                    </Link>
-                                ))}
+                            {/* TRINITY Scenarios 배치 — 고객사 탭 → 과제·적용·제공 범위 패널 */}
+                            <div className={SECTION_BODY_GAP}>
+                                <CaseScenarios
+                                    labels={{
+                                        tablist: en ? "XGEN customer cases" : "XGEN 고객사례",
+                                        challenge: en ? "Challenge" : "과제",
+                                        solution: en ? "How XGEN was applied" : "XGEN 적용",
+                                        scope: en ? "Scope delivered" : "제공 범위",
+                                        more: en ? "Read the case" : "사례 자세히 보기",
+                                    }}
+                                    items={recentCases.map((c) => ({
+                                        slug: c.slug,
+                                        href: localeHref(locale, `/customers/case/${c.slug}`),
+                                        tab: (en && c.customerEn) || c.customer,
+                                        meta: [
+                                            en ? INDUSTRIES[c.industry].en : INDUSTRIES[c.industry].ko,
+                                            en ? CASE_STATUS_EN[c.status] : c.status,
+                                        ].join(" · "),
+                                        title: (en && c.titleEn) || c.title,
+                                        challenge: (en && c.challengeEn) || c.challenge,
+                                        solution: (en && c.solutionEn) || c.solution,
+                                        highlights: (en && c.highlightsEn) || c.highlights,
+                                    }))}
+                                />
                             </div>
                             <div className="mt-8 flex justify-end">
                                 <Link
