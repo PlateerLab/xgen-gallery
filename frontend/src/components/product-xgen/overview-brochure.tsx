@@ -468,9 +468,6 @@ export function XgenParadigm({ locale }: { locale: Locale }) {
                         </ul>
                     </div>
                 </div>
-                <p className="mt-8 text-center text-[12.5px] text-[var(--color-ink-subtle)]">
-                    {en ? "※ Screen contents are illustrative." : "※ 화면 속 내용은 예시입니다."}
-                </p>
             </div>
         </section>
     );
@@ -737,9 +734,6 @@ function OrchestrationMock({ en }: { en: boolean }) {
                         : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
-                {en ? "Illustrative example." : "※ 화면 속 내용은 예시입니다."}
-            </figcaption>
         </BrowserFrame>
     );
 }
@@ -791,7 +785,7 @@ function EvolveMock({ en }: { en: boolean }) {
                 </div>
             </div>
             <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
-                {en ? "Illustrative example. Scope depends on version and configuration." : "※ 화면 속 내용은 예시입니다. 적용 범위는 버전과 구성에 따라 다릅니다."}
+                {en ? "Scope depends on version and configuration." : "적용 범위는 버전과 구성에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
     );
@@ -887,7 +881,7 @@ function GovernanceMock({ en }: { en: boolean }) {
                 </div>
             </div>
             <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
-                {en ? "Illustrative example. Grades and controls are configured per organization." : "※ 화면 속 내용은 예시입니다. 등급과 통제 항목은 기관별 설정에 따라 다릅니다."}
+                {en ? "Grades and controls are configured per organization." : "등급과 통제 항목은 기관별 설정에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
     );
