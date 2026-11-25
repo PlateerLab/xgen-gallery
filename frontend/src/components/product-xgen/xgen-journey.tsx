@@ -236,13 +236,13 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                     </div>
                 )}
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">
-                    {overview ? (en ? "Explore by topic" : "주제별로 보기") : en ? "Keep exploring" : "이어서 보기"}
+                    {overview ? (en ? "Adoption Guide" : "도입 가이드") : en ? "Keep exploring" : "이어서 보기"}
                 </p>
                 <h2 className="mt-3 max-w-3xl text-[28px] font-bold leading-[1.3] tracking-tight text-[var(--color-ink)] md:text-[40px]">
                     {overview
                         ? en
-                            ? "Find the details your review needs"
-                            : "검토에 필요한 내용을 주제별로 확인하세요"
+                            ? "What you need to evaluate XGEN, in one place"
+                            : "XGEN 도입에 필요한 정보를 한곳에서"
                         : en
                           ? "Other topics on XGEN"
                           : "XGEN의 다른 주제"}
@@ -250,8 +250,8 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                 {overview && (
                     <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)] md:text-[17px]">
                         {en
-                            ? "Each page gathers what one role or review stage usually asks about, with links to detailed pages and documents."
-                            : "역할과 검토 단계마다 주로 묻는 내용을 한 페이지에 모았고, 각 페이지에서 상세 페이지와 문서로 이어집니다."}
+                            ? "From key features to technical architecture, security and operating environments. Review the information your AI adoption assessment needs, organized by topic."
+                            : "제품의 주요 기능부터 기술 구성, 보안, 운영 환경까지. 기업의 AI 도입 검토에 필요한 정보를 주제별로 확인할 수 있습니다."}
                     </p>
                 )}
                 {/* 세로형 목록 — 한 줄에 하나씩 쌓는다. 넓은 화면은 썸네일 왼쪽·글 오른쪽, 620px 이하는 썸네일 위·글 아래. */}
