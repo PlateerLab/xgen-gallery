@@ -108,11 +108,11 @@ export const XGEN_VIEWS: {
 ];
 
 /**
- * 썸네일 출처 — Unsplash License(무료·상업 이용 가능·출처 표기 의무 없음). 960×540 크롭으로 받아 public/product/journey 에 둠.
- * features   https://unsplash.com/photos/yd_RKGH_RH4
- * security   https://unsplash.com/photos/yhJVLxcquEY
- * technology https://unsplash.com/photos/Im_cQ6hQo10
- * adoption   https://unsplash.com/photos/jEpZNyFSQwQ
+ * 썸네일 출처 — Adobe Stock 무료 컬렉션(표준 라이선스, x2bee_ds 계정으로 라이선스). 960x540 크롭으로 public/product/journey 에 둠.
+ * features   https://stock.adobe.com/images/id/1253834112
+ * security   https://stock.adobe.com/images/id/588640139
+ * technology https://stock.adobe.com/images/id/831527108
+ * adoption   https://stock.adobe.com/images/id/166766942
  */
 const t = (locale: Locale, x: Txt) => (locale === "en" ? x.en : x.ko);
 
