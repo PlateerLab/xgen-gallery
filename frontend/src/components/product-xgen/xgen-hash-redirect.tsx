@@ -14,6 +14,7 @@ const MOVED: Record<string, string> = {
     value: "/product/xgen/features",
     features: "/product/xgen/features",
     roles: "/product/xgen/features",
+    build: "/product/xgen/features",
     "on-premise": "/product/xgen/security",
     governance: "/product/xgen/security",
     certification: "/product/xgen/security",

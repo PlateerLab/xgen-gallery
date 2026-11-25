@@ -24,7 +24,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { InlinePromoBand } from "@/components/product-xgen/inline-promo-band";
 import { CompareStack } from "@/components/product-xgen/compare-stack";
-import { WhyXgenHero, WhyXgenDifference, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
+import { WhyXgenHero, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
 import { ProductGeny } from "@/components/product-geny";
 import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
@@ -41,15 +41,13 @@ import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
-import { XgenHowItWorks } from "@/components/product-xgen/how-it-works";
-import { CaseScenarios } from "@/components/product-xgen/case-scenarios";
+import { XgenChallenge, XgenParadigm, XgenEvolutionModel, XgenPlatformStages, XgenWhyReasons, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { SITE, absoluteUrl } from "@/lib/site";
-import { getAllCases, INDUSTRIES, CASE_STATUS_EN } from "@/lib/customers";
 import { localeHref } from "@/lib/locale-path";
 import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
@@ -64,27 +62,6 @@ const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
     { icon: Building2, label: "제주은행 등 도입", sub: "금융 · 공공 · 커머스" },
 ];
 
-/** 문제 제기 — 도입이 현장에서 멈추는 이유(브로셔 오프너). */
-const CHALLENGES: { q: string; desc: string; img: string; imgAlt: string }[] = [
-    {
-        q: "AI를 도입했지만, 파일럿에서 멈췄나요?",
-        desc: "기술 검증에서 끝나고 실제 업무에 배포되지 못하는 AI 프로젝트가 많습니다.",
-        img: "/product/challenge-1-pilot.webp",
-        imgAlt: "노트북과 자료를 앞에 두고 프로젝트를 논의하는 회의 장면",
-    },
-    {
-        q: "데이터와 시스템이 흩어져 있나요?",
-        desc: "문서·지식·레거시가 분산돼 있어 AI가 조직의 맥락을 이해하지 못합니다.",
-        img: "/product/challenge-2-silo.webp",
-        imgAlt: "사무실 책상 위에 높이 쌓인 문서 더미",
-    },
-    {
-        q: "보안·규제 때문에 클라우드 AI를 못 쓰나요?",
-        desc: "데이터 주권·감사·승인 요건 때문에 외부 AI를 도입하기 어렵습니다.",
-        img: "/product/challenge-3-security.webp",
-        imgAlt: "서버실에서 태블릿으로 장비를 점검하는 관리자",
-    },
-];
 
 /** 숫자로 보는 XGEN — 실측 사실만(미검증 수치 금지). */
 const STATS: { n: string; label: string; sub: string }[] = [
@@ -595,9 +572,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
     const TRUST_L = en
         ? TRUST.map((x, i) => ({ ...x, label: E.trust[i][0], sub: E.trust[i][1] }))
         : TRUST;
-    const CHALLENGES_L = en
-        ? CHALLENGES.map((x, i) => ({ ...x, ...E.challenges[i] }))
-        : CHALLENGES;
     const STATS_L = en
         ? STATS.map((x, i) => ({ n: E.stats[i][0], label: E.stats[i][1], sub: E.stats[i][2] }))
         : STATS;
@@ -637,10 +611,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
     const TECH_LAYERS_L = en
         ? TECH_LAYERS.map((x, i) => ({ ...x, title: E.techLayers[i][0], desc: E.techLayers[i][1] }))
         : TECH_LAYERS;
-    // 최근 XGEN 고객사례 3건 — /customers 허브와 연계(신뢰 정책: customer 필드가 익명/실명 관리).
-    const recentCases = getAllCases()
-        .filter((c) => c.products.includes("xgen"))
-        .slice(0, 3);
     return (
         <>
             {/* 개요는 어두운 히어로 위에 투명 GNB, 2depth 는 밝은 머리말이라 일반 GNB */}
@@ -734,42 +704,13 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                 {/* 1depth 개요 — 무엇이고 왜 필요한가(처음 방문한 의사결정자) */}
                 {view === "overview" && (
                     <>
-                    {/* 문제 제기 — 브로셔 오프너 */}
-                    <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                            <SectionHead
-                                eyebrow="The Challenge"
-                                title={en ? E.challengeTitle : "Enterprise AI, 왜 현장에서 멈출까요"}
-                            />
-                            <div className={`${SECTION_BODY_GAP} grid gap-x-8 gap-y-12 lg:grid-cols-3`}>
-                                {CHALLENGES_L.map((c, i) => (
-                                    <div key={c.q} className="flex h-full flex-col">
-                                        <span className="block font-mono text-[15px] font-bold text-[#2f7bff]">
-                                            0{i + 1}
-                                        </span>
-                                        <h3 className="mt-3 text-[21px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                            {c.q}
-                                        </h3>
-                                        <p className="mt-3 pb-6 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {c.desc}
-                                        </p>
-                                        {/* 맥락 일러스트 — 텍스트 아래 */}
-                                        <div className="mt-auto overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[#f4f8ff]">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
-                                                src={c.img}
-                                                alt={c.imgAlt}
-                                                className="block aspect-[16/10] w-full object-cover"
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Why XGEN — xgen.im/WhyXGEN 서사: 결정적 차이 → AX 진화 4단계 → 6가지 역량 */}
-                    <WhyXgenDifference locale={locale} />
+                    {/* ── 1depth 개요: 「XGEN 소개서(2026.11)」를 TRINITY 흐름으로 재배치 (overview-brochure.tsx) ── */}
+                    {/* 문제 제기 → Paradigm Shift → AX Evolution(다크) → 플랫폼 5단계 → Why XGEN → 숫자 밴드 → 자기개선 루프 → 업종 시나리오 → 도입 방식 → 영상 */}
+                    <XgenChallenge locale={locale} />
+                    <XgenParadigm locale={locale} />
+                    <XgenEvolutionModel locale={locale} />
+                    <XgenPlatformStages locale={locale} />
+                    <XgenWhyReasons locale={locale} />
 
                     {/* 숫자로 보는 XGEN — 실측 사실 밴드(다크로 강조) */}
                     <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
@@ -816,9 +757,20 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
 
-                    {/* How It Works — 연결→설계→배포→통제→개선 흐름 + 실제 제품 화면(TRINITY Process 배치) */}
-                    <XgenHowItWorks locale={locale} />
+                    <XgenEvolutionLoop locale={locale} />
+                    <XgenScenarios locale={locale} />
+                    <XgenAdoptionPath locale={locale} />
+                    <XgenOverviewVideo locale={locale} />
+                    </>
+                )}
 
+                {/* 2depth 기능·활용 — 무엇을 만들고 어떻게 쓰나(현업·실무) */}
+                {view === "features" && (
+                    <>
+                    <WhyXgenEvolution locale={locale} />
+                    <WhyXgenCapabilities locale={locale} />
+
+                    {/* 1depth 개편(소개서 기반)으로 옮겨 온 섹션 — 4대 가치·현업이 만드는 AI(DexOn·PathFinder·EasyMode → 3depth) */}
                     {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                     <section
                         id="platform"
@@ -949,61 +901,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         </div>
                     </section>
 
-                    {/* 고객사례 — 최근 3건 + /customers 연계 */}
-                    <section
-                        id="cases"
-                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                    >
-                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                            <SectionHead
-                                eyebrow="Customer Cases"
-                                title={en ? E.casesTitle : "고객 현장에서 검증됩니다"}
-                                lead={en ? E.casesLead : "금융·커머스·공공·IT 현장에 XGEN을 실제로 구축하고 운영한 고객사례입니다."}
-                            />
-                            {/* TRINITY Scenarios 배치 — 고객사 탭 → 과제·적용·제공 범위 패널 */}
-                            <div className={SECTION_BODY_GAP}>
-                                <CaseScenarios
-                                    labels={{
-                                        tablist: en ? "XGEN customer cases" : "XGEN 고객사례",
-                                        challenge: en ? "Challenge" : "과제",
-                                        solution: en ? "How XGEN was applied" : "XGEN 적용",
-                                        scope: en ? "Scope delivered" : "제공 범위",
-                                        more: en ? "Read the case" : "사례 자세히 보기",
-                                    }}
-                                    items={recentCases.map((c) => ({
-                                        slug: c.slug,
-                                        href: localeHref(locale, `/customers/case/${c.slug}`),
-                                        tab: (en && c.customerEn) || c.customer,
-                                        meta: [
-                                            en ? INDUSTRIES[c.industry].en : INDUSTRIES[c.industry].ko,
-                                            en ? CASE_STATUS_EN[c.status] : c.status,
-                                        ].join(" · "),
-                                        title: (en && c.titleEn) || c.title,
-                                        challenge: (en && c.challengeEn) || c.challenge,
-                                        solution: (en && c.solutionEn) || c.solution,
-                                        highlights: (en && c.highlightsEn) || c.highlights,
-                                    }))}
-                                />
-                            </div>
-                            <div className="mt-8 flex justify-end">
-                                <Link
-                                    href={localeHref(locale, "/customers") + "?product=xgen"}
-                                    className="group inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                                >
-                                    {en ? E.casesMore : "XGEN 고객사례 전체 보기"}
-                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                </Link>
-                            </div>
-                        </div>
-                    </section>
-                    </>
-                )}
-
-                {/* 2depth 기능·활용 — 무엇을 만들고 어떻게 쓰나(현업·실무) */}
-                {view === "features" && (
-                    <>
-                    <WhyXgenEvolution locale={locale} />
-                    <WhyXgenCapabilities locale={locale} />
 
                     {/* Features */}
                     <section

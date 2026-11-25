@@ -1,0 +1,1426 @@
+"use client";
+
+import Link from "next/link";
+import { useState, type ReactNode } from "react";
+import { ArrowRight, ArrowDown, Check, ChevronRight, Play, RefreshCw } from "lucide-react";
+import { localeHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/i18n";
+import { cn } from "@/lib/cn";
+import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
+
+/**
+ * /product/xgen 1depth 개요 — 「XGEN 소개서(2026.11.25)」 내용을
+ * 비아이매트릭스 TRINITY 랜딩의 흐름으로 다시 배치한 섹션 묶음.
+ *
+ *   TRINITY                         → XGEN (소개서 쪽수)
+ *   문제 제기                        → The Challenge  (p.9  문제점·원인)
+ *   Paradigm Shift BEFORE/AFTER     → Paradigm Shift (p.8  생성형 AI vs AI 에이전트)
+ *   어두운 전환 선언                  → AX Evolution Model (p.10 4단계)
+ *   제품 흐름 5단계 + 실제 화면        → Platform (p.11, p.13~17 STAGE 01~04 + Foundation)
+ *   Why 3가지                        → Why XGEN (p.24·25·32)
+ *   Extended Value                  → 자기개선 루프 (p.17·23)
+ *   Scenarios 업종 탭                → 고객사례 (p.26~29)
+ *   (소개서 고유)                     → 도입 방식·다음 단계 (p.31·37·39)
+ *   Product Overview 영상            → 소개 영상
+ *
+ * 원칙
+ * - 소개서에 있는 사실만 옮기고, 단정적인 표현은 조건·범위를 붙여 완화한다.
+ * - 고객사명은 사이트에 공개된 사례만 실명(제주은행). 나머지는 업종으로 표기한다.
+ * - 고객 제안서 전용 장(코레일·KT 연동)과 시장 전망 수치는 싣지 않는다.
+ * - 각 섹션 끝에 2depth(/product/xgen/<view>)·3depth(상세 페이지) 링크를 둔다.
+ */
+
+type Txt = { ko: string; en: string };
+const T = (en: boolean, x: Txt) => (en ? x.en : x.ko);
+
+/* ---------------- 공통: 이어서 보기 링크 ---------------- */
+
+type DeepLink = { label: Txt; href: string };
+
+function NextLinks({ locale, links, dark = false, center = false }: { locale: Locale; links: DeepLink[]; dark?: boolean; center?: boolean }) {
+    const en = locale === "en";
+    return (
+        <div className={cn("mt-10 flex flex-wrap items-center gap-2", center && "justify-center")}>
+            <span className={cn("mr-1 text-[13px] font-semibold", dark ? "text-white/55" : "text-[var(--color-ink-subtle)]")}>
+                {en ? "Learn more" : "자세히 보기"}
+            </span>
+            {links.map((l) => (
+                <Link
+                    key={l.href}
+                    href={localeHref(locale, l.href)}
+                    className={cn(
+                        "inline-flex items-center gap-1 rounded-full border px-3.5 py-1.5 text-[13.5px] font-semibold transition",
+                        dark
+                            ? "border-white/20 text-white/85 hover:border-white/60 hover:text-white"
+                            : "border-[var(--color-line)] bg-white text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                    )}
+                >
+                    {T(en, l.label)}
+                    <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+                </Link>
+            ))}
+        </div>
+    );
+}
+
+const L = {
+    features: { label: { ko: "기능·활용", en: "Features & use" }, href: "/product/xgen/features" },
+    security: { label: { ko: "보안·거버넌스", en: "Security & governance" }, href: "/product/xgen/security" },
+    technology: { label: { ko: "기술·아키텍처", en: "Technology" }, href: "/product/xgen/technology" },
+    adoption: { label: { ko: "도입·지원", en: "Adoption & support" }, href: "/product/xgen/adoption" },
+} satisfies Record<string, DeepLink>;
+
+/* ======================================================================
+ * 1. The Challenge — 소개서 p.9
+ * ==================================================================== */
+
+const CHALLENGE = {
+    ko: {
+        title: (
+            <>
+                AI Agent를 도입한 기업은
+                <br className="hidden md:block" /> 왜 같은 문제를 다시 마주할까요?
+            </>
+        ),
+        lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 도구와 모델이 바뀌면 다시 멈춥니다.",
+        problems: ["파편화된 데이터로 인한 AI 활용 한계", "AI 활용 시 내부 데이터 유출 우려", "AI 도입 이후 운영 인력·체계 부재"],
+        whyLabel: "Why it happens",
+        causes: [
+            { k: "DATA", s: "계속 새로 생성", d: "새로운 데이터가 계속 생깁니다.", gap: "데이터 변화를 흡수하는 구조 부족" },
+            { k: "TOOL", s: "빠르게 늘어남", d: "새로운 Tool과 API가 계속 등장합니다.", gap: "Tool 변화에 대응하는 구조 부족" },
+            { k: "MODEL", s: "지속적으로 진화", d: "LLM과 AI 기술은 계속 바뀝니다.", gap: "Model 교체·운영 체계 부족" },
+        ],
+        conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
+        conclusionB: "변화에 대응하지 못하는 플랫폼",
+        conclusionC: "입니다.",
+        note: "에이전트 사용 조직 71% · 실제 운영에 도달한 활용 사례 11% · 업무 흐름과 분리 운영 48% (출처: Camunda, State of Agentic Orchestration & Automation 2026)",
+    },
+    en: {
+        title: (
+            <>
+                Why do companies that adopted AI agents
+                <br className="hidden md:block" /> keep running into the same problems?
+            </>
+        ),
+        lead: "AI that worked right after launch stalls again once the data, tools and models change.",
+        problems: ["Fragmented data limits how AI can be used", "Concern about internal data leaving the company", "No team or process to run AI after launch"],
+        whyLabel: "Why it happens",
+        causes: [
+            { k: "DATA", s: "Constantly created", d: "New data keeps arriving.", gap: "No structure to absorb data changes" },
+            { k: "TOOL", s: "Rapidly multiplying", d: "New tools and APIs keep appearing.", gap: "No structure to keep up with tool changes" },
+            { k: "MODEL", s: "Always evolving", d: "LLMs and AI technology keep changing.", gap: "No process to swap and run models" },
+        ],
+        conclusionA: "They look like separate problems, but they share one cause:",
+        conclusionB: "a platform that cannot keep up with change",
+        conclusionC: ".",
+        note: "71% of organizations use agents · 11% of use cases reached production · 48% run apart from business workflows (Source: Camunda, State of Agentic Orchestration & Automation 2026)",
+    },
+};
+
+export function XgenChallenge({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const c = CHALLENGE[en ? "en" : "ko"];
+    return (
+        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="The Challenge" title={c.title} lead={c.lead} />
+
+                {/* 문제점 3 */}
+                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
+                    {c.problems.map((p, i) => (
+                        <li key={p} className="flex items-center gap-4 rounded-2xl border border-[var(--color-line)] bg-white px-6 py-6">
+                            <span className="font-mono text-[15px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                            <span className="text-[17px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p}</span>
+                        </li>
+                    ))}
+                </ol>
+
+                {/* 원인 — Data · Tool · Model */}
+                <p className="mt-14 text-center font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">
+                    {c.whyLabel}
+                </p>
+                <div className="mt-5 grid gap-4 lg:grid-cols-3">
+                    {c.causes.map((x) => (
+                        <div key={x.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white">
+                            <div className="px-6 pb-5 pt-6">
+                                <div className="flex items-baseline justify-between gap-3">
+                                    <span className="text-[22px] font-extrabold tracking-tight text-[var(--color-ink)]">{x.k}</span>
+                                    <span className="text-[12.5px] font-semibold text-[#2461d8]">{x.s}</span>
+                                </div>
+                                <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{x.d}</p>
+                            </div>
+                            <div className="mt-auto flex items-center gap-2 border-t border-[var(--color-line)] px-6 py-3.5 text-[13.5px] font-semibold text-[#b4232a]">
+                                <ArrowDown className="h-3.5 w-3.5 flex-none" aria-hidden />
+                                {x.gap}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <p className="mx-auto mt-12 max-w-3xl text-center text-[19px] font-bold leading-[1.5] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">
+                    {c.conclusionA}<br className="hidden md:block" /> <span className="text-[#2461d8]">{c.conclusionB}</span>
+                    {c.conclusionC}
+                </p>
+                <p className="mx-auto mt-6 max-w-3xl text-center text-[12.5px] leading-relaxed text-[var(--color-ink-subtle)]">※ {c.note}</p>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 2. Paradigm Shift — 소개서 p.8 (생성형 AI vs AI 에이전트)
+ * ==================================================================== */
+
+const PARADIGM = {
+    ko: {
+        title: "답하는 AI에서, 일을 끝내는 AI로",
+        lead: "기업이 AI에 기대하는 것이 ‘답변’에서 ‘업무의 완료’로 옮겨 가고 있습니다.",
+        before: {
+            tag: "BEFORE",
+            name: "생성형 AI",
+            sub: "답변 중심",
+            q: "협력사 계약서에서 위험한 조항 좀 찾아줘",
+            a: "일반적으로 위험한 조항은 손해배상, 해지 조건, 책임 제한 등입니다. 원문을 붙여 주시면…",
+            after: "다음 작업은 다시 사람이",
+            points: ["입력에 따라 한 번씩 작업", "최종 결과물 생성에 집중", "사람의 지속적인 개입과 추가 질문이 필요"],
+        },
+        afterP: {
+            tag: "AFTER",
+            name: "AI Agent · XGEN",
+            sub: "업무 완료 중심",
+            goal: "목표 · 협력사 계약서 위험 조항 검토",
+            steps: ["사규·계약 규정 검색", "계약서 문서 분석", "위험 조항 검토 리포트 작성"],
+            wait: "담당자 확인 후 회신",
+            points: ["목표를 세부 작업으로 나눠 스스로 처리", "실행 결과를 바탕으로 개선 루프 적용", "판단과 실행은 AI가, 위험한 작업은 승인 후 실행"],
+        },
+    },
+    en: {
+        title: "From AI that answers to AI that gets work done",
+        lead: "What companies expect from AI is shifting from an answer to a finished task.",
+        before: {
+            tag: "BEFORE",
+            name: "Generative AI",
+            sub: "Answer-centric",
+            q: "Find the risky clauses in this supplier contract",
+            a: "Risky clauses usually involve damages, termination terms and limits of liability. If you paste the text…",
+            after: "The next step is back on a person",
+            points: ["One-off tasks driven by each input", "Focused on producing a final output", "Needs people to keep stepping in and asking again"],
+        },
+        afterP: {
+            tag: "AFTER",
+            name: "AI Agent · XGEN",
+            sub: "Task-completion-centric",
+            goal: "Goal · review risky clauses in a supplier contract",
+            steps: ["Search internal rules and contract policy", "Analyze the contract document", "Write the clause-review report"],
+            wait: "Reply after the owner confirms",
+            points: ["Breaks a goal into sub-tasks and works through them", "Applies an improvement loop based on run results", "AI decides and acts; risky actions run after approval"],
+        },
+    },
+};
+
+export function XgenParadigm({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const p = PARADIGM[en ? "en" : "ko"];
+    return (
+        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="Paradigm Shift" title={p.title} lead={p.lead} />
+                <div className={`${SECTION_BODY_GAP} grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-6`}>
+                    {/* BEFORE */}
+                    <div className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-alt)] p-6 lg:p-8">
+                        <p className="font-mono text-[12px] font-bold tracking-widest text-[var(--color-ink-subtle)]">{p.before.tag}</p>
+                        <h3 className="mt-1 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {p.before.name} <span className="text-[15px] font-semibold text-[var(--color-ink-subtle)]">· {p.before.sub}</span>
+                        </h3>
+                        <div aria-hidden className="mt-6 flex flex-col gap-3 rounded-xl border border-[var(--color-line)] bg-white p-5">
+                            <p className="self-end rounded-2xl rounded-br-md bg-[var(--color-surface-hover)] px-4 py-2.5 text-[13.5px] text-[var(--color-ink)]">{p.before.q}</p>
+                            <p className="max-w-[90%] rounded-2xl rounded-bl-md border border-[var(--color-line)] px-4 py-2.5 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]">{p.before.a}</p>
+                            <p className="mt-1 text-center text-[12.5px] text-[var(--color-ink-subtle)]">— {p.before.after} —</p>
+                        </div>
+                        <ul className="mt-6 flex flex-col gap-2.5">
+                            {p.before.points.map((x) => (
+                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                    <span aria-hidden className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
+                                    {x}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div aria-hidden className="flex items-center justify-center text-[#2f7bff]">
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#bcd0f5] bg-white">
+                            <ArrowRight className="hidden h-5 w-5 lg:block" />
+                            <ArrowDown className="h-5 w-5 lg:hidden" />
+                        </span>
+                    </div>
+
+                    {/* AFTER */}
+                    <div className="flex flex-col rounded-2xl border border-[#9cbcf5] bg-white p-6 shadow-[0_24px_60px_-36px_rgba(36,97,216,0.45)] lg:p-8">
+                        <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">{p.afterP.tag}</p>
+                        <h3 className="mt-1 text-[22px] font-bold tracking-tight text-[var(--color-ink)]">
+                            {p.afterP.name} <span className="text-[15px] font-semibold text-[#2461d8]">· {p.afterP.sub}</span>
+                        </h3>
+                        <div aria-hidden className="mt-6 rounded-xl border border-[#d7e4fb] bg-[#f5f9ff] p-5">
+                            <p className="text-[13.5px] font-bold text-[var(--color-ink)]">{p.afterP.goal}</p>
+                            <ol className="mt-3 flex flex-col gap-2">
+                                {p.afterP.steps.map((s) => (
+                                    <li key={s} className="flex items-center gap-2.5 text-[13.5px] text-[var(--color-ink-muted)]">
+                                        <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#2f7bff] text-white">
+                                            <Check className="h-3 w-3" />
+                                        </span>
+                                        {s}
+                                    </li>
+                                ))}
+                                <li className="flex items-center gap-2.5 text-[13.5px] font-semibold text-[#2461d8]">
+                                    <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border-2 border-[#2f7bff]" />
+                                    {p.afterP.wait}
+                                </li>
+                            </ol>
+                        </div>
+                        <ul className="mt-6 flex flex-col gap-2.5">
+                            {p.afterP.points.map((x) => (
+                                <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink)]">
+                                    <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
+                                    {x}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+                <p className="mt-6 text-center text-[12.5px] text-[var(--color-ink-subtle)]">
+                    {en ? "※ Screen contents are illustrative." : "※ 화면 속 내용은 예시입니다."}
+                </p>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 3. AX Evolution Model — 소개서 p.10 (어두운 전환 섹션)
+ * ==================================================================== */
+
+const EVOLUTION = {
+    ko: {
+        title: (
+            <>
+                결국, AX의 핵심은 ‘도입’이 아니라
+                <br className="hidden md:block" /> <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">‘진화’</span>입니다
+            </>
+        ),
+        lead: "기업의 경쟁력은 AI를 얼마나 잘 도입했는지보다, 도입한 AI를 업무 변화에 맞춰 얼마나 잘 발전시키는지에 달려 있습니다.",
+        stages: [
+            { en: "Assist", ko: "이해", items: ["문서를 이해한다", "지식을 검색한다", "질문에 답한다"], tech: "RAG · Knowledge · Search" },
+            { en: "Augment", ko: "실행", items: ["Tool을 연결한다", "Workflow를 실행한다", "업무를 대신 수행한다"], tech: "Workflow · MCP · API" },
+            { en: "Autonomous", ko: "협업", items: ["여러 Agent가 역할을 나눈다", "업무를 자동 분배한다", "결과를 통합한다"], tech: "Planning · Routing · Multi-Agent" },
+            { en: "Self-Evolving", ko: "진화", items: ["도구·모델을 찾고 만든다", "스스로 환경을 고친다", "지속적으로 성능을 개선한다"], tech: "Geny · Model Router · Evaluation" },
+        ],
+        foot: "XGEN은 네 단계를 하나의 플랫폼에서 이어 갈 수 있도록 설계했습니다.",
+    },
+    en: {
+        title: (
+            <>
+                In the end, AX is not about adoption —
+                <br className="hidden md:block" /> it is about <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">evolution</span>
+            </>
+        ),
+        lead: "Competitiveness depends less on how well a company adopted AI and more on how well it develops that AI as the work changes.",
+        stages: [
+            { en: "Assist", ko: "Understand", items: ["Understands documents", "Searches knowledge", "Answers questions"], tech: "RAG · Knowledge · Search" },
+            { en: "Augment", ko: "Execute", items: ["Connects tools", "Runs workflows", "Performs tasks on your behalf"], tech: "Workflow · MCP · API" },
+            { en: "Autonomous", ko: "Collaborate", items: ["Agents split roles", "Distributes work automatically", "Combines the results"], tech: "Planning · Routing · Multi-Agent" },
+            { en: "Self-Evolving", ko: "Evolve", items: ["Finds and builds tools and models", "Adjusts its own setup", "Keeps improving performance"], tech: "Geny · Model Router · Evaluation" },
+        ],
+        foot: "XGEN is designed so the four stages continue on one platform.",
+    },
+};
+
+export function XgenEvolutionModel({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const e = EVOLUTION[en ? "en" : "ko"];
+    return (
+        <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]"
+            />
+            <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
+                {/* 계단형 — 1024px 이상은 오른쪽으로 갈수록 한 칸씩 올라가고, 그 아래는 한 열 */}
+                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-4 lg:items-end`}>
+                    {e.stages.map((s, i) => (
+                        <li
+                            key={s.en}
+                            className={cn(
+                                "flex flex-col rounded-2xl border p-6",
+                                i === 3 ? "border-[#5fb4ff]/60 bg-[#2f7bff]/[0.14]" : "border-white/12 bg-white/[0.04]",
+                                ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
+                            )}
+                        >
+                            <span className="font-mono text-[13px] font-bold text-[#7dd3fc]">0{i + 1}</span>
+                            <h3 className="mt-2 text-[21px] font-bold tracking-tight">
+                                {s.en} <span className="text-[15px] font-semibold text-white/60">· {s.ko}</span>
+                            </h3>
+                            <ul className="mt-4 flex flex-col gap-2">
+                                {s.items.map((x) => (
+                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/75">
+                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#7dd3fc]" aria-hidden />
+                                        {x}
+                                    </li>
+                                ))}
+                            </ul>
+                            <p className="mt-auto pt-6 font-mono text-[12px] text-white/45">{s.tech}</p>
+                        </li>
+                    ))}
+                </ol>
+                <p className="mt-10 text-center text-[15px] text-white/65">{e.foot}</p>
+                <NextLinks locale={locale} links={[L.features]} dark center />
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 4. Platform — 소개서 p.11 + STAGE 01~04 (p.13~16) + Foundation (p.17)
+ * ==================================================================== */
+
+type Stage = {
+    key: string;
+    en: string;
+    module: string;
+    title: Txt;
+    why: Txt;
+    what: Txt;
+    tech: string[];
+    result: { ko: string[]; en: string[] };
+    screen: { type: "img"; src: string; w: number; h: number; alt: Txt; url: string } | { type: "orchestration" } | { type: "evolve" };
+    links: DeepLink[];
+};
+
+const STAGES: Stage[] = [
+    {
+        key: "knowledge",
+        en: "Knowledge",
+        module: "XGEN · Knowledge Hub",
+        title: { ko: "변화하는 데이터를 AI 자산으로 연결합니다", en: "Turns changing data into AI-ready assets" },
+        why: { ko: "기업의 데이터는 계속 늘어나고 형식도 다양해집니다.", en: "Enterprise data keeps growing and comes in many formats." },
+        what: {
+            ko: "문서·DB·이미지·도면 등 다양한 데이터를 연결하고, AI가 이해할 수 있는 지식(Knowledge)으로 구조화합니다.",
+            en: "Connects documents, databases, images and drawings, and structures them into knowledge that AI can use.",
+        },
+        tech: ["Omnifuse", "Ontology RAG", "Multi-modal Parsing", "OCR", "Chunking", "Vector DB", "RAGOps"],
+        result: {
+            ko: ["출처를 근거로 한 답변", "최신 데이터 기준의 답변", "AI가 활용할 수 있는 데이터 자산"],
+            en: ["Answers grounded in cited sources", "Answers based on current data", "Data assets AI can put to work"],
+        },
+        screen: { type: "img", src: "/product/screen-ontology.png", w: 1898, h: 905, url: "XGEN · Knowledge · Ontology", alt: { ko: "XGEN 온톨로지 지식 그래프 화면", en: "XGEN ontology knowledge graph screen" } },
+        links: [L.features, { label: { ko: "Technology", en: "Technology" }, href: "/technology" }],
+    },
+    {
+        key: "agent",
+        en: "Agent",
+        module: "XGEN · Agent Builder",
+        title: { ko: "업무를 수행하는 AI Agent를 빠르게 만듭니다", en: "Builds task-performing AI agents quickly" },
+        why: { ko: "기업마다 업무와 사용하는 도구는 계속 바뀌고 늘어납니다.", en: "Every company’s work and tools keep changing and expanding." },
+        what: {
+            ko: "Workflow·MCP 템플릿과 대화형 설계로 Agent를 만들고, 만든 Agent는 API로 배포해 사내 시스템과 연결합니다.",
+            en: "Create agents from workflow and MCP templates or by conversation, then deploy them via API and connect them to internal systems.",
+        },
+        tech: ["EasyMode", "Workflow Builder", "PathFinder", "MCP", "Tool Calling", "Harness Runtime"],
+        result: {
+            ko: ["코드 없이 만드는 업무 자동화", "지식·도구 연결", "API 배포·사내 시스템 연동"],
+            en: ["Work automation without code", "Knowledge and tool connection", "API deployment and system integration"],
+        },
+        screen: { type: "img", src: "/product/agent-builder-canvas.png", w: 1600, h: 900, url: "XGEN · Agentflow Canvas", alt: { ko: "XGEN 에이전트플로우 캔버스 화면", en: "XGEN Agentflow Canvas screen" } },
+        links: [
+            L.features,
+            { label: { ko: "EasyMode", en: "EasyMode" }, href: "/easy-mode" },
+            { label: { ko: "PathFinder", en: "PathFinder" }, href: "/pathfinder" },
+            { label: { ko: "Vibe Coding", en: "Vibe Coding" }, href: "/vibe-coding" },
+        ],
+    },
+    {
+        key: "orchestration",
+        en: "Orchestration",
+        module: "XGEN · Multi-Agent Orchestration",
+        title: { ko: "여러 AI Agent를 하나의 업무로 연결합니다", en: "Connects multiple agents into one piece of work" },
+        why: { ko: "복잡한 업무는 Agent 하나만으로 처리하기 어렵습니다.", en: "Complex work is hard for a single agent to handle." },
+        what: {
+            ko: "여러 Agent를 역할별로 나누고, MCP·A2A로 사내 시스템과 다른 Agent를 연결해 하나의 Workflow로 수행합니다.",
+            en: "Splits work across role-based agents and links them to systems and each other through MCP and A2A, running it as one workflow.",
+        },
+        tech: ["Multi-Agent", "Planner", "A2A", "Dynamic Routing", "MCP Compiler", "Workflow Orchestration"],
+        result: {
+            ko: ["Agent 간 협업", "처음부터 끝까지 이어지는 업무 자동화", "여러 단계가 얽힌 업무 처리"],
+            en: ["Agent-to-agent collaboration", "End-to-end work automation", "Handling multi-step work"],
+        },
+        screen: { type: "orchestration" },
+        links: [L.technology, { label: { ko: "Architecture", en: "Architecture" }, href: "/architecture" }],
+    },
+    {
+        key: "self-evolving",
+        en: "Self-Evolving",
+        module: "XGEN · Geny",
+        title: { ko: "Agent가 스스로 구성을 고치며 진화합니다", en: "Agents improve by adjusting their own setup" },
+        why: { ko: "업무가 바뀔 때마다 사람이 Agent를 다시 설계하기는 어렵습니다.", en: "Redesigning an agent by hand every time the work changes is hard." },
+        what: {
+            ko: "목표에 필요한 노드·도구·모델을 스스로 찾고, 없으면 만들어 구성을 바꿉니다. 바뀐 구성은 검증을 거친 뒤 반영됩니다.",
+            en: "Finds the nodes, tools and models a goal needs — building them if missing — and changes the setup. Changes apply only after verification.",
+        },
+        tech: ["Feedback Loop", "Self-Evolving Workflow", "Tool Creation", "Memory"],
+        result: {
+            ko: ["쓸수록 업무에 맞춰 개선되는 Agent", "재설계 부담 감소", "검증 후 반영되는 통제된 개선"],
+            en: ["Agents that improve with use", "Less redesign work", "Controlled changes, applied after verification"],
+        },
+        screen: { type: "evolve" },
+        links: [L.technology, { label: { ko: "Technology", en: "Technology" }, href: "/technology" }],
+    },
+    {
+        key: "governance",
+        en: "Governance",
+        module: "XGEN · Enterprise Governance",
+        title: { ko: "모든 단계는 기업의 통제 아래에서 실행됩니다", en: "Every stage runs under enterprise control" },
+        why: {
+            ko: "AI가 실제 업무를 실행할수록 권한·승인·기록 체계가 함께 필요합니다.",
+            en: "The more real work AI performs, the more it needs permissions, approvals and records.",
+        },
+        what: {
+            ko: "권한 통제·가드레일·위험도 심사·민감정보 차단·결재선·실행 추적·실행 격리·감사 로그를 플랫폼 기본 기능으로 제공합니다.",
+            en: "Provides permission control, guardrails, risk review, sensitive-data blocking, approval routes, execution tracing, isolation and audit logs as platform features.",
+        },
+        tech: ["RBAC · ABAC", "Guardrail", "PII Masking", "Approval Line", "Audit Log", "Kill Switch", "On-Premise · Air-gap"],
+        result: {
+            ko: ["기업 보안·통제 체계 유지", "위험 등급에 따른 실행 통제", "GS인증 1등급 (국가공인 SW 품질인증)"],
+            en: ["Existing security controls stay in place", "Execution control by risk grade", "GS Certification Grade 1 (national SW quality)"],
+        },
+        screen: { type: "img", src: "/product/governance-risk-grades.png", w: 2000, h: 832, url: "XGEN · AI Governance · Risk grades", alt: { ko: "XGEN AI 위험도 등급 설정 화면", en: "XGEN AI risk grade settings screen" } },
+        links: [
+            L.security,
+            { label: { ko: "보안·거버넌스 상세", en: "Security & Governance" }, href: "/security-and-governance" },
+            { label: { ko: "AI 품질 방침", en: "AI quality policy" }, href: "/ai-quality-policy" },
+        ],
+    },
+];
+
+function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
+    return (
+        <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)]">
+            <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5">
+                <span aria-hidden className="flex gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
+                </span>
+                <span className="min-w-0 flex-1 truncate rounded-md border border-[var(--color-line)] bg-white px-3 py-1 text-[12px] text-[var(--color-ink-subtle)]">{url}</span>
+            </div>
+            {children}
+        </figure>
+    );
+}
+
+/** STAGE 03 — 소개서 p.22 멀티 에이전트 예시를 HTML 도식으로. */
+function OrchestrationMock({ en }: { en: boolean }) {
+    const agents = en
+        ? [
+              { n: "Sales analysis agent", d: "Recent sales · traffic and conversion", sys: "Orders / sales DB" },
+              { n: "Review analysis agent", d: "Review summary · complaint keywords", sys: "Analytics system" },
+              { n: "Inventory / price agent", d: "Competitor prices · stock status", sys: "Competitor price API" },
+          ]
+        : [
+              { n: "매출 분석 Agent", d: "최근 판매 · 유입/전환율 변화", sys: "주문/매출 DB" },
+              { n: "고객 리뷰 분석 Agent", d: "리뷰 통합 · 불만 키워드", sys: "데이터 분석 시스템" },
+              { n: "재고/가격 Agent", d: "경쟁사 가격 · 재고 상태", sys: "경쟁사 가격 API" },
+          ];
+    return (
+        <BrowserFrame url="XGEN · Multi-Agent Orchestration">
+            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
+                    {en ? "Find out why this week’s top product sales dropped" : "이번 주 매출이 급감한 상품의 원인을 분석해줘"}
+                </p>
+                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] bg-white px-5 py-2.5 text-center">
+                    <p className="font-mono text-[11px] font-bold tracking-widest text-[#2461d8]">ORCHESTRATOR</p>
+                    <p className="text-[13px] font-semibold text-[var(--color-ink)]">{en ? "Plans and routes the work" : "업무 계획 · 분배"}</p>
+                </div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                    {agents.map((a) => (
+                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5">
+                            <p className="text-[13px] font-bold text-[var(--color-ink)]">{a.n}</p>
+                            <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">{a.d}</p>
+                            <p className="mt-2.5 border-t border-[var(--color-line)] pt-2 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
+                        </div>
+                    ))}
+                </div>
+                <p className="mt-3 text-center font-mono text-[11px] text-[var(--color-ink-subtle)]">A2A · {en ? "agents share results" : "Agent 간 결과 공유"}</p>
+                <div className="mt-3 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] leading-relaxed text-[var(--color-ink)]">
+                    {en
+                        ? "Weaker price competitiveness against rivals and more negative reviews about delivery delays look like the main causes."
+                        : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
+                </div>
+            </div>
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                {en ? "Illustrative example." : "※ 화면 속 내용은 예시입니다."}
+            </figcaption>
+        </BrowserFrame>
+    );
+}
+
+/** STAGE 04 — 소개서 p.16 Geny 자기진화 예시를 HTML 도식으로. */
+function EvolveMock({ en }: { en: boolean }) {
+    const changes = en
+        ? [
+              { s: "+", t: "Attach a knowledge-search node" },
+              { s: "+", t: "Turn on source citations" },
+              { s: "↻", t: "Adjust creativity 0.7 → 0.3" },
+          ]
+        : [
+              { s: "+", t: "지식 검색 노드 부착" },
+              { s: "+", t: "근거 표기 옵션 선택" },
+              { s: "↻", t: "창의성 0.7 → 0.3 조정" },
+          ];
+    return (
+        <BrowserFrame url="XGEN · Agent · Geny">
+            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
+                    {en ? "From now on, also check internal policy and answer with sources" : "앞으로는 사내 규정까지 찾아서 근거와 함께 답변해줘"}
+                </p>
+                <div className="mt-5 rounded-xl border border-[var(--color-line)] bg-white p-5">
+                    <p className="flex items-center gap-2 text-[13px] font-bold text-[var(--color-ink)]">
+                        <RefreshCw className="h-4 w-4 text-[#2f7bff]" />
+                        {en ? "Workflow change log" : "워크플로 자동 변경 내역"}
+                    </p>
+                    <ul className="mt-3 flex flex-col gap-2">
+                        {changes.map((c) => (
+                            <li key={c.t} className="flex items-center gap-3 rounded-lg border border-[var(--color-line)] px-3 py-2 text-[13px] text-[var(--color-ink-muted)]">
+                                <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[#eef4ff] font-mono text-[12px] font-bold text-[#2461d8]">{c.s}</span>
+                                {c.t}
+                            </li>
+                        ))}
+                    </ul>
+                    <p className="mt-4 flex items-center gap-2 text-[13px] font-semibold text-[#0f7a4a]">
+                        <Check className="h-4 w-4" />
+                        {en ? "Verified — applies from the next turn" : "검증 완료 · 다음 턴부터 반영"}
+                    </p>
+                </div>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <p className="rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
+                        {en ? "Agent memory · keeps work context" : "에이전트 기억 · 업무 맥락 유지"}
+                    </p>
+                    <p className="rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 text-[12.5px] text-[var(--color-ink-muted)]">
+                        {en ? "Searches only the tools needed · builds one if missing" : "필요한 Tool만 탐색 · 없으면 생성"}
+                    </p>
+                </div>
+            </div>
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                {en ? "Illustrative example. Scope depends on version and configuration." : "※ 화면 속 내용은 예시입니다. 적용 범위는 버전과 구성에 따라 다릅니다."}
+            </figcaption>
+        </BrowserFrame>
+    );
+}
+
+export function XgenPlatformStages({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const [cur, setCur] = useState(0);
+    const s = STAGES[cur];
+    return (
+        <section id="platform" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead
+                    eyebrow="XGEN Platform"
+                    title={en ? "XGEN, the agentic AI platform that keeps evolving" : "지속적으로 진화하는 Agentic AI 플랫폼, XGEN"}
+                    lead={
+                        en
+                            ? "On an open architecture, XGEN covers enterprise data management, agent development, integrated operation and ongoing improvement in a single platform."
+                            : "XGEN은 개방형 아키텍처를 기반으로 기업 데이터 관리부터 AI Agent 개발·통합 운영, 지속적인 고도화까지 하나의 플랫폼에서 지원합니다."
+                    }
+                />
+
+                {/* 단계 선택 — 번호 노드를 선으로 잇는다. 좁은 화면은 가로 스크롤(줄바꿈 금지). */}
+                <div className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
+                    <div role="tablist" aria-label={en ? "XGEN platform stages" : "XGEN 플랫폼 단계"} className="relative mx-auto flex w-max min-w-full justify-between gap-2 lg:w-full">
+                        <span aria-hidden className="pointer-events-none absolute left-[10%] right-[10%] top-[22px] h-px bg-[#c9d9f7]" />
+                        {STAGES.map((x, i) => {
+                            const active = i === cur;
+                            return (
+                                <button
+                                    key={x.key}
+                                    type="button"
+                                    role="tab"
+                                    id={`xgen-stage-tab-${x.key}`}
+                                    aria-selected={active}
+                                    aria-controls="xgen-stage-panel"
+                                    onClick={() => setCur(i)}
+                                    className="group relative flex w-[132px] flex-none flex-col items-center gap-2 text-center lg:w-auto lg:flex-1"
+                                >
+                                    <span
+                                        className={cn(
+                                            "relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border font-mono text-[13px] font-bold transition",
+                                            active
+                                                ? "border-[#2f7bff] bg-[#2f7bff] text-white shadow-[0_0_0_6px_rgba(47,123,255,0.14)]"
+                                                : "border-[#bcd0f5] bg-white text-[#2f7bff] group-hover:border-[#2f7bff]",
+                                        )}
+                                    >
+                                        {i === 4 ? "F" : `0${i + 1}`}
+                                    </span>
+                                    <span className={cn("whitespace-nowrap text-[14.5px] font-bold tracking-tight", active ? "text-[var(--color-ink)]" : "text-[var(--color-ink-muted)]")}>
+                                        {x.en}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* 단계 패널 — 왼쪽 WHY·WHAT·TECH·RESULT, 오른쪽 실제 화면/도식 */}
+                <div
+                    id="xgen-stage-panel"
+                    role="tabpanel"
+                    aria-labelledby={`xgen-stage-tab-${s.key}`}
+                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10"
+                >
+                    <div className="min-w-0">
+                        <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">
+                            {cur === 4 ? "Foundation" : `Stage 0${cur + 1}`} · {s.module}
+                        </p>
+                        <h3 className="mt-2 text-[24px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[28px]">{T(en, s.title)}</h3>
+                        <dl className="mt-6 flex flex-col gap-5">
+                            <div>
+                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">WHY</dt>
+                                <dd className="mt-1 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{T(en, s.why)}</dd>
+                            </div>
+                            <div>
+                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">WHAT</dt>
+                                <dd className="mt-1 text-[15px] leading-relaxed text-[var(--color-ink)]">{T(en, s.what)}</dd>
+                            </div>
+                            <div>
+                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">TECH</dt>
+                                <dd className="mt-2 flex flex-wrap gap-1.5">
+                                    {s.tech.map((t) => (
+                                        <span key={t} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] font-medium text-[var(--color-ink-muted)]">
+                                            {t}
+                                        </span>
+                                    ))}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">RESULT</dt>
+                                <dd className="mt-2">
+                                    <ul className="flex flex-col gap-1.5">
+                                        {(en ? s.result.en : s.result.ko).map((r) => (
+                                            <li key={r} className="flex items-start gap-2 text-[14.5px] font-semibold text-[var(--color-ink)]">
+                                                <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
+                                                {r}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </dd>
+                            </div>
+                        </dl>
+                        <div className="mt-8 flex flex-wrap gap-2">
+                            {s.links.map((l, i) => (
+                                <Link
+                                    key={l.href}
+                                    href={localeHref(locale, l.href)}
+                                    className={cn(
+                                        "inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-[13.5px] font-semibold transition",
+                                        i === 0
+                                            ? "bg-[#2f7bff] text-white hover:bg-[#2461d8]"
+                                            : "border border-[var(--color-line)] text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                                    )}
+                                >
+                                    {T(en, l.label)}
+                                    <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="min-w-0 self-center">
+                        {s.screen.type === "img" ? (
+                            <BrowserFrame url={s.screen.url}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full" />
+                                <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                    {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
+                                </figcaption>
+                            </BrowserFrame>
+                        ) : s.screen.type === "orchestration" ? (
+                            <OrchestrationMock en={en} />
+                        ) : (
+                            <EvolveMock en={en} />
+                        )}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 5. Why XGEN — 소개서 p.24·25·32
+ * ==================================================================== */
+
+const WHY = {
+    ko: {
+        title: (
+            <>
+                기업의 통제 아래, 업무를 끝까지 처리하고
+                <br className="hidden md:block" /> 쓰면서 개선되는 AI
+            </>
+        ),
+        lead: "XGEN은 범용 워크플로우 자동화 도구나 LLM 앱 빌더와 출발점이 다릅니다. 목적은 엔터프라이즈 AI Agent의 설계와 운영입니다.",
+        reasons: [
+            {
+                t: "엔터프라이즈 AI Agent의 설계·운영을 위한 플랫폼",
+                b: [
+                    "지식·Agent 개발·멀티 에이전트 협업·운영·거버넌스를 하나의 플랫폼에서 다룹니다.",
+                    "MCP·API로 사내 시스템과 연결하고, A2A로 여러 Agent가 역할을 나눠 협업합니다.",
+                    "현업은 자연어와 노코드로, 개발자는 도구·지식 연결로, 관리자는 권한·승인으로 각자 역할에 맞게 씁니다.",
+                ],
+                link: L.features,
+            },
+            {
+                t: "기업의 통제 아래에서 실행되는 AI",
+                b: [
+                    "조회·초안은 자동 실행, 되돌릴 수 있는 작업은 승인 후 실행, 되돌릴 수 없는 작업은 결재 후 사람이 직접 실행합니다.",
+                    "온프레미스·망분리·Air-gap 구성을 지원하며, 고객 데이터를 모델 학습에 쓰지 않습니다(제로 트레이닝).",
+                    "GS인증 1등급을 받은 플랫폼입니다.",
+                ],
+                link: L.security,
+            },
+            {
+                t: "모델과 도구가 바뀌어도 유지되는 운영 구조",
+                b: [
+                    "모델 호출을 Model Gateway 단일 경로로 통일해, 모델을 바꿔도 실행 절차와 통제는 그대로 유지합니다.",
+                    "Agent·프롬프트·도구·데이터 소스를 구성 정보로 분리해, 구성 범위 안에서는 코드 수정 없이 새 Agent와 데이터 소스를 추가합니다.",
+                    "Public LLM과 Private LLM을 업무 민감도에 따라 나눠 쓸 수 있습니다.",
+                ],
+                link: L.technology,
+            },
+        ],
+    },
+    en: {
+        title: (
+            <>
+                AI that runs under enterprise control,
+                <br className="hidden md:block" /> finishes the work and improves with use
+            </>
+        ),
+        lead: "XGEN starts from a different place than general workflow automation tools or LLM app builders: its purpose is designing and running enterprise AI agents.",
+        reasons: [
+            {
+                t: "A platform built to design and run enterprise AI agents",
+                b: [
+                    "Knowledge, agent development, multi-agent collaboration, operations and governance on one platform.",
+                    "Connects to internal systems via MCP and APIs; agents split roles and collaborate via A2A.",
+                    "Business users work in natural language and no-code, developers connect tools and knowledge, admins manage permissions and approvals.",
+                ],
+                link: L.features,
+            },
+            {
+                t: "AI that runs under enterprise control",
+                b: [
+                    "Lookups and drafts run automatically, reversible actions run after approval, and irreversible actions are carried out by a person after sign-off.",
+                    "Supports on-premise, segregated-network and air-gapped setups; customer data is not used for model training (zero training).",
+                    "The platform holds GS Certification Grade 1.",
+                ],
+                link: L.security,
+            },
+            {
+                t: "An operating structure that holds when models and tools change",
+                b: [
+                    "All model calls go through a single Model Gateway path, so procedures and controls stay the same when you switch models.",
+                    "Agents, prompts, tools and data sources are kept as configuration, so new agents and sources can be added without code changes within the configurable scope.",
+                    "Public and private LLMs can be used side by side by data sensitivity.",
+                ],
+                link: L.technology,
+            },
+        ],
+    },
+};
+
+export function XgenWhyReasons({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const w = WHY[en ? "en" : "ko"];
+    return (
+        <section id="why" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="Why XGEN" title={w.title} lead={w.lead} />
+                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
+                    {w.reasons.map((r, i) => (
+                        <li key={r.t} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7">
+                            <span className="font-mono text-[28px] font-extrabold leading-none text-[#2f7bff]">0{i + 1}</span>
+                            <h3 className="mt-4 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{r.t}</h3>
+                            <ul className="mt-5 flex flex-col gap-3 border-t border-[var(--color-line)] pt-5">
+                                {r.b.map((x) => (
+                                    <li key={x} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                        <span aria-hidden className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-[#2f7bff]" />
+                                        {x}
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link
+                                href={localeHref(locale, r.link.href)}
+                                className="group mt-auto inline-flex items-center gap-1 pt-6 text-[14px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
+                            >
+                                {T(en, r.link.label)} {en ? "page" : "자세히 보기"}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                            </Link>
+                        </li>
+                    ))}
+                </ol>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 6. Extended Value — 자기개선 루프 (소개서 p.12·17·23)
+ * ==================================================================== */
+
+const LOOP = {
+    ko: {
+        title: (
+            <>
+                쓸수록, 우리 업무에 맞게
+                <br className="hidden md:block" /> 진화합니다
+            </>
+        ),
+        lead: "XGEN의 개선은 개발사의 업데이트에서 끝나지 않습니다. 현업이 결과를 검토하며 남긴 피드백과 실행 기록이 회고를 거쳐 작업지침·도구 구성의 개선으로 이어집니다.",
+        inLabel: "입력",
+        inputs: ["현업의 결과 검토와 피드백", "단계별 실행 기록과 품질 평가 결과", "데이터·도구·모델의 변화"],
+        loop: [
+            { n: "01", t: "실행", d: "Agent가 업무를 수행" },
+            { n: "02", t: "기록", d: "노드·모델·도구 호출을 추적" },
+            { n: "03", t: "회고", d: "평가 결과와 피드백을 분석" },
+            { n: "04", t: "개선", d: "작업지침·도구 구성 개선안 작성" },
+        ],
+        loopCaption: "개선안은 검증과 승인을 거친 뒤에만 반영됩니다",
+        outLabel: "결과",
+        outputs: ["업무 변화에 맞춰 개선되는 Agent", "승인된 변경만 반영, 필요 시 복원·킬 스위치", "개선 이력이 감사 로그로 남음"],
+        govLabel: "모든 개선은 거버넌스 안에서",
+        gov: ["권한 통제", "가드레일", "위험도 심사", "민감정보 차단", "결재선", "실행 추적", "실행 격리", "감사 로그"],
+        note: "※ 반영 방식과 승인 절차는 고객사 정책과 구성에 따라 정합니다.",
+    },
+    en: {
+        title: (
+            <>
+                The more you use it,
+                <br className="hidden md:block" /> the better it fits your work
+            </>
+        ),
+        lead: "Improvement in XGEN does not stop at vendor updates. Feedback left by business users as they review results, together with run records, goes through review and turns into better instructions and tool setups.",
+        inLabel: "Inputs",
+        inputs: ["Business users’ result reviews and feedback", "Step-by-step run records and quality scores", "Changes in data, tools and models"],
+        loop: [
+            { n: "01", t: "Run", d: "The agent performs the work" },
+            { n: "02", t: "Record", d: "Traces node, model and tool calls" },
+            { n: "03", t: "Review", d: "Analyzes scores and feedback" },
+            { n: "04", t: "Improve", d: "Drafts better instructions and tool setups" },
+        ],
+        loopCaption: "Changes apply only after verification and approval",
+        outLabel: "Outcomes",
+        outputs: ["Agents that keep pace with changing work", "Only approved changes apply; rollback and kill switch when needed", "Every change stays in the audit log"],
+        govLabel: "Every improvement stays within governance",
+        gov: ["Permission control", "Guardrails", "Risk review", "Sensitive-data blocking", "Approval routes", "Execution tracing", "Execution isolation", "Audit logs"],
+        note: "※ How changes apply and who approves them follow each customer’s policy and configuration.",
+    },
+};
+
+export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const c = LOOP[en ? "en" : "ko"];
+    return (
+        <section id="evolve" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="Extended Value" title={c.title} lead={c.lead} />
+                <div className={`${SECTION_BODY_GAP} grid items-center gap-4 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:gap-5`}>
+                    {/* 입력 */}
+                    <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
+                        <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.inLabel}</p>
+                        <ul className="mt-4 flex flex-col gap-2.5">
+                            {c.inputs.map((x) => (
+                                <li key={x} className="rounded-lg border border-[var(--color-line)] px-3.5 py-2.5 text-[14px] text-[var(--color-ink)] [word-break:keep-all]">
+                                    {x}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div aria-hidden className="flex justify-center text-[#2f7bff]">
+                        <ArrowRight className="hidden h-6 w-6 lg:block" />
+                        <ArrowDown className="h-6 w-6 lg:hidden" />
+                    </div>
+                    {/* 루프 */}
+                    <div className="rounded-2xl border border-[#9cbcf5] bg-white p-6 shadow-[0_24px_60px_-36px_rgba(36,97,216,0.45)]">
+                        <p className="text-center font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">XGEN · Self-Improvement Loop</p>
+                        <ol className="mt-5 grid grid-cols-2 gap-3">
+                            {c.loop.map((s, i) => (
+                                <li
+                                    key={s.n}
+                                    className={cn(
+                                        "rounded-xl border px-4 py-4",
+                                        i === 3 ? "border-[#2f7bff] bg-[#f5f9ff]" : "border-[var(--color-line)] bg-white",
+                                        // 시계 방향으로 읽히게: 01 02 / 04 03
+                                        i === 2 && "order-4",
+                                        i === 3 && "order-3",
+                                    )}
+                                >
+                                    <p className="font-mono text-[12px] font-bold text-[#2f7bff]">{s.n}</p>
+                                    <p className="mt-1 text-[17px] font-bold tracking-tight text-[var(--color-ink)]">{s.t}</p>
+                                    <p className="mt-1 text-[12.5px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
+                                </li>
+                            ))}
+                        </ol>
+                        <p className="mt-4 flex items-center justify-center gap-2 text-center text-[13px] font-semibold text-[#2461d8] [word-break:keep-all]">
+                            <RefreshCw className="h-4 w-4 flex-none" aria-hidden />
+                            {c.loopCaption}
+                        </p>
+                    </div>
+                    <div aria-hidden className="flex justify-center text-[#2f7bff]">
+                        <ArrowRight className="hidden h-6 w-6 lg:block" />
+                        <ArrowDown className="h-6 w-6 lg:hidden" />
+                    </div>
+                    {/* 결과 */}
+                    <div className="rounded-2xl border border-[var(--color-line)] bg-white p-6">
+                        <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[var(--color-ink-subtle)]">{c.outLabel}</p>
+                        <ul className="mt-4 flex flex-col gap-2.5">
+                            {c.outputs.map((x) => (
+                                <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
+                                    <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
+                                    {x}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+                    <span className="mr-1 text-[13px] font-semibold text-[var(--color-ink-muted)]">{c.govLabel}</span>
+                    {c.gov.map((g) => (
+                        <span key={g} className="rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
+                            {g}
+                        </span>
+                    ))}
+                </div>
+                <p className="mt-5 text-center text-[12.5px] text-[var(--color-ink-subtle)]">{c.note}</p>
+                <NextLinks locale={locale} links={[L.technology, L.security]} center />
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 7. Scenarios — 고객사례 업종 탭 (소개서 p.26~29)
+ * ==================================================================== */
+
+type Scenario = {
+    key: string;
+    tab: Txt;
+    customer: Txt;
+    title: Txt;
+    scope: { ko: string[]; en: string[] };
+    pairs: { c: Txt; x: Txt }[];
+    effect: Txt;
+    agents: { ko: string[]; en: string[] };
+    href?: string;
+};
+
+const SCENARIOS: Scenario[] = [
+    {
+        key: "retail",
+        tab: { ko: "유통 · 통신판매", en: "Retail · TV home shopping" },
+        customer: { ko: "국내 홈쇼핑사", en: "A Korean TV home shopping company" },
+        title: { ko: "인사이트에서 운영 자동화까지, MD 업무의 진화", en: "From insight to operations automation: MD work, evolved" },
+        scope: {
+            ko: ["데이터 기반 트렌드·예측 인사이트 도출", "상품기획·방송 운영 지원 콘텐츠 자동 생성"],
+            en: ["Data-driven trend and forecast insights", "Automatic content for product planning and broadcast operations"],
+        },
+        pairs: [
+            {
+                c: { ko: "리테일 트렌드 변화에 실시간으로 대응하기 어려움", en: "Hard to respond to retail trend shifts in real time" },
+                x: { ko: "트렌드·경쟁사 분석 기반 인사이트 리포트 생성", en: "Insight reports built on trend and competitor analysis" },
+            },
+            {
+                c: { ko: "반복적인 수기 작업으로 생산성 저하", en: "Repetitive manual work dragging productivity" },
+                x: { ko: "방송 상품설명·미팅 자료·CG 기획안 등 자동 생성", en: "Automatic drafts of on-air product copy, meeting decks and graphics plans" },
+            },
+            {
+                c: { ko: "전시·편성 구성 등 반복 작업 부담", en: "Burden of repetitive display and scheduling work" },
+                x: { ko: "배너·상품 조합 기반 전시 영역과 편성 자동 구성", en: "Automatic display areas and schedules from banner and product combinations" },
+            },
+        ],
+        effect: { ko: "현업 부서의 반복 업무를 자동화해 운영 효율 개선", en: "Better operational efficiency by automating repetitive work in business teams" },
+        agents: {
+            ko: ["협력사·내부 심의·사내 지식 챗봇", "방송 심의 Agent", "상품 등록 자동화 Agent", "상품 심의 Agent"],
+            en: ["Supplier, review and internal-knowledge chatbots", "Broadcast review agent", "Product registration agent", "Product review agent"],
+        },
+    },
+    {
+        key: "bank",
+        tab: { ko: "금융 · 은행", en: "Finance · Banking" },
+        customer: { ko: "제주은행", en: "Jeju Bank" },
+        title: { ko: "업무 지원에서 자율 대응까지, 금융 AI Agent의 진화", en: "From work support to autonomous response: financial AI agents, evolved" },
+        scope: {
+            ko: ["준법·감사·소비자보호 Agent 적용", "위험도·민원 데이터와 연동한 GenAI 플랫폼 구현"],
+            en: ["Compliance, audit and consumer-protection agents", "A GenAI platform connected to risk and complaint data"],
+        },
+        pairs: [
+            {
+                c: { ko: "수작업 문서 작성과 제한적인 데이터 활용", en: "Manual document writing and limited use of data" },
+                x: { ko: "업무 매뉴얼·사규를 RAG로 검색·활용해 내부 업무 효율화", en: "Manuals and internal rules searched through RAG to streamline internal work" },
+            },
+            {
+                c: { ko: "부정거래·내부사고 대응과 예방의 어려움", en: "Difficulty detecting and preventing fraud and internal incidents" },
+                x: { ko: "준법·감사 자동화 Agent로 상시 감시·고객 확인(KYC)·내부통제 점검", en: "Compliance and audit agents for ongoing monitoring, KYC and internal-control checks" },
+            },
+            {
+                c: { ko: "지역 중심의 제한적인 디지털 고객 응대 채널", en: "Limited, region-focused digital customer channels" },
+                x: { ko: "ERP 뱅킹 시스템과 연동한 고객 응대 챗봇 구축", en: "Customer chatbot connected to the ERP banking system" },
+            },
+        ],
+        effect: { ko: "GenAI 플랫폼 도입으로 내부 업무 효율화와 고객 서비스 개선", en: "Internal efficiency and better customer service through a GenAI platform" },
+        agents: {
+            ko: ["내규 안내 Agent", "소비자보호 민원 처리 Agent", "문서 자동화 Agent", "나라장터 조달 Agent", "준법감시 Agent"],
+            en: ["Internal-rules agent", "Consumer complaint agent", "Document automation agent", "Public procurement agent", "Compliance monitoring agent"],
+        },
+        href: "/customers/case/jeju-bank-genai-platform",
+    },
+    {
+        key: "capital",
+        tab: { ko: "금융 · 캐피탈", en: "Finance · Capital" },
+        customer: { ko: "I 금융사", en: "Financial company I" },
+        title: { ko: "수작업 검토에서 자동 심사까지, 여신 AI Agent의 진화", en: "From manual review to automated screening: lending AI agents, evolved" },
+        scope: {
+            ko: ["여신심사 프로세스 자동화 Agent 구축", "고객센터·여신 프로세스 연계"],
+            en: ["Agents that automate the credit-review process", "Links to the contact center and lending workflow"],
+        },
+        pairs: [
+            {
+                c: { ko: "수작업 검토로 길어지는 여신심사 처리 시간", en: "Credit reviews slowed by manual checking" },
+                x: { ko: "신청서·재무자료·심사기준을 연결한 AI 자동 검토", en: "AI review that links applications, financials and review criteria" },
+            },
+            {
+                c: { ko: "내부통제·컴플라이언스 기준 충족 필요", en: "Need to meet internal-control and compliance standards" },
+                x: { ko: "RBAC 기반 권한 통제와 감사 로그 적용", en: "RBAC permission control and audit logs" },
+            },
+            {
+                c: { ko: "심사자료와 내부규정이 흩어진 업무 환경", en: "Review materials and internal rules scattered across systems" },
+                x: { ko: "심사자료·내부규정을 연계한 심사 자동화 Agent", en: "A review agent that connects materials and internal rules" },
+            },
+        ],
+        effect: { ko: "심사 자동화와 RBAC 권한 통제·감사 로그로 내부통제 기준에 대응", en: "Automated review plus RBAC and audit logs to meet internal-control standards" },
+        agents: {
+            ko: ["대고객 Q&A Agent (대출상품)", "내규 안내 Agent", "STT·TTS 적용 기능", "연체 관리 Agent"],
+            en: ["Customer Q&A agent (loan products)", "Internal-rules agent", "Speech-to-text / text-to-speech", "Collections agent"],
+        },
+        href: "/customers/case/financial-ai-platform-in-progress",
+    },
+];
+
+export function XgenScenarios({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const [cur, setCur] = useState(0);
+    const s = SCENARIOS[cur];
+    return (
+        <section id="cases" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead
+                    eyebrow="Scenarios"
+                    title={en ? "XGEN agents built in finance and retail" : "금융·유통 현장에 구축한 XGEN Agent"}
+                    lead={
+                        en
+                            ? "Agents for areas that need evidence and control — internal rules, reviews, customer service and document work."
+                            : "사내 규정·심의·상담·문서 업무처럼 근거와 통제가 필요한 영역에 Agent를 구축했습니다."
+                    }
+                />
+                {/* 업종 탭 — 좁은 화면은 가로 스크롤 */}
+                <div className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
+                    <div role="tablist" aria-label={en ? "Customer scenarios" : "고객사례 업종"} className="mx-auto flex w-max gap-2">
+                        {SCENARIOS.map((x, i) => (
+                            <button
+                                key={x.key}
+                                type="button"
+                                role="tab"
+                                id={`xgen-case-tab-${x.key}`}
+                                aria-selected={i === cur}
+                                aria-controls="xgen-case-panel"
+                                onClick={() => setCur(i)}
+                                className={cn(
+                                    "whitespace-nowrap rounded-full border px-5 py-2.5 text-[14px] font-semibold transition",
+                                    i === cur
+                                        ? "border-[#2f7bff] bg-[#2f7bff] text-white"
+                                        : "border-[var(--color-line)] bg-white text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
+                                )}
+                            >
+                                {T(en, x.tab)}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div
+                    id="xgen-case-panel"
+                    role="tabpanel"
+                    aria-labelledby={`xgen-case-tab-${s.key}`}
+                    className="mt-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:p-10"
+                >
+                    <p className="text-[13px] font-semibold text-[#2461d8]">{T(en, s.customer)}</p>
+                    <h3 className="mt-1.5 text-[22px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[26px]">{T(en, s.title)}</h3>
+
+                    <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                        <div className="rounded-xl border border-[var(--color-line)] p-5">
+                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">{en ? "SCOPE" : "도입 범위"}</p>
+                            <ul className="mt-2.5 flex flex-col gap-1.5">
+                                {(en ? s.scope.en : s.scope.ko).map((x) => (
+                                    <li key={x} className="flex items-start gap-2 text-[14px] text-[var(--color-ink)]">
+                                        <span aria-hidden className="mt-[8px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
+                                        {x}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="rounded-xl border border-[#9cbcf5] bg-[#f5f9ff] p-5">
+                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">{en ? "OUTCOME" : "도입 효과"}</p>
+                            <p className="mt-2.5 text-[15px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">{T(en, s.effect)}</p>
+                        </div>
+                    </div>
+
+                    {/* Challenges → With XGEN — 1024px 이상 좌우, 그 아래는 행마다 위아래 */}
+                    <div className="mt-8">
+                        <div className="hidden grid-cols-[1fr_32px_1fr] gap-3 pb-3 lg:grid">
+                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">CHALLENGES</p>
+                            <span />
+                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">WITH XGEN</p>
+                        </div>
+                        <ul className="flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+                            {s.pairs.map((p) => (
+                                <li key={p.c.ko} className="grid gap-2 py-4 lg:grid-cols-[1fr_32px_1fr] lg:items-center lg:gap-3">
+                                    <p className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                        <span className="mr-2 font-mono text-[11px] font-bold text-[var(--color-ink-subtle)] lg:hidden">CHALLENGE</span>
+                                        {T(en, p.c)}
+                                    </p>
+                                    <ArrowRight className="hidden h-4 w-4 text-[#2f7bff] lg:block" aria-hidden />
+                                    <p className="text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
+                                        <span className="mr-2 font-mono text-[11px] font-bold text-[#2461d8] lg:hidden">XGEN</span>
+                                        {T(en, p.x)}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                        <div className="flex flex-wrap gap-1.5">
+                            <span className="mr-1 self-center text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">{en ? "Agents built" : "구축 Agent"}</span>
+                            {(en ? s.agents.en : s.agents.ko).map((a) => (
+                                <span key={a} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
+                                    {a}
+                                </span>
+                            ))}
+                        </div>
+                        {s.href && (
+                            <Link
+                                href={localeHref(locale, s.href)}
+                                className="group inline-flex flex-none items-center gap-1 text-[14px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
+                            >
+                                {en ? "Read the case" : "사례 자세히 보기"}
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                    <p className="text-[12.5px] leading-relaxed text-[var(--color-ink-subtle)]">
+                        {en
+                            ? "※ Agent lineups reflect each customer’s delivery scope. Some customers are shown by industry instead of name."
+                            : "※ Agent 구성은 고객사별 구축 범위 기준입니다. 일부 고객사는 사명 대신 업종으로 표기했습니다."}
+                    </p>
+                    <Link
+                        href={localeHref(locale, "/customers") + "?product=xgen"}
+                        className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
+                    >
+                        {en ? "All XGEN customer cases" : "XGEN 고객사례 전체 보기"}
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 8. 도입 방식·다음 단계 — 소개서 p.31·37·39
+ * ==================================================================== */
+
+const ADOPT = {
+    ko: {
+        title: "XGEN 도입은 이렇게 진행합니다",
+        lead: "검증된 플랫폼 코어 위에 고객 업무만 얹어, 현업이 쓰는 결과를 먼저 만듭니다.",
+        principles: [
+            {
+                k: "MVP FIRST",
+                t: "검증된 코어 위에서 빠르게",
+                d: "Agent 빌더·RAG·거버넌스·관리 화면은 XGEN 기본 기능을 쓰고, 고객 업무 화면과 시스템 연계만 개발합니다.",
+                b: ["GS인증 1등급 플랫폼", "MVP 범위 우선 구축", "필요 시 외부 환경 선구축 후 내부망 이식"],
+            },
+            {
+                k: "TRUST",
+                t: "기존 문서와 권한 그대로",
+                d: "문서관리시스템의 원천 권한을 검색·답변·출처까지 이어받고, 답변마다 출처와 원문 위치를 표시합니다.",
+                b: ["권한 없는 문서는 검색·답변에서 제외", "출처·기준일·원문 하이라이트", "토큰 비용 관제·가드레일"],
+            },
+            {
+                k: "FDE · 자립 운영",
+                t: "현업과 함께 만들고, 스스로 운영",
+                d: "FDE(Forward Deployed Engineer)가 현업과 Sprint 단위로 검증하고, 교육·소스·운영 문서를 인계해 자체 운영을 지원합니다.",
+                b: ["주 단위 데모·현업 검증", "역할별 3계층 교육", "소스·Runbook·저장소 인계"],
+            },
+        ],
+        stepsLabel: "다음 단계",
+        steps: [
+            { t: "초도 미팅", d: "업무 과제·현행 시스템·보안 요건 공유" },
+            { t: "맞춤 데모", d: "고객 업무 시나리오로 실제 화면 시연" },
+            { t: "사전 진단", d: "샘플 문서로 Use Case·분류 기준·정확도 확인" },
+            { t: "MVP 범위 확정", d: "검수 기준·일정·전제 조건 합의" },
+            { t: "착수", d: "FDE 투입, Sprint 시작" },
+        ],
+        schedule: "표준 도입 일정 예시: 8주 차 MVP 오픈, 16주 차 운영 이관",
+        scheduleNote: "실제 일정은 범위·데이터 준비 상태·승인 절차(API 권한, LLM 사용 승인 등)에 따라 달라집니다.",
+    },
+    en: {
+        title: "How XGEN adoption works",
+        lead: "We put only your business logic on a proven platform core, so business users get working results first.",
+        principles: [
+            {
+                k: "MVP FIRST",
+                t: "Move fast on a proven core",
+                d: "The agent builder, RAG, governance and admin screens come standard with XGEN; we build only your business screens and system integrations.",
+                b: ["GS Certification Grade 1 platform", "MVP scope first", "Build outside first and move into the internal network if needed"],
+            },
+            {
+                k: "TRUST",
+                t: "Your documents and permissions, as they are",
+                d: "Source-system permissions carry through search, answers and citations, and every answer shows its source and location in the original.",
+                b: ["Documents without permission are excluded", "Source, as-of date and highlighted passage", "Token-cost monitoring and guardrails"],
+            },
+            {
+                k: "FDE · SELF-RUN",
+                t: "Build with your teams, then run it yourself",
+                d: "Forward Deployed Engineers validate with business users sprint by sprint, then hand over training, source code and runbooks so you can operate on your own.",
+                b: ["Weekly demos and user validation", "Three-tier training by role", "Source, runbook and repository handover"],
+            },
+        ],
+        stepsLabel: "Next steps",
+        steps: [
+            { t: "Kickoff meeting", d: "Share tasks, current systems and security needs" },
+            { t: "Tailored demo", d: "Live screens on your business scenario" },
+            { t: "Pre-assessment", d: "Check use cases, criteria and accuracy on sample documents" },
+            { t: "Fix MVP scope", d: "Agree on acceptance criteria, schedule and prerequisites" },
+            { t: "Start", d: "FDEs join and sprints begin" },
+        ],
+        schedule: "Standard schedule example: MVP opens in week 8, handover in week 16",
+        scheduleNote: "Actual timing depends on scope, data readiness and approvals (API access, LLM usage approval and more).",
+    },
+};
+
+export function XgenAdoptionPath({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const a = ADOPT[en ? "en" : "ko"];
+    return (
+        <section id="adopt" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="How to Start" title={a.title} lead={a.lead} />
+                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
+                    {a.principles.map((p, i) => (
+                        <li key={p.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7">
+                            <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">
+                                0{i + 1} · {p.k}
+                            </p>
+                            <h3 className="mt-2 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p.t}</h3>
+                            <p className="mb-5 mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.d}</p>
+                            <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
+                                {p.b.map((x) => (
+                                    <li key={x} className="flex items-start gap-2 text-[13.5px] text-[var(--color-ink)]">
+                                        <Check className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
+                                        {x}
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                    ))}
+                </ol>
+
+                <p className="mt-14 font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">{a.stepsLabel}</p>
+                <ol className="mt-4 grid gap-3 lg:grid-cols-5">
+                    {a.steps.map((s, i) => (
+                        <li key={s.t} className="relative rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
+                            <p className="font-mono text-[12px] font-bold text-[#2f7bff]">0{i + 1}</p>
+                            <p className="mt-1 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">{s.t}</p>
+                            <p className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
+                        </li>
+                    ))}
+                </ol>
+                <div className="mt-6 rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
+                    <p className="text-[14.5px] font-semibold text-[var(--color-ink)]">{a.schedule}</p>
+                    <p className="mt-1 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">※ {a.scheduleNote}</p>
+                </div>
+                <NextLinks
+                    locale={locale}
+                    links={[
+                        L.adoption,
+                        { label: { ko: "XGEN 소개서", en: "XGEN brochure" }, href: "/xgen-brief-k7m4" },
+                        { label: { ko: "15일 무료 체험", en: "15-day free trial" }, href: "/xgen-trial" },
+                    ]}
+                />
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 9. Product Overview — 소개 영상 (클릭 시에만 YouTube 로드)
+ * ==================================================================== */
+
+const VIDEO_ID = "x0Uch1b0kNk";
+
+export function XgenOverviewVideo({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const [play, setPlay] = useState(false);
+    return (
+        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div className={`mx-auto max-w-5xl px-6 ${SECTION_PAD}`}>
+                <SectionHead
+                    eyebrow="Product Overview"
+                    title={en ? "See XGEN in one video" : "영상으로 보는 XGEN"}
+                    lead={
+                        en
+                            ? "A tour of the XGEN platform, from the node canvas to the headless engine that runs agents."
+                            : "노드 캔버스부터 Agent를 실행하는 헤드리스 엔진까지, XGEN 플랫폼 전반을 소개합니다."
+                    }
+                />
+                <div className={`${SECTION_BODY_GAP} relative aspect-video overflow-hidden rounded-2xl border border-[var(--color-line)] bg-black`}>
+                    {play ? (
+                        <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0`}
+                            title={en ? "XGEN overview video" : "XGEN 소개 영상"}
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        />
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => setPlay(true)}
+                            className="group absolute inset-0 h-full w-full"
+                            aria-label={en ? "Play the XGEN overview video" : "XGEN 소개 영상 재생"}
+                        >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover opacity-90 transition group-hover:opacity-100" />
+                            <span className="absolute left-1/2 top-1/2 inline-flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-[#2461d8] shadow-lg transition group-hover:scale-105">
+                                <Play className="ml-1 h-7 w-7" fill="currentColor" />
+                            </span>
+                        </button>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+}
