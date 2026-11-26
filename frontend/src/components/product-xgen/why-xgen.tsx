@@ -267,6 +267,47 @@ export function WhyXgenHero({ locale }: { locale: Locale }) {
 
 /* ---------------- Decisive difference ---------------- */
 
+/* 히어로와 같은 오로라 물결 영상 — 화면에 보일 때만 재생하고, 첫 로드 오류(같은 파일 동시 요청 등)는 한 번 다시 불러온다. 동작 줄이기 설정이면 포스터 정지 화면. */
+function AuroraBandVideo() {
+    const ref = useRef<HTMLVideoElement>(null);
+    const reduced = useReduced();
+    useEffect(() => {
+        const v = ref.current;
+        if (!v || reduced) return;
+        let retried = false;
+        const onError = () => {
+            if (retried) return;
+            retried = true;
+            v.load();
+        };
+        v.addEventListener("error", onError);
+        const io = new IntersectionObserver(
+            ([e]) => {
+                if (e.isIntersecting) v.play().catch(() => {});
+                else v.pause();
+            },
+            { threshold: 0.1 },
+        );
+        io.observe(v);
+        return () => {
+            io.disconnect();
+            v.removeEventListener("error", onError);
+        };
+    }, [reduced]);
+    return (
+        <video
+            ref={ref}
+            className="h-full w-full object-cover"
+            src="/product/why/hero-td310-aurora.mp4"
+            poster="/product/why/hero-td310-aurora-poster.jpg"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+        />
+    );
+}
+
 export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const t = COPY[locale];
     const [ref, v] = useInView<HTMLHeadingElement>(0.3);
@@ -283,7 +324,7 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
                 <h2 className="mt-3 text-[15px] font-bold tracking-tight text-white/70">{t.diffTitle}</h2>
                 <div className="relative mt-8 flex w-full items-center justify-center py-10 sm:py-14 lg:py-16">
                     <div aria-hidden className="why-band pointer-events-none absolute left-1/2 top-1/2 h-[240px] w-screen -translate-x-1/2 -translate-y-1/2 opacity-80 sm:h-[320px] lg:h-[400px]">
-                        <video className="h-full w-full object-cover" src="/product/why/hero-td310-aurora.mp4" poster="/product/why/hero-td310-aurora-poster.jpg" autoPlay muted loop playsInline preload="metadata" />
+                        <AuroraBandVideo />
                     </div>
                     <p ref={ref} className="relative max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)] [word-break:keep-all] md:text-[40px]">
                         {words.map((w, i) => (
