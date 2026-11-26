@@ -344,15 +344,15 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
         {
             img: "/product/screen-approval.png",
             fit: "cover",
-            eyebrow: ko ? "릴리스 노트 · 2026.10.31" : "Release notes · 2026.10.31",
-            title: ko ? "XGEN v2.7.0 — [결재] 통합과 Agent 고정 배포" : "XGEN v2.7.0 — unified approvals and pinned agent deployment",
+            eyebrow: ko ? "릴리스 노트 · 2026.11.30" : "Release notes · 2026.11.30",
+            title: ko ? "XGEN v2.8.0 — 공유 결재와 에이전트 자원 한도" : "XGEN v2.8.0 — approval-based sharing and agent resource limits",
             desc: ko
-                ? "9월 30일 운영 반영분과 10월 stage 승격분을 정리했습니다. 항목마다 반영 단계를 함께 적었습니다."
-                : "Covers what reached production on Sep 30 and stage in October, with the stage noted for each item.",
+                ? "11월 12일 운영 반영분과 11월 18일 stage 승격분을 정리했습니다. 항목마다 반영 단계를 함께 적었습니다."
+                : "Covers what reached production on Nov 12 and stage on Nov 18, with the stage noted for each item.",
             href: "/releases",
             cta: ko ? "릴리스 노트 보기" : "Read the release notes",
             fn: 0,
-            date: "2026-10-31",
+            date: "2026-11-30",
         },
         {
             img: "/xgen-gs-box2.png",
