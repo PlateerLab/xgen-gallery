@@ -272,30 +272,39 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const [ref, v] = useInView<HTMLHeadingElement>(0.3);
     const words = t.diffStatement.split(" ");
     return (
-        <section id="difference" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] bg-[var(--color-surface)]">
-            {/* 배치 — 15일 체험 띠배너 바로 아래. 왼쪽 정렬 머리 → 큰 문장(단어 단위 등장) → 가는 선 아래 3열 포인트. 1024px 미만은 한 열. */}
-            <div className="mx-auto max-w-7xl px-6 py-20 lg:py-[120px]">
-                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
-                <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
-                <p ref={ref} className="mt-6 max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]">
-                    {words.map((w, i) => (
-                        <span key={i}>
-                            <span
-                                className={`why-word${v ? " why-word-in" : ""}`}
-                                style={{ transitionDelay: v ? `${i * 55}ms` : "0ms" }}
-                            >
-                                {w}
+        <section
+            id="difference"
+            data-nav-theme="dark"
+            className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden bg-black text-white"
+        >
+            {/* 배치 — 15일 체험 띠배너 바로 아래. 히어로와 같은 오로라 물결 영상을 큰 문장 뒤에 깔고 전체 가운데 정렬. 1024px 미만은 포인트 한 열. */}
+            <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
+                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#b49cff]">{t.diffEyebrow}</p>
+                <h2 className="mt-3 text-[15px] font-bold tracking-tight text-white/70">{t.diffTitle}</h2>
+                <div className="relative mt-8 flex w-full items-center justify-center py-10 sm:py-14 lg:py-16">
+                    <div aria-hidden className="why-band pointer-events-none absolute left-1/2 top-1/2 h-[240px] w-screen -translate-x-1/2 -translate-y-1/2 opacity-80 sm:h-[320px] lg:h-[400px]">
+                        <video className="h-full w-full object-cover" src="/product/why/hero-td310-aurora.mp4" poster="/product/why/hero-td310-aurora-poster.jpg" autoPlay muted loop playsInline preload="metadata" />
+                    </div>
+                    <p ref={ref} className="relative max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)] [word-break:keep-all] md:text-[40px]">
+                        {words.map((w, i) => (
+                            <span key={i}>
+                                <span
+                                    className={`why-word${v ? " why-word-in" : ""}`}
+                                    style={{ transitionDelay: v ? `${i * 55}ms` : "0ms" }}
+                                >
+                                    {w}
+                                </span>
+                                {i < words.length - 1 ? " " : ""}
                             </span>
-                            {i < words.length - 1 ? " " : ""}
-                        </span>
-                    ))}
-                </p>
-                <div className="mt-12 grid border-t border-[var(--color-line)] lg:mt-16 lg:grid-cols-3">
+                        ))}
+                    </p>
+                </div>
+                <div className="mt-8 grid w-full border-t border-white/15 lg:mt-12 lg:grid-cols-3">
                     {t.diffPoints.map(([h, d], i) => (
-                        <Reveal key={h} delay={i * 120} className="border-b border-[var(--color-line)] py-7 last:border-b-0 lg:border-b-0 lg:pr-10">
-                            <span className="block font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                            <h3 className="mt-2 text-[18px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{h}</h3>
-                            <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{d}</p>
+                        <Reveal key={h} delay={i * 120} className="border-b border-white/15 px-4 py-7 last:border-b-0 lg:border-b-0 lg:px-8">
+                            <span className="block font-mono text-[13px] font-bold text-[#5fd0ff]">0{i + 1}</span>
+                            <h3 className="mt-2 text-[18px] font-bold tracking-tight text-white [word-break:keep-all]">{h}</h3>
+                            <p className="mx-auto mt-2 max-w-sm text-[14.5px] leading-relaxed text-white/65 [word-break:keep-all]">{d}</p>
                         </Reveal>
                     ))}
                 </div>
