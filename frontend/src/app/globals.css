@@ -1020,3 +1020,7 @@ img {
 .decisive-satin { transform-origin: 50% 50%; animation: decisiveSatin 24s ease-in-out infinite alternate; will-change: transform; }
 @keyframes decisiveSatin { from { transform: translate3d(-2%, 1.5%, 0) scale(1); } to { transform: translate3d(2%, -1.5%, 0) scale(1.05); } }
 @media (prefers-reduced-motion: reduce) { .decisive-satin { animation: none; } }
+/* AX Evolution Model 실크 — 결정적 차이와 반대 방향, 더 느리게, 살짝 기울어 흐른다 */
+.evo-silk { transform-origin: 50% 50%; animation: evoSilk 32s ease-in-out infinite alternate; will-change: transform; }
+@keyframes evoSilk { from { transform: translate3d(2.5%, -1%, 0) rotate(-1.2deg) scale(1.04); } to { transform: translate3d(-2.5%, 1.5%, 0) rotate(1.2deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .evo-silk { animation: none; } }

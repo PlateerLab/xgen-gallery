@@ -608,10 +608,20 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     }, [count, inView, reduced, e.stages.length]);
     return (
         <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]"
-            />
+            {/* 배경 — 「The Decisive Difference」와 같은 실크 원본(Adobe Stock 235705006)을 좌우 반전·남색 다크 톤으로 입힌 파일.
+                결정적 차이(밝은 그레이, 왼쪽→오른쪽 위로 흐름)와 달리 반대 방향으로 더 느리게 흐르고 살짝 기운다(동작 줄이기 땐 정지).
+                위아래 어두운 막으로 제목·카드 읽힘을 확보하고, 위쪽 파란 빛은 그대로 둔다. */}
+            <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+                <img
+                    src="/product/why/evolution-silk-dark.jpg"
+                    alt=""
+                    className="evo-silk absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover object-center opacity-90"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.78)_0%,rgba(7,11,28,0.35)_38%,rgba(7,11,28,0.45)_70%,rgba(7,11,28,0.85)_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]" />
+            </div>
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
                 {/* 계단형 — 1024px 이상은 오른쪽으로 갈수록 한 칸씩 올라가고, 그 아래는 한 열 */}
@@ -623,8 +633,8 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                                 "group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur-sm transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3
-                                    ? "border-[#5aa9ff]/60 bg-[linear-gradient(160deg,#16306b_0%,#0d1b44_45%,#0a1230_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.25),0_24px_60px_-20px_rgba(47,123,255,0.55)]"
-                                    : "border-white/[0.14] bg-[linear-gradient(160deg,#141f45_0%,#0d1636_55%,#0a1129_100%)] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]",
+                                    ? "border-[#5aa9ff]/60 bg-[linear-gradient(160deg,rgba(22,48,107,0.88)_0%,rgba(13,27,68,0.86)_45%,rgba(10,18,48,0.9)_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.25),0_24px_60px_-20px_rgba(47,123,255,0.55)]"
+                                    : "border-white/[0.14] bg-[linear-gradient(160deg,rgba(20,31,69,0.82)_0%,rgba(13,22,54,0.84)_55%,rgba(10,17,41,0.88)_100%)] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
                         >
