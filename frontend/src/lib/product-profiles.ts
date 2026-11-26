@@ -121,7 +121,7 @@ export const PRODUCT_PROFILES: Record<ProductId, ProductProfile> = {
                 sub: { ko: "고객 인프라에 설치", en: "Installed on your infrastructure" },
             },
             {
-                value: "110+",
+                value: "111+",
                 label: { ko: "내장 도구·플러그인", en: "Built-in tools & plugins" },
                 sub: { ko: "MCP·API로 확장", en: "Extend via MCP and APIs" },
             },

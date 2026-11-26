@@ -231,8 +231,8 @@ export function xgenFeatureGroups(locale: Locale): AccordionGroup[] {
                     key: "models",
                     title: ko ? "모델 선택" : "Model choice",
                     desc: ko
-                        ? "GPT · Claude · Qwen · Private LLM 중 업무와 보안 정책에 맞는 모델을 고릅니다. 내장 도구·플러그인 110여 종을 쓰고, API와 MCP로 확장합니다."
-                        : "Choose among GPT, Claude, Qwen, and private LLMs to fit the task and security policy. Use 110+ built-in tools and plugins, and extend via APIs and MCP.",
+                        ? "GPT · Claude · Qwen · Private LLM 중 업무와 보안 정책에 맞는 모델을 고릅니다. 내장 도구·플러그인 111종 이상을 쓰고, API와 MCP로 확장합니다."
+                        : "Choose among GPT, Claude, Qwen, and private LLMs to fit the task and security policy. Use 111+ built-in tools and plugins, and extend via APIs and MCP.",
                     visual: { type: "img", img: "/product/modelops-catalog.png", alt: ko ? "모델 카탈로그 화면" : "Model catalog" },
                 },
             ],

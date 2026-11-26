@@ -48,7 +48,7 @@ export const PRODUCT_EN = {
 
     stats: [
         ["Local", "On-premise deployment support", "Network separation · data sovereignty"],
-        ["110+", "Built-in tools and plugins", "Extensible with your own"],
+        ["111+", "Built-in tools and plugins", "Extensible with your own"],
         ["Grade 1", "National GS certification", "Verified by third-party testing"],
         // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생.
         [String(TOOLS.length), "Public libraries", "Install with pip or npm"],

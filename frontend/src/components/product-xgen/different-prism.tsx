@@ -28,7 +28,7 @@ function copy(locale: Locale) {
             sub: `${ko ? "인증번호" : "No."} ${XGEN_GS_CERTIFICATION.no}`,
         },
         {
-            value: 110,
+            value: 111,
             unit: "+",
             label: ko ? "내장 도구·플러그인" : "Built-in tools & plugins",
             sub: ko ? "커스텀 도구로 확장 가능" : "Extensible with custom tools",
