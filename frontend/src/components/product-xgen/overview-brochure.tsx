@@ -1025,7 +1025,12 @@ const WHY = {
                 <br className="hidden md:block" /> 현업의 경험으로 진화하는 AI
             </>
         ),
-        loopLead: "XGEN은 기업의 보안과 거버넌스 체계 안에서 AI Agent가 실제 업무를 수행하도록 지원합니다. 사용자의 피드백과 업무 수행 경험을 지속적인 개선에 반영해 기업의 업무 환경에 더욱 적합한 AI로 발전합니다.",
+        loopLead: (
+            <>
+                XGEN은 기업의 보안과 거버넌스 체계 안에서 AI Agent가 실제 업무를 수행하도록 지원합니다. 사용자의 피드백과 업무 수행 경험을 지속적인 개선에 반영해
+                <br className="hidden md:block" /> 기업의 업무 환경에 더욱 적합한 AI로 발전합니다.
+            </>
+        ),
         lead: "XGEN은 범용 워크플로우 자동화 도구나 LLM 앱 빌더와 출발점이 다릅니다. 목적은 엔터프라이즈 AI Agent의 설계와 운영입니다.",
         reasons: [
             {
@@ -1064,7 +1069,12 @@ const WHY = {
                 <br className="hidden md:block" /> evolving with real work experience
             </>
         ),
-        loopLead: "XGEN helps AI agents carry out real work within the enterprise's security and governance framework. User feedback and work experience feed into ongoing improvement, so the AI becomes a better fit for the enterprise's work environment over time.",
+        loopLead: (
+            <>
+                XGEN helps AI agents carry out real work within the enterprise&apos;s security and governance framework. User feedback and work experience feed into ongoing improvement,
+                <br className="hidden md:block" /> so the AI becomes a better fit for the enterprise&apos;s work environment over time.
+            </>
+        ),
         lead: "XGEN starts from a different place than general workflow automation tools or LLM app builders: its purpose is designing and running enterprise AI agents.",
         reasons: [
             {
