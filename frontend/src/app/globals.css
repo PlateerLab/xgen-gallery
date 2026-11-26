@@ -1015,7 +1015,7 @@ img {
 @media (prefers-reduced-motion: reduce) { .why-aurora-flow { animation: none; } }
 
 /* product/xgen 결정적 차이 — 동심원 배경 */
-/* 결정적 차이 실사 물결 — 가운데를 축으로 천천히 커졌다 돌아온다(물결이 바깥으로 퍼지는 느낌) */
-.decisive-ripple { transform-origin: 50% 50%; animation: decisiveRipple 18s ease-in-out infinite alternate; will-change: transform; }
-@keyframes decisiveRipple { from { transform: scale(1); } to { transform: scale(1.12); } }
-@media (prefers-reduced-motion: reduce) { .decisive-ripple { animation: none; } }
+/* 결정적 차이 실사 새틴 결 — 결 방향(대각선)으로 아주 천천히 흘렀다 돌아온다 */
+.decisive-satin { transform-origin: 50% 50%; animation: decisiveSatin 24s ease-in-out infinite alternate; will-change: transform; }
+@keyframes decisiveSatin { from { transform: translate3d(-2%, 1.5%, 0) scale(1); } to { transform: translate3d(2%, -1.5%, 0) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .decisive-satin { animation: none; } }
