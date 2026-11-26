@@ -24,7 +24,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { InlinePromoBand } from "@/components/product-xgen/inline-promo-band";
 import { CompareStack } from "@/components/product-xgen/compare-stack";
-import { WhyXgenHero, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
+import { WhyXgenHero, WhyXgenDifference, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
 import { ProductGeny } from "@/components/product-geny";
 import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
@@ -700,6 +700,9 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
+
+                    {/* The Decisive Difference — 체험 배너 바로 아래, 결정적 차이 3가지 (why-xgen.tsx) */}
+                    <WhyXgenDifference locale={locale} />
 
                     <XgenWhyReasons locale={locale} />
 
