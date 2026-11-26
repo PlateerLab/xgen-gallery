@@ -335,7 +335,8 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
                                 >
                                     {w}
                                 </span>
-                                {i < words.length - 1 ? " " : ""}
+                                {/* 쉼표로 끝나는 단어 뒤에서 줄을 나눈다(KO/EN 공통) */}
+                                {i < words.length - 1 ? (w.endsWith(",") ? <br /> : " ") : ""}
                             </span>
                         ))}
                     </p>
