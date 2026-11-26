@@ -76,7 +76,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#03040a]" />
             </div>
 
-            <div className="relative mx-auto grid max-w-7xl grid-cols-12 items-center gap-x-12 px-6 py-24 max-[1023px]:grid-cols-1 max-[1023px]:gap-y-12 max-[1023px]:py-20 max-[620px]:gap-y-10 max-[620px]:py-16">
+            <div className="relative mx-auto grid max-w-7xl grid-cols-12 items-center gap-x-12 px-6 py-[167px] max-[1023px]:grid-cols-1 max-[1023px]:gap-y-12 max-[1023px]:py-20 max-[620px]:gap-y-10 max-[620px]:py-16">
                 {/* 왼쪽: 메시지 */}
                 <div className="col-span-5 max-[1023px]:col-span-1">
                     <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[#8fc1ff]">{t.kicker}</p>
