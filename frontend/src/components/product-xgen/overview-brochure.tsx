@@ -706,9 +706,12 @@ const STAGES: Stage[] = [
     },
 ];
 
+/** 단계 화면 본문 — PC(lg)에서는 틀 높이를 단계마다 같게 고정하고 내용을 그 안 가운데에 둔다. */
+const MOCK_BODY = "bg-[#f7f9fc] p-5 sm:p-7 lg:p-5 xl:p-7 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center lg:overflow-hidden";
+
 function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
     return (
-        <figure className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)]">
+        <figure className="flex flex-col lg:h-full overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)]">
             <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5">
                 <span aria-hidden className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
@@ -750,7 +753,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
     ];
     return (
         <BrowserFrame url="XGEN · Agent Builder">
-            <div className="grid grid-cols-1 sm:grid-cols-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:min-h-0 lg:flex-1">
                 {halves.map((h, i) => (
                     <div key={h.tag} className={`flex min-w-0 flex-col ${i === 1 ? "border-t border-[var(--color-line)] sm:border-l sm:border-t-0" : ""}`}>
                         <div className="flex items-center gap-2 border-b border-[var(--color-line)] bg-white px-4 py-2.5">
@@ -758,7 +761,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
                             <span className="text-[13.5px] font-bold text-[var(--color-ink)]">{h.name}</span>
                             <span className="truncate text-[12.5px] text-[var(--color-ink-subtle)]">· {h.desc}</span>
                         </div>
-                        <div className="flex aspect-[16/10] flex-col overflow-hidden bg-[var(--color-surface-alt)] sm:aspect-[4/5]">
+                        <div className="flex aspect-[16/10] flex-col overflow-hidden bg-[var(--color-surface-alt)] sm:aspect-[4/5] lg:aspect-auto lg:min-h-0 lg:flex-1">
                             {h.prompt ? (
                                 <div className="flex justify-end bg-white px-3 py-2.5">
                                     <span className="max-w-[92%] rounded-xl rounded-tr-sm bg-[#2461d8] px-3 py-2 text-[12.5px] font-medium leading-snug text-white">{h.prompt}</span>
@@ -794,7 +797,7 @@ function OrchestrationMock({ en }: { en: boolean }) {
           ];
     return (
         <BrowserFrame url="XGEN · Multi-Agent Orchestration">
-            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+            <div aria-hidden className={MOCK_BODY}>
                 <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
                     {en ? "Find out why this week’s top product sales dropped" : "이번 주 매출이 급감한 상품의 원인을 분석해줘"}
                 </p>
@@ -818,6 +821,9 @@ function OrchestrationMock({ en }: { en: boolean }) {
                         : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
                 </div>
             </div>
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                {en ? "Example scenario. Agents and connected systems depend on configuration." : "예시 시나리오입니다. Agent와 연결 시스템은 구성에 따라 다릅니다."}
+            </figcaption>
         </BrowserFrame>
     );
 }
@@ -837,7 +843,7 @@ function EvolveMock({ en }: { en: boolean }) {
           ];
     return (
         <BrowserFrame url="XGEN · Agent · Geny">
-            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+            <div aria-hidden className={MOCK_BODY}>
                 <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
                     {en ? "From now on, also check internal policy and answer with sources" : "앞으로는 사내 규정까지 찾아서 근거와 함께 답변해줘"}
                 </p>
@@ -901,7 +907,7 @@ function GovernanceMock({ en }: { en: boolean }) {
           ];
     return (
         <BrowserFrame url="XGEN · AI Governance · Agent risk grade">
-            <div aria-hidden className="bg-[#f7f9fc] p-5 sm:p-7">
+            <div aria-hidden className={MOCK_BODY}>
                 {/* 대상 Agent */}
                 <div className="flex items-center gap-3 rounded-xl border border-[var(--color-line)] bg-white px-4 py-3">
                     <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#eef4ff] text-[#2461d8]">
@@ -1093,7 +1099,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                     </div>
                 </div>
 
-                {/* 단계 패널 — 왼쪽 WHY·WHAT·TECH·RESULT, 오른쪽 실제 화면/도식 */}
+                {/* 단계 패널 — 왼쪽 요약·결과, 오른쪽 실제 화면/도식. PC(lg)에서는 오른쪽 화면 높이를 560px로 고정해 단계마다 카드 크기가 같다. */}
                 <div
                     id="xgen-stage-panel"
                     role="tabpanel"
@@ -1139,11 +1145,13 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                             )}
                         </div>
                     </div>
-                    <div className="min-w-0 self-center">
+                    <div className="min-w-0 lg:h-[560px]">
                         {s.screen.type === "img" ? (
                             <BrowserFrame url={s.screen.url}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full" />
+                                <div className="lg:relative lg:min-h-0 lg:flex-1 lg:bg-[#f7f9fc]">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain" />
+                                </div>
                                 <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
                                     {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
                                 </figcaption>
