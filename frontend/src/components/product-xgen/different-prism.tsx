@@ -1,23 +1,23 @@
-/* /product/xgen 1depth 「XGEN은 다릅니다」 — 변화 대비 비교 밴드(2026-11 개편 2).
+/* /product/xgen 1depth 「XGEN은 다릅니다」 — 변화 네 가지 카드(2026-11 개편 3: 표 → 카드, 머리글·단서 문구 삭제).
    바로 위 The Challenge의 결론(「변화에 대응하지 못하는 플랫폼」)에 답하는 섹션.
    말풍선 세 장면(데이터·모델·연결 시스템)에 「현업 피드백」을 더해 네 가지 변화를 행으로 두고,
    「흔히 겪는 방식」과 「XGEN」을 나란히 놓는다. 문구의 사실 근거는 같은 페이지 Platform·Why XGEN·자기개선 루프 섹션.
    배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소). 애니메이션 없음. */
 import Image from "next/image";
-import { Check, X } from "lucide-react";
+import { ArrowDown, Cpu, Database, MessagesSquare, Plug, type LucideIcon } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 
 type Row = { when: string; typical: string; xgen: string };
+
+const ICONS: LucideIcon[] = [Database, Cpu, Plug, MessagesSquare];
 
 function copy(locale: Locale) {
     const ko = locale !== "en";
     return ko
         ? {
-              kicker: "XGEN · 기업형 Agentic AI Platform",
               h2: "XGEN은 다릅니다.",
               value: ["도입한 날에 멈추는 AI가 아니라,", "업무의 변화와 함께 진화하는 AI."],
               body: "데이터와 모델, 연결된 시스템이 바뀌어도 Agent를 처음부터 다시 만들지 않습니다. 현업의 피드백은 승인을 거쳐 다음 개선으로 이어집니다.",
-              colWhen: "변화가 생기면",
               colTypical: "흔히 겪는 방식",
               colXgen: "XGEN",
               rows: [
@@ -42,14 +42,11 @@ function copy(locale: Locale) {
                       xgen: "피드백과 실행 기록을 바탕으로 개선안을 만들고, 승인된 변경만 반영합니다",
                   },
               ] satisfies Row[],
-              note: "적용 범위와 반영 절차는 고객사 구성과 정책에 따라 정합니다.",
           }
         : {
-              kicker: "XGEN · Enterprise Agentic AI Platform",
               h2: "XGEN is different.",
               value: ["Not AI that stops on launch day,", "but AI that evolves as your work changes."],
               body: "When data, models or connected systems change, you do not rebuild agents from scratch. Feedback from business users turns into the next improvement after approval.",
-              colWhen: "When this changes",
               colTypical: "Typical rollout",
               colXgen: "XGEN",
               rows: [
@@ -74,7 +71,6 @@ function copy(locale: Locale) {
                       xgen: "Feedback and run records shape improvement proposals; only approved changes go live",
                   },
               ] satisfies Row[],
-              note: "Scope and rollout procedures are set by each customer’s configuration and policies.",
           };
 }
 
@@ -82,7 +78,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
     const t = copy(locale);
     return (
         <section data-nav-theme="dark" className="relative overflow-hidden bg-[#03040a] text-white">
-            {/* 키비주얼: 빛 물결은 오른쪽 위, 글자 쪽은 검정으로 누른다 */}
+            {/* 키비주얼: 빛 물결은 오른쪽 위, 아래 카드 쪽은 검정으로 누른다 */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 <Image
                     src="/product/xgen-different-wave.jpg"
@@ -91,60 +87,61 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                     sizes="100vw"
                     className="object-cover object-[60%_30%] opacity-80 max-[1023px]:object-[70%_20%]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,10,0.94)_0%,rgba(3,4,10,0.78)_40%,rgba(3,4,10,0.55)_70%,rgba(3,4,10,0.45)_100%)] max-[1023px]:bg-[linear-gradient(180deg,rgba(3,4,10,0.55)_0%,rgba(3,4,10,0.88)_40%,rgba(3,4,10,0.95)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,4,10,0.55)_0%,rgba(3,4,10,0.80)_45%,rgba(3,4,10,0.94)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#03040a]" />
             </div>
 
-            <div className="relative mx-auto grid max-w-7xl grid-cols-12 items-center gap-x-12 px-6 py-24 max-[1023px]:grid-cols-1 max-[1023px]:gap-y-12 max-[1023px]:py-20 max-[620px]:gap-y-10 max-[620px]:py-16">
-                {/* 왼쪽: 선언 — 헤드라인 → 지향 가치 한 쌍 → 한 줄 설명 */}
-                <div className="col-span-5 max-[1023px]:col-span-1">
-                    <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[#8fc1ff]">{t.kicker}</p>
-                    <h2 className="mt-5 bg-gradient-to-r from-[#f2f8ff] via-[#8cc4ff] to-[#7c6cff] bg-clip-text pb-1 text-[56px] font-bold leading-[1.08] tracking-[-0.035em] text-transparent max-[1023px]:text-[48px] max-[620px]:text-[36px]">
-                        {t.h2}
-                    </h2>
-                    <p className="mt-7 text-[24px] font-bold leading-[1.45] tracking-[-0.02em] [word-break:keep-all] max-[620px]:mt-5 max-[620px]:text-[19px]">
-                        <span className="text-white/45">{t.value[0]}</span>
-                        <br />
-                        <span className="text-white">{t.value[1]}</span>
+            <div className="relative mx-auto max-w-7xl px-6 py-24 max-[1023px]:py-20 max-[620px]:py-16">
+                {/* 위: 선언 — 왼쪽 헤드라인·지향 가치, 오른쪽 한 줄 설명 */}
+                <div className="grid grid-cols-12 items-end gap-x-12 max-[1023px]:grid-cols-1 max-[1023px]:gap-y-5">
+                    <div className="col-span-7 max-[1023px]:col-span-1">
+                        <h2 className="bg-gradient-to-r from-[#f2f8ff] via-[#8cc4ff] to-[#7c6cff] bg-clip-text pb-1 text-[56px] font-bold leading-[1.08] tracking-[-0.035em] text-transparent max-[1023px]:text-[48px] max-[620px]:text-[36px]">
+                            {t.h2}
+                        </h2>
+                        <p className="mt-6 text-[26px] font-bold leading-[1.45] tracking-[-0.02em] [word-break:keep-all] max-[620px]:mt-5 max-[620px]:text-[19px]">
+                            <span className="text-white/45">{t.value[0]}</span>
+                            <br />
+                            <span className="text-white">{t.value[1]}</span>
+                        </p>
+                    </div>
+                    <p className="col-span-5 border-l border-white/20 pl-6 text-[15px] leading-[1.75] text-white/65 [word-break:keep-all] max-[1023px]:col-span-1 max-[620px]:pl-4 max-[620px]:text-[14px]">
+                        {t.body}
                     </p>
-                    <p className="mt-5 text-[15px] leading-[1.75] text-white/65 [word-break:keep-all] max-[620px]:text-[14px]">{t.body}</p>
                 </div>
 
-                {/* 오른쪽: 변화 네 가지 × (흔히 겪는 방식 / XGEN) — 가는 가로선만 */}
-                <div className="col-span-7 max-[1023px]:col-span-1">
-                    <div
-                        className="grid grid-cols-[150px_1fr_1.35fr] gap-x-6 border-b border-white/20 pb-3 font-mono text-[11.5px] uppercase tracking-[0.18em] max-[760px]:hidden"
-                    >
-                        <span className="text-white/45">{t.colWhen}</span>
-                        <span className="text-white/45">{t.colTypical}</span>
-                        <span className="text-[#8fc1ff]">{t.colXgen}</span>
-                    </div>
-                    <ul>
-                        {t.rows.map((r) => (
+                {/* 아래: 변화 네 가지 카드 — 변화 → 흔히 겪는 방식(지운 선) → XGEN */}
+                <ul className="mt-16 grid grid-cols-4 gap-5 max-[1023px]:grid-cols-2 max-[620px]:mt-10 max-[620px]:grid-cols-1 max-[620px]:gap-4">
+                    {t.rows.map((r, i) => {
+                        const Icon = ICONS[i];
+                        return (
                             <li
                                 key={r.when}
-                                className="grid grid-cols-[150px_1fr_1.35fr] items-start gap-x-6 border-b border-white/12 py-5 max-[760px]:grid-cols-1 max-[760px]:gap-y-2.5 max-[760px]:py-5"
+                                className="flex flex-col rounded-2xl border border-white/15 bg-white/[0.04] p-6 backdrop-blur-sm max-[620px]:p-5"
                             >
-                                <p className="pt-0.5 text-[15px] font-bold tracking-tight text-white [word-break:keep-all]">{r.when}</p>
-                                <p className="flex items-start gap-2 text-[13.5px] leading-[1.6] text-white/45 [word-break:keep-all]">
-                                    <X className="mt-[3px] h-3.5 w-3.5 flex-none text-white/35" aria-hidden />
-                                    <span>
-                                        <span className="hidden font-semibold text-white/55 max-[760px]:inline">{t.colTypical} · </span>
-                                        {r.typical}
+                                <div className="flex items-center gap-3">
+                                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[#8fc1ff]/40 bg-[#8fc1ff]/10">
+                                        <Icon className="h-[18px] w-[18px] text-[#8fc1ff]" aria-hidden />
                                     </span>
+                                    <p className="text-[16px] font-bold tracking-tight text-white [word-break:keep-all]">{r.when}</p>
+                                </div>
+
+                                <p className="mt-6 text-[12px] font-semibold text-white/40">{t.colTypical}</p>
+                                <p className="mt-1.5 text-[13.5px] leading-[1.6] text-white/45 line-through decoration-white/30 [word-break:keep-all]">
+                                    {r.typical}
                                 </p>
-                                <p className="flex items-start gap-2 text-[14px] font-semibold leading-[1.6] text-white [word-break:keep-all]">
-                                    <Check className="mt-[3px] h-4 w-4 flex-none text-[#7dd3fc]" aria-hidden />
-                                    <span>
-                                        <span className="hidden font-bold text-[#8fc1ff] max-[760px]:inline">{t.colXgen} · </span>
-                                        {r.xgen}
-                                    </span>
-                                </p>
+
+                                <div className="my-5 flex items-center gap-3" aria-hidden>
+                                    <span className="h-px flex-1 bg-gradient-to-r from-white/5 to-[#8fc1ff]/50" />
+                                    <ArrowDown className="h-4 w-4 text-[#8fc1ff]" />
+                                    <span className="h-px flex-1 bg-gradient-to-l from-white/5 to-[#8fc1ff]/50" />
+                                </div>
+
+                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#8fc1ff]">{t.colXgen}</p>
+                                <p className="mt-1.5 text-[15px] font-semibold leading-[1.6] text-white [word-break:keep-all]">{r.xgen}</p>
                             </li>
-                        ))}
-                    </ul>
-                    <p className="mt-4 text-[12.5px] text-white/45">{t.note}</p>
-                </div>
+                        );
+                    })}
+                </ul>
             </div>
         </section>
     );
