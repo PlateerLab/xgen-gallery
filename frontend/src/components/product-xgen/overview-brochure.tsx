@@ -469,7 +469,7 @@ const EVOLUTION = {
         title: (
             <>
                 결국, AX의 핵심은 ‘도입’이 아니라
-                <br className="hidden md:block" /> <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">‘진화’</span>입니다
+                <br className="hidden md:block" /> <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">‘변화 대응’</span>입니다
             </>
         ),
         lead: "기업의 경쟁력은 AI를 얼마나 잘 도입했는지보다, 도입한 AI를 업무 변화에 맞춰 얼마나 잘 발전시키는지에 달려 있습니다.",
@@ -485,7 +485,7 @@ const EVOLUTION = {
         title: (
             <>
                 In the end, AX is not about adoption —
-                <br className="hidden md:block" /> it is about <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">evolution</span>
+                <br className="hidden md:block" /> it is about <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">adapting to change</span>
             </>
         ),
         lead: "Competitiveness depends less on how well a company adopted AI and more on how well it develops that AI as the work changes.",
