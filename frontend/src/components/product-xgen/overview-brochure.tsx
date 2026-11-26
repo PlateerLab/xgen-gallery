@@ -707,7 +707,7 @@ const STAGES: Stage[] = [
 ];
 
 /** 단계 화면 본문 — PC(lg)에서는 틀 높이를 단계마다 같게 고정하고 내용을 그 안 가운데에 둔다. */
-const MOCK_BODY = "bg-[#f7f9fc] p-5 sm:p-7 lg:p-5 xl:p-7 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center lg:overflow-hidden";
+const MOCK_BODY = "bg-[#f7f9fc] p-5 sm:p-7 lg:p-5 xl:px-6 xl:py-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center lg:overflow-hidden";
 
 function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
     return (
@@ -801,13 +801,13 @@ function OrchestrationMock({ en }: { en: boolean }) {
                 <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
                     {en ? "Find out why this week’s top product sales dropped" : "이번 주 매출이 급감한 상품의 원인을 분석해줘"}
                 </p>
-                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] bg-white px-5 py-2.5 text-center">
+                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] lg:mt-4 bg-white px-5 py-2.5 text-center">
                     <p className="font-mono text-[11px] font-bold tracking-widest text-[#2461d8]">ORCHESTRATOR</p>
                     <p className="text-[13px] font-semibold text-[var(--color-ink)]">{en ? "Plans and routes the work" : "업무 계획 · 분배"}</p>
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                     {agents.map((a) => (
-                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5">
+                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5 lg:p-3">
                             <p className="text-[13px] font-bold text-[var(--color-ink)]">{a.n}</p>
                             <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">{a.d}</p>
                             <p className="mt-2.5 border-t border-[var(--color-line)] pt-2 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
@@ -815,7 +815,7 @@ function OrchestrationMock({ en }: { en: boolean }) {
                     ))}
                 </div>
                 <p className="mt-3 text-center font-mono text-[11px] text-[var(--color-ink-subtle)]">A2A · {en ? "agents share results" : "Agent 간 결과 공유"}</p>
-                <div className="mt-3 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] leading-relaxed text-[var(--color-ink)]">
+                <div className="mt-3 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] lg:px-4 lg:py-3 leading-relaxed text-[var(--color-ink)]">
                     {en
                         ? "Weaker price competitiveness against rivals and more negative reviews about delivery delays look like the main causes."
                         : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
@@ -1099,12 +1099,12 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                     </div>
                 </div>
 
-                {/* 단계 패널 — 왼쪽 요약·결과, 오른쪽 실제 화면/도식. PC(lg)에서는 오른쪽 화면 높이를 560px로 고정해 단계마다 카드 크기가 같다. */}
+                {/* 단계 패널 — 왼쪽 요약·결과, 오른쪽 실제 화면/도식. PC(lg)에서는 오른쪽 화면 높이를 고정(lg 560px, xl 이상은 화면 폭을 절반으로 줄이고 520px)해 단계마다 카드 크기가 같다. */}
                 <div
                     id="xgen-stage-panel"
                     role="tabpanel"
                     aria-labelledby={`xgen-stage-tab-${s.key}`}
-                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10"
+                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10 xl:grid-cols-[1fr_1fr] xl:gap-12"
                 >
                     <div className="min-w-0">
                         <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">
@@ -1145,7 +1145,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                             )}
                         </div>
                     </div>
-                    <div className="min-w-0 lg:h-[560px]">
+                    <div className="min-w-0 lg:h-[560px] lg:self-center xl:h-[520px]">
                         {s.screen.type === "img" ? (
                             <BrowserFrame url={s.screen.url}>
                                 <div className="lg:relative lg:min-h-0 lg:flex-1 lg:bg-[#f7f9fc]">
