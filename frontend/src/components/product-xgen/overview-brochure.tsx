@@ -707,12 +707,12 @@ const STAGES: Stage[] = [
 ];
 
 /** 단계 화면 본문 — PC(lg)에서는 틀 높이를 단계마다 같게 고정하고 내용을 그 안 가운데에 둔다. */
-const MOCK_BODY = "bg-[#f7f9fc] p-5 sm:p-7 lg:p-5 xl:px-6 xl:py-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center lg:overflow-hidden";
+const MOCK_BODY = "bg-[#f7f9fc] p-5 sm:p-7 lg:p-5 xl:px-6 xl:py-3 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center lg:overflow-hidden";
 
 function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
     return (
         <figure className="flex flex-col lg:h-full overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_24px_60px_-32px_rgba(20,40,80,0.35)]">
-            <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5">
+            <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[var(--color-surface-alt)] px-4 py-2.5 lg:py-2">
                 <span aria-hidden className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#d5dbe5]" />
@@ -826,7 +826,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
                     </div>
                 ))}
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Both methods are supported. Screens vary by version and configuration." : "두 방식 모두 지원합니다. 화면은 버전과 구성에 따라 다를 수 있습니다."}
             </figcaption>
         </BrowserFrame>
@@ -849,30 +849,30 @@ function OrchestrationMock({ en }: { en: boolean }) {
     return (
         <BrowserFrame url="XGEN · Multi-Agent Orchestration">
             <div aria-hidden className={MOCK_BODY}>
-                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
+                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 lg:py-2 text-[13.5px] text-white">
                     {en ? "Find out why this week’s top product sales dropped" : "이번 주 매출이 급감한 상품의 원인을 분석해줘"}
                 </p>
-                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] lg:mt-4 bg-white px-5 py-2.5 text-center">
+                <div className="mx-auto mt-5 w-fit rounded-xl border border-[#9cbcf5] lg:mt-2.5 bg-white px-5 py-2.5 lg:py-2 text-center">
                     <p className="font-mono text-[11px] font-bold tracking-widest text-[#2461d8]">ORCHESTRATOR</p>
                     <p className="text-[13px] font-semibold text-[var(--color-ink)]">{en ? "Plans and routes the work" : "업무 계획 · 분배"}</p>
                 </div>
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:mt-3 lg:gap-2.5">
                     {agents.map((a) => (
-                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5 lg:p-3">
+                        <div key={a.n} className="rounded-xl border border-[var(--color-line)] bg-white p-3.5 lg:p-2.5">
                             <p className="text-[13px] font-bold text-[var(--color-ink)]">{a.n}</p>
-                            <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">{a.d}</p>
-                            <p className="mt-2.5 border-t border-[var(--color-line)] pt-2 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
+                            <p className="mt-1 lg:mt-0.5 text-[12px] leading-snug text-[var(--color-ink-muted)]">{a.d}</p>
+                            <p className="mt-2.5 lg:mt-2 border-t border-[var(--color-line)] pt-2 lg:pt-1.5 font-mono text-[11px] text-[#2461d8]">MCP → {a.sys}</p>
                         </div>
                     ))}
                 </div>
-                <p className="mt-3 text-center font-mono text-[11px] text-[var(--color-ink-subtle)]">A2A · {en ? "agents share results" : "Agent 간 결과 공유"}</p>
-                <div className="mt-3 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] lg:px-4 lg:py-3 leading-relaxed text-[var(--color-ink)]">
+                <p className="mt-3 lg:mt-2 text-center font-mono text-[11px] text-[var(--color-ink-subtle)]">A2A · {en ? "agents share results" : "Agent 간 결과 공유"}</p>
+                <div className="mt-3 lg:mt-2 rounded-xl border border-[#d7e4fb] bg-white p-4 text-[13px] lg:px-4 lg:py-2 leading-relaxed lg:leading-snug text-[var(--color-ink)]">
                     {en
                         ? "Weaker price competitiveness against rivals and more negative reviews about delivery delays look like the main causes."
                         : "경쟁사 대비 가격 경쟁력이 약해졌고, 배송 지연 관련 부정 리뷰가 늘어난 것이 주된 원인으로 파악됩니다."}
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Example scenario. Agents and connected systems depend on configuration." : "예시 시나리오입니다. Agent와 연결 시스템은 구성에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
@@ -895,23 +895,23 @@ function EvolveMock({ en }: { en: boolean }) {
     return (
         <BrowserFrame url="XGEN · Agent · Geny">
             <div aria-hidden className={MOCK_BODY}>
-                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 text-[13.5px] text-white">
+                <p className="ml-auto w-fit max-w-full rounded-2xl rounded-br-md bg-[#2f7bff] px-4 py-2.5 lg:py-2 text-[13.5px] text-white">
                     {en ? "From now on, also check internal policy and answer with sources" : "앞으로는 사내 규정까지 찾아서 근거와 함께 답변해줘"}
                 </p>
-                <div className="mt-5 rounded-xl border border-[var(--color-line)] bg-white p-5">
+                <div className="mt-5 rounded-xl border border-[var(--color-line)] bg-white p-5 lg:mt-3 lg:p-4">
                     <p className="flex items-center gap-2 text-[13px] font-bold text-[var(--color-ink)]">
                         <RefreshCw className="h-4 w-4 text-[#2f7bff]" />
                         {en ? "Workflow change log" : "워크플로 자동 변경 내역"}
                     </p>
-                    <ul className="mt-3 flex flex-col gap-2">
+                    <ul className="mt-3 flex flex-col gap-2 lg:mt-2.5 lg:gap-1.5">
                         {changes.map((c) => (
-                            <li key={c.t} className="flex items-center gap-3 rounded-lg border border-[var(--color-line)] px-3 py-2 text-[13px] text-[var(--color-ink-muted)]">
+                            <li key={c.t} className="flex items-center gap-3 rounded-lg border border-[var(--color-line)] px-3 py-2 lg:py-1.5 text-[13px] text-[var(--color-ink-muted)]">
                                 <span className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[#eef4ff] font-mono text-[12px] font-bold text-[#2461d8]">{c.s}</span>
                                 {c.t}
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-4 flex items-center gap-2 text-[13px] font-semibold text-[#0f7a4a]">
+                    <p className="mt-4 lg:mt-3 flex items-center gap-2 text-[13px] font-semibold text-[#0f7a4a]">
                         <Check className="h-4 w-4" />
                         {en ? "Verified — applies from the next turn" : "검증 완료 · 다음 턴부터 반영"}
                     </p>
@@ -925,7 +925,7 @@ function EvolveMock({ en }: { en: boolean }) {
                     </p>
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Scope depends on version and configuration." : "적용 범위는 버전과 구성에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
@@ -960,8 +960,8 @@ function GovernanceMock({ en }: { en: boolean }) {
         <BrowserFrame url="XGEN · AI Governance · Agent risk grade">
             <div aria-hidden className={MOCK_BODY}>
                 {/* 대상 Agent */}
-                <div className="flex items-center gap-3 rounded-xl border border-[var(--color-line)] bg-white px-4 py-3">
-                    <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[#eef4ff] text-[#2461d8]">
+                <div className="flex items-center gap-3 rounded-xl border border-[var(--color-line)] bg-white px-4 py-3 lg:py-2.5">
+                    <span className="inline-flex h-9 w-9 lg:h-8 lg:w-8 flex-none items-center justify-center rounded-lg bg-[#eef4ff] text-[#2461d8]">
                         <FileText className="h-[18px] w-[18px]" />
                     </span>
                     <div className="min-w-0 flex-1">
@@ -974,14 +974,14 @@ function GovernanceMock({ en }: { en: boolean }) {
                 </div>
 
                 {/* 등급 선택 */}
-                <p className="mt-5 text-[12.5px] font-bold text-[var(--color-ink)]">{en ? "Assign a risk grade" : "위험 등급 부여"}</p>
-                <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <p className="mt-5 lg:mt-3 text-[12.5px] font-bold text-[var(--color-ink)]">{en ? "Assign a risk grade" : "위험 등급 부여"}</p>
+                <div className="mt-2 lg:mt-1.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {grades.map((x, i) => {
                         const on = i === sel;
                         return (
                             <div
                                 key={x.code}
-                                className={cn("relative rounded-xl border bg-white px-3 py-2.5", on ? "" : "border-[var(--color-line)]")}
+                                className={cn("relative rounded-xl border bg-white px-3 py-2.5 lg:py-2", on ? "" : "border-[var(--color-line)]")}
                                 style={on ? { borderColor: x.c, background: x.bg } : undefined}
                             >
                                 <div className="flex items-center gap-1.5">
@@ -993,21 +993,21 @@ function GovernanceMock({ en }: { en: boolean }) {
                                     </span>
                                     {on ? <Check className="ml-auto h-4 w-4 flex-none" style={{ color: x.c }} /> : null}
                                 </div>
-                                <p className="mt-1 truncate text-[11.5px] text-[var(--color-ink-muted)]">{T(en, x.pol)}</p>
+                                <p className="mt-1 lg:mt-0.5 truncate text-[11.5px] text-[var(--color-ink-muted)]">{T(en, x.pol)}</p>
                             </div>
                         );
                     })}
                 </div>
 
                 {/* 등급에 따라 붙는 통제 */}
-                <div className="mt-4 rounded-xl border bg-white p-4" style={{ borderColor: g.c }}>
+                <div className="mt-4 rounded-xl border bg-white p-4 lg:mt-3 lg:p-3" style={{ borderColor: g.c }}>
                     <p className="flex items-center gap-2 text-[13px] font-bold text-[var(--color-ink)]">
                         <ShieldCheck className="h-4 w-4" style={{ color: g.c }} />
                         {en ? `Controls applied at grade ${g.n} · ${g.en}` : `${g.n}등급 · ${g.ko}에 적용되는 통제`}
                     </p>
-                    <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                    <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:mt-2 lg:gap-1.5">
                         {controls.map((c) => (
-                            <li key={c.t} className="flex min-w-0 items-center justify-between gap-2 rounded-lg border border-[var(--color-line)] px-3 py-2 text-[12.5px] text-[var(--color-ink-muted)]">
+                            <li key={c.t} className="flex min-w-0 items-center justify-between gap-2 rounded-lg border border-[var(--color-line)] px-3 py-2 lg:py-1.5 text-[12.5px] text-[var(--color-ink-muted)]">
                                 <span className="min-w-0 truncate">{c.t}</span>
                                 <span className="flex-none rounded-md bg-[#eef4ff] px-2 py-0.5 text-[11.5px] font-bold text-[#2461d8]">{c.v}</span>
                             </li>
@@ -1015,13 +1015,13 @@ function GovernanceMock({ en }: { en: boolean }) {
                     </ul>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
+                <div className="mt-4 lg:mt-3 flex flex-wrap items-center justify-end gap-2">
                     <span className="mr-auto text-[11.5px] text-[var(--color-ink-subtle)]">{en ? "Grade changes go through the governance approver." : "등급 변경은 거버넌스 담당자 승인 후 반영"}</span>
                     <span className="rounded-lg border border-[var(--color-line)] bg-white px-3 py-1.5 text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{en ? "Cancel" : "취소"}</span>
                     <span className="rounded-lg bg-[#2f7bff] px-3 py-1.5 text-[12.5px] font-semibold text-white">{en ? "Request approval" : "승인 요청"}</span>
                 </div>
             </div>
-            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                 {en ? "Grades and controls are configured per organization." : "등급과 통제 항목은 기관별 설정에 따라 다릅니다."}
             </figcaption>
         </BrowserFrame>
@@ -1105,9 +1105,9 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                 />
 
                 {/* 단계 선택 — 번호 노드를 선으로 잇는다. 좁은 화면은 가로 스크롤(줄바꿈 금지). */}
-                <div ref={tabsRef} className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
+                <div ref={tabsRef} className="-mx-6 mt-12 overflow-x-auto px-6 lg:mt-8">
                     <div role="tablist" aria-label={en ? "XGEN platform stages" : "XGEN 플랫폼 단계"} className="relative mx-auto flex w-max min-w-full justify-between gap-2 lg:w-full">
-                        <span aria-hidden className="pointer-events-none absolute left-[10%] right-[10%] top-[22px] h-px bg-[#c9d9f7]" />
+                        <span aria-hidden className="pointer-events-none absolute left-[10%] right-[10%] top-[22px] h-px lg:top-[18px] bg-[#c9d9f7]" />
                         {STAGES.map((x, i) => {
                             const active = i === cur;
                             return (
@@ -1119,11 +1119,11 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                     aria-selected={active}
                                     aria-controls="xgen-stage-panel"
                                     onClick={() => setCur(i)}
-                                    className="group relative flex w-[132px] flex-none flex-col items-center gap-2 text-center lg:w-auto lg:flex-1"
+                                    className="group relative flex w-[132px] flex-none flex-col items-center gap-2 text-center lg:w-auto lg:flex-1 lg:gap-1.5"
                                 >
                                     <span
                                         className={cn(
-                                            "relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border font-mono text-[13px] font-bold transition",
+                                            "relative z-10 inline-flex h-11 w-11 lg:h-9 lg:w-9 items-center justify-center rounded-full border font-mono text-[13px] font-bold transition",
                                             active
                                                 ? "border-[#2f7bff] bg-[#2f7bff] text-white shadow-[0_0_0_6px_rgba(47,123,255,0.14)]"
                                                 : "border-[#bcd0f5] bg-white text-[#2f7bff] group-hover:border-[#2f7bff]",
@@ -1150,12 +1150,12 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                     </div>
                 </div>
 
-                {/* 단계 패널 — 왼쪽 요약·결과, 오른쪽 실제 화면/도식. PC(lg)에서는 오른쪽 화면 높이를 고정(lg 560px, xl 이상은 화면 폭을 절반으로 줄이고 520px)해 단계마다 카드 크기가 같다. */}
+                {/* 단계 패널 — 왼쪽 요약·결과, 오른쪽 실제 화면/도식. PC(lg)에서는 오른쪽 화면 높이를 고정(lg 500px, xl 이상은 화면 폭 절반·448px)해 단계마다 카드 크기가 같고, 제목~카드가 고정 메뉴·하위 탭 아래 한 화면(1920×1080 브라우저 기준)에 들어오게 간격을 줄였다. */}
                 <div
                     id="xgen-stage-panel"
                     role="tabpanel"
                     aria-labelledby={`xgen-stage-tab-${s.key}`}
-                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:p-10 xl:grid-cols-[1fr_1fr] xl:gap-12"
+                    className="mt-10 grid gap-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:mt-5 lg:grid-cols-[5fr_7fr] lg:gap-10 lg:px-10 lg:py-6 xl:grid-cols-[1fr_1fr] xl:gap-12"
                 >
                     <div className="min-w-0">
                         <p className="font-mono text-[12px] font-bold uppercase tracking-widest text-[#2461d8]">
@@ -1196,14 +1196,14 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                             )}
                         </div>
                     </div>
-                    <div className="min-w-0 lg:h-[560px] lg:self-center xl:h-[520px]">
+                    <div className="min-w-0 lg:h-[500px] lg:self-center xl:h-[448px]">
                         {s.screen.type === "img" ? (
                             <BrowserFrame url={s.screen.url}>
                                 <div className="lg:relative lg:min-h-0 lg:flex-1 lg:bg-[#f7f9fc]">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain" />
                                 </div>
-                                <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                                <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                                     {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
                                 </figcaption>
                             </BrowserFrame>
