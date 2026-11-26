@@ -727,7 +727,54 @@ function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
 
 /** STAGE 02 — 같은 Agent Builder 안에서 두 가지 만드는 방식을 반반으로 보여 준다.
  *  왼쪽: 말로 설명하는 바이브 코딩(DexOn 시연 화면에서 작업 패널만 잘라 씀)
- *  오른쪽: 노드를 잇는 Workflow 캔버스(Agentflow Canvas 화면 일부) */
+ *  오른쪽: 노드를 잇는 Workflow 캔버스 — 실제 Agentflow 캔버스의 노드 구성
+ *  (startnode → document_loaders·memory → agents → endnode)을 좁은 칸에서도 읽히게 HTML로 그림 */
+function FlowNode({ title, type, port, accent = false }: { title: string; type: string; port: string; accent?: boolean }) {
+    return (
+        <div className={`relative w-full rounded-lg border bg-white px-2.5 py-2 ${accent ? "border-[#8b6cf0]" : "border-[var(--color-line)]"}`}>
+            <div className="flex flex-wrap items-baseline gap-x-1.5">
+                <span className="whitespace-nowrap text-[12.5px] font-bold text-[var(--color-ink)]">{title}</span>
+                <span className="break-all font-mono text-[10.5px] text-[var(--color-ink-subtle)]">{type}</span>
+            </div>
+            <div className="mt-1 flex items-center justify-between gap-1">
+                <span className="whitespace-nowrap rounded bg-[#eef0ff] px-1 py-px font-mono text-[10px] text-[#5b4bc4]">{port}</span>
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-[#8b6cf0] bg-white" />
+            </div>
+        </div>
+    );
+}
+
+function FlowLink() {
+    return <span aria-hidden className="mx-auto block h-4 w-[2px] shrink-0 bg-[#a78bfa]" />;
+}
+
+function WorkflowCanvasMock({ en }: { en: boolean }) {
+    return (
+        <div
+            role="img"
+            aria-label={en ? "Workflow canvas: question input, retrieval and multi-turn memory feed Agent Xgen, which outputs the AI answer" : "Workflow 캔버스: 질문 입력·정보 검색·멀티턴 DB 노드가 Agent Xgen으로 이어지고 AI 답변 출력으로 끝나는 흐름"}
+            className="flex h-full flex-col justify-center px-3 py-3"
+            style={{ backgroundImage: "radial-gradient(#cfd5df 1px, transparent 1px)", backgroundSize: "14px 14px" }}
+        >
+            <FlowNode title={en ? "User question" : "사용자 질문 입력"} type="startnode" port="STR" />
+            <FlowLink />
+            <div className="grid grid-cols-2 gap-2">
+                <div className="flex min-w-0 flex-col">
+                    <FlowNode title={en ? "Retrieval" : "정보 검색"} type="document_loaders" port="DocsContext" />
+                    <FlowLink />
+                </div>
+                <div className="flex min-w-0 flex-col">
+                    <FlowNode title={en ? "Multi-turn DB" : "멀티턴 DB"} type="memory" port="OBJECT" />
+                    <FlowLink />
+                </div>
+            </div>
+            <FlowNode title="Agent Xgen" type="agents" port="STREAM STR" accent />
+            <FlowLink />
+            <FlowNode title={en ? "AI answer output" : "AI 답변 출력"} type="endnode" port="STREAM STR" />
+        </div>
+    );
+}
+
 function BuilderSplitMock({ en }: { en: boolean }) {
     const halves = [
         {
@@ -745,10 +792,10 @@ function BuilderSplitMock({ en }: { en: boolean }) {
             name: "Workflow",
             desc: en ? "Design on the canvas" : "캔버스에서 노드로 설계하기",
             prompt: null,
-            src: "/product/agent-builder-flow.png",
-            w: 720,
-            h: 640,
-            alt: en ? "Workflow canvas connecting input, retrieval and agent nodes" : "입력·검색·Agent 노드를 잇는 Workflow 캔버스",
+            src: null,
+            w: 0,
+            h: 0,
+            alt: "",
         },
     ];
     return (
@@ -761,15 +808,19 @@ function BuilderSplitMock({ en }: { en: boolean }) {
                             <span className="text-[13.5px] font-bold text-[var(--color-ink)]">{h.name}</span>
                             <span className="truncate text-[12.5px] text-[var(--color-ink-subtle)]">· {h.desc}</span>
                         </div>
-                        <div className="flex aspect-[16/10] flex-col overflow-hidden bg-[var(--color-surface-alt)] sm:aspect-[4/5] lg:aspect-auto lg:min-h-0 lg:flex-1">
+                        <div className={`flex flex-col overflow-hidden bg-[var(--color-surface-alt)] lg:aspect-auto lg:min-h-0 lg:flex-1 ${h.src ? "aspect-[16/10] sm:aspect-[4/5]" : "flex-1"}`}>
                             {h.prompt ? (
                                 <div className="flex justify-end bg-white px-3 py-2.5">
                                     <span className="max-w-[92%] rounded-xl rounded-tr-sm bg-[#2461d8] px-3 py-2 text-[12.5px] font-medium leading-snug text-white">{h.prompt}</span>
                                 </div>
                             ) : null}
                             <div className="relative min-h-0 flex-1">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={h.src} width={h.w} height={h.h} alt={h.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top" />
+                                {h.src ? (
+                                    /* eslint-disable-next-line @next/next/no-img-element */
+                                    <img src={h.src} width={h.w} height={h.h} alt={h.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top" />
+                                ) : (
+                                    <WorkflowCanvasMock en={en} />
+                                )}
                             </div>
                         </div>
                     </div>
