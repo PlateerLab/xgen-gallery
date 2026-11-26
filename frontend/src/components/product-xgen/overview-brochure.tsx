@@ -135,7 +135,7 @@ const CHALLENGE = {
  * 말풍선 인물 사진 출처 — Unsplash License(무료·상업 이용 가능). 얼굴 중심 240×240 크롭, public/product/challenge.
  * business  https://unsplash.com/photos/P002vaEJlvk
  * security  https://unsplash.com/photos/KYlqBrKQ-i4
- * ax-lead   https://unsplash.com/photos/xnatleRZmp4
+ * ax-lead   https://unsplash.com/photos/pAtA8xe_iVM
  */
 export function XgenChallenge({ locale }: { locale: Locale }) {
     const en = locale === "en";
