@@ -1021,10 +1021,11 @@ const WHY = {
     ko: {
         title: (
             <>
-                기업의 통제 아래, 업무를 끝까지 처리하고
-                <br className="hidden md:block" /> 쓰면서 개선되는 AI
+                기업의 기준으로 통제하고,
+                <br className="hidden md:block" /> 현업의 경험으로 진화하는 AI
             </>
         ),
+        loopLead: "XGEN은 기업의 보안과 거버넌스 체계 안에서 AI Agent가 실제 업무를 수행하도록 지원합니다. 사용자의 피드백과 업무 수행 경험을 지속적인 개선에 반영해 기업의 업무 환경에 더욱 적합한 AI로 발전합니다.",
         lead: "XGEN은 범용 워크플로우 자동화 도구나 LLM 앱 빌더와 출발점이 다릅니다. 목적은 엔터프라이즈 AI Agent의 설계와 운영입니다.",
         reasons: [
             {
@@ -1059,10 +1060,11 @@ const WHY = {
     en: {
         title: (
             <>
-                AI that runs under enterprise control,
-                <br className="hidden md:block" /> finishes the work and improves with use
+                Governed by enterprise standards,
+                <br className="hidden md:block" /> evolving with real work experience
             </>
         ),
+        loopLead: "XGEN helps AI agents carry out real work within the enterprise's security and governance framework. User feedback and work experience feed into ongoing improvement, so the AI becomes a better fit for the enterprise's work environment over time.",
         lead: "XGEN starts from a different place than general workflow automation tools or LLM app builders: its purpose is designing and running enterprise AI agents.",
         reasons: [
             {
@@ -1222,7 +1224,7 @@ export function XgenEvolutionLoop({ locale, asWhy = false }: { locale: Locale; a
             className={`scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] ${asWhy ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface-alt)]"}`}
         >
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                <SectionHead eyebrow={asWhy ? "Why XGEN" : "Extended Value"} title={asWhy ? w.title : c.title} lead={c.lead} />
+                <SectionHead eyebrow={asWhy ? "Why XGEN" : "Extended Value"} title={asWhy ? w.title : c.title} lead={asWhy ? w.loopLead : c.lead} />
                 {/* 참고 이미지 ② — 흩어진 입력(원) → 중심 원(루프) → 결과 타일(원). 1024px 미만은 위아래로 쌓는다. */}
                 <div className={`${SECTION_BODY_GAP} rounded-3xl border border-[#e3e9f3] bg-white px-6 py-10 shadow-[0_30px_80px_-50px_rgba(20,40,80,0.45)] lg:px-12 lg:py-14`}>
                     <div className="grid items-start gap-6 lg:grid-cols-[1fr_96px_1fr_96px_1fr] lg:gap-2">
