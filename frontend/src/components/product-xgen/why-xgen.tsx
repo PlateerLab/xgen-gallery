@@ -308,20 +308,20 @@ function AuroraBandVideo() {
     );
 }
 
-/* 결정적 차이 배경 — Adobe Stock 517715872(파란 물 위로 가운데에서 바깥으로 퍼지는 실제 동심원 물결, 무료 라이선스,
-   2400px로 축소). 사진이 가운데를 축으로 아주 천천히 커졌다 돌아와 물결이 퍼져 나가는 느낌을 준다(동작 줄이기 땐 정지).
-   글이 읽히도록 가운데는 흰 막을 옅게 덮고, 가장자리로 갈수록 사진이 드러난다. */
+/* 결정적 차이 배경 — Adobe Stock 517715872(가운데에서 바깥으로 퍼지는 실제 동심원 물결, 무료 라이선스, 2400px로 축소).
+   그레이 톤: 사진을 흑백·저대비로 바꿔 옅은 회색 바탕(#e9ebef) 위에 질감으로만 남긴다. 파란 색감은 쓰지 않는다.
+   사진이 가운데를 축으로 아주 천천히 커졌다 돌아온다(동작 줄이기 땐 정지). 가운데는 밝은 회색 막으로 글 읽힘을 확보. */
 function DecisiveRippleBg() {
     return (
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden bg-[#e9ebef]">
             <img
                 src="/product/why/decisive-ripple.jpg"
                 alt=""
-                className="decisive-ripple absolute inset-0 h-full w-full object-cover object-center"
+                className="decisive-ripple absolute inset-0 h-full w-full object-cover object-center opacity-[0.38] mix-blend-multiply [filter:grayscale(1)_contrast(0.85)_brightness(1.15)]"
                 loading="lazy"
                 decoding="async"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.5)_55%,rgba(255,255,255,0.12)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(244,245,247,0.86)_0%,rgba(240,241,244,0.55)_55%,rgba(233,235,239,0.1)_100%)]" />
         </div>
     );
 }
@@ -336,7 +336,7 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
             className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden bg-[var(--color-bg-50,#f7f8fa)] text-[var(--color-ink)]"
         >
             {/* 배치 — 15일 체험 띠배너 바로 아래. 바로 위 「XGEN은 다릅니다」(다크 이미지)·히어로(오로라 영상)와 겹치지 않게
-                밝은 블루 실사 동심원 물결(Adobe Stock) 배경. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
+                그레이 톤 실사 동심원 물결(Adobe Stock, 흑백 처리) 배경. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
             <DecisiveRippleBg />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
