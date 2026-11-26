@@ -504,13 +504,14 @@ const EVOLUTION = {
    04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다.
    글자 영역과 겹치지 않도록 모서리에서 안쪽으로 갈수록 흐려지게 마스크를 건다. */
 function EvoPattern({ i }: { i: number }) {
-    const stroke = "#2f7bff";
+    const stroke = "#7dd3fc";
+    const dot = "#0b1430";
     const common = { fill: "none", stroke, strokeWidth: 1.25, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
     return (
         <svg
             aria-hidden
             viewBox="0 0 180 180"
-            className="pointer-events-none absolute -right-3 -top-3 h-[170px] w-[170px] opacity-[0.22] [mask-image:radial-gradient(circle_at_100%_0%,#000_35%,transparent_75%)]"
+            className="pointer-events-none absolute -right-3 -top-3 h-[180px] w-[180px] opacity-[0.55] drop-shadow-[0_0_6px_rgba(125,211,252,0.45)] [mask-image:radial-gradient(circle_at_100%_0%,#000_35%,transparent_75%)]"
         >
             {i === 0 && (
                 <g {...common}>
@@ -529,7 +530,7 @@ function EvoPattern({ i }: { i: number }) {
                     {[
                         [70, 40], [70, 80], [114, 40], [114, 80], [54, 80], [114, 140], [70, 150], [160, 40],
                     ].map(([x, y]) => (
-                        <circle key={`${x}-${y}`} cx={x} cy={y} r={4.5} fill="#fff" />
+                        <circle key={`${x}-${y}`} cx={x} cy={y} r={4.5} fill={dot} />
                     ))}
                     <rect x="128" y="94" width="34" height="24" rx="4" />
                     <path d="M138 106l5 5 9-10" />
@@ -548,7 +549,7 @@ function EvoPattern({ i }: { i: number }) {
                                     <line key={`${a}-${b}`} x1={n[a][0]} y1={n[a][1]} x2={n[b][0]} y2={n[b][1]} />
                                 ))}
                                 {n.map(([x, y], k) => (
-                                    <circle key={k} cx={x} cy={y} r={k < 4 ? 7 : 4.5} fill="#fff" />
+                                    <circle key={k} cx={x} cy={y} r={k < 4 ? 7 : 4.5} fill={dot} />
                                 ))}
                             </>
                         );
@@ -619,26 +620,36 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                         <li
                             key={s.en}
                             className={cn(
-                                "relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
+                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur-sm transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
-                                i === 3 ? "border-[#2f7bff] bg-[#f3f7ff] ring-1 ring-[#2f7bff]/30" : "border-white bg-white",
+                                i === 3
+                                    ? "border-[#5aa9ff]/60 bg-[linear-gradient(160deg,#16306b_0%,#0d1b44_45%,#0a1230_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.25),0_24px_60px_-20px_rgba(47,123,255,0.55)]"
+                                    : "border-white/[0.14] bg-[linear-gradient(160deg,#141f45_0%,#0d1636_55%,#0a1129_100%)] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
                         >
+                            {/* 위쪽 가는 빛 선 — 단계가 오를수록 진해진다 */}
+                            <span
+                                aria-hidden
+                                className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#7dd3fc] to-transparent"
+                                style={{ opacity: 0.35 + i * 0.2 }}
+                            />
                             <EvoPattern i={i} />
-                            <span className="relative font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                            <h3 className="relative mt-2 text-[21px] font-bold tracking-tight text-[#0b1220]">
-                                {s.en} <span className="text-[15px] font-semibold text-[#5b6475]">· {s.ko}</span>
+                            <span className="relative bg-gradient-to-br from-white via-[#bfe6ff] to-[#2f7bff] bg-clip-text font-mono text-[34px] font-light leading-none tracking-tight text-transparent">
+                                0{i + 1}
+                            </span>
+                            <h3 className="relative mt-4 text-[22px] font-bold tracking-tight text-white">
+                                {s.en} <span className="text-[15px] font-semibold text-[#7dd3fc]">· {s.ko}</span>
                             </h3>
                             <ul className="relative mt-4 flex flex-col gap-2">
                                 {s.items.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[#2b3445]">
-                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2f7bff]" aria-hidden />
+                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/[0.86]">
+                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#7dd3fc]" aria-hidden />
                                         {x}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="relative mt-auto border-t border-[#e6e9ef] pt-4 font-mono text-[12px] text-[#6b7385]">{s.tech}</p>
+                            <p className="relative mt-auto border-t border-white/10 pt-4 font-mono text-[12px] tracking-wide text-[#9fb4d9]">{s.tech}</p>
                         </li>
                     ))}
                 </ol>
