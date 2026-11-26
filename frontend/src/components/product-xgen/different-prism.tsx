@@ -1,66 +1,56 @@
-/* /product/xgen 1depth 「XGEN은 다릅니다」 — 변화 네 가지 카드(2026-11 개편 3: 표 → 카드, 머리글·단서 문구 삭제).
-   바로 위 The Challenge의 결론(「변화에 대응하지 못하는 플랫폼」)에 답하는 섹션.
-   말풍선 세 장면(데이터·모델·연결 시스템)에 「현업 피드백」을 더해 네 가지 변화를 행으로 두고,
-   카드마다 변화 → XGEN의 대응만 보여 준다(「흔히 겪는 방식」 영역은 2026-11 삭제). 문구의 사실 근거는 같은 페이지 Platform·Why XGEN·자기개선 루프 섹션.
-   배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소). 애니메이션 없음. */
+/* /product/xgen 1depth 「XGEN은 다릅니다」 — 낮은 숫자 밴드(2026-11 개편).
+   왼쪽: 머리글 → 헤드라인 → 한 줄 정의. 오른쪽: 메인 인트로(home-intro proof)와 같은 근거 숫자 4개를 크게.
+   배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소).
+   빛은 오른쪽 위에 두고, 왼쪽 글자 뒤는 검정으로 눌러 읽기 쉽게 한다. 애니메이션 없음. */
 import Image from "next/image";
-import { Cpu, Database, MessagesSquare, Plug, type LucideIcon } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
+import { TOOLS } from "@/lib/tools";
+import { XGEN_GS_CERTIFICATION } from "@/lib/certifications";
 
-type Row = { when: string; xgen: string };
-
-const ICONS: LucideIcon[] = [Database, Cpu, Plug, MessagesSquare];
+type Stat = { n: string; unit: string; label: string; sub: string };
 
 function copy(locale: Locale) {
     const ko = locale !== "en";
+    const stats: Stat[] = [
+        {
+            n: "1,086",
+            unit: ko ? "개사" : "",
+            label: ko ? "플래티어와 함께하는 고객사" : "Companies working with Plateer",
+            sub: ko ? "플래티어 전체 고객 기준" : "Across Plateer, not XGEN only",
+        },
+        {
+            n: ko ? "GS 1" : "GS 1",
+            unit: ko ? "등급" : "",
+            label: ko ? "국가 공인 품질인증" : "Certified quality, Grade 1",
+            sub: `${ko ? "인증번호" : "No."} ${XGEN_GS_CERTIFICATION.no}`,
+        },
+        {
+            n: "110",
+            unit: "+",
+            label: ko ? "내장 도구·플러그인" : "Built-in tools & plugins",
+            sub: ko ? "커스텀 도구로 확장 가능" : "Extensible with custom tools",
+        },
+        {
+            n: String(TOOLS.length),
+            unit: ko ? "개" : "",
+            label: ko ? "공개 라이브러리" : "Public libraries",
+            sub: ko ? "라이선스는 라이브러리별 상이" : "Licenses vary by library",
+        },
+    ];
     return ko
         ? {
+              kicker: "XGEN · 기업형 Agentic AI Platform",
               h2: "XGEN은 다릅니다.",
-              value: ["도입한 날에 멈추는 AI가 아니라,", "업무의 변화와 함께 진화하는 AI."],
-              body: "데이터와 모델, 연결된 시스템이 바뀌어도 Agent를 처음부터 다시 만들지 않습니다. 현업의 피드백은 승인을 거쳐 다음 개선으로 이어집니다.",
-              colXgen: "XGEN",
-              rows: [
-                  {
-                      when: "데이터가 바뀔 때",
-                      xgen: "연결된 데이터를 지식으로 다시 구조화해, 최신 기준과 출처로 답합니다",
-                  },
-                  {
-                      when: "모델을 바꿀 때",
-                      xgen: "Model Gateway 단일 경로로, 모델을 바꿔도 실행 절차와 통제는 그대로입니다",
-                  },
-                  {
-                      when: "연결 시스템이 바뀔 때",
-                      xgen: "도구·데이터 소스를 구성 정보로 분리해, 구성 범위 안에서는 코드 수정 없이 바꿉니다",
-                  },
-                  {
-                      when: "현업이 아쉬움을 말할 때",
-                      xgen: "피드백과 실행 기록을 바탕으로 개선안을 만들고, 승인된 변경만 반영합니다",
-                  },
-              ] satisfies Row[],
+              bold: "온프레미스와 망분리 환경에서 AI Agent를 설계하고, 실행하고, 통제합니다.",
+              body: "사내 데이터는 기업 안에서 다루고, Agent의 실행은 승인과 기록 아래 둡니다.",
+              stats,
           }
         : {
+              kicker: "XGEN · Enterprise Agentic AI Platform",
               h2: "XGEN is different.",
-              value: ["Not AI that stops on launch day,", "but AI that evolves as your work changes."],
-              body: "When data, models or connected systems change, you do not rebuild agents from scratch. Feedback from business users turns into the next improvement after approval.",
-              colXgen: "XGEN",
-              rows: [
-                  {
-                      when: "Your data",
-                      xgen: "Restructures connected data into knowledge and answers from current sources",
-                  },
-                  {
-                      when: "The model",
-                      xgen: "One Model Gateway path keeps procedures and controls the same when models change",
-                  },
-                  {
-                      when: "A connected system",
-                      xgen: "Tools and data sources live in configuration, so changes within that scope need no code",
-                  },
-                  {
-                      when: "Users ask for more",
-                      xgen: "Feedback and run records shape improvement proposals; only approved changes go live",
-                  },
-              ] satisfies Row[],
+              bold: "Design, run and govern AI agents on-premises and in network-separated environments.",
+              body: "Company data stays inside the company, and agent actions run under approval and audit logging.",
+              stats,
           };
 }
 
@@ -68,59 +58,57 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
     const t = copy(locale);
     return (
         <section data-nav-theme="dark" className="relative overflow-hidden bg-[#03040a] text-white">
-            {/* 키비주얼: 빛 물결은 오른쪽 위, 아래 카드 쪽은 검정으로 누른다 */}
+            {/* 키비주얼: 빛 물결은 오른쪽 위, 글자 쪽(왼쪽)은 검정으로 누른다 */}
             <div aria-hidden className="pointer-events-none absolute inset-0">
                 <Image
                     src="/product/xgen-different-wave.jpg"
                     alt=""
                     fill
                     sizes="100vw"
-                    className="object-cover object-[60%_30%] opacity-80 max-[1023px]:object-[70%_20%]"
+                    className="object-cover object-[60%_30%] opacity-90 max-[1023px]:object-[70%_20%]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,4,10,0.55)_0%,rgba(3,4,10,0.80)_45%,rgba(3,4,10,0.94)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,10,0.92)_0%,rgba(3,4,10,0.7)_38%,rgba(3,4,10,0.25)_70%,rgba(3,4,10,0.15)_100%)] max-[1023px]:bg-[linear-gradient(180deg,rgba(3,4,10,0.35)_0%,rgba(3,4,10,0.8)_45%,rgba(3,4,10,0.92)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#03040a]" />
             </div>
 
-            <div className="relative mx-auto max-w-7xl px-6 py-24 max-[1023px]:py-20 max-[620px]:py-16">
-                {/* 위: 선언 — 왼쪽 헤드라인·지향 가치, 오른쪽 한 줄 설명 */}
-                <div className="grid grid-cols-12 items-end gap-x-12 max-[1023px]:grid-cols-1 max-[1023px]:gap-y-5">
-                    <div className="col-span-7 max-[1023px]:col-span-1">
-                        <h2 className="bg-gradient-to-r from-[#f2f8ff] via-[#8cc4ff] to-[#7c6cff] bg-clip-text pb-1 text-[56px] font-bold leading-[1.08] tracking-[-0.035em] text-transparent max-[1023px]:text-[48px] max-[620px]:text-[36px]">
-                            {t.h2}
-                        </h2>
-                        <p className="mt-6 text-[26px] font-bold leading-[1.45] tracking-[-0.02em] [word-break:keep-all] max-[620px]:mt-5 max-[620px]:text-[19px]">
-                            <span className="text-white/45">{t.value[0]}</span>
-                            <br />
-                            <span className="text-white">{t.value[1]}</span>
-                        </p>
-                    </div>
-                    <p className="col-span-5 border-l border-white/20 pl-6 text-[15px] leading-[1.75] text-white/65 [word-break:keep-all] max-[1023px]:col-span-1 max-[620px]:pl-4 max-[620px]:text-[14px]">
-                        {t.body}
+            <div className="relative mx-auto grid max-w-7xl grid-cols-12 items-center gap-x-12 px-6 py-24 max-[1023px]:grid-cols-1 max-[1023px]:gap-y-12 max-[1023px]:py-20 max-[620px]:gap-y-10 max-[620px]:py-16">
+                {/* 왼쪽: 메시지 */}
+                <div className="col-span-5 max-[1023px]:col-span-1">
+                    <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[#8fc1ff]">{t.kicker}</p>
+                    <h2 className="mt-5 bg-gradient-to-r from-[#f2f8ff] via-[#8cc4ff] to-[#7c6cff] bg-clip-text pb-1 text-[56px] font-bold leading-[1.08] tracking-[-0.035em] text-transparent max-[1023px]:text-[48px] max-[620px]:text-[36px]">
+                        {t.h2}
+                    </h2>
+                    <p className="mt-6 text-[18px] font-semibold leading-[1.6] text-white max-[620px]:mt-5 max-[620px]:text-[15px]">
+                        {t.bold}
                     </p>
+                    <p className="mt-3 text-[15px] leading-[1.75] text-white/65 max-[620px]:text-[14px]">{t.body}</p>
                 </div>
 
-                {/* 아래: 변화 네 가지 카드 — 변화 → XGEN */}
-                <ul className="mt-16 grid grid-cols-4 gap-5 max-[1023px]:grid-cols-2 max-[620px]:mt-10 max-[620px]:grid-cols-1 max-[620px]:gap-4">
-                    {t.rows.map((r, i) => {
-                        const Icon = ICONS[i];
-                        return (
-                            <li
-                                key={r.when}
-                                className="flex flex-col rounded-2xl border border-white/15 bg-white/[0.04] p-6 backdrop-blur-sm max-[620px]:p-5"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[#8fc1ff]/40 bg-[#8fc1ff]/10">
-                                        <Icon className="h-[18px] w-[18px] text-[#8fc1ff]" aria-hidden />
-                                    </span>
-                                    <p className="text-[16px] font-bold tracking-tight text-white [word-break:keep-all]">{r.when}</p>
-                                </div>
-
-                                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-[#8fc1ff]">{t.colXgen}</p>
-                                <p className="mt-1.5 text-[15px] font-semibold leading-[1.6] text-white [word-break:keep-all]">{r.xgen}</p>
-                            </li>
-                        );
-                    })}
-                </ul>
+                {/* 오른쪽: 근거 숫자 4개 — 가는 선으로만 나눈다 */}
+                <div className="col-span-7 grid grid-cols-2 border-t border-white/15 max-[1023px]:col-span-1">
+                    {t.stats.map((s, i) => (
+                        <div
+                            key={s.label}
+                            className={[
+                                "border-b border-white/15 py-8 max-[620px]:py-6",
+                                i % 2 === 0 ? "pr-8 max-[620px]:pr-4" : "border-l pl-8 max-[620px]:pl-4",
+                            ].join(" ")}
+                        >
+                            <p className="flex items-baseline gap-1 whitespace-nowrap">
+                                <span className="bg-gradient-to-b from-white to-[#a9d0ff] bg-clip-text text-[60px] font-semibold leading-none tracking-[-0.04em] text-transparent max-[1023px]:text-[52px] max-[620px]:text-[34px]">
+                                    {s.n}
+                                </span>
+                                {s.unit && (
+                                    <span className="text-[22px] font-semibold text-[#a9d0ff] max-[620px]:text-[15px]">{s.unit}</span>
+                                )}
+                            </p>
+                            <p className="mt-4 text-[15px] font-semibold tracking-tight text-white max-[620px]:mt-3 max-[620px]:text-[13.5px]">
+                                {s.label}
+                            </p>
+                            <p className="mt-1 text-[12.5px] text-white/50 max-[620px]:text-[12px]">{s.sub}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

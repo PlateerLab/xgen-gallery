@@ -695,6 +695,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* ── 1depth 개요: 「XGEN 소개서(2026.11)」를 TRINITY 흐름으로 재배치 (overview-brochure.tsx) ── */}
                     {/* 문제 제기 → Paradigm Shift → AX Evolution(다크) → 플랫폼 5단계 → Why XGEN → 숫자 밴드 → 자기개선 루프 → 업종 시나리오 → 도입 방식 → 영상 */}
                     <XgenChallenge locale={locale} />
+                    <XgenWhyReasons locale={locale} />
                     {/* 숫자로 보는 XGEN — 프리즘 키비주얼(TRINITY PRISM 벤치마킹) + 실측 사실 4개 */}
                     <XgenDifferentPrism locale={locale} />
 
@@ -704,7 +705,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     <XgenParadigm locale={locale} />
                     <XgenEvolutionModel locale={locale} />
                     <XgenPlatformStages locale={locale} />
-                    <XgenWhyReasons locale={locale} />
 
                     <XgenEvolutionLoop locale={locale} />
                     <XgenScenarios locale={locale} />
