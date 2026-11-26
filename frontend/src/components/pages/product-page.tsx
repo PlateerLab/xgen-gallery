@@ -52,7 +52,6 @@ import { localeHref } from "@/lib/locale-path";
 import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
 import type { Locale } from "@/lib/i18n";
-import { TOOLS } from "@/lib/tools";
 import { XgenDifferentPrism } from "@/components/product-xgen/different-prism";
 
 /** 히어로 직후 트러스트 바 — 인증·운영·도입 실적(대외 공개 사실만). */
@@ -63,15 +62,6 @@ const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
     { icon: Building2, label: "제주은행 등 도입", sub: "금융 · 공공 · 커머스" },
 ];
 
-
-/** 숫자로 보는 XGEN — 실측 사실만(미검증 수치 금지). */
-const STATS: { n: string; label: string; sub: string }[] = [
-    { n: "내부", label: "온프레미스 배포 지원", sub: "망분리·데이터 주권" },
-    { n: "110+", label: "내장 도구·플러그인", sub: "커스텀 확장 가능" },
-    { n: "1등급", label: "GS 국가 공인 인증", sub: "제3자 시험 검증" },
-    // 개수는 TOOLS(lib/tools.ts) 단일 출처에서 파생 — 라이브러리를 추가·삭제하면 자동 반영된다.
-    { n: String(TOOLS.length), label: "공개 라이브러리", sub: "pip·npm 설치" },
-];
 
 /** 브로셔 하이라이트 — 대형 스크린샷 + 카피 좌우 교차. */
 
@@ -573,9 +563,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
     const TRUST_L = en
         ? TRUST.map((x, i) => ({ ...x, label: E.trust[i][0], sub: E.trust[i][1] }))
         : TRUST;
-    const STATS_L = en
-        ? STATS.map((x, i) => ({ n: E.stats[i][0], label: E.stats[i][1], sub: E.stats[i][2] }))
-        : STATS;
     const PILLARS_L = en
         ? PILLARS.map((x, i) => ({ ...x, ko: E.pillars[i][0], desc: E.pillars[i][1] }))
         : PILLARS;
@@ -709,7 +696,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* 문제 제기 → Paradigm Shift → AX Evolution(다크) → 플랫폼 5단계 → Why XGEN → 숫자 밴드 → 자기개선 루프 → 업종 시나리오 → 도입 방식 → 영상 */}
                     <XgenChallenge locale={locale} />
                     {/* 숫자로 보는 XGEN — 프리즘 키비주얼(TRINITY PRISM 벤치마킹) + 실측 사실 4개 */}
-                    <XgenDifferentPrism locale={locale} stats={STATS_L} />
+                    <XgenDifferentPrism locale={locale} />
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
