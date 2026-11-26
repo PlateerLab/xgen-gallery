@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import {
@@ -102,9 +103,9 @@ const CHALLENGE = {
         lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 도구와 모델이 바뀌면 다시 멈춥니다.",
         voicesLabel: "이런 이야기, 낯설지 않으시죠?",
         voices: [
-            { who: "현업 담당자", q: "자료가 부서마다 흩어져 있어서, AI가 정작 필요한 답을 찾지 못해요.", tag: "파편화된 데이터로 인한 AI 활용 한계" },
-            { who: "IT·보안 담당자", q: "사내 문서를 AI에 넣어도 되는지, 검토가 끝나지 않아 진행이 멈췄어요.", tag: "AI 활용 시 내부 데이터 유출 우려" },
-            { who: "AX 추진 담당자", q: "만든 사람은 다른 과제로 옮겼고, 지금은 손볼 사람이 없어요.", tag: "AI 도입 이후 운영 인력·체계 부재" },
+            { who: "현업 담당자", face: "/product/challenge/business.jpg", q: "자료가 부서마다 흩어져 있어서, AI가 정작 필요한 답을 찾지 못해요.", tag: "파편화된 데이터로 인한 AI 활용 한계" },
+            { who: "IT·보안 담당자", face: "/product/challenge/security.jpg", q: "사내 문서를 AI에 넣어도 되는지, 검토가 끝나지 않아 진행이 멈췄어요.", tag: "AI 활용 시 내부 데이터 유출 우려" },
+            { who: "AX 추진 담당자", face: "/product/challenge/ax-lead.jpg", q: "만든 사람은 다른 과제로 옮겼고, 지금은 손볼 사람이 없어요.", tag: "AI 도입 이후 운영 인력·체계 부재" },
         ],
         conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
         conclusionB: "변화에 대응하지 못하는 플랫폼",
@@ -120,9 +121,9 @@ const CHALLENGE = {
         lead: "AI that worked right after launch stalls again once the data, tools and models change.",
         voicesLabel: "Does any of this sound familiar?",
         voices: [
-            { who: "Business user", q: "Our documents are scattered across teams, so the AI can't find the answer we actually need.", tag: "Fragmented data limits how AI can be used" },
-            { who: "IT & security", q: "We still haven't settled whether internal documents can go into the AI, so the project is on hold.", tag: "Concern about internal data leaving the company" },
-            { who: "AX lead", q: "The person who built it moved to another project, and now no one can maintain it.", tag: "No team or process to run AI after launch" },
+            { who: "Business user", face: "/product/challenge/business.jpg", q: "Our documents are scattered across teams, so the AI can't find the answer we actually need.", tag: "Fragmented data limits how AI can be used" },
+            { who: "IT & security", face: "/product/challenge/security.jpg", q: "We still haven't settled whether internal documents can go into the AI, so the project is on hold.", tag: "Concern about internal data leaving the company" },
+            { who: "AX lead", face: "/product/challenge/ax-lead.jpg", q: "The person who built it moved to another project, and now no one can maintain it.", tag: "No team or process to run AI after launch" },
         ],
         conclusionA: "They look like separate problems, but they share one cause:",
         conclusionB: "a platform that cannot keep up with change",
@@ -130,6 +131,12 @@ const CHALLENGE = {
     },
 };
 
+/**
+ * 말풍선 인물 사진 출처 — Unsplash License(무료·상업 이용 가능). 얼굴 중심 240×240 크롭, public/product/challenge.
+ * business  https://unsplash.com/photos/P002vaEJlvk
+ * security  https://unsplash.com/photos/KYlqBrKQ-i4
+ * ax-lead   https://unsplash.com/photos/xnatleRZmp4
+ */
 export function XgenChallenge({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const c = CHALLENGE[en ? "en" : "ko"];
@@ -141,11 +148,18 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                 {/* ① 현장의 말 — 문제점 3개를 담당자의 목소리로 */}
                 <p className={`${SECTION_BODY_GAP} text-center text-[15px] font-bold tracking-tight text-[var(--color-ink)]`}>{c.voicesLabel}</p>
                 <ol className="mt-6 grid gap-5 lg:grid-cols-3">
-                    {c.voices.map((v, i) => (
+                    {c.voices.map((v) => (
                         <li key={v.tag} className="flex flex-col">
                             <div className="relative flex-1 rounded-2xl border border-[var(--color-line)] bg-white px-6 pb-6 pt-5">
-                                <div className="flex items-center gap-2">
-                                    <span className="font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                                {/* 직무를 떠올리게 하는 인물 사진 — 실제 고객이 아닌 Unsplash 이미지(출처는 아래 주석) */}
+                                <div className="flex items-center gap-3">
+                                    <Image
+                                        src={v.face}
+                                        alt=""
+                                        width={44}
+                                        height={44}
+                                        className="h-11 w-11 flex-none rounded-full border border-[var(--color-line)] object-cover"
+                                    />
                                     <span className="text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{v.who}</span>
                                 </div>
                                 <p className="mt-3 text-[17px] font-bold leading-[1.55] tracking-tight text-[var(--color-ink)] [word-break:keep-all]">
