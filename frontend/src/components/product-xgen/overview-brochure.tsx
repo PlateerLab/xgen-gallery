@@ -502,27 +502,39 @@ const EVOLUTION = {
 export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const e = EVOLUTION[en ? "en" : "ko"];
-    /* 카드 순차 등장 — 목록이 화면에 들어오면 01→04 순서로 한 장씩(1회). 동작 줄이기 설정이면 바로 다 보인다. */
+    /* 카드 순차 등장(반복) — 목록이 화면에 보이는 동안 01→04 순서로 한 장씩 나타나고,
+       04까지 모이면 잠시 멈췄다가 모두 사라진 뒤 01부터 다시 시작한다. 화면을 벗어나면 멈추고 처음으로 돌아간다.
+       동작 줄이기 설정이면 움직임 없이 네 장 모두 보인다. */
     const listRef = useRef<HTMLOListElement>(null);
-    const [shown, setShown] = useState(false);
+    const [count, setCount] = useState(0);
+    const [inView, setInView] = useState(false);
+    const [reduced, setReduced] = useState(false);
     useEffect(() => {
         const el = listRef.current;
         if (!el) return;
         if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-            setShown(true);
+            setReduced(true);
             return;
         }
         const io = new IntersectionObserver(
             (entries) => {
-                if (!entries.some((x) => x.isIntersecting)) return;
-                io.disconnect();
-                setShown(true);
+                const on = entries.some((x) => x.isIntersecting);
+                setInView(on);
+                if (!on) setCount(0);
             },
             { threshold: 0.25 },
         );
         io.observe(el);
         return () => io.disconnect();
     }, []);
+    useEffect(() => {
+        if (reduced || !inView) return;
+        const total = e.stages.length;
+        // 0장: 사라짐(전환 700ms)이 끝난 뒤 01 등장 / 한 장씩 간격 / 다 모이면 잠시 유지
+        const wait = count === 0 ? 900 : count < total ? 520 : 2600;
+        const t = window.setTimeout(() => setCount(count < total ? count + 1 : 0), wait);
+        return () => window.clearTimeout(t);
+    }, [count, inView, reduced, e.stages.length]);
     return (
         <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
             <div
@@ -536,10 +548,9 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                     {e.stages.map((s, i) => (
                         <li
                             key={s.en}
-                            style={{ transitionDelay: shown ? `${i * 260}ms` : "0ms" }}
                             className={cn(
                                 "flex flex-col rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
-                                shown ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+                                reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3 ? "border-[#5fb4ff]/60 bg-[#2f7bff]/[0.14]" : "border-white/12 bg-white/[0.04]",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
