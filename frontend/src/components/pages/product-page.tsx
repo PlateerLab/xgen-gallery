@@ -41,7 +41,7 @@ import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
-import { XgenChallenge, XgenParadigm, XgenEvolutionModel, XgenPlatformStages, XgenWhyReasons, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
+import { XgenChallenge, XgenParadigm, XgenEvolutionModel, XgenPlatformStages, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -704,13 +704,12 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* The Decisive Difference — 체험 배너 바로 아래, 결정적 차이 3가지 (why-xgen.tsx) */}
                     <WhyXgenDifference locale={locale} />
 
-                    <XgenWhyReasons locale={locale} />
+                    <XgenEvolutionLoop locale={locale} asWhy />
 
                     <XgenParadigm locale={locale} />
                     <XgenEvolutionModel locale={locale} />
                     <XgenPlatformStages locale={locale} />
 
-                    <XgenEvolutionLoop locale={locale} />
                     <XgenScenarios locale={locale} />
                     <XgenAdoptionPath locale={locale} />
                     <XgenOverviewVideo locale={locale} />

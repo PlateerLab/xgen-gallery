@@ -1208,13 +1208,21 @@ function DashedArrow() {
     );
 }
 
-export function XgenEvolutionLoop({ locale }: { locale: Locale }) {
+/**
+ * asWhy — Why XGEN 섹션 자리에 쓸 때: 머리(eyebrow「Why XGEN」·제목)는 WHY 것을 유지하고,
+ * 본문은 Extended Value(자기개선 루프) 콘텐츠로 채운다. 앵커 id도 #why를 유지한다.
+ */
+export function XgenEvolutionLoop({ locale, asWhy = false }: { locale: Locale; asWhy?: boolean }) {
     const en = locale === "en";
     const c = LOOP[en ? "en" : "ko"];
+    const w = WHY[en ? "en" : "ko"];
     return (
-        <section id="evolve" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+        <section
+            id={asWhy ? "why" : "evolve"}
+            className={`scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] ${asWhy ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface-alt)]"}`}
+        >
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                <SectionHead eyebrow="Extended Value" title={c.title} lead={c.lead} />
+                <SectionHead eyebrow={asWhy ? "Why XGEN" : "Extended Value"} title={asWhy ? w.title : c.title} lead={c.lead} />
                 {/* 참고 이미지 ② — 흩어진 입력(원) → 중심 원(루프) → 결과 타일(원). 1024px 미만은 위아래로 쌓는다. */}
                 <div className={`${SECTION_BODY_GAP} rounded-3xl border border-[#e3e9f3] bg-white px-6 py-10 shadow-[0_30px_80px_-50px_rgba(20,40,80,0.45)] lg:px-12 lg:py-14`}>
                     <div className="grid items-start gap-6 lg:grid-cols-[1fr_96px_1fr_96px_1fr] lg:gap-2">
