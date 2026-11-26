@@ -308,6 +308,35 @@ function AuroraBandVideo() {
     );
 }
 
+/* 결정적 차이 배경 — 큰 문장을 중심으로 한 얇은 동심원 + 바깥으로 퍼지는 파문 3개. 동작 줄이기 땐 정지. */
+function DecisiveRings() {
+    const rings = [90, 150, 215, 285, 360, 440, 525];
+    return (
+        <div aria-hidden className="decisive-rings pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[1100px] max-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:h-[720px] md:w-[1400px]">
+            <div className="absolute inset-0 decisive-dots" />
+            <svg className="absolute inset-0 h-full w-full" viewBox="-700 -360 1400 720" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <radialGradient id="decisive-core" cx="0" cy="0" r="300" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#2f7bff" stopOpacity="0.16" />
+                        <stop offset="0.55" stopColor="#7c5cff" stopOpacity="0.06" />
+                        <stop offset="1" stopColor="#7c5cff" stopOpacity="0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="0" cy="0" r="300" fill="url(#decisive-core)" />
+                {rings.map((r, i) => (
+                    <circle key={r} cx="0" cy="0" r={r} fill="none" stroke="#2f7bff" strokeOpacity={0.22 - i * 0.022} strokeWidth="1" strokeDasharray={i % 2 ? "2 6" : undefined} />
+                ))}
+                {[0, 1, 2].map((i) => (
+                    <circle key={`w${i}`} className="decisive-wave" style={{ animationDelay: `${i * 3}s` }} cx="0" cy="0" r="120" fill="none" stroke="#7c5cff" strokeWidth="1.2" />
+                ))}
+                {/* 동심원 위를 도는 점 — 축적되는 자산의 은유 */}
+                <g className="decisive-orbit"><circle cx="285" cy="0" r="4" fill="#2f7bff" /></g>
+                <g className="decisive-orbit decisive-orbit-slow"><circle cx="-440" cy="0" r="3.5" fill="#7c5cff" /></g>
+            </svg>
+        </div>
+    );
+}
+
 export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const t = COPY[locale];
     const [ref, v] = useInView<HTMLHeadingElement>(0.3);
@@ -317,15 +346,13 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
             id="difference"
             className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden bg-[var(--color-bg-50,#f7f8fa)] text-[var(--color-ink)]"
         >
-            {/* 배치 — 15일 체험 띠배너 바로 아래. 바로 위 「XGEN은 다릅니다」(다크 이미지)와 강약을 나누려고 밝은 바탕.
-                오로라 영상은 색 반전(invert+hue-rotate)으로 검정 바탕→흰 바탕의 옅은 물결로 바꿔 multiply로 얹는다. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
+            {/* 배치 — 15일 체험 띠배너 바로 아래. 바로 위 「XGEN은 다릅니다」(다크 이미지)·히어로(오로라 영상)와 겹치지 않게
+                밝은 바탕 + 큰 문장 중심의 얇은 동심원(축적)과 바깥으로 천천히 퍼지는 파문(진화). 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
             <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
                 <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
                 <div className="relative mt-8 flex w-full items-center justify-center py-10 sm:py-14 lg:py-16">
-                    <div aria-hidden className="why-band pointer-events-none absolute left-1/2 top-1/2 h-[240px] w-screen -translate-x-1/2 -translate-y-1/2 opacity-45 mix-blend-multiply [filter:invert(1)_hue-rotate(180deg)_saturate(1.3)] sm:h-[320px] lg:h-[400px]">
-                        <AuroraBandVideo />
-                    </div>
+                    <DecisiveRings />
                     <p ref={ref} className="relative max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]">
                         {words.map((w, i) => (
                             <span key={i}>
