@@ -587,6 +587,7 @@ type Stage = {
     en: string;
     module: string;
     title: Txt;
+    gist: Txt; // 카드 왼쪽에 보이는 한 줄 요약(why·what·tech는 데이터로만 보관)
     why: Txt;
     what: Txt;
     tech: string[];
@@ -601,6 +602,7 @@ const STAGES: Stage[] = [
         en: "Knowledge",
         module: "XGEN · Knowledge Hub",
         title: { ko: "변화하는 데이터를 AI 자산으로 연결합니다", en: "Turns changing data into AI-ready assets" },
+        gist: { ko: "문서·DB·이미지·도면을 AI가 활용하는 지식으로 구조화합니다.", en: "Structures documents, databases, images and drawings into knowledge AI can use." },
         why: { ko: "기업의 데이터는 계속 늘어나고 형식도 다양해집니다.", en: "Enterprise data keeps growing and comes in many formats." },
         what: {
             ko: "문서·DB·이미지·도면 등 다양한 데이터를 연결하고, AI가 이해할 수 있는 지식(Knowledge)으로 구조화합니다.",
@@ -619,6 +621,7 @@ const STAGES: Stage[] = [
         en: "Agent",
         module: "XGEN · Agent Builder",
         title: { ko: "업무를 수행하는 AI Agent를 빠르게 만듭니다", en: "Builds task-performing AI agents quickly" },
+        gist: { ko: "템플릿과 대화형 설계로 만들고, API로 사내 시스템에 연결합니다.", en: "Build from templates or by conversation, then connect to internal systems via API." },
         why: { ko: "기업마다 업무와 사용하는 도구는 계속 바뀌고 늘어납니다.", en: "Every company’s work and tools keep changing and expanding." },
         what: {
             ko: "Workflow·MCP 템플릿과 대화형 설계로 Agent를 만들고, 만든 Agent는 API로 배포해 사내 시스템과 연결합니다.",
@@ -642,6 +645,7 @@ const STAGES: Stage[] = [
         en: "Orchestration",
         module: "XGEN · Multi-Agent Orchestration",
         title: { ko: "여러 AI Agent를 하나의 업무로 연결합니다", en: "Connects multiple agents into one piece of work" },
+        gist: { ko: "역할별 Agent를 MCP·A2A로 이어 하나의 Workflow로 수행합니다.", en: "Links role-based agents through MCP and A2A and runs them as one workflow." },
         why: { ko: "복잡한 업무는 Agent 하나만으로 처리하기 어렵습니다.", en: "Complex work is hard for a single agent to handle." },
         what: {
             ko: "여러 Agent를 역할별로 나누고, MCP·A2A로 사내 시스템과 다른 Agent를 연결해 하나의 Workflow로 수행합니다.",
@@ -660,6 +664,7 @@ const STAGES: Stage[] = [
         en: "Self-Evolving",
         module: "XGEN · Geny",
         title: { ko: "Agent가 스스로 구성을 고치며 진화합니다", en: "Agents improve by adjusting their own setup" },
+        gist: { ko: "필요한 도구와 구성을 스스로 바꾸고, 검증을 거친 뒤 반영합니다.", en: "Adjusts its own tools and setup; changes apply only after verification." },
         why: { ko: "업무가 바뀔 때마다 사람이 Agent를 다시 설계하기는 어렵습니다.", en: "Redesigning an agent by hand every time the work changes is hard." },
         what: {
             ko: "목표에 필요한 노드·도구·모델을 스스로 찾고, 없으면 만들어 구성을 바꿉니다. 바뀐 구성은 검증을 거친 뒤 반영됩니다.",
@@ -678,6 +683,7 @@ const STAGES: Stage[] = [
         en: "Governance",
         module: "XGEN · Enterprise Governance",
         title: { ko: "모든 단계는 기업의 통제 아래에서 실행됩니다", en: "Every stage runs under enterprise control" },
+        gist: { ko: "권한·승인·감사 로그 등 통제 기능을 플랫폼 기본 기능으로 제공합니다.", en: "Permissions, approvals, audit logs and other controls are built into the platform." },
         why: {
             ko: "AI가 실제 업무를 실행할수록 권한·승인·기록 체계가 함께 필요합니다.",
             en: "The more real work AI performs, the more it needs permissions, approvals and records.",
@@ -972,7 +978,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                 if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
             }}
             id="platform"
-            className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+            className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[#d4d4d8] bg-[#e7e7ea]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead
                     eyebrow="XGEN Platform"
@@ -1042,55 +1048,38 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                             {cur === 4 ? "Foundation" : `Stage 0${cur + 1}`} · {s.module}
                         </p>
                         <h3 className="mt-2 text-[24px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[28px]">{T(en, s.title)}</h3>
-                        <dl className="mt-6 flex flex-col gap-5">
-                            <div>
-                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">WHY</dt>
-                                <dd className="mt-1 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{T(en, s.why)}</dd>
-                            </div>
-                            <div>
-                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">WHAT</dt>
-                                <dd className="mt-1 text-[15px] leading-relaxed text-[var(--color-ink)]">{T(en, s.what)}</dd>
-                            </div>
-                            <div>
-                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">TECH</dt>
-                                <dd className="mt-2 flex flex-wrap gap-1.5">
-                                    {s.tech.map((t) => (
-                                        <span key={t} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] font-medium text-[var(--color-ink-muted)]">
-                                            {t}
-                                        </span>
-                                    ))}
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">RESULT</dt>
-                                <dd className="mt-2">
-                                    <ul className="flex flex-col gap-1.5">
-                                        {(en ? s.result.en : s.result.ko).map((r) => (
-                                            <li key={r} className="flex items-start gap-2 text-[14.5px] font-semibold text-[var(--color-ink)]">
-                                                <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
-                                                {r}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </dd>
-                            </div>
-                        </dl>
-                        <div className="mt-8 flex flex-wrap gap-2">
-                            {s.links.map((l, i) => (
-                                <Link
-                                    key={l.href}
-                                    href={localeHref(locale, l.href)}
-                                    className={cn(
-                                        "inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-[13.5px] font-semibold transition",
-                                        i === 0
-                                            ? "bg-[#2f7bff] text-white hover:bg-[#2461d8]"
-                                            : "border border-[var(--color-line)] text-[var(--color-ink)] hover:border-[#2f7bff] hover:text-[#2461d8]",
-                                    )}
-                                >
-                                    {T(en, l.label)}
-                                    <ChevronRight className="h-3.5 w-3.5" aria-hidden />
-                                </Link>
+                        <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{T(en, s.gist)}</p>
+                        <ul className="mt-6 flex flex-col gap-2 border-t border-[var(--color-line)] pt-5">
+                            {(en ? s.result.en : s.result.ko).map((r) => (
+                                <li key={r} className="flex items-start gap-2 text-[14.5px] font-semibold text-[var(--color-ink)] [word-break:keep-all]">
+                                    <Check className="mt-1 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
+                                    {r}
+                                </li>
                             ))}
+                        </ul>
+                        {/* 링크 — 첫 번째만 버튼, 나머지(3depth)는 가벼운 글자 링크 */}
+                        <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2">
+                            {s.links.map((l, i) =>
+                                i === 0 ? (
+                                    <Link
+                                        key={l.href}
+                                        href={localeHref(locale, l.href)}
+                                        className="inline-flex items-center gap-1 rounded-full bg-[#2f7bff] px-3.5 py-1.5 text-[13.5px] font-semibold text-white transition hover:bg-[#2461d8]"
+                                    >
+                                        {T(en, l.label)}
+                                        <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        key={l.href}
+                                        href={localeHref(locale, l.href)}
+                                        className="inline-flex items-center gap-0.5 text-[13px] font-semibold text-[var(--color-ink-muted)] transition hover:text-[#2461d8]"
+                                    >
+                                        {T(en, l.label)}
+                                        <ChevronRight className="h-3 w-3" aria-hidden />
+                                    </Link>
+                                ),
+                            )}
                         </div>
                     </div>
                     <div className="min-w-0 self-center">
