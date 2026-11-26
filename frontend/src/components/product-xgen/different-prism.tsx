@@ -1,5 +1,5 @@
 /* /product/xgen 1depth 「XGEN은 다릅니다」 — 낮은 숫자 밴드(2026-11 개편).
-   왼쪽: 머리글 → 헤드라인 → 컨셉 정의(3줄+설명). 오른쪽: 메인 인트로(home-intro proof)와 같은 근거 숫자 4개를 크게.
+   왼쪽: 머리글 → 헤드라인 → 컨셉 문장(3줄, 설명 문단 없음). 오른쪽: 메인 인트로(home-intro proof)와 같은 근거 숫자 4개를 크게.
    배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소).
    빛은 오른쪽 위에 두고, 왼쪽 글자 뒤는 검정으로 눌러 읽기 쉽게 한다.
    숫자는 화면에 들어오면 칸 순서대로 하나씩 카운트업(StatCount, reduced-motion 이면 정지). */
@@ -44,17 +44,13 @@ function copy(locale: Locale) {
         ? {
               kicker: "XGEN · 기업형 Agentic AI Platform",
               h2: "XGEN은 다릅니다.",
-              concept: ["강력한 거버넌스 위에서,", "스스로 진화하는", "Agentic AI Platform"],
-              conceptBody:
-                  "XGEN은 기업의 보안과 통제 체계를 유지하면서, 다양한 LLM 기반의 AI Agent가 사내 시스템과 사용자 업무 환경을 연결해 자율적으로 업무를 수행하고, 실행 결과를 바탕으로 지속적으로 개선되도록 지원하는 플랫폼입니다.",
+              concept: ["파일럿에서 멈추지 않고,", "온프레미스에서 실제 운영으로", "검증된 숫자로 증명합니다"],
               stats,
           }
         : {
               kicker: "XGEN · Enterprise Agentic AI Platform",
               h2: "XGEN is different.",
-              concept: ["An Agentic AI Platform", "that keeps evolving", "on strong governance"],
-              conceptBody:
-                  "XGEN keeps your security and control framework in place while AI agents built on a range of LLMs connect internal systems with users' work environments, carry out tasks autonomously, and improve continuously based on execution results.",
+              concept: ["Beyond the pilot,", "into real on-premises operation,", "shown in verified numbers"],
               stats,
           };
 }
@@ -83,7 +79,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                     <h2 className="mt-5 bg-gradient-to-r from-[#f2f8ff] via-[#8cc4ff] to-[#7c6cff] bg-clip-text pb-1 text-[56px] font-bold leading-[1.08] tracking-[-0.035em] text-transparent max-[1023px]:text-[48px] max-[620px]:text-[36px]">
                         {t.h2}
                     </h2>
-                    {/* 컨셉 정의: 헤드라인 아래 큰 흰 글씨 3줄 + 설명 */}
+                    {/* 컨셉 문장: 헤드라인 아래 큰 흰 글씨 3줄 */}
                     <p className="mt-8 text-[34px] font-bold leading-[1.22] tracking-[-0.03em] text-white max-[1023px]:text-[30px] max-[620px]:mt-6 max-[620px]:text-[24px]">
                         {t.concept.map((line, i) => (
                             <span key={i} className="block">
@@ -91,7 +87,6 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                             </span>
                         ))}
                     </p>
-                    <p className="mt-5 text-[15px] leading-[1.75] text-white/70 max-[620px]:text-[14px]">{t.conceptBody}</p>
                 </div>
 
                 {/* 오른쪽: 근거 숫자 4개 — 가는 선으로만 나눈다 */}
