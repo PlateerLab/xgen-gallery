@@ -1594,9 +1594,11 @@ type Scenario = {
     tab: Txt;
     customer: Txt;
     title: Txt;
-    scope: { ko: string[]; en: string[] };
-    pairs: { c: Txt; x: Txt }[];
+    /** 패널 왼쪽에 크게 놓는 한 줄 효과 — 검증된 범위만. */
     effect: Txt;
+    /** 핵심 적용 3가지 — 짧은 명사구. */
+    points: { ko: string[]; en: string[] };
+    chipsLabel?: Txt;
     agents: { ko: string[]; en: string[] };
     href?: string;
 };
@@ -1607,28 +1609,14 @@ const SCENARIOS: Scenario[] = [
         tab: { ko: "유통 · 통신판매", en: "Retail · TV home shopping" },
         customer: { ko: "국내 홈쇼핑사", en: "A Korean TV home shopping company" },
         title: { ko: "인사이트에서 운영 자동화까지, MD 업무의 진화", en: "From insight to operations automation: MD work, evolved" },
-        scope: {
-            ko: ["데이터 기반 트렌드·예측 인사이트 도출", "상품기획·방송 운영 지원 콘텐츠 자동 생성"],
-            en: ["Data-driven trend and forecast insights", "Automatic content for product planning and broadcast operations"],
+        effect: { ko: "MD·방송 운영의 반복 업무를 자동화해 운영 효율 개선", en: "Repetitive MD and broadcast work automated for better operating efficiency" },
+        points: {
+            ko: ["트렌드·경쟁사 인사이트 리포트 자동 생성", "방송 상품설명·CG 기획안 초안 자동 작성", "배너·상품 조합 기반 전시·편성 자동 구성"],
+            en: ["Trend and competitor insight reports, generated", "On-air product copy and graphics plans, drafted", "Display areas and schedules, composed automatically"],
         },
-        pairs: [
-            {
-                c: { ko: "리테일 트렌드 변화에 실시간으로 대응하기 어려움", en: "Hard to respond to retail trend shifts in real time" },
-                x: { ko: "트렌드·경쟁사 분석 기반 인사이트 리포트 생성", en: "Insight reports built on trend and competitor analysis" },
-            },
-            {
-                c: { ko: "반복적인 수기 작업으로 생산성 저하", en: "Repetitive manual work dragging productivity" },
-                x: { ko: "방송 상품설명·미팅 자료·CG 기획안 등 자동 생성", en: "Automatic drafts of on-air product copy, meeting decks and graphics plans" },
-            },
-            {
-                c: { ko: "전시·편성 구성 등 반복 작업 부담", en: "Burden of repetitive display and scheduling work" },
-                x: { ko: "배너·상품 조합 기반 전시 영역과 편성 자동 구성", en: "Automatic display areas and schedules from banner and product combinations" },
-            },
-        ],
-        effect: { ko: "현업 부서의 반복 업무를 자동화해 운영 효율 개선", en: "Better operational efficiency by automating repetitive work in business teams" },
         agents: {
-            ko: ["협력사·내부 심의·사내 지식 챗봇", "방송 심의 Agent", "상품 등록 자동화 Agent", "상품 심의 Agent"],
-            en: ["Supplier, review and internal-knowledge chatbots", "Broadcast review agent", "Product registration agent", "Product review agent"],
+            ko: ["방송 심의 Agent", "상품 등록 자동화 Agent", "상품 심의 Agent"],
+            en: ["Broadcast review agent", "Product registration agent", "Product review agent"],
         },
     },
     {
@@ -1636,28 +1624,14 @@ const SCENARIOS: Scenario[] = [
         tab: { ko: "금융 · 은행", en: "Finance · Banking" },
         customer: { ko: "제주은행", en: "Jeju Bank" },
         title: { ko: "업무 지원에서 자율 대응까지, 금융 AI Agent의 진화", en: "From work support to autonomous response: financial AI agents, evolved" },
-        scope: {
-            ko: ["준법·감사·소비자보호 Agent 적용", "위험도·민원 데이터와 연동한 GenAI 플랫폼 구현"],
-            en: ["Compliance, audit and consumer-protection agents", "A GenAI platform connected to risk and complaint data"],
+        effect: { ko: "준법·감사·소비자보호 업무에 GenAI 플랫폼 적용", en: "A GenAI platform applied to compliance, audit and consumer protection" },
+        points: {
+            ko: ["사규·업무 매뉴얼 RAG 검색", "상시 감시·KYC·내부통제 점검 Agent", "ERP 뱅킹 연동 고객 응대 챗봇"],
+            en: ["RAG search over internal rules and manuals", "Agents for monitoring, KYC and internal-control checks", "Customer chatbot linked to ERP banking"],
         },
-        pairs: [
-            {
-                c: { ko: "수작업 문서 작성과 제한적인 데이터 활용", en: "Manual document writing and limited use of data" },
-                x: { ko: "업무 매뉴얼·사규를 RAG로 검색·활용해 내부 업무 효율화", en: "Manuals and internal rules searched through RAG to streamline internal work" },
-            },
-            {
-                c: { ko: "부정거래·내부사고 대응과 예방의 어려움", en: "Difficulty detecting and preventing fraud and internal incidents" },
-                x: { ko: "준법·감사 자동화 Agent로 상시 감시·고객 확인(KYC)·내부통제 점검", en: "Compliance and audit agents for ongoing monitoring, KYC and internal-control checks" },
-            },
-            {
-                c: { ko: "지역 중심의 제한적인 디지털 고객 응대 채널", en: "Limited, region-focused digital customer channels" },
-                x: { ko: "ERP 뱅킹 시스템과 연동한 고객 응대 챗봇 구축", en: "Customer chatbot connected to the ERP banking system" },
-            },
-        ],
-        effect: { ko: "GenAI 플랫폼 도입으로 내부 업무 효율화와 고객 서비스 개선", en: "Internal efficiency and better customer service through a GenAI platform" },
         agents: {
-            ko: ["내규 안내 Agent", "소비자보호 민원 처리 Agent", "문서 자동화 Agent", "나라장터 조달 Agent", "준법감시 Agent"],
-            en: ["Internal-rules agent", "Consumer complaint agent", "Document automation agent", "Public procurement agent", "Compliance monitoring agent"],
+            ko: ["내규 안내 Agent", "소비자보호 민원 처리 Agent", "준법감시 Agent"],
+            en: ["Internal-rules agent", "Consumer complaint agent", "Compliance monitoring agent"],
         },
         href: "/customers/case/jeju-bank-genai-platform",
     },
@@ -1666,30 +1640,33 @@ const SCENARIOS: Scenario[] = [
         tab: { ko: "금융 · 캐피탈", en: "Finance · Capital" },
         customer: { ko: "I 금융사", en: "Financial company I" },
         title: { ko: "수작업 검토에서 자동 심사까지, 여신 AI Agent의 진화", en: "From manual review to automated screening: lending AI agents, evolved" },
-        scope: {
-            ko: ["여신심사 프로세스 자동화 Agent 구축", "고객센터·여신 프로세스 연계"],
-            en: ["Agents that automate the credit-review process", "Links to the contact center and lending workflow"],
+        effect: { ko: "여신심사 자동화와 권한 통제·감사 로그로 내부통제 기준에 대응", en: "Automated credit review with permission control and audit logs for internal-control standards" },
+        points: {
+            ko: ["신청서·재무자료·심사기준을 연결한 자동 검토", "RBAC 권한 통제와 감사 로그", "고객센터·여신 프로세스 연계"],
+            en: ["Automated review linking applications, financials and criteria", "RBAC permission control and audit logs", "Links to the contact center and lending workflow"],
         },
-        pairs: [
-            {
-                c: { ko: "수작업 검토로 길어지는 여신심사 처리 시간", en: "Credit reviews slowed by manual checking" },
-                x: { ko: "신청서·재무자료·심사기준을 연결한 AI 자동 검토", en: "AI review that links applications, financials and review criteria" },
-            },
-            {
-                c: { ko: "내부통제·컴플라이언스 기준 충족 필요", en: "Need to meet internal-control and compliance standards" },
-                x: { ko: "RBAC 기반 권한 통제와 감사 로그 적용", en: "RBAC permission control and audit logs" },
-            },
-            {
-                c: { ko: "심사자료와 내부규정이 흩어진 업무 환경", en: "Review materials and internal rules scattered across systems" },
-                x: { ko: "심사자료·내부규정을 연계한 심사 자동화 Agent", en: "A review agent that connects materials and internal rules" },
-            },
-        ],
-        effect: { ko: "심사 자동화와 RBAC 권한 통제·감사 로그로 내부통제 기준에 대응", en: "Automated review plus RBAC and audit logs to meet internal-control standards" },
         agents: {
-            ko: ["대고객 Q&A Agent (대출상품)", "내규 안내 Agent", "STT·TTS 적용 기능", "연체 관리 Agent"],
-            en: ["Customer Q&A agent (loan products)", "Internal-rules agent", "Speech-to-text / text-to-speech", "Collections agent"],
+            ko: ["대고객 Q&A Agent (대출상품)", "내규 안내 Agent", "연체 관리 Agent"],
+            en: ["Customer Q&A agent (loan products)", "Internal-rules agent", "Collections agent"],
         },
         href: "/customers/case/financial-ai-platform-in-progress",
+    },
+    {
+        key: "code",
+        tab: { ko: "제조·방산 · 코드 어시스턴트", en: "Manufacturing · Code Assistant" },
+        customer: { ko: "국내 반도체 제조 대기업 · 방산·시스템 기업", en: "A large semiconductor manufacturer · A defense and systems company" },
+        title: { ko: "보안 때문에 못 쓰던 코드 어시스턴트를, 사내망 안에서", en: "The coding assistant security ruled out, now inside the internal network" },
+        effect: { ko: "외부 연결 없이 사내망·폐쇄망 안에서 코드 지원 제공", en: "Code support delivered inside internal and air-gapped networks, with no external connection" },
+        points: {
+            ko: ["사내 Local LLM 연동", "XGEN 기반 폐쇄망 온프레미스 구축", "한글 답변 품질 개선과 전사 확산"],
+            en: ["Connected to an internal local LLM", "XGEN-based on-premise build in an air-gapped network", "Better Korean answers and company-wide rollout"],
+        },
+        chipsLabel: { ko: "주요 기능", en: "Key features" },
+        agents: {
+            ko: ["저장소 기반 응답", "DB 스키마 인지", "코드 리뷰·개선 제안"],
+            en: ["Repository-grounded answers", "Schema awareness", "Code review and fixes"],
+        },
+        href: "/code-assistant",
     },
 ];
 
@@ -1702,16 +1679,16 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead
                     eyebrow="Customer References"
-                    title={en ? "XGEN agents built in finance and retail" : "금융·유통 현장에 구축한 XGEN Agent"}
+                    title={en ? "XGEN in finance, retail and development" : "금융·유통·개발 현장에 구축한 XGEN"}
                     lead={
                         en
-                            ? "Agents for areas that need evidence and control — internal rules, reviews, customer service and document work."
-                            : "사내 규정·심의·상담·문서 업무처럼 근거와 통제가 필요한 영역에 Agent를 구축했습니다."
+                            ? "Agents for work that needs evidence and control — internal rules, reviews, customer service and code."
+                            : "사내 규정·심의·상담·코드처럼 근거와 통제가 필요한 업무에 Agent를 구축했습니다."
                     }
                 />
                 {/* 업종 탭 — 좁은 화면은 가로 스크롤 */}
                 <div className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
-                    <div role="tablist" aria-label={en ? "Customer scenarios" : "고객사례 업종"} className="mx-auto flex w-max gap-2">
+                    <div role="tablist" aria-label={en ? "Customer references" : "고객 레퍼런스"} className="mx-auto flex w-max gap-2">
                         {SCENARIOS.map((x, i) => (
                             <button
                                 key={x.key}
@@ -1740,54 +1717,30 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                     aria-labelledby={`xgen-case-tab-${s.key}`}
                     className="mt-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:p-10"
                 >
-                    <p className="text-[13px] font-semibold text-[#2461d8]">{T(en, s.customer)}</p>
-                    <h3 className="mt-1.5 text-[22px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[26px]">{T(en, s.title)}</h3>
-
-                    <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                        <div className="rounded-xl border border-[var(--color-line)] p-5">
-                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">{en ? "SCOPE" : "도입 범위"}</p>
-                            <ul className="mt-2.5 flex flex-col gap-1.5">
-                                {(en ? s.scope.en : s.scope.ko).map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] text-[var(--color-ink)]">
-                                        <span aria-hidden className="mt-[8px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-ink-subtle)]" />
-                                        {x}
-                                    </li>
-                                ))}
-                            </ul>
+                    {/* 1024px 이상: 왼쪽 고객·효과 / 오른쪽 핵심 3가지. 그 아래는 위아래 */}
+                    <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+                        <div>
+                            <p className="text-[13px] font-semibold text-[#2461d8] [word-break:keep-all]">{T(en, s.customer)}</p>
+                            <h3 className="mt-1.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">{T(en, s.title)}</h3>
+                            <p className="mt-6 border-l-[3px] border-[#2f7bff] pl-4 text-[17px] font-semibold leading-relaxed text-[#1b4fb0] [word-break:keep-all] md:text-[19px]">
+                                {T(en, s.effect)}
+                            </p>
                         </div>
-                        <div className="rounded-xl border border-[#9cbcf5] bg-[#f5f9ff] p-5">
-                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">{en ? "OUTCOME" : "도입 효과"}</p>
-                            <p className="mt-2.5 text-[15px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">{T(en, s.effect)}</p>
-                        </div>
-                    </div>
-
-                    {/* Challenges → With XGEN — 1024px 이상 좌우, 그 아래는 행마다 위아래 */}
-                    <div className="mt-8">
-                        <div className="hidden grid-cols-[1fr_32px_1fr] gap-3 pb-3 lg:grid">
-                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[var(--color-ink-subtle)]">CHALLENGES</p>
-                            <span />
-                            <p className="font-mono text-[11.5px] font-bold tracking-widest text-[#2461d8]">WITH XGEN</p>
-                        </div>
-                        <ul className="flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
-                            {s.pairs.map((p) => (
-                                <li key={p.c.ko} className="grid gap-2 py-4 lg:grid-cols-[1fr_32px_1fr] lg:items-center lg:gap-3">
-                                    <p className="text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
-                                        <span className="mr-2 font-mono text-[11px] font-bold text-[var(--color-ink-subtle)] lg:hidden">CHALLENGE</span>
-                                        {T(en, p.c)}
-                                    </p>
-                                    <ArrowRight className="hidden h-4 w-4 text-[#2f7bff] lg:block" aria-hidden />
-                                    <p className="text-[14.5px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">
-                                        <span className="mr-2 font-mono text-[11px] font-bold text-[#2461d8] lg:hidden">XGEN</span>
-                                        {T(en, p.x)}
-                                    </p>
+                        <ol className="flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)] self-start">
+                            {(en ? s.points.en : s.points.ko).map((p, i) => (
+                                <li key={p} className="flex items-baseline gap-4 py-4">
+                                    <span className="font-mono text-[13px] font-bold text-[#2f7bff]">{String(i + 1).padStart(2, "0")}</span>
+                                    <span className="text-[15px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">{p}</span>
                                 </li>
                             ))}
-                        </ul>
+                        </ol>
                     </div>
 
-                    <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                    <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                         <div className="flex flex-wrap gap-1.5">
-                            <span className="mr-1 self-center text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">{en ? "Agents built" : "구축 Agent"}</span>
+                            <span className="mr-1 self-center text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
+                                {s.chipsLabel ? T(en, s.chipsLabel) : en ? "Agents built" : "구축 Agent"}
+                            </span>
                             {(en ? s.agents.en : s.agents.ko).map((a) => (
                                 <span key={a} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
                                     {a}
@@ -1799,7 +1752,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                                 href={localeHref(locale, s.href)}
                                 className="group inline-flex flex-none items-center gap-1 text-[14px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
                             >
-                                {en ? "Read the case" : "사례 자세히 보기"}
+                                {s.key === "code" ? (en ? "About Code Assistant" : "코드 어시스턴트 자세히 보기") : en ? "Read the case" : "사례 자세히 보기"}
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
                             </Link>
                         )}
