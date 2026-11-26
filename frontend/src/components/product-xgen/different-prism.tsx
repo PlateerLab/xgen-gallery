@@ -80,7 +80,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                         {t.h2}
                     </h2>
                     {/* 컨셉 문장: 헤드라인 아래 큰 흰 글씨 3줄 */}
-                    <p className="mt-8 text-[34px] font-bold leading-[1.22] tracking-[-0.03em] text-white max-[1023px]:text-[30px] max-[620px]:mt-6 max-[620px]:text-[24px]">
+                    <p className="mt-8 text-[34px] font-normal leading-[1.22] tracking-[-0.03em] text-white max-[1023px]:text-[30px] max-[620px]:mt-6 max-[620px]:text-[24px]">
                         {t.concept.map((line, i) => (
                             <span key={i} className="block">
                                 {line}
