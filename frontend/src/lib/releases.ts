@@ -22,7 +22,7 @@ export interface Release {
 export const RELEASES: Release[] = [
     {
         version: "v2.8.0",
-        date: "2026-11-30",
+        date: "2026-11-18",
         product: "xgen",
         tagline: "Agent Sharing & Approval, Resource Limits, Log Archive, MCP Management",
         summary:

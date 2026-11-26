@@ -339,7 +339,7 @@ export function ProductXgenPageContent({ locale }: { locale: Locale }) {
         {
             img: "/product/screen-approval.png",
             fit: "cover",
-            eyebrow: ko ? "릴리스 노트 · 2026.11.30" : "Release notes · 2026.11.30",
+            eyebrow: ko ? "릴리스 노트 · 2026.11.18" : "Release notes · 2026.11.18",
             title: ko ? "XGEN v2.8.0 — 공유 결재와 에이전트 자원 한도" : "XGEN v2.8.0 — approval-based sharing and agent resource limits",
             desc: ko
                 ? "11월 12일 운영 반영분과 11월 18일 stage 승격분을 정리했습니다. 항목마다 반영 단계를 함께 적었습니다."
