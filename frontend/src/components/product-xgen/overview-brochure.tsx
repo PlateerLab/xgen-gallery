@@ -1486,7 +1486,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
         <section id="cases" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead
-                    eyebrow="Scenarios"
+                    eyebrow="Customer References"
                     title={en ? "XGEN agents built in finance and retail" : "금융·유통 현장에 구축한 XGEN Agent"}
                     lead={
                         en
