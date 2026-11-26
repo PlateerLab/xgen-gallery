@@ -29,13 +29,9 @@ import { ProductGeny } from "@/components/product-geny";
 import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
 import { PostDeploymentSupport } from "@/components/post-deployment-support";
-import { PathFinderArt } from "@/components/pathfinder-art";
-import { EasyModeArt } from "@/components/easy-mode-art";
-import { DexArt } from "@/components/dex-art";
 import { DexOnDeviceScreens } from "@/components/dexon-device-screens";
 import { GovernanceApprovalScreens } from "@/components/governance-approval-screens";
 import { OperationsScreens } from "@/components/operations-screens";
-import { VibeCodingArt } from "@/components/vibe-coding-art";
 import { SiteFooter } from "@/components/site-footer";
 import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
@@ -569,9 +565,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
     const EFFECTS_L = en
         ? EFFECTS.map((x, i) => ({ ...x, ko: E.effects[i][0], desc: E.effects[i][1] }))
         : EFFECTS;
-    const DIFFERENTIATORS_L = en
-        ? DIFFERENTIATORS.map((x, i) => ({ ...x, ...E.differentiators[i] }))
-        : DIFFERENTIATORS;
     const FEATURES_L = en
         ? FEATURES.map((x, i) => ({ ...x, ...E.features[i] }))
         : FEATURES;
@@ -759,100 +752,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                             </div>
                         </div>
                     </section>
-
-                    {/* 특장점 — Vibe Coding in DexOn·DexOn·PathFinder·EasyMode (FloUI는 현재 비노출) */}
-                    {/* id: GNB 「XGEN 핵심 기능」이 이 네 장으로 내려온다 */}
-                    <section
-                        id="build"
-                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
-                    >
-                        <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                            <SectionHead
-                                eyebrow="Build for Everyone"
-                                title={en ? E.diffTitle : "현업이 직접 만드는 Enterprise AI"}
-                                lead={en ? E.diffLead : "개발 지식 없이도 현업이 직접 에이전트를 설계하고 기존 시스템과 연결할 수 있습니다. 복잡한 개발 과정을 줄여 아이디어를 곧바로 업무에 활용 가능한 AI로 구현합니다."}
-                            />
-                            {/* 넷을 2단 2열로 — 셋씩 늘어놓으면 넷째가 혼자 남아 줄이 깨진다(900px 이하는 한 열) */}
-                            <div className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-2 lg:items-stretch`}>
-                                {DIFFERENTIATORS_L.map((d) => (
-                                    <div
-                                        key={d.en}
-                                        className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7 transition hover:border-[#bcd0f5] hover:shadow-[0_14px_36px_-18px_rgba(20,40,80,0.22)]"
-                                    >
-                                        {d.en === "Vibe Coding in DexOn" && (
-                                            <div className="mb-6">
-                                                <VibeCodingArt locale={locale} />
-                                            </div>
-                                        )}
-                                        {d.en === "PathFinder" && (
-                                            <div className="mb-6">
-                                                <PathFinderArt locale={locale} />
-                                            </div>
-                                        )}
-                                        {d.en === "EasyMode" && (
-                                            <div className="mb-6">
-                                                <EasyModeArt locale={locale} />
-                                            </div>
-                                        )}
-                                        {d.en === "DexOn" && (
-                                            <div className="mb-6">
-                                                <DexArt locale={locale} />
-                                            </div>
-                                        )}
-                                        <div className="flex items-center justify-between gap-3">
-                                            <div className="flex items-center gap-3">
-                                                <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff]">
-                                                    <d.icon className="h-5 w-5" />
-                                                </span>
-                                                <div>
-                                                    <p className="font-mono text-[11px] uppercase tracking-widest text-[#4a6aa8]">
-                                                        {d.en}
-                                                    </p>
-                                                    <h3 className="text-[20px] font-bold tracking-tight text-[var(--color-ink)]">
-                                                        {d.ko}
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            {/* 자세히 보기 — 더 읽을 자리가 있는 카드만 노출한다 */}
-                                            {d.href && (
-                                                <Link
-                                                    href={localeHref(locale, d.href)}
-                                                    className="group/link inline-flex flex-none items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-[#2461d8] transition hover:text-[#1b4fb0]"
-                                                >
-                                                    {en ? E.diffMore : "자세히 보기"}
-                                                    <ArrowRight className="h-3.5 w-3.5 transition group-hover/link:translate-x-0.5" />
-                                                </Link>
-                                            )}
-                                        </div>
-                                        <p className="mt-5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
-                                            {d.tagline}
-                                        </p>
-                                        {/* mb-5 — 아래 목록이 mt-auto 라, 최소 간격은 이쪽이 책임진다 */}
-                                        <p className="mt-2.5 mb-5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {d.desc}
-                                        </p>
-                                        {/*
-                                          mt-auto — 설명 길이가 카드마다 다르다. 위에서부터 흘리면
-                                          구분선 높이가 제각각이라 두 열이 어긋나 보인다. 바닥에서
-                                          맞춰야 나란히 놓인 카드의 선이 한 줄로 읽힌다.
-                                        */}
-                                        <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
-                                            {d.items.map((it) => (
-                                                <li
-                                                    key={it}
-                                                    className="flex items-start gap-2 text-[13.5px] leading-relaxed text-[var(--color-ink-muted)]"
-                                                >
-                                                    <ArrowRight className="mt-0.5 h-3.5 w-3.5 flex-none text-[#2f7bff]" />
-                                                    {it}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
 
                     {/* Features */}
                     <section
