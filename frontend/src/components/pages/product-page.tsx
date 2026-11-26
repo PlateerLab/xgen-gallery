@@ -699,8 +699,8 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     <XgenEvolutionLoop locale={locale} asWhy />
 
-                    <XgenPlatformStages locale={locale} />
                     <XgenEvolutionModel locale={locale} />
+                    <XgenPlatformStages locale={locale} />
 
                     <XgenScenarios locale={locale} />
                     <XgenAdoptionPath locale={locale} />
