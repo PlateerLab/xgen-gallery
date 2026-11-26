@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import {
     ArrowRight,
     ArrowDown,
@@ -152,7 +152,7 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                         <li key={v.tag} className="flex flex-col">
                             <div className="relative flex-1 rounded-2xl border border-[var(--color-line)] bg-white px-6 pb-6 pt-5">
                                 {/* 직무를 떠올리게 하는 인물 사진 — 실제 고객이 아닌 Unsplash 이미지(출처는 아래 주석) */}
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center justify-center gap-3">
                                     <Image
                                         src={v.face}
                                         alt=""
@@ -162,16 +162,22 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                                     />
                                     <span className="text-[12.5px] font-semibold text-[var(--color-ink-muted)]">{v.who}</span>
                                 </div>
-                                <p className="mt-3 text-[17px] font-bold leading-[1.55] tracking-tight text-[var(--color-ink)] [word-break:keep-all]">
-                                    “{v.q}”
+                                {/* 한국어는 쉼표 뒤에서 줄을 나눠 말의 호흡대로 읽히게 한다. 영문은 쉼표 앞이 길어 한 단어가 홀로 남으므로 균형 줄바꿈만 쓴다. */}
+                                <p className="mt-3 text-center text-[17px] font-bold leading-[1.55] tracking-tight text-[var(--color-ink)] [text-wrap:balance] [word-break:keep-all]">
+                                    “{(en ? [v.q] : v.q.split(/(?<=,)\s*/)).map((part, i) => (
+                                        <Fragment key={i}>
+                                            {i > 0 && <br />}
+                                            {part}
+                                        </Fragment>
+                                    ))}”
                                 </p>
                                 {/* 말풍선 꼬리 */}
                                 <span
                                     aria-hidden
-                                    className="absolute -bottom-[9px] left-8 h-4 w-4 rotate-45 border-b border-r border-[var(--color-line)] bg-white"
+                                    className="absolute -bottom-[9px] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 border-b border-r border-[var(--color-line)] bg-white"
                                 />
                             </div>
-                            <p className="mt-4 flex items-start gap-1.5 pl-6 text-[13.5px] font-semibold text-[#b4232a] [word-break:keep-all]">
+                            <p className="mt-4 flex items-start justify-center gap-1.5 text-center text-[13.5px] font-semibold text-[#b4232a] [word-break:keep-all]">
                                 <ArrowDown className="mt-[3px] h-3.5 w-3.5 flex-none" aria-hidden />
                                 {v.tag}
                             </p>
