@@ -499,6 +499,76 @@ const EVOLUTION = {
     },
 };
 
+/* 카드 배경 패턴 — 단계마다 의미를 담은 선 도형을 오른쪽 위 모서리에 옅게 깐다.
+   01 이해: 문서 줄과 점 격자 / 02 실행: 도구를 잇는 회로선 / 03 협업: 여러 노드가 이어진 네트워크 /
+   04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다.
+   글자 영역과 겹치지 않도록 모서리에서 안쪽으로 갈수록 흐려지게 마스크를 건다. */
+function EvoPattern({ i }: { i: number }) {
+    const stroke = "#2f7bff";
+    const common = { fill: "none", stroke, strokeWidth: 1.25, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+    return (
+        <svg
+            aria-hidden
+            viewBox="0 0 180 180"
+            className="pointer-events-none absolute -right-3 -top-3 h-[170px] w-[170px] opacity-[0.22] [mask-image:radial-gradient(circle_at_100%_0%,#000_35%,transparent_75%)]"
+        >
+            {i === 0 && (
+                <g {...common}>
+                    {Array.from({ length: 6 }).map((_, r) =>
+                        Array.from({ length: 6 }).map((__, c) => <circle key={`${r}-${c}`} cx={30 + c * 26} cy={14 + r * 26} r={1.6} fill={stroke} stroke="none" />),
+                    )}
+                    <rect x="82" y="30" width="62" height="80" rx="3" />
+                    <path d="M94 50h38M94 62h38M94 74h26M94 86h32" />
+                    <circle cx="138" cy="104" r="14" />
+                    <path d="M148 114l12 12" strokeWidth={2} />
+                </g>
+            )}
+            {i === 1 && (
+                <g {...common}>
+                    <path d="M20 40h50v40h44V40h56M20 120h34V80M114 80v60h46M70 80v70" />
+                    {[
+                        [70, 40], [70, 80], [114, 40], [114, 80], [54, 80], [114, 140], [70, 150], [160, 40],
+                    ].map(([x, y]) => (
+                        <circle key={`${x}-${y}`} cx={x} cy={y} r={4.5} fill="#fff" />
+                    ))}
+                    <rect x="128" y="94" width="34" height="24" rx="4" />
+                    <path d="M138 106l5 5 9-10" />
+                </g>
+            )}
+            {i === 2 && (
+                <g {...common}>
+                    {(() => {
+                        const n = [
+                            [120, 40], [160, 70], [84, 78], [140, 116], [60, 30], [100, 140], [164, 150], [40, 100],
+                        ];
+                        const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [0, 4], [2, 4], [3, 5], [3, 6], [2, 7], [5, 7], [1, 6]];
+                        return (
+                            <>
+                                {edges.map(([a, b]) => (
+                                    <line key={`${a}-${b}`} x1={n[a][0]} y1={n[a][1]} x2={n[b][0]} y2={n[b][1]} />
+                                ))}
+                                {n.map(([x, y], k) => (
+                                    <circle key={k} cx={x} cy={y} r={k < 4 ? 7 : 4.5} fill="#fff" />
+                                ))}
+                            </>
+                        );
+                    })()}
+                </g>
+            )}
+            {i === 3 && (
+                <g {...common}>
+                    {[22, 44, 66, 88, 110, 132].map((r) => (
+                        <circle key={r} cx="150" cy="30" r={r} strokeDasharray={r % 44 === 0 ? "3 5" : undefined} />
+                    ))}
+                    <path d="M54 130c26-4 46-24 56-54" strokeWidth={2} />
+                    <path d="M100 78l10-6 4 12" strokeWidth={2} />
+                    <circle cx="150" cy="30" r="6" fill={stroke} stroke="none" />
+                </g>
+            )}
+        </svg>
+    );
+}
+
 export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const e = EVOLUTION[en ? "en" : "ko"];
@@ -549,17 +619,18 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                         <li
                             key={s.en}
                             className={cn(
-                                "flex flex-col rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
+                                "relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3 ? "border-[#2f7bff] bg-[#f3f7ff] ring-1 ring-[#2f7bff]/30" : "border-white bg-white",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
                         >
-                            <span className="font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
-                            <h3 className="mt-2 text-[21px] font-bold tracking-tight text-[#0b1220]">
+                            <EvoPattern i={i} />
+                            <span className="relative font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                            <h3 className="relative mt-2 text-[21px] font-bold tracking-tight text-[#0b1220]">
                                 {s.en} <span className="text-[15px] font-semibold text-[#5b6475]">· {s.ko}</span>
                             </h3>
-                            <ul className="mt-4 flex flex-col gap-2">
+                            <ul className="relative mt-4 flex flex-col gap-2">
                                 {s.items.map((x) => (
                                     <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[#2b3445]">
                                         <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2f7bff]" aria-hidden />
@@ -567,7 +638,7 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                                     </li>
                                 ))}
                             </ul>
-                            <p className="mt-auto border-t border-[#e6e9ef] pt-4 font-mono text-[12px] text-[#6b7385]">{s.tech}</p>
+                            <p className="relative mt-auto border-t border-[#e6e9ef] pt-4 font-mono text-[12px] text-[#6b7385]">{s.tech}</p>
                         </li>
                     ))}
                 </ol>
