@@ -912,8 +912,67 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const [cur, setCur] = useState(0);
     const s = STAGES[cur];
+
+    /* 자동 롤링 — 단계마다 STAGE_MS 동안 보여 주고 다음 단계로 넘어간다(F 다음은 01).
+     * 멈춤: 마우스를 올렸을 때·키보드 포커스가 안에 있을 때·섹션이 화면 밖일 때·탭이 숨겨졌을 때.
+     * 「동작 줄이기」 사용자는 자동으로 넘기지 않는다. 탭을 직접 누르면 그 단계부터 다시 센다. */
+    const STAGE_MS = 7000;
+    const sectionRef = useRef<HTMLElement>(null);
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const [hovered, setHovered] = useState(false);
+    const [focused, setFocused] = useState(false);
+    const [inView, setInView] = useState(false);
+    const [docVisible, setDocVisible] = useState(true);
+    const [reduced, setReduced] = useState(false);
+    const [round, setRound] = useState(0); // 멈췄다 다시 돌 때 진행 막대를 처음부터 그리기 위한 키
+    const rolling = inView && docVisible && !hovered && !focused && !reduced;
+
+    useEffect(() => {
+        setReduced(!!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
+        const onVis = () => setDocVisible(document.visibilityState === "visible");
+        onVis();
+        document.addEventListener("visibilitychange", onVis);
+        const el = sectionRef.current;
+        let io: IntersectionObserver | undefined;
+        if (el && "IntersectionObserver" in window) {
+            io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.25 });
+            io.observe(el);
+        } else {
+            setInView(true);
+        }
+        return () => {
+            document.removeEventListener("visibilitychange", onVis);
+            io?.disconnect();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!rolling) return;
+        setRound((r) => r + 1);
+        const t = window.setTimeout(() => setCur((c) => (c + 1) % STAGES.length), STAGE_MS);
+        return () => window.clearTimeout(t);
+    }, [rolling, cur]);
+
+    /* 좁은 화면에서 활성 단계 버튼이 가로 스크롤 밖에 있으면 보이게 옮긴다(세로 스크롤은 건드리지 않음). */
+    useEffect(() => {
+        const box = tabsRef.current;
+        const btn = box?.querySelector<HTMLElement>(`#xgen-stage-tab-${STAGES[cur].key}`);
+        if (!box || !btn || box.scrollWidth <= box.clientWidth) return;
+        const left = btn.offsetLeft - (box.clientWidth - btn.offsetWidth) / 2;
+        box.scrollTo({ left: Math.max(0, left), behavior: reduced ? "auto" : "smooth" });
+    }, [cur, reduced]);
+
     return (
-        <section id="platform" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
+        <section
+            ref={sectionRef}
+            onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
+            onPointerLeave={() => setHovered(false)}
+            onFocus={() => setFocused(true)}
+            onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
+            }}
+            id="platform"
+            className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead
                     eyebrow="XGEN Platform"
@@ -926,7 +985,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                 />
 
                 {/* 단계 선택 — 번호 노드를 선으로 잇는다. 좁은 화면은 가로 스크롤(줄바꿈 금지). */}
-                <div className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
+                <div ref={tabsRef} className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
                     <div role="tablist" aria-label={en ? "XGEN platform stages" : "XGEN 플랫폼 단계"} className="relative mx-auto flex w-max min-w-full justify-between gap-2 lg:w-full">
                         <span aria-hidden className="pointer-events-none absolute left-[10%] right-[10%] top-[22px] h-px bg-[#c9d9f7]" />
                         {STAGES.map((x, i) => {
@@ -954,6 +1013,16 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                     </span>
                                     <span className={cn("whitespace-nowrap text-[14.5px] font-bold tracking-tight", active ? "text-[var(--color-ink)]" : "text-[var(--color-ink-muted)]")}>
                                         {x.en}
+                                    </span>
+                                    {/* 자동 롤링 진행 막대 — 활성 단계 아래에서 다음 단계까지 남은 시간을 보여 준다 */}
+                                    <span aria-hidden className="relative h-[2px] w-12 overflow-hidden rounded-full bg-transparent">
+                                        {active && rolling && (
+                                            <span
+                                                key={`${cur}-${round}`}
+                                                className="absolute inset-y-0 left-0 bg-[#2f7bff]"
+                                                style={{ animation: `whyProgress ${STAGE_MS}ms linear forwards` }}
+                                            />
+                                        )}
                                     </span>
                                 </button>
                             );
