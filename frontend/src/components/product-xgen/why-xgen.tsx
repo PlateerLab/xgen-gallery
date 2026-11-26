@@ -309,7 +309,7 @@ function AuroraBandVideo() {
 }
 
 /* 결정적 차이 배경 — Adobe Stock 1134897320(흰·은회색 새틴 결이 대각선으로 흐르는 실사, 무료 라이선스, 2400px로 축소).
-   그레이 톤 유지: 사진을 흑백으로 바꿔 옅은 회색 바탕(#e9ebef) 위에 곱하기로 얹고, 결의 명암만 살짝 올린다.
+   그레이 톤 유지: 흑백·회색 톤(중앙값 ≈ #e6e9ec)을 이미지 파일에 미리 입혀 CSS 필터·블렌드 없이 그대로 쓴다.
    결이 아주 천천히 비스듬히 흘러가듯 움직인다(동작 줄이기 땐 정지). 가운데는 밝은 회색 막으로 글 읽힘을 확보. */
 function DecisiveSatinBg() {
     return (
@@ -317,11 +317,11 @@ function DecisiveSatinBg() {
             <img
                 src="/product/why/decisive-satin.jpg"
                 alt=""
-                className="decisive-satin absolute inset-[-6%] h-[112%] w-[112%] max-w-none object-cover object-center opacity-[0.9] mix-blend-multiply [filter:grayscale(1)_contrast(1.25)_brightness(0.98)]"
+                className="decisive-satin absolute inset-[-6%] h-[112%] w-[112%] max-w-none object-cover object-center"
                 loading="lazy"
                 decoding="async"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(244,245,247,0.8)_0%,rgba(240,241,244,0.45)_55%,rgba(233,235,239,0)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_45%,rgba(236,238,241,0.6)_0%,rgba(233,235,239,0.25)_60%,rgba(233,235,239,0)_100%)]" />
         </div>
     );
 }
