@@ -2,14 +2,14 @@
    왼쪽: 머리글 → 헤드라인 → 컨셉 정의(3줄+설명) → 한 줄 정의. 오른쪽: 메인 인트로(home-intro proof)와 같은 근거 숫자 4개를 크게.
    배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소).
    빛은 오른쪽 위에 두고, 왼쪽 글자 뒤는 검정으로 눌러 읽기 쉽게 한다.
-   숫자는 스크롤 위치에 맞춰 칸 순서대로 하나씩 떠오르며 카운트업(ScrollStatGrid, reduced-motion 이면 정지). */
+   숫자는 화면에 들어오면 칸 순서대로 하나씩 카운트업(StatCount, reduced-motion 이면 정지). */
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 import { TOOLS } from "@/lib/tools";
 import { XGEN_GS_CERTIFICATION } from "@/lib/certifications";
-import { ScrollStatGrid, type ScrollStat } from "./stat-count";
+import { StatCount } from "./stat-count";
 
-type Stat = ScrollStat;
+type Stat = { prefix?: string; value: number; unit: string; label: string; sub: string };
 
 function copy(locale: Locale) {
     const ko = locale !== "en";
@@ -102,8 +102,36 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                     <p className="mt-3 text-[15px] leading-[1.75] text-white/65 max-[620px]:text-[14px]">{t.body}</p>
                 </div>
 
-                {/* 오른쪽: 근거 숫자 4개 — 가는 선으로만 나누고, 스크롤에 맞춰 칸마다 떠오른다 */}
-                <ScrollStatGrid stats={t.stats} />
+                {/* 오른쪽: 근거 숫자 4개 — 가는 선으로만 나눈다 */}
+                <div className="col-span-7 grid grid-cols-2 border-t border-white/15 max-[1023px]:col-span-1">
+                    {t.stats.map((s, i) => (
+                        <div
+                            key={s.label}
+                            className={[
+                                "border-b border-white/15 py-8 max-[620px]:py-6",
+                                i % 2 === 0 ? "pr-8 max-[620px]:pr-4" : "border-l pl-8 max-[620px]:pl-4",
+                            ].join(" ")}
+                        >
+                            <p className="flex items-baseline gap-1 whitespace-nowrap">
+                                <span className="text-[60px] font-semibold leading-none tracking-[-0.04em] max-[1023px]:text-[52px] max-[620px]:text-[34px]">
+                                    <StatCount
+                                        value={s.value}
+                                        prefix={s.prefix}
+                                        delay={i * 350}
+                                        className="bg-gradient-to-b from-white to-[#a9d0ff] bg-clip-text text-transparent"
+                                    />
+                                </span>
+                                {s.unit && (
+                                    <span className="text-[22px] font-semibold text-[#a9d0ff] max-[620px]:text-[15px]">{s.unit}</span>
+                                )}
+                            </p>
+                            <p className="mt-4 text-[15px] font-semibold tracking-tight text-white max-[620px]:mt-3 max-[620px]:text-[13.5px]">
+                                {s.label}
+                            </p>
+                            <p className="mt-1 text-[12.5px] text-white/50 max-[620px]:text-[12px]">{s.sub}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
