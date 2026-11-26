@@ -1,37 +1,40 @@
 /* /product/xgen 1depth 「XGEN은 다릅니다」 — 낮은 숫자 밴드(2026-11 개편).
    왼쪽: 머리글 → 헤드라인 → 한 줄 정의. 오른쪽: 메인 인트로(home-intro proof)와 같은 근거 숫자 4개를 크게.
    배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소).
-   빛은 오른쪽 위에 두고, 왼쪽 글자 뒤는 검정으로 눌러 읽기 쉽게 한다. 애니메이션 없음. */
+   빛은 오른쪽 위에 두고, 왼쪽 글자 뒤는 검정으로 눌러 읽기 쉽게 한다.
+   숫자는 화면에 들어오면 칸 순서대로 하나씩 카운트업(StatCount, reduced-motion 이면 정지). */
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 import { TOOLS } from "@/lib/tools";
 import { XGEN_GS_CERTIFICATION } from "@/lib/certifications";
+import { StatCount } from "./stat-count";
 
-type Stat = { n: string; unit: string; label: string; sub: string };
+type Stat = { prefix?: string; value: number; unit: string; label: string; sub: string };
 
 function copy(locale: Locale) {
     const ko = locale !== "en";
     const stats: Stat[] = [
         {
-            n: "1,086",
+            value: 1086,
             unit: ko ? "개사" : "",
             label: ko ? "플래티어와 함께하는 고객사" : "Companies working with Plateer",
             sub: ko ? "플래티어 전체 고객 기준" : "Across Plateer, not XGEN only",
         },
         {
-            n: ko ? "GS 1" : "GS 1",
+            prefix: "GS ",
+            value: 1,
             unit: ko ? "등급" : "",
             label: ko ? "국가 공인 품질인증" : "Certified quality, Grade 1",
             sub: `${ko ? "인증번호" : "No."} ${XGEN_GS_CERTIFICATION.no}`,
         },
         {
-            n: "110",
+            value: 110,
             unit: "+",
             label: ko ? "내장 도구·플러그인" : "Built-in tools & plugins",
             sub: ko ? "커스텀 도구로 확장 가능" : "Extensible with custom tools",
         },
         {
-            n: String(TOOLS.length),
+            value: TOOLS.length,
             unit: ko ? "개" : "",
             label: ko ? "공개 라이브러리" : "Public libraries",
             sub: ko ? "라이선스는 라이브러리별 상이" : "Licenses vary by library",
@@ -95,8 +98,13 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                             ].join(" ")}
                         >
                             <p className="flex items-baseline gap-1 whitespace-nowrap">
-                                <span className="bg-gradient-to-b from-white to-[#a9d0ff] bg-clip-text text-[60px] font-semibold leading-none tracking-[-0.04em] text-transparent max-[1023px]:text-[52px] max-[620px]:text-[34px]">
-                                    {s.n}
+                                <span className="text-[60px] font-semibold leading-none tracking-[-0.04em] max-[1023px]:text-[52px] max-[620px]:text-[34px]">
+                                    <StatCount
+                                        value={s.value}
+                                        prefix={s.prefix}
+                                        delay={i * 350}
+                                        className="bg-gradient-to-b from-white to-[#a9d0ff] bg-clip-text text-transparent"
+                                    />
                                 </span>
                                 {s.unit && (
                                     <span className="text-[22px] font-semibold text-[#a9d0ff] max-[620px]:text-[15px]">{s.unit}</span>
