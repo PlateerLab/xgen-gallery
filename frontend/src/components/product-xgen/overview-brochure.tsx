@@ -592,7 +592,7 @@ type Stage = {
     what: Txt;
     tech: string[];
     result: { ko: string[]; en: string[] };
-    screen: { type: "img"; src: string; w: number; h: number; alt: Txt; url: string } | { type: "orchestration" } | { type: "evolve" } | { type: "governance" };
+    screen: { type: "img"; src: string; w: number; h: number; alt: Txt; url: string } | { type: "builder" } | { type: "orchestration" } | { type: "evolve" } | { type: "governance" };
     links: DeepLink[];
 };
 
@@ -621,7 +621,7 @@ const STAGES: Stage[] = [
         en: "Agent",
         module: "XGEN · Agent Builder",
         title: { ko: "업무를 수행하는 AI Agent를 빠르게 만듭니다", en: "Builds task-performing AI agents quickly" },
-        gist: { ko: "템플릿과 대화형 설계로 만들고, API로 사내 시스템에 연결합니다.", en: "Build from templates or by conversation, then connect to internal systems via API." },
+        gist: { ko: "말로 설명하는 바이브 코딩과 캔버스 Workflow, 두 방식으로 만들고 API로 사내 시스템에 연결합니다.", en: "Build by describing it (vibe coding) or on the workflow canvas, then connect to internal systems via API." },
         why: { ko: "기업마다 업무와 사용하는 도구는 계속 바뀌고 늘어납니다.", en: "Every company’s work and tools keep changing and expanding." },
         what: {
             ko: "Workflow·MCP 템플릿과 대화형 설계로 Agent를 만들고, 만든 Agent는 API로 배포해 사내 시스템과 연결합니다.",
@@ -629,10 +629,10 @@ const STAGES: Stage[] = [
         },
         tech: ["EasyMode", "Workflow Builder", "PathFinder", "MCP", "Tool Calling", "Harness Runtime"],
         result: {
-            ko: ["코드 없이 만드는 업무 자동화", "지식·도구 연결", "API 배포·사내 시스템 연동"],
-            en: ["Work automation without code", "Knowledge and tool connection", "API deployment and system integration"],
+            ko: ["바이브 코딩·Workflow 두 방식 지원", "지식·도구 연결", "API 배포·사내 시스템 연동"],
+            en: ["Both vibe coding and workflow building", "Knowledge and tool connection", "API deployment and system integration"],
         },
-        screen: { type: "img", src: "/product/agent-builder-canvas.png", w: 1600, h: 900, url: "XGEN · Agentflow Canvas", alt: { ko: "XGEN 에이전트플로우 캔버스 화면", en: "XGEN Agentflow Canvas screen" } },
+        screen: { type: "builder" },
         links: [
             L.features,
             { label: { ko: "EasyMode", en: "EasyMode" }, href: "/easy-mode" },
@@ -719,6 +719,63 @@ function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
             </div>
             {children}
         </figure>
+    );
+}
+
+/** STAGE 02 — 같은 Agent Builder 안에서 두 가지 만드는 방식을 반반으로 보여 준다.
+ *  왼쪽: 말로 설명하는 바이브 코딩(DexOn 시연 화면에서 작업 패널만 잘라 씀)
+ *  오른쪽: 노드를 잇는 Workflow 캔버스(Agentflow Canvas 화면 일부) */
+function BuilderSplitMock({ en }: { en: boolean }) {
+    const halves = [
+        {
+            tag: "A",
+            name: "Vibe Coding",
+            desc: en ? "Describe it in words" : "말로 설명해 만들기",
+            prompt: en ? "“Build a live order-monitoring dashboard.”" : "“실시간 주문 관제 대시보드 만들어 줘”",
+            src: "/product/agent-builder-vibe.png",
+            w: 390,
+            h: 510,
+            alt: en ? "Agent building an app from a spoken request" : "말로 한 요청을 받아 Agent가 앱을 만드는 화면",
+        },
+        {
+            tag: "B",
+            name: "Workflow",
+            desc: en ? "Design on the canvas" : "캔버스에서 노드로 설계하기",
+            prompt: null,
+            src: "/product/agent-builder-flow.png",
+            w: 720,
+            h: 640,
+            alt: en ? "Workflow canvas connecting input, retrieval and agent nodes" : "입력·검색·Agent 노드를 잇는 Workflow 캔버스",
+        },
+    ];
+    return (
+        <BrowserFrame url="XGEN · Agent Builder">
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+                {halves.map((h, i) => (
+                    <div key={h.tag} className={`flex min-w-0 flex-col ${i === 1 ? "border-t border-[var(--color-line)] sm:border-l sm:border-t-0" : ""}`}>
+                        <div className="flex items-center gap-2 border-b border-[var(--color-line)] bg-white px-4 py-2.5">
+                            <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2461d8] text-[11px] font-bold text-white">{h.tag}</span>
+                            <span className="text-[13.5px] font-bold text-[var(--color-ink)]">{h.name}</span>
+                            <span className="truncate text-[12.5px] text-[var(--color-ink-subtle)]">· {h.desc}</span>
+                        </div>
+                        <div className="flex aspect-[16/10] flex-col overflow-hidden bg-[var(--color-surface-alt)] sm:aspect-[4/5]">
+                            {h.prompt ? (
+                                <div className="flex justify-end bg-white px-3 py-2.5">
+                                    <span className="max-w-[92%] rounded-xl rounded-tr-sm bg-[#2461d8] px-3 py-2 text-[12.5px] font-medium leading-snug text-white">{h.prompt}</span>
+                                </div>
+                            ) : null}
+                            <div className="relative min-h-0 flex-1">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={h.src} width={h.w} height={h.h} alt={h.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top" />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <figcaption className="border-t border-[var(--color-line)] px-5 py-3 text-[12.5px] text-[var(--color-ink-subtle)]">
+                {en ? "Both methods are supported. Screens vary by version and configuration." : "두 방식 모두 지원합니다. 화면은 버전과 구성에 따라 다를 수 있습니다."}
+            </figcaption>
+        </BrowserFrame>
     );
 }
 
@@ -1091,6 +1148,8 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                                     {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
                                 </figcaption>
                             </BrowserFrame>
+                        ) : s.screen.type === "builder" ? (
+                            <BuilderSplitMock en={en} />
                         ) : s.screen.type === "orchestration" ? (
                             <OrchestrationMock en={en} />
                         ) : s.screen.type === "governance" ? (
