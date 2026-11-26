@@ -698,11 +698,11 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     {/* 숫자로 보는 XGEN — 프리즘 키비주얼(TRINITY PRISM 벤치마킹) + 실측 사실 4개 */}
                     <XgenDifferentPrism locale={locale} />
 
-                    {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
-                    <InlinePromoBand locale={locale} tone="dark" />
-
-                    {/* The Decisive Difference — 체험 배너 바로 아래, 결정적 차이 3가지 (why-xgen.tsx) */}
+                    {/* The Decisive Difference — 숫자 밴드 바로 아래, 결정적 차이 3가지 (why-xgen.tsx) */}
                     <WhyXgenDifference locale={locale} />
+
+                    {/* 15일 무료 체험 띠배너 — Why XGEN 바로 위(이 페이지는 GNB 아래 배너를 끈다) */}
+                    <InlinePromoBand locale={locale} tone="dark" />
 
                     <XgenEvolutionLoop locale={locale} asWhy />
 
