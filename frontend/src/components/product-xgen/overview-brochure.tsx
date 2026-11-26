@@ -106,7 +106,6 @@ const CHALLENGE = {
             { who: "IT·보안 담당자", q: "사내 문서를 AI에 넣어도 되는지, 검토가 끝나지 않아 진행이 멈췄어요.", tag: "AI 활용 시 내부 데이터 유출 우려" },
             { who: "AX 추진 담당자", q: "만든 사람은 다른 과제로 옮겼고, 지금은 손볼 사람이 없어요.", tag: "AI 도입 이후 운영 인력·체계 부재" },
         ],
-        voicesNote: "도입 기업에서 자주 듣는 상황을 재구성한 예시입니다.",
         conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
         conclusionB: "변화에 대응하지 못하는 플랫폼",
         conclusionC: "입니다.",
@@ -125,7 +124,6 @@ const CHALLENGE = {
             { who: "IT & security", q: "We still haven't settled whether internal documents can go into the AI, so the project is on hold.", tag: "Concern about internal data leaving the company" },
             { who: "AX lead", q: "The person who built it moved to another project, and now no one can maintain it.", tag: "No team or process to run AI after launch" },
         ],
-        voicesNote: "Illustrative situations based on what adopting companies often tell us.",
         conclusionA: "They look like separate problems, but they share one cause:",
         conclusionB: "a platform that cannot keep up with change",
         conclusionC: ".",
@@ -166,7 +164,6 @@ export function XgenChallenge({ locale }: { locale: Locale }) {
                         </li>
                     ))}
                 </ol>
-                <p className="mt-5 text-center text-[12.5px] text-[var(--color-ink-muted)]">※ {c.voicesNote}</p>
 
                 <p className="mx-auto mt-16 max-w-3xl text-center text-[19px] font-bold leading-[1.5] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">
                     {c.conclusionA}<br className="hidden md:block" /> <span className="text-[#2461d8]">{c.conclusionB}</span>
