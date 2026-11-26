@@ -551,23 +551,23 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                             className={cn(
                                 "flex flex-col rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
-                                i === 3 ? "border-[#5fb4ff]/60 bg-[#2f7bff]/[0.14]" : "border-white/12 bg-white/[0.04]",
+                                i === 3 ? "border-[#2f7bff] bg-[#f3f7ff] ring-1 ring-[#2f7bff]/30" : "border-white bg-white",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
                         >
-                            <span className="font-mono text-[13px] font-bold text-[#7dd3fc]">0{i + 1}</span>
-                            <h3 className="mt-2 text-[21px] font-bold tracking-tight">
-                                {s.en} <span className="text-[15px] font-semibold text-white/60">· {s.ko}</span>
+                            <span className="font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
+                            <h3 className="mt-2 text-[21px] font-bold tracking-tight text-[#0b1220]">
+                                {s.en} <span className="text-[15px] font-semibold text-[#5b6475]">· {s.ko}</span>
                             </h3>
                             <ul className="mt-4 flex flex-col gap-2">
                                 {s.items.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/75">
-                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#7dd3fc]" aria-hidden />
+                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[#2b3445]">
+                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2f7bff]" aria-hidden />
                                         {x}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="mt-auto pt-6 font-mono text-[12px] text-white/45">{s.tech}</p>
+                            <p className="mt-auto border-t border-[#e6e9ef] pt-4 font-mono text-[12px] text-[#6b7385]">{s.tech}</p>
                         </li>
                     ))}
                 </ol>
