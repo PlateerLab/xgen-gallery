@@ -1,13 +1,13 @@
 /* /product/xgen 1depth 「XGEN은 다릅니다」 — 변화 네 가지 카드(2026-11 개편 3: 표 → 카드, 머리글·단서 문구 삭제).
    바로 위 The Challenge의 결론(「변화에 대응하지 못하는 플랫폼」)에 답하는 섹션.
    말풍선 세 장면(데이터·모델·연결 시스템)에 「현업 피드백」을 더해 네 가지 변화를 행으로 두고,
-   「흔히 겪는 방식」과 「XGEN」을 나란히 놓는다. 문구의 사실 근거는 같은 페이지 Platform·Why XGEN·자기개선 루프 섹션.
+   카드마다 변화 → XGEN의 대응만 보여 준다(「흔히 겪는 방식」 영역은 2026-11 삭제). 문구의 사실 근거는 같은 페이지 Platform·Why XGEN·자기개선 루프 섹션.
    배경: Adobe Stock 1382680851(어두운 바탕의 파란 빛 물결, 무료 라이선스, 2400px로 축소). 애니메이션 없음. */
 import Image from "next/image";
-import { ArrowDown, Cpu, Database, MessagesSquare, Plug, type LucideIcon } from "lucide-react";
+import { Cpu, Database, MessagesSquare, Plug, type LucideIcon } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 
-type Row = { when: string; typical: string; xgen: string };
+type Row = { when: string; xgen: string };
 
 const ICONS: LucideIcon[] = [Database, Cpu, Plug, MessagesSquare];
 
@@ -18,27 +18,22 @@ function copy(locale: Locale) {
               h2: "XGEN은 다릅니다.",
               value: ["도입한 날에 멈추는 AI가 아니라,", "업무의 변화와 함께 진화하는 AI."],
               body: "데이터와 모델, 연결된 시스템이 바뀌어도 Agent를 처음부터 다시 만들지 않습니다. 현업의 피드백은 승인을 거쳐 다음 개선으로 이어집니다.",
-              colTypical: "흔히 겪는 방식",
               colXgen: "XGEN",
               rows: [
                   {
                       when: "데이터가 바뀔 때",
-                      typical: "지식을 다시 적재하기 전까지 지난 기준으로 답합니다",
                       xgen: "연결된 데이터를 지식으로 다시 구조화해, 최신 기준과 출처로 답합니다",
                   },
                   {
                       when: "모델을 바꿀 때",
-                      typical: "연동과 보안 검토를 처음부터 다시 합니다",
                       xgen: "Model Gateway 단일 경로로, 모델을 바꿔도 실행 절차와 통제는 그대로입니다",
                   },
                   {
                       when: "연결 시스템이 바뀔 때",
-                      typical: "Agent를 다시 개발합니다",
                       xgen: "도구·데이터 소스를 구성 정보로 분리해, 구성 범위 안에서는 코드 수정 없이 바꿉니다",
                   },
                   {
                       when: "현업이 아쉬움을 말할 때",
-                      typical: "개발사의 다음 업데이트를 기다립니다",
                       xgen: "피드백과 실행 기록을 바탕으로 개선안을 만들고, 승인된 변경만 반영합니다",
                   },
               ] satisfies Row[],
@@ -47,27 +42,22 @@ function copy(locale: Locale) {
               h2: "XGEN is different.",
               value: ["Not AI that stops on launch day,", "but AI that evolves as your work changes."],
               body: "When data, models or connected systems change, you do not rebuild agents from scratch. Feedback from business users turns into the next improvement after approval.",
-              colTypical: "Typical rollout",
               colXgen: "XGEN",
               rows: [
                   {
                       when: "Your data",
-                      typical: "Answers follow the old rules until knowledge is reloaded",
                       xgen: "Restructures connected data into knowledge and answers from current sources",
                   },
                   {
                       when: "The model",
-                      typical: "Integration and security review start over",
                       xgen: "One Model Gateway path keeps procedures and controls the same when models change",
                   },
                   {
                       when: "A connected system",
-                      typical: "The agent is rebuilt",
                       xgen: "Tools and data sources live in configuration, so changes within that scope need no code",
                   },
                   {
                       when: "Users ask for more",
-                      typical: "You wait for the vendor’s next release",
                       xgen: "Feedback and run records shape improvement proposals; only approved changes go live",
                   },
               ] satisfies Row[],
@@ -109,7 +99,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                     </p>
                 </div>
 
-                {/* 아래: 변화 네 가지 카드 — 변화 → 흔히 겪는 방식(지운 선) → XGEN */}
+                {/* 아래: 변화 네 가지 카드 — 변화 → XGEN */}
                 <ul className="mt-16 grid grid-cols-4 gap-5 max-[1023px]:grid-cols-2 max-[620px]:mt-10 max-[620px]:grid-cols-1 max-[620px]:gap-4">
                     {t.rows.map((r, i) => {
                         const Icon = ICONS[i];
@@ -125,18 +115,7 @@ export function XgenDifferentPrism({ locale }: { locale: Locale }) {
                                     <p className="text-[16px] font-bold tracking-tight text-white [word-break:keep-all]">{r.when}</p>
                                 </div>
 
-                                <p className="mt-6 text-[12px] font-semibold text-white/40">{t.colTypical}</p>
-                                <p className="mt-1.5 text-[13.5px] leading-[1.6] text-white/45 line-through decoration-white/30 [word-break:keep-all]">
-                                    {r.typical}
-                                </p>
-
-                                <div className="my-5 flex items-center gap-3" aria-hidden>
-                                    <span className="h-px flex-1 bg-gradient-to-r from-white/5 to-[#8fc1ff]/50" />
-                                    <ArrowDown className="h-4 w-4 text-[#8fc1ff]" />
-                                    <span className="h-px flex-1 bg-gradient-to-l from-white/5 to-[#8fc1ff]/50" />
-                                </div>
-
-                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#8fc1ff]">{t.colXgen}</p>
+                                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-[#8fc1ff]">{t.colXgen}</p>
                                 <p className="mt-1.5 text-[15px] font-semibold leading-[1.6] text-white [word-break:keep-all]">{r.xgen}</p>
                             </li>
                         );
