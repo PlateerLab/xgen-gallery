@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import {
     ArrowRight,
     ArrowDown,
@@ -502,6 +502,27 @@ const EVOLUTION = {
 export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const e = EVOLUTION[en ? "en" : "ko"];
+    /* 카드 순차 등장 — 목록이 화면에 들어오면 01→04 순서로 한 장씩(1회). 동작 줄이기 설정이면 바로 다 보인다. */
+    const listRef = useRef<HTMLOListElement>(null);
+    const [shown, setShown] = useState(false);
+    useEffect(() => {
+        const el = listRef.current;
+        if (!el) return;
+        if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+            setShown(true);
+            return;
+        }
+        const io = new IntersectionObserver(
+            (entries) => {
+                if (!entries.some((x) => x.isIntersecting)) return;
+                io.disconnect();
+                setShown(true);
+            },
+            { threshold: 0.25 },
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
     return (
         <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
             <div
@@ -511,12 +532,14 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
                 {/* 계단형 — 1024px 이상은 오른쪽으로 갈수록 한 칸씩 올라가고, 그 아래는 한 열 */}
-                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-4 lg:items-end`}>
+                <ol ref={listRef} className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-4 lg:items-end`}>
                     {e.stages.map((s, i) => (
                         <li
                             key={s.en}
+                            style={{ transitionDelay: shown ? `${i * 260}ms` : "0ms" }}
                             className={cn(
-                                "flex flex-col rounded-2xl border p-6",
+                                "flex flex-col rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
+                                shown ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3 ? "border-[#5fb4ff]/60 bg-[#2f7bff]/[0.14]" : "border-white/12 bg-white/[0.04]",
                                 ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
                             )}
