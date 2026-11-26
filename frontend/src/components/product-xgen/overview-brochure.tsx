@@ -810,7 +810,8 @@ function BrowserFrame({ url, children }: { url: string; children: ReactNode }) {
 /** STAGE 02 — 같은 Agent Builder 안에서 두 가지 만드는 방식을 반반으로 보여 준다.
  *  왼쪽: 말로 설명하는 바이브 코딩(DexOn 시연 화면에서 작업 패널만 잘라 씀)
  *  오른쪽: 실제 Agentflow 캔버스 화면(hero-workflow.png)에서 노드 4개
- *  (질문 입력 → Agent Xgen → 답변 출력, 정보 검색)가 들어가는 범위를 잘라 작게 줄여 넣음 */
+ *  (질문 입력·정보 검색 → Agent Xgen → 답변 출력)를 하나씩 잘라 엇갈리게 흩어 놓고
+ *  곡선 연결선으로 다시 이은 이미지(.local-tmp/wf_natural.py로 생성) */
 function BuilderSplitMock({ en }: { en: boolean }) {
     const halves = [
         {
@@ -829,9 +830,9 @@ function BuilderSplitMock({ en }: { en: boolean }) {
             desc: en ? "Design on the canvas" : "캔버스에서 노드로 설계하기",
             prompt: null,
             src: "/product/agent-builder-workflow.png",
-            w: 800,
-            h: 561,
-            alt: en ? "Workflow canvas: question input, Agent Xgen, answer output and retrieval nodes connected" : "Workflow 캔버스: 질문 입력·Agent Xgen·답변 출력·정보 검색 노드가 연결된 화면",
+            w: 880,
+            h: 756,
+            alt: en ? "Workflow canvas: question input and retrieval nodes connect to Agent Xgen, which connects to the answer output" : "Workflow 캔버스: 질문 입력·정보 검색 노드가 Agent Xgen으로, Agent Xgen이 답변 출력으로 곡선으로 이어진 화면",
         },
     ];
     return (
