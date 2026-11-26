@@ -1,7 +1,7 @@
 /* /product/xgen 1depth 「XGEN은 다릅니다」 — 비아이매트릭스 TRINITY PRISM 키비주얼을 벤치마킹(2026-11).
    배경: 유리 프리즘을 지나는 빛 실사(Adobe Stock 372149246, 무료 라이선스, 2400px로 축소)
-   + 가운데 읽기용 어둠 + 아래로 검정에 녹는 그라데이션. 그 위에 짧은 도입 2줄 → 대형 2줄 헤드라인
-   (둘째 줄 그라데이션) → 굵은 한 줄 → 본문 → 숫자 4개. 애니메이션 없이 정지 그림. */
+   + 가운데 읽기용 어둠 + 아래로 검정에 녹는 그라데이션. 그 위에 짧은 도입 2줄 → 대형 1줄 헤드라인
+   (그라데이션) → 굵은 한 줄 → 본문 → 숫자 4개. 애니메이션 없이 정지 그림. */
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 
@@ -13,7 +13,6 @@ const COPY = {
         introA: "AI Agent를 시험해 보는 단계를 넘어",
         introB: "실제 업무에서 운영하는 단계로",
         introC: ".",
-        h1: "From Pilot to Production.",
         h2: "XGEN은 다릅니다.",
         bold: "온프레미스와 망분리 환경에서 AI Agent를 설계하고, 실행하고, 통제하는 플랫폼입니다.",
         bodyA: "사내 데이터는 기업 안에서 다루고, Agent의 실행은 승인과 기록 아래 둡니다.",
@@ -24,7 +23,6 @@ const COPY = {
         introA: "Beyond trying AI agents out,",
         introB: "toward running them in real work",
         introC: ".",
-        h1: "From Pilot to Production.",
         h2: "XGEN is different.",
         bold: "A platform to design, run and govern AI agents on-premises and in network-separated environments.",
         bodyA: "Company data stays inside the company, and agent actions run under approval and audit logging.",
@@ -69,9 +67,6 @@ export function XgenDifferentPrism({ locale, stats }: { locale: Locale; stats: S
                         {t.introC}
                     </p>
                     <h2 className="mt-8 font-bold leading-[1.06] tracking-[-0.035em]">
-                        <span className="block text-[84px] text-white max-[1100px]:text-[60px] max-[620px]:text-[30px]">
-                            {t.h1}
-                        </span>
                         <span className="block bg-gradient-to-r from-[#eaf4ff] via-[#6fb4ff] to-[#7c6cff] bg-clip-text pb-2 text-[84px] text-transparent max-[1100px]:text-[60px] max-[620px]:text-[40px]">
                             {t.h2}
                         </span>
