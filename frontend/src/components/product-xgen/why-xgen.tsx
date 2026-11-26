@@ -53,6 +53,31 @@ function useInView<T extends HTMLElement>(threshold = 0.15) {
     return [ref, v] as const;
 }
 
+/* 화면에 들어올 때마다 다시 재생 — 완전히 벗어나면 초기화한다(동작 줄이기 땐 항상 보인 상태). */
+function useInViewRepeat<T extends HTMLElement>(threshold = 0.35) {
+    const ref = useRef<T>(null);
+    const [v, setV] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+            setV(true);
+            return;
+        }
+        const io = new IntersectionObserver(
+            (es) =>
+                es.forEach((e) => {
+                    if (e.intersectionRatio >= threshold) setV(true);
+                    else if (!e.isIntersecting) setV(false);
+                }),
+            { threshold: [0, threshold] },
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, [threshold]);
+    return [ref, v] as const;
+}
+
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
     const [ref, v] = useInView<HTMLDivElement>();
     return (
@@ -328,7 +353,7 @@ function DecisiveSatinBg() {
 
 export function WhyXgenDifference({ locale }: { locale: Locale }) {
     const t = COPY[locale];
-    const [ref, v] = useInView<HTMLHeadingElement>(0.3);
+    const [ref, v] = useInViewRepeat<HTMLParagraphElement>(0.35);
     const words = t.diffStatement.split(" ");
     return (
         <section
@@ -347,7 +372,7 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
                             <span key={i}>
                                 <span
                                     className={`why-word${v ? " why-word-in" : ""}`}
-                                    style={{ transitionDelay: v ? `${i * 55}ms` : "0ms" }}
+                                    style={{ transitionDelay: v ? `${120 + i * 95}ms` : "0ms" }}
                                 >
                                     {w}
                                 </span>
