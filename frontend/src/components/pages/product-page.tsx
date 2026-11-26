@@ -697,10 +697,11 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     <XgenChallenge locale={locale} />
                     {/* 숫자로 보는 XGEN — 프리즘 키비주얼(TRINITY PRISM 벤치마킹) + 실측 사실 4개 */}
                     <XgenDifferentPrism locale={locale} />
-                    <XgenWhyReasons locale={locale} />
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
                     <InlinePromoBand locale={locale} />
+
+                    <XgenWhyReasons locale={locale} />
 
                     <XgenParadigm locale={locale} />
                     <XgenEvolutionModel locale={locale} />
