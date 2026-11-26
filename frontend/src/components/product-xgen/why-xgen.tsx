@@ -308,31 +308,20 @@ function AuroraBandVideo() {
     );
 }
 
-/* 결정적 차이 배경 — 큰 문장을 중심으로 한 얇은 동심원 + 바깥으로 퍼지는 파문 3개. 동작 줄이기 땐 정지. */
-function DecisiveRings() {
-    const rings = [90, 150, 215, 285, 360, 440, 525];
+/* 결정적 차이 배경 — Adobe Stock 517715872(파란 물 위로 가운데에서 바깥으로 퍼지는 실제 동심원 물결, 무료 라이선스,
+   2400px로 축소). 사진이 가운데를 축으로 아주 천천히 커졌다 돌아와 물결이 퍼져 나가는 느낌을 준다(동작 줄이기 땐 정지).
+   글이 읽히도록 가운데는 흰 막을 옅게 덮고, 가장자리로 갈수록 사진이 드러난다. */
+function DecisiveRippleBg() {
     return (
-        <div aria-hidden className="decisive-rings pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[1100px] max-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:h-[720px] md:w-[1400px]">
-            <div className="absolute inset-0 decisive-dots" />
-            <svg className="absolute inset-0 h-full w-full" viewBox="-700 -360 1400 720" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                    <radialGradient id="decisive-core" cx="0" cy="0" r="300" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stopColor="#2f7bff" stopOpacity="0.16" />
-                        <stop offset="0.55" stopColor="#7c5cff" stopOpacity="0.06" />
-                        <stop offset="1" stopColor="#7c5cff" stopOpacity="0" />
-                    </radialGradient>
-                </defs>
-                <circle cx="0" cy="0" r="300" fill="url(#decisive-core)" />
-                {rings.map((r, i) => (
-                    <circle key={r} cx="0" cy="0" r={r} fill="none" stroke="#2f7bff" strokeOpacity={0.22 - i * 0.022} strokeWidth="1" strokeDasharray={i % 2 ? "2 6" : undefined} />
-                ))}
-                {[0, 1, 2].map((i) => (
-                    <circle key={`w${i}`} className="decisive-wave" style={{ animationDelay: `${i * 3}s` }} cx="0" cy="0" r="120" fill="none" stroke="#7c5cff" strokeWidth="1.2" />
-                ))}
-                {/* 동심원 위를 도는 점 — 축적되는 자산의 은유 */}
-                <g className="decisive-orbit"><circle cx="285" cy="0" r="4" fill="#2f7bff" /></g>
-                <g className="decisive-orbit decisive-orbit-slow"><circle cx="-440" cy="0" r="3.5" fill="#7c5cff" /></g>
-            </svg>
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            <img
+                src="/product/why/decisive-ripple.jpg"
+                alt=""
+                className="decisive-ripple absolute inset-0 h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.5)_55%,rgba(255,255,255,0.12)_100%)]" />
         </div>
     );
 }
@@ -347,12 +336,12 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
             className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden bg-[var(--color-bg-50,#f7f8fa)] text-[var(--color-ink)]"
         >
             {/* 배치 — 15일 체험 띠배너 바로 아래. 바로 위 「XGEN은 다릅니다」(다크 이미지)·히어로(오로라 영상)와 겹치지 않게
-                밝은 바탕 + 큰 문장 중심의 얇은 동심원(축적)과 바깥으로 천천히 퍼지는 파문(진화). 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
+                밝은 블루 실사 동심원 물결(Adobe Stock) 배경. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
+            <DecisiveRippleBg />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
-                <h2 className="mt-3 text-[15px] font-bold tracking-tight text-[var(--color-ink-muted)]">{t.diffTitle}</h2>
+                <h2 className="mt-3 text-[22px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[30px]">{t.diffTitle}</h2>
                 <div className="relative mt-8 flex w-full items-center justify-center py-10 sm:py-14 lg:py-16">
-                    <DecisiveRings />
                     <p ref={ref} className="relative max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]">
                         {words.map((w, i) => (
                             <span key={i}>
@@ -368,7 +357,7 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
                         ))}
                     </p>
                 </div>
-                <div className="mt-8 grid w-full border-t border-[var(--color-line)] lg:mt-12 lg:grid-cols-3">
+                <div className="mt-8 grid w-full border-t border-[var(--color-line)] bg-white/70 backdrop-blur-sm lg:mt-12 lg:grid-cols-3">
                     {t.diffPoints.map(([h, d], i) => (
                         <Reveal key={h} delay={i * 120} className="border-b border-[var(--color-line)] px-4 py-7 last:border-b-0 lg:border-b-0 lg:px-8">
                             <span className="block font-mono text-[13px] font-bold text-[#2f7bff]">0{i + 1}</span>
