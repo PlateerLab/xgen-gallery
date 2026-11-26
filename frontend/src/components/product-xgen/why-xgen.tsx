@@ -308,14 +308,14 @@ function AuroraBandVideo() {
     );
 }
 
-/* 결정적 차이 배경 — Adobe Stock 1134897320(흰·은회색 새틴 결이 대각선으로 흐르는 실사, 무료 라이선스, 2400px로 축소).
-   그레이 톤 유지: 흑백·회색 톤(중앙값 ≈ #e6e9ec)을 이미지 파일에 미리 입혀 CSS 필터·블렌드 없이 그대로 쓴다.
+/* 결정적 차이 배경 — Adobe Stock 235705006(은회색 실크가 광택 있게 물결치는 실사, 무료 라이선스, 4800px→2400px).
+   그레이 톤 유지: 흑백 후 명도 170~248 범위(중앙값 ≈ #e4e6ea, 약간 차가운 톤)로 이미지 파일에 미리 입혀 CSS 필터·블렌드 없이 쓴다.
    결이 아주 천천히 비스듬히 흘러가듯 움직인다(동작 줄이기 땐 정지). 가운데는 밝은 회색 막으로 글 읽힘을 확보. */
 function DecisiveSatinBg() {
     return (
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden bg-[#e9ebef]">
             <img
-                src="/product/why/decisive-satin.jpg"
+                src="/product/why/decisive-silk.jpg"
                 alt=""
                 className="decisive-satin absolute inset-[-6%] h-[112%] w-[112%] max-w-none object-cover object-center"
                 loading="lazy"
@@ -336,7 +336,7 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
             className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden bg-[var(--color-bg-50,#f7f8fa)] text-[var(--color-ink)]"
         >
             {/* 배치 — 15일 체험 띠배너 바로 아래. 바로 위 「XGEN은 다릅니다」(다크 이미지)·히어로(오로라 영상)와 겹치지 않게
-                그레이 톤 실사 새틴 결(Adobe Stock, 흑백 처리) 배경. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
+                그레이 톤 실사 실크(Adobe Stock, 흑백 처리) 배경. 전체 가운데 정렬, 1024px 미만은 포인트 한 열. */}
             <DecisiveSatinBg />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
