@@ -1036,7 +1036,7 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
     /* 자동 롤링 — 단계마다 STAGE_MS 동안 보여 주고 다음 단계로 넘어간다(F 다음은 01).
      * 멈춤: 마우스를 올렸을 때·키보드 포커스가 안에 있을 때·섹션이 화면 밖일 때·탭이 숨겨졌을 때.
      * 「동작 줄이기」 사용자는 자동으로 넘기지 않는다. 탭을 직접 누르면 그 단계부터 다시 센다. */
-    const STAGE_MS = 7000;
+    const STAGE_MS = 5000;
     const sectionRef = useRef<HTMLElement>(null);
     const tabsRef = useRef<HTMLDivElement>(null);
     const [hovered, setHovered] = useState(false);
