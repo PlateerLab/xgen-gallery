@@ -37,7 +37,7 @@ import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
-import { XgenChallenge, XgenParadigm, XgenEvolutionModel, XgenPlatformStages, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
+import { XgenChallenge, XgenEvolutionModel, XgenPlatformStages, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -699,9 +699,8 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
 
                     <XgenEvolutionLoop locale={locale} asWhy />
 
-                    <XgenParadigm locale={locale} />
-                    <XgenEvolutionModel locale={locale} />
                     <XgenPlatformStages locale={locale} />
+                    <XgenEvolutionModel locale={locale} />
 
                     <XgenScenarios locale={locale} />
                     <XgenAdoptionPath locale={locale} />
