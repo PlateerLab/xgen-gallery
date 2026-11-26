@@ -365,7 +365,10 @@ export function WhyXgenDifference({ locale }: { locale: Locale }) {
             <DecisiveSatinBg />
             <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center lg:py-[120px]">
                 <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#7c5cff]">{t.diffEyebrow}</p>
-                <h2 className="mt-3 text-[22px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[30px]">{t.diffTitle}</h2>
+                <h2 className="mt-3 text-[22px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[30px]">
+                    {/* 제목 그라데이션 — 위 eyebrow(보라 #7c5cff)·번호(블루 #00acee→#185aea)와 같은 블루→보라 계열. 밝은 회색 바탕에서 읽히도록 진한 쪽 색만 쓴다 */}
+                    <span className="bg-gradient-to-r from-[#0a84d6] via-[#185aea] to-[#7c5cff] bg-clip-text pb-[0.08em] text-transparent">{t.diffTitle}</span>
+                </h2>
                 <div className="relative mt-8 flex w-full items-center justify-center py-10 sm:py-14 lg:py-16">
                     <p ref={ref} className="relative max-w-5xl text-[26px] font-bold leading-[1.38] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]">
                         {words.map((w, i) => (
