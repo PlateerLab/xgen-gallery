@@ -699,7 +699,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     <XgenDifferentPrism locale={locale} />
 
                     {/* 15일 무료 체험 띠배너 — 「XGEN은 다릅니다」 바로 아래(이 페이지는 GNB 아래 배너를 끈다) */}
-                    <InlinePromoBand locale={locale} />
+                    <InlinePromoBand locale={locale} tone="dark" />
 
                     {/* The Decisive Difference — 체험 배너 바로 아래, 결정적 차이 3가지 (why-xgen.tsx) */}
                     <WhyXgenDifference locale={locale} />
