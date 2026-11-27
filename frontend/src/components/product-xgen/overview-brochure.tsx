@@ -104,7 +104,7 @@ const CHALLENGE = {
         voicesLabel: "이런 이야기, 낯설지 않으시죠?",
         voices: [
             { who: "현업 담당자", face: "/product/challenge/business.jpg", q: "사내 규정이 바뀌었는데, AI는 아직도 지난 기준으로 답해요.", tag: "바뀐 데이터를 따라가지 못하는 AI" },
-            { who: "IT·보안 담당자", face: "/product/challenge/security.jpg", q: "새 모델로 바꾸려고 하면, 보안 검토부터 다시 해야 해요.", tag: "모델을 바꿀 때마다 처음부터 다시 하는 검토" },
+            { who: "IT·보안 담당자", face: "/product/challenge/security.jpg", q: "외부 모델은 쓰지 말라는데, 사내 모델로 옮기려니 처음부터 다시 만들어야 해요.", tag: "모델을 바꾸면 처음부터 다시 만드는 Agent" },
             { who: "AX 추진 담당자", face: "/product/challenge/ax-lead.jpg", q: "사내 시스템 하나가 바뀌었을 뿐인데, Agent를 새로 만들어야 했어요.", tag: "연결된 시스템이 바뀌면 멈추는 Agent" },
         ],
         conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
@@ -122,7 +122,7 @@ const CHALLENGE = {
         voicesLabel: "Does any of this sound familiar?",
         voices: [
             { who: "Business user", face: "/product/challenge/business.jpg", q: "Our internal policy changed, but the AI still answers by the old rules.", tag: "AI that falls behind when data changes" },
-            { who: "IT & security", face: "/product/challenge/security.jpg", q: "Every time we want to switch to a newer model, the security review starts over.", tag: "A full review again with every model change" },
+            { who: "IT & security", face: "/product/challenge/security.jpg", q: "We're told not to use external models, but moving to an in-house model means rebuilding from scratch.", tag: "Agents that must be rebuilt when the model changes" },
             { who: "AX lead", face: "/product/challenge/ax-lead.jpg", q: "Only one internal system changed, yet we had to rebuild the agent.", tag: "Agents that stop when connected systems change" },
         ],
         conclusionA: "They look like separate problems, but they share one cause:",
