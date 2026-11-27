@@ -474,11 +474,11 @@ const EVOLUTION = {
     ko: {
         title: (
             <>
-                결국, AX의 핵심은 ‘도입’이 아니라
-                <br className="hidden md:block" /> <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">‘변화 대응’</span>입니다
+                결국, AX의 경쟁력은
+                <br className="hidden md:block" /> AI를 얼마나 <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">진화시킬 수 있는가</span>에 있습니다.
             </>
         ),
-        lead: "AI 도입은 출발점에 불과합니다. 변화하는 비즈니스 환경에 맞춰 AI를 지속적으로 발전시킬 수 있는 역량이 기업의 AX 경쟁력을 결정합니다.",
+        lead: "AI 도입은 출발점에 불과합니다. 업무 수행 경험과 사용자의 피드백을 바탕으로 AI를 지속적으로 발전시키는 역량이 기업의 경쟁력으로 이어집니다.",
         stages: [
             { en: "Assisted", ko: "이해", desc: "질문에 답하고 사내 문서를 이해합니다.", tags: ["Knowledge · RAG", "Ontology"] },
             { en: "Augmented", ko: "실행", desc: "시스템과 연결해 업무를 대신 수행합니다.", tags: ["Agentflow", "MCP·API"] },
@@ -490,11 +490,11 @@ const EVOLUTION = {
     en: {
         title: (
             <>
-                In the end, AX is not about adoption —
-                <br className="hidden md:block" /> it is about <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">adapting to change</span>
+                In the end, AX competitiveness comes down to
+                <br className="hidden md:block" /> how well you can <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">evolve your AI</span>
             </>
         ),
-        lead: "Adopting AI is only the starting point. What determines a company's AX competitiveness is its ability to keep developing AI as the business environment changes.",
+        lead: "Adopting AI is only the starting point. The ability to keep improving AI based on work experience and user feedback is what builds a company's competitiveness.",
         stages: [
             { en: "Assisted", ko: "Understand", desc: "Answers questions and understands internal documents.", tags: ["Knowledge · RAG", "Ontology"] },
             { en: "Augmented", ko: "Execute", desc: "Connects to systems and carries out tasks.", tags: ["Agentflow", "MCP·API"] },

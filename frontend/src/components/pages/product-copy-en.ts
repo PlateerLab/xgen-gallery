@@ -253,27 +253,27 @@ export const PRODUCT_EN = {
         },
         {
             q: "How do you secure the answer quality of RAG and the knowledge graph?",
-            a: "Quality is scored on RAGAS from preprocessing through answer verification and evaluated across several dimensions. Preprocessing strategy is also selected automatically by document type — an adaptive pipeline where the LLM judges the document type and adjusts whether OCR or VLM applies, along with chunking and overlap parameters.",
+            a: "Quality is scored on RAGAS from preprocessing through answer verification and evaluated across several dimensions. Preprocessing strategy is also selected automatically by document type — an adaptive pipeline where the LLM judges the document type and adjusts whether OCR or VLM applies, along with chunking and overlap parameters. Combining RAG with an ontology (knowledge graph) adds the different expressions of the same entity and the relationships between concepts, which improves retrieval and answer accuracy.",
         },
         {
             q: "How does it integrate with our legacy systems?",
-            a: "You don't need to build new screens. LLM and RAG integration is composed as nodes and provided as snippet code, so adding a single button to an existing system to call it is entirely workable. XGEN is plugin-structured throughout — around 80 built-in tools combined with quickly-built custom tools keep integration and customization effort to a minimum.",
+            a: "For legacy integration, APIs matter more than RAG. Register an existing system's API together with its authentication scheme and it becomes a tool agents can use right away. Non-developers don't need to understand APIs: PathFinder collects the needed APIs as they operate their usual business screens. LLM and RAG integration is also provided as snippet code, so a single button added to an existing system can call it, and around 80 built-in tools combined with custom tools reduce integration effort.",
         },
         {
             q: "What happens when an agent produces a wrong result?",
             a: "A first filter applies at creation through risk assessment and administrator approval, and if something goes wrong in operation an admin kill switch stops the service immediately. Where accuracy is decisive we apply human-in-the-loop, designing the AI to raise throughput through pre- and post-processing rather than replacing the work entirely, with a person confirming the result before the next step.",
         },
         {
-            q: "How is data security managed?",
-            a: "On-premise deployments using internal models can process data within the enterprise security boundary and support network-separated and air-gapped environments. RBAC/ABAC manages access. External model and tool integrations require separate review of data transfer scope and provider training and retention policies.",
+            q: "How are data security and agent tool use controlled?",
+            a: "On-premise deployments using internal models can process data within the enterprise security boundary and support network-separated and air-gapped environments. Beyond data, the tools agents use (MCP, subprocess, databases, and more) are controlled under role-based access control (RBAC), and each permission carries a TTL so its period of use is managed as well. External model and tool integrations require separate review of data transfer scope and provider training and retention policies.",
         },
         {
             q: "Can we build agents without coding?",
-            a: "Yes, in two ways. With vibe coding in DexOn, you describe what you need in natural language to build agents and apps, and you can switch to full coding to write or edit the code directly. Alternatively, Agentflow's drag-based visual canvas lets you design a workflow without code. You then validate the agent in live chat and deploy it as an API or workflow.",
+            a: "Yes, in two ways. With vibe coding in Geny, you describe what you need in natural language to build agents and apps, and you can switch to full coding to write or edit the code directly. Alternatively, Agentflow's drag-based visual canvas lets you design a workflow without code. You then validate the agent in live chat and deploy it as an API or workflow.",
         },
         {
             q: "How are open-source licenses managed from a procurement and legal perspective?",
-            a: "We check and provide the obligations attached to each license type of the open source that makes up XGEN (copyright notices, NOTICE files). Components and obligations can vary with the delivered version and configuration, so we prepare a component-by-component license inventory during evaluation.",
+            a: "XGEN is built only from open source under licenses that permit commercial use and redistribution. We check and provide the obligations attached to each license type (copyright notices, NOTICE files). Components and obligations can vary with the delivered version and configuration, so we prepare a component-by-component license inventory during evaluation.",
         },
     ],
 
