@@ -607,20 +607,21 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
         return () => window.clearTimeout(t);
     }, [count, inView, reduced, e.stages.length]);
     return (
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
-            {/* 배경 — 「The Decisive Difference」와 같은 실크 원본(Adobe Stock 235705006)을 좌우 반전·남색 다크 톤으로 입힌 파일.
-                결정적 차이(밝은 그레이, 왼쪽→오른쪽 위로 흐름)와 달리 반대 방향으로 더 느리게 흐르고 살짝 기운다(동작 줄이기 땐 정지).
-                위아래 어두운 막으로 제목·카드 읽힘을 확보하고, 위쪽 파란 빛은 그대로 둔다. */}
+        <section className="relative overflow-hidden border-y border-white/10 bg-[#060914] text-white">
+            {/* 배경 — 미드나잇 새틴(Adobe Stock 693108773, 무료 라이선스)을 미드나잇 네이비 그림자 + 실버 블루 광택으로 톤을 맞춘 파일.
+                결이 곱고 광택이 은은해 카드의 실버 그레이와 같은 재질감으로 이어진다. 천천히 흐르고 살짝 기운다(동작 줄이기 땐 정지).
+                위아래만 살짝 어둡게 눌러 제목·카드 읽힘을 확보하고, 위쪽엔 차가운 실버 빛을 얹는다. */}
             <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
                 <img
-                    src="/product/why/evolution-silk-dark.jpg"
+                    src="/product/why/evolution-graphite.jpg"
                     alt=""
-                    className="evo-silk absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover object-center opacity-90"
+                    className="evo-silk absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover object-center"
                     loading="lazy"
                     decoding="async"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.82)_0%,rgba(7,11,28,0.58)_40%,rgba(7,11,28,0.62)_70%,rgba(7,11,28,0.88)_100%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,20,0.45)_0%,rgba(6,9,20,0.04)_36%,rgba(6,9,20,0.1)_72%,rgba(6,9,20,0.65)_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_0%,rgba(190,206,235,0.14),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_92%,rgba(120,150,210,0.10),transparent_70%)]" />
             </div>
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
@@ -630,8 +631,8 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                 <svg aria-hidden viewBox="0 0 100 20" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-[6%] top-[38%] hidden h-[34%] w-[88%] lg:block">
                     <defs>
                         <linearGradient id="evoRise" x1="0" x2="1">
-                            <stop offset="0" stopColor="#7dd3fc" stopOpacity="0.15" />
-                            <stop offset="1" stopColor="#7dd3fc" stopOpacity="0.7" />
+                            <stop offset="0" stopColor="#c9d5ec" stopOpacity="0.15" />
+                            <stop offset="1" stopColor="#c9d5ec" stopOpacity="0.65" />
                         </linearGradient>
                     </defs>
                     <path d="M0 20 C 30 18, 60 10, 100 0" fill="none" stroke="url(#evoRise)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeDasharray="4 6" />
@@ -644,8 +645,8 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                                 "group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:min-h-[300px]",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3
-                                    ? "border-[#2f7bff] bg-white shadow-[0_0_0_1px_rgba(47,123,255,0.5),0_24px_60px_-20px_rgba(47,123,255,0.7)]"
-                                    : "border-white/60 bg-[#eef1f6] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.85)]",
+                                    ? "border-white bg-[linear-gradient(160deg,#ffffff_0%,#f2f5fa_100%)] shadow-[0_0_0_1px_rgba(47,123,255,0.55),0_28px_70px_-24px_rgba(47,123,255,0.55)]"
+                                    : "border-white/70 bg-[linear-gradient(160deg,#f5f7fb_0%,#e4e9f1_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_24px_60px_-28px_rgba(0,0,0,0.9)]",
                                 ["lg:mt-[96px]", "lg:mt-[64px]", "lg:mt-[32px]", "lg:mt-0"][i],
                             )}
                         >
