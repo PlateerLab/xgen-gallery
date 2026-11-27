@@ -732,7 +732,7 @@ const STAGES: Stage[] = [
             ko: "Workflow·MCP 템플릿과 대화형 설계로 Agent를 만들고, 만든 Agent는 API로 배포해 사내 시스템과 연결합니다.",
             en: "Create agents from workflow and MCP templates or by conversation, then deploy them via API and connect them to internal systems.",
         },
-        tech: ["EasyMode", "Workflow Builder", "PathFinder", "MCP", "Tool Calling", "Harness Runtime"],
+        tech: ["EasyMode", "Workflow Builder", "MCP", "Tool Calling", "Harness Runtime"],
         result: {
             ko: ["바이브 코딩·Workflow 두 방식 지원", "지식·도구 연결", "API 배포·사내 시스템 연동"],
             en: ["Both vibe coding and workflow building", "Knowledge and tool connection", "API deployment and system integration"],
@@ -741,7 +741,6 @@ const STAGES: Stage[] = [
         links: [
             L.features,
             { label: { ko: "EasyMode", en: "EasyMode" }, href: "/easy-mode" },
-            { label: { ko: "PathFinder", en: "PathFinder" }, href: "/pathfinder" },
             { label: { ko: "Vibe Coding", en: "Vibe Coding" }, href: "/vibe-coding" },
         ],
     },
