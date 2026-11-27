@@ -503,14 +503,15 @@ const EVOLUTION = {
    01 이해: 문서 줄과 점 격자 / 02 실행: 도구를 잇는 회로선 / 03 협업: 여러 노드가 이어진 네트워크 /
    04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다. */
 function EvoPattern({ i }: { i: number }) {
-    const stroke = "#7dd3fc";
-    const dot = "#0b1430";
+    // 밝은 그레이 카드 위 — 진한 블루 선, 점 속은 카드 바탕색
+    const stroke = "#2563eb";
+    const dot = "#eef1f6";
     const common = { fill: "none", stroke, strokeWidth: 1.5, vectorEffect: "non-scaling-stroke" as const, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
     return (
         <svg
             aria-hidden
             viewBox="0 0 180 180"
-            className="pointer-events-none h-[72px] w-[72px] flex-none opacity-80 drop-shadow-[0_0_6px_rgba(125,211,252,0.35)]"
+            className="pointer-events-none h-[72px] w-[72px] flex-none opacity-70"
         >
             {i === 0 && (
                 <g {...common}>
@@ -640,38 +641,38 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                         <li
                             key={s.en}
                             className={cn(
-                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur-md transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:min-h-[300px]",
+                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:min-h-[300px]",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3
-                                    ? "border-[#5aa9ff]/70 bg-[linear-gradient(160deg,rgba(40,84,170,0.78)_0%,rgba(22,44,104,0.8)_50%,rgba(14,26,66,0.86)_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.3),0_24px_60px_-20px_rgba(47,123,255,0.6)]"
-                                    : "border-white/[0.2] bg-[linear-gradient(160deg,rgba(38,56,112,0.7)_0%,rgba(22,34,78,0.74)_55%,rgba(14,22,54,0.8)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_20px_50px_-24px_rgba(0,0,0,0.8)]",
+                                    ? "border-[#2f7bff] bg-white shadow-[0_0_0_1px_rgba(47,123,255,0.5),0_24px_60px_-20px_rgba(47,123,255,0.7)]"
+                                    : "border-white/60 bg-[#eef1f6] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.85)]",
                                 ["lg:mt-[96px]", "lg:mt-[64px]", "lg:mt-[32px]", "lg:mt-0"][i],
                             )}
                         >
                             {/* 위쪽 가는 빛 선 — 단계가 오를수록 진해진다 */}
                             <span
                                 aria-hidden
-                                className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#7dd3fc] to-transparent"
-                                style={{ opacity: 0.35 + i * 0.2 }}
+                                className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#7dd3fc] via-[#2f7bff] to-[#4f46e5]"
+                                style={{ opacity: 0.3 + i * 0.23 }}
                             />
                             <div className="relative flex items-start justify-between gap-3">
-                                <span className="bg-gradient-to-br from-white via-[#bfe6ff] to-[#5aa9ff] bg-clip-text text-[40px] font-semibold leading-none tracking-tight text-transparent">
+                                <span className="bg-gradient-to-br from-[#2f7bff] via-[#2563eb] to-[#4f46e5] bg-clip-text text-[40px] font-semibold leading-none tracking-tight text-transparent">
                                     0{i + 1}
                                 </span>
                                 <EvoPattern i={i} />
                             </div>
-                            <h3 className="relative mt-2 text-[22px] font-bold tracking-tight text-white">
-                                {s.en} <span className="text-[15px] font-semibold text-[#7dd3fc]">· {s.ko}</span>
+                            <h3 className="relative mt-2 text-[22px] font-bold tracking-tight text-[#0b1430]">
+                                {s.en} <span className="text-[15px] font-semibold text-[#2563eb]">· {s.ko}</span>
                             </h3>
                             <ul className="relative mt-4 flex flex-col gap-2">
                                 {s.items.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/[0.92]">
-                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#7dd3fc]" aria-hidden />
+                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[#2b3445]">
+                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2563eb]" aria-hidden />
                                         {x}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="relative mt-auto border-t border-white/[0.14] pt-4 text-[12px] font-medium tracking-wide text-[#a9c3ea]">{s.tech}</p>
+                            <p className="relative mt-auto border-t border-[#0b1430]/[0.12] pt-4 text-[12px] font-medium tracking-wide text-[#5b6577]">{s.tech}</p>
                         </li>
                     ))}
                 </ol>
