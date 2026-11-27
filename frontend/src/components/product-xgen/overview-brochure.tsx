@@ -100,12 +100,12 @@ const CHALLENGE = {
                 <br className="hidden md:block" /> 왜 같은 문제를 다시 마주할까요?
             </>
         ),
-        lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 도구와 모델이 바뀌면 다시 멈춥니다.",
+        lead: "도입 직후에는 잘 돌아가던 AI도, 데이터와 모델과 도구가 바뀌면 다시 멈춥니다.",
         voicesLabel: "이런 이야기, 낯설지 않으시죠?",
         voices: [
             { who: "현업 담당자", face: "/product/challenge/business.jpg", q: "사내 규정이 바뀌었는데, AI는 아직도 지난 기준으로 답해요.", tag: "바뀐 데이터를 따라가지 못하는 AI" },
             { who: "IT·보안 담당자", face: "/product/challenge/security.jpg", q: "외부 모델은 쓰지 말라는데, 사내 모델로 옮기려니 처음부터 다시 만들어야 해요.", tag: "모델을 바꾸면 처음부터 다시 만드는 Agent" },
-            { who: "AX 추진 담당자", face: "/product/challenge/ax-lead.jpg", q: "사내 시스템 하나가 바뀌었을 뿐인데, Agent를 새로 만들어야 했어요.", tag: "연결된 시스템이 바뀌면 멈추는 Agent" },
+            { who: "AX 추진 담당자", face: "/product/challenge/ax-lead.jpg", q: "부서마다 Agent를 따로 만들다 보니, 시스템 하나만 바뀌어도 전부 다시 손봐야 해요.", tag: "연결된 시스템이 바뀌면 전부 다시 고치는 Agent" },
         ],
         conclusionA: "겉으로는 서로 다른 문제처럼 보이지만, 공통된 원인은",
         conclusionB: "변화에 대응하지 못하는 플랫폼",
@@ -118,12 +118,12 @@ const CHALLENGE = {
                 <br className="hidden md:block" /> keep running into the same problems?
             </>
         ),
-        lead: "AI that worked right after launch stalls again once the data, tools and models change.",
+        lead: "AI that worked right after launch stalls again once the data, models and tools change.",
         voicesLabel: "Does any of this sound familiar?",
         voices: [
             { who: "Business user", face: "/product/challenge/business.jpg", q: "Our internal policy changed, but the AI still answers by the old rules.", tag: "AI that falls behind when data changes" },
             { who: "IT & security", face: "/product/challenge/security.jpg", q: "We're told not to use external models, but moving to an in-house model means rebuilding from scratch.", tag: "Agents that must be rebuilt when the model changes" },
-            { who: "AX lead", face: "/product/challenge/ax-lead.jpg", q: "Only one internal system changed, yet we had to rebuild the agent.", tag: "Agents that stop when connected systems change" },
+            { who: "AX lead", face: "/product/challenge/ax-lead.jpg", q: "Each team built its own agents, so when one system changes, we have to rework them all.", tag: "Agents that all need rework when a connected system changes" },
         ],
         conclusionA: "They look like separate problems, but they share one cause:",
         conclusionB: "a platform that cannot keep up with change",
@@ -709,7 +709,7 @@ const STAGES: Stage[] = [
         en: "Knowledge",
         module: "XGEN · Knowledge Hub",
         title: { ko: "변화하는 데이터를 AI 자산으로 연결합니다", en: "Turns changing data into AI-ready assets" },
-        gist: { ko: "문서·DB·이미지·도면을 AI가 활용하는 지식으로 구조화합니다.", en: "Structures documents, databases, images and drawings into knowledge AI can use." },
+        gist: { ko: "문서·DB·이미지·도면을 AI가 활용하는 지식으로 구조화합니다. 다시 올린 문서는 버전으로 남고, 연결한 API는 정한 주기마다 새 내용만 색인합니다.", en: "Structures documents, databases, images and drawings into knowledge AI can use. Re-uploaded documents are kept as versions, and connected APIs are indexed on a set schedule, adding only new content." },
         why: { ko: "기업의 데이터는 계속 늘어나고 형식도 다양해집니다.", en: "Enterprise data keeps growing and comes in many formats." },
         what: {
             ko: "문서·DB·이미지·도면 등 다양한 데이터를 연결하고, AI가 이해할 수 있는 지식(Knowledge)으로 구조화합니다.",
