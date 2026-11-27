@@ -499,19 +499,18 @@ const EVOLUTION = {
     },
 };
 
-/* 카드 배경 패턴 — 단계마다 의미를 담은 선 도형을 오른쪽 위 모서리에 옅게 깐다.
+/* 카드 엠블럼 — 단계마다 의미를 담은 선 도형을 번호 오른쪽에 작은 상징으로 둔다(글자와 겹치지 않음).
    01 이해: 문서 줄과 점 격자 / 02 실행: 도구를 잇는 회로선 / 03 협업: 여러 노드가 이어진 네트워크 /
-   04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다.
-   글자 영역과 겹치지 않도록 모서리에서 안쪽으로 갈수록 흐려지게 마스크를 건다. */
+   04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다. */
 function EvoPattern({ i }: { i: number }) {
     const stroke = "#7dd3fc";
     const dot = "#0b1430";
-    const common = { fill: "none", stroke, strokeWidth: 1.25, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+    const common = { fill: "none", stroke, strokeWidth: 1.5, vectorEffect: "non-scaling-stroke" as const, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
     return (
         <svg
             aria-hidden
             viewBox="0 0 180 180"
-            className="pointer-events-none absolute -right-3 -top-3 h-[180px] w-[180px] opacity-[0.55] drop-shadow-[0_0_6px_rgba(125,211,252,0.45)] [mask-image:radial-gradient(circle_at_100%_0%,#000_35%,transparent_75%)]"
+            className="pointer-events-none h-[72px] w-[72px] flex-none opacity-80 drop-shadow-[0_0_6px_rgba(125,211,252,0.35)]"
         >
             {i === 0 && (
                 <g {...common}>
@@ -619,23 +618,34 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                     loading="lazy"
                     decoding="async"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.78)_0%,rgba(7,11,28,0.35)_38%,rgba(7,11,28,0.45)_70%,rgba(7,11,28,0.85)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.82)_0%,rgba(7,11,28,0.58)_40%,rgba(7,11,28,0.62)_70%,rgba(7,11,28,0.88)_100%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]" />
             </div>
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
-                {/* 계단형 — 1024px 이상은 오른쪽으로 갈수록 한 칸씩 올라가고, 그 아래는 한 열 */}
-                <ol ref={listRef} className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-4 lg:items-end`}>
+                {/* 계단형 — 1024px 이상은 카드 높이를 같게 두고 오른쪽으로 갈수록 한 칸씩 올려 배치한다(빈 하단 없음).
+                    뒤의 상승선이 네 카드를 잇는다. 그 아래는 한 열 */}
+                <div className={`relative ${SECTION_BODY_GAP}`}>
+                <svg aria-hidden viewBox="0 0 100 20" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-[6%] top-[38%] hidden h-[34%] w-[88%] lg:block">
+                    <defs>
+                        <linearGradient id="evoRise" x1="0" x2="1">
+                            <stop offset="0" stopColor="#7dd3fc" stopOpacity="0.15" />
+                            <stop offset="1" stopColor="#7dd3fc" stopOpacity="0.7" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M0 20 C 30 18, 60 10, 100 0" fill="none" stroke="url(#evoRise)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeDasharray="4 6" />
+                </svg>
+                <ol ref={listRef} className="relative grid gap-4 lg:grid-cols-4 lg:items-start">
                     {e.stages.map((s, i) => (
                         <li
                             key={s.en}
                             className={cn(
-                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur-sm transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
+                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur-md transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:min-h-[300px]",
                                 reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                                 i === 3
-                                    ? "border-[#5aa9ff]/60 bg-[linear-gradient(160deg,rgba(22,48,107,0.88)_0%,rgba(13,27,68,0.86)_45%,rgba(10,18,48,0.9)_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.25),0_24px_60px_-20px_rgba(47,123,255,0.55)]"
-                                    : "border-white/[0.14] bg-[linear-gradient(160deg,rgba(20,31,69,0.82)_0%,rgba(13,22,54,0.84)_55%,rgba(10,17,41,0.88)_100%)] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]",
-                                ["lg:min-h-[260px]", "lg:min-h-[300px]", "lg:min-h-[340px]", "lg:min-h-[380px]"][i],
+                                    ? "border-[#5aa9ff]/70 bg-[linear-gradient(160deg,rgba(40,84,170,0.78)_0%,rgba(22,44,104,0.8)_50%,rgba(14,26,66,0.86)_100%)] shadow-[0_0_0_1px_rgba(90,169,255,0.3),0_24px_60px_-20px_rgba(47,123,255,0.6)]"
+                                    : "border-white/[0.2] bg-[linear-gradient(160deg,rgba(38,56,112,0.7)_0%,rgba(22,34,78,0.74)_55%,rgba(14,22,54,0.8)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_20px_50px_-24px_rgba(0,0,0,0.8)]",
+                                ["lg:mt-[96px]", "lg:mt-[64px]", "lg:mt-[32px]", "lg:mt-0"][i],
                             )}
                         >
                             {/* 위쪽 가는 빛 선 — 단계가 오를수록 진해진다 */}
@@ -644,25 +654,28 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
                                 className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#7dd3fc] to-transparent"
                                 style={{ opacity: 0.35 + i * 0.2 }}
                             />
-                            <EvoPattern i={i} />
-                            <span className="relative bg-gradient-to-br from-white via-[#bfe6ff] to-[#2f7bff] bg-clip-text font-mono text-[34px] font-light leading-none tracking-tight text-transparent">
-                                0{i + 1}
-                            </span>
-                            <h3 className="relative mt-4 text-[22px] font-bold tracking-tight text-white">
+                            <div className="relative flex items-start justify-between gap-3">
+                                <span className="bg-gradient-to-br from-white via-[#bfe6ff] to-[#5aa9ff] bg-clip-text text-[40px] font-semibold leading-none tracking-tight text-transparent">
+                                    0{i + 1}
+                                </span>
+                                <EvoPattern i={i} />
+                            </div>
+                            <h3 className="relative mt-2 text-[22px] font-bold tracking-tight text-white">
                                 {s.en} <span className="text-[15px] font-semibold text-[#7dd3fc]">· {s.ko}</span>
                             </h3>
                             <ul className="relative mt-4 flex flex-col gap-2">
                                 {s.items.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/[0.86]">
+                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-white/[0.92]">
                                         <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#7dd3fc]" aria-hidden />
                                         {x}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="relative mt-auto border-t border-white/10 pt-4 font-mono text-[12px] tracking-wide text-[#9fb4d9]">{s.tech}</p>
+                            <p className="relative mt-auto border-t border-white/[0.14] pt-4 text-[12px] font-medium tracking-wide text-[#a9c3ea]">{s.tech}</p>
                         </li>
                     ))}
                 </ol>
+                </div>
                 <p className="mt-10 text-center text-[15px] text-white/65">{e.foot}</p>
                 <NextLinks locale={locale} links={[L.features]} dark center />
             </div>
