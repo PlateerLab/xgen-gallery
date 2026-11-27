@@ -52,7 +52,7 @@ const COPY = {
         ],
         condTitle: "적용 조건",
         conds: [
-            "외부 Agent를 API로 호출할 수 있어야 합니다(엔드포인트·인증 정보).",
+            "외부 Agent를 MCP로 호출할 수 있어야 합니다(엔드포인트·인증 정보).",
             "호출을 감싸는 MCP 어댑터가 필요하며, 플랫폼별 구성 방식은 사전 검토로 확인합니다.",
             "외부 Agent는 원래 플랫폼에서 실행됩니다. 데이터 전송·과금·응답 속도는 해당 플랫폼 정책을 따릅니다.",
             "외부 Agent 내부의 메모리와 중간 과정은 XGEN에서 보이지 않으며, 통제는 입출력 단위로 적용됩니다.",
@@ -102,7 +102,7 @@ const COPY = {
         ],
         condTitle: "Conditions",
         conds: [
-            "The external agent must be callable through an API (endpoint and credentials).",
+            "The external agent must be callable through MCP (endpoint and credentials).",
             "An MCP adapter that wraps the call is required; the setup for each platform is confirmed in a pre-assessment.",
             "External agents run on their original platform. Data transfer, billing, and latency follow that platform's policies.",
             "An external agent's internal memory and intermediate steps are not visible in XGEN; control applies at the input/output level.",
