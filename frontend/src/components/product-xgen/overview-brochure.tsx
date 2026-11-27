@@ -718,7 +718,7 @@ const STAGES: Stage[] = [
             ko: ["출처를 근거로 한 답변", "최신 데이터 기준의 답변", "AI가 활용할 수 있는 데이터 자산"],
             en: ["Answers grounded in cited sources", "Answers based on current data", "Data assets AI can put to work"],
         },
-        screen: { type: "img", src: "/product/screen-ontology.png", w: 1898, h: 905, url: "XGEN · Knowledge · Ontology", alt: { ko: "XGEN 온톨로지 지식 그래프 화면", en: "XGEN ontology knowledge graph screen" } },
+        screen: { type: "img", src: "/product/xgen-platform-ontology.png", w: 1194, h: 754, url: "XGEN · Knowledge · Ontology", alt: { ko: "XGEN 온톨로지 지식 그래프 화면", en: "XGEN ontology knowledge graph screen" } },
         links: [L.features, { label: { ko: "Technology", en: "Technology" }, href: "/technology" }],
     },
     {
@@ -1262,9 +1262,10 @@ export function XgenPlatformStages({ locale }: { locale: Locale }) {
                     <div className="min-w-0 lg:h-[500px] lg:self-center xl:h-[448px]">
                         {s.screen.type === "img" ? (
                             <BrowserFrame url={s.screen.url}>
+                                {/* 이미지는 온톨로지 그래프 영역만 잘라(좌측 메뉴·우측 검색 패널 제외, 1194×754) PC에서는 틀을 꽉 채우도록 object-cover */}
                                 <div className="lg:relative lg:min-h-0 lg:flex-1 lg:bg-[#f7f9fc]">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain" />
+                                    <img src={s.screen.src} width={s.screen.w} height={s.screen.h} alt={T(en, s.screen.alt)} loading="lazy" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-cover lg:object-center" />
                                 </div>
                                 <figcaption className="border-t border-[var(--color-line)] px-5 py-3 lg:py-2 text-[12.5px] text-[var(--color-ink-subtle)]">
                                     {en ? "Screens vary by version and configuration." : "화면은 버전과 구성에 따라 다를 수 있습니다."}
