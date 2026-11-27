@@ -888,7 +888,7 @@ export function HomeIntro({ locale, cases, hero, feed = [] }: { locale: Locale; 
                     <div className="max-w-2xl">
                         <h2 className="text-[30px] font-semibold leading-tight tracking-tight md:text-[40px]">{ko ? "1,086개 고객사가 플래티어와 함께하는 데는 이유가 있습니다." : "There\u2019s a reason 1,086 customers work with Plateer."}</h2>
                         <p className="mt-4 text-[17px] leading-relaxed text-white/75">
-                            {ko ? "우리 환경에 맞는 구성과 PoC 범위부터 함께 정해 보세요. (고객사 수는 플래티어 전체 기준)" : "Let\u2019s start by scoping the setup and PoC that fit your environment. (Customer count across Plateer.)"}
+                            {ko ? "우리 환경에 맞는 구성과 PoC 범위부터 함께 정해 보세요." : "Let\u2019s start by scoping the setup and PoC that fit your environment."}
                         </p>
                     </div>
                     <div className="flex flex-col gap-3 sm:flex-row">

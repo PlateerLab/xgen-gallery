@@ -1797,12 +1797,7 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
                     </div>
                 </div>
 
-                <div className="mt-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                    <p className="text-[12.5px] leading-relaxed text-[var(--color-ink-subtle)]">
-                        {en
-                            ? "※ Agent lineups reflect each customer’s delivery scope. Some customers are shown by industry instead of name."
-                            : "※ Agent 구성은 고객사별 구축 범위 기준입니다. 일부 고객사는 사명 대신 업종으로 표기했습니다."}
-                    </p>
+                <div className="mt-6 flex lg:justify-end">
                     <Link
                         href={localeHref(locale, "/customers") + "?product=xgen"}
                         className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
