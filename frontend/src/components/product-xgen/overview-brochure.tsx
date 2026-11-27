@@ -1817,7 +1817,8 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
 }
 
 /* ======================================================================
- * 8. 도입 방식·다음 단계 — 소개서 p.31·37·39
+ * 8. 도입 방식·다음 단계 — 소개서 p.31·37·39 (핵심 위주 압축판)
+ *    원칙 3개(한 줄 설명) → 5단계 타임라인 → 표준 일정 한 줄
  * ==================================================================== */
 
 const ADOPT = {
@@ -1825,69 +1826,47 @@ const ADOPT = {
         title: "XGEN 도입은 이렇게 진행합니다",
         lead: "검증된 플랫폼 코어 위에 고객 업무만 얹어, 현업이 쓰는 결과를 먼저 만듭니다.",
         principles: [
-            {
-                k: "MVP FIRST",
-                t: "검증된 코어 위에서 빠르게",
-                d: "Agent 빌더·RAG·거버넌스·관리 화면은 XGEN 기본 기능을 쓰고, 고객 업무 화면과 시스템 연계만 개발합니다.",
-                b: ["GS인증 1등급 플랫폼", "MVP 범위 우선 구축", "필요 시 외부 환경 선구축 후 내부망 이식"],
-            },
-            {
-                k: "TRUST",
-                t: "기존 문서와 권한 그대로",
-                d: "문서관리시스템의 원천 권한을 검색·답변·출처까지 이어받고, 답변마다 출처와 원문 위치를 표시합니다.",
-                b: ["권한 없는 문서는 검색·답변에서 제외", "출처·기준일·원문 하이라이트", "토큰 비용 관제·가드레일"],
-            },
-            {
-                k: "FDE · 자립 운영",
-                t: "현업과 함께 만들고, 스스로 운영",
-                d: "FDE(Forward Deployed Engineer)가 현업과 Sprint 단위로 검증하고, 교육·소스·운영 문서를 인계해 자체 운영을 지원합니다.",
-                b: ["주 단위 데모·현업 검증", "역할별 3계층 교육", "소스·Runbook·저장소 인계"],
-            },
+            { k: "MVP FIRST", t: "검증된 코어 위에서 빠르게", d: "기본 기능은 그대로 쓰고, 고객 업무 화면과 시스템 연계만 개발합니다." },
+            { k: "TRUST", t: "기존 문서·권한 그대로", d: "원천 권한을 검색·답변까지 이어받고, 답변마다 출처를 표시합니다." },
+            { k: "FDE · 자립 운영", t: "함께 만들고, 스스로 운영", d: "FDE가 Sprint 단위로 현업과 검증하고, 교육·소스·운영 문서를 인계합니다." },
         ],
-        stepsLabel: "다음 단계",
+        stepsLabel: "도입 단계",
         steps: [
-            { t: "초도 미팅", d: "업무 과제·현행 시스템·보안 요건 공유" },
-            { t: "맞춤 데모", d: "고객 업무 시나리오로 실제 화면 시연" },
-            { t: "사전 진단", d: "샘플 문서로 Use Case·분류 기준·정확도 확인" },
-            { t: "MVP 범위 확정", d: "검수 기준·일정·전제 조건 합의" },
-            { t: "착수", d: "FDE 투입, Sprint 시작" },
+            { t: "초도 미팅", d: "과제·보안 요건 공유" },
+            { t: "맞춤 데모", d: "고객 업무로 시연" },
+            { t: "사전 진단", d: "샘플 문서로 정확도 확인" },
+            { t: "MVP 범위 확정", d: "검수 기준·일정 합의" },
+            { t: "착수", d: "FDE 투입·Sprint 시작" },
         ],
-        schedule: "표준 도입 일정 예시: 8주 차 MVP 오픈, 16주 차 운영 이관",
-        scheduleNote: "실제 일정은 범위·데이터 준비 상태·승인 절차(API 권한, LLM 사용 승인 등)에 따라 달라집니다.",
+        scheduleLabel: "표준 일정 예시",
+        schedule: [
+            { w: "8주 차", t: "MVP 오픈" },
+            { w: "16주 차", t: "운영 이관" },
+        ],
+        scheduleNote: "범위·데이터 준비·승인 절차(API 권한, LLM 사용 승인 등)에 따라 달라집니다.",
     },
     en: {
         title: "How XGEN adoption works",
         lead: "We put only your business logic on a proven platform core, so business users get working results first.",
         principles: [
-            {
-                k: "MVP FIRST",
-                t: "Move fast on a proven core",
-                d: "The agent builder, RAG, governance and admin screens come standard with XGEN; we build only your business screens and system integrations.",
-                b: ["GS Certification Grade 1 platform", "MVP scope first", "Build outside first and move into the internal network if needed"],
-            },
-            {
-                k: "TRUST",
-                t: "Your documents and permissions, as they are",
-                d: "Source-system permissions carry through search, answers and citations, and every answer shows its source and location in the original.",
-                b: ["Documents without permission are excluded", "Source, as-of date and highlighted passage", "Token-cost monitoring and guardrails"],
-            },
-            {
-                k: "FDE · SELF-RUN",
-                t: "Build with your teams, then run it yourself",
-                d: "Forward Deployed Engineers validate with business users sprint by sprint, then hand over training, source code and runbooks so you can operate on your own.",
-                b: ["Weekly demos and user validation", "Three-tier training by role", "Source, runbook and repository handover"],
-            },
+            { k: "MVP FIRST", t: "Fast, on a proven core", d: "Standard features stay as they are; we build only your business screens and integrations." },
+            { k: "TRUST", t: "Your documents and permissions", d: "Source permissions carry through search and answers, and every answer shows its source." },
+            { k: "FDE · SELF-RUN", t: "Build together, then run it yourself", d: "FDEs validate with users sprint by sprint, then hand over training, source and runbooks." },
         ],
-        stepsLabel: "Next steps",
+        stepsLabel: "Adoption steps",
         steps: [
-            { t: "Kickoff meeting", d: "Share tasks, current systems and security needs" },
-            { t: "Tailored demo", d: "Live screens on your business scenario" },
-            { t: "Pre-assessment", d: "Check use cases, criteria and accuracy on sample documents" },
-            { t: "Fix MVP scope", d: "Agree on acceptance criteria, schedule and prerequisites" },
-            { t: "Start", d: "FDEs join and sprints begin" },
+            { t: "Kickoff", d: "Share tasks and security needs" },
+            { t: "Tailored demo", d: "Demo on your scenario" },
+            { t: "Pre-assessment", d: "Check accuracy on samples" },
+            { t: "Fix MVP scope", d: "Agree criteria and schedule" },
+            { t: "Start", d: "FDEs join, sprints begin" },
         ],
-        schedule: "Standard schedule example: MVP opens in week 8, handover in week 16",
-        scheduleNote: "Actual timing depends on scope, data readiness and approvals (API access, LLM usage approval and more).",
+        scheduleLabel: "Standard schedule example",
+        schedule: [
+            { w: "Week 8", t: "MVP opens" },
+            { w: "Week 16", t: "Handover" },
+        ],
+        scheduleNote: "Depends on scope, data readiness and approvals (API access, LLM usage approval and more).",
     },
 };
 
@@ -1898,40 +1877,50 @@ export function XgenAdoptionPath({ locale }: { locale: Locale }) {
         <section id="adopt" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="How to Start" title={a.title} lead={a.lead} />
+
+                {/* 원칙 3개 — 한 줄 설명만 */}
                 <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
                     {a.principles.map((p, i) => (
-                        <li key={p.k} className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-white p-7">
+                        <li key={p.k} className="rounded-2xl border border-[var(--color-line)] bg-white px-6 py-5">
                             <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">
                                 0{i + 1} · {p.k}
                             </p>
-                            <h3 className="mt-2 text-[19px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p.t}</h3>
-                            <p className="mb-5 mt-3 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.d}</p>
-                            <ul className="mt-auto flex flex-col gap-2 border-t border-[var(--color-line)] pt-4">
-                                {p.b.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[13.5px] text-[var(--color-ink)]">
-                                        <Check className="mt-0.5 h-4 w-4 flex-none text-[#2f7bff]" aria-hidden />
-                                        {x}
-                                    </li>
-                                ))}
-                            </ul>
+                            <h3 className="mt-2 text-[18px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p.t}</h3>
+                            <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.d}</p>
                         </li>
                     ))}
                 </ol>
 
-                <p className="mt-14 font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">{a.stepsLabel}</p>
-                <ol className="mt-4 grid gap-3 lg:grid-cols-5">
-                    {a.steps.map((s, i) => (
-                        <li key={s.t} className="relative rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
-                            <p className="font-mono text-[12px] font-bold text-[#2f7bff]">0{i + 1}</p>
-                            <p className="mt-1 text-[16px] font-bold tracking-tight text-[var(--color-ink)]">{s.t}</p>
-                            <p className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
-                        </li>
-                    ))}
-                </ol>
-                <div className="mt-6 rounded-xl border border-[var(--color-line)] bg-white px-5 py-4">
-                    <p className="text-[14.5px] font-semibold text-[var(--color-ink)]">{a.schedule}</p>
-                    <p className="mt-1 text-[12.5px] leading-relaxed text-[var(--color-ink-muted)]">※ {a.scheduleNote}</p>
+                {/* 5단계 타임라인 + 표준 일정 */}
+                <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-white px-6 py-6 md:px-8">
+                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">{a.stepsLabel}</p>
+                    <ol className="relative mt-5 grid gap-4 lg:grid-cols-5 lg:gap-3">
+                        <span aria-hidden className="pointer-events-none absolute left-[5%] right-[5%] top-[15px] hidden h-px bg-[#c9d6ee] lg:block" />
+                        {a.steps.map((s, i) => (
+                            <li key={s.t} className="relative flex items-start gap-3 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+                                <span className="relative z-10 inline-flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[12px] font-bold text-white ring-4 ring-white">
+                                    {i + 1}
+                                </span>
+                                <div className="lg:mt-3">
+                                    <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{s.t}</p>
+                                    <p className="mt-0.5 text-[13px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--color-line)] pt-5">
+                        <span className="basis-full text-[12.5px] font-semibold text-[var(--color-ink-subtle)] sm:basis-auto">{a.scheduleLabel}</span>
+                        {a.schedule.map((x, i) => (
+                            <span key={x.w} className="inline-flex items-center gap-2 text-[14.5px] text-[var(--color-ink)]">
+                                {i > 0 && <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)]" aria-hidden />}
+                                <b className="font-bold text-[#2461d8]">{x.w}</b>
+                                {x.t}
+                            </span>
+                        ))}
+                        <span className="basis-full text-[12.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">※ {a.scheduleNote}</span>
+                    </div>
                 </div>
+
                 <NextLinks
                     locale={locale}
                     links={[
