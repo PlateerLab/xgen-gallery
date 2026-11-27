@@ -609,13 +609,13 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     }, [count, inView, reduced, e.stages.length]);
     return (
         <section className="relative overflow-hidden border-y border-white/10 bg-[#060914] text-white">
-            {/* 배경 — 미드나잇 네이비 바탕 위에 「진화」 모션(EvoBackdrop):
-                왼쪽 아래 흩어진 점(이해) → 오른쪽으로 갈수록 이어지는 네트워크(실행·협업) → 오른쪽 위에서 퍼지는 궤도 파문(진화).
-                카드 계단과 같은 방향으로 오른다. 화면 밖이면 멈추고 동작 줄이기 땐 정지 화면. 위아래만 살짝 눌러 제목·카드 읽힘을 확보한다. */}
+            {/* 배경 — Adobe Stock 플렉서스 네트워크 영상(EvoBackdrop). 영상이 오기 전엔 미드나잇 네이비 그라데이션이 보인다.
+                영상 위에 남색 막을 얹어 밝기를 낮추고, 위아래를 한 번 더 눌러 제목·카드 읽힘을 확보한다.
+                화면 밖이면 멈추고 동작 줄이기 땐 첫 장면 정지 화면. */}
             <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,#070b18_0%,#0b1430_48%,#0d1b3f_100%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_85%_25%,rgba(47,123,255,0.16),transparent_70%)]" />
                 <EvoBackdrop />
+                <div className="absolute inset-0 bg-[rgba(6,10,24,0.5)]" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,20,0.55)_0%,rgba(6,9,20,0)_30%,rgba(6,9,20,0)_75%,rgba(6,9,20,0.6)_100%)]" />
             </div>
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
