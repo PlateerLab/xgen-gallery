@@ -726,7 +726,7 @@ const STAGES: Stage[] = [
         en: "Agent",
         module: "XGEN · Agent Builder",
         title: { ko: "업무를 수행하는 AI Agent를 빠르게 만듭니다", en: "Builds task-performing AI agents quickly" },
-        gist: { ko: "말로 설명하는 바이브 코딩과 캔버스 Workflow, 두 방식으로 만들고 API로 사내 시스템에 연결합니다.", en: "Build by describing it (vibe coding) or on the workflow canvas, then connect to internal systems via API." },
+        gist: { ko: "말로 설명하는 바이브 코딩(풀코딩)과 캔버스 Workflow, 두 방식으로 만들고 API로 사내 시스템에 연결합니다.", en: "Build by describing it (vibe coding, full code) or on the workflow canvas, then connect to internal systems via API." },
         why: { ko: "기업마다 업무와 사용하는 도구는 계속 바뀌고 늘어납니다.", en: "Every company’s work and tools keep changing and expanding." },
         what: {
             ko: "Workflow·MCP 템플릿과 대화형 설계로 Agent를 만들고, 만든 Agent는 API로 배포해 사내 시스템과 연결합니다.",
@@ -734,8 +734,8 @@ const STAGES: Stage[] = [
         },
         tech: ["EasyMode", "Workflow Builder", "MCP", "Tool Calling", "Harness Runtime"],
         result: {
-            ko: ["바이브 코딩·Workflow 두 방식 지원", "지식·도구 연결", "API 배포·사내 시스템 연동"],
-            en: ["Both vibe coding and workflow building", "Knowledge and tool connection", "API deployment and system integration"],
+            ko: ["바이브 코딩(풀코딩)·Workflow 두 방식 지원", "지식·도구 연결", "API 배포·사내 시스템 연동"],
+            en: ["Both vibe coding (full code) and workflow building", "Knowledge and tool connection", "API deployment and system integration"],
         },
         screen: { type: "builder" },
         links: [
@@ -839,6 +839,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
         {
             tag: "A",
             name: "Vibe Coding",
+            sub: en ? "(Full code)" : "(풀코딩)",
             desc: en ? "Describe it in words" : "말로 설명해 만들기",
             prompt: en ? "“Build a live order-monitoring dashboard.”" : "“실시간 주문 관제 대시보드 만들어 줘”",
             src: "/product/agent-builder-vibe.png",
@@ -849,6 +850,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
         {
             tag: "B",
             name: "Workflow",
+            sub: null,
             desc: en ? "Design on the canvas" : "캔버스에서 노드로 설계하기",
             prompt: null,
             src: "/product/agent-builder-workflow.png",
@@ -864,7 +866,7 @@ function BuilderSplitMock({ en }: { en: boolean }) {
                     <div key={h.tag} className={`flex min-w-0 flex-col ${i === 1 ? "border-t border-[var(--color-line)] sm:border-l sm:border-t-0" : ""}`}>
                         <div className="flex items-center gap-2 border-b border-[var(--color-line)] bg-white px-4 py-2.5">
                             <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2461d8] text-[11px] font-bold text-white">{h.tag}</span>
-                            <span className="text-[13.5px] font-bold text-[var(--color-ink)]">{h.name}</span>
+                            <span className="shrink-0 text-[13.5px] font-bold text-[var(--color-ink)]">{h.name}{h.sub ? <span className="ml-1 font-semibold text-[#2461d8]">{h.sub}</span> : null}</span>
                             <span className="truncate text-[12.5px] text-[var(--color-ink-subtle)]">· {h.desc}</span>
                         </div>
                         <div className={`flex aspect-[16/10] flex-col overflow-hidden sm:aspect-[4/5] lg:aspect-auto lg:min-h-0 lg:flex-1 ${h.prompt ? "bg-[var(--color-surface-alt)]" : "bg-[#f8f9fa]"}`}>
