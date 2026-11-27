@@ -145,15 +145,6 @@ const ALL_DEMOS: Demo[] = [
                 descEn:
                     "A test set is uploaded, several agents are run as a batch, and an LLM Judge scores each item automatically. Scores of 92 to 100 show how AI quality is verified quantitatively.",
             },
-            {
-                time: "04:07",
-                sec: 247,
-                label: "XGEN Pathfinder",
-                labelEn: "XGEN Pathfinder",
-                desc: "레거시 시스템에 로그인한 후 브라우저 플러그인을 통해 API를 자동 수집합니다. 자연어 한 줄만 입력하면 적절한 도구를 자동 선택하고 실제 API를 호출하여 업무를 수행하는 과정을 시연합니다.",
-                descEn:
-                    "After signing in to a legacy system, a browser plug-in collects its APIs automatically. A single line of natural language picks the right tool and calls the real API to carry the task out.",
-            },
         ],
     },
     {
@@ -166,14 +157,6 @@ const ALL_DEMOS: Demo[] = [
         descEn:
             "A full walkthrough of XGEN Agent Workshop on the real product screen — building agents, RAG, tool integration, quality evaluation, and collaboration.",
         uploadDate: "2026-07-20",
-    },
-    {
-        id: "4T7tT2nTXfw",
-        title: "PathFinder BUILD",
-        desc: "PathFinder는 기존 웹 시스템을 AI가 이해하고 사용할 수 있는 Agent Tool로 연결하는 브라우저 자동화 기술입니다.",
-        descEn:
-            "PathFinder is browser-automation technology that turns existing web systems into Agent Tools an AI can understand and operate.",
-        uploadDate: "2026-07-03",
     },
     {
         id: "StxOW5PbC8w",

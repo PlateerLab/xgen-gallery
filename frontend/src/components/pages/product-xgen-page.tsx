@@ -212,14 +212,6 @@ export function xgenFeatureGroups(locale: Locale): AccordionGroup[] {
             label: ko ? "연결하기" : "Connect",
             items: [
                 {
-                    key: "pathfinder",
-                    title: "PathFinder",
-                    desc: b("pathfinder").desc[locale],
-                    href: "/pathfinder",
-                    more,
-                    visual: { type: "img", img: "/product/screen-api-tool.png", alt: ko ? "API 도구 등록 화면" : "API tool registration" },
-                },
-                {
                     key: "knowledge",
                     title: ko ? "지식 · RAG · 온톨로지" : "Knowledge · RAG · Ontology",
                     desc: b("knowledge").desc[locale],

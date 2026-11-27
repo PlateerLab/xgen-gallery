@@ -201,12 +201,6 @@ const COPY: Record<Locale, FlouiCopy> = {
                 art: "easy-mode",
             },
             {
-                label: "PathFinder",
-                desc: "기존 웹 시스템과 API를 Agent가 쓰는 도구로 연결합니다.",
-                href: "/pathfinder",
-                art: "pathfinder",
-            },
-            {
                 label: "DexOn",
                 desc: "만든 Agent를 직원의 PC·핸드폰·태블릿 업무환경에서 실행합니다.",
                 href: "/xgen-dex",
@@ -342,12 +336,6 @@ const COPY: Record<Locale, FlouiCopy> = {
                 desc: "No coding — an agent in about 90 seconds.",
                 href: "/product/xgen#build",
                 art: "easy-mode",
-            },
-            {
-                label: "PathFinder",
-                desc: "Connects existing web systems and APIs as tools an agent can use.",
-                href: "/pathfinder",
-                art: "pathfinder",
             },
             {
                 label: "DexOn",

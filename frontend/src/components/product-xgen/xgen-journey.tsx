@@ -42,8 +42,8 @@ export const XGEN_VIEWS: {
         audience: { ko: "현업·실무 담당자", en: "Business and operations teams" },
         question: { ko: "무엇을 만들고, 어떻게 쓰나요?", en: "What can we build, and how is it used?" },
         desc: {
-            ko: "AX 진화 단계와 6가지 역량, 4대 핵심 가치, DexOn·EasyMode, 핵심 기능과 실제 화면, 역할별 사용 방식, 도입 효과를 정리했습니다.",
-            en: "The AX evolution stages, six capabilities, four core values, DexOn and EasyMode, core features with real screens, how each role uses XGEN, and business value.",
+            ko: "4대 핵심 가치, 핵심 기능과 실제 화면, 역할별 사용 방식, 도입 효과를 정리했습니다.",
+            en: "Four core values, core features with real screens, how each role uses XGEN, and business value.",
         },
         deep: [
             { label: { ko: "Vibe Coding", en: "Vibe Coding" }, href: "/vibe-coding" },
@@ -77,8 +77,8 @@ export const XGEN_VIEWS: {
         audience: { ko: "아키텍트·개발 리드", en: "Architects and engineering leads" },
         question: { ko: "어떤 구조로 동작하나요?", en: "How is it built?" },
         desc: {
-            ko: "5계층 코어 엔진과 Geny, 격리 실행 환경 등 XGEN의 기술 구성을 설명합니다.",
-            en: "The five-layer core engine, Geny and the isolated execution environment that make up XGEN.",
+            ko: "6계층 코어 아키텍처와 Geny, 격리 실행 환경 등 XGEN의 기술 구성을 설명합니다.",
+            en: "The six-layer core architecture, Geny and the isolated execution environment that make up XGEN.",
         },
         deep: [
             { label: { ko: "Architecture", en: "Architecture" }, href: "/architecture" },
@@ -95,8 +95,8 @@ export const XGEN_VIEWS: {
         audience: { ko: "구매·도입 담당자", en: "Procurement and adoption owners" },
         question: { ko: "어떤 절차로 도입하나요?", en: "What does adoption look like?" },
         desc: {
-            ko: "반입부터 운영까지의 구축 단계, 도입 이후 지원, 자주 묻는 질문과 문서·자료를 모았습니다.",
-            en: "Delivery steps from installation to operation, post-deployment support, FAQ, and documents.",
+            ko: "반입부터 운영까지의 구축 단계, 도입 이후 지원, 문서·자료를 모았습니다.",
+            en: "Delivery steps from installation to operation, post-deployment support and documents.",
         },
         deep: [
             { label: { ko: "15일 무료 체험", en: "15-day free trial" }, href: "/xgen-trial" },
@@ -234,65 +234,47 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                         </div>
                     </div>
                 )}
-                <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">
-                    {overview ? (en ? "Adoption Guide" : "도입 가이드") : en ? "Keep exploring" : "이어서 보기"}
+                <p className={cn("font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]", overview && "text-center")}>
+                    {overview ? "FAQ" : en ? "Keep exploring" : "이어서 보기"}
                 </p>
-                <h2 className="mt-3 max-w-3xl text-[28px] font-bold leading-[1.3] tracking-tight text-[var(--color-ink)] md:text-[40px]">
+                <h2 className={cn("mt-3 max-w-3xl text-[28px] font-bold leading-[1.3] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]", overview && "mx-auto text-center")}>
                     {overview
                         ? en
-                            ? "What you need to evaluate XGEN, in one place"
-                            : "XGEN 도입에 필요한 정보를 한곳에서"
+                            ? "Frequently asked questions about adopting XGEN"
+                            : "XGEN 도입, 자주 묻는 질문"
                         : en
                           ? "Other topics on XGEN"
                           : "XGEN의 다른 주제"}
                 </h2>
-                {overview && (
-                    <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)] md:text-[17px]">
-                        {en
-                            ? "From key features to technical architecture, security and operating environments. Review the information your AI adoption assessment needs, organized by topic."
-                            : "제품의 주요 기능부터 기술 구성, 보안, 운영 환경까지. 기업의 AI 도입 검토에 필요한 정보를 주제별로 확인할 수 있습니다."}
-                    </p>
-                )}
-                {/* 세로형 목록 — 한 줄에 하나씩 쌓는다. 넓은 화면은 썸네일 왼쪽·글 오른쪽, 620px 이하는 썸네일 위·글 아래. */}
-                <ol className="mt-12 flex flex-col gap-4 lg:mt-16">
-                    {cards.map((v) => (
-                        <li
-                            key={v.view}
-                            className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#2f7bff] min-[621px]:flex-row"
-                        >
-                            {v.thumb && (
-                                <div className="relative aspect-[16/9] w-full flex-none overflow-hidden bg-[var(--color-surface-alt)] min-[621px]:aspect-auto min-[621px]:w-[240px] lg:w-[300px]">
-                                    <Image
-                                        src={v.thumb}
-                                        alt=""
-                                        fill
-                                        sizes="(max-width: 620px) 100vw, 300px"
-                                        className="object-cover transition duration-300 group-hover:scale-[1.03]"
-                                    />
-                                </div>
-                            )}
-                            <div className="flex min-w-0 flex-1 flex-col p-6 lg:p-7">
-                                <p className="font-mono text-[12px] font-bold text-[#2f7bff]">
-                                    {v.step} · {t(locale, v.label)}
-                                </p>
-                                <h3 className="mt-2 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
-                                    {/* 카드 전체가 2depth 로 가는 링크(가상 요소로 덮음). 3depth 칩은 그 위로 올려 따로 누른다. */}
-                                    <Link href={localeHref(locale, v.path)} className="after:absolute after:inset-0 after:content-['']">
+                {/* 개요: 2depth 주제를 FAQ 아코디언으로 — 질문을 누르면 설명·상세 페이지·이동 링크가 열린다 */}
+                {overview ? (
+                    <div className="mx-auto mt-10 max-w-4xl divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white lg:mt-12">
+                        {cards.map((v, i) => (
+                            <details key={v.view} className="group px-6 py-5">
+                                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
+                                    <span className="min-w-0">
+                                        <span className="mr-2 font-mono text-[13px] font-bold text-[#2f7bff]">Q{i + 1}.</span>
                                         {v.question && t(locale, v.question)}
-                                    </Link>
-                                </h3>
-                                <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
-                                    {v.audience && t(locale, v.audience)}
-                                </p>
-                                <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
-                                    {v.desc && t(locale, v.desc)}
-                                </p>
-                                {overview && v.deep && (
-                                    <div className="relative z-10 mt-4 flex flex-wrap items-center gap-1.5">
-                                        <span className="mr-1 text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
-                                            {en ? "Detail pages" : "상세 페이지"}
-                                        </span>
-                                        {v.deep.map((d) => (
+                                    </span>
+                                    <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
+                                </summary>
+                                <div className="mt-3">
+                                    <p className="text-[13px] text-[var(--color-ink-subtle)]">
+                                        {t(locale, v.label)}
+                                        {v.audience && ` · ${t(locale, v.audience)}`}
+                                    </p>
+                                    <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {v.desc && t(locale, v.desc)}
+                                    </p>
+                                    <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                                        <Link
+                                            href={localeHref(locale, v.path)}
+                                            className="mr-2 inline-flex items-center gap-1 text-[14px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
+                                        >
+                                            {en ? `Go to ${v.label.en}` : `${v.label.ko} 페이지 보기`}
+                                            <ArrowRight className="h-4 w-4" aria-hidden />
+                                        </Link>
+                                        {v.deep?.map((d) => (
                                             <Link
                                                 key={d.href}
                                                 href={localeHref(locale, d.href)}
@@ -303,15 +285,71 @@ export function XgenJourney({ locale, current }: { locale: Locale; current: Xgen
                                             </Link>
                                         ))}
                                     </div>
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                ) : (
+                    <ol className="mt-12 flex flex-col gap-4 lg:mt-16">
+                        {/* 세로형 목록 — 한 줄에 하나씩 쌓는다. 넓은 화면은 썸네일 왼쪽·글 오른쪽, 620px 이하는 썸네일 위·글 아래. */}
+                        {cards.map((v) => (
+                            <li
+                                key={v.view}
+                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white transition hover:border-[#2f7bff] min-[621px]:flex-row"
+                            >
+                                {v.thumb && (
+                                    <div className="relative aspect-[16/9] w-full flex-none overflow-hidden bg-[var(--color-surface-alt)] min-[621px]:aspect-auto min-[621px]:w-[240px] lg:w-[300px]">
+                                        <Image
+                                            src={v.thumb}
+                                            alt=""
+                                            fill
+                                            sizes="(max-width: 620px) 100vw, 300px"
+                                            className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                                        />
+                                    </div>
                                 )}
-                                <span aria-hidden className="mt-auto inline-flex items-center gap-1 pt-4 text-[14px] font-semibold text-[#2461d8]">
-                                    {en ? "View" : "자세히 보기"}
-                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                                </span>
-                            </div>
-                        </li>
-                    ))}
-                </ol>
+                                <div className="flex min-w-0 flex-1 flex-col p-6 lg:p-7">
+                                    <p className="font-mono text-[12px] font-bold text-[#2f7bff]">
+                                        {v.step} · {t(locale, v.label)}
+                                    </p>
+                                    <h3 className="mt-2 text-[19px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">
+                                        {/* 카드 전체가 2depth 로 가는 링크(가상 요소로 덮음). 3depth 칩은 그 위로 올려 따로 누른다. */}
+                                        <Link href={localeHref(locale, v.path)} className="after:absolute after:inset-0 after:content-['']">
+                                            {v.question && t(locale, v.question)}
+                                        </Link>
+                                    </h3>
+                                    <p className="mt-1 text-[13px] text-[var(--color-ink-subtle)]">
+                                        {v.audience && t(locale, v.audience)}
+                                    </p>
+                                    <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">
+                                        {v.desc && t(locale, v.desc)}
+                                    </p>
+                                    {overview && v.deep && (
+                                        <div className="relative z-10 mt-4 flex flex-wrap items-center gap-1.5">
+                                            <span className="mr-1 text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
+                                                {en ? "Detail pages" : "상세 페이지"}
+                                            </span>
+                                            {v.deep.map((d) => (
+                                                <Link
+                                                    key={d.href}
+                                                    href={localeHref(locale, d.href)}
+                                                    className="inline-flex items-center gap-0.5 rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[12.5px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[#2f7bff] hover:text-[#2461d8]"
+                                                >
+                                                    {t(locale, d.label)}
+                                                    <ChevronRight className="h-3 w-3" aria-hidden />
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <span aria-hidden className="mt-auto inline-flex items-center gap-1 pt-4 text-[14px] font-semibold text-[#2461d8]">
+                                        {en ? "View" : "자세히 보기"}
+                                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                )}
             </div>
         </section>
     );

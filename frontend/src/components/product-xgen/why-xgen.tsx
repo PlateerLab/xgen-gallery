@@ -12,12 +12,15 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
+    ChevronDown,
     BookOpen,
     Workflow,
     Scale,
     Network,
     Activity,
     ShieldCheck,
+    Layers,
+    SlidersHorizontal,
     User,
     Wrench,
     Settings2,
@@ -106,6 +109,35 @@ const COPY = {
         heroCta2: "15일 무료 체험",
         heroStages: ["이해", "실행", "협업", "진화"],
         heroAlt: "XGEN 캔버스 화면이 떠 있는 모니터 두 대",
+        edgeEyebrow: "Core Value",
+        edgeTitle: "AI의 가능성은 넓히고,\n기업의 주도권은 지킵니다.",
+        edgeLead: "데이터와 모델의 선택부터 AI Agent의 실행과 확장까지,\n기업이 주도하는 AI 환경을 구현합니다.",
+        edgePoints: [
+            {
+                label: "Data Sovereignty",
+                title: "데이터 주권",
+                head: "기업의 데이터는 기업의 자산입니다.",
+                desc: "온프레미스와 망분리 환경을 지원해 민감한 데이터를 외부로 반출하지 않고도 AI를 활용할 수 있습니다.",
+            },
+            {
+                label: "Model Freedom",
+                title: "기술 선택권",
+                head: "특정 모델에 종속되지 않습니다.",
+                desc: "상용 LLM과 사내 AI 모델을 업무 특성에 맞게 선택하고, 기술 변화에 따라 유연하게 전환할 수 있습니다.",
+            },
+            {
+                label: "Enterprise Governance",
+                title: "운영 통제권",
+                head: "AI의 자율성은 높이고, 통제권은 기업에.",
+                desc: "독립된 실행 환경, 접근 권한, 가드레일, 승인 및 감사 체계를 통해 기업의 기준에 맞게 AI Agent를 운영합니다.",
+            },
+            {
+                label: "Open Ecosystem",
+                title: "업무 확장성",
+                head: "기존 AI 자산을 넘어 더 넓은 업무로.",
+                desc: "사내 시스템과 타 플랫폼 Agent까지 연결해 기존 투자를 활용합니다. DexOn에서는 현업이 대화만으로 Agent와 App을 만듭니다.",
+            },
+        ],
         diffEyebrow: "The Decisive Difference",
         diffTitle: "XGEN이 만드는 결정적 차이",
         diffStatement:
@@ -122,20 +154,19 @@ const COPY = {
         evoLeadB: "로 단계적으로 성장합니다. XGEN은 각 단계에 필요한 역량을 제공합니다.",
         stages: [
             { no: "01", ko: "이해", en: "Assisted", desc: "질문에 답하고 사내 문서를 이해합니다.", tags: ["Knowledge · RAG", "Ontology"] },
-            { no: "02", ko: "실행", en: "Augmented", desc: "시스템과 연결해 업무를 대신 수행합니다.", tags: ["Agentflow", "PathFinder"] },
+            { no: "02", ko: "실행", en: "Augmented", desc: "시스템과 연결해 업무를 대신 수행합니다.", tags: ["Agentflow", "MCP·API"] },
             { no: "03", ko: "협업", en: "Autonomous", desc: "여러 Agent가 역할을 나눠 함께 처리합니다.", tags: ["Multi-Agent", "A2A"] },
             { no: "04", ko: "진화", en: "Self-Evolving", desc: "실행 기록과 평가를 바탕으로 작업 방식을 개선합니다.", tags: ["Geny", "LLMOps"] },
         ],
         capEyebrow: "6 Capabilities",
         capTitle: "진화의 각 단계를 떠받치는 XGEN의 핵심 역량",
-        capNote: "보라색 표시는 Plateer AI Labs가 자체 개발한 기술입니다.",
         caps: [
-            { en: "Knowledge", ko: "쌓일수록 깊어지는 기업 지식", desc: "문서를 의미와 관계로 다시 읽습니다. Vector와 Graph를 함께 쓰는 하이브리드 구조로 답의 근거와 관계를 같이 찾습니다.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
-            { en: "Workflow", ko: "현업이 직접 만드는 업무 Agent", desc: "캔버스로 워크플로우를 설계하고, 기존 API는 PathFinder로 도구화합니다. 대화로 Agent와 App을 만드는 Vibe Coding in DexOn도 지원합니다.", chips: [["PathFinder", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Knowledge", ko: "쌓일수록 깊어지는 기업 지식", desc: "온톨로지로 업무 개념과 관계를 정의해 문서를 의미 단위로 다시 읽습니다. Vector와 Graph를 함께 쓰는 하이브리드 구조로 답의 근거와 관계를 같이 찾습니다.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
+            { en: "Workflow", ko: "현업이 직접 만드는 업무 Agent", desc: "DexOn을 통해 사용자의 PC 환경에서도 AI Agent를 활용하고, 자연어 대화만으로 Agent와 업무용 App을 개발할 수 있습니다. 캔버스 기반의 워크플로우 설계와 MCP·API 연동을 지원해 기존 시스템과 업무 자산도 유연하게 활용할 수 있습니다.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Operations", ko: "쓸수록 똑똑해지는 운영 엔진", desc: "실시간 모니터링과 평가·피드백 루프로 성능을 관리하고 실행 이력을 추적합니다. Geny는 대화마다 작업 방식을 돌아보고 다음 실행에 반영합니다.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Model", ko: "검증을 거쳐 판단하는 추론 체계", desc: "목적에 맞는 모델을 고르고, 다단계 검증과 Judge 평가로 판단의 일관성을 높입니다.", chips: [["Harness Engineering", 1], ["Multi-LLM", 0]] },
-            { en: "Orchestration", ko: "한 번 만들면 여러 곳에서 실행", desc: "여러 Agent가 역할을 나눠 협업하고, MCP Compiler가 실행 로직을 관리해 독립 실행을 지원합니다.", chips: [["MCP Compiler", 1], ["SDK", 0], ["A2A", 0], ["Multi-Agent", 0]] },
-            { en: "Operations", ko: "쓸수록 개선되는 운영", desc: "실시간 모니터링과 평가·피드백 루프로 성능을 관리하고 실행 이력을 추적합니다. Geny는 대화마다 작업 방식을 돌아보고 다음 실행에 반영합니다.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Governance", ko: "폐쇄망에서도 지키는 데이터 주권", desc: "RBAC/ABAC 접근 제어, 다계층 가드레일, 결재선과 AI 위험도 심사를 온프레미스 환경에 적용합니다.", chips: [["결재선·위험도 심사", 1], ["RBAC/ABAC", 0], ["감사 로그", 0]] },
+            { en: "Orchestration", ko: "플랫폼의 경계를 넘어, 더 큰 업무 역량으로", desc: "여러 AI Agent가 각자의 전문성을 바탕으로 협업하고, 다른 플랫폼에서 개발한 Agent까지 연결해 활용합니다. 특정 플랫폼에 종속되지 않는 유연한 실행 환경으로 기업의 AI 활용 범위를 확장합니다.", chips: [["MCP Compiler", 1], ["SDK", 0], ["A2A", 0], ["Multi-Agent", 0]] },
         ],
         rolesEyebrow: "For Every Role",
         rolesTitle: "각자의 역할에만 집중할 수 있는 환경",
@@ -145,7 +176,6 @@ const COPY = {
             { tag: "기획자·현업", ko: "Agent 개발자", desc: "캔버스로 워크플로우를 설계하고 API는 도구로 등록합니다. 바이브코딩으로 시작한 결과물도 코드를 직접 작성·수정하는 풀코딩으로 이어갈 수 있습니다. 테스트부터 배포까지 하나의 흐름으로 진행합니다.", img: "/product/agent-builder-canvas.png", alt: "Agent 빌더 캔버스 화면" },
             { tag: "IT·보안", ko: "플랫폼 관리자", desc: "권한(RBAC/ABAC), 보안 정책, 감사 로그, 모니터링, 배포 승인을 한곳에서 운영합니다. 폐쇄망에서도 같은 방식으로 관리합니다.", img: "/product/operations-dashboard.png", alt: "운영 대시보드 화면" },
         ],
-        note: "제공 범위와 동작은 배포 환경과 구성에 따라 달라질 수 있습니다.",
     },
     en: {
         heroEyebrow: "XGEN · Enterprise Agentic AI Platform",
@@ -159,6 +189,35 @@ const COPY = {
         heroCta2: "15-day free trial",
         heroStages: ["Understand", "Execute", "Collaborate", "Evolve"],
         heroAlt: "Two monitors showing the XGEN canvas",
+        edgeEyebrow: "Core Value",
+        edgeTitle: "Expand what AI can do,\nkeep your enterprise in charge.",
+        edgeLead: "From choosing data and models to running and scaling AI agents,\nXGEN builds an AI environment your enterprise leads.",
+        edgePoints: [
+            {
+                label: "Data Sovereignty",
+                title: "Own your data",
+                head: "Your data is your asset.",
+                desc: "With support for on-premise and air-gapped environments, you can use AI without sending sensitive data outside.",
+            },
+            {
+                label: "Model Freedom",
+                title: "Freedom to choose",
+                head: "No lock-in to a single model.",
+                desc: "Choose commercial LLMs and in-house AI models to fit each task, and switch as the technology changes.",
+            },
+            {
+                label: "Enterprise Governance",
+                title: "Control over operations",
+                head: "More autonomy for AI, control stays with you.",
+                desc: "Isolated execution environments, access permissions, guardrails, approval and audit keep AI agents running to your standards.",
+            },
+            {
+                label: "Open Ecosystem",
+                title: "Room to expand",
+                head: "Beyond existing AI assets, into more work.",
+                desc: "Connect in-house systems and agents from other platforms to reuse existing investments. In DexOn, business teams build agents and apps through conversation alone.",
+            },
+        ],
         diffEyebrow: "The Decisive Difference",
         diffTitle: "The difference XGEN makes",
         diffStatement:
@@ -175,20 +234,19 @@ const COPY = {
         evoLeadB: ". XGEN provides the capabilities each stage needs.",
         stages: [
             { no: "01", ko: "Understand", en: "Assisted", desc: "Answers questions and understands internal documents.", tags: ["Knowledge · RAG", "Ontology"] },
-            { no: "02", ko: "Execute", en: "Augmented", desc: "Connects to systems and carries out tasks.", tags: ["Agentflow", "PathFinder"] },
+            { no: "02", ko: "Execute", en: "Augmented", desc: "Connects to systems and carries out tasks.", tags: ["Agentflow", "MCP·API"] },
             { no: "03", ko: "Collaborate", en: "Autonomous", desc: "Multiple agents split roles and work together.", tags: ["Multi-Agent", "A2A"] },
             { no: "04", ko: "Evolve", en: "Self-Evolving", desc: "Refines how work is done from execution records and evaluations.", tags: ["Geny", "LLMOps"] },
         ],
         capEyebrow: "6 Capabilities",
         capTitle: "The core capabilities behind each stage",
-        capNote: "Purple marks technology developed in-house by Plateer AI Labs.",
         caps: [
-            { en: "Knowledge", ko: "Enterprise knowledge that deepens as it grows", desc: "Re-reads documents by meaning and relationship. A hybrid Vector + Graph structure finds the evidence and the relations behind an answer.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
-            { en: "Workflow", ko: "Business agents built by the business", desc: "Design workflows on the canvas and turn existing APIs into tools with PathFinder. Vibe Coding in DexOn builds agents and apps through conversation.", chips: [["PathFinder", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Knowledge", ko: "Enterprise knowledge that deepens as it grows", desc: "An ontology defines business concepts and relations, so documents are re-read by meaning. A hybrid Vector + Graph structure finds the evidence and the relations behind an answer.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
+            { en: "Workflow", ko: "Business agents built by the business", desc: "DexOn brings AI agents to your PC and lets you build agents and business apps in natural language. Canvas workflows and MCP/API integration put existing systems and assets to work.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Operations", ko: "A self-improving operations engine", desc: "Real-time monitoring and evaluation-feedback loops manage performance and trace execution history. Geny reviews its approach after each conversation and applies it next time.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Model", ko: "Reasoning that passes verification", desc: "Picks the model that fits the task and raises consistency with multi-step verification and judge evaluation.", chips: [["Harness Engineering", 1], ["Multi-LLM", 0]] },
-            { en: "Orchestration", ko: "Build once, run in many places", desc: "Agents collaborate by role, and the MCP Compiler manages execution logic to support standalone runs.", chips: [["MCP Compiler", 1], ["SDK", 0], ["A2A", 0], ["Multi-Agent", 0]] },
-            { en: "Operations", ko: "Operations that improve with use", desc: "Real-time monitoring and evaluation-feedback loops manage performance and trace execution history. Geny reviews its approach after each conversation and applies it next time.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Governance", ko: "Data sovereignty, even air-gapped", desc: "Applies RBAC/ABAC access control, multi-layer guardrails, approval routes and AI risk review in on-premise environments.", chips: [["Approval & risk review", 1], ["RBAC/ABAC", 0], ["Audit log", 0]] },
+            { en: "Orchestration", ko: "Beyond platform boundaries, toward greater capability", desc: "AI agents collaborate on their own expertise and connect with agents built on other platforms. A flexible runtime free of platform lock-in extends enterprise AI use.", chips: [["MCP Compiler", 1], ["SDK", 0], ["A2A", 0], ["Multi-Agent", 0]] },
         ],
         rolesEyebrow: "For Every Role",
         rolesTitle: "Everyone focuses on their own role",
@@ -198,11 +256,10 @@ const COPY = {
             { tag: "Planners · business", ko: "Agent builders", desc: "Design workflows on the canvas and register APIs as tools. Work started with vibe coding can continue as full coding, writing and editing the code directly. Testing through deployment runs in a single flow.", img: "/product/agent-builder-canvas.png", alt: "Agent builder canvas" },
             { tag: "IT · security", ko: "Platform admins", desc: "Run permissions (RBAC/ABAC), security policy, audit logs, monitoring and deployment approval in one place — the same way in air-gapped networks.", img: "/product/operations-dashboard.png", alt: "Operations dashboard" },
         ],
-        note: "Scope and behavior depend on the deployment environment and configuration.",
     },
 } as const;
 
-const CAP_ICONS = [BookOpen, Workflow, Scale, Network, Activity, ShieldCheck];
+const CAP_ICONS = [BookOpen, Workflow, Activity, Scale, ShieldCheck, Network];
 const ROLE_ICONS = [User, Wrench, Settings2];
 
 /* ---------------- Hero ---------------- */
@@ -284,6 +341,49 @@ export function WhyXgenHero({ locale }: { locale: Locale }) {
                             </span>
                         </div>
                     ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ---------------- Edge (상단 4 Core Values) ---------------- */
+
+/* 히어로 바로 아래 — 기업이 AI 주도권을 지키는 4가지 가치(데이터 주권·기술 선택권·운영 통제권·업무 확장성).
+   --color-bg-50 바탕·가로선만, 둥근 카드 없음. 620px 이하 한 열, 621px 이상 두 열. */
+const EDGE_ICONS = [ShieldCheck, Layers, SlidersHorizontal, Network];
+
+export function WhyXgenEdge({ locale }: { locale: Locale }) {
+    const t = COPY[locale];
+    return (
+        <section
+            id="edge"
+            aria-labelledby="xgen-edge-title"
+            className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-b border-[var(--color-line)] bg-[var(--color-bg-50,#f7f8fa)] text-[var(--color-ink)]"
+        >
+            <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2f7bff]">{t.edgeEyebrow}</p>
+                    <h2 id="xgen-edge-title" className="mt-3 whitespace-pre-line text-[24px] font-bold leading-[1.35] tracking-tight [word-break:keep-all] md:text-[34px]">
+                        {t.edgeTitle}
+                    </h2>
+                    <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all] md:text-[16px]">{t.edgeLead}</p>
+                </div>
+                <div className="mt-10 grid border-t border-[var(--color-line)] pt-3 min-[621px]:grid-cols-2 min-[621px]:gap-x-12 lg:mt-12">
+                    {t.edgePoints.map((p, i) => {
+                        const Icon = EDGE_ICONS[i];
+                        return (
+                            <Reveal key={p.label} delay={(i % 2) * 100} className="py-7">
+                                <Icon aria-hidden className="h-7 w-7 text-[#2f7bff]" strokeWidth={1.75} />
+                                <p className="mt-3 text-[12.5px] uppercase tracking-wider text-[var(--color-ink-subtle)]">
+                                    {String(i + 1).padStart(2, "0")} · {p.label}
+                                </p>
+                                <h3 className="mt-2 text-[20px] font-bold tracking-tight [word-break:keep-all]">{p.title}</h3>
+                                <p className="mt-3 text-[15px] font-bold tracking-tight [word-break:keep-all]">{p.head}</p>
+                                <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.desc}</p>
+                            </Reveal>
+                        );
+                    })}
                 </div>
             </div>
         </section>
@@ -499,54 +599,212 @@ export function WhyXgenEvolution({ locale }: { locale: Locale }) {
 }
 
 /* ---------------- 6 Capabilities ---------------- */
+/* imweb Orbis 템플릿 Services 구성: 왼쪽 이미지(사진) + 오른쪽 번호 아코디언.
+ * 넓은 화면(≥1024px, 높이 ≥760px)에서는 섹션을 고정하고 스크롤 진행에 따라 항목을 차례로 펼친다.
+ * 좁은 화면·reduced-motion 에서는 고정 없이 눌러서 펼치는 아코디언(이미지는 펼친 항목 안). */
+
+const CAP_IMGS: { src: string; pos: string; ko: string; en: string }[] = [
+    { src: "/intro/cap-knowledge.webp", pos: "50% 30%", ko: "폴더와 문서를 손끝으로 여는 모습", en: "A fingertip opening a folder of documents" },
+    { src: "/intro/cap-agent.webp", pos: "50% 50%", ko: "업무 데이터 위에서 대화하는 AI Agent", en: "An AI agent conversing over business data" },
+    { src: "/intro/cap-operations.webp", pos: "50% 45%", ko: "회로로 연결된 빛나는 AI 코어", en: "Glowing AI core connected by circuits" },
+    { src: "/intro/cap-reasoning.webp", pos: "45% 50%", ko: "신경망 형태의 뇌를 가리키는 손끝", en: "A fingertip pointing at a neural-network brain" },
+    { src: "/intro/cap-sovereignty.webp", pos: "50% 30%", ko: "노트북과 스마트폰 위에 떠 있는 보안 방패", en: "A security shield above a phone and laptop" },
+    { src: "/intro/cap-execution.webp", pos: "55% 50%", ko: "노트북 위로 펼쳐진 여러 AI 앱 화면", en: "Multiple AI app screens above a laptop" },
+];
 
 export function WhyXgenCapabilities({ locale }: { locale: Locale }) {
     const t = COPY[locale];
+    const n = t.caps.length;
+    const [act, setAct] = useState(0);
+    const [pin, setPin] = useState(false);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const stickyRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const mq = window.matchMedia("(min-width: 1024px) and (min-height: 800px)");
+        const rm = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const upd = () => setPin(mq.matches && !rm.matches);
+        upd();
+        mq.addEventListener?.("change", upd);
+        rm.addEventListener?.("change", upd);
+        return () => {
+            mq.removeEventListener?.("change", upd);
+            rm.removeEventListener?.("change", upd);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!pin) return;
+        let raf = 0;
+        const onScroll = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const track = trackRef.current;
+                const sticky = stickyRef.current;
+                if (!track || !sticky) return;
+                const total = track.offsetHeight - sticky.offsetHeight;
+                if (total <= 0) return;
+                const moved = sticky.getBoundingClientRect().top - track.getBoundingClientRect().top;
+                const p = Math.min(Math.max(moved / total, 0), 0.9999);
+                setAct(Math.floor(p * n));
+            });
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            cancelAnimationFrame(raf);
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+        };
+    }, [pin, n]);
+
+    const pick = (i: number) => {
+        const track = trackRef.current;
+        const sticky = stickyRef.current;
+        if (pin && track && sticky) {
+            const total = track.offsetHeight - sticky.offsetHeight;
+            const stickyTop = parseFloat(getComputedStyle(sticky).top) || 0;
+            const trackTop = track.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: trackTop - stickyTop + (total * (i + 0.5)) / n, behavior: "smooth" });
+            return;
+        }
+        setAct((a) => (a === i ? -1 : i));
+    };
+
+    const shown = act < 0 ? 0 : act;
+
     return (
         <section id="capabilities" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
-            <div className="mx-auto max-w-7xl px-6 py-24">
-                <p className="font-mono text-[12px] uppercase tracking-widest text-[var(--color-ink-subtle)]">{t.capEyebrow}</p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">{t.capTitle}</h2>
-                <p className="mt-4 inline-flex items-center gap-2 text-[13.5px] text-[var(--color-ink-muted)]">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#7c5cff]" />
-                    {t.capNote}
-                </p>
-                <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                    {t.caps.map((c, i) => {
-                        const Icon = CAP_ICONS[i];
-                        return (
-                            <Reveal key={c.en} delay={(i % 3) * 110}>
-                                <div className="why-cap group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-[#bcd0f5] hover:shadow-[0_22px_48px_-24px_rgba(20,40,80,0.3)]">
-                                    <span aria-hidden className="why-cap-bar absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[linear-gradient(90deg,#00acee,#185aea,#7c5cff)] transition duration-500 group-hover:scale-x-100" />
-                                    <div className="flex items-center justify-between">
-                                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2f7bff]/10 text-[#2f7bff] transition duration-500 group-hover:rotate-[-8deg] group-hover:bg-[linear-gradient(45deg,#00acee,#185aea)] group-hover:text-white">
-                                            <Icon className="h-[22px] w-[22px]" />
-                                        </span>
-                                        <span className="bg-gradient-to-br from-[#00acee] to-[#185aea] bg-clip-text font-mono text-[34px] font-extrabold leading-none text-transparent opacity-30 transition group-hover:opacity-100">
-                                            {String(i + 1).padStart(2, "0")}
-                                        </span>
-                                    </div>
-                                    <p className="mt-6 font-mono text-[11.5px] font-bold uppercase tracking-widest text-[#4a6aa8]">{c.en}</p>
-                                    <h3 className="mt-1.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)]">{c.ko}</h3>
-                                    <p className="mt-3 mb-5 text-[14.5px] leading-relaxed text-[var(--color-ink-muted)]">{c.desc}</p>
-                                    <div className="mt-auto flex flex-wrap gap-1.5 border-t border-[var(--color-line)] pt-4">
-                                        {c.chips.map(([label, own]) => (
+            <div ref={trackRef} className="relative" style={pin ? { height: `calc(100vh + ${n * 42}vh)` } : undefined}>
+                <div
+                    ref={stickyRef}
+                    className={pin ? "sticky top-[calc(var(--nav-h,84px)+58px)] h-[calc(100vh-var(--nav-h,84px)-58px)]" : ""}
+                >
+                    <div className={`mx-auto flex max-w-7xl flex-col px-6 ${pin ? "h-full justify-center py-8" : "py-24"}`}>
+                        <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#185aea]">{t.capEyebrow}</p>
+                        <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px] md:leading-[1.25]">{t.capTitle}</h2>
+                        <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-stretch lg:gap-10">
+                            {/* 왼쪽 — 펼친 역량의 사진 (넓은 화면 전용, 교차 페이드) + 진행 표시 */}
+                            <div className="relative hidden overflow-hidden rounded-xl bg-[#0b1f4d] lg:block lg:h-full lg:min-h-[300px]">
+                                {CAP_IMGS.map((im, i) => (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        key={im.src}
+                                        src={im.src}
+                                        alt={i === shown ? (locale === "ko" ? im.ko : im.en) : ""}
+                                        aria-hidden={i !== shown}
+                                        loading="lazy"
+                                        style={{ objectPosition: im.pos }}
+                                        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
+                                            i === shown ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
+                                        }`}
+                                    />
+                                ))}
+                                <div aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#06163a]/85 via-[#06163a]/35 to-transparent" />
+                                <div aria-hidden className="absolute inset-x-0 bottom-0 p-6">
+                                    <p className="flex items-baseline gap-2 text-white">
+                                        <span className="text-[40px] font-bold leading-none tabular-nums tracking-tight">{String(shown + 1).padStart(2, "0")}</span>
+                                        <span className="text-[14px] font-medium tabular-nums text-white/60">/ {String(n).padStart(2, "0")}</span>
+                                    </p>
+                                    <p className="mt-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">{t.caps[shown].en}</p>
+                                    <div className="mt-4 flex gap-1.5">
+                                        {t.caps.map((c, i) => (
                                             <span
-                                                key={label}
-                                                className={`rounded-full px-2.5 py-1 text-[12px] font-semibold ${
-                                                    own ? "bg-[#7c5cff]/10 text-[#6a46f0] ring-1 ring-[#7c5cff]/25" : "bg-[var(--color-surface-alt)] text-[var(--color-ink-muted)]"
-                                                }`}
-                                            >
-                                                {label}
-                                            </span>
+                                                key={c.en}
+                                                className={`h-[3px] flex-1 rounded-full transition-colors duration-500 ${i <= shown ? "bg-white" : "bg-white/25"}`}
+                                            />
                                         ))}
                                     </div>
                                 </div>
-                            </Reveal>
-                        );
-                    })}
+                            </div>
+
+                            {/* 오른쪽 — 번호 아코디언 (펼친 항목은 브랜드 블루 카드) */}
+                            <ul className="flex flex-col justify-center gap-1.5">
+                                {t.caps.map((c, i) => {
+                                    const Icon = CAP_ICONS[i];
+                                    const on = i === act;
+                                    const num = String(i + 1).padStart(2, "0");
+                                    const panelId = `cap-panel-${i}`;
+                                    return (
+                                        <li
+                                            key={c.en}
+                                            className={`rounded-xl border transition-[background-color,border-color,box-shadow] duration-500 ${
+                                                on
+                                                    ? "border-[#185aea] bg-[#185aea] bg-[linear-gradient(135deg,#1f63f0_0%,#1450d6_55%,#0e3fb3_100%)] shadow-[0_20px_44px_-22px_rgba(24,90,234,0.7)]"
+                                                    : "border-[var(--color-line)] bg-white hover:border-[#b9cdf7]"
+                                            }`}
+                                        >
+                                            <button
+                                                type="button"
+                                                aria-expanded={on}
+                                                aria-controls={panelId}
+                                                onClick={() => pick(i)}
+                                                className="flex w-full items-center gap-4 px-5 py-3 text-left md:px-6"
+                                            >
+                                                <span
+                                                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[13.5px] font-bold tabular-nums transition-colors duration-500 ${
+                                                        on ? "bg-white text-[#185aea]" : "bg-[#eef3fe] text-[#185aea]"
+                                                    }`}
+                                                >
+                                                    {num}
+                                                </span>
+                                                <span
+                                                    className={`flex-1 tracking-tight [word-break:keep-all] transition-colors duration-500 ${
+                                                        on ? "text-[19px] font-bold text-white md:text-[21px]" : "text-[17px] font-semibold text-[var(--color-ink)] md:text-[18px]"
+                                                    }`}
+                                                >
+                                                    {c.ko}
+                                                </span>
+                                                <ChevronDown
+                                                    aria-hidden
+                                                    className={`h-5 w-5 shrink-0 transition-transform duration-300 ${on ? "rotate-180 text-white/80" : "text-[var(--color-ink-subtle)]"}`}
+                                                />
+                                            </button>
+                                            <div
+                                                id={panelId}
+                                                className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none ${
+                                                    on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                                }`}
+                                            >
+                                                <div className="overflow-hidden">
+                                                    <div className="px-5 pb-6 md:px-6 md:pl-[4.5rem] lg:min-h-[144px]">
+                                                        <p className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/70">
+                                                            <Icon aria-hidden className="h-3.5 w-3.5" />
+                                                            {c.en}
+                                                        </p>
+                                                        <p className="mt-2 text-[15px] leading-[1.7] text-white/90 [word-break:keep-all]">{c.desc}</p>
+                                                        <div className="mt-4 flex flex-wrap gap-1.5">
+                                                            {c.chips.map(([label]) => (
+                                                                <span
+                                                                    key={label}
+                                                                    className="rounded-md bg-white/15 px-2.5 py-1 text-[12.5px] font-medium text-white ring-1 ring-inset ring-white/25"
+                                                                >
+                                                                    {label}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                        {/* 좁은 화면 — 사진을 펼친 항목 안에 */}
+                                                        <div className="mt-5 overflow-hidden rounded-lg lg:hidden">
+                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                            <img
+                                                                src={CAP_IMGS[i].src}
+                                                                alt={locale === "ko" ? CAP_IMGS[i].ko : CAP_IMGS[i].en}
+                                                                loading="lazy"
+                                                                style={{ objectPosition: CAP_IMGS[i].pos }}
+                                                                className="aspect-[16/9] w-full object-cover"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <p className="mt-6 text-[12.5px] text-[var(--color-ink-subtle)]">{t.note}</p>
             </div>
         </section>
     );

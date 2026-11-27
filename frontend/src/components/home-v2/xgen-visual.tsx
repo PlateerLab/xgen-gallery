@@ -11,13 +11,13 @@ export function XgenVisual({ locale }: { locale: Locale }) {
     const layers = ko
         ? [
               { no: "01", name: "만들기", chips: ["노드 캔버스", "Vibe Coding", "EasyMode"], img: "/product/screen-canvas.png" },
-              { no: "02", name: "연결하기", chips: ["PathFinder", "RAG·온톨로지", "MCP·API"], img: "/product/screen-api-tool.png" },
+              { no: "02", name: "연결하기", chips: ["RAG·온톨로지", "MCP·API"], img: "/product/screen-api-tool.png" },
               { no: "03", name: "통제하기", chips: ["결재선", "위험도 심사", "감사 로그"], img: "/product/governance-approval-line.png" },
               { no: "04", name: "운영하기", chips: ["배포", "모니터링", "Geny"], img: "/product/operations-dashboard.png" },
           ]
         : [
               { no: "01", name: "Build", chips: ["Node canvas", "Vibe Coding", "EasyMode"], img: "/product/screen-canvas.png" },
-              { no: "02", name: "Connect", chips: ["PathFinder", "RAG·ontology", "MCP·API"], img: "/product/screen-api-tool.png" },
+              { no: "02", name: "Connect", chips: ["RAG·ontology", "MCP·API"], img: "/product/screen-api-tool.png" },
               { no: "03", name: "Govern", chips: ["Approval routes", "Risk review", "Audit log"], img: "/product/governance-approval-line.png" },
               { no: "04", name: "Operate", chips: ["Deploy", "Monitoring", "Geny"], img: "/product/operations-dashboard.png" },
           ];

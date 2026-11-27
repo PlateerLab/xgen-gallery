@@ -87,7 +87,6 @@ export const INDUSTRY_STORIES: Record<IndustryKey, IndustryStory> = {
         stack: [
             { name: "XGEN", role: { ko: "Agent·RAG 개발과 운영 플랫폼", en: "Platform for building and running agents and RAG" }, href: "/product/xgen" },
             { name: "보안·거버넌스", role: { ko: "결재선, 위험도 심사, 감사 로그", en: "Approval routes, risk review, audit logs" }, href: "/security-and-governance" },
-            { name: "PathFinder", role: { ko: "사내 API를 Agent 도구로 연결", en: "Turns internal APIs into agent tools" }, href: "/pathfinder" },
         ],
         scenarios: [
             { ko: "내부 규정·여신 업무 매뉴얼 질의응답", en: "Q&A over internal rules and lending manuals" },

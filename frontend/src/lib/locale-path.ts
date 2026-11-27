@@ -35,7 +35,6 @@ export const EN_ROUTES: readonly string[] = [
     "/xgen-dex",
     "/support",
     "/product/polar",
-    "/pathfinder",
     "/vibe-coding",
     "/easy-mode",
     "/floui",

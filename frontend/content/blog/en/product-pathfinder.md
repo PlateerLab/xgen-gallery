@@ -8,7 +8,7 @@ thumb: /blog/product-pathfinder-thumb.svg
 author: "Plateer AI Labs"
 category: "Product news"
 tags: ["PathFinder", "Integration", "No-Code", "Product"]
-draft: false
+draft: true
 ---
 
 **In one line —** system integration used to be something only developers could do. PathFinder makes it something anyone can run.

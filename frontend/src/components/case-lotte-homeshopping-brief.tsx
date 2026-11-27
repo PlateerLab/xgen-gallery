@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
     ShieldAlert,
@@ -310,6 +311,19 @@ export function LotteHomeshoppingBriefBody({
 
             {/* HERO — 제주은행 사례와 같은 구성 */}
             <section className="relative overflow-hidden border-b border-[var(--color-line)] bg-[#070b1c] text-white">
+                {/* 고객사 사진 — 어두운 그라데이션을 덮어 글자 대비를 유지한다 */}
+                <Image
+                    src="/intro/case-proven-commerce.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="pointer-events-none object-cover"
+                />
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.78)_0%,rgba(7,11,28,0.86)_55%,rgba(7,11,28,0.96)_100%)]"
+                />
                 <div
                     aria-hidden
                     className="pointer-events-none absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#2f7bff]/20 blur-[120px]"

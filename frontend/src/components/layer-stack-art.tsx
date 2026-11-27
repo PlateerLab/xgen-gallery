@@ -35,7 +35,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             {
                 title: "에이전트 빌더",
                 role: ["코드 없이 캔버스에서", "에이전트·워크플로우 설계"],
-                feat: ["Workflow Canvas · 이지모드 · Pathfinder", "노코드·이지모드로 손쉽게 AI 에이전트 설계"],
+                feat: ["Workflow Canvas · 이지모드", "노코드·이지모드로 손쉽게 AI 에이전트 설계"],
                 desc: ["노코드 캔버스 · 워크플로우", "프롬프트 / 도구 구성"],
             },
             {
@@ -77,7 +77,7 @@ const T: Record<Locale, { layers: LayerCopy[]; aria: string; rightHeading: strin
             {
                 title: "Agent builder",
                 role: ["Design agents and workflows", "on a canvas, without code"],
-                feat: ["Workflow Canvas · Easy Mode · Pathfinder", "Design AI agents easily with no-code and Easy Mode"],
+                feat: ["Workflow Canvas · Easy Mode", "Design AI agents easily with no-code and Easy Mode"],
                 desc: ["No-code canvas · workflow", "Prompt and tool configuration"],
             },
             {

@@ -162,17 +162,6 @@ export const PRODUCT_PROFILES: Record<ProductId, ProductProfile> = {
                 href: "/xgen-dex",
             },
             {
-                id: "pathfinder",
-                size: "sm",
-                eyebrow: "PathFinder",
-                title: { ko: "기존 시스템을 Agent Tool로", en: "Turn existing systems into agent tools" },
-                desc: {
-                    ko: "웹 시스템과 API를 로그인부터 테스트·등록까지 코드 없이 도구로 연결합니다.",
-                    en: "Connect web systems and APIs as tools — login to test and registration — without code.",
-                },
-                href: "/pathfinder",
-            },
-            {
                 id: "geny",
                 size: "wide",
                 eyebrow: "Agent Runtime · Geny",

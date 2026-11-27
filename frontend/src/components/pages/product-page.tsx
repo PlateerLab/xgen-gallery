@@ -15,6 +15,8 @@ import {
     ChevronRight,
     ArrowRight,
     Download,
+    PlayCircle,
+    ArrowUpRight,
     Sparkles,
     Code2,
     Compass,
@@ -24,7 +26,7 @@ import {
 import { SiteNav } from "@/components/site-nav";
 import { InlinePromoBand } from "@/components/product-xgen/inline-promo-band";
 import { CompareStack } from "@/components/product-xgen/compare-stack";
-import { WhyXgenHero, WhyXgenDifference, WhyXgenEvolution, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
+import { WhyXgenHero, WhyXgenDifference, WhyXgenCapabilities, WhyXgenRoles } from "@/components/product-xgen/why-xgen";
 import { ProductGeny } from "@/components/product-geny";
 import { ProductIsolation } from "@/components/product-isolation";
 import { DeploymentScreens } from "@/components/deployment-screens";
@@ -37,7 +39,7 @@ import { CertificationQuality } from "@/components/certification-quality";
 import { XgenSubTabs, XgenSubHeader, XgenJourney, xgenViewInfo, type XgenView } from "@/components/product-xgen/xgen-journey";
 import { XgenHashRedirect } from "@/components/product-xgen/xgen-hash-redirect";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
-import { XgenChallenge, XgenEvolutionModel, XgenPlatformStages, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath, XgenOverviewVideo } from "@/components/product-xgen/overview-brochure";
+import { XgenChallenge, XgenEvolutionModel, XgenPlatformStages, XgenEvolutionLoop, XgenScenarios, XgenAdoptionPath } from "@/components/product-xgen/overview-brochure";
 import { LayerStackArt } from "@/components/layer-stack-art";
 import { GovernanceArt } from "@/components/governance-art";
 import { PillarArt, type PillarVariant } from "@/components/pillar-arts";
@@ -157,19 +159,6 @@ const DIFFERENTIATORS: {
             "작업 폴더 동기화와 작업 내역 기록",
         ],
         href: "/xgen-dex",
-    },
-    {
-        icon: Compass,
-        en: "PathFinder",
-        ko: "PathFinder",
-        tagline: "기존 시스템을 AI가 사용하는 Tool로 연결합니다",
-        desc: "패스파인더는 웹 시스템과 API를 AI 에이전트가 사용할 수 있는 Agent Tool로 연결하는 기술입니다. 로그인부터 연결, 테스트, 등록까지 전 과정을 코드 없이 자동화하여, 기존 시스템을 빠르게 AI 업무 환경으로 확장합니다.",
-        items: [
-            "브라우저 자동화 기반 연결",
-            "로그인·API·도구 등록·테스트 무코드",
-            "현업이 직접 실행 도구화",
-        ],
-        href: "/pathfinder",
     },
     {
         icon: Sparkles,
@@ -385,7 +374,7 @@ const RESOURCES: { icon: LucideIcon; title: string; desc: string; href: string }
 const FAQ: { q: string; a: string }[] = [
     {
         q: "XGEN은 무엇인가요?",
-        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer AI Labs AI 연구소가 직접 설계·개발했습니다.",
+        a: "XGEN은 기업이 원하는 LLM과 인프라 위에서 Agentic AI 서비스를 설계·배포·운영·통제하는 온프레미스 Enterprise AI 플랫폼(에이전트 개발 도구)입니다. 완성된 서비스를 납품하는 것이 아니라, XGEN 위에서 조직 업무에 맞는 에이전트를 만들어 운영합니다. Plateer AI 연구소가 직접 설계·개발했습니다.",
     },
     {
         q: "어떤 LLM·파운데이션 모델을 사용할 수 있나요?",
@@ -539,7 +528,7 @@ const COMPARE_KO = [
     {
         title: "현업이 직접 만드는 AI",
         before: "개발조직 일정에 따라 AI 서비스 출시 지연",
-        after: "노코드 Canvas와 Pathfinder로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
+        after: "노코드 Canvas로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
         effect: "개발 대기 없이 업무 부서가 직접 개선",
     },
     {
@@ -598,7 +587,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
             <SiteNav overlay={view === "overview"} showPromotion={false} />
             <JsonLd
                 data={[
-                    // 제품 정의는 개요(1depth)에만, FAQ 구조화 데이터는 FAQ가 보이는 도입·지원에만 싣는다.
+                    // 제품 정의는 개요(1depth)에만, FAQ 구조화 데이터는 FAQ가 보이는 개요에만 싣는다.
                     ...(view === "overview" ? [{
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",
@@ -627,7 +616,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                                   ]),
                         ],
                     }] : []),
-                    ...(view === "adoption" ? [{
+                    ...(view === "overview" ? [{
                         "@context": "https://schema.org",
                         "@type": "FAQPage",
                         mainEntity: FAQ_L.map((f) => ({
@@ -700,20 +689,55 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     <XgenEvolutionLoop locale={locale} asWhy />
 
                     <XgenEvolutionModel locale={locale} />
+                    <WhyXgenCapabilities locale={locale} />
                     <XgenPlatformStages locale={locale} />
 
                     <XgenScenarios locale={locale} />
+                    {/* 기존 방식 대비 — How to Start 바로 위 (기능·활용 탭과 같은 CompareStack) */}
+                    <CompareStack
+                        items={en ? E.compare : COMPARE_KO}
+                        title={en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
+                        lead={en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
+                        labelBefore={en ? E.labelBefore : "기존"}
+                        labelEffect={en ? E.labelEffect : "성과"}
+                    />
                     <XgenAdoptionPath locale={locale} />
-                    <XgenOverviewVideo locale={locale} />
+                    {/* FAQ — 도입 검토 때 실제로 묻는 질문(FAQPage JSON-LD와 같은 데이터). 2depth 이동은 상단 탭이 맡는다. */}
+                    <section
+                        id="faq"
+                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]"
+                    >
+                        <div className={`mx-auto max-w-4xl px-6 ${SECTION_PAD}`}>
+                            <p className="text-center font-mono text-[12px] font-semibold uppercase tracking-widest text-[#2461d8]">
+                                FAQ
+                            </p>
+                            <h2 className="mx-auto mt-3 text-center text-[28px] font-bold leading-[1.3] tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[40px]">
+                                {en ? "Frequently asked questions about adopting XGEN" : "XGEN 도입, 자주 묻는 질문"}
+                            </h2>
+                            <div className="mt-10 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white lg:mt-12">
+                                {FAQ_L.map((f, i) => (
+                                    <details key={f.q} className="group px-6 py-5">
+                                        <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
+                                            <span className="min-w-0 [word-break:keep-all]">
+                                                <span className="mr-2 font-mono text-[13px] font-bold text-[#2f7bff]">Q{i + 1}.</span>
+                                                {f.q}
+                                            </span>
+                                            <ChevronRight className="mt-1 h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
+                                        </summary>
+                                        <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">
+                                            {f.a}
+                                        </p>
+                                    </details>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
                     </>
                 )}
 
                 {/* 2depth 기능·활용 — 무엇을 만들고 어떻게 쓰나(현업·실무) */}
                 {view === "features" && (
                     <>
-                    <WhyXgenEvolution locale={locale} />
-                    <WhyXgenCapabilities locale={locale} />
-
                     {/* 1depth 개편(소개서 기반)으로 옮겨 온 섹션 — 4대 가치·현업이 만드는 AI(DexOn·PathFinder·EasyMode → 3depth) */}
                     {/* 제품 개요 — 파일럿을 넘어 실제 배포되는 기업용 AI (4축) */}
                     <section
@@ -956,14 +980,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         </div>
                     </section>
 
-                    {/* 기존 방식 대비 — 카페24 유튜브 쇼핑 카드 스택 패턴 */}
-                    <CompareStack
-                        items={en ? E.compare : COMPARE_KO}
-                        title={en ? E.compareTitle : "기존 방식 대비, 무엇이 달라지는가"}
-                        lead={en ? E.compareLead : "같은 AI라도 운영 방식이 다릅니다. 구축형 SI와 PoC에 머무는 접근을 넘어, XGEN은 완성형 플랫폼에서 현업이 직접 운영하는 구조로 전환합니다."}
-                        labelBefore={en ? E.labelBefore : "기존"}
-                        labelEffect={en ? E.labelEffect : "성과"}
-                    />
                     </>
                 )}
 
@@ -1186,7 +1202,7 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                     </>
                 )}
 
-                {/* 2depth 도입·지원 — 절차·지원·FAQ(구매·도입) */}
+                {/* 2depth 도입·지원 — 절차·지원·자료(구매·도입) */}
                 {view === "adoption" && (
                     <>
                     {/* 도입·구축 — 반입에서 운영까지(온프레미스 딜리버리) */}
@@ -1252,34 +1268,6 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                         </div>
                     </section>
 
-                    {/* FAQ */}
-                    <section
-                        id="faq"
-                        className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]"
-                    >
-                        <div className="mx-auto max-w-4xl px-6 py-24">
-                            <p className="font-mono text-[12px] text-center uppercase tracking-widest text-[var(--color-ink-subtle)]">
-                                FAQ
-                            </p>
-                            <h2 className="mx-auto mt-3 text-center text-3xl font-bold tracking-tight text-[var(--color-ink)] md:text-4xl">
-                                {en ? E.faqTitle : "자주 묻는 질문"}
-                            </h2>
-                            <div className="mt-8 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
-                                {FAQ_L.map((f) => (
-                                    <details key={f.q} className="group px-6 py-5">
-                                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16.5px] font-semibold text-[var(--color-ink)]">
-                                            {f.q}
-                                            <ChevronRight className="h-4 w-4 flex-none text-[var(--color-ink-subtle)] transition group-open:rotate-90" />
-                                        </summary>
-                                        <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-                                            {f.a}
-                                        </p>
-                                    </details>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
                     {/* 개발자·도입 리소스 — 문서·릴리스·소개서 */}
                     <section className="border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
                         <div className="mx-auto max-w-7xl px-6 py-16">
@@ -1317,21 +1305,33 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                 )}
 
                 {/* 여정 안내 — 다음에 볼 주제와 3depth 상세 자료 */}
-                <XgenJourney locale={locale} current={view} />
+                {view !== "overview" && <XgenJourney locale={locale} current={view} />}
 
-                {/* CTA */}
-                <section className="border-t border-[var(--color-line)] bg-[#070b1c] text-white">
+                {/* CTA — 전문가 지원 + 시작 행동을 한 섹션으로(구 Get Support 섹션 통합). 리드 → 큰 두 줄 선언 → 버튼 → 보조 링크 */}
+                <section className="border-t border-[var(--color-line)] bg-[linear-gradient(180deg,#070b1c_0%,#070b1c_40%,#0d2a6b_100%)] text-white">
                     <div className={`mx-auto max-w-4xl px-6 text-center ${SECTION_PAD}`}>
-                        <p className="font-mono text-[12px] font-semibold text-center uppercase tracking-widest text-[#7dd3fc]">
-                            Get Started
+                        <p className="text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                            Get Support
                         </p>
-                        <h2 className="mx-auto mt-4 text-center text-3xl font-bold tracking-tight md:text-[40px]">
-                            {en ? "Turn AI projects into assets that keep evolving" : "AI 프로젝트를 계속 진화하는 자산으로"}
+                        <h2 className="mx-auto mt-5 text-center text-[30px] font-bold leading-[1.3] tracking-tight [word-break:keep-all] md:text-[44px]">
+                            {en ? (
+                                <>
+                                    Start XGEN adoption
+                                    <br className="hidden md:block" /> with Plateer&apos;s AI &amp; AX experts
+                                </>
+                            ) : (
+                                <>
+                                    XGEN 도입,
+                                    <br /> 플래티어의 AI·AX 전문가와 함께 시작하세요
+                                </>
+                            )}
                         </h2>
-                        <p className="mx-auto mt-5 max-w-2xl text-center text-[16px] leading-relaxed text-white/70">
-                            {en ? "Start with a 15-day trial in your browser, or see the full build–deploy–govern flow in a demo." : "브라우저에서 15일 체험으로 시작하거나, 데모에서 설계·배포·통제의 전체 흐름을 확인해 보세요."}
+                        <p className="mx-auto mt-6 max-w-2xl text-center text-[15px] leading-relaxed text-white/60 [word-break:keep-all]">
+                            {en
+                                ? "FDEs work with your teams to set the MVP scope and support you through operational handover. You can also start with a 15-day trial or a demo."
+                                : "FDE가 MVP 범위 설정부터 운영 이관까지 현업과 함께합니다. 체험이나 데모로 먼저 확인해 보세요."}
                         </p>
-                        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                             <Link
                                 href={localeHref(locale, "/contact") + "?from=product"}
                                 className="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#00acee_20%,#185aea_80%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(47,123,255,0.5)] transition hover:brightness-110"
@@ -1352,6 +1352,20 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                                 <Download className="h-4 w-4" />
                                 {en ? E.closingBrochure : "XGEN 소개서 신청"}
                             </Link>
+                        </div>
+                        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-white/70">
+                            {view !== "adoption" && (
+                                <Link href={localeHref(locale, "/product/xgen/adoption")} className="group inline-flex items-center gap-1.5 transition hover:text-white">
+                                    {en ? "Adoption & support" : "도입·지원 안내"}
+                                    <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden />
+                                </Link>
+                            )}
+                            <a href="https://www.youtube.com/watch?v=x0Uch1b0kNk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 transition hover:text-white">
+                                <PlayCircle className="h-4 w-4" aria-hidden />
+                                {en ? "See XGEN in one video" : "영상으로 보는 XGEN"}
+                                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                                <span className="sr-only">{en ? "(opens YouTube in a new tab)" : "(YouTube 새 창으로 열림)"}</span>
+                            </a>
                         </div>
                     </div>
                 </section>

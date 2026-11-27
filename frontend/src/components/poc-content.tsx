@@ -52,14 +52,6 @@ const CASES_EN: Record<
         company: "Company J",
         outcomes: ["Build once, run anywhere", "Agent reuse across environments"],
     },
-    pathfinder: {
-        category: "No-code integration",
-        headline: "From login to tool registration, without a developer",
-        body: "API documentation alone made integrations hard to implement, and the screens were not free to arrange, so even a small idea kept needing development capacity. Ideas stayed in the planner's head. PathFinder connects login, API wiring, tool registration, and testing without a line of code, so the business side turns its own ideas into working tools.",
-        quote: "In the end we couldn't move forward without a developer",
-        company: "Company I",
-        outcomes: ["No-code integration", "Business-led tool building"],
-    },
     floui: {
         category: "Question-to-UI",
         headline: "Ask the question, and the analysis screen appears",
@@ -160,16 +152,6 @@ const CASES: Case[] = [
         quote: "외부망에서 개발한 Agent를 내부망에서 재활용하고 싶어요",
         company: "J사",
         outcomes: ["Build Once · Run Anywhere", "환경 간 Agent 재사용"],
-    },
-    {
-        id: "pathfinder",
-        category: "No-Code 통합",
-        solution: "PathFinder",
-        headline: "개발자 없이, 로그인부터 도구 등록까지",
-        body: "API 문서만으로는 연동 구현이 어렵고 화면 구성도 자유롭지 않아, 작은 기획에도 개발 리소스가 계속 필요했습니다. 결국 기획자의 아이디어는 머릿속에만 머물렀습니다. PathFinder는 로그인부터 API 연결, 도구 등록, 테스트까지 코드 한 줄 없이 잇고, 현업이 직접 아이디어를 실행 도구로 만듭니다.",
-        quote: "결국 개발자 없이는 앞으로 나아갈 수 없었습니다",
-        company: "I사",
-        outcomes: ["No-Code Integration", "현업 주도 도구화"],
     },
     {
         id: "floui",

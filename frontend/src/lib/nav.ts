@@ -249,7 +249,6 @@ const ALL_NAV_GROUPS: NavGroup[] = [
                 label: "XGEN",
                 id: "xgen",
                 children: [
-                    { label: "PathFinder", id: "pathfinder" },
                     { label: "FloUI", id: "floui" },
                     { label: "Canvas", id: "canvas" },
                     { label: "MCP App", id: "mcp-compiler" },

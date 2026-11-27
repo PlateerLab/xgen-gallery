@@ -110,16 +110,6 @@ export const PRODUCT_EN = {
             ],
         },
         {
-            ko: "PathFinder",
-            tagline: "Connect existing systems as tools the AI can use",
-            desc: "PathFinder connects web systems and APIs as Agent Tools an AI agent can use. Sign-in, connection, testing, and registration are automated without code, so existing systems extend quickly into an AI working environment.",
-            items: [
-                "Connection through browser automation",
-                "Sign-in, API, tool registration, and testing — all no-code",
-                "Business users turn their own systems into tools",
-            ],
-        },
-        {
             ko: "EasyMode",
             tagline: "No coding — an agent in about 90 seconds",
             desc: "A guided drag-and-drop builder lets non-developers combine knowledge, prompts, and tools into an agent. The moment it exists, you validate it in chat.",
@@ -247,7 +237,7 @@ export const PRODUCT_EN = {
     faq: [
         {
             q: "What is XGEN?",
-            a: "XGEN is an on-premise Enterprise AI platform — an agent development environment for designing, deploying, operating, and governing Agentic AI services on the LLMs and infrastructure you choose. It is not a finished service delivered to you; you build and run the agents your organization's work needs on top of XGEN. It was designed and developed by the Plateer AI Labs AI research team.",
+            a: "XGEN is an on-premise Enterprise AI platform — an agent development environment for designing, deploying, operating, and governing Agentic AI services on the LLMs and infrastructure you choose. It is not a finished service delivered to you; you build and run the agents your organization's work needs on top of XGEN. It was designed and developed by the Plateer AI research lab.",
         },
         {
             q: "Which LLMs and foundation models can we use?",
@@ -366,7 +356,7 @@ export const PRODUCT_EN = {
         {
             title: "AI built by the business",
             before: "AI service launches wait on the development organization's schedule",
-            after: "With the no-code canvas and PathFinder, business users build agents and apply them to work immediately",
+            after: "With the no-code canvas, business users build agents and apply them to work immediately",
             effect: "Business teams improve things themselves, without waiting on development",
         },
         {

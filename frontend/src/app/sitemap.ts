@@ -48,7 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${SITE.url}/product/xgen/adoption`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${SITE.url}/xgen-dex`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/product/polar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-        { url: `${SITE.url}/pathfinder`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/vibe-coding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/easy-mode`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${SITE.url}/xgen-trial`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

@@ -145,19 +145,6 @@ function featureTabs(locale: Locale): FeatureTab[] {
             more,
         },
         {
-            key: "pathfinder",
-            label: "PathFinder",
-            title: b("pathfinder").title[locale],
-            desc: b("pathfinder").desc[locale],
-            points: ko
-                ? ["웹 시스템·API를 도구로 등록", "로그인부터 테스트까지 한 흐름", "등록한 도구를 Agent가 사용"]
-                : ["Register web systems and APIs as tools", "Login to test in one flow", "Agents use the registered tools"],
-            img: "/product/screen-api-tool.png",
-            imgAlt: ko ? "API 도구 등록 화면" : "API tool registration",
-            href: "/pathfinder",
-            more,
-        },
-        {
             key: "easymode",
             label: "EasyMode",
             title: b("easymode").title[locale],

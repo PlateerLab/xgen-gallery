@@ -7,7 +7,7 @@ thumb: /blog/product-pathfinder-thumb.svg
 author: "Plateer AI Labs"
 category: "제품 소식"
 tags: ["PathFinder", "연결", "No-Code", "제품"]
-draft: false
+draft: true
 ---
 
 **한 줄 요약 —** 개발자만 가능했던 시스템 연동을, 누구나 가능한 실행 체계로 바꿉니다.

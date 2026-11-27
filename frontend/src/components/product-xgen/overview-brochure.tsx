@@ -20,12 +20,17 @@ import {
     ArrowLeftRight,
     TrendingUp,
     ScrollText,
+    Users,
+    PlayCircle,
+    ArrowUpRight,
+    Laptop,
+    Target,
+    Rocket,
 } from "lucide-react";
 import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
-import { EvoBackdrop } from "@/components/product-xgen/evo-backdrop";
 
 /**
  * /product/xgen 1depth 개요 — 「XGEN 소개서(2026.11.25)」 내용을
@@ -473,12 +478,12 @@ const EVOLUTION = {
                 <br className="hidden md:block" /> <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">‘변화 대응’</span>입니다
             </>
         ),
-        lead: "기업의 경쟁력은 AI를 얼마나 잘 도입했는지보다, 도입한 AI를 업무 변화에 맞춰 얼마나 잘 발전시키는지에 달려 있습니다.",
+        lead: "AI 도입은 출발점에 불과합니다. 변화하는 비즈니스 환경에 맞춰 AI를 지속적으로 발전시킬 수 있는 역량이 기업의 AX 경쟁력을 결정합니다.",
         stages: [
-            { en: "Assist", ko: "이해", items: ["문서를 이해한다", "지식을 검색한다", "질문에 답한다"], tech: "RAG · Knowledge · Search" },
-            { en: "Augment", ko: "실행", items: ["Tool을 연결한다", "Workflow를 실행한다", "업무를 대신 수행한다"], tech: "Workflow · MCP · API" },
-            { en: "Autonomous", ko: "협업", items: ["여러 Agent가 역할을 나눈다", "업무를 자동 분배한다", "결과를 통합한다"], tech: "Planning · Routing · Multi-Agent" },
-            { en: "Self-Evolving", ko: "진화", items: ["도구·모델을 찾고 만든다", "스스로 환경을 고친다", "지속적으로 성능을 개선한다"], tech: "Geny · Model Router · Evaluation" },
+            { en: "Assisted", ko: "이해", desc: "질문에 답하고 사내 문서를 이해합니다.", tags: ["Knowledge · RAG", "Ontology"] },
+            { en: "Augmented", ko: "실행", desc: "시스템과 연결해 업무를 대신 수행합니다.", tags: ["Agentflow", "MCP·API"] },
+            { en: "Autonomous", ko: "협업", desc: "여러 Agent가 역할을 나눠 함께 처리합니다.", tags: ["Multi-Agent", "A2A"] },
+            { en: "Self-Evolving", ko: "진화", desc: "실행 기록과 평가를 바탕으로 작업 방식을 개선합니다.", tags: ["Geny", "LLMOps"] },
         ],
         foot: "XGEN은 네 단계를 하나의 플랫폼에서 이어 갈 수 있도록 설계했습니다.",
     },
@@ -489,189 +494,121 @@ const EVOLUTION = {
                 <br className="hidden md:block" /> it is about <span className="bg-gradient-to-r from-[#00acee] to-[#7dd3fc] bg-clip-text text-transparent">adapting to change</span>
             </>
         ),
-        lead: "Competitiveness depends less on how well a company adopted AI and more on how well it develops that AI as the work changes.",
+        lead: "Adopting AI is only the starting point. What determines a company's AX competitiveness is its ability to keep developing AI as the business environment changes.",
         stages: [
-            { en: "Assist", ko: "Understand", items: ["Understands documents", "Searches knowledge", "Answers questions"], tech: "RAG · Knowledge · Search" },
-            { en: "Augment", ko: "Execute", items: ["Connects tools", "Runs workflows", "Performs tasks on your behalf"], tech: "Workflow · MCP · API" },
-            { en: "Autonomous", ko: "Collaborate", items: ["Agents split roles", "Distributes work automatically", "Combines the results"], tech: "Planning · Routing · Multi-Agent" },
-            { en: "Self-Evolving", ko: "Evolve", items: ["Finds and builds tools and models", "Adjusts its own setup", "Keeps improving performance"], tech: "Geny · Model Router · Evaluation" },
+            { en: "Assisted", ko: "Understand", desc: "Answers questions and understands internal documents.", tags: ["Knowledge · RAG", "Ontology"] },
+            { en: "Augmented", ko: "Execute", desc: "Connects to systems and carries out tasks.", tags: ["Agentflow", "MCP·API"] },
+            { en: "Autonomous", ko: "Collaborate", desc: "Multiple agents split roles and work together.", tags: ["Multi-Agent", "A2A"] },
+            { en: "Self-Evolving", ko: "Evolve", desc: "Refines how work is done from execution records and evaluations.", tags: ["Geny", "LLMOps"] },
         ],
         foot: "XGEN is designed so the four stages continue on one platform.",
     },
 };
 
-/* 카드 엠블럼 — 단계마다 의미를 담은 선 도형을 번호 오른쪽에 작은 상징으로 둔다(글자와 겹치지 않음).
-   01 이해: 문서 줄과 점 격자 / 02 실행: 도구를 잇는 회로선 / 03 협업: 여러 노드가 이어진 네트워크 /
-   04 진화: 바깥으로 넓어지는 궤도와 상승 화살표. 단계가 오를수록 도형이 복잡해진다. */
-function EvoPattern({ i }: { i: number }) {
-    // 밝은 그레이 카드 위 — 진한 블루 선, 점 속은 카드 바탕색
-    const stroke = "#2563eb";
-    const dot = "#eef1f6";
-    const common = { fill: "none", stroke, strokeWidth: 1.5, vectorEffect: "non-scaling-stroke" as const, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-    return (
-        <svg
-            aria-hidden
-            viewBox="0 0 180 180"
-            className="pointer-events-none h-[72px] w-[72px] flex-none opacity-70"
-        >
-            {i === 0 && (
-                <g {...common}>
-                    {Array.from({ length: 6 }).map((_, r) =>
-                        Array.from({ length: 6 }).map((__, c) => <circle key={`${r}-${c}`} cx={30 + c * 26} cy={14 + r * 26} r={1.6} fill={stroke} stroke="none" />),
-                    )}
-                    <rect x="82" y="30" width="62" height="80" rx="3" />
-                    <path d="M94 50h38M94 62h38M94 74h26M94 86h32" />
-                    <circle cx="138" cy="104" r="14" />
-                    <path d="M148 114l12 12" strokeWidth={2} />
-                </g>
-            )}
-            {i === 1 && (
-                <g {...common}>
-                    <path d="M20 40h50v40h44V40h56M20 120h34V80M114 80v60h46M70 80v70" />
-                    {[
-                        [70, 40], [70, 80], [114, 40], [114, 80], [54, 80], [114, 140], [70, 150], [160, 40],
-                    ].map(([x, y]) => (
-                        <circle key={`${x}-${y}`} cx={x} cy={y} r={4.5} fill={dot} />
-                    ))}
-                    <rect x="128" y="94" width="34" height="24" rx="4" />
-                    <path d="M138 106l5 5 9-10" />
-                </g>
-            )}
-            {i === 2 && (
-                <g {...common}>
-                    {(() => {
-                        const n = [
-                            [120, 40], [160, 70], [84, 78], [140, 116], [60, 30], [100, 140], [164, 150], [40, 100],
-                        ];
-                        const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [0, 4], [2, 4], [3, 5], [3, 6], [2, 7], [5, 7], [1, 6]];
-                        return (
-                            <>
-                                {edges.map(([a, b]) => (
-                                    <line key={`${a}-${b}`} x1={n[a][0]} y1={n[a][1]} x2={n[b][0]} y2={n[b][1]} />
-                                ))}
-                                {n.map(([x, y], k) => (
-                                    <circle key={k} cx={x} cy={y} r={k < 4 ? 7 : 4.5} fill={dot} />
-                                ))}
-                            </>
-                        );
-                    })()}
-                </g>
-            )}
-            {i === 3 && (
-                <g {...common}>
-                    {[22, 44, 66, 88, 110, 132].map((r) => (
-                        <circle key={r} cx="150" cy="30" r={r} strokeDasharray={r % 44 === 0 ? "3 5" : undefined} />
-                    ))}
-                    <path d="M54 130c26-4 46-24 56-54" strokeWidth={2} />
-                    <path d="M100 78l10-6 4 12" strokeWidth={2} />
-                    <circle cx="150" cy="30" r="6" fill={stroke} stroke="none" />
-                </g>
-            )}
-        </svg>
-    );
-}
-
+/* 단계 카드·모션 — labs.plateer.com/product/xgen#evolution(why-xgen.tsx WhyXgenEvolution)과 같은 구성.
+   화면에 들어오면 카드가 140ms 간격으로 떠오르고, 진행선·점·강조 카드가 01→04 순서로 켜진 뒤 04에서 두 박자 머물고 반복.
+   동작 줄이기 설정이면 04까지 켜진 상태로 멈춘다. */
 export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const e = EVOLUTION[en ? "en" : "ko"];
-    /* 카드 순차 등장(반복) — 목록이 화면에 보이는 동안 01→04 순서로 한 장씩 나타나고,
-       04까지 모이면 잠시 멈췄다가 모두 사라진 뒤 01부터 다시 시작한다. 화면을 벗어나면 멈추고 처음으로 돌아간다.
-       동작 줄이기 설정이면 움직임 없이 네 장 모두 보인다. */
-    const listRef = useRef<HTMLOListElement>(null);
-    const [count, setCount] = useState(0);
+    const evoRef = useRef<HTMLDivElement>(null);
     const [inView, setInView] = useState(false);
-    const [reduced, setReduced] = useState(false);
+    const [cur, setCur] = useState(-1);
     useEffect(() => {
-        const el = listRef.current;
+        const el = evoRef.current;
         if (!el) return;
         if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-            setReduced(true);
+            setInView(true);
             return;
         }
         const io = new IntersectionObserver(
-            (entries) => {
-                const on = entries.some((x) => x.isIntersecting);
-                setInView(on);
-                if (!on) setCount(0);
-            },
-            { threshold: 0.25 },
+            (es) => es.forEach((x) => x.isIntersecting && (setInView(true), io.disconnect())),
+            { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
         );
         io.observe(el);
         return () => io.disconnect();
     }, []);
     useEffect(() => {
-        if (reduced || !inView) return;
-        const total = e.stages.length;
-        // 0장: 사라짐(전환 700ms)이 끝난 뒤 01 등장 / 한 장씩 간격 / 다 모이면 잠시 유지
-        const wait = count === 0 ? 900 : count < total ? 520 : 2600;
-        const t = window.setTimeout(() => setCount(count < total ? count + 1 : 0), wait);
-        return () => window.clearTimeout(t);
-    }, [count, inView, reduced, e.stages.length]);
+        if (!inView) return;
+        if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+            setCur(3);
+            return;
+        }
+        const seq = [0, 1, 2, 3, 3, 3];
+        let k = 0;
+        setCur(seq[0]);
+        const id = setInterval(() => {
+            k = (k + 1) % seq.length;
+            setCur(seq[k]);
+        }, 1600);
+        return () => clearInterval(id);
+    }, [inView]);
     return (
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#060914] text-white">
-            {/* 배경 — Adobe Stock 플렉서스 네트워크 영상(EvoBackdrop). 영상이 오기 전엔 미드나잇 네이비 그라데이션이 보인다.
-                영상 위에 남색 막을 얹어 밝기를 낮추고, 위아래를 한 번 더 눌러 제목·카드 읽힘을 확보한다.
-                화면 밖이면 멈추고 동작 줄이기 땐 첫 장면 정지 화면. */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,#070b18_0%,#0b1430_48%,#0d1b3f_100%)]" />
-                <EvoBackdrop />
-                <div className="absolute inset-0 bg-[rgba(6,10,24,0.5)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,20,0.55)_0%,rgba(6,9,20,0)_30%,rgba(6,9,20,0)_75%,rgba(6,9,20,0.6)_100%)]" />
-            </div>
+        <section id="evolution" className="relative scroll-mt-[calc(var(--nav-h,84px)+58px)] overflow-hidden border-y border-white/10 bg-[#070b1c] text-white">
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_50%_0%,rgba(47,123,255,0.18),transparent_65%)]"
+            />
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
-                {/* 계단형 — 1024px 이상은 카드 높이를 같게 두고 오른쪽으로 갈수록 한 칸씩 올려 배치한다(빈 하단 없음).
-                    뒤의 상승선이 네 카드를 잇는다. 그 아래는 한 열 */}
-                <div className={`relative ${SECTION_BODY_GAP}`}>
-                <svg aria-hidden viewBox="0 0 100 20" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-[6%] top-[38%] hidden h-[34%] w-[88%] lg:block">
-                    <defs>
-                        <linearGradient id="evoRise" x1="0" x2="1">
-                            <stop offset="0" stopColor="#c9d5ec" stopOpacity="0.15" />
-                            <stop offset="1" stopColor="#c9d5ec" stopOpacity="0.65" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M0 20 C 30 18, 60 10, 100 0" fill="none" stroke="url(#evoRise)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeDasharray="4 6" />
-                </svg>
-                <ol ref={listRef} className="relative grid gap-4 lg:grid-cols-4 lg:items-start">
-                    {e.stages.map((s, i) => (
-                        <li
-                            key={s.en}
-                            className={cn(
-                                "group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:min-h-[300px]",
-                                reduced || i < count ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
-                                i === 3
-                                    ? "border-white bg-[linear-gradient(160deg,#ffffff_0%,#f2f5fa_100%)] shadow-[0_0_0_1px_rgba(47,123,255,0.55),0_28px_70px_-24px_rgba(47,123,255,0.55)]"
-                                    : "border-white/70 bg-[linear-gradient(160deg,#f5f7fb_0%,#e4e9f1_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_24px_60px_-28px_rgba(0,0,0,0.9)]",
-                                ["lg:mt-[96px]", "lg:mt-[64px]", "lg:mt-[32px]", "lg:mt-0"][i],
-                            )}
-                        >
-                            {/* 위쪽 가는 빛 선 — 단계가 오를수록 진해진다 */}
-                            <span
-                                aria-hidden
-                                className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#7dd3fc] via-[#2f7bff] to-[#4f46e5]"
-                                style={{ opacity: 0.3 + i * 0.23 }}
-                            />
-                            <div className="relative flex items-start justify-between gap-3">
-                                <span className="bg-gradient-to-br from-[#2f7bff] via-[#2563eb] to-[#4f46e5] bg-clip-text text-[40px] font-semibold leading-none tracking-tight text-transparent">
-                                    0{i + 1}
-                                </span>
-                                <EvoPattern i={i} />
-                            </div>
-                            <h3 className="relative mt-2 text-[22px] font-bold tracking-tight text-[#0b1430]">
-                                {s.en} <span className="text-[15px] font-semibold text-[#2563eb]">· {s.ko}</span>
-                            </h3>
-                            <ul className="relative mt-4 flex flex-col gap-2">
-                                {s.items.map((x) => (
-                                    <li key={x} className="flex items-start gap-2 text-[14px] leading-relaxed text-[#2b3445]">
-                                        <Check className="mt-1 h-3.5 w-3.5 flex-none text-[#2563eb]" aria-hidden />
-                                        {x}
-                                    </li>
-                                ))}
-                            </ul>
-                            <p className="relative mt-auto border-t border-[#0b1430]/[0.12] pt-4 text-[12px] font-medium tracking-wide text-[#5b6577]">{s.tech}</p>
-                        </li>
-                    ))}
-                </ol>
+                <div ref={evoRef} className={`relative ${SECTION_BODY_GAP}`}>
+                    {/* 진행선 — 1024px 이상에서만 */}
+                    <div aria-hidden className="absolute left-0 right-0 top-[18px] hidden h-[2px] bg-white/10 lg:block">
+                        <div
+                            className="h-full bg-[linear-gradient(90deg,#00acee,#7c5cff)] transition-[width] duration-700 ease-out"
+                            style={{ width: cur < 0 ? "0%" : `${((cur + 1) / 4) * 100}%` }}
+                        />
+                    </div>
+                    <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        {e.stages.map((s, i) => {
+                            const on = i <= cur;
+                            const now = i === cur;
+                            return (
+                                <li key={s.en} className={`reveal${inView ? " reveal-in" : ""}`} style={{ transitionDelay: inView ? `${i * 140}ms` : "0ms" }}>
+                                    <div className="relative hidden h-[38px] lg:block" aria-hidden>
+                                        <span
+                                            className={cn(
+                                                "absolute left-0 top-[11px] h-4 w-4 rounded-full border-2 transition duration-500",
+                                                on ? "border-[#5fd0ff] bg-[#5fd0ff] shadow-[0_0_0_6px_rgba(95,208,255,0.18)]" : "border-white/25 bg-[#0b1224]",
+                                            )}
+                                        />
+                                    </div>
+                                    <div
+                                        className={cn(
+                                            "group overflow-hidden rounded-2xl border bg-[#0f1832] transition duration-500",
+                                            now ? "border-[#5fd0ff]/60 shadow-[0_24px_50px_-24px_rgba(95,208,255,0.55)] lg:-translate-y-1.5" : "border-white/10",
+                                        )}
+                                    >
+                                        <div className="relative overflow-hidden">
+                                            <Image
+                                                src={`/product/why/stage-${i + 1}.webp`}
+                                                alt=""
+                                                width={554}
+                                                height={422}
+                                                sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+                                                className={cn("aspect-[4/3] h-auto w-full object-cover transition duration-700 group-hover:scale-105", on ? "opacity-100" : "opacity-55")}
+                                            />
+                                            <span className="absolute left-4 top-4 font-mono text-[12px] font-bold text-white/80">0{i + 1}</span>
+                                        </div>
+                                        <div className="p-5">
+                                            <h3 className="flex items-baseline gap-2">
+                                                <span className="text-[20px] font-bold tracking-tight">{s.ko}</span>
+                                                <span className="font-mono text-[11.5px] uppercase tracking-wider text-[#9db6ff]">{s.en}</span>
+                                            </h3>
+                                            <p className="mt-2 min-h-[44px] text-[14px] leading-relaxed text-white/65 [word-break:keep-all]">{s.desc}</p>
+                                            <div className="mt-4 flex flex-wrap gap-1.5">
+                                                {s.tags.map((g) => (
+                                                    <span key={g} className="rounded-full border border-white/12 bg-white/5 px-2.5 py-0.5 text-[11.5px] font-semibold text-white/75">
+                                                        {g}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ol>
                 </div>
                 <p className="mt-10 text-center text-[15px] text-white/65">{e.foot}</p>
                 <NextLinks locale={locale} links={[L.features]} dark center />
@@ -1641,7 +1578,7 @@ const SCENARIOS: Scenario[] = [
     {
         key: "retail",
         tab: { ko: "유통 · 통신판매", en: "Retail · TV home shopping" },
-        customer: { ko: "국내 홈쇼핑사", en: "A Korean TV home shopping company" },
+        customer: { ko: "롯데홈쇼핑", en: "Lotte Homeshopping" },
         title: { ko: "인사이트에서 운영 자동화까지, MD 업무의 진화", en: "From insight to operations automation: MD work, evolved" },
         effect: { ko: "MD·방송 운영의 반복 업무를 자동화해 운영 효율 개선", en: "Repetitive MD and broadcast work automated for better operating efficiency" },
         points: {
@@ -1652,6 +1589,7 @@ const SCENARIOS: Scenario[] = [
             ko: ["방송 심의 Agent", "상품 등록 자동화 Agent", "상품 심의 Agent"],
             en: ["Broadcast review agent", "Product registration agent", "Product review agent"],
         },
+        href: "/preview/lotte-homeshopping-brief-f024d911",
     },
     {
         key: "bank",
@@ -1704,96 +1642,57 @@ const SCENARIOS: Scenario[] = [
     },
 ];
 
+/**
+ * 고객사례 카드 — xgen.imweb.me/features 「PROVEN IN THE FIELD」 구성을 따른다.
+ * 큰 사진 카드에 업종·고객 → 헤드라인 → 한 줄 효과 → 자세히 보기. 사진은 메인(home-intro) 사례 사진을 재사용.
+ */
+const CASE_CARD: Record<string, { label: Txt; photo: string }> = {
+    retail: { label: { ko: "유통 · 커머스 롯데홈쇼핑", en: "Retail · Commerce · Lotte Homeshopping" }, photo: "/intro/case-proven-commerce.webp" },
+    bank: { label: { ko: "금융 · 제주은행", en: "Finance · Jeju Bank" }, photo: "/intro/case-proven-bank.webp" },
+    capital: { label: { ko: "금융 · I 금융사", en: "Finance · Financial company I" }, photo: "/intro/case-capital-adobe.webp" },
+    code: { label: { ko: "제조·방산 · 코드 어시스턴트", en: "Manufacturing & defense · Code Assistant" }, photo: "/intro/case-semiconductor-fab.webp" },
+};
+
 export function XgenScenarios({ locale }: { locale: Locale }) {
     const en = locale === "en";
-    const [cur, setCur] = useState(0);
-    const s = SCENARIOS[cur];
     return (
         <section id="cases" className="scroll-mt-[calc(var(--nav-h,84px)+58px)] border-t border-[var(--color-line)] bg-[var(--color-surface)]">
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
-                <SectionHead
-                    eyebrow="Customer References"
-                    title={en ? "XGEN in finance, retail and development" : "금융·유통·개발 현장에 구축한 XGEN"}
-                    lead={
-                        en
-                            ? "Agents for work that needs evidence and control — internal rules, reviews, customer service and code."
-                            : "사내 규정·심의·상담·코드처럼 근거와 통제가 필요한 업무에 Agent를 구축했습니다."
-                    }
-                />
-                {/* 업종 탭 — 좁은 화면은 가로 스크롤 */}
-                <div className={`${SECTION_BODY_GAP} -mx-6 overflow-x-auto px-6`}>
-                    <div role="tablist" aria-label={en ? "Customer references" : "고객 레퍼런스"} className="mx-auto flex w-max gap-2">
-                        {SCENARIOS.map((x, i) => (
-                            <button
-                                key={x.key}
-                                type="button"
-                                role="tab"
-                                id={`xgen-case-tab-${x.key}`}
-                                aria-selected={i === cur}
-                                aria-controls="xgen-case-panel"
-                                onClick={() => setCur(i)}
-                                className={cn(
-                                    "whitespace-nowrap rounded-full border px-5 py-2.5 text-[14px] font-semibold transition",
-                                    i === cur
-                                        ? "border-[#2f7bff] bg-[#2f7bff] text-white"
-                                        : "border-[var(--color-line)] bg-white text-[var(--color-ink-muted)] hover:border-[#2f7bff] hover:text-[#2461d8]",
-                                )}
-                            >
-                                {T(en, x.tab)}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                <SectionHead eyebrow="Proven in the Field" title={en ? "XGEN, proven where requirements are strictest" : "가장 엄격한 현장에서 증명된 XGEN"} />
+                {/* 768px 이상 2열, 그 아래 1열 */}
+                <ul className={`${SECTION_BODY_GAP} grid gap-5 md:grid-cols-2 lg:gap-8`}>
+                    {SCENARIOS.map((s) => {
+                        const c = CASE_CARD[s.key];
+                        return (
+                            <li key={s.key} className="group relative isolate flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0b1220] md:min-h-[500px] lg:rounded-[28px]">
+                                <Image
+                                    src={c.photo}
+                                    alt=""
+                                    fill
+                                    sizes="(min-width: 768px) 50vw, 100vw"
+                                    className="-z-10 object-cover transition duration-700 group-hover:scale-105"
+                                />
+                                <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(5,10,20,0.92)_0%,rgba(5,10,20,0.7)_42%,rgba(5,10,20,0.15)_100%)]" />
+                                <div className="flex flex-col p-7 md:p-10 lg:p-12">
+                                    <p className="text-[14px] font-bold text-white/85 [word-break:keep-all] md:text-[15px]">{T(en, c.label)}</p>
+                                    <h3 className="mt-3 max-w-[30ch] text-[22px] font-bold leading-[1.35] tracking-tight text-white [word-break:keep-all] md:text-[28px]">{T(en, s.title)}</h3>
+                                    <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-white/70 [word-break:keep-all] md:text-[15px]">{T(en, s.effect)}</p>
+                                    {s.href && (
+                                        <Link
+                                            href={localeHref(locale, s.href)}
+                                            className="mt-6 inline-flex w-max items-center gap-1 rounded-md bg-[#2f7bff] px-4 py-2.5 text-[14px] font-semibold text-white transition hover:bg-[#2461d8]"
+                                        >
+                                            {s.key === "code" ? (en ? "About Code Assistant" : "코드 어시스턴트 자세히 보기") : en ? "Read the case" : "자세히 보기"}
+                                            <ArrowRight className="h-4 w-4" aria-hidden />
+                                        </Link>
+                                    )}
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
 
-                <div
-                    id="xgen-case-panel"
-                    role="tabpanel"
-                    aria-labelledby={`xgen-case-tab-${s.key}`}
-                    className="mt-8 rounded-2xl border border-[var(--color-line)] bg-white p-6 lg:p-10"
-                >
-                    {/* 1024px 이상: 왼쪽 고객·효과 / 오른쪽 핵심 3가지. 그 아래는 위아래 */}
-                    <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
-                        <div>
-                            <p className="text-[13px] font-semibold text-[#2461d8] [word-break:keep-all]">{T(en, s.customer)}</p>
-                            <h3 className="mt-1.5 text-[20px] font-bold leading-snug tracking-tight text-[var(--color-ink)] [word-break:keep-all] md:text-[24px]">{T(en, s.title)}</h3>
-                            <p className="mt-6 border-l-[3px] border-[#2f7bff] pl-4 text-[17px] font-semibold leading-relaxed text-[#1b4fb0] [word-break:keep-all] md:text-[19px]">
-                                {T(en, s.effect)}
-                            </p>
-                        </div>
-                        <ol className="flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)] self-start">
-                            {(en ? s.points.en : s.points.ko).map((p, i) => (
-                                <li key={p} className="flex items-baseline gap-4 py-4">
-                                    <span className="font-mono text-[13px] font-bold text-[#2f7bff]">{String(i + 1).padStart(2, "0")}</span>
-                                    <span className="text-[15px] font-semibold leading-relaxed text-[var(--color-ink)] [word-break:keep-all]">{p}</span>
-                                </li>
-                            ))}
-                        </ol>
-                    </div>
-
-                    <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                        <div className="flex flex-wrap gap-1.5">
-                            <span className="mr-1 self-center text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">
-                                {s.chipsLabel ? T(en, s.chipsLabel) : en ? "Agents built" : "구축 Agent"}
-                            </span>
-                            {(en ? s.agents.en : s.agents.ko).map((a) => (
-                                <span key={a} className="rounded-md border border-[var(--color-line)] bg-[var(--color-surface-alt)] px-2.5 py-1 text-[12.5px] text-[var(--color-ink-muted)]">
-                                    {a}
-                                </span>
-                            ))}
-                        </div>
-                        {s.href && (
-                            <Link
-                                href={localeHref(locale, s.href)}
-                                className="group inline-flex flex-none items-center gap-1 text-[14px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
-                            >
-                                {s.key === "code" ? (en ? "About Code Assistant" : "코드 어시스턴트 자세히 보기") : en ? "Read the case" : "사례 자세히 보기"}
-                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-                            </Link>
-                        )}
-                    </div>
-                </div>
-
-                <div className="mt-6 flex lg:justify-end">
+                <div className="mt-8 flex justify-center">
                     <Link
                         href={localeHref(locale, "/customers") + "?product=xgen"}
                         className="group inline-flex flex-none items-center gap-1.5 text-[15px] font-semibold text-[#2461d8] hover:text-[#1b4fb0]"
@@ -1814,8 +1713,14 @@ export function XgenScenarios({ locale }: { locale: Locale }) {
 
 const ADOPT = {
     ko: {
-        title: "XGEN 도입은 이렇게 진행합니다",
-        lead: "검증된 플랫폼 코어 위에 고객 업무만 얹어, 현업이 쓰는 결과를 먼저 만듭니다.",
+        title: (
+            <>
+                검증된 플랫폼에서 시작하는
+                <br />
+                기업의 AX 여정
+            </>
+        ),
+        lead: "검증된 플랫폼을 기반으로 기업의 업무 환경에 맞게 구성하고, 현업 적용부터 전사 확산까지 단계적으로 지원합니다.",
         principles: [
             { k: "MVP FIRST", t: "검증된 코어 위에서 빠르게", d: "기본 기능은 그대로 쓰고, 고객 업무 화면과 시스템 연계만 개발합니다." },
             { k: "TRUST", t: "기존 문서·권한 그대로", d: "원천 권한을 검색·답변까지 이어받고, 답변마다 출처를 표시합니다." },
@@ -1823,11 +1728,11 @@ const ADOPT = {
         ],
         stepsLabel: "도입 단계",
         steps: [
-            { t: "초도 미팅", d: "과제·보안 요건 공유" },
-            { t: "맞춤 데모", d: "고객 업무로 시연" },
-            { t: "사전 진단", d: "샘플 문서로 정확도 확인" },
-            { t: "MVP 범위 확정", d: "검수 기준·일정 합의" },
-            { t: "착수", d: "FDE 투입·Sprint 시작" },
+            { t: "초도 미팅", d: "업무 과제와 보안·운영 요건을 함께 정의합니다." },
+            { t: "맞춤 데모", d: "실제 업무 시나리오로 도입 효과를 확인합니다." },
+            { t: "사전 진단", d: "데이터, 시스템, 보안 등 도입 준비 수준을 점검합니다." },
+            { t: "MVP 범위 확정", d: "우선 적용할 업무 범위와 검증 기준, 일정을 합의합니다." },
+            { t: "착수", d: "FDE 투입과 함께 Sprint 단위로 구축을 시작합니다." },
         ],
         scheduleLabel: "표준 일정 예시",
         schedule: [
@@ -1837,8 +1742,14 @@ const ADOPT = {
         scheduleNote: "범위·데이터 준비·승인 절차(API 권한, LLM 사용 승인 등)에 따라 달라집니다.",
     },
     en: {
-        title: "How XGEN adoption works",
-        lead: "We put only your business logic on a proven platform core, so business users get working results first.",
+        title: (
+            <>
+                An enterprise AX journey
+                <br />
+                that starts on a proven platform
+            </>
+        ),
+        lead: "Configured on a proven platform for your business environment, with step-by-step support from first team use to company-wide rollout.",
         principles: [
             { k: "MVP FIRST", t: "Fast, on a proven core", d: "Standard features stay as they are; we build only your business screens and integrations." },
             { k: "TRUST", t: "Your documents and permissions", d: "Source permissions carry through search and answers, and every answer shows its source." },
@@ -1846,11 +1757,11 @@ const ADOPT = {
         ],
         stepsLabel: "Adoption steps",
         steps: [
-            { t: "Kickoff", d: "Share tasks and security needs" },
-            { t: "Tailored demo", d: "Demo on your scenario" },
-            { t: "Pre-assessment", d: "Check accuracy on samples" },
-            { t: "Fix MVP scope", d: "Agree criteria and schedule" },
-            { t: "Start", d: "FDEs join, sprints begin" },
+            { t: "Kickoff", d: "Define business tasks and security and operations requirements together." },
+            { t: "Tailored demo", d: "See the adoption impact on a real business scenario." },
+            { t: "Pre-assessment", d: "Check readiness across data, systems and security." },
+            { t: "Fix MVP scope", d: "Agree on the priority scope, validation criteria and schedule." },
+            { t: "Start", d: "FDEs join and the build starts sprint by sprint." },
         ],
         scheduleLabel: "Standard schedule example",
         schedule: [
@@ -1861,6 +1772,15 @@ const ADOPT = {
     },
 };
 
+/* 단계별 아이콘(주 아이콘 + 보조 배지) — ADOPT.steps 순서와 같다 */
+const ADOPT_STEP_ICONS = [
+    { main: Users, badge: MessageSquareText },
+    { main: Laptop, badge: Sparkles },
+    { main: FileText, badge: Search },
+    { main: Target, badge: TrendingUp },
+    { main: Rocket, badge: ArrowUpRight },
+];
+
 export function XgenAdoptionPath({ locale }: { locale: Locale }) {
     const en = locale === "en";
     const a = ADOPT[en ? "en" : "ko"];
@@ -1869,57 +1789,61 @@ export function XgenAdoptionPath({ locale }: { locale: Locale }) {
             <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="How to Start" title={a.title} lead={a.lead} />
 
-                {/* 원칙 3개 — 한 줄 설명만 */}
-                <ol className={`${SECTION_BODY_GAP} grid gap-4 lg:grid-cols-3`}>
-                    {a.principles.map((p, i) => (
-                        <li key={p.k} className="rounded-2xl border border-[var(--color-line)] bg-white px-6 py-5">
-                            <p className="font-mono text-[12px] font-bold tracking-widest text-[#2461d8]">
-                                0{i + 1} · {p.k}
-                            </p>
-                            <h3 className="mt-2 text-[18px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{p.t}</h3>
-                            <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{p.d}</p>
-                        </li>
-                    ))}
+                {/* 단계 카드(참고: 시작 가이드 5단계 카드) — 왼쪽 위 번호 탭 → 아이콘 그림 → 제목 → 설명, 카드 사이 화살표.
+                    900px 이하는 한 줄에 하나씩, 아이콘 왼쪽·글 오른쪽으로 눕히고 화살표는 숨김 */}
+                <ol className={`${SECTION_BODY_GAP} grid gap-3 min-[901px]:grid-cols-5 min-[901px]:gap-6`}>
+                    {a.steps.map((s, i) => {
+                        const v = ADOPT_STEP_ICONS[i];
+                        return (
+                            <li
+                                key={s.t}
+                                className="group relative flex items-center gap-4 rounded-2xl border border-[#e2e8f6] bg-gradient-to-b from-white to-[#f5f8ff] px-5 pb-5 pt-11 shadow-[0_14px_34px_-22px_rgba(36,97,216,0.45)] transition duration-300 min-[901px]:flex-col min-[901px]:gap-0 min-[901px]:px-4 min-[901px]:pb-7 min-[901px]:pt-12 min-[901px]:text-center min-[901px]:hover:-translate-y-1 min-[901px]:hover:shadow-[0_22px_40px_-22px_rgba(36,97,216,0.55)] lg:px-5"
+                            >
+                                {/* 번호 탭 */}
+                                <span className="absolute left-0 top-0 rounded-br-2xl rounded-tl-2xl bg-gradient-to-br from-[#8b94a3] to-[#5f6877] px-4 py-2 text-[16px] font-extrabold leading-none tracking-tight text-white">
+                                    {String(i + 1).padStart(2, "0")}
+                                </span>
+                                {/* 아이콘 그림: 뒤 원 → 그라데이션 타일(주 아이콘) → 흰 배지(보조 아이콘) */}
+                                <span aria-hidden className="relative flex h-[76px] w-[76px] flex-none items-center justify-center min-[901px]:h-[104px] min-[901px]:w-[104px]">
+                                    <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,#e3ecff_0%,rgba(227,236,255,0)_70%)]" />
+                                    <span className="relative flex h-[52px] w-[52px] items-center justify-center rounded-2xl bg-gradient-to-br from-[#6b9bff] via-[#3b74f0] to-[#2155c9] shadow-[0_12px_22px_-10px_rgba(36,97,216,0.75)] transition duration-300 group-hover:rotate-[-4deg] min-[901px]:h-[66px] min-[901px]:w-[66px]">
+                                        <v.main className="h-6 w-6 text-white min-[901px]:h-8 min-[901px]:w-8" strokeWidth={1.8} />
+                                        <span className="absolute -bottom-2 -right-2.5 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_4px_10px_-3px_rgba(36,97,216,0.45)] ring-1 ring-[#dbe5fb] min-[901px]:h-[30px] min-[901px]:w-[30px]">
+                                            <v.badge className="h-3.5 w-3.5 text-[#2461d8] min-[901px]:h-4 min-[901px]:w-4" strokeWidth={2.2} />
+                                        </span>
+                                    </span>
+                                </span>
+                                <div className="min-w-0 min-[901px]:mt-4">
+                                    <p className="text-[16px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all] min-[901px]:text-[17px]">{s.t}</p>
+                                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all] min-[901px]:mt-2">{s.d}</p>
+                                </div>
+                                {/* 다음 단계 화살표 — 카드 사이 간격 가운데 */}
+                                {i < a.steps.length - 1 && (
+                                    <ChevronRight
+                                        aria-hidden
+                                        className="absolute -right-[22px] top-1/2 z-10 hidden h-5 w-5 -translate-y-1/2 text-[#2461d8] min-[901px]:block"
+                                        strokeWidth={2.6}
+                                    />
+                                )}
+                            </li>
+                        );
+                    })}
                 </ol>
 
-                {/* 5단계 타임라인 + 표준 일정 */}
-                <div className="mt-10 rounded-2xl border border-[var(--color-line)] bg-white px-6 py-6 md:px-8">
-                    <p className="font-mono text-[12px] font-semibold uppercase tracking-widest text-[var(--color-ink-subtle)]">{a.stepsLabel}</p>
-                    <ol className="relative mt-5 grid gap-4 lg:grid-cols-5 lg:gap-3">
-                        <span aria-hidden className="pointer-events-none absolute left-[5%] right-[5%] top-[15px] hidden h-px bg-[#c9d6ee] lg:block" />
-                        {a.steps.map((s, i) => (
-                            <li key={s.t} className="relative flex items-start gap-3 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
-                                <span className="relative z-10 inline-flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full bg-[#2461d8] font-mono text-[12px] font-bold text-white ring-4 ring-white">
-                                    {i + 1}
-                                </span>
-                                <div className="lg:mt-3">
-                                    <p className="text-[15px] font-bold tracking-tight text-[var(--color-ink)] [word-break:keep-all]">{s.t}</p>
-                                    <p className="mt-0.5 text-[13px] leading-snug text-[var(--color-ink-muted)] [word-break:keep-all]">{s.d}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ol>
-                    <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--color-line)] pt-5">
-                        <span className="basis-full text-[12.5px] font-semibold text-[var(--color-ink-subtle)] sm:basis-auto">{a.scheduleLabel}</span>
+                {/* 표준 일정 — 카드 아래 가운데 한 줄 */}
+                <div className="mt-8 flex flex-col items-center gap-2 text-center">
+                    <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[14.5px] text-[var(--color-ink)]">
+                        <span className="text-[12.5px] font-semibold text-[var(--color-ink-subtle)]">{a.scheduleLabel}</span>
                         {a.schedule.map((x, i) => (
-                            <span key={x.w} className="inline-flex items-center gap-2 text-[14.5px] text-[var(--color-ink)]">
+                            <span key={x.w} className="inline-flex items-center gap-2">
                                 {i > 0 && <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)]" aria-hidden />}
                                 <b className="font-bold text-[#2461d8]">{x.w}</b>
                                 {x.t}
                             </span>
                         ))}
-                        <span className="basis-full text-[12.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">※ {a.scheduleNote}</span>
-                    </div>
+                    </p>
+                    <p className="max-w-2xl text-[12.5px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">※ {a.scheduleNote}</p>
                 </div>
-
-                <NextLinks
-                    locale={locale}
-                    links={[
-                        L.adoption,
-                        { label: { ko: "XGEN 소개서", en: "XGEN brochure" }, href: "/xgen-brief-k7m4" },
-                        { label: { ko: "15일 무료 체험", en: "15-day free trial" }, href: "/xgen-trial" },
-                    ]}
-                />
             </div>
         </section>
     );
@@ -1969,6 +1893,73 @@ export function XgenOverviewVideo({ locale }: { locale: Locale }) {
                             </span>
                         </button>
                     )}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ======================================================================
+ * 9-1. 전문가와 함께 시작하기 — 시작 가이드 다음, 테두리 카드 2장
+ *      (참고: 카페24 유튜브 쇼핑 「전문가들과 함께라면」 섹션)
+ *      도입·지원(2depth)으로 가는 카드 + 소개 영상(YouTube 새 창) 카드
+ * ==================================================================== */
+
+const HELP = {
+    ko: {
+        title: (
+            <>
+                XGEN 도입,
+                <br /> 플래티어의 AI·AX 전문가와 함께 시작하세요
+            </>
+        ),
+        adoption: { t: "도입·지원", d: "처음 도입하시나요? FDE가 현업과 함께 MVP 범위를 정하고, 운영 이관까지 지원합니다." },
+        video: { t: "영상으로 보는 XGEN", d: "노드 캔버스부터 Agent를 실행하는 헤드리스 엔진까지, 플랫폼 전반을 영상으로 확인하세요." },
+    },
+    en: {
+        title: (
+            <>
+                Start XGEN adoption
+                <br /> with Plateer&apos;s AI &amp; AX experts
+            </>
+        ),
+        adoption: { t: "Adoption & support", d: "New to XGEN? FDEs work with your teams to set the MVP scope and support you through operational handover." },
+        video: { t: "See XGEN in one video", d: "Take a tour of the platform, from the node canvas to the headless engine that runs agents." },
+    },
+};
+
+export function XgenGetHelp({ locale }: { locale: Locale }) {
+    const en = locale === "en";
+    const h = HELP[en ? "en" : "ko"];
+    const card =
+        "group flex flex-col rounded-2xl border border-[var(--color-line)] bg-white px-7 py-7 transition hover:border-[#2f7bff] lg:px-8 lg:py-8";
+    return (
+        <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div className={`mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
+                <SectionHead eyebrow="Get Support" title={h.title} />
+                <div className={`${SECTION_BODY_GAP} grid gap-4 min-[901px]:grid-cols-2`}>
+                    <Link href={localeHref(locale, L.adoption.href)} className={card}>
+                        <Users className="h-7 w-7 text-[var(--color-ink-subtle)]" strokeWidth={1.6} aria-hidden />
+                        <span className="mt-5 inline-flex items-center gap-1.5 text-[17px] font-bold text-[var(--color-ink)] group-hover:text-[#2461d8]">
+                            {h.adoption.t}
+                            <ArrowRight className="h-4 w-4 text-[var(--color-ink-subtle)] transition group-hover:translate-x-0.5 group-hover:text-[#2461d8]" aria-hidden />
+                        </span>
+                        <span className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{h.adoption.d}</span>
+                    </Link>
+                    <a
+                        href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={card}
+                    >
+                        <PlayCircle className="h-7 w-7 text-[var(--color-ink-subtle)]" strokeWidth={1.6} aria-hidden />
+                        <span className="mt-5 inline-flex items-center gap-1.5 text-[17px] font-bold text-[var(--color-ink)] group-hover:text-[#2461d8]">
+                            {h.video.t}
+                            <ArrowUpRight className="h-4 w-4 text-[var(--color-ink-subtle)] transition group-hover:text-[#2461d8]" aria-hidden />
+                            <span className="sr-only">{en ? "(opens YouTube in a new tab)" : "(YouTube 새 창으로 열림)"}</span>
+                        </span>
+                        <span className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink-muted)] [word-break:keep-all]">{h.video.d}</span>
+                    </a>
                 </div>
             </div>
         </section>

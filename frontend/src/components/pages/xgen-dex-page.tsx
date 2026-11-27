@@ -278,12 +278,6 @@ const COPY: Record<Locale, DexCopy> = {
         readTitle: "XGEN 핵심 기능 더 알아보기",
         reads: [
             {
-                label: "PathFinder",
-                desc: "기존 웹 시스템과 API를 Agent가 쓰는 도구로 연결합니다.",
-                href: "/pathfinder",
-                art: "pathfinder",
-            },
-            {
                 label: "EasyMode",
                 desc: "코딩 없이, 약 90초면 에이전트가 완성됩니다.",
                 href: "/product/xgen#build",
@@ -470,12 +464,6 @@ const COPY: Record<Locale, DexCopy> = {
         ],
         readTitle: "More on XGEN key features",
         reads: [
-            {
-                label: "PathFinder",
-                desc: "Connects existing web systems and APIs as tools an agent can use.",
-                href: "/en/pathfinder",
-                art: "pathfinder",
-            },
             {
                 label: "EasyMode",
                 desc: "No coding — an agent in about 90 seconds.",

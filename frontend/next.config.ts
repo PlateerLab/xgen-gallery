@@ -101,6 +101,9 @@ const nextConfig: NextConfig = {
             // 블로그를 /insights → /blog 로 이전 (SEO 손실 방지, 영구 리다이렉트).
             { source: '/insights', destination: '/blog', permanent: true },
             { source: '/demo', destination: '/contact', permanent: true },
+            // PathFinder는 Geny로 대체돼 사이트에서 뺐다(요청). 공유된 링크는 XGEN 제품 페이지로 넘긴다.
+            { source: '/pathfinder', destination: '/product/xgen', permanent: false },
+            { source: '/en/pathfinder', destination: '/en/product/xgen', permanent: false },
             // 설치 가이드를 별도 페이지에서 블로그 글로 옮겼다(요청). 공유된
             // 링크가 죽지 않게 넘긴다 — 영문도 각자 경로로 보낸다.
             {

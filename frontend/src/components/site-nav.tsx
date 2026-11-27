@@ -24,7 +24,7 @@ const PRODUCT_CONTEXTS: { name: string; href: string; paths: string[] }[] = [
     {
         name: "XGEN",
         href: "/product/xgen",
-        paths: ["/product/xgen", "/products/xgen", "/vibe-coding", "/xgen-dex", "/pathfinder", "/easy-mode", "/floui", "/security-and-governance"],
+        paths: ["/product/xgen", "/products/xgen", "/vibe-coding", "/xgen-dex", "/easy-mode", "/floui", "/security-and-governance"],
     },
     { name: "Polar", href: "/product/polar", paths: ["/product/polar"] },
     { name: "Ontlas", href: "/product/ontlas", paths: ["/product/ontlas", "/tool/ontlas"] },

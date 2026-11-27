@@ -9,8 +9,6 @@ import type { Locale } from "@/lib/i18n";
  * 2depth 페이지로 보낸다. 사이트 밖(광고·문서·메일)에 이미 퍼진 링크를 살리기 위한 것.
  */
 const MOVED: Record<string, string> = {
-    evolution: "/product/xgen/features",
-    capabilities: "/product/xgen/features",
     value: "/product/xgen/features",
     features: "/product/xgen/features",
     roles: "/product/xgen/features",
@@ -22,7 +20,6 @@ const MOVED: Record<string, string> = {
     geny: "/product/xgen/technology",
     "isolated-execution": "/product/xgen/technology",
     deployment: "/product/xgen/adoption",
-    faq: "/product/xgen/adoption",
 };
 
 export function XgenHashRedirect({ locale }: { locale: Locale }) {

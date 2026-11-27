@@ -61,21 +61,6 @@ const ALL_TOUR_ITEMS: TourItem[] = [
         },
     },
     {
-        key: "pathfinder",
-        name: "PathFinder",
-        tagline: "Build",
-        desc: {
-            ko: "복잡한 목표를 실행 가능한 에이전트 워크플로우로 설계·구성하는 단계입니다",
-            en: "Where a complicated goal gets designed into an agent workflow that can actually run",
-        },
-        video: "https://www.youtube-nocookie.com/embed/4T7tT2nTXfw",
-        poster: "https://img.youtube.com/vi/4T7tT2nTXfw/maxresdefault.jpg",
-        detail: {
-            href: "/pathfinder",
-            label: { ko: "패스파인더 자세히 보기", en: "More on PathFinder" },
-        },
-    },
-    {
         key: "floui",
         name: "FloUI",
         tagline: "Experience",
