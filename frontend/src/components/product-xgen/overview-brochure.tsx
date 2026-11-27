@@ -25,6 +25,7 @@ import { localeHref } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { SectionHead, SECTION_PAD, SECTION_BODY_GAP } from "@/components/product-xgen/section-head";
+import { EvoBackdrop } from "@/components/product-xgen/evo-backdrop";
 
 /**
  * /product/xgen 1depth 개요 — 「XGEN 소개서(2026.11.25)」 내용을
@@ -608,20 +609,14 @@ export function XgenEvolutionModel({ locale }: { locale: Locale }) {
     }, [count, inView, reduced, e.stages.length]);
     return (
         <section className="relative overflow-hidden border-y border-white/10 bg-[#060914] text-white">
-            {/* 배경 — 미드나잇 새틴(Adobe Stock 693108773, 무료 라이선스)을 미드나잇 네이비 그림자 + 실버 블루 광택으로 톤을 맞춘 파일.
-                결이 곱고 광택이 은은해 카드의 실버 그레이와 같은 재질감으로 이어진다. 천천히 흐르고 살짝 기운다(동작 줄이기 땐 정지).
-                위아래만 살짝 어둡게 눌러 제목·카드 읽힘을 확보하고, 위쪽엔 차가운 실버 빛을 얹는다. */}
+            {/* 배경 — 미드나잇 네이비 바탕 위에 「진화」 모션(EvoBackdrop):
+                왼쪽 아래 흩어진 점(이해) → 오른쪽으로 갈수록 이어지는 네트워크(실행·협업) → 오른쪽 위에서 퍼지는 궤도 파문(진화).
+                카드 계단과 같은 방향으로 오른다. 화면 밖이면 멈추고 동작 줄이기 땐 정지 화면. 위아래만 살짝 눌러 제목·카드 읽힘을 확보한다. */}
             <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-                <img
-                    src="/product/why/evolution-graphite.jpg"
-                    alt=""
-                    className="evo-silk absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover object-center"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,20,0.45)_0%,rgba(6,9,20,0.04)_36%,rgba(6,9,20,0.1)_72%,rgba(6,9,20,0.65)_100%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_0%,rgba(190,206,235,0.14),transparent_70%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_92%,rgba(120,150,210,0.10),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,#070b18_0%,#0b1430_48%,#0d1b3f_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_85%_25%,rgba(47,123,255,0.16),transparent_70%)]" />
+                <EvoBackdrop />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,20,0.55)_0%,rgba(6,9,20,0)_30%,rgba(6,9,20,0)_75%,rgba(6,9,20,0.6)_100%)]" />
             </div>
             <div className={`relative mx-auto max-w-7xl px-6 ${SECTION_PAD}`}>
                 <SectionHead eyebrow="AX Evolution Model" title={e.title} lead={e.lead} dark />
