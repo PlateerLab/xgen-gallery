@@ -51,6 +51,7 @@ import { AI_POLICY_HREF } from "@/lib/ai-policy-link";
 import { PRODUCT_EN } from "@/components/pages/product-copy-en";
 import type { Locale } from "@/lib/i18n";
 import { XgenDifferentPrism } from "@/components/product-xgen/different-prism";
+import { XgenAgentInterop } from "@/components/product-xgen/agent-interop";
 
 /** 히어로 직후 트러스트 바 — 인증·운영·도입 실적(대외 공개 사실만). */
 const TRUST: { icon: LucideIcon; label: string; sub: string }[] = [
@@ -188,7 +189,7 @@ const FEATURES: {
         icon: Code2,
         tag: "DexOn · Vibe & Full Coding",
         ko: "DexOn에서 만드는 Agent와 App",
-        desc: "DexOn에서 자연어로 요구사항을 설명하는 바이브코딩과 개발자가 직접 코드를 다루는 풀코딩을 한 흐름으로 이어갑니다. Agent와 App을 만들고 실행·테스트·수정하며, PC에서 시작한 업무를 태블릿과 핸드폰에서도 계속할 수 있습니다.",
+        desc: "Geny에게 자연어로 요구사항을 설명하는 바이브코딩과 개발자가 직접 코드를 다루는 풀코딩을 한 흐름으로 이어갑니다. Agent와 App을 만들고 실행·테스트·수정하며, PC에서 시작한 업무를 태블릿과 핸드폰에서도 계속할 수 있습니다.",
         items: ["바이브코딩으로 Agent·App 구현", "풀코딩으로 세부 코드 직접 편집", "PC · 태블릿 · 핸드폰에서 업무 연속성 유지"],
     },
     {
@@ -394,7 +395,7 @@ const FAQ: { q: string; a: string }[] = [
     },
     {
         q: "기존 레거시 시스템과 어떻게 연계하나요?",
-        a: "레거시 연계의 핵심은 RAG보다 API입니다. 기존 시스템의 API를 인증 체계와 함께 등록하면 Agent가 바로 쓸 수 있는 도구가 됩니다. 비개발자는 API를 몰라도 PathFinder에서 평소처럼 업무 화면을 조작하면 필요한 API가 수집됩니다. LLM·RAG 연동은 스니펫 코드로도 제공해 기존 시스템에 버튼 하나를 추가해 호출할 수 있고, 80여 종의 기본 도구와 커스텀 도구를 조합해 연계 공수를 줄입니다.",
+        a: "레거시 연계의 핵심은 RAG보다 API입니다. 기존 시스템의 API를 인증 체계와 함께 등록하면 Agent가 바로 쓸 수 있는 도구가 됩니다. LLM·RAG 연동은 스니펫 코드로도 제공해 기존 시스템에 버튼 하나를 추가해 호출할 수 있고, 80여 종의 기본 도구와 커스텀 도구를 조합해 연계 공수를 줄입니다.",
     },
     {
         q: "에이전트가 잘못된 결과를 내면 어떻게 대응하나요?",
@@ -528,7 +529,7 @@ const COMPARE_KO = [
     {
         title: "현업이 직접 만드는 AI",
         before: "개발조직 일정에 따라 AI 서비스 출시 지연",
-        after: "노코드 Canvas로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
+        after: "바이브 코딩이나 노코드 Canvas로 현업이 직접 Agent를 만들고 즉시 업무에 적용",
         effect: "개발 대기 없이 업무 부서가 직접 개선",
     },
     {
@@ -919,6 +920,9 @@ export function ProductPageContent({ locale, view = "overview" }: { locale: Loca
                             </div>
                         </div>
                     </section>
+
+                    {/* 외부 플랫폼 Agent 연동 — MCP 기반 가져오기·내보내기(조건 명시) */}
+                    <XgenAgentInterop locale={locale} />
 
                     {/* Roles — 역할별 경험(xgen.im 3역할, 탭 자동 순환) */}
                     <WhyXgenRoles locale={locale} />

@@ -311,9 +311,9 @@ export function LotteHomeshoppingBriefBody({
 
             {/* HERO — 제주은행 사례와 같은 구성 */}
             <section className="relative overflow-hidden border-b border-[var(--color-line)] bg-[#070b1c] text-white">
-                {/* 고객사 사진 — 어두운 그라데이션을 덮어 글자 대비를 유지한다 */}
+                {/* 고객사 사진 — 롯데홈쇼핑 사옥(공식 홈페이지 공개 이미지). 어두운 그라데이션을 덮어 글자 대비를 유지한다 */}
                 <Image
-                    src="/intro/case-proven-commerce.webp"
+                    src="/customers/lotte-homeshopping/building.webp"
                     alt=""
                     fill
                     priority
@@ -322,7 +322,7 @@ export function LotteHomeshoppingBriefBody({
                 />
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.78)_0%,rgba(7,11,28,0.86)_55%,rgba(7,11,28,0.96)_100%)]"
+                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,28,0.62)_0%,rgba(7,11,28,0.80)_55%,rgba(7,11,28,0.95)_100%)]"
                 />
                 <div
                     aria-hidden
@@ -341,6 +341,14 @@ export function LotteHomeshoppingBriefBody({
                             {en ? EN.breadcrumbIndustry : "커머스"}
                         </Link>
                     </nav>
+
+                    {/* 고객사 로고 — 어두운 히어로 위에서 원래 색이 보이게 흰 바탕에 올린다 */}
+                    <div className="mt-6 flex justify-center">
+                        <span className="inline-flex items-center rounded-full bg-white px-5 py-2.5">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={en ? "/customers/lotte-homeshopping/logo-en.png" : "/customers/lotte-homeshopping/logo-ko.png"} alt={en ? "Lotte Homeshopping" : "롯데홈쇼핑"} className="h-7 w-auto" />
+                        </span>
+                    </div>
 
                     <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
                         <span className="inline-flex items-center rounded-full border border-[#2f7bff]/40 bg-[#2f7bff]/15 px-3 py-1 text-[12.5px] font-bold text-[#7fb0ff]">
@@ -385,6 +393,9 @@ export function LotteHomeshoppingBriefBody({
                         ))}
                     </ul>
                 </div>
+                <p className="absolute bottom-3 right-4 text-[11.5px] text-white/45">
+                    {en ? "Photo and logo: Lotte Homeshopping official website" : "사진·로고: 롯데홈쇼핑 공식 홈페이지"}
+                </p>
             </section>
 
             {/* 선택의 이유 — 정리한 카드 대신 고객의 말(VoC)을 그대로 인용한다. 아래 「고객의 목소리」와 같은 인용 상자 */}

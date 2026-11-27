@@ -122,6 +122,13 @@ export interface CaseStudy {
     featured?: boolean;
     /** 썸네일 씬 — 같은 산업 사례와 구분이 필요할 때만 지정한다. */
     visual?: CaseVisual;
+    /** 목록·카드 썸네일 실사 사진(public 경로). 없으면 산업 상징 SVG를 쓴다. */
+    photo?: string;
+    /**
+     * 상세를 별도 페이지로 둔 사례의 경로(로케일 접두사 없는 경로).
+     * 목록·카드는 이 경로로 바로 링크하고, /customers/case/<slug> 는 여기로 넘긴다.
+     */
+    href?: string;
     /** true면 목록/색인에서 제외(작성 중). */
     draft?: boolean;
 }
@@ -190,7 +197,49 @@ export const INDUSTRIES: Record<IndustryKey, IndustryMeta> = {
  */
 const ALL_CASE_STUDIES: CaseStudy[] = [
     {
+        // 상세는 공개 전환한 요약판 페이지(/preview/lotte-homeshopping-brief-f024d911)를 쓴다.
+        // /customers/case/lotte-homeshopping 은 그 페이지로 넘긴다(case-detail-page.tsx).
+        slug: "lotte-homeshopping",
+        photo: "/customers/lotte-homeshopping/building.webp",
+        href: "/preview/lotte-homeshopping-brief-f024d911",
+        title: "롯데홈쇼핑, 부서별 업무를 수행하는 AI Agent를 XGEN으로 만들다",
+        titleEn: "Lotte Homeshopping: AI agents that carry out work in each department",
+        customer: "롯데홈쇼핑",
+        customerEn: "Lotte Homeshopping",
+        customerAnonymous: false,
+        industry: "commerce",
+        products: ["xgen"],
+        summary:
+            "롯데홈쇼핑 AX팀이 XGEN으로 업무별 AI Agent를 직접 만들어 현업에 배포한 커머스 사례입니다. 위해상품 판매차단과 차세대 시스템 업무 안내에서 시작해 재경, 방송 품질·심의 업무로 적용 범위를 넓히고 있습니다.",
+        summaryEn:
+            "With XGEN, Lotte Homeshopping's AX team builds the AI agents each task needs and deploys them to the business. Starting with blocking sales of hazardous products and guiding staff through the next-generation system, the scope is widening to finance and broadcast quality and review.",
+        challenge:
+            "부서마다 생성형 AI 활용이 늘면서, 질문에 답하는 수준을 넘어 실제 업무를 수행하는 AI가 필요했다. 클라우드 모델과 사내 오픈 모델을 한 플랫폼에서 함께 쓰고, 현업이 직접 Agent를 고칠 수 있어야 하며, 내부에 남아야 할 데이터는 사내 GPU에서 처리해야 했다.",
+        challengeEn:
+            "As more departments took up generative AI, answering questions was no longer enough — they needed AI that could carry out real work. Cloud and on-premise open models had to be used on one platform, business users had to be able to adjust agents themselves, and data that must stay inside had to be processed on in-house GPUs.",
+        solution:
+            "데이터 민감도와 업무 특성에 따라 사내 GPU 모델과 클라우드 모델을 나눠 쓰고, AX팀이 별도 코딩 없이 워크플로우로 Agent를 만들어 배포했다. 위해상품 판매차단, 차세대 시스템 업무 안내, 방송 품질·심의 지원은 운영 중이고, 영수증 전표 처리는 연동을 진행하고 있다.",
+        solutionEn:
+            "In-house GPU models and cloud models are chosen by data sensitivity and the needs of each task, and the AX team builds and deploys agents as workflows without separate coding. Hazardous-product sales blocking, next-generation system guidance, and broadcast quality and review support are in operation; receipt and expense processing is being integrated.",
+        highlights: [
+            "업무별 AI Agent 직접 제작",
+            "사내 GPU·클라우드 모델 병행",
+            "코딩 없는 워크플로우 배포",
+            "부서별 단계적 확산",
+        ],
+        highlightsEn: [
+            "Task-specific AI agents built in-house",
+            "In-house GPU and cloud models side by side",
+            "Workflows deployed without coding",
+            "Rolled out department by department",
+        ],
+        status: "운영 중",
+        published: "2026-11-23",
+        featured: true,
+    },
+    {
         slug: "financial-ai-platform-in-progress",
+        photo: "/intro/case-capital-adobe.webp",
         title: "여신금융 업무를 위한 Enterprise AI 플랫폼과 거버넌스 기반을 구축하고 있습니다",
         titleEn: "Building an enterprise AI platform and governance foundation for capital finance",
         customer: "I사 · 여신금융",
@@ -230,6 +279,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "jeju-bank-genai-platform",
+        photo: "/intro/case-proven-bank.webp",
         title: "제주은행과 사내 생성형 AI 플랫폼을 구축하고 운영으로 안착시키다",
         titleEn:
             "Jeju Bank's internal generative-AI platform",
@@ -266,6 +316,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "retail-genai-retention",
+        photo: "/intro/case-proven-commerce.webp",
         title: "생성형 AI로 고객 리텐션과 심의 업무를 지원하다",
         titleEn:
             "Generative AI for retention and review work",
@@ -305,6 +356,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "semiconductor-code-assistant",
+        photo: "/intro/case-semiconductor-fab.webp",
         title: "사내 개발 환경에 맞춘 AI 코딩 어시스턴트를 전사로 확산하다",
         titleEn:
             "An AI coding assistant, rolled out company-wide",
@@ -341,6 +393,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "defense-code-assistant",
+        photo: "/intro/technology-server.webp",
         title: "폐쇄망 개발 환경에 XGEN 기반 AI 코딩 어시스턴트를 구축하다",
         titleEn:
             "An XGEN-based AI coding assistant in an air-gapped network",
@@ -372,6 +425,7 @@ const ALL_CASE_STUDIES: CaseStudy[] = [
     },
     {
         slug: "public-procurement-search",
+        photo: "/intro/public.webp",
         title: "대규모 조달 검색 시스템을 AI로 고도화하다",
         titleEn:
             "Large-scale procurement search, rebuilt on AI",
@@ -413,6 +467,11 @@ export function getAllCases(): CaseStudy[] {
     return CASE_STUDIES.filter((c) => !c.draft).sort(
         (a, b) => b.published.localeCompare(a.published),
     );
+}
+
+/** 사례 상세 경로(로케일 접두사 없음) — 별도 페이지가 있으면 그 경로. */
+export function caseHref(c: Pick<CaseStudy, "slug" | "href">): string {
+    return c.href ?? `/customers/case/${c.slug}`;
 }
 
 export function getCaseBySlug(slug: string): CaseStudy | undefined {

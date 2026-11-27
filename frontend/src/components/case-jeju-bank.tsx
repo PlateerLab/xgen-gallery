@@ -293,6 +293,14 @@ export function JejuBankCaseBody({ locale = "ko" }: { locale?: Locale }) {
                         </Link>
                     </nav>
 
+                    {/* 고객사 로고 — 어두운 히어로 위에서 원래 색이 보이게 흰 바탕에 올린다 */}
+                    <div className="mt-6 flex justify-center">
+                        <span className="inline-flex items-center rounded-full bg-white px-5 py-2.5">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/customers/jeju-bank.png" alt={en ? "Jeju Bank" : "제주은행"} className="h-8 w-auto" />
+                        </span>
+                    </div>
+
                     <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
                         <span className="inline-flex items-center rounded-full border border-[#2f7bff]/40 bg-[#2f7bff]/15 px-3 py-1 text-[12.5px] font-bold text-[#7fb0ff]">
                             XGEN

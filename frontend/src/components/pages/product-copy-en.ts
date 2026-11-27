@@ -124,7 +124,7 @@ export const PRODUCT_EN = {
     features: [
         {
             ko: "Build agents and apps in DexOn",
-            desc: "Inside DexOn, move between vibe coding—describing what you want in natural language—and full coding with direct code control. Build, run, test, and refine agents and apps, then continue work started on a PC from a tablet or phone.",
+            desc: "Move between vibe coding—describing what you want to Geny in natural language—and full coding with direct code control. Build, run, test, and refine agents and apps, then continue work started on a PC from a tablet or phone.",
             items: ["Build agents and apps with vibe coding", "Edit implementation details with full coding", "Keep work moving across PC, tablet, and phone"],
         },
         {
@@ -257,7 +257,7 @@ export const PRODUCT_EN = {
         },
         {
             q: "How does it integrate with our legacy systems?",
-            a: "For legacy integration, APIs matter more than RAG. Register an existing system's API together with its authentication scheme and it becomes a tool agents can use right away. Non-developers don't need to understand APIs: PathFinder collects the needed APIs as they operate their usual business screens. LLM and RAG integration is also provided as snippet code, so a single button added to an existing system can call it, and around 80 built-in tools combined with custom tools reduce integration effort.",
+            a: "For legacy integration, APIs matter more than RAG. Register an existing system's API together with its authentication scheme and it becomes a tool agents can use right away. LLM and RAG integration is also provided as snippet code, so a single button added to an existing system can call it, and around 80 built-in tools combined with custom tools reduce integration effort.",
         },
         {
             q: "What happens when an agent produces a wrong result?",
@@ -356,7 +356,7 @@ export const PRODUCT_EN = {
         {
             title: "AI built by the business",
             before: "AI service launches wait on the development organization's schedule",
-            after: "With the no-code canvas, business users build agents and apply them to work immediately",
+            after: "With vibe coding or a no-code canvas, business users build agents and apply them to work immediately",
             effect: "Business teams improve things themselves, without waiting on development",
         },
         {

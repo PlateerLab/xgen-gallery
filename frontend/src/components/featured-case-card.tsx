@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { localeHref } from "@/lib/locale-path";
+import Image from "next/image";
+import { localeHref, localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import { ArrowRight } from "lucide-react";
 import {
@@ -31,11 +32,21 @@ export function FeaturedCaseCard({
         <>
             <div className="relative aspect-[16/10] overflow-hidden">
                 {/* 산업 상징 비주얼 */}
-                <IndustryVisual
-                    industry={item.industry}
-                    variant={item.visual}
-                    className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
-                />
+                {item.photo ? (
+                    <Image
+                        src={item.photo}
+                        alt=""
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 560px"
+                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                ) : (
+                    <IndustryVisual
+                        industry={item.industry}
+                        variant={item.visual}
+                        className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]"
+                    />
+                )}
                 {/* 하단 가독성 그라디언트 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050813] via-[#050813]/60 to-[#050813]/10" />
 
@@ -83,7 +94,7 @@ export function FeaturedCaseCard({
         return <div className={`${cls} cursor-default`}>{body}</div>;
     }
     return (
-        <Link href={localeHref(locale, `/customers/case/${item.slug}`)} className={cls}>
+        <Link href={item.href ? localePath(locale, item.href) : localeHref(locale, `/customers/case/${item.slug}`)} className={cls}>
             {body}
         </Link>
     );

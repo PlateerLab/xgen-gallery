@@ -42,8 +42,8 @@ export const XGEN_VIEWS: {
         audience: { ko: "현업·실무 담당자", en: "Business and operations teams" },
         question: { ko: "무엇을 만들고, 어떻게 쓰나요?", en: "What can we build, and how is it used?" },
         desc: {
-            ko: "4대 핵심 가치, 핵심 기능과 실제 화면, 역할별 사용 방식, 도입 효과를 정리했습니다.",
-            en: "Four core values, core features with real screens, how each role uses XGEN, and business value.",
+            ko: "4대 핵심 가치, 핵심 기능과 실제 화면, 외부 플랫폼 Agent 연동, 역할별 사용 방식, 도입 효과를 정리했습니다.",
+            en: "Four core values, core features with real screens, connecting agents from other platforms, how each role uses XGEN, and business value.",
         },
         deep: [
             { label: { ko: "Vibe Coding", en: "Vibe Coding" }, href: "/vibe-coding" },

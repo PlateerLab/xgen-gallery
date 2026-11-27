@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { localeHref } from "@/lib/locale-path";
+import Image from "next/image";
+import { localeHref, localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -42,7 +43,17 @@ function Thumb({
         <div
             className={`relative flex flex-col justify-end overflow-hidden rounded-2xl text-white ${className ?? ""}`}
         >
-            <IndustryVisual industry={c.industry} variant={c.visual} className="absolute inset-0" />
+            {c.photo ? (
+                <Image
+                    src={c.photo}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, 288px"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                />
+            ) : (
+                <IndustryVisual industry={c.industry} variant={c.visual} className="absolute inset-0" />
+            )}
             {/* 뱃지 가독성용 스크림 — 산업 비주얼이 밝아 상단만 살짝 눌러준다 */}
             <div
                 aria-hidden
@@ -146,7 +157,7 @@ function CaseRow({ c, locale }: { c: CaseStudy; locale: Locale }) {
         return <div className={`${cls} cursor-default`}>{inner}</div>;
     }
     return (
-        <Link href={localeHref(locale, `/customers/case/${c.slug}`)} className={cls}>
+        <Link href={c.href ? localePath(locale, c.href) : localeHref(locale, `/customers/case/${c.slug}`)} className={cls}>
             {inner}
         </Link>
     );

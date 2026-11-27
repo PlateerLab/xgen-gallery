@@ -59,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     // 고객사례 — 개별 사례 페이지 + 사례가 있는 산업 페이지만 색인(빈 산업 스텁은 제외).
-    const caseRoutes: MetadataRoute.Sitemap = getAllCases().map((c) => ({
+    const caseRoutes: MetadataRoute.Sitemap = getAllCases().filter((c) => !c.href).map((c) => ({
         url: `${SITE.url}/customers/case/${c.slug}`,
         lastModified: new Date(c.published),
         changeFrequency: "monthly",

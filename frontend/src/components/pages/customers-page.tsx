@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/json-ld";
 import { CustomersLibrary } from "@/components/customers-library";
 import { FeaturedCaseSlider } from "@/components/featured-case-slider";
 import { breadcrumbLd, itemListLd } from "@/lib/structured-data";
-import { getAllCases, PRODUCTS, type ProductKey } from "@/lib/customers";
+import { getAllCases, caseHref, PRODUCTS, type ProductKey } from "@/lib/customers";
 
 /**
  * 고객사례 라이브러리(/customers) — XGEN·Polar 등 제품을 실제 업무에 적용한
@@ -89,7 +89,14 @@ export async function CustomersPageContent({
     const t = COPY[locale];
     const en = locale === "en";
     const home = en ? "/en" : "/";
-    const cases = getAllCases();
+    // 목록 노출 순서만 조정: 롯데홈쇼핑과 I사 여신금융 사례 위치를 맞바꾼다(게시일은 그대로).
+    const cases = (() => {
+        const list = getAllCases();
+        const i = list.findIndex((c) => c.slug === "lotte-homeshopping");
+        const j = list.findIndex((c) => c.slug === "financial-ai-platform-in-progress");
+        if (i >= 0 && j >= 0) [list[i], list[j]] = [list[j], list[i]];
+        return list;
+    })();
     const recent = cases.slice(0, 3); // 최근 사례 — 키비주얼 슬라이드 배너
     const { product } = await searchParams;
     const initialProduct: ProductKey | "all" =
@@ -104,7 +111,7 @@ export async function CustomersPageContent({
             t.ldName,
             cases.map((c) => ({
                 name: c.title,
-                url: `/customers/case/${c.slug}`,
+                url: caseHref(c),
                 description: c.summary,
             })),
         ),

@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
-import { localeHref } from "@/lib/locale-path";
+import { notFound, redirect } from "next/navigation";
+import { localeHref, localePath } from "@/lib/locale-path";
 import { CASE_STATUS_EN } from "@/lib/customers";
 import type { Locale } from "@/lib/i18n";
 import Link from "next/link";
@@ -108,6 +108,8 @@ export async function CaseDetailPageContent({
     const { slug } = await params;
     const c = getCaseBySlug(slug);
     if (!c) notFound();
+    // 별도 상세 페이지가 있는 사례(롯데홈쇼핑)는 그 페이지로 넘긴다.
+    if (c.href) redirect(localePath(locale, c.href));
 
     const industry = INDUSTRIES[c.industry];
     const related = getCasesByIndustry(c.industry)

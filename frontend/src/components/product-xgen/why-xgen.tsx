@@ -162,7 +162,7 @@ const COPY = {
         capTitle: "진화의 각 단계를 떠받치는 XGEN의 핵심 역량",
         caps: [
             { en: "Knowledge", ko: "쌓일수록 깊어지는 기업 지식", desc: "온톨로지로 업무 개념과 관계를 정의해 문서를 의미 단위로 다시 읽습니다. Vector와 Graph를 함께 쓰는 하이브리드 구조로 답의 근거와 관계를 같이 찾습니다.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
-            { en: "Workflow", ko: "현업이 직접 만드는 업무 Agent", desc: "DexOn을 통해 사용자의 PC 환경에서도 AI Agent를 활용하고, 자연어 대화만으로 Agent와 업무용 App을 개발할 수 있습니다. 캔버스 기반의 워크플로우 설계와 MCP·API 연동을 지원해 기존 시스템과 업무 자산도 유연하게 활용할 수 있습니다.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Workflow", ko: "현업이 직접 만드는 업무 Agent", desc: "DexOn에서 사용자의 PC 환경에서도 AI Agent를 활용하고, Geny에게 자연어 대화만으로 Agent와 업무용 App을 개발할 수 있습니다. 캔버스 기반의 워크플로우 설계와 MCP·API 연동을 지원해 기존 시스템과 업무 자산도 유연하게 활용할 수 있습니다.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
             { en: "Operations", ko: "쓸수록 똑똑해지는 운영 엔진", desc: "실시간 모니터링과 평가·피드백 루프로 성능을 관리하고 실행 이력을 추적합니다. Geny는 대화마다 작업 방식을 돌아보고 다음 실행에 반영합니다.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Model", ko: "검증을 거쳐 판단하는 추론 체계", desc: "목적에 맞는 모델을 고르고, 다단계 검증과 Judge 평가로 판단의 일관성을 높입니다.", chips: [["Harness Engineering", 1], ["Multi-LLM", 0]] },
             { en: "Governance", ko: "폐쇄망에서도 지키는 데이터 주권", desc: "RBAC/ABAC 접근 제어, 다계층 가드레일, 결재선과 AI 위험도 심사를 온프레미스 환경에 적용합니다.", chips: [["결재선·위험도 심사", 1], ["RBAC/ABAC", 0], ["감사 로그", 0]] },
@@ -172,7 +172,7 @@ const COPY = {
         rolesTitle: "각자의 역할에만 집중할 수 있는 환경",
         rolesLead: "기획자도, 개발자도, 관리자도. XGEN은 각자의 자리에서 AI를 쓰고, 만들고, 통제할 수 있게 합니다.",
         roles: [
-            { tag: "임직원·대고객", ko: "일반 사용자", desc: "대화형 Agent에게 물으면 검색·요약·문서 활용부터 실제 업무 실행까지 이어집니다. 코드를 몰라도 DexOn에서 말로 요청하는 바이브코딩으로 필요한 Agent와 App을 직접 만들 수 있습니다. 결과는 근거와 함께 검토합니다.", img: "/product/screen-teams.png", alt: "대화형 Agent 사용 화면" },
+            { tag: "임직원·대고객", ko: "일반 사용자", desc: "대화형 Agent에게 물으면 검색·요약·문서 활용부터 실제 업무 실행까지 이어집니다. 코드를 몰라도 DexOn에서 Geny에게 말로 요청하는 바이브코딩으로 필요한 Agent와 App을 직접 만들 수 있습니다. 결과는 근거와 함께 검토합니다.", img: "/product/screen-teams.png", alt: "대화형 Agent 사용 화면" },
             { tag: "기획자·현업", ko: "Agent 개발자", desc: "캔버스로 워크플로우를 설계하고 API는 도구로 등록합니다. 바이브코딩으로 시작한 결과물도 코드를 직접 작성·수정하는 풀코딩으로 이어갈 수 있습니다. 테스트부터 배포까지 하나의 흐름으로 진행합니다.", img: "/product/agent-builder-canvas.png", alt: "Agent 빌더 캔버스 화면" },
             { tag: "IT·보안", ko: "플랫폼 관리자", desc: "권한(RBAC/ABAC), 보안 정책, 감사 로그, 모니터링, 배포 승인을 한곳에서 운영합니다. 폐쇄망에서도 같은 방식으로 관리합니다.", img: "/product/operations-dashboard.png", alt: "운영 대시보드 화면" },
         ],
@@ -242,7 +242,7 @@ const COPY = {
         capTitle: "The core capabilities behind each stage",
         caps: [
             { en: "Knowledge", ko: "Enterprise knowledge that deepens as it grows", desc: "An ontology defines business concepts and relations, so documents are re-read by meaning. A hybrid Vector + Graph structure finds the evidence and the relations behind an answer.", chips: [["Ontology RAG", 1], ["Graph DB", 0], ["Dynamic Top-K", 0]] },
-            { en: "Workflow", ko: "Business agents built by the business", desc: "DexOn brings AI agents to your PC and lets you build agents and business apps in natural language. Canvas workflows and MCP/API integration put existing systems and assets to work.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
+            { en: "Workflow", ko: "Business agents built by the business", desc: "In DexOn, use AI agents on your PC and build agents and business apps by describing them to Geny in natural language. Canvas workflows and MCP/API integration put existing systems and assets to work.", chips: [["DexOn", 1], ["Vibe Coding", 1], ["Agent Builder", 0]] },
             { en: "Operations", ko: "A self-improving operations engine", desc: "Real-time monitoring and evaluation-feedback loops manage performance and trace execution history. Geny reviews its approach after each conversation and applies it next time.", chips: [["Geny", 1], ["LLMOps", 0], ["Evidence", 0]] },
             { en: "Model", ko: "Reasoning that passes verification", desc: "Picks the model that fits the task and raises consistency with multi-step verification and judge evaluation.", chips: [["Harness Engineering", 1], ["Multi-LLM", 0]] },
             { en: "Governance", ko: "Data sovereignty, even air-gapped", desc: "Applies RBAC/ABAC access control, multi-layer guardrails, approval routes and AI risk review in on-premise environments.", chips: [["Approval & risk review", 1], ["RBAC/ABAC", 0], ["Audit log", 0]] },
@@ -252,7 +252,7 @@ const COPY = {
         rolesTitle: "Everyone focuses on their own role",
         rolesLead: "Planners, developers and administrators each use, build and govern AI from where they sit.",
         roles: [
-            { tag: "Employees · customers", ko: "End users", desc: "Ask a conversational agent and go from search, summaries and documents to actual task execution. Without writing code, users can build the agents and apps they need through vibe coding in DexOn, simply by describing them. Results are reviewed with their evidence.", img: "/product/screen-teams.png", alt: "Conversational agent screen" },
+            { tag: "Employees · customers", ko: "End users", desc: "Ask a conversational agent and go from search, summaries and documents to actual task execution. Without writing code, users can build the agents and apps they need through vibe coding in DexOn, simply by describing them to Geny. Results are reviewed with their evidence.", img: "/product/screen-teams.png", alt: "Conversational agent screen" },
             { tag: "Planners · business", ko: "Agent builders", desc: "Design workflows on the canvas and register APIs as tools. Work started with vibe coding can continue as full coding, writing and editing the code directly. Testing through deployment runs in a single flow.", img: "/product/agent-builder-canvas.png", alt: "Agent builder canvas" },
             { tag: "IT · security", ko: "Platform admins", desc: "Run permissions (RBAC/ABAC), security policy, audit logs, monitoring and deployment approval in one place — the same way in air-gapped networks.", img: "/product/operations-dashboard.png", alt: "Operations dashboard" },
         ],
